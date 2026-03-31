@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.room.powerlevels
+
+import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
+import org.prism.rustcomponents.sdk.PowerLevel
+import org.prism.rustcomponents.sdk.RoomPowerLevelsValues as RustRoomPowerLevelsValues
+
+object RoomPowerLevelsValuesMapper {
+    fun map(values: RustRoomPowerLevelsValues): RoomPowerLevelsValues {
+        return RoomPowerLevelsValues(
+            ban = values.ban,
+            invite = values.invite,
+            kick = values.kick,
+            eventsDefault = values.eventsDefault,
+            stateDefault = values.stateDefault,
+            redactEvents = values.redact,
+            roomName = values.roomName,
+            roomAvatar = values.roomAvatar,
+            roomTopic = values.roomTopic,
+            spaceChild = values.spaceChild,
+        )
+    }
+}
+
+fun PowerLevel.into(): Long = when (this) {
+    PowerLevel.Infinite -> RoomMember.Role.Owner(isCreator = true).powerLevel
+    is PowerLevel.Value -> this.value
+}

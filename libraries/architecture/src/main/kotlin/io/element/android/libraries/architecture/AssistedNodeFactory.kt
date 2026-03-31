@@ -1,0 +1,17 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.architecture
+
+import com.bumble.appyx.core.modality.BuildContext
+import com.bumble.appyx.core.node.Node
+import com.bumble.appyx.core.plugin.Plugin
+
+fun interface AssistedNodeFactory<NODE : Node> {
+    fun create(buildContext: BuildContext, plugins: List<Plugin>): NODE
+}

@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.securebackup.impl.root
+
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
+import io.prism.android.libraries.prism.api.encryption.BackupState
+import io.prism.android.libraries.prism.api.encryption.RecoveryState
+
+data class SecureBackupRootState(
+    val enableAction: AsyncAction<Unit>,
+    val backupState: BackupState,
+    val doesBackupExistOnServer: AsyncData<Boolean>,
+    val recoveryState: RecoveryState,
+    val appName: String,
+    val displayKeyStorageDisabledError: Boolean,
+    val snackbarMessage: SnackbarMessage?,
+    val eventSink: (SecureBackupRootEvents) -> Unit,
+) {
+    val isKeyStorageEnabled: Boolean
+        get() = when (backupState) {
+            BackupState.UNKNOWN -> doesBackupExistOnServer.dataOrNull() == true
+            BackupState.CREATING,
+            BackupState.ENABLING,
+            BackupState.RESUMING,
+            BackupState.DOWNLOADING,
+            BackupState.ENABLED -> true
+            BackupState.WAITING_FOR_SYNC,
+            BackupState.DISABLING -> false
+        }
+}

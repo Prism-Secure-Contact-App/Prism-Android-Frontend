@@ -1,0 +1,56 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.messages.impl.messagecomposer
+
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
+import io.prism.android.features.messages.impl.messagecomposer.suggestions.DefaultRoomAliasSuggestionsDataSource
+import io.prism.android.features.messages.impl.messagecomposer.suggestions.RoomAliasSuggestion
+import io.prism.android.libraries.prism.test.A_ROOM_ALIAS
+import io.prism.android.libraries.prism.test.A_ROOM_ID_2
+import io.prism.android.libraries.prism.test.room.aRoomSummary
+import io.prism.android.libraries.prism.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
+import kotlinx.coroutines.test.runTest
+import org.junit.Test
+
+class DefaultRoomAliasSuggestionsDataSourceTest {
+    @Test
+    fun `getAllRoomAliasSuggestions must emit a list of room alias suggestions`() = runTest {
+        val roomList = FakeDynamicRoomList()
+        val roomListService = FakeRoomListService(
+            createRoomListLambda = { roomList }
+        )
+        val sut = DefaultRoomAliasSuggestionsDataSource(
+            roomListService
+        )
+        val aRoomSummaryWithAnAlias = aRoomSummary(
+            canonicalAlias = A_ROOM_ALIAS
+        )
+        sut.getAllRoomAliasSuggestions().test {
+            assertThat(awaitItem()).isEmpty()
+            roomList.summaries.emit(
+                listOf(
+                    aRoomSummary(roomId = A_ROOM_ID_2, canonicalAlias = null),
+                    aRoomSummaryWithAnAlias,
+                )
+            )
+            assertThat(awaitItem()).isEqualTo(
+                listOf(
+                    RoomAliasSuggestion(
+                        roomAlias = A_ROOM_ALIAS,
+                        roomId = aRoomSummaryWithAnAlias.roomId,
+                        roomName = aRoomSummaryWithAnAlias.info.name,
+                        roomAvatarUrl = aRoomSummaryWithAnAlias.info.avatarUrl
+                    )
+                )
+            )
+        }
+    }
+}

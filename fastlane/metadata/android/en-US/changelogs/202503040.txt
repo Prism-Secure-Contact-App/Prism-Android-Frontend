@@ -1,0 +1,2 @@
+Main changes in this version: added a fix for PRISM Call not being able to report issues.
+Full changelog: https://github.com/prism-hq/prism-x-android/releases

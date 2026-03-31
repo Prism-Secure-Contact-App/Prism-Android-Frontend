@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.timeline.reply
+
+import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.prism.api.timeline.item.event.InReplyTo
+import io.prism.android.libraries.prism.impl.timeline.item.event.TimelineEventContentMapper
+import io.prism.android.libraries.prism.impl.timeline.item.event.map
+import org.prism.rustcomponents.sdk.EmbeddedEventDetails
+import org.prism.rustcomponents.sdk.InReplyToDetails
+
+class InReplyToMapper(
+    private val timelineEventContentMapper: TimelineEventContentMapper,
+) {
+    fun map(inReplyToDetails: InReplyToDetails): InReplyTo {
+        val inReplyToId = EventId(inReplyToDetails.eventId())
+        return when (val event = inReplyToDetails.event()) {
+            is EmbeddedEventDetails.Ready -> {
+                InReplyTo.Ready(
+                    eventId = inReplyToId,
+                    content = timelineEventContentMapper.map(event.content),
+                    senderId = UserId(event.sender),
+                    senderProfile = event.senderProfile.map(),
+                )
+            }
+            is EmbeddedEventDetails.Error -> InReplyTo.Error(
+                eventId = inReplyToId,
+                message = event.message,
+            )
+            EmbeddedEventDetails.Pending -> InReplyTo.Pending(
+                eventId = inReplyToId,
+            )
+            is EmbeddedEventDetails.Unavailable -> InReplyTo.NotLoaded(
+                eventId = inReplyToId
+            )
+        }
+    }
+}

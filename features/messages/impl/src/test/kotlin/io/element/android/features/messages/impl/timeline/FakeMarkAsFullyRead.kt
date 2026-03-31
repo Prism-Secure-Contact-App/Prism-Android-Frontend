@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.messages.impl.timeline
+
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.tests.testutils.lambda.lambdaError
+
+class FakeMarkAsFullyRead(
+    private val invokeResult: (RoomId, EventId) -> Unit = { _, _ -> lambdaError() },
+) : MarkAsFullyRead {
+    override suspend fun invoke(roomId: RoomId, eventId: EventId): Result<Unit> {
+        return runCatchingExceptions { invokeResult(roomId, eventId) }
+    }
+}

@@ -1,0 +1,2 @@
+Main changes in this version: Moderation to rooms, mark room as favourite.
+Full changelog: https://github.com/prism-hq/prism-x-android/releases

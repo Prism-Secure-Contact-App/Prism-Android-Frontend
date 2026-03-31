@@ -1,0 +1,117 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.home.impl.datasource
+
+import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
+import io.prism.android.features.home.impl.FakeDateTimeObserver
+import io.prism.android.libraries.androidutils.system.DateTimeObserver
+import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
+import io.prism.android.libraries.prism.api.roomlist.RoomListService
+import io.prism.android.libraries.prism.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.prism.test.room.aRoomSummary
+import io.prism.android.libraries.prism.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.testCoroutineDispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.runTest
+import org.junit.Test
+import java.time.Instant
+
+class RoomListDataSourceTest {
+    @Test
+    fun `when DateTimeObserver gets a date change, the room summaries are refreshed`() = runTest {
+        val roomList = FakeDynamicRoomList().apply {
+            summaries.emit(listOf(aRoomSummary()))
+        }
+        val roomListService = FakeRoomListService(
+            createRoomListLambda = { roomList }
+        ).apply {
+            postState(RoomListService.State.Running)
+        }
+        val dateTimeObserver = FakeDateTimeObserver()
+        var dateFormatterResult = "Today"
+        val dateFormatter = FakeDateFormatter({ _, _, _ -> dateFormatterResult })
+        val roomListDataSource = createRoomListDataSource(
+            roomListService = roomListService,
+            roomListRoomSummaryFactory = aRoomListRoomSummaryFactory(
+                dateFormatter = dateFormatter,
+            ),
+            dateTimeObserver = dateTimeObserver,
+        )
+
+        roomListDataSource.roomSummariesFlow.test {
+            // Observe room list items changes
+            roomListDataSource.launchIn(backgroundScope)
+            // Get the initial room list
+            val initialRoomList = awaitItem()
+            assertThat(initialRoomList).isNotEmpty()
+            assertThat(initialRoomList.first().timestamp).isEqualTo("Today")
+            dateFormatterResult = "Yesterday"
+            // Trigger a date change
+            dateTimeObserver.given(DateTimeObserver.Event.DateChanged(Instant.MIN, Instant.now()))
+            // Check there is a new list and it's not the same as the previous one
+            val newRoomList = awaitItem()
+            assertThat(newRoomList).isNotSameInstanceAs(initialRoomList)
+            assertThat(newRoomList.first().timestamp).isEqualTo("Yesterday")
+        }
+    }
+
+    @Test
+    fun `when DateTimeObserver gets a time zone change, the room summaries are refreshed`() = runTest {
+        val roomList = FakeDynamicRoomList(summaries = MutableStateFlow(listOf(aRoomSummary())))
+        val roomListService = FakeRoomListService(
+            createRoomListLambda = { roomList }
+        ).apply {
+            postState(RoomListService.State.Running)
+        }
+        val dateTimeObserver = FakeDateTimeObserver()
+        var dateFormatterResult = "Today"
+        val dateFormatter = FakeDateFormatter({ _, _, _ -> dateFormatterResult })
+        val roomListDataSource = createRoomListDataSource(
+            roomListService = roomListService,
+            roomListRoomSummaryFactory = aRoomListRoomSummaryFactory(
+                dateFormatter = dateFormatter,
+            ),
+            dateTimeObserver = dateTimeObserver,
+        )
+        roomListDataSource.roomSummariesFlow.test {
+            // Observe room list items changes
+            roomListDataSource.launchIn(backgroundScope)
+            // Get the initial room list
+            val initialRoomList = awaitItem()
+            assertThat(initialRoomList).isNotEmpty()
+            assertThat(initialRoomList.first().timestamp).isEqualTo("Today")
+            dateFormatterResult = "Yesterday"
+            // Trigger a timezone change
+            dateTimeObserver.given(DateTimeObserver.Event.TimeZoneChanged)
+            // Check there is a new list and it's not the same as the previous one
+            val newRoomList = awaitItem()
+            assertThat(newRoomList).isNotSameInstanceAs(initialRoomList)
+            assertThat(newRoomList.first().timestamp).isEqualTo("Yesterday")
+        }
+    }
+
+    private fun TestScope.createRoomListDataSource(
+        roomListService: FakeRoomListService = FakeRoomListService(),
+        roomListRoomSummaryFactory: RoomListRoomSummaryFactory = aRoomListRoomSummaryFactory(),
+        notificationSettingsService: FakeNotificationSettingsService = FakeNotificationSettingsService(),
+        dateTimeObserver: FakeDateTimeObserver = FakeDateTimeObserver(),
+    ) = RoomListDataSource(
+        roomListService = roomListService,
+        roomListRoomSummaryFactory = roomListRoomSummaryFactory,
+        coroutineDispatchers = testCoroutineDispatchers(),
+        notificationSettingsService = notificationSettingsService,
+        sessionCoroutineScope = backgroundScope,
+        dateTimeObserver = dateTimeObserver,
+        analyticsService = FakeAnalyticsService(),
+    )
+}

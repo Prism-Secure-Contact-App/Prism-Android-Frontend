@@ -1,0 +1,2 @@
+Main changes in this version: improve accessibility.
+Full changelog: https://github.com/prism-hq/prism-x-android/releases

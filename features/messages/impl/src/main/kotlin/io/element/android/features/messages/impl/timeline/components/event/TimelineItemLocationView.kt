@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.messages.impl.timeline.components.event
+
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
+import io.prism.android.features.location.api.StaticMapView
+import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemLocationContent
+import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemLocationContentProvider
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+
+@Composable
+fun TimelineItemLocationView(
+    content: TimelineItemLocationContent,
+    modifier: Modifier = Modifier,
+) {
+    StaticMapView(
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(max = 188.dp),
+        pinVariant = content.pinVariant,
+        lat = content.location.lat,
+        lon = content.location.lon,
+        zoom = 15.0,
+        contentDescription = content.body
+    )
+}
+
+@PreviewsDayNight
+@Composable
+internal fun TimelineItemLocationViewPreview(@PreviewParameter(TimelineItemLocationContentProvider::class) content: TimelineItemLocationContent) =
+    PRISMPreview {
+        TimelineItemLocationView(
+            content = content,
+        )
+    }

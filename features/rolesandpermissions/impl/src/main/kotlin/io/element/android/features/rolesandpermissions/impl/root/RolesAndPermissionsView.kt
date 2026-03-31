@@ -1,0 +1,197 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.rolesandpermissions.impl.root
+
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.features.rolesandpermissions.impl.R
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.designsystem.components.ProgressDialog
+import io.prism.android.libraries.designsystem.components.async.AsyncActionView
+import io.prism.android.libraries.designsystem.components.dialogs.ConfirmationDialog
+import io.prism.android.libraries.designsystem.components.dialogs.ErrorDialog
+import io.prism.android.libraries.designsystem.components.list.ListItemContent
+import io.prism.android.libraries.designsystem.components.preferences.PreferencePage
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.designsystem.theme.components.IconSource
+import io.prism.android.libraries.designsystem.theme.components.ListItem
+import io.prism.android.libraries.designsystem.theme.components.ListItemStyle
+import io.prism.android.libraries.designsystem.theme.components.ListSectionHeader
+import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.components.hide
+import io.prism.android.libraries.ui.strings.CommonStrings
+import kotlinx.collections.immutable.ImmutableList
+
+@Composable
+fun RolesAndPermissionsView(
+    state: RolesAndPermissionsState,
+    rolesAndPermissionsNavigator: RolesAndPermissionsNavigator,
+    modifier: Modifier = Modifier,
+) {
+    PreferencePage(
+        modifier = modifier,
+        title = stringResource(R.string.screen_room_roles_and_permissions_title),
+        onBackClick = rolesAndPermissionsNavigator::onBackClick,
+    ) {
+        ListSectionHeader(title = stringResource(R.string.screen_room_roles_and_permissions_roles_header), hasDivider = false)
+
+        val adminsTitle = if (state.roomSupportsOwnerRole) {
+            stringResource(R.string.screen_room_roles_and_permissions_admins_and_owners)
+        } else {
+            stringResource(R.string.screen_room_roles_and_permissions_admins)
+        }
+        ListItem(
+            headlineContent = { Text(adminsTitle) },
+            leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Admin())),
+            trailingContent = state.adminCount?.let { adminCount ->
+                ListItemContent.Text("$adminCount")
+            },
+            onClick = { rolesAndPermissionsNavigator.openAdminList() },
+        )
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.screen_room_roles_and_permissions_moderators)) },
+            leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.ChatProblem())),
+            trailingContent = state.moderatorCount?.let { moderationCount ->
+                ListItemContent.Text("$moderationCount")
+            },
+            onClick = { rolesAndPermissionsNavigator.openModeratorList() },
+        )
+        if (state.canSelfDemote) {
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.screen_room_roles_and_permissions_change_my_role)) },
+                onClick = { state.eventSink(RolesAndPermissionsEvents.ChangeOwnRole) },
+                leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Edit()))
+            )
+        }
+        HorizontalDivider()
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.screen_room_roles_and_permissions_permissions_header)) },
+            leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Settings())),
+            onClick = { rolesAndPermissionsNavigator.openEditPermissions() },
+        )
+        HorizontalDivider()
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.screen_room_roles_and_permissions_reset)) },
+            leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Delete())),
+            onClick = { state.eventSink(RolesAndPermissionsEvents.ResetPermissions) },
+            style = ListItemStyle.Destructive,
+        )
+    }
+
+    AsyncActionView(
+        async = state.resetPermissionsAction,
+        confirmationDialog = {
+            ConfirmationDialog(
+                title = stringResource(R.string.screen_room_roles_and_permissions_reset_confirm_title),
+                content = stringResource(R.string.screen_room_roles_and_permissions_reset_confirm_description),
+                submitText = stringResource(CommonStrings.action_reset),
+                destructiveSubmit = true,
+                onSubmitClick = { state.eventSink(RolesAndPermissionsEvents.ResetPermissions) },
+                onDismiss = { state.eventSink(RolesAndPermissionsEvents.CancelPendingAction) },
+            )
+        },
+        onSuccess = { state.eventSink(RolesAndPermissionsEvents.CancelPendingAction) },
+        onErrorDismiss = { state.eventSink(RolesAndPermissionsEvents.CancelPendingAction) }
+    )
+
+    when (state.changeOwnRoleAction) {
+        is AsyncAction.Confirming -> {
+            ChangeOwnRoleBottomSheet(
+                availableDemoteActions = state.availableSelfDemoteActions,
+                eventSink = state.eventSink,
+            )
+        }
+        is AsyncAction.Loading -> {
+            ProgressDialog()
+        }
+        is AsyncAction.Failure -> {
+            ErrorDialog(
+                content = stringResource(CommonStrings.error_unknown),
+                onSubmit = { state.eventSink(RolesAndPermissionsEvents.CancelPendingAction) }
+            )
+        }
+        else -> Unit
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ChangeOwnRoleBottomSheet(
+    availableDemoteActions: ImmutableList<SelfDemoteAction>,
+    eventSink: (RolesAndPermissionsEvents) -> Unit,
+) {
+    val coroutineScope = rememberCoroutineScope()
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    fun dismiss() {
+        sheetState.hide(coroutineScope) {
+            eventSink(RolesAndPermissionsEvents.CancelPendingAction)
+        }
+    }
+    ModalBottomSheet(
+        modifier = Modifier
+            .systemBarsPadding()
+            .navigationBarsPadding(),
+        sheetState = sheetState,
+        onDismissRequest = ::dismiss,
+    ) {
+        Text(
+            modifier = Modifier.padding(14.dp),
+            text = stringResource(R.string.screen_room_roles_and_permissions_change_my_role),
+            style = PRISMTheme.typography.fontBodyLgMedium,
+            color = PRISMTheme.colors.textPrimary,
+        )
+        Text(
+            modifier = Modifier.padding(start = 14.dp, end = 14.dp, bottom = 16.dp),
+            text = stringResource(R.string.screen_room_change_role_confirm_demote_self_description),
+            style = PRISMTheme.typography.fontBodyLgRegular,
+            color = PRISMTheme.colors.textPrimary,
+        )
+        for (demoteAction in availableDemoteActions) {
+            ListItem(
+                headlineContent = { Text(stringResource(demoteAction.titleRes)) },
+                onClick = {
+                    sheetState.hide(coroutineScope) {
+                        eventSink(RolesAndPermissionsEvents.DemoteSelfTo(demoteAction.role))
+                    }
+                },
+                style = ListItemStyle.Destructive,
+            )
+        }
+        ListItem(
+            headlineContent = { Text(stringResource(CommonStrings.action_cancel)) },
+            onClick = ::dismiss,
+            style = ListItemStyle.Primary,
+        )
+    }
+}
+
+@PreviewsDayNight
+@Composable
+internal fun RolesAndPermissionsViewPreview(@PreviewParameter(RolesAndPermissionsStateProvider::class) state: RolesAndPermissionsState) {
+    PRISMPreview {
+        RolesAndPermissionsView(
+            state = state,
+            rolesAndPermissionsNavigator = object : RolesAndPermissionsNavigator {},
+        )
+    }
+}

@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.auth
+
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.prism.api.auth.HomeServerLoginCompatibilityChecker
+import io.prism.android.libraries.prism.impl.ClientBuilderProvider
+import io.prism.android.libraries.prism.impl.certificates.UserCertificatesProvider
+import timber.log.Timber
+
+@ContributesBinding(AppScope::class)
+class RustHomeServerLoginCompatibilityChecker(
+    private val clientBuilderProvider: ClientBuilderProvider,
+    private val userCertificatesProvider: UserCertificatesProvider,
+    ) : HomeServerLoginCompatibilityChecker {
+    override suspend fun check(url: String): Result<Boolean> = runCatchingExceptions {
+        clientBuilderProvider.provide()
+            .inMemoryStore()
+            .serverNameOrHomeserverUrl(url)
+            .addRootCertificates(userCertificatesProvider.provides())
+            .build()
+            .use {
+                it.homeserverLoginDetails()
+            }
+            .use {
+                Timber.d("Homeserver $url | OIDC: ${it.supportsOidcLogin()} | Password: ${it.supportsPasswordLogin()} | SSO: ${it.supportsSsoLogin()}")
+                it.supportsOidcLogin() || it.supportsPasswordLogin()
+            }
+    }
+}

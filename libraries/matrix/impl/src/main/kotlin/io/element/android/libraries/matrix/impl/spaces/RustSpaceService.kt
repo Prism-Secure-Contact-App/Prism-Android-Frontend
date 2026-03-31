@@ -1,0 +1,171 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.spaces
+
+import io.prism.android.libraries.core.coroutine.childScope
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
+import io.prism.android.libraries.prism.api.spaces.LeaveSpaceHandle
+import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
+import io.prism.android.libraries.prism.api.spaces.SpaceService
+import io.prism.android.libraries.prism.api.spaces.SpaceServiceFilter
+import io.prism.android.libraries.prism.impl.util.cancelAndDestroy
+import io.prism.android.services.analytics.api.AnalyticsService
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.withContext
+import org.prism.rustcomponents.sdk.SpaceFilterUpdate
+import org.prism.rustcomponents.sdk.SpaceListUpdate
+import org.prism.rustcomponents.sdk.SpaceServiceInterface
+import org.prism.rustcomponents.sdk.SpaceServiceJoinedSpacesListener
+import org.prism.rustcomponents.sdk.SpaceServiceSpaceFiltersListener
+import timber.log.Timber
+import org.prism.rustcomponents.sdk.SpaceService as ClientSpaceService
+
+class RustSpaceService(
+    private val innerSpaceService: ClientSpaceService,
+    private val sessionCoroutineScope: CoroutineScope,
+    private val sessionDispatcher: CoroutineDispatcher,
+    private val roomMembershipObserver: RoomMembershipObserver,
+    private val analyticsService: AnalyticsService,
+) : SpaceService {
+    private val spaceRoomMapper = SpaceRoomMapper()
+    private val spaceFilterMapper = SpaceServiceFilterMapper(spaceRoomMapper)
+
+    override val topLevelSpacesFlow = MutableSharedFlow<List<SpaceRoom>>(replay = 1, extraBufferCapacity = 1)
+    private val spaceListUpdateProcessor = SpaceListUpdateProcessor(
+        spaceRoomsFlow = topLevelSpacesFlow,
+        mapper = spaceRoomMapper,
+        analyticsService = analyticsService,
+    )
+
+    override val spaceFiltersFlow = MutableSharedFlow<List<SpaceServiceFilter>>(replay = 1, extraBufferCapacity = 1)
+    private val spaceFilterUpdateProcessor = SpaceServiceFilterUpdateProcessor(
+        spaceFiltersFlow = spaceFiltersFlow,
+        mapper = spaceFilterMapper,
+    )
+
+    override suspend fun joinedParents(spaceId: RoomId): Result<List<SpaceRoom>> = withContext(sessionDispatcher) {
+        runCatchingExceptions {
+            innerSpaceService
+                .joinedParentsOfChild(spaceId.value)
+                .map(spaceRoomMapper::map)
+        }
+    }
+
+    override suspend fun getSpaceRoom(spaceId: RoomId): SpaceRoom? = withContext(sessionDispatcher) {
+        runCatchingExceptions {
+            innerSpaceService.getSpaceRoom(spaceId.value)?.let { spaceRoom ->
+                spaceRoomMapper.map(spaceRoom)
+            }
+        }.getOrNull()
+    }
+
+    override fun spaceRoomList(id: RoomId): SpaceRoomList {
+        val childCoroutineScope = sessionCoroutineScope.childScope(sessionDispatcher, "SpaceRoomListScope-$this")
+        return RustSpaceRoomList(
+            spaceId = id,
+            innerProvider = { innerSpaceService.spaceRoomList(id.value) },
+            coroutineScope = childCoroutineScope,
+            spaceRoomMapper = spaceRoomMapper,
+            analyticsService = analyticsService,
+        )
+    }
+
+    override suspend fun editableSpaces(): Result<List<SpaceRoom>> = withContext(sessionDispatcher) {
+        runCatchingExceptions {
+            innerSpaceService.editableSpaces().map(spaceRoomMapper::map)
+        }
+    }
+
+    override fun getLeaveSpaceHandle(spaceId: RoomId): LeaveSpaceHandle {
+        return RustLeaveSpaceHandle(
+            id = spaceId,
+            spaceRoomMapper = spaceRoomMapper,
+            roomMembershipObserver = roomMembershipObserver,
+            sessionCoroutineScope = sessionCoroutineScope,
+        ) {
+            innerSpaceService.leaveSpace(spaceId.value)
+        }
+    }
+
+    override suspend fun addChildToSpace(spaceId: RoomId, childId: RoomId): Result<Unit> = withContext(sessionDispatcher) {
+        runCatchingExceptions {
+            innerSpaceService.addChildToSpace(childId = childId.value, spaceId = spaceId.value)
+        }
+    }
+
+    override suspend fun removeChildFromSpace(spaceId: RoomId, childId: RoomId): Result<Unit> = withContext(sessionDispatcher) {
+        runCatchingExceptions {
+            innerSpaceService.removeChildFromSpace(childId = childId.value, spaceId = spaceId.value)
+        }
+    }
+
+    init {
+        innerSpaceService
+            .spaceListUpdate()
+            .onEach { updates ->
+                spaceListUpdateProcessor.postUpdates(updates)
+            }
+            .launchIn(sessionCoroutineScope)
+
+        innerSpaceService
+            .spaceFilterListUpdate()
+            .onEach { updates ->
+                spaceFilterUpdateProcessor.postUpdates(updates)
+            }
+            .launchIn(sessionCoroutineScope)
+    }
+}
+
+internal fun SpaceServiceInterface.spaceListUpdate(): Flow<List<SpaceListUpdate>> =
+    callbackFlow {
+        val listener = object : SpaceServiceJoinedSpacesListener {
+            override fun onUpdate(roomUpdates: List<SpaceListUpdate>) {
+                trySendBlocking(roomUpdates)
+            }
+        }
+        Timber.d("Open spaceDiffFlow for SpaceServiceInterface ${this@spaceListUpdate}")
+        val taskHandle = subscribeToTopLevelJoinedSpaces(listener)
+        awaitClose {
+            Timber.d("Close spaceDiffFlow for SpaceServiceInterface ${this@spaceListUpdate}")
+            taskHandle.cancelAndDestroy()
+        }
+    }.catch {
+        Timber.d(it, "spaceDiffFlow() failed")
+    }.buffer(Channel.UNLIMITED)
+
+internal fun SpaceServiceInterface.spaceFilterListUpdate(): Flow<List<SpaceFilterUpdate>> =
+    callbackFlow {
+        val listener = object : SpaceServiceSpaceFiltersListener {
+            override fun onUpdate(filterUpdates: List<SpaceFilterUpdate>) {
+                trySendBlocking(filterUpdates)
+            }
+        }
+        Timber.d("Open spaceFilterDiffFlow for SpaceServiceInterface ${this@spaceFilterListUpdate}")
+        val taskHandle = subscribeToSpaceFilters(listener)
+        awaitClose {
+            Timber.d("Close spaceFilterDiffFlow for SpaceServiceInterface ${this@spaceFilterListUpdate}")
+            taskHandle.cancelAndDestroy()
+        }
+    }.catch {
+        Timber.d(it, "spaceFilterListUpdate() failed")
+    }.buffer(Channel.UNLIMITED)

@@ -1,0 +1,101 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.home.impl.datasource
+
+import dev.zacsweers.metro.Inject
+import io.prism.android.features.home.impl.model.LatestEvent
+import io.prism.android.features.home.impl.model.RoomListRoomSummary
+import io.prism.android.features.home.impl.model.RoomSummaryDisplayType
+import io.prism.android.libraries.core.extensions.orEmpty
+import io.prism.android.libraries.dateformatter.api.DateFormatter
+import io.prism.android.libraries.dateformatter.api.DateFormatterMode
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.eventformatter.api.RoomLatestEventFormatter
+import io.prism.android.libraries.prism.api.room.CurrentUserMembership
+import io.prism.android.libraries.prism.api.room.isDm
+import io.prism.android.libraries.prism.api.roomlist.LatestEventValue
+import io.prism.android.libraries.prism.api.roomlist.RoomSummary
+import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.prism.ui.model.toInviteSender
+import kotlinx.collections.immutable.toImmutableList
+
+@Inject
+class RoomListRoomSummaryFactory(
+    private val dateFormatter: DateFormatter,
+    private val roomLatestEventFormatter: RoomLatestEventFormatter,
+) {
+    fun create(roomSummary: RoomSummary): RoomListRoomSummary {
+        val roomInfo = roomSummary.info
+        val avatarData = roomInfo.getAvatarData(size = AvatarSize.RoomListItem)
+        return RoomListRoomSummary(
+            id = roomSummary.roomId.value,
+            roomId = roomSummary.roomId,
+            name = roomInfo.name,
+            numberOfUnreadMessages = roomInfo.numUnreadMessages,
+            numberOfUnreadMentions = roomInfo.numUnreadMentions,
+            numberOfUnreadNotifications = roomInfo.numUnreadNotifications,
+            isMarkedUnread = roomInfo.isMarkedUnread,
+            timestamp = dateFormatter.format(
+                timestamp = roomSummary.latestEventTimestamp,
+                mode = DateFormatterMode.TimeOrDate,
+                useRelative = true,
+            ),
+            latestEvent = computeLatestEvent(roomSummary.latestEvent, roomInfo.isDm),
+            avatarData = avatarData,
+            userDefinedNotificationMode = roomInfo.userDefinedNotificationMode,
+            hasRoomCall = roomInfo.hasRoomCall,
+            isDirect = roomInfo.isDirect,
+            isFavorite = roomInfo.isFavorite,
+            inviteSender = roomInfo.inviter?.toInviteSender(),
+            isDm = roomInfo.isDm,
+            canonicalAlias = roomInfo.canonicalAlias,
+            displayType = when (roomInfo.currentUserMembership) {
+                CurrentUserMembership.INVITED -> {
+                    RoomSummaryDisplayType.INVITE
+                }
+                CurrentUserMembership.KNOCKED -> {
+                    RoomSummaryDisplayType.KNOCKED
+                }
+                else -> {
+                    RoomSummaryDisplayType.ROOM
+                }
+            },
+            heroes = roomInfo.heroes.map { user ->
+                user.getAvatarData(size = AvatarSize.RoomListItem)
+            }.toImmutableList(),
+            isTombstoned = roomInfo.successorRoom != null,
+            isSpace = roomInfo.isSpace,
+        )
+    }
+
+    private fun computeLatestEvent(latestEvent: LatestEventValue, dm: Boolean): LatestEvent {
+        return when (latestEvent) {
+            is LatestEventValue.None -> {
+                LatestEvent.None
+            }
+            is LatestEventValue.Local -> {
+                if (latestEvent.isSending) {
+                    val content = roomLatestEventFormatter.format(latestEvent, dm).orEmpty()
+                    LatestEvent.Sending(
+                        content = content,
+                    )
+                } else {
+                    LatestEvent.Error
+                }
+            }
+            is LatestEventValue.Remote -> {
+                val content = roomLatestEventFormatter.format(latestEvent, dm).orEmpty()
+                LatestEvent.Synced(
+                    content = content,
+                )
+            }
+            is LatestEventValue.RoomInvite -> LatestEvent.None
+        }
+    }
+}

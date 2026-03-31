@@ -1,0 +1,15 @@
+name: Validate Git LFS
+
+on: [pull_request, merge_group]
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Validate
+    steps:
+      - uses: nschloe/action-cached-lfs-checkout@1c185ad576953eab13e35ffe1bffef437d97e9d2 # v1.2.4
+
+      - run: |
+          ./tools/git/validate_lfs.sh

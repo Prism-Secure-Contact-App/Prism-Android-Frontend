@@ -1,0 +1,17 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.timeline
+
+import io.prism.android.libraries.prism.api.timeline.item.event.EventOrTransactionId
+import org.prism.rustcomponents.sdk.EventOrTransactionId as RustEventOrTransactionId
+
+fun EventOrTransactionId.toRustEventOrTransactionId() = when (this) {
+    is EventOrTransactionId.Event -> RustEventOrTransactionId.EventId(id.value)
+    is EventOrTransactionId.Transaction -> RustEventOrTransactionId.TransactionId(id.value)
+}

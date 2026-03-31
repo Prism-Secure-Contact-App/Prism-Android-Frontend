@@ -1,0 +1,2 @@
+First release of PRISM X 🚀!
+Full changelog: https://github.com/prism-hq/prism-x-android/releases

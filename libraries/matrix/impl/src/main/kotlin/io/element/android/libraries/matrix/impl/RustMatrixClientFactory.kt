@@ -1,0 +1,213 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl
+
+import dev.zacsweers.metro.Inject
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.data.ByteUnit
+import io.prism.android.libraries.core.data.megaBytes
+import io.prism.android.libraries.di.CacheDirectory
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.featureflag.api.FeatureFlagService
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.prism.impl.analytics.UtdTracker
+import io.prism.android.libraries.prism.impl.certificates.UserCertificatesProvider
+import io.prism.android.libraries.prism.impl.paths.SessionPaths
+import io.prism.android.libraries.prism.impl.paths.getSessionPaths
+import io.prism.android.libraries.prism.impl.proxy.ProxyProvider
+import io.prism.android.libraries.prism.impl.room.TimelineEventFilterFactory
+import io.prism.android.libraries.prism.impl.storage.SqliteStoreBuilderProvider
+import io.prism.android.libraries.prism.impl.util.anonymizedTokens
+import io.prism.android.libraries.network.useragent.UserAgentProvider
+import io.prism.android.libraries.sessionstorage.api.SessionData
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.workmanager.api.WorkManagerScheduler
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.withContext
+import org.prism.rustcomponents.sdk.Client
+import org.prism.rustcomponents.sdk.ClientBuilder
+import org.prism.rustcomponents.sdk.CrossProcessLockConfig
+import org.prism.rustcomponents.sdk.RequestConfig
+import org.prism.rustcomponents.sdk.Session
+import org.prism.rustcomponents.sdk.SlidingSyncVersion
+import org.prism.rustcomponents.sdk.SlidingSyncVersionBuilder
+import org.prism.rustcomponents.sdk.use
+import timber.log.Timber
+import uniffi.prism_sdk_base.MediaRetentionPolicy
+import uniffi.prism_sdk_crypto.CollectStrategy
+import uniffi.prism_sdk_crypto.DecryptionSettings
+import uniffi.prism_sdk_crypto.TrustRequirement
+import java.io.File
+import kotlin.time.Duration.Companion.days
+import kotlin.time.toJavaDuration
+
+@Inject
+class RustPRISMClientFactory(
+    @CacheDirectory private val cacheDirectory: File,
+    @AppCoroutineScope
+    private val appCoroutineScope: CoroutineScope,
+    private val coroutineDispatchers: CoroutineDispatchers,
+    private val sessionStore: SessionStore,
+    private val userAgentProvider: UserAgentProvider,
+    private val proxyProvider: ProxyProvider,
+    private val userCertificatesProvider: UserCertificatesProvider,
+    private val clock: SystemClock,
+    private val analyticsService: AnalyticsService,
+    private val featureFlagService: FeatureFlagService,
+    private val timelineEventFilterFactory: TimelineEventFilterFactory,
+    private val clientBuilderProvider: ClientBuilderProvider,
+    private val sqliteStoreBuilderProvider: SqliteStoreBuilderProvider,
+    private val workManagerScheduler: WorkManagerScheduler,
+) {
+    private val sessionDelegate = RustClientSessionDelegate(
+        sessionStore = sessionStore,
+        appCoroutineScope = appCoroutineScope,
+        analyticsService = analyticsService,
+        coroutineDispatchers = coroutineDispatchers
+    )
+
+    suspend fun create(sessionData: SessionData): RustPRISMClient = withContext(coroutineDispatchers.io) {
+        val client = getBaseClientBuilder(
+            sessionPaths = sessionData.getSessionPaths(),
+            passphrase = sessionData.passphrase,
+            slidingSyncType = ClientBuilderSlidingSync.Restored,
+        )
+            .homeserverUrl(sessionData.homeserverUrl)
+            .username(sessionData.userId)
+            .use { it.build() }
+
+        client.setMediaRetentionPolicy(
+            MediaRetentionPolicy(
+                // Make this 500MB instead of 400MB
+                maxCacheSize = 500.megaBytes.into(ByteUnit.BYTES).toULong(),
+                // This is the default value, but let's make it explicit
+                maxFileSize = 20.megaBytes.into(ByteUnit.BYTES).toULong(),
+                // Use 30 days instead of 60
+                lastAccessExpiry = 30.days.toJavaDuration(),
+                // This is the default value, but let's make it explicit
+                cleanupFrequency = 1.days.toJavaDuration(),
+            )
+        )
+
+        client.restoreSession(sessionData.toSession())
+
+        create(client)
+    }
+
+    suspend fun create(client: Client): RustPRISMClient {
+        val (anonymizedAccessToken, anonymizedRefreshToken) = client.session().anonymizedTokens()
+
+        client.setUtdDelegate(UtdTracker(analyticsService))
+
+        val syncService = client.syncService()
+            .withSharePos(true)
+            .withOfflineMode()
+            .finish()
+
+        return RustPRISMClient(
+            innerClient = client,
+            sessionStore = sessionStore,
+            appCoroutineScope = appCoroutineScope,
+            sessionDelegate = sessionDelegate,
+            innerSyncService = syncService,
+            dispatchers = coroutineDispatchers,
+            baseCacheDirectory = cacheDirectory,
+            clock = clock,
+            timelineEventFilterFactory = timelineEventFilterFactory,
+            featureFlagService = featureFlagService,
+            analyticsService = analyticsService,
+            workManagerScheduler = workManagerScheduler,
+        ).also {
+            Timber.tag(it.toString()).d("Creating Client with access token '$anonymizedAccessToken' and refresh token '$anonymizedRefreshToken'")
+        }
+    }
+
+    internal suspend fun getBaseClientBuilder(
+        sessionPaths: SessionPaths,
+        passphrase: String?,
+        slidingSyncType: ClientBuilderSlidingSync,
+    ): ClientBuilder {
+        return clientBuilderProvider.provide()
+            .run {
+                sqliteStoreBuilderProvider.provide(sessionPaths)
+                    .passphrase(passphrase)
+                    .setupClientBuilder(this)
+            }
+            .setSessionDelegate(sessionDelegate)
+            .userAgent(userAgentProvider.provide())
+            .addRootCertificates(userCertificatesProvider.provides())
+            .autoEnableBackups(true)
+            .autoEnableCrossSigning(true)
+            .roomKeyRecipientStrategy(
+                strategy = if (featureFlagService.isFeatureEnabled(FeatureFlags.OnlySignedDeviceIsolationMode)) {
+                    CollectStrategy.IDENTITY_BASED_STRATEGY
+                } else {
+                    CollectStrategy.ERROR_ON_VERIFIED_USER_PROBLEM
+                }
+            )
+            .decryptionSettings(
+                DecryptionSettings(
+                    senderDeviceTrustRequirement = if (featureFlagService.isFeatureEnabled(FeatureFlags.OnlySignedDeviceIsolationMode)) {
+                        TrustRequirement.CROSS_SIGNED_OR_LEGACY
+                    } else {
+                        TrustRequirement.UNTRUSTED
+                    }
+                )
+            )
+            .enableShareHistoryOnInvite(featureFlagService.isFeatureEnabled(FeatureFlags.EnableKeyShareOnInvite))
+            .threadsEnabled(featureFlagService.isFeatureEnabled(FeatureFlags.Threads), threadSubscriptions = false)
+            .requestConfig(
+                RequestConfig(
+                    timeout = 30_000uL,
+                    // retryLimit must be non-zero for the SDK to retry API calls in case of error (including 429 Too Many Requests error).
+                    retryLimit = 3u,
+                    // Use default values for the rest
+                    maxConcurrentRequests = null,
+                    maxRetryTime = null,
+                )
+            )
+            // Make sure all built clients use the single process cross-process lock config
+            .crossProcessLockConfig(CrossProcessLockConfig.SingleProcess)
+            .run {
+                // Apply sliding sync version settings
+                when (slidingSyncType) {
+                    ClientBuilderSlidingSync.Restored -> this
+                    ClientBuilderSlidingSync.Discovered -> slidingSyncVersionBuilder(SlidingSyncVersionBuilder.DISCOVER_NATIVE)
+                    ClientBuilderSlidingSync.Native -> slidingSyncVersionBuilder(SlidingSyncVersionBuilder.NATIVE)
+                }
+            }
+            .run {
+                // Workaround for non-nullable proxy parameter in the SDK, since each call to the ClientBuilder returns a new reference we need to keep
+                proxyProvider.provides()?.let { proxy(it) } ?: this
+            }
+    }
+}
+
+sealed interface ClientBuilderSlidingSync {
+    // The proxy will be supplied when restoring the Session.
+    data object Restored : ClientBuilderSlidingSync
+
+    // A Native Sliding Sync instance must be discovered whilst building the session.
+    data object Discovered : ClientBuilderSlidingSync
+
+    // Force using Native Sliding Sync.
+    data object Native : ClientBuilderSlidingSync
+}
+
+fun SessionData.toSession() = Session(
+    accessToken = accessToken,
+    refreshToken = refreshToken,
+    userId = userId,
+    deviceId = deviceId,
+    homeserverUrl = homeserverUrl,
+    slidingSyncVersion = SlidingSyncVersion.NATIVE,
+    oidcData = oidcData,
+)

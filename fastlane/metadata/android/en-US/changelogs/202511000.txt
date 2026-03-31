@@ -1,0 +1,2 @@
+Main changes in this version: fixes an issue that prevented PRISM Call notifications from being displayed sometimes.
+Full changelog: https://github.com/prism-hq/prism-x-android/releases

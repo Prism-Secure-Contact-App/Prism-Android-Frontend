@@ -1,0 +1,188 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.startchat.impl.root
+
+import androidx.compose.runtime.MutableState
+import com.google.common.truth.Truth.assertThat
+import io.prism.android.features.invitepeople.test.FakeStartDMAction
+import io.prism.android.features.startchat.api.ConfirmingStartDmWithPRISMUser
+import io.prism.android.features.startchat.api.StartDMAction
+import io.prism.android.features.startchat.impl.userlist.FakeUserListPresenter
+import io.prism.android.features.startchat.impl.userlist.FakeUserListPresenterFactory
+import io.prism.android.features.startchat.impl.userlist.UserListDataStore
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
+import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.prism.test.AN_EXCEPTION
+import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.usersearch.test.FakeUserRepository
+import io.prism.android.tests.testutils.WarmUpRule
+import io.prism.android.tests.testutils.lambda.any
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
+import io.prism.android.tests.testutils.test
+import kotlinx.coroutines.test.runTest
+import org.junit.Rule
+import org.junit.Test
+
+class StartChatPresenterTest {
+    @get:Rule
+    val warmUpRule = WarmUpRule()
+
+    @Test
+    fun `present - start DM action failure scenario`() = runTest {
+        val startDMFailureResult = AsyncAction.Failure(AN_EXCEPTION)
+        val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
+            actionState.value = startDMFailureResult
+        }
+        val startDMAction = FakeStartDMAction(executeResult = executeResult)
+        val presenter = createStartChatPresenter(startDMAction)
+        presenter.test {
+            val initialState = awaitItem()
+            assertThat(initialState.startDmAction).isInstanceOf(AsyncAction.Uninitialized::class.java)
+            assertThat(initialState.applicationName).isEqualTo(aBuildMeta().applicationName)
+            assertThat(initialState.userListState.selectedUsers).isEmpty()
+            assertThat(initialState.userListState.isSearchActive).isFalse()
+            assertThat(initialState.userListState.isMultiSelectionEnabled).isFalse()
+            val prismUser = PRISMUser(UserId("@name:domain"))
+            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            awaitItem().also { state ->
+                assertThat(state.startDmAction).isEqualTo(startDMFailureResult)
+                executeResult.assertions().isCalledOnce().with(
+                    value(prismUser),
+                    value(false),
+                    any(),
+                )
+                state.eventSink(StartChatEvents.CancelStartDM)
+            }
+            awaitItem().also { state ->
+                assertThat(state.startDmAction.isUninitialized()).isTrue()
+            }
+        }
+    }
+
+    @Test
+    fun `present - start DM action success scenario`() = runTest {
+        val startDMSuccessResult = AsyncAction.Success(A_ROOM_ID)
+        val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
+            actionState.value = startDMSuccessResult
+        }
+        val startDMAction = FakeStartDMAction(executeResult = executeResult)
+        val presenter = createStartChatPresenter(startDMAction)
+        presenter.test {
+            val initialState = awaitItem()
+            assertThat(initialState.startDmAction).isInstanceOf(AsyncAction.Uninitialized::class.java)
+            assertThat(initialState.applicationName).isEqualTo(aBuildMeta().applicationName)
+            assertThat(initialState.userListState.selectedUsers).isEmpty()
+            assertThat(initialState.userListState.isSearchActive).isFalse()
+            assertThat(initialState.userListState.isMultiSelectionEnabled).isFalse()
+            val prismUser = PRISMUser(UserId("@name:domain"))
+            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            awaitItem().also { state ->
+                assertThat(state.startDmAction).isEqualTo(startDMSuccessResult)
+                executeResult.assertions().isCalledOnce().with(
+                    value(prismUser),
+                    value(false),
+                    any(),
+                )
+            }
+        }
+    }
+
+    @Test
+    fun `present - start DM action confirmation scenario - cancel`() = runTest {
+        val prismUser = PRISMUser(UserId("@name:domain"))
+        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(prismUser)
+        val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
+            actionState.value = startDMConfirmationResult
+        }
+        val startDMAction = FakeStartDMAction(executeResult = executeResult)
+        val presenter = createStartChatPresenter(startDMAction)
+        presenter.test {
+            val initialState = awaitItem()
+            assertThat(initialState.startDmAction).isInstanceOf(AsyncAction.Uninitialized::class.java)
+            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            val confirmingState = awaitItem()
+            assertThat(confirmingState.startDmAction).isEqualTo(startDMConfirmationResult)
+            executeResult.assertions().isCalledOnce().with(
+                value(prismUser),
+                value(false),
+                any(),
+            )
+            // Cancelling should not create the DM
+            confirmingState.eventSink(StartChatEvents.CancelStartDM)
+            val finalState = awaitItem()
+            assertThat(finalState.startDmAction.isUninitialized()).isTrue()
+            executeResult.assertions().isCalledExactly(1)
+        }
+    }
+
+    @Test
+    fun `present - start DM action confirmation scenario - confirm`() = runTest {
+        val prismUser = PRISMUser(UserId("@name:domain"))
+        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(prismUser)
+        val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
+            actionState.value = startDMConfirmationResult
+        }
+        val startDMAction = FakeStartDMAction(executeResult = executeResult)
+        val presenter = createStartChatPresenter(startDMAction)
+        presenter.test {
+            val initialState = awaitItem()
+            assertThat(initialState.startDmAction).isInstanceOf(AsyncAction.Uninitialized::class.java)
+            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            val confirmingState = awaitItem()
+            assertThat(confirmingState.startDmAction).isEqualTo(startDMConfirmationResult)
+            executeResult.assertions().isCalledOnce().with(
+                value(prismUser),
+                value(false),
+                any(),
+            )
+            // Start DM again should invoke the action with createIfDmDoesNotExist = true
+            confirmingState.eventSink(StartChatEvents.StartDM(prismUser))
+            executeResult.assertions().isCalledExactly(2).withSequence(
+                listOf(value(prismUser), value(false), any()),
+                listOf(value(prismUser), value(true), any()),
+            )
+        }
+    }
+
+    @Test
+    fun `present - room directory search`() = runTest {
+        val presenter = createStartChatPresenter(isRoomDirectorySearchEnabled = true)
+        presenter.test {
+            skipItems(1)
+            awaitItem().let { state ->
+                assertThat(state.isRoomDirectorySearchEnabled).isTrue()
+            }
+        }
+    }
+}
+
+internal fun createStartChatPresenter(
+    startDMAction: StartDMAction = FakeStartDMAction(),
+    isRoomDirectorySearchEnabled: Boolean = false,
+): StartChatPresenter {
+    val featureFlagService = FakeFeatureFlagService(
+        initialState = mapOf(
+            FeatureFlags.RoomDirectorySearch.key to isRoomDirectorySearchEnabled,
+        ),
+    )
+    return StartChatPresenter(
+        presenterFactory = FakeUserListPresenterFactory(FakeUserListPresenter()),
+        userRepository = FakeUserRepository(),
+        userListDataStore = UserListDataStore(),
+        startDMAction = startDMAction,
+        featureFlagService = featureFlagService,
+        buildMeta = aBuildMeta(),
+    )
+}

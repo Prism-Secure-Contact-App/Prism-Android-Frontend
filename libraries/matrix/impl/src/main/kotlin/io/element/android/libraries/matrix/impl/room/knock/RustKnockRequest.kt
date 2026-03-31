@@ -1,0 +1,43 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.room.knock
+
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.prism.api.room.knock.KnockRequest
+import org.prism.rustcomponents.sdk.KnockRequest as InnerKnockRequest
+
+class RustKnockRequest(
+    private val inner: InnerKnockRequest,
+) : KnockRequest {
+    override val eventId: EventId = EventId(inner.eventId)
+    override val userId: UserId = UserId(inner.userId)
+    override val displayName: String? = inner.displayName
+    override val avatarUrl: String? = inner.avatarUrl
+    override val reason: String? = inner.reason
+    override val timestamp: Long? = inner.timestamp?.toLong()
+    override val isSeen: Boolean = inner.isSeen
+
+    override suspend fun accept(): Result<Unit> = runCatchingExceptions {
+        inner.actions.accept()
+    }
+
+    override suspend fun decline(reason: String?): Result<Unit> = runCatchingExceptions {
+        inner.actions.decline(reason)
+    }
+
+    override suspend fun declineAndBan(reason: String?): Result<Unit> = runCatchingExceptions {
+        inner.actions.declineAndBan(reason)
+    }
+
+    override suspend fun markAsSeen(): Result<Unit> = runCatchingExceptions {
+        inner.actions.markAsSeen()
+    }
+}

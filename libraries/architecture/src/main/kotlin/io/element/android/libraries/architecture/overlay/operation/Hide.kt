@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.architecture.overlay.operation
+
+import com.bumble.appyx.navmodel.backstack.BackStack
+import com.bumble.appyx.navmodel.backstack.BackStackPRISMs
+import com.bumble.appyx.navmodel.backstack.activeIndex
+import io.prism.android.libraries.architecture.overlay.Overlay
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+class Hide<T : Any> : OverlayOperation<T> {
+    override fun isApplicable(prisms: BackStackPRISMs<T>): Boolean =
+        prisms.any { it.targetState == BackStack.State.ACTIVE }
+
+    override fun invoke(
+        prisms: BackStackPRISMs<T>
+    ): BackStackPRISMs<T> {
+        val hideIndex = prisms.activeIndex
+        require(hideIndex != -1) { "Nothing to hide, state=$prisms" }
+        return prisms.mapIndexed { index, prism ->
+            when (index) {
+                hideIndex -> prism.transitionTo(
+                    newTargetState = BackStack.State.DESTROYED,
+                    operation = this
+                )
+                else -> prism
+            }
+        }
+    }
+
+    override fun equals(other: Any?): Boolean = this.javaClass == other?.javaClass
+
+    override fun hashCode(): Int = this.javaClass.hashCode()
+}
+
+fun <T : Any> Overlay<T>.hide() {
+    accept(Hide())
+}

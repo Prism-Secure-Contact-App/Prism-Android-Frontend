@@ -1,0 +1,300 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.home.impl
+
+import android.app.Activity
+import android.os.Parcelable
+import androidx.activity.compose.LocalActivity
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.coroutineScope
+import com.bumble.appyx.core.lifecycle.subscribe
+import com.bumble.appyx.core.modality.BuildContext
+import com.bumble.appyx.core.node.Node
+import com.bumble.appyx.core.node.node
+import com.bumble.appyx.core.plugin.Plugin
+import com.bumble.appyx.navmodel.backstack.BackStack
+import com.bumble.appyx.navmodel.backstack.operation.pop
+import com.bumble.appyx.navmodel.backstack.operation.push
+import dev.zacsweers.metro.Assisted
+import dev.zacsweers.metro.AssistedInject
+import uk.fathertkt.prism.features.analytics.plan.MobileScreen
+import io.prism.android.annotations.ContributesNode
+import io.prism.android.features.home.api.HomeEntryPoint
+import io.prism.android.features.vault.api.VaultEntryPoint
+import io.prism.android.features.lightning.api.LightningEntryPoint
+import io.prism.android.features.home.impl.components.RoomListMenuAction
+import io.prism.android.features.home.impl.model.RoomListRoomSummary
+import io.prism.android.features.home.impl.roomlist.RoomListEvent
+import io.prism.android.features.invite.api.InviteData
+import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteView
+import io.prism.android.features.invite.api.declineandblock.DeclineInviteAndBlockEntryPoint
+import io.prism.android.features.leaveroom.api.LeaveRoomRenderer
+import io.prism.android.features.logout.api.direct.DirectLogoutView
+import io.prism.android.features.reportroom.api.ReportRoomEntryPoint
+import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesEntryPoint
+import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesListType
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.architecture.BackstackView
+import io.prism.android.libraries.architecture.BaseFlowNode
+import io.prism.android.libraries.architecture.appyx.launchMolecule
+import io.prism.android.libraries.architecture.callback
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.deeplink.api.usecase.InviteFriendsUseCase
+import io.prism.android.libraries.designsystem.components.ProgressDialog
+import io.prism.android.libraries.designsystem.utils.DelayedVisibility
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.di.annotations.SessionCoroutineScope
+import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.services.analytics.api.AnalyticsService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import kotlinx.parcelize.Parcelize
+import timber.log.Timber
+import kotlin.coroutines.cancellation.CancellationException
+import kotlin.time.Duration.Companion.milliseconds
+
+@ContributesNode(SessionScope::class)
+@AssistedInject
+class HomeFlowNode(
+    @Assisted buildContext: BuildContext,
+    @Assisted plugins: List<Plugin>,
+    private val prismClient: PRISMClient,
+    private val presenter: HomePresenter,
+    private val inviteFriendsUseCase: InviteFriendsUseCase,
+    private val analyticsService: AnalyticsService,
+    private val acceptDeclineInviteView: AcceptDeclineInviteView,
+    private val directLogoutView: DirectLogoutView,
+    private val reportRoomEntryPoint: ReportRoomEntryPoint,
+    private val declineInviteAndBlockUserEntryPoint: DeclineInviteAndBlockEntryPoint,
+    private val changeRoomMemberRolesEntryPoint: ChangeRoomMemberRolesEntryPoint,
+    private val leaveRoomRenderer: LeaveRoomRenderer,
+    private val vaultEntryPoint: VaultEntryPoint,
+    private val lightningEntryPoint: LightningEntryPoint,
+    @SessionCoroutineScope private val sessionCoroutineScope: CoroutineScope,
+) : BaseFlowNode<HomeFlowNode.NavTarget>(
+    backstack = BackStack(
+        initialPRISM = NavTarget.Root,
+        savedStateMap = buildContext.savedStateMap,
+    ),
+    buildContext = buildContext,
+    plugins = plugins
+) {
+    private val callback: HomeEntryPoint.Callback = callback()
+    private val stateFlow = launchMolecule { presenter.present() }
+
+    override fun onBuilt() {
+        super.onBuilt()
+        lifecycle.subscribe(
+            onResume = {
+                analyticsService.screen(MobileScreen(screenName = MobileScreen.ScreenName.Home))
+            }
+        )
+        whenChildAttached {
+            commonLifecycle: Lifecycle,
+            changeRoomMemberRolesNode: ChangeRoomMemberRolesEntryPoint.NodeProxy,
+            ->
+            commonLifecycle.coroutineScope.launch {
+                val isNewOwnerSelected = changeRoomMemberRolesNode.waitForCompletion()
+                withContext(NonCancellable) {
+                    backstack.pop()
+                    if (isNewOwnerSelected) {
+                        onNewOwnersSelected(changeRoomMemberRolesNode.roomId)
+                    }
+                }
+            }
+        }
+    }
+
+    sealed interface NavTarget : Parcelable {
+        @Parcelize
+        data object Root : NavTarget
+
+        @Parcelize
+        data class ReportRoom(val roomId: RoomId) : NavTarget
+
+        @Parcelize
+        data class DeclineInviteAndBlockUser(val inviteData: InviteData) : NavTarget
+
+        @Parcelize
+        data class SelectNewOwnersWhenLeavingRoom(val roomId: RoomId) : NavTarget
+
+        @Parcelize
+        data object Vault : NavTarget
+
+        @Parcelize
+        data object Lightning : NavTarget
+    }
+
+    private fun navigateToReportRoom(roomId: RoomId) {
+        backstack.push(NavTarget.ReportRoom(roomId))
+    }
+
+    private fun navigateToDeclineInviteAndBlockUser(roomSummary: RoomListRoomSummary) {
+        backstack.push(NavTarget.DeclineInviteAndBlockUser(roomSummary.toInviteData()))
+    }
+
+    private fun onMenuActionClick(activity: Activity, roomListMenuAction: RoomListMenuAction) {
+        when (roomListMenuAction) {
+            RoomListMenuAction.InviteFriends -> inviteFriendsUseCase.execute(activity)
+            RoomListMenuAction.ReportBug -> callback.navigateToBugReport()
+            RoomListMenuAction.OpenVault -> backstack.push(NavTarget.Vault)
+            RoomListMenuAction.OpenLightning -> backstack.push(NavTarget.Lightning)
+        }
+    }
+
+    private fun navigateToSelectNewOwnersWhenLeavingRoom(roomId: RoomId) {
+        backstack.push(NavTarget.SelectNewOwnersWhenLeavingRoom(roomId))
+    }
+
+    private fun onNewOwnersSelected(roomId: RoomId) {
+        stateFlow.value.roomListState.eventSink(RoomListEvent.LeaveRoom(roomId, needsConfirmation = false))
+    }
+
+    private fun rootNode(buildContext: BuildContext): Node {
+        return node(buildContext) { modifier ->
+            val state by stateFlow.collectAsState()
+            val activity = requireNotNull(LocalActivity.current)
+
+            val loadingJoinedRoomJob = remember { mutableStateOf<AsyncData<Job>>(AsyncData.Uninitialized) }
+            if (loadingJoinedRoomJob.value.isLoading()) {
+                DelayedVisibility(duration = 400.milliseconds) {
+                    ProgressDialog(
+                        onDismissRequest = {
+                            loadingJoinedRoomJob.value.dataOrNull()?.cancel()
+                            loadingJoinedRoomJob.value = AsyncData.Uninitialized
+                        }
+                    )
+                }
+            }
+
+            fun navigateToRoom(
+                roomId: RoomId,
+            ) {
+                if (!loadingJoinedRoomJob.value.isUninitialized()) {
+                    Timber.w("Already loading a room, ignoring navigateToRoom for $roomId")
+                    return
+                }
+
+                val job = sessionCoroutineScope.launch {
+                    runCatchingExceptions {
+                        prismClient.getJoinedRoom(roomId)
+                    }.fold(
+                        onSuccess = { joinedRoom ->
+                            if (isActive) {
+                                callback.navigateToRoom(roomId, joinedRoom)
+                                loadingJoinedRoomJob.value = AsyncData.Success(coroutineContext.job)
+                                // Wait a bit before resetting the state to avoid allowing to open several rooms
+                                delay(200.milliseconds)
+                                loadingJoinedRoomJob.value = AsyncData.Uninitialized
+                            }
+                        },
+                        onFailure = {
+                            // If the operation wasn't cancelled, navigate without the room, using the room id
+                            if (it !is CancellationException) {
+                                callback.navigateToRoom(roomId, null)
+                            }
+                            loadingJoinedRoomJob.value = AsyncData.Failure(error = it, prevData = coroutineContext.job)
+                            // Wait a bit before resetting the state to avoid allowing to open several rooms
+                            delay(200.milliseconds)
+                            loadingJoinedRoomJob.value = AsyncData.Uninitialized
+                        }
+                    )
+                }
+                loadingJoinedRoomJob.value = AsyncData.Loading(job)
+            }
+
+            HomeView(
+                homeState = state,
+                onRoomClick = ::navigateToRoom,
+                onSettingsClick = callback::navigateToSettings,
+                onStartChatClick = callback::navigateToCreateRoom,
+                onCreateSpaceClick = callback::navigateToCreateSpace,
+                onSetUpRecoveryClick = callback::navigateToSetUpRecovery,
+                onConfirmRecoveryKeyClick = callback::navigateToEnterRecoveryKey,
+                onRoomSettingsClick = callback::navigateToRoomSettings,
+                onMenuActionClick = { onMenuActionClick(activity, it) },
+                onReportRoomClick = ::navigateToReportRoom,
+                onDeclineInviteAndBlockUser = ::navigateToDeclineInviteAndBlockUser,
+                modifier = modifier,
+                acceptDeclineInviteView = {
+                    acceptDeclineInviteView.Render(
+                        state = state.roomListState.acceptDeclineInviteState,
+                        onAcceptInviteSuccess = ::navigateToRoom,
+                        onDeclineInviteSuccess = { },
+                        modifier = Modifier
+                    )
+                },
+                leaveRoomView = {
+                    leaveRoomRenderer.Render(
+                        state = state.roomListState.leaveRoomState,
+                        onSelectNewOwners = ::navigateToSelectNewOwnersWhenLeavingRoom,
+                        modifier = Modifier
+                    )
+                }
+            )
+            directLogoutView.Render(state.directLogoutState)
+        }
+    }
+
+    @Composable
+    override fun View(modifier: Modifier) {
+        BackstackView()
+    }
+
+    override fun resolve(navTarget: NavTarget, buildContext: BuildContext): Node {
+        return when (navTarget) {
+            is NavTarget.ReportRoom -> {
+                reportRoomEntryPoint.createNode(
+                    parentNode = this,
+                    buildContext = buildContext,
+                    roomId = navTarget.roomId,
+                )
+            }
+            is NavTarget.DeclineInviteAndBlockUser -> {
+                declineInviteAndBlockUserEntryPoint.createNode(
+                    parentNode = this,
+                    buildContext = buildContext,
+                    inviteData = navTarget.inviteData,
+                )
+            }
+            is NavTarget.SelectNewOwnersWhenLeavingRoom -> {
+                val room = runBlocking { prismClient.getJoinedRoom(navTarget.roomId) } ?: error("Room ${navTarget.roomId} not found")
+                changeRoomMemberRolesEntryPoint.createNode(
+                    parentNode = this,
+                    buildContext = buildContext,
+                    room = room,
+                    listType = ChangeRoomMemberRolesListType.SelectNewOwnersWhenLeaving,
+                )
+            }
+            NavTarget.Root -> rootNode(buildContext)
+            NavTarget.Vault -> vaultEntryPoint.createNode(
+                buildContext = buildContext,
+                onBack = { backstack.pop() },
+            )
+            NavTarget.Lightning -> lightningEntryPoint.createNode(
+                buildContext = buildContext,
+                onBack = { backstack.pop() },
+            )
+        }
+    }
+}

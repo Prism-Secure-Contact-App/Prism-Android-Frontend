@@ -1,0 +1,97 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.media
+
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.prism.api.media.PRISMMediaLoader
+import io.prism.android.libraries.prism.api.media.MediaFile
+import io.prism.android.libraries.prism.api.media.MediaSource
+import kotlinx.coroutines.withContext
+import org.prism.rustcomponents.sdk.Client
+import org.prism.rustcomponents.sdk.use
+import java.io.File
+import org.prism.rustcomponents.sdk.MediaSource as RustMediaSource
+
+class RustMediaLoader(
+    private val baseCacheDirectory: File,
+    dispatchers: CoroutineDispatchers,
+    private val innerClient: Client,
+) : PRISMMediaLoader {
+    private val mediaDispatcher = dispatchers.io.limitedParallelism(32)
+    private val cacheDirectory
+        get() = File(baseCacheDirectory, "temp/media").apply {
+            if (!exists()) mkdirs() // Must always ensure that this directory exists because "Clear cache" does not restart an app's process.
+        }
+
+    override suspend fun loadMediaContent(source: MediaSource): Result<ByteArray> =
+        withContext(mediaDispatcher) {
+            runCatchingExceptions {
+                source.toRustMediaSource().use { source ->
+                    innerClient.getMediaContent(source)
+                }
+            }
+        }
+
+    override suspend fun loadMediaThumbnail(
+        source: MediaSource,
+        width: Long,
+        height: Long
+    ): Result<ByteArray> =
+        withContext(mediaDispatcher) {
+            runCatchingExceptions {
+                source.toRustMediaSource().use { mediaSource ->
+                    innerClient.getMediaThumbnail(
+                        mediaSource = mediaSource,
+                        width = width.toULong(),
+                        height = height.toULong()
+                    )
+                }
+            }
+        }
+
+    override suspend fun downloadMediaFile(
+        source: MediaSource,
+        mimeType: String?,
+        filename: String?,
+        useCache: Boolean,
+    ): Result<MediaFile> =
+        withContext(mediaDispatcher) {
+            runCatchingExceptions {
+                source.toRustMediaSource().use { mediaSource ->
+                    val mediaFile = innerClient.getMediaFile(
+                        mediaSource = mediaSource,
+                        filename = filename,
+                        mimeType = when {
+                            mimeType == null -> MimeTypes.OctetStream
+                            MimeTypes.hasSubtype(mimeType) -> mimeType
+                            // Fallback to a default mime type based on the main type, so that the SDK can create a file with the correct extension.
+                            mimeType == MimeTypes.Images -> MimeTypes.Jpeg
+                            mimeType == MimeTypes.Videos -> MimeTypes.Mp4
+                            mimeType == MimeTypes.Audio -> MimeTypes.Mp3
+                            else -> MimeTypes.OctetStream
+                        },
+                        useCache = useCache,
+                        tempDir = cacheDirectory.path,
+                    )
+                    RustMediaFile(mediaFile)
+                }
+            }
+        }
+
+    private fun MediaSource.toRustMediaSource(): RustMediaSource {
+        val json = this.json
+        return if (json != null) {
+            RustMediaSource.fromJson(json)
+        } else {
+            RustMediaSource.fromUrl(safeUrl)
+        }
+    }
+}

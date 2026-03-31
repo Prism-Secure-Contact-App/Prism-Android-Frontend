@@ -1,0 +1,71 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.call.impl.utils
+
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.prism.api.PRISMClientProvider
+import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.prism.api.room.isDm
+import io.prism.android.libraries.prism.api.widget.CallWidgetSettingsProvider
+import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
+import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
+import kotlinx.coroutines.flow.firstOrNull
+
+private const val EMBEDDED_CALL_WIDGET_BASE_URL = "https://appassets.androidplatform.net/prism-call/index.html"
+
+@ContributesBinding(AppScope::class)
+class DefaultCallWidgetProvider(
+    private val prismClientsProvider: PRISMClientProvider,
+    private val appPreferencesStore: AppPreferencesStore,
+    private val callWidgetSettingsProvider: CallWidgetSettingsProvider,
+    private val activeRoomsHolder: ActiveRoomsHolder,
+) : CallWidgetProvider {
+    override suspend fun getWidget(
+        sessionId: SessionId,
+        roomId: RoomId,
+        isAudioCall: Boolean,
+        clientId: String,
+        languageTag: String?,
+        theme: String?,
+    ): Result<CallWidgetProvider.GetWidgetResult> = runCatchingExceptions {
+        val prismClient = prismClientsProvider.getOrRestore(sessionId).getOrThrow()
+        val room = activeRoomsHolder.getActiveRoomMatching(sessionId, roomId)
+            ?: prismClient.getJoinedRoom(roomId)
+            ?: error("Room not found")
+
+        val customBaseUrl = appPreferencesStore.getCustomPRISMCallBaseUrlFlow().firstOrNull()
+        val baseUrl = customBaseUrl ?: EMBEDDED_CALL_WIDGET_BASE_URL
+
+        val roomInfo = room.info()
+        val isEncrypted = roomInfo.isEncrypted ?: room.getUpdatedIsEncrypted().getOrThrow()
+        val widgetSettings = callWidgetSettingsProvider.provide(
+            baseUrl = baseUrl,
+            encrypted = isEncrypted,
+            direct = room.isDm(),
+            isAudioCall = isAudioCall,
+            hasActiveCall = roomInfo.hasRoomCall,
+        )
+        val callUrl = room.generateWidgetWebViewUrl(
+            widgetSettings = widgetSettings,
+            clientId = clientId,
+            languageTag = languageTag,
+            theme = theme,
+        ).getOrThrow()
+
+        val driver = room.getWidgetDriver(widgetSettings).getOrThrow()
+
+        CallWidgetProvider.GetWidgetResult(
+            driver = driver,
+            url = callUrl,
+        )
+    }
+}

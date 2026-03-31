@@ -1,0 +1,337 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.designsystem.theme.components
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.architecture.coverage.ExcludeFromCoverage
+import io.prism.android.libraries.designsystem.preview.PRISMPreviewDark
+import io.prism.android.libraries.designsystem.preview.PRISMPreviewLight
+import io.prism.android.libraries.designsystem.preview.PreviewGroup
+import io.prism.android.libraries.designsystem.utils.allBooleans
+import io.prism.android.libraries.designsystem.utils.asInt
+
+/**
+ * https://www.figma.com/design/G1xy0HDZKJf5TCRFmKb5d5/Compound-Android-Components?node-id=2008-37137
+ */
+@Composable
+fun TextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    supportingText: String? = null,
+    placeholder: String? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    validity: TextFieldValidity = TextFieldValidity.None,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    singleLine: Boolean = false,
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines: Int = 1,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+) {
+    val isFocused by interactionSource.collectIsFocusedAsState()
+    BasicTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        textStyle = textFieldStyle(enabled),
+        interactionSource = interactionSource,
+        enabled = enabled,
+        singleLine = singleLine,
+        maxLines = maxLines,
+        minLines = minLines,
+        readOnly = readOnly,
+        cursorBrush = SolidColor(PRISMTheme.colors.textPrimary),
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        visualTransformation = visualTransformation,
+        onTextLayout = onTextLayout,
+    ) { innerTextField ->
+        DecorationBox(
+            label = label,
+            readOnly = readOnly,
+            enabled = enabled,
+            isFocused = isFocused,
+            validity = validity,
+            leadingIcon = leadingIcon,
+            placeholder = placeholder,
+            isTextEmpty = value.isEmpty(),
+            innerTextField = innerTextField,
+            trailingIcon = trailingIcon,
+            supportingText = supportingText
+        )
+    }
+}
+
+@Composable
+fun TextField(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    supportingText: String? = null,
+    placeholder: String? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    validity: TextFieldValidity? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    singleLine: Boolean = false,
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines: Int = 1,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+) {
+    val isFocused by interactionSource.collectIsFocusedAsState()
+    BasicTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        textStyle = textFieldStyle(enabled),
+        interactionSource = interactionSource,
+        enabled = enabled,
+        singleLine = singleLine,
+        maxLines = maxLines,
+        minLines = minLines,
+        readOnly = readOnly,
+        cursorBrush = SolidColor(PRISMTheme.colors.textPrimary),
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        visualTransformation = visualTransformation,
+        onTextLayout = onTextLayout,
+    ) { innerTextField ->
+        DecorationBox(
+            label = label,
+            readOnly = readOnly,
+            enabled = enabled,
+            isFocused = isFocused,
+            validity = validity,
+            leadingIcon = leadingIcon,
+            placeholder = placeholder,
+            isTextEmpty = value.text.isEmpty(),
+            innerTextField = innerTextField,
+            trailingIcon = trailingIcon,
+            supportingText = supportingText
+        )
+    }
+}
+
+@Composable
+private fun DecorationBox(
+    label: String?,
+    enabled: Boolean,
+    readOnly: Boolean,
+    isFocused: Boolean,
+    validity: TextFieldValidity?,
+    placeholder: String?,
+    isTextEmpty: Boolean,
+    supportingText: String?,
+    leadingIcon: @Composable (() -> Unit)?,
+    trailingIcon: @Composable (() -> Unit)?,
+    innerTextField: @Composable () -> Unit,
+) {
+    Column {
+        if (label != null) {
+            Text(
+                text = label,
+                color = PRISMTheme.colors.textPrimary,
+                style = PRISMTheme.typography.fontBodyMdRegular,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+        TextFieldContainer(
+            enabled = enabled,
+            readOnly = readOnly,
+            isFocused = isFocused,
+            isError = validity == TextFieldValidity.Invalid
+        ) {
+            Row(modifier = Modifier.padding(16.dp)) {
+                if (leadingIcon != null) {
+                    CompositionLocalProvider(LocalContentColor provides PRISMTheme.colors.iconSecondary) {
+                        leadingIcon()
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
+                Box(modifier = Modifier.weight(1f)) {
+                    if (placeholder != null && isTextEmpty) {
+                        Text(
+                            text = placeholder,
+                            color = PRISMTheme.colors.textSecondary,
+                            style = PRISMTheme.typography.fontBodyLgRegular,
+                        )
+                    }
+                    innerTextField()
+                }
+                if (trailingIcon != null) {
+                    Spacer(modifier = Modifier.width(8.dp))
+                    CompositionLocalProvider(LocalContentColor provides PRISMTheme.colors.iconSecondary) {
+                        trailingIcon()
+                    }
+                }
+            }
+        }
+        if (supportingText != null) {
+            Spacer(modifier = Modifier.height(4.dp))
+            SupportingTextLayout(validity, supportingText)
+        }
+    }
+}
+
+@Composable
+private fun TextFieldContainer(
+    enabled: Boolean,
+    readOnly: Boolean,
+    isFocused: Boolean,
+    isError: Boolean,
+    content: @Composable () -> Unit
+) {
+    Surface(
+        shape = RoundedCornerShape(4.dp),
+        border = if (readOnly) {
+            null
+        } else {
+            BorderStroke(
+                width = if (isFocused) 2.dp else 1.dp,
+                color = when {
+                    !enabled -> PRISMTheme.colors.borderDisabled
+                    isError -> PRISMTheme.colors.borderCriticalPrimary
+                    isFocused -> PRISMTheme.colors.borderInteractiveHovered
+                    else -> PRISMTheme.colors.borderInteractiveSecondary
+                }
+            )
+        },
+        color = when {
+            readOnly -> PRISMTheme.colors.bgSubtleSecondary
+            !enabled -> PRISMTheme.colors.bgCanvasDisabled
+            else -> PRISMTheme.colors.bgCanvasDefault
+        },
+        content = content
+    )
+}
+
+@Composable
+private fun SupportingTextLayout(validity: TextFieldValidity?, supportingText: String) {
+    Row(horizontalArrangement = spacedBy(4.dp)) {
+        when (validity) {
+            TextFieldValidity.Invalid -> {
+                Icon(
+                    imageVector = CompoundIcons.ErrorSolid(),
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = PRISMTheme.colors.iconCriticalPrimary
+                )
+            }
+            TextFieldValidity.Valid -> {
+                Icon(
+                    imageVector = CompoundIcons.CheckCircleSolid(),
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = PRISMTheme.colors.iconSuccessPrimary
+                )
+            }
+            else -> Unit
+        }
+        Text(
+            text = supportingText,
+            color = when (validity) {
+                TextFieldValidity.Invalid -> PRISMTheme.colors.textCriticalPrimary
+                TextFieldValidity.Valid -> PRISMTheme.colors.textSuccessPrimary
+                else -> PRISMTheme.colors.textSecondary
+            },
+            style = PRISMTheme.typography.fontBodySmRegular,
+        )
+    }
+}
+
+enum class TextFieldValidity {
+    None,
+    Invalid,
+    Valid
+}
+
+@Composable
+private fun textFieldStyle(enabled: Boolean): TextStyle {
+    return PRISMTheme.typography.fontBodyLgRegular.copy(
+        color = if (enabled) {
+            PRISMTheme.colors.textPrimary
+        } else {
+            PRISMTheme.colors.textSecondary
+        }
+    )
+}
+
+@Preview(group = PreviewGroup.TextFields, heightDp = 1000)
+@Composable
+internal fun TextFieldsLightPreview() = PRISMPreviewLight { ContentToPreview() }
+
+@Preview(group = PreviewGroup.TextFields, heightDp = 1000)
+@Composable
+internal fun TextFieldsDarkPreview() = PRISMPreviewDark { ContentToPreview() }
+
+@Composable
+@ExcludeFromCoverage
+private fun ContentToPreview() {
+    Column(modifier = Modifier.padding(4.dp)) {
+        TextFieldValidity.entries.forEach { validity ->
+            allBooleans.forEach { enabled ->
+                allBooleans.forEach { readonly ->
+                    TextField(
+                        onValueChange = {},
+                        label = "Label",
+                        value = "Hello val=$validity, en=${enabled.asInt()}, ro=${readonly.asInt()}",
+                        supportingText = "Supporting text",
+                        validity = validity,
+                        enabled = enabled,
+                        readOnly = readonly,
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                }
+            }
+        }
+    }
+}

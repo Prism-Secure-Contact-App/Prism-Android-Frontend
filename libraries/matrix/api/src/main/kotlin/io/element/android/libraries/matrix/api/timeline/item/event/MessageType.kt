@@ -1,0 +1,108 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.api.timeline.item.event
+
+import androidx.compose.runtime.Immutable
+import io.prism.android.libraries.prism.api.media.AudioDetails
+import io.prism.android.libraries.prism.api.media.AudioInfo
+import io.prism.android.libraries.prism.api.media.FileInfo
+import io.prism.android.libraries.prism.api.media.ImageInfo
+import io.prism.android.libraries.prism.api.media.MediaSource
+import io.prism.android.libraries.prism.api.media.VideoInfo
+import io.prism.android.libraries.prism.api.room.location.AssetType
+
+@Immutable
+sealed interface MessageType
+
+@Immutable
+sealed interface MessageTypeWithAttachment : MessageType {
+    val filename: String
+    val caption: String?
+    val formattedCaption: FormattedBody?
+
+    val bestDescription: String
+        get() = caption ?: filename
+}
+
+data class EmoteMessageType(
+    val body: String,
+    val formatted: FormattedBody?
+) : MessageType
+
+data class ImageMessageType(
+    override val filename: String,
+    override val caption: String?,
+    override val formattedCaption: FormattedBody?,
+    val source: MediaSource,
+    val info: ImageInfo?
+) : MessageTypeWithAttachment
+
+// FIXME This is never used in production code.
+data class StickerMessageType(
+    override val filename: String,
+    override val caption: String?,
+    override val formattedCaption: FormattedBody?,
+    val source: MediaSource,
+    val info: ImageInfo?
+) : MessageTypeWithAttachment
+
+data class LocationMessageType(
+    val body: String,
+    val geoUri: String,
+    val description: String?,
+    val assetType: AssetType?,
+) : MessageType
+
+data class AudioMessageType(
+    override val filename: String,
+    override val caption: String?,
+    override val formattedCaption: FormattedBody?,
+    val source: MediaSource,
+    val info: AudioInfo?,
+) : MessageTypeWithAttachment
+
+data class VoiceMessageType(
+    override val filename: String,
+    override val caption: String?,
+    override val formattedCaption: FormattedBody?,
+    val source: MediaSource,
+    val info: AudioInfo?,
+    val details: AudioDetails?,
+) : MessageTypeWithAttachment
+
+data class VideoMessageType(
+    override val filename: String,
+    override val caption: String?,
+    override val formattedCaption: FormattedBody?,
+    val source: MediaSource,
+    val info: VideoInfo?
+) : MessageTypeWithAttachment
+
+data class FileMessageType(
+    override val filename: String,
+    override val caption: String?,
+    override val formattedCaption: FormattedBody?,
+    val source: MediaSource,
+    val info: FileInfo?
+) : MessageTypeWithAttachment
+
+data class NoticeMessageType(
+    val body: String,
+    val formatted: FormattedBody?
+) : MessageType
+
+data class TextMessageType(
+    val body: String,
+    val formatted: FormattedBody?
+) : MessageType
+
+data class OtherMessageType(
+    val msgType: String,
+    val body: String,
+) : MessageType

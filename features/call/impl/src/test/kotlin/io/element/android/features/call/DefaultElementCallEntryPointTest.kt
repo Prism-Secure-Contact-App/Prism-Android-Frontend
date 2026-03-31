@@ -1,0 +1,79 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.call
+
+import android.content.Intent
+import androidx.test.platform.app.InstrumentationRegistry
+import com.google.common.truth.Truth.assertThat
+import io.prism.android.features.call.api.CallType
+import io.prism.android.features.call.impl.DefaultPRISMCallEntryPoint
+import io.prism.android.features.call.impl.notifications.CallNotificationData
+import io.prism.android.features.call.impl.ui.PRISMCallActivity
+import io.prism.android.features.call.utils.FakeActiveCallManager
+import io.prism.android.libraries.prism.test.AN_EVENT_ID
+import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.prism.test.A_SESSION_ID
+import io.prism.android.libraries.prism.test.A_USER_ID_2
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.runTest
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
+import kotlin.time.Duration.Companion.seconds
+
+@RunWith(RobolectricTestRunner::class)
+class DefaultPRISMCallEntryPointTest {
+    @Test
+    fun `startCall - starts PRISMCallActivity setup with the needed extras`() = runTest {
+        val entryPoint = createEntryPoint()
+        entryPoint.startCall(CallType.RoomCall(A_SESSION_ID, A_ROOM_ID, isAudioCall = false))
+
+        val expectedIntent = Intent(InstrumentationRegistry.getInstrumentation().targetContext, PRISMCallActivity::class.java)
+        val intent = shadowOf(RuntimeEnvironment.getApplication()).nextStartedActivity
+        assertThat(intent.component).isEqualTo(expectedIntent.component)
+        assertThat(intent.extras?.containsKey("EXTRA_CALL_TYPE")).isTrue()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `handleIncomingCall - registers the incoming call using ActiveCallManager`() = runTest {
+        val registerIncomingCallLambda = lambdaRecorder<CallNotificationData, Unit> {}
+        val activeCallManager = FakeActiveCallManager(registerIncomingCallResult = registerIncomingCallLambda)
+        val entryPoint = createEntryPoint(activeCallManager = activeCallManager)
+
+        entryPoint.handleIncomingCall(
+            callType = CallType.RoomCall(A_SESSION_ID, A_ROOM_ID, isAudioCall = false),
+            eventId = AN_EVENT_ID,
+            senderId = A_USER_ID_2,
+            roomName = "roomName",
+            senderName = "senderName",
+            avatarUrl = "avatarUrl",
+            timestamp = 0,
+            expirationTimestamp = 0,
+            notificationChannelId = "notificationChannelId",
+            textContent = "textContent",
+        )
+
+        advanceTimeBy(1.seconds)
+
+        registerIncomingCallLambda.assertions().isCalledOnce()
+    }
+
+    private fun TestScope.createEntryPoint(
+        activeCallManager: FakeActiveCallManager = FakeActiveCallManager(),
+    ) = DefaultPRISMCallEntryPoint(
+        context = InstrumentationRegistry.getInstrumentation().targetContext,
+        activeCallManager = activeCallManager,
+    )
+}

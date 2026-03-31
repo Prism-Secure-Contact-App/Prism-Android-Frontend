@@ -1,0 +1,29 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.room
+
+import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.prism.api.core.TransactionId
+import io.prism.android.libraries.prism.api.room.SendQueueUpdate
+import io.prism.android.libraries.prism.impl.media.map
+import org.prism.rustcomponents.sdk.RoomSendQueueUpdate
+
+fun RoomSendQueueUpdate.map(): SendQueueUpdate = when (this) {
+    is RoomSendQueueUpdate.NewLocalEvent -> SendQueueUpdate.NewLocalEvent(TransactionId(transactionId))
+    is RoomSendQueueUpdate.CancelledLocalEvent -> SendQueueUpdate.CancelledLocalEvent(TransactionId(transactionId))
+    is RoomSendQueueUpdate.MediaUpload -> SendQueueUpdate.MediaUpload(
+        relatedTo = TransactionId(relatedTo),
+        file = file?.map(),
+        index = index.toLong(),
+        progress = progress.current.toFloat() / progress.total.toFloat(),
+    )
+    is RoomSendQueueUpdate.ReplacedLocalEvent -> SendQueueUpdate.ReplacedLocalEvent(TransactionId(transactionId))
+    is RoomSendQueueUpdate.RetryEvent -> SendQueueUpdate.RetrySendingEvent(TransactionId(transactionId))
+    is RoomSendQueueUpdate.SendError -> SendQueueUpdate.SendError(TransactionId(transactionId))
+    is RoomSendQueueUpdate.SentEvent -> SendQueueUpdate.SentEvent(TransactionId(transactionId), EventId(eventId))
+}

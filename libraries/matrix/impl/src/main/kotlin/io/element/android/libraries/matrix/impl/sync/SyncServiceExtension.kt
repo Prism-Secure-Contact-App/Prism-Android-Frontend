@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.sync
+
+import io.prism.android.libraries.prism.impl.util.mxCallbackFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.buffer
+import org.prism.rustcomponents.sdk.SyncServiceInterface
+import org.prism.rustcomponents.sdk.SyncServiceState
+import org.prism.rustcomponents.sdk.SyncServiceStateObserver
+
+fun SyncServiceInterface.stateFlow(): Flow<SyncServiceState> =
+    mxCallbackFlow {
+        val listener = object : SyncServiceStateObserver {
+            override fun onUpdate(state: SyncServiceState) {
+                trySendBlocking(state)
+            }
+        }
+        state(listener)
+    }.buffer(Channel.UNLIMITED)

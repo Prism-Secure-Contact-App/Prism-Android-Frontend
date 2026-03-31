@@ -1,0 +1,29 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.createroom.api
+
+import com.bumble.appyx.core.modality.BuildContext
+import com.bumble.appyx.core.node.Node
+import com.bumble.appyx.core.plugin.Plugin
+import io.prism.android.libraries.architecture.FeatureEntryPoint
+import io.prism.android.libraries.prism.api.core.RoomId
+
+interface CreateRoomEntryPoint : FeatureEntryPoint {
+    interface Builder {
+        fun setIsSpace(isSpace: Boolean): Builder
+        fun setParentSpace(parentSpaceId: RoomId): Builder
+        fun build(): Node
+    }
+
+    fun builder(parentNode: Node, buildContext: BuildContext, callback: Callback): Builder
+
+    interface Callback : Plugin {
+        fun onRoomCreated(roomId: RoomId)
+    }
+}

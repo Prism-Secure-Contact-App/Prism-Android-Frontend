@@ -1,0 +1,63 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.messages.impl.timeline.protection
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import dev.zacsweers.metro.Inject
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.core.coroutine.mapState
+import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.prism.api.media.MediaPreviewService
+import io.prism.android.libraries.prism.api.media.isPreviewEnabled
+import io.prism.android.libraries.prism.api.room.BaseRoom
+import kotlinx.collections.immutable.toImmutableSet
+
+@Inject
+class TimelineProtectionPresenter(
+    private val mediaPreviewService: MediaPreviewService,
+    private val room: BaseRoom,
+) : Presenter<TimelineProtectionState> {
+    private val allowedEvents = mutableStateOf<Set<EventId>>(setOf())
+
+    @Composable
+    override fun present(): TimelineProtectionState {
+        val mediaPreviewValue = remember {
+            mediaPreviewService.mediaPreviewConfigFlow.mapState { config -> config.mediaPreviewValue }
+        }.collectAsState()
+        val roomInfo = room.roomInfoFlow.collectAsState()
+        val protectionState by remember {
+            derivedStateOf {
+                val isPreviewEnabled = mediaPreviewValue.value.isPreviewEnabled(roomInfo.value.joinRule)
+                if (isPreviewEnabled) {
+                    ProtectionState.RenderAll
+                } else {
+                    ProtectionState.RenderOnly(eventIds = allowedEvents.value.toImmutableSet())
+                }
+            }
+        }
+
+        fun handleEvent(event: TimelineProtectionEvent) {
+            when (event) {
+                is TimelineProtectionEvent.ShowContent -> {
+                    allowedEvents.value = allowedEvents.value + setOfNotNull(event.eventId)
+                }
+            }
+        }
+
+        return TimelineProtectionState(
+            protectionState = protectionState,
+            eventSink = ::handleEvent,
+        )
+    }
+}

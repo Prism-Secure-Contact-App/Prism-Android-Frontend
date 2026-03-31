@@ -1,0 +1,41 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2024, 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.roomdirectory
+
+import io.prism.android.libraries.prism.api.core.RoomAlias
+import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.prism.api.roomdirectory.RoomDescription
+import org.prism.rustcomponents.sdk.PublicRoomJoinRule
+import org.prism.rustcomponents.sdk.RoomDescription as RustRoomDescription
+
+class RoomDescriptionMapper {
+    fun map(roomDescription: RustRoomDescription): RoomDescription {
+        return RoomDescription(
+            roomId = RoomId(roomDescription.roomId),
+            name = roomDescription.name,
+            topic = roomDescription.topic,
+            avatarUrl = roomDescription.avatarUrl,
+            alias = roomDescription.alias?.let(::RoomAlias),
+            joinRule = roomDescription.joinRule.map(),
+            isWorldReadable = roomDescription.isWorldReadable,
+            numberOfMembers = roomDescription.joinedMembers.toLong(),
+        )
+    }
+}
+
+internal fun PublicRoomJoinRule?.map(): RoomDescription.JoinRule {
+    return when (this) {
+        PublicRoomJoinRule.PUBLIC -> RoomDescription.JoinRule.PUBLIC
+        PublicRoomJoinRule.KNOCK -> RoomDescription.JoinRule.KNOCK
+        PublicRoomJoinRule.RESTRICTED -> RoomDescription.JoinRule.RESTRICTED
+        PublicRoomJoinRule.KNOCK_RESTRICTED -> RoomDescription.JoinRule.KNOCK_RESTRICTED
+        PublicRoomJoinRule.INVITE -> RoomDescription.JoinRule.INVITE
+        null -> RoomDescription.JoinRule.UNKNOWN
+    }
+}

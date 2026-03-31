@@ -1,0 +1,2 @@
+Main changes in this version: fix issue with PRISM Call and to-device events.
+Full changelog: https://github.com/prism-hq/prism-x-android/releases

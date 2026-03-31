@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2023-2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.libraries.prism.impl.room
+
+import io.prism.android.libraries.core.coroutine.parallelMap
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.prism.api.room.ForwardEventException
+import io.prism.android.libraries.prism.impl.roomlist.roomOrNull
+import io.prism.android.libraries.prism.impl.timeline.runWithTimelineListenerRegistered
+import kotlinx.coroutines.withTimeout
+import org.prism.rustcomponents.sdk.MsgLikeKind
+import org.prism.rustcomponents.sdk.RoomListService
+import org.prism.rustcomponents.sdk.Timeline
+import org.prism.rustcomponents.sdk.TimelineItemContent
+import org.prism.rustcomponents.sdk.contentWithoutRelationFromMessage
+import kotlin.time.Duration.Companion.milliseconds
+
+/**
+ * Helper to forward event contents from a room to a set of other rooms.
+ * @param roomListService the [RoomListService] to fetch room instances to forward the event to
+ */
+class RoomContentForwarder(
+    private val roomListService: RoomListService,
+) {
+    /**
+     * Forwards the event with the given [eventId] from the [fromTimeline] to the given [toRoomIds].
+     * @param fromTimeline the room to forward the event from
+     * @param eventId the id of the event to forward
+     * @param toRoomIds the ids of the rooms to forward the event to
+     * @param timeoutMs the maximum time in milliseconds to wait for the event to be sent to a room
+     */
+    suspend fun forward(
+        fromTimeline: Timeline,
+        eventId: EventId,
+        toRoomIds: List<RoomId>,
+        timeoutMs: Long = 5000L
+    ) {
+        val messageLikeContent = (fromTimeline.getEventTimelineItemByEventId(eventId.value).content as? TimelineItemContent.MsgLike)?.content
+            ?: throw ForwardEventException(toRoomIds)
+
+        val content = (messageLikeContent.kind as? MsgLikeKind.Message)?.content
+            ?: throw ForwardEventException(toRoomIds)
+
+        val targetRooms = toRoomIds.mapNotNull { roomId -> roomListService.roomOrNull(roomId.value) }
+        val failedForwardingTo = mutableSetOf<RoomId>()
+        targetRooms.parallelMap { room ->
+            room.use { targetRoom ->
+                runCatchingExceptions {
+                    // Sending a message requires a registered timeline listener
+                    targetRoom.timeline().runWithTimelineListenerRegistered {
+                        withTimeout(timeoutMs.milliseconds) {
+                            targetRoom.timeline().send(contentWithoutRelationFromMessage(content))
+                        }
+                    }
+                }
+            }.onFailure {
+                failedForwardingTo.add(RoomId(room.id()))
+            }
+        }
+
+        if (failedForwardingTo.isNotEmpty()) {
+            throw ForwardEventException(failedForwardingTo.toList())
+        }
+    }
+}

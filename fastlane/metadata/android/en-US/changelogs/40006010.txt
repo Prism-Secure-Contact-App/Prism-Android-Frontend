@@ -1,0 +1,2 @@
+PRISM X is the new generation of PRISM for professional and personal use on mobile. It’s the fastest PRISM client with a seamless & intuitive user interface.
+Full changelog: https://github.com/prism-hq/prism-x-android/releases

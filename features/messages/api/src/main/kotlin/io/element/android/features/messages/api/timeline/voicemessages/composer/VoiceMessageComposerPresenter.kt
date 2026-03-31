@@ -1,0 +1,18 @@
+/*
+ * Copyright (c) 2025 PRISM Creations Ltd.
+ * Copyright 2025 New Vector Ltd.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
+ * Please see LICENSE files in the repository root for full details.
+ */
+
+package io.prism.android.features.messages.api.timeline.voicemessages.composer
+
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.prism.api.timeline.Timeline
+
+fun interface VoiceMessageComposerPresenter : Presenter<VoiceMessageComposerState> {
+    interface Factory {
+        fun create(timelineMode: Timeline.Mode): VoiceMessageComposerPresenter
+    }
+}
