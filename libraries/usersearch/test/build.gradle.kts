@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -20,3 +20,5 @@ dependencies {
     implementation(projects.libraries.matrix.api)
     api(projects.libraries.usersearch.api)
 }
+
+

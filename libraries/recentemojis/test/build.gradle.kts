@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -24,3 +24,5 @@ dependencies {
     implementation(projects.libraries.recentemojis.api)
     implementation(libs.matrix.emojibase.bindings)
 }
+
+

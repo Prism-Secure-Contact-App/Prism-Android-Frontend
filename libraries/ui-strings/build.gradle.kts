@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -17,3 +17,5 @@ android {
         disable += "Typos"
     }
 }
+
+

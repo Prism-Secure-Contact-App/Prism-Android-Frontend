@@ -11,7 +11,7 @@ import extension.allLibrariesImpl
 import extension.allServicesImpl
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     alias(libs.plugins.paparazzi)
 }
 
@@ -49,7 +49,7 @@ dependencies {
     allLibrariesImpl()
     allServicesImpl()
     allFeaturesImpl(project)
-    implementation(projects.appicon.element)
+    implementation(projects.appicon.prism)
     implementation(projects.appicon.enterprise)
 
     testImplementation(libs.test.junit)
@@ -57,3 +57,5 @@ dependencies {
     testImplementation(projects.libraries.designsystem)
     testImplementation(libs.test.composable.preview.scanner)
 }
+
+

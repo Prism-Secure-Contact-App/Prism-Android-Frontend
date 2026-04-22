@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -23,3 +23,6 @@ dependencies {
     api(projects.libraries.preferences.api)
     implementation(libs.coroutines.core)
 }
+
+
+

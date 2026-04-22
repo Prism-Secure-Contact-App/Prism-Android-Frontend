@@ -209,4 +209,14 @@ interface JoinedRoom : BaseRoom {
      * @return Result indicating success or failure.
      */
     suspend fun sendLiveLocation(geoUri: String): Result<Unit>
+
+    /**
+     * Send a custom state event to the room.
+     */
+    suspend fun sendStateEvent(eventType: String, stateKey: String, content: String): Result<Unit>
+
+    /**
+     * Get a custom state event from the room.
+     */
+    suspend fun getStateEvent(eventType: String, stateKey: String): Result<String?>
 }

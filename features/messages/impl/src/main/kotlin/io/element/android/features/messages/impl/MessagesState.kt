@@ -57,7 +57,10 @@ data class MessagesState(
     /** Type of "shared history" icon to show in the top bar. */
     val topBarSharedHistoryIcon: SharedHistoryIcon,
     val successorRoom: SuccessorRoom?,
-    val eventSink: (MessagesEvent) -> Unit
+    val isMoneroEnabled: Boolean,
+    val showMoneroTransferDialog: Boolean,
+    val eventSink: (MessagesEvent) -> Unit,
+    val onMoneroTransferClicked: (Double) -> Unit,
 ) {
     val isTombstoned = successorRoom != null
 }

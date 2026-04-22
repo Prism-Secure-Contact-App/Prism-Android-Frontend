@@ -33,4 +33,9 @@ You can change this anytime in room settings."</string>
   <string name="screen_create_room_space_selection_sheet_title">"Add to space"</string>
   <string name="screen_create_room_topic_label">"Topic (optional)"</string>
   <string name="screen_create_room_topic_placeholder">"Add description…"</string>
+  <string name="screen_create_room_monero_section_title">"Room features"</string>
+  <string name="screen_create_room_monero_toggle_title">"Enable Monero transfers"</string>
+  <string name="screen_create_room_monero_toggle_description">"Allow users to send and receive Monero (XMR) directly in this room."</string>
+  <string name="screen_create_room_monero_description">"Enable native Monero P2P transfers in this room. This cannot be changed later."</string>
+  <string name="screen_room_attachment_source_monero">"Send XMR"</string>
 </resources>

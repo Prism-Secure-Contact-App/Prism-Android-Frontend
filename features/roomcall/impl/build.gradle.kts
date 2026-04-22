@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -33,3 +33,6 @@ dependencies {
     testImplementation(projects.features.call.test)
     testImplementation(projects.features.enterprise.test)
 }
+
+
+

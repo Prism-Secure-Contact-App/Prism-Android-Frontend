@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2026 PRISM Creations Ltd.
  *
  * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
@@ -19,3 +19,6 @@ dependencies {
     implementation(projects.libraries.matrix.api)
     implementation(projects.tests.testutils)
 }
+
+
+

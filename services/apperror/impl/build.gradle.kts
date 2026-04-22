@@ -10,7 +10,7 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 setupDependencyInjection()
@@ -34,3 +34,5 @@ dependencies {
     testCommonDependencies(libs)
     testImplementation(projects.services.toolbox.test)
 }
+
+

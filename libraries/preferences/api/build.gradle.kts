@@ -9,7 +9,7 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -24,3 +24,6 @@ dependencies {
     testCommonDependencies(libs)
     testImplementation(projects.libraries.preferences.test)
 }
+
+
+

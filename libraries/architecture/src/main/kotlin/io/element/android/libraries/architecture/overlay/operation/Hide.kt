@@ -9,22 +9,22 @@
 package io.prism.android.libraries.architecture.overlay.operation
 
 import com.bumble.appyx.navmodel.backstack.BackStack
-import com.bumble.appyx.navmodel.backstack.BackStackPRISMs
+import com.bumble.appyx.navmodel.backstack.BackStackElements
 import com.bumble.appyx.navmodel.backstack.activeIndex
 import io.prism.android.libraries.architecture.overlay.Overlay
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class Hide<T : Any> : OverlayOperation<T> {
-    override fun isApplicable(prisms: BackStackPRISMs<T>): Boolean =
-        prisms.any { it.targetState == BackStack.State.ACTIVE }
+    override fun isApplicable(elements: BackStackElements<T>): Boolean =
+        elements.any { it.targetState == BackStack.State.ACTIVE }
 
     override fun invoke(
-        prisms: BackStackPRISMs<T>
-    ): BackStackPRISMs<T> {
-        val hideIndex = prisms.activeIndex
-        require(hideIndex != -1) { "Nothing to hide, state=$prisms" }
-        return prisms.mapIndexed { index, prism ->
+        elements: BackStackElements<T>
+    ): BackStackElements<T> {
+        val hideIndex = elements.activeIndex
+        require(hideIndex != -1) { "Nothing to hide, state=$elements" }
+        return elements.mapIndexed { index, prism ->
             when (index) {
                 hideIndex -> prism.transitionTo(
                     newTargetState = BackStack.State.DESTROYED,

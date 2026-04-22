@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 android {
@@ -32,3 +32,5 @@ tasks.withType<Test>().configureEach {
     val isNotCheckTask = gradle.startParameter.taskNames.any { it.contains("check", ignoreCase = true).not() }
     outputs.upToDateWhen { isNotCheckTask }
 }
+
+

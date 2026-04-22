@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -54,3 +54,6 @@ dependencies {
     testImplementation(projects.features.invite.test)
     testImplementation(projects.features.rolesandpermissions.test)
 }
+
+
+

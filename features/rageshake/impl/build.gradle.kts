@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -58,3 +58,6 @@ dependencies {
     testImplementation(projects.services.toolbox.test)
     testImplementation(libs.network.mockwebserver)
 }
+
+
+

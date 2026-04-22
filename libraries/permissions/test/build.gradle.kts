@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 android {
@@ -18,3 +18,6 @@ dependencies {
     implementation(projects.libraries.architecture)
     api(projects.libraries.permissions.api)
 }
+
+
+

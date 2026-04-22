@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -40,3 +40,6 @@ dependencies {
     testImplementation(projects.features.announcement.test)
     testImplementation(projects.features.rageshake.test)
 }
+
+
+

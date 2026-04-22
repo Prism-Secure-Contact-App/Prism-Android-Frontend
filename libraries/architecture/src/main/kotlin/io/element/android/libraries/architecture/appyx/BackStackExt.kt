@@ -11,7 +11,7 @@ package io.prism.android.libraries.architecture.appyx
 import com.bumble.appyx.navmodel.backstack.BackStack
 
 fun <T : Any> BackStack<T>.canPop(): Boolean {
-    val prisms = prisms.value
-    return prisms.any { it.targetState == BackStack.State.ACTIVE } &&
-        prisms.any { it.targetState == BackStack.State.STASHED }
+    val elements = elements.value
+    return elements.any { it.targetState == BackStack.State.ACTIVE } &&
+        elements.any { it.targetState == BackStack.State.STASHED }
 }

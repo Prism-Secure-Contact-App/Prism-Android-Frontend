@@ -16,7 +16,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.bumble.appyx.core.integration.NodeFactory
 import com.bumble.appyx.core.integrationpoint.IntegrationPoint
 import com.bumble.appyx.core.modality.BuildContext
-import com.bumble.appyx.core.navigation.NavPRISM
+import com.bumble.appyx.core.navigation.NavElement
 import com.bumble.appyx.core.navigation.NavKey
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.node.build
@@ -68,7 +68,7 @@ private fun Map<String, Any?>.buildNavStateMap(): List<NodeEntry> {
 
 @Suppress("UNCHECKED_CAST")
 private fun Map<String, Any?>.buildNavModel(name: String): List<NodeEntry> {
-    val navModel = this[name] as? List<NavPRISM<*, *>> ?: return emptyList()
+    val navModel = this[name] as? List<NavElement<*, *>> ?: return emptyList()
     return navModel.map {
         NodeEntry(
             navKey = it.key.navTarget,

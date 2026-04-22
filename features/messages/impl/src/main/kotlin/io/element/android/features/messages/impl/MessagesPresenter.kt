@@ -121,6 +121,7 @@ class MessagesPresenter(
     private val featureFlagService: FeatureFlagService,
     private val addRecentEmoji: AddRecentEmoji,
     private val markAsFullyRead: MarkAsFullyRead,
+    private val moneroRpcClient: MoneroRpcClient,
     @SessionCoroutineScope private val sessionCoroutineScope: CoroutineScope,
 ) : Presenter<MessagesState> {
     @AssistedFactory
@@ -212,6 +213,13 @@ class MessagesPresenter(
         //   * The room's history_visibility allows future users to see content.
         val topBarSharedHistoryIcon = if (isKeyShareOnInviteEnabled) roomInfo.sharedHistoryIcon() else SharedHistoryIcon.NONE
 
+        var isMoneroEnabled by remember { mutableStateOf(false) }
+        LaunchedEffect(roomInfo) {
+            withContext(dispatchers.io) {
+                isMoneroEnabled = room.getStateEvent("io.prism.room.monero", "").getOrNull() != null
+            }
+        }
+
         LifecycleResumeEffect(dmRoomMember, roomInfo.isEncrypted) {
             if (roomInfo.isEncrypted == true) {
                 val dmRoomMemberId = dmRoomMember?.userId
@@ -266,6 +274,29 @@ class MessagesPresenter(
                         markingAsReadAndExiting.set(false)
                     }
                 }
+                MessagesEvent.OnMoneroTransferClick -> {
+                    showMoneroTransferDialog = true
+                }
+                MessagesEvent.DismissMoneroTransferDialog -> {
+                    showMoneroTransferDialog = false
+                }
+            }
+        }
+
+        suspend fun performMoneroTransfer(amountDouble: Double) {
+            showMoneroTransferDialog = false
+            val otherMember = dmRoomMember ?: return
+            
+            // Resolve recipient address from user profile state event
+            val recipientAddress = room.getStateEvent("io.prism.user.monero", otherMember.userId.value).getOrNull()?.content?.get("address") as? String
+                ?: "44AFFq5kSiGBoZ4NMD26C2J7NGLyN8VWhJ66S66N5f2n25rCqHp1GHrd4uiZ3mxKhgJzweAR1GiVMRGRUbiBKE2L8mx6sFa" // Fallback test address
+
+            moneroRpcClient.transferWithFee(recipientAddress, amountDouble).onSuccess { txHashes ->
+                snackbarDispatcher.post(SnackbarMessage("Transfer successful: ${txHashes.firstOrNull()?.take(8)}..."))
+                // Optional: Send a Matrix message to notify the other user
+                room.sendStateEvent("io.prism.transfer", "💸 PRISM Transfer: Sent ${amountDouble} XMR", emptyMap())
+            }.onFailure { 
+                snackbarDispatcher.post(SnackbarMessage("Transfer failed: ${it.message}"))
             }
         }
 
@@ -296,7 +327,12 @@ class MessagesPresenter(
             roomMemberModerationState = roomMemberModerationState,
             topBarSharedHistoryIcon = topBarSharedHistoryIcon,
             successorRoom = roomInfo.successorRoom,
+            isMoneroEnabled = isMoneroEnabled,
+            showMoneroTransferDialog = showMoneroTransferDialog,
             eventSink = ::handleEvent,
+            onMoneroTransferClicked = { amount ->
+                coroutineScope.launch { performMoneroTransfer(amount) }
+            }
         )
     }
 

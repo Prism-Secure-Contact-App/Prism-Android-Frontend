@@ -213,6 +213,9 @@ class ConfigureRoomPresenter(
                 is ConfigureRoomEvents.SetParentSpace -> {
                     dataStore.setParentSpace(event.space, false)
                 }
+                is ConfigureRoomEvents.SetMoneroEnabled -> {
+                    dataStore.setMoneroEnabled(event.isMoneroEnabled)
+                }
                 ConfigureRoomEvents.CancelCreateRoom -> {
                     createRoomAction.value = AsyncAction.Uninitialized
                 }
@@ -295,6 +298,22 @@ class ConfigureRoomPresenter(
                 } ?: error("Did not receive created room power levels for room $roomId, needed for adding it to a space")
 
                 prismClient.spaceService.addChildToSpace(spaceId = config.parentSpace.roomId, childId = roomId).getOrThrow()
+            }
+
+            if (config.isMoneroEnabled) {
+                // Wait for the room to become available since createRoom just returned the ID
+                withTimeoutOrNull(30.seconds) {
+                    prismClient.getRoomInfoFlow(roomId).first { it.getOrNull() != null }
+                }
+                prismClient.getRoom(roomId)?.let { room ->
+                    if (room is io.prism.android.libraries.prism.api.room.JoinedRoom) {
+                        try {
+                            room.sendStateEvent("io.prism.room.monero", "", "{}")
+                        } catch (e: Exception) {
+                            Timber.e(e, "Failed to send monero enable state event")
+                        }
+                    }
+                }
             }
 
             roomId

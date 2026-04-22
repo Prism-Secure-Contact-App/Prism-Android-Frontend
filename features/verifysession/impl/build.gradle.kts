@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -45,3 +45,6 @@ dependencies {
     testImplementation(projects.libraries.matrix.test)
     testImplementation(projects.libraries.preferences.test)
 }
+
+
+

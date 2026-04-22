@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -19,3 +19,5 @@ dependencies {
     implementation(projects.services.apperror.api)
     implementation(projects.tests.testutils)
 }
+
+

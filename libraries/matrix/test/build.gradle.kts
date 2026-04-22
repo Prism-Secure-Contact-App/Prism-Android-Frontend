@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -24,3 +24,6 @@ dependencies {
     implementation(projects.tests.testutils)
     implementation(libs.kotlinx.collections.immutable)
 }
+
+
+

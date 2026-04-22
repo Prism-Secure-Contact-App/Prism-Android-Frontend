@@ -10,7 +10,7 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
     alias(libs.plugins.kotlin.serialization)
 }
@@ -45,3 +45,6 @@ dependencies {
     testImplementation(projects.libraries.matrix.test)
     testImplementation(projects.libraries.permissions.test)
 }
+
+
+

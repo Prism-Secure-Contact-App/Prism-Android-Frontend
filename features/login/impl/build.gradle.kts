@@ -1,4 +1,4 @@
-﻿import extension.buildConfigFieldStr
+import extension.buildConfigFieldStr
 import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
@@ -88,3 +88,6 @@ dependencies {
     testImplementation(libs.androidx.camera.camera2)
     testImplementation(libs.androidx.camera.lifecycle)
 }
+
+
+

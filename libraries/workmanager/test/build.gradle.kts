@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -18,3 +18,5 @@ dependencies {
     implementation(projects.libraries.matrix.api)
     implementation(projects.tests.testutils)
 }
+
+

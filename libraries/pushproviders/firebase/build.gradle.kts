@@ -13,7 +13,7 @@ import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -81,3 +81,5 @@ dependencies {
     testImplementation(projects.libraries.troubleshoot.test)
     testImplementation(projects.services.toolbox.test)
 }
+
+

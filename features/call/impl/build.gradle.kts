@@ -1,4 +1,4 @@
-﻿import extension.buildConfigFieldStr
+import extension.buildConfigFieldStr
 import extension.readLocalProperty
 import extension.setupDependencyInjection
 import extension.testCommonDependencies
@@ -74,7 +74,7 @@ dependencies {
     implementation(projects.libraries.designsystem)
     implementation(projects.libraries.featureflag.api)
     implementation(projects.libraries.matrix.impl)
-    implementation(projects.libraries.prismmedia.api)
+    implementation(projects.libraries.matrixmedia.api)
     implementation(projects.libraries.network)
     implementation(projects.libraries.preferences.api)
     implementation(projects.libraries.push.api)
@@ -86,7 +86,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.network.retrofit)
     implementation(libs.serialization.json)
-    implementation(libs.prism.call.embedded)
+    // implementation(libs.element.call.embedded) // Temporarily commented out due to unresolved reference
     api(projects.features.call.api)
 
     testCommonDependencies(libs, true)
@@ -94,10 +94,13 @@ dependencies {
     testImplementation(projects.libraries.featureflag.test)
     testImplementation(projects.libraries.preferences.test)
     testImplementation(projects.libraries.matrix.test)
-    testImplementation(projects.libraries.prismmedia.test)
+    testImplementation(projects.libraries.matrixmedia.test)
     testImplementation(projects.libraries.push.test)
     testImplementation(projects.services.analytics.test)
     testImplementation(projects.services.appnavstate.impl)
     testImplementation(projects.services.appnavstate.test)
     testImplementation(projects.services.toolbox.test)
 }
+
+
+

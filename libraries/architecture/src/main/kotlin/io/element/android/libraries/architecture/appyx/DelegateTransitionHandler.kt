@@ -15,6 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.bumble.appyx.core.navigation.transition.ModifierTransitionHandler
 import com.bumble.appyx.core.navigation.transition.TransitionDescriptor
+import com.bumble.appyx.core.navigation.NavElement
+import com.bumble.appyx.core.navigation.NavKey
 
 /**
  * A [ModifierTransitionHandler] that delegates the creation of the modifier to another handler
@@ -25,7 +27,8 @@ class DelegateTransitionHandler<NavTarget, State>(
 ) : ModifierTransitionHandler<NavTarget, State>() {
     @SuppressLint("ModifierFactoryExtensionFunction")
     override fun createModifier(modifier: Modifier, transition: Transition<State>, descriptor: TransitionDescriptor<NavTarget, State>): Modifier {
-        return handlerProvider(descriptor.prism).createModifier(modifier, transition, descriptor)
+        // Accessing navTarget via element.key.navTarget as observed in other stable modules
+        return handlerProvider(descriptor.element.key.navTarget).createModifier(modifier, transition, descriptor)
     }
 }
 

@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -61,7 +61,7 @@ dependencies {
     implementation(projects.libraries.previewutils)
     api(projects.features.home.api)
     implementation(projects.features.vault.api)
-    implementation(projects.features.lightning.api)
+
 
     testCommonDependencies(libs, true)
     testImplementation(projects.features.announcement.test)
@@ -81,3 +81,6 @@ dependencies {
     testImplementation(projects.services.analytics.test)
     testImplementation(projects.services.toolbox.test)
 }
+
+
+

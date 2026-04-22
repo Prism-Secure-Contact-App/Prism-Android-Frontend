@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -21,12 +21,12 @@ android {
 setupDependencyInjection()
 
 dependencies {
-    releaseImplementation(libs.prism.sdk)
+    releaseImplementation(libs.matrix.sdk)
     if (file("${rootDir.path}/libraries/rustsdk/prism-rust-sdk.aar").exists()) {
         println("\nNote: Using local binary of the Rust SDK.\n")
         debugImplementation(projects.libraries.rustsdk)
     } else {
-        debugImplementation(libs.prism.sdk)
+        debugImplementation(libs.matrix.sdk)
     }
     implementation(files("libs/rustls-platform-verifier-android.aar"))
 
@@ -56,3 +56,6 @@ dependencies {
     testImplementation(projects.services.analytics.test)
     testImplementation(projects.services.toolbox.test)
 }
+
+
+

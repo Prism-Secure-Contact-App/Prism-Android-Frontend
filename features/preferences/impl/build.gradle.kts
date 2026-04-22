@@ -1,4 +1,4 @@
-﻿import config.BuildTimeConfig
+import config.BuildTimeConfig
 import extension.buildConfigFieldStr
 import extension.setupDependencyInjection
 import extension.testCommonDependencies
@@ -119,3 +119,6 @@ dependencies {
     testImplementation(projects.services.analytics.test)
     testImplementation(projects.services.toolbox.test)
 }
+
+
+

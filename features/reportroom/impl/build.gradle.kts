@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 PRISM Creations Ltd.
  * Copyright 2025 New Vector Ltd.
  *
@@ -37,3 +37,6 @@ dependencies {
     testCommonDependencies(libs, true)
     testImplementation(projects.libraries.matrix.test)
 }
+
+
+

@@ -19,6 +19,8 @@ sealed interface MessagesEvent {
     data class InviteDialogDismissed(val action: InviteDialogAction) : MessagesEvent
     data class OnUserClicked(val user: PRISMUser) : MessagesEvent
     data object MarkAsFullyReadAndExit : MessagesEvent
+    data object OnMoneroTransferClick : MessagesEvent
+    data object DismissMoneroTransferDialog : MessagesEvent
 }
 
 enum class InviteDialogAction {

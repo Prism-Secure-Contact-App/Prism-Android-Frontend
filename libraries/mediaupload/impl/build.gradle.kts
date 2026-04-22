@@ -10,7 +10,7 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -47,3 +47,6 @@ dependencies {
     testImplementation(projects.libraries.preferences.test)
     testImplementation(projects.libraries.mediaupload.test)
 }
+
+
+

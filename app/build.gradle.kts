@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 PRISM Creations Ltd.
  * Copyright 2022-2025 New Vector Ltd.
  *
@@ -295,7 +295,7 @@ dependencies {
     implementation(libs.network.okhttp.logging)
     implementation(libs.serialization.json)
 
-    implementation(libs.prism.emojibase.bindings)
+    implementation(libs.matrix.emojibase.bindings)
 
     testCommonDependencies(libs)
     testImplementation(projects.libraries.matrix.test)
@@ -363,3 +363,6 @@ configurations.all {
         }
     }
 }
+
+
+

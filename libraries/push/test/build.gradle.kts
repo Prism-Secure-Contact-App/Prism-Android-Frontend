@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -28,3 +28,5 @@ dependencies {
     implementation(libs.coil.test)
     implementation(libs.test.robolectric)
 }
+
+

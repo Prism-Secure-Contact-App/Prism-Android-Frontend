@@ -279,6 +279,7 @@ class MessagesNode(
                 },
                 onSendLocationClick = callback::navigateToSendLocation,
                 onCreatePollClick = callback::navigateToCreatePoll,
+                onSendXmrClick = { state.eventSink(MessagesEvent.OnMoneroTransferClick) },
                 onJoinCallClick = { isAudioCall ->
                     callback.navigateToRoomCall(room.roomId, isAudioCall)
                 },

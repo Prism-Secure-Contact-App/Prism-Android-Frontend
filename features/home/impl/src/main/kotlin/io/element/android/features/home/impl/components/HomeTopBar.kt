@@ -188,6 +188,22 @@ private fun RoomListMenuItems(
             expanded = showMenu,
             onDismissRequest = { showMenu = false }
         ) {
+            if (RoomListConfig.SHOW_WALLET_MENU_ITEM) {
+                DropdownMenuItem(
+                    onClick = {
+                        showMenu = false
+                        onMenuActionClick(RoomListMenuAction.OpenWallet)
+                    },
+                    text = { Text(stringResource(id = R.string.action_open_wallet)) },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = CompoundIcons.Extensions(),
+                            tint = PRISMTheme.colors.iconSecondary,
+                            contentDescription = null,
+                        )
+                    }
+                )
+            }
             if (RoomListConfig.SHOW_INVITE_MENU_ITEM) {
                 DropdownMenuItem(
                     onClick = {

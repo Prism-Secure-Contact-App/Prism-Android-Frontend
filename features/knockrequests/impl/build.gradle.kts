@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 PRISM Creations Ltd.
  * Copyright 2024, 2025 New Vector Ltd.
  *
@@ -39,3 +39,6 @@ dependencies {
     testImplementation(projects.libraries.matrix.test)
     testImplementation(projects.libraries.featureflag.test)
 }
+
+
+

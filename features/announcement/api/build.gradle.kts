@@ -12,3 +12,6 @@ plugins {
 android {
     namespace = "io.prism.android.features.announcement.api"
 }
+
+
+

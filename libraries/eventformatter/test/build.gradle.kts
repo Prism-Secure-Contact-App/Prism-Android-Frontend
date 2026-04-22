@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 PRISM Creations Ltd.
  * Copyright 2022-2025 New Vector Ltd.
  *
@@ -18,3 +18,6 @@ dependencies {
     implementation(projects.libraries.eventformatter.api)
     implementation(projects.libraries.matrix.api)
 }
+
+
+

@@ -115,6 +115,12 @@ class CreateRoomConfigStore(
         }
     }
 
+    fun setMoneroEnabled(isEnabled: Boolean) {
+        createRoomConfigFlow.getAndUpdate { config ->
+            config.copy(isMoneroEnabled = isEnabled)
+        }
+    }
+
     fun clearCachedData() {
         cachedAvatarUri = null
     }

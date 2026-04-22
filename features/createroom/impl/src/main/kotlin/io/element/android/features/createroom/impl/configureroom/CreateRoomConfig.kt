@@ -20,4 +20,5 @@ data class CreateRoomConfig(
     val invites: ImmutableList<PRISMUser> = persistentListOf(),
     val visibilityState: RoomVisibilityState = RoomVisibilityState.Private(JoinRuleItem.PrivateVisibility.Private),
     val parentSpace: SpaceRoom? = null,
+    val isMoneroEnabled: Boolean = false,
 )

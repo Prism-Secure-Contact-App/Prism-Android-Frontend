@@ -41,7 +41,8 @@ import com.bumble.appyx.core.navigation.transition.TransitionHandler
 import com.bumble.appyx.core.navigation.transition.TransitionParams
 import com.bumble.appyx.core.node.LocalMovableContentMap
 import com.bumble.appyx.core.node.LocalNodeTargetVisibility
-import com.bumble.appyx.core.node.LocalSharedPRISMScope
+import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.runtime.staticCompositionLocalOf
 import com.bumble.appyx.core.node.ParentNode
 import io.prism.android.libraries.core.coroutine.withPreviousValue
 import kotlinx.coroutines.delay
@@ -55,6 +56,9 @@ import kotlin.reflect.KClass
 // All the components in this file come from Appyx, and they've been modified to fix an issue with
 // the saved state. The parts that are modified are marked.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@OptIn(ExperimentalSharedTransitionApi::class)
+val LocalSharedTransitionScope = staticCompositionLocalOf<SharedTransitionScope?> { null }
 
 @Immutable
 class SafeChildrenTransitionScope<T : Any, S>(
@@ -124,7 +128,7 @@ class SafeChildrenTransitionScope<T : Any, S>(
 
         LaunchedEffect(navModel) {
             navModel
-                .removedPRISMKeys()
+                .removedKeys()
                 .map { list ->
                     list.filter { clazz.isInstance(it.navTarget) }
                 }
@@ -157,14 +161,14 @@ class SafeChildrenTransitionScope<T : Any, S>(
         children
             .onScreen
             .filter { clazz.isInstance(it.key.navTarget) }
-            .forEach { navPRISM ->
-                key(navPRISM.key.id) {
+            .forEach { navElement ->
+                key(navElement.key.id) {
                     CompositionLocalProvider(
                         LocalNodeTargetVisibility provides
-                            children.onScreenWithVisibleTargetState.contains(navPRISM)
+                            children.onScreenWithVisibleTargetState.contains(navElement)
                     ) {
                         Child(
-                            navPRISM,
+                            navElement,
                             saveableStateHolder,
                             transitionParams,
                             transitionHandler,
@@ -172,10 +176,10 @@ class SafeChildrenTransitionScope<T : Any, S>(
                         )
 
                         ////////// MODIFIED ////////////
-                        DisposableEffect(navPRISM.key) {
+                        DisposableEffect(navElement.key) {
                             onDispose {
-                                Timber.v("Disposed NavKey ${navPRISM.key}. NavTarget: ${navPRISM.key.navTarget}")
-                                disposedNavKeys.add(navPRISM.key)
+                                Timber.v("Disposed NavKey ${navElement.key}. NavTarget: ${navElement.key.navTarget}")
+                                disposedNavKeys.add(navElement.key)
                             }
                         }
                         ////////// END OF MODIFIED ////////////
@@ -191,7 +195,7 @@ inline fun <reified NavTarget : Any, State> ParentNode<NavTarget>.SafeChildren(
     navModel: NavModel<NavTarget, State>,
     modifier: Modifier = Modifier,
     transitionHandler: TransitionHandler<NavTarget, State> = remember { JumpToEndTransitionHandler() },
-    withSharedPRISMTransition: Boolean = false,
+    withSharedTransition: Boolean = false,
     withMovableContent: Boolean = false,
     noinline block: @Composable SafeChildrenTransitionScope<NavTarget, State>.() -> Unit = {
         children<NavTarget> { child ->
@@ -211,15 +215,15 @@ inline fun <reified NavTarget : Any, State> ParentNode<NavTarget>.SafeChildren(
             )
         }
     }
-    if (withSharedPRISMTransition) {
+    if (withSharedTransition) {
         SharedTransitionLayout(modifier = modifier
             .onSizeChanged {
                 transitionBounds = it
             }
         ) {
             CompositionLocalProvider(
-                /** LocalSharedPRISMScope will be consumed by children UI to apply sharePRISM modifier */
-                LocalSharedPRISMScope provides this,
+                /** LocalSharedTransitionScope will be consumed by children UI to apply sharedElement modifier */
+                LocalSharedTransitionScope provides this,
                 LocalMovableContentMap provides if (withMovableContent) mutableMapOf() else null
             ) {
                 block(
@@ -238,9 +242,9 @@ inline fun <reified NavTarget : Any, State> ParentNode<NavTarget>.SafeChildren(
             }
         ) {
             CompositionLocalProvider(
-                /** If sharedPRISM is not supported for this Node - provide null otherwise children
-                 * can consume ascendant's LocalSharedPRISMScope */
-                LocalSharedPRISMScope provides null,
+                /** If sharedElement is not supported for this Node - provide null otherwise children
+                 * can consume ascendant's LocalSharedTransitionScope */
+                LocalSharedTransitionScope provides null,
                 LocalMovableContentMap provides if (withMovableContent) mutableMapOf() else null
             ) {
                 block(
@@ -255,13 +259,13 @@ inline fun <reified NavTarget : Any, State> ParentNode<NavTarget>.SafeChildren(
     }
 }
 
-internal fun <T: Any, S> NavModel<T, S>.removedPRISMKeys(): Flow<List<NavKey<T>>> {
-    return this.prisms.withPreviousValue()
+internal fun <T: Any, S> NavModel<T, S>.removedKeys(): Flow<List<NavKey<T>>> {
+    return this.elements.withPreviousValue()
         .map { (previous, current) ->
             val previousKeys = previous?.map { it.key }.orEmpty()
             val currentKeys = current.map { it.key }
-            previousKeys.filter { prism ->
-                !currentKeys.contains(prism)
+            previousKeys.filter { element ->
+                !currentKeys.contains(element)
             }
         }
 }

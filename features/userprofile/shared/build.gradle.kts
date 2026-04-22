@@ -1,4 +1,4 @@
-﻿import extension.testCommonDependencies
+import extension.testCommonDependencies
 
 /*
  * Copyright (c) 2025 PRISM Creations Ltd.
@@ -44,3 +44,6 @@ dependencies {
     testCommonDependencies(libs, true)
     testImplementation(projects.libraries.matrix.test)
 }
+
+
+

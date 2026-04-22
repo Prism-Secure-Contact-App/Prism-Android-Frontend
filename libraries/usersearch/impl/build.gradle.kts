@@ -10,7 +10,7 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -32,3 +32,5 @@ dependencies {
     testImplementation(projects.libraries.matrix.test)
     testImplementation(projects.libraries.usersearch.test)
 }
+
+

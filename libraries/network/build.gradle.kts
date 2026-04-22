@@ -8,7 +8,7 @@ import extension.setupDependencyInjection
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
@@ -37,3 +37,6 @@ dependencies {
     implementation(libs.network.retrofit.converter.serialization)
     implementation(libs.serialization.json)
 }
+
+
+

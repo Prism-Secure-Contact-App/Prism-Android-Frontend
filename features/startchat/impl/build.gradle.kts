@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -56,3 +56,6 @@ dependencies {
     testImplementation(projects.features.startchat.test)
     testImplementation(projects.libraries.featureflag.test)
 }
+
+
+

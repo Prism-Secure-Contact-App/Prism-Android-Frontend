@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 PRISM Creations Ltd.
  * Copyright 2023-2025 New Vector Ltd.
  *
@@ -18,3 +18,6 @@ dependencies {
     implementation(projects.libraries.architecture)
     api(projects.libraries.matrix.api)
 }
+
+
+

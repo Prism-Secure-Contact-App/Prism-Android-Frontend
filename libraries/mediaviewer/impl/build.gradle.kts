@@ -9,7 +9,7 @@ import extension.testCommonDependencies
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
 }
 
@@ -66,3 +66,6 @@ dependencies {
     testImplementation(projects.services.toolbox.test)
     testImplementation(libs.coroutines.core)
 }
+
+
+

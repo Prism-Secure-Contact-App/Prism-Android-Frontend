@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 PRISM Creations Ltd.
  * Copyright 2022-2025 New Vector Ltd.
  *
@@ -38,8 +38,8 @@ dependencies {
     implementation(projects.libraries.push.api)
     implementation(projects.libraries.pushproviders.api)
     implementation(projects.libraries.designsystem)
-    implementation(projects.libraries.prismui)
-    implementation(projects.libraries.prismmedia.api)
+    implementation(projects.libraries.matrixui)
+    implementation(projects.libraries.matrixmedia.api)
     implementation(projects.libraries.uiCommon)
     implementation(projects.libraries.uiStrings)
     implementation(projects.features.login.api)
@@ -72,3 +72,6 @@ dependencies {
     testImplementation(projects.services.analytics.test)
     testImplementation(projects.services.toolbox.test)
 }
+
+
+

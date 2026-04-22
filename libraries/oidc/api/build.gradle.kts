@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
     id("kotlin-parcelize")
 }
 
@@ -17,3 +17,6 @@ android {
 dependencies {
     implementation(projects.libraries.architecture)
 }
+
+
+

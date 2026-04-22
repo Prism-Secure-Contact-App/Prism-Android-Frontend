@@ -63,6 +63,7 @@ import io.prism.android.features.messages.impl.messagecomposer.DisabledComposerV
 import io.prism.android.features.messages.impl.messagecomposer.MessageComposerEvent
 import io.prism.android.features.messages.impl.messagecomposer.MessageComposerView
 import io.prism.android.features.messages.impl.messagecomposer.suggestions.SuggestionsPickerView
+import io.prism.android.features.messages.impl.monero.MoneroTransferDialog
 import io.prism.android.features.messages.impl.pinned.banner.PinnedMessagesBannerState
 import io.prism.android.features.messages.impl.pinned.banner.PinnedMessagesBannerView
 import io.prism.android.features.messages.impl.pinned.banner.PinnedMessagesBannerViewDefaults
@@ -130,6 +131,7 @@ fun MessagesView(
     onLinkClick: (String, Boolean) -> Unit,
     onSendLocationClick: () -> Unit,
     onCreatePollClick: () -> Unit,
+    onSendXmrClick: () -> Unit,
     onJoinCallClick: (isAudioCall: Boolean) -> Unit,
     onViewAllPinnedMessagesClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -263,6 +265,7 @@ fun MessagesView(
                             },
                             onSendLocationClick = onSendLocationClick,
                             onCreatePollClick = onCreatePollClick,
+                            onSendXmrClick = onSendXmrClick,
                             onSwipeToReply = { targetEvent ->
                                 state.eventSink(MessagesEvent.HandleAction(TimelineItemAction.Reply, targetEvent))
                             },
@@ -394,6 +397,13 @@ fun MessagesView(
         },
         state = state.linkState,
     )
+
+    if (state.showMoneroTransferDialog) {
+        MoneroTransferDialog(
+            onDismiss = { state.eventSink(MessagesEvent.DismissMoneroTransferDialog) },
+            onSendClick = { amount -> state.onMoneroTransferClicked(amount) }
+        )
+    }
 }
 
 @Composable

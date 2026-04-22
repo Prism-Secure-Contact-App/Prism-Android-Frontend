@@ -531,6 +531,18 @@ class JoinedRustRoom(
         }
     }
 
+    override suspend fun sendStateEvent(eventType: String, stateKey: String, content: String): Result<Unit> = withContext(roomDispatcher) {
+        runCatchingExceptions {
+            innerRoom.sendStateEvent(eventType, stateKey, content)
+        }
+    }
+
+    override suspend fun getStateEvent(eventType: String, stateKey: String): Result<String?> = withContext(roomDispatcher) {
+        runCatchingExceptions {
+            innerRoom.getStateEvent(eventType, stateKey)?.content()
+        }
+    }
+
     override fun close() = destroy()
 
     override fun destroy() {

@@ -1,4 +1,4 @@
-﻿import config.BuildTimeConfig
+import config.BuildTimeConfig
 import extension.buildConfigFieldStr
 
 /*
@@ -51,3 +51,6 @@ dependencies {
     implementation(libs.androidx.annotationjvm)
     implementation(projects.libraries.matrix.api)
 }
+
+
+

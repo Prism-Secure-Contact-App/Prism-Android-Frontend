@@ -139,6 +139,23 @@ fun ConfigureRoomView(
                     state.eventSink(ConfigureRoomEvents.JoinRuleChanged(it))
                 },
             )
+            if (!state.isSpace) {
+                ConfigureRoomOptions(
+                    title = stringResource(R.string.screen_create_room_monero_section_title),
+                ) {
+                    ListItem(
+                        headlineContent = { Text(stringResource(R.string.screen_create_room_monero_toggle_title)) },
+                        supportingContent = { Text(stringResource(R.string.screen_create_room_monero_toggle_description)) },
+                        trailingContent = ListItemContent.Switch(
+                            checked = state.config.isMoneroEnabled,
+                            onCheckedChange = null,
+                        ),
+                        onClick = {
+                            state.eventSink(ConfigureRoomEvents.SetMoneroEnabled(!state.config.isMoneroEnabled))
+                        }
+                    )
+                }
+            }
             if (state.config.visibilityState !is RoomVisibilityState.Private) {
                 ListSectionHeader(title = stringResource(R.string.screen_create_room_room_address_section_title))
                 RoomAddressField(

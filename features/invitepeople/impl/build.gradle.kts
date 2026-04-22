@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -44,3 +44,6 @@ dependencies {
     testImplementation(projects.libraries.usersearch.test)
     testImplementation(projects.services.apperror.test)
 }
+
+
+

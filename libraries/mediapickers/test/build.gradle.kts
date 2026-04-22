@@ -7,7 +7,7 @@
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 android {
@@ -19,3 +19,6 @@ dependencies {
     implementation(projects.libraries.di)
     api(projects.libraries.mediapickers.api)
 }
+
+
+

@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -39,7 +39,7 @@ dependencies {
     implementation(projects.libraries.architecture)
     implementation(projects.libraries.matrix.api)
     implementation(projects.libraries.prismui)
-    implementation(projects.libraries.prismmedia.api)
+    implementation(projects.libraries.matrixmedia.api)
     implementation(projects.libraries.designsystem)
     implementation(projects.libraries.textcomposer.impl)
     implementation(projects.libraries.uiStrings)
@@ -74,7 +74,7 @@ dependencies {
     implementation(libs.sigpwned.emoji4j)
     implementation(libs.vanniktech.blurhash)
     implementation(libs.telephoto.zoomableimage)
-    implementation(libs.prism.emojibase.bindings)
+    implementation(libs.matrix.emojibase.bindings)
     implementation(projects.features.knockrequests.api)
     implementation(projects.features.roommembermoderation.api)
 
@@ -105,3 +105,6 @@ dependencies {
     testImplementation(projects.libraries.eventformatter.test)
     testImplementation(projects.libraries.recentemojis.test)
 }
+
+
+

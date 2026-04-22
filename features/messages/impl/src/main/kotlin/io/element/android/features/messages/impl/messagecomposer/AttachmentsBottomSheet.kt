@@ -81,6 +81,8 @@ internal fun AttachmentsBottomSheet(
                 enableTextFormatting = enableTextFormatting,
                 onSendLocationClick = onSendLocationClick,
                 onCreatePollClick = onCreatePollClick,
+                onSendXmrClick = onSendXmrClick,
+                isMoneroEnabled = isMoneroEnabled,
             )
         }
     }
@@ -91,7 +93,9 @@ private fun AttachmentSourcePickerMenu(
     state: MessageComposerState,
     onSendLocationClick: () -> Unit,
     onCreatePollClick: () -> Unit,
+    onSendXmrClick: () -> Unit,
     enableTextFormatting: Boolean,
+    isMoneroEnabled: Boolean,
 ) {
     Column(
         modifier = Modifier

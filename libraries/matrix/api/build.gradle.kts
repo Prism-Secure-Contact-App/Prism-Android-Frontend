@@ -1,4 +1,4 @@
-﻿import config.BuildTimeConfig
+import config.BuildTimeConfig
 import extension.buildConfigFieldStr
 import extension.testCommonDependencies
 
@@ -56,3 +56,6 @@ dependencies {
     testCommonDependencies(libs)
     testImplementation(projects.libraries.matrix.test)
 }
+
+
+

@@ -33,7 +33,6 @@ import uk.fathertkt.prism.features.analytics.plan.MobileScreen
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.features.home.api.HomeEntryPoint
 import io.prism.android.features.vault.api.VaultEntryPoint
-import io.prism.android.features.lightning.api.LightningEntryPoint
 import io.prism.android.features.home.impl.components.RoomListMenuAction
 import io.prism.android.features.home.impl.model.RoomListRoomSummary
 import io.prism.android.features.home.impl.roomlist.RoomListEvent
@@ -89,7 +88,6 @@ class HomeFlowNode(
     private val changeRoomMemberRolesEntryPoint: ChangeRoomMemberRolesEntryPoint,
     private val leaveRoomRenderer: LeaveRoomRenderer,
     private val vaultEntryPoint: VaultEntryPoint,
-    private val lightningEntryPoint: LightningEntryPoint,
     @SessionCoroutineScope private val sessionCoroutineScope: CoroutineScope,
 ) : BaseFlowNode<HomeFlowNode.NavTarget>(
     backstack = BackStack(
@@ -140,9 +138,6 @@ class HomeFlowNode(
 
         @Parcelize
         data object Vault : NavTarget
-
-        @Parcelize
-        data object Lightning : NavTarget
     }
 
     private fun navigateToReportRoom(roomId: RoomId) {
@@ -157,8 +152,7 @@ class HomeFlowNode(
         when (roomListMenuAction) {
             RoomListMenuAction.InviteFriends -> inviteFriendsUseCase.execute(activity)
             RoomListMenuAction.ReportBug -> callback.navigateToBugReport()
-            RoomListMenuAction.OpenVault -> backstack.push(NavTarget.Vault)
-            RoomListMenuAction.OpenLightning -> backstack.push(NavTarget.Lightning)
+            RoomListMenuAction.OpenWallet -> backstack.push(NavTarget.Vault)
         }
     }
 
@@ -288,10 +282,6 @@ class HomeFlowNode(
             }
             NavTarget.Root -> rootNode(buildContext)
             NavTarget.Vault -> vaultEntryPoint.createNode(
-                buildContext = buildContext,
-                onBack = { backstack.pop() },
-            )
-            NavTarget.Lightning -> lightningEntryPoint.createNode(
                 buildContext = buildContext,
                 onBack = { backstack.pop() },
             )

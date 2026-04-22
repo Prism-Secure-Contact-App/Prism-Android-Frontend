@@ -1,4 +1,4 @@
-﻿import extension.setupDependencyInjection
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -39,3 +39,6 @@ dependencies {
     testImplementation(projects.libraries.roomselect.test)
     testImplementation(projects.libraries.testtags)
 }
+
+
+

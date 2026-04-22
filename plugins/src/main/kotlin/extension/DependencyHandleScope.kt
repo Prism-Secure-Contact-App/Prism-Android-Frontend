@@ -123,7 +123,6 @@ fun DependencyHandlerScope.allLibrariesImpl() {
     implementation(project(":libraries:recentemojis:impl"))
     implementation(project(":libraries:prism-bridge"))
     implementation(project(":libraries:prism-vault"))
-    implementation(project(":libraries:prism-lightning"))
 }
 
 fun DependencyHandlerScope.allServicesImpl() {
