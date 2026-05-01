@@ -11,6 +11,5 @@ package io.prism.android.features.home.impl.components
 enum class RoomListMenuAction {
     InviteFriends,
     ReportBug,
-    OpenLightning,
     OpenVault,
 }

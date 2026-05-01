@@ -28,10 +28,6 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://repo1.maven.org/maven2/")
         }
-        // Breez SDK (Lightning Network)
-        maven {
-            url = uri("https://mvn.breez.technology/releases")
-        }
         flatDir {
             dirs("libraries/prism/libs")
         }

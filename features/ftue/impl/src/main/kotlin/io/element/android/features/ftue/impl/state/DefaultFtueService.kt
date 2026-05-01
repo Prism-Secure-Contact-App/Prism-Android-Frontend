@@ -103,7 +103,10 @@ class DefaultFtueService(
             } else {
                 getNextStep(FtueStep.LockscreenSetup)
             }
-            FtueStep.LockscreenSetup -> if (needsAnalyticsOptIn()) {
+            FtueStep.LockscreenSetup -> FtueStep.WhatsAppBridgeSetup
+            FtueStep.WhatsAppBridgeSetup -> FtueStep.MetaBridgeSetup
+            FtueStep.MetaBridgeSetup -> FtueStep.MoneroWalletSetup
+            FtueStep.MoneroWalletSetup -> if (needsAnalyticsOptIn()) {
                 FtueStep.AnalyticsOptIn
             } else {
                 getNextStep(FtueStep.AnalyticsOptIn)
@@ -153,4 +156,7 @@ sealed interface FtueStep {
     data object NotificationsOptIn : FtueStep
     data object AnalyticsOptIn : FtueStep
     data object LockscreenSetup : FtueStep
+    data object WhatsAppBridgeSetup : FtueStep
+    data object MetaBridgeSetup : FtueStep
+    data object MoneroWalletSetup : FtueStep
 }
