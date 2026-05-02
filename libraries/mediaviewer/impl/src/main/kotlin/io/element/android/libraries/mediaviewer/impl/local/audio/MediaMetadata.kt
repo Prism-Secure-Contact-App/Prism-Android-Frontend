@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.audio
+package io.prism.android.libraries.mediaviewer.impl.local.audio
 
 import androidx.media3.common.MediaMetadata
 

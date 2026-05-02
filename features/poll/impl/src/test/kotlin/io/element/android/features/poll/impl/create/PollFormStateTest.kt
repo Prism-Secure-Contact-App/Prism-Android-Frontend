@@ -10,7 +10,7 @@ package io.prism.android.features.poll.impl.create
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.poll.impl.PollConstants
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.poll.PollKind
 import kotlinx.collections.immutable.toImmutableList
 import org.junit.Test
 

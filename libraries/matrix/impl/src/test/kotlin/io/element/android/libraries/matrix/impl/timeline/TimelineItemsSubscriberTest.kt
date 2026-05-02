@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustEventTimelineItem
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimeline
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustEventTimelineItem
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimeline
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineItem
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -29,7 +29,7 @@ import uniffi.matrix_sdk_ui.EventItemOrigin
 class TimelineItemsSubscriberTest {
     @Test
     fun `when timeline emits an empty list of items, the flow must emits an empty list`() = runTest {
-        val timelineItems: MutableSharedFlow<List<MatrixTimelineItem>> =
+        val timelineItems: MutableSharedFlow<List<PRISMTimelineItem>> =
             MutableSharedFlow(replay = 1, extraBufferCapacity = Int.MAX_VALUE)
         val timeline = FakeFfiTimeline()
         val diffProcessor = createMatrixTimelineDiffProcessor(
@@ -52,7 +52,7 @@ class TimelineItemsSubscriberTest {
 
     @Test
     fun `when timeline emits a non empty list of items, the flow must emits a non empty list`() = runTest {
-        val timelineItems: MutableSharedFlow<List<MatrixTimelineItem>> =
+        val timelineItems: MutableSharedFlow<List<PRISMTimelineItem>> =
             MutableSharedFlow(replay = 1, extraBufferCapacity = Int.MAX_VALUE)
         val timeline = FakeFfiTimeline()
         val diffProcessor = createMatrixTimelineDiffProcessor(
@@ -75,7 +75,7 @@ class TimelineItemsSubscriberTest {
 
     @Test
     fun `when timeline emits an item with SYNC origin`() = runTest {
-        val timelineItems: MutableSharedFlow<List<MatrixTimelineItem>> =
+        val timelineItems: MutableSharedFlow<List<PRISMTimelineItem>> =
             MutableSharedFlow(replay = 1, extraBufferCapacity = Int.MAX_VALUE)
         val timeline = FakeFfiTimeline()
         val diffProcessor = createMatrixTimelineDiffProcessor(
@@ -116,7 +116,7 @@ class TimelineItemsSubscriberTest {
 
 private fun TestScope.createTimelineItemsSubscriber(
     timeline: Timeline = FakeFfiTimeline(),
-    timelineDiffProcessor: MatrixTimelineDiffProcessor = createMatrixTimelineDiffProcessor(),
+    timelineDiffProcessor: PRISMTimelineDiffProcessor = createMatrixTimelineDiffProcessor(),
 ): TimelineItemsSubscriber {
     return TimelineItemsSubscriber(
         timelineCoroutineScope = backgroundScope,

@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.push.test.FakePusherSubscriber
-import io.element.android.libraries.pushproviders.api.Config
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.push.test.FakePusherSubscriber
+import io.prism.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -58,7 +58,7 @@ class FirebasePushProviderTest {
     @Test
     fun `register ok`() = runTest {
         val matrixClient = FakeMatrixClient()
-        val registerPusherResultLambda = lambdaRecorder<MatrixClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val registerPusherResultLambda = lambdaRecorder<PRISMClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
         val firebasePushProvider = createFirebasePushProvider(
             firebaseStore = InMemoryFirebaseStore(
                 token = "aToken"
@@ -105,7 +105,7 @@ class FirebasePushProviderTest {
     @Test
     fun `unregister ok`() = runTest {
         val matrixClient = FakeMatrixClient()
-        val unregisterPusherResultLambda = lambdaRecorder<MatrixClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val unregisterPusherResultLambda = lambdaRecorder<PRISMClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
         val firebasePushProvider = createFirebasePushProvider(
             firebaseStore = InMemoryFirebaseStore(
                 token = "aToken"

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.impl
+package io.prism.android.libraries.roomselect.impl
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
@@ -37,28 +37,28 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.components.button.BackButton
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.element.android.libraries.designsystem.theme.components.RadioButton
-import io.element.android.libraries.designsystem.theme.components.Scaffold
-import io.element.android.libraries.designsystem.theme.components.SearchBar
-import io.element.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.components.TextButton
-import io.element.android.libraries.designsystem.theme.components.TopAppBar
-import io.element.android.libraries.designsystem.utils.OnVisibleRangeChangeEffect
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.ui.components.SelectedRoom
-import io.element.android.libraries.matrix.ui.model.SelectRoomInfo
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.roomselect.api.RoomSelectMode
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.components.button.BackButton
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.designsystem.theme.components.RadioButton
+import io.prism.android.libraries.designsystem.theme.components.Scaffold
+import io.prism.android.libraries.designsystem.theme.components.SearchBar
+import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.components.TextButton
+import io.prism.android.libraries.designsystem.theme.components.TopAppBar
+import io.prism.android.libraries.designsystem.utils.OnVisibleRangeChangeEffect
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.ui.components.SelectedRoom
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.roomselect.api.RoomSelectMode
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -244,10 +244,10 @@ private fun RoomSummaryView(
         ) {
             // Name
             Text(
-                style = ElementTheme.typography.fontBodyLgRegular,
+                style = PRISMTheme.typography.fontBodyLgRegular,
                 text = roomInfo.name ?: stringResource(id = CommonStrings.common_no_room_name),
                 fontStyle = FontStyle.Italic.takeIf { roomInfo.name == null },
-                color = ElementTheme.colors.textPrimary,
+                color = PRISMTheme.colors.textPrimary,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -255,8 +255,8 @@ private fun RoomSummaryView(
             roomInfo.canonicalAlias?.let { alias ->
                 Text(
                     text = alias.value,
-                    color = ElementTheme.colors.textSecondary,
-                    style = ElementTheme.typography.fontBodySmRegular,
+                    color = PRISMTheme.colors.textSecondary,
+                    style = PRISMTheme.typography.fontBodySmRegular,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -268,7 +268,7 @@ private fun RoomSummaryView(
 
 @PreviewsDayNight
 @Composable
-internal fun RoomSelectViewPreview(@PreviewParameter(RoomSelectStateProvider::class) state: RoomSelectState) = ElementPreview {
+internal fun RoomSelectViewPreview(@PreviewParameter(RoomSelectStateProvider::class) state: RoomSelectState) = PRISMPreview {
     RoomSelectView(
         state = state,
         onDismiss = {},

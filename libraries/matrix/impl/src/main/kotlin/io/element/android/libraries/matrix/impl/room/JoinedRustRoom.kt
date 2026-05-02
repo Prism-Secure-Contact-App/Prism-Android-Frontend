@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.coroutine.childScope
@@ -14,43 +14,43 @@ import io.prism.android.libraries.core.extensions.mapFailure
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.SendHandle
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityStateChange
-import io.prism.android.libraries.prism.api.notificationsettings.NotificationSettingsService
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.CreateTimelineParams
-import io.prism.android.libraries.prism.api.room.IntentionalMention
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomNotificationSettingsState
-import io.prism.android.libraries.prism.api.room.SendQueueUpdate
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.knock.KnockRequest
-import io.prism.android.libraries.prism.api.room.location.LiveLocationShare
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
-import io.prism.android.libraries.prism.api.room.powerlevels.UserRoleChange
-import io.prism.android.libraries.prism.api.room.roomNotificationSettings
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetDriver
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetSettings
-import io.prism.android.libraries.prism.impl.core.RustSendHandle
-import io.prism.android.libraries.prism.impl.mapper.map
-import io.prism.android.libraries.prism.impl.room.history.map
-import io.prism.android.libraries.prism.impl.room.join.map
-import io.prism.android.libraries.prism.impl.room.knock.RustKnockRequest
-import io.prism.android.libraries.prism.impl.room.location.map
-import io.prism.android.libraries.prism.impl.room.member.RoomMemberListFetcher
-import io.prism.android.libraries.prism.impl.roomdirectory.map
-import io.prism.android.libraries.prism.impl.timeline.RustTimeline
-import io.prism.android.libraries.prism.impl.util.MessageEventContent
-import io.prism.android.libraries.prism.impl.util.mxCallbackFlow
-import io.prism.android.libraries.prism.impl.widget.RustWidgetDriver
-import io.prism.android.libraries.prism.impl.widget.generateWidgetWebViewUrl
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.SendHandle
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityStateChange
+import io.prism.android.libraries.matrix.api.notificationsettings.NotificationSettingsService
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.CreateTimelineParams
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomNotificationSettingsState
+import io.prism.android.libraries.matrix.api.room.SendQueueUpdate
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.knock.KnockRequest
+import io.prism.android.libraries.matrix.api.room.location.LiveLocationShare
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.powerlevels.UserRoleChange
+import io.prism.android.libraries.matrix.api.room.roomNotificationSettings
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetSettings
+import io.prism.android.libraries.matrix.impl.core.RustSendHandle
+import io.prism.android.libraries.matrix.impl.mapper.map
+import io.prism.android.libraries.matrix.impl.room.history.map
+import io.prism.android.libraries.matrix.impl.room.join.map
+import io.prism.android.libraries.matrix.impl.room.knock.RustKnockRequest
+import io.prism.android.libraries.matrix.impl.room.location.map
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberListFetcher
+import io.prism.android.libraries.matrix.impl.roomdirectory.map
+import io.prism.android.libraries.matrix.impl.timeline.RustTimeline
+import io.prism.android.libraries.matrix.impl.util.MessageEventContent
+import io.prism.android.libraries.matrix.impl.util.mxCallbackFlow
+import io.prism.android.libraries.matrix.impl.widget.RustWidgetDriver
+import io.prism.android.libraries.matrix.impl.widget.generateWidgetWebViewUrl
 import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -65,30 +65,30 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.DateDividerMode
-import org.prism.rustcomponents.sdk.IdentityStatusChangeListener
-import org.prism.rustcomponents.sdk.KnockRequestsListener
-import org.prism.rustcomponents.sdk.LiveLocationShareListener
-import org.prism.rustcomponents.sdk.RoomMessageEventMessageType
-import org.prism.rustcomponents.sdk.RoomSendQueueUpdate
-import org.prism.rustcomponents.sdk.SendQueueListener
-import org.prism.rustcomponents.sdk.TimelineConfiguration
-import org.prism.rustcomponents.sdk.TimelineFilter
-import org.prism.rustcomponents.sdk.TimelineFocus
-import org.prism.rustcomponents.sdk.TypingNotificationsListener
-import org.prism.rustcomponents.sdk.UserPowerLevelUpdate
-import org.prism.rustcomponents.sdk.WidgetCapabilities
-import org.prism.rustcomponents.sdk.WidgetCapabilitiesProvider
-import org.prism.rustcomponents.sdk.getPRISMCallRequiredPermissions
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.DateDividerMode
+import org.matrix.rustcomponents.sdk.IdentityStatusChangeListener
+import org.matrix.rustcomponents.sdk.KnockRequestsListener
+import org.matrix.rustcomponents.sdk.LiveLocationShareListener
+import org.matrix.rustcomponents.sdk.RoomMessageEventMessageType
+import org.matrix.rustcomponents.sdk.RoomSendQueueUpdate
+import org.matrix.rustcomponents.sdk.SendQueueListener
+import org.matrix.rustcomponents.sdk.TimelineConfiguration
+import org.matrix.rustcomponents.sdk.TimelineFilter
+import org.matrix.rustcomponents.sdk.TimelineFocus
+import org.matrix.rustcomponents.sdk.TypingNotificationsListener
+import org.matrix.rustcomponents.sdk.UserPowerLevelUpdate
+import org.matrix.rustcomponents.sdk.WidgetCapabilities
+import org.matrix.rustcomponents.sdk.WidgetCapabilitiesProvider
+import org.matrix.rustcomponents.sdk.getElementCallRequiredPermissions
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
-import uniffi.prism_sdk.RoomPowerLevelChanges
-import uniffi.prism_sdk_ui.TimelineEventFocusThreadMode
-import uniffi.prism_sdk_ui.TimelineReadReceiptTracking
+import uniffi.matrix_sdk.RoomPowerLevelChanges
+import uniffi.matrix_sdk_ui.TimelineEventFocusThreadMode
+import uniffi.matrix_sdk_ui.TimelineReadReceiptTracking
 import kotlin.coroutines.cancellation.CancellationException
-import org.prism.rustcomponents.sdk.IdentityStatusChange as RustIdentityStateChange
-import org.prism.rustcomponents.sdk.KnockRequest as InnerKnockRequest
-import org.prism.rustcomponents.sdk.Timeline as InnerTimeline
+import org.matrix.rustcomponents.sdk.IdentityStatusChange as RustIdentityStateChange
+import org.matrix.rustcomponents.sdk.KnockRequest as InnerKnockRequest
+import org.matrix.rustcomponents.sdk.Timeline as InnerTimeline
 
 class JoinedRustRoom(
     private val baseRoom: RustBaseRoom,
@@ -457,7 +457,7 @@ class JoinedRustRoom(
                 room = innerRoom,
                 widgetCapabilitiesProvider = object : WidgetCapabilitiesProvider {
                     override fun acquireCapabilities(capabilities: WidgetCapabilities): WidgetCapabilities {
-                        return getPRISMCallRequiredPermissions(sessionId.value, baseRoom.deviceId.value)
+                        return getElementCallRequiredPermissions(sessionId.value, baseRoom.deviceId.value)
                     }
                 },
             )
@@ -506,7 +506,7 @@ class JoinedRustRoom(
     override fun subscribeToLiveLocationShares(): Flow<List<LiveLocationShare>> {
         return mxCallbackFlow {
             innerRoom.subscribeToLiveLocationShares(object : LiveLocationShareListener {
-                override fun call(liveLocationShares: List<org.prism.rustcomponents.sdk.LiveLocationShare>) {
+                override fun call(liveLocationShares: List<org.matrix.rustcomponents.sdk.LiveLocationShare>) {
                     trySend(liveLocationShares.map { it.map() })
                 }
             })

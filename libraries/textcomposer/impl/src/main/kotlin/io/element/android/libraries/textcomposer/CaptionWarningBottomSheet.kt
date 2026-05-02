@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer
+package io.prism.android.libraries.textcomposer
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,13 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.BigIcon
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.ModalBottomSheet
-import io.element.android.libraries.designsystem.theme.components.OutlinedButton
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.BigIcon
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
+import io.prism.android.libraries.designsystem.theme.components.OutlinedButton
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,8 +50,8 @@ fun CaptionWarningBottomSheet(
             )
             Text(
                 text = stringResource(R.string.screen_media_upload_preview_caption_warning),
-                style = ElementTheme.typography.fontBodyMdRegular,
-                color = ElementTheme.colors.textPrimary,
+                style = PRISMTheme.typography.fontBodyMdRegular,
+                color = PRISMTheme.colors.textPrimary,
                 textAlign = TextAlign.Center,
             )
             OutlinedButton(
@@ -67,7 +67,7 @@ fun CaptionWarningBottomSheet(
 
 @PreviewsDayNight
 @Composable
-internal fun CaptionWarningBottomSheetPreview() = ElementPreview {
+internal fun CaptionWarningBottomSheetPreview() = PRISMPreview {
     CaptionWarningBottomSheet(
         onDismiss = {},
     )

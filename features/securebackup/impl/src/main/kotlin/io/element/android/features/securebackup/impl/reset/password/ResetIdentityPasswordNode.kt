@@ -20,7 +20,7 @@ import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.encryption.IdentityPasswordResetHandle
+import io.prism.android.libraries.matrix.api.encryption.IdentityPasswordResetHandle
 
 @ContributesNode(SessionScope::class)
 @AssistedInject

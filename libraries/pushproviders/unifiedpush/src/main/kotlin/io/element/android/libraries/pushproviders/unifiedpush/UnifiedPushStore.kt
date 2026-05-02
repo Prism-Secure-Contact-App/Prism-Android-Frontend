@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.core.UserId
 
 interface UnifiedPushStore {
     fun getEndpoint(clientSecret: String): String?

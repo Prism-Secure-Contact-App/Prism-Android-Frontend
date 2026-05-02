@@ -11,11 +11,11 @@ package io.prism.android.features.login.impl.qrcode
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
 import io.prism.android.features.login.impl.di.QrCodeLoginScope
-import io.prism.android.libraries.prism.api.auth.PRISMAuthenticationService
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrLoginException
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
+import io.prism.android.libraries.matrix.api.core.SessionId
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

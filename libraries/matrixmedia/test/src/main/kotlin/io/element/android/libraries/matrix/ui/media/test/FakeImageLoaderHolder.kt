@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media.test
+package io.prism.android.libraries.matrix.ui.media.test
 
 import coil3.ImageLoader
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
 
 class FakeImageLoaderHolder(
     val fakeImageLoader: ImageLoader = FakeImageLoader(),
@@ -20,7 +20,7 @@ class FakeImageLoaderHolder(
         return fakeImageLoader
     }
 
-    override fun get(client: MatrixClient): ImageLoader {
+    override fun get(client: PRISMClient): ImageLoader {
         return fakeImageLoader
     }
 

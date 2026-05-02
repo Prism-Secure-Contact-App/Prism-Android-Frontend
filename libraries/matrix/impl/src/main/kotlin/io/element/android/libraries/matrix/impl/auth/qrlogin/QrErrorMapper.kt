@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth.qrlogin
+package io.prism.android.libraries.matrix.impl.auth.qrlogin
 
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeDecodeException
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrLoginException
-import org.prism.rustcomponents.sdk.HumanQrLoginException as RustHumanQrLoginException
-import org.prism.rustcomponents.sdk.QrCodeDecodeException as RustQrCodeDecodeException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeDecodeException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
+import org.matrix.rustcomponents.sdk.HumanQrLoginException as RustHumanQrLoginException
+import org.matrix.rustcomponents.sdk.QrCodeDecodeException as RustQrCodeDecodeException
 
 object QrErrorMapper {
     fun map(qrCodeDecodeException: RustQrCodeDecodeException): QrCodeDecodeException = when (qrCodeDecodeException) {

@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl
+package io.prism.android.libraries.mediaviewer.impl
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.testing.junit4.util.MainDispatcherRule
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.mediaviewer.api.MediaGalleryEntryPoint
-import io.element.android.libraries.mediaviewer.impl.gallery.root.MediaGalleryFlowNode
-import io.element.android.libraries.mediaviewer.test.FakeMediaViewerEntryPoint
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.node.TestParentNode
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.mediaviewer.api.MediaGalleryEntryPoint
+import io.prism.android.libraries.mediaviewer.impl.gallery.root.MediaGalleryFlowNode
+import io.prism.android.libraries.mediaviewer.test.FakeMediaViewerEntryPoint
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule
 import org.junit.Test
 

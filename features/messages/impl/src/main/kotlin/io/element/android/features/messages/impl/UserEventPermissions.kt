@@ -8,8 +8,8 @@
 
 package io.prism.android.features.messages.impl
 
-import io.prism.android.libraries.prism.api.room.MessageEventType
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.MessageEventType
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
 
 /**
  * Represents the permissions a user has in a room.

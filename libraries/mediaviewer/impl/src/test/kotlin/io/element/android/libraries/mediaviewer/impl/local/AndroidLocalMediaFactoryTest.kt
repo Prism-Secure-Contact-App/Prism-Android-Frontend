@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local
+package io.prism.android.libraries.mediaviewer.impl.local
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.androidutils.filesize.FakeFileSizeFormatter
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.media.MediaFile
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_NAME
-import io.element.android.libraries.matrix.test.media.FakeMediaFile
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.anImageMediaInfo
-import io.element.android.libraries.mediaviewer.test.util.FileExtensionExtractorWithoutValidation
+import io.prism.android.libraries.androidutils.filesize.FakeFileSizeFormatter
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.media.MediaFile
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.media.FakeMediaFile
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.anImageMediaInfo
+import io.prism.android.libraries.mediaviewer.test.util.FileExtensionExtractorWithoutValidation
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner

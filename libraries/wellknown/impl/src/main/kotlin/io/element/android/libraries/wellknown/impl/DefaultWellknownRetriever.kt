@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.wellknown.impl
+package io.prism.android.libraries.wellknown.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.core.uri.ensureProtocol
-import io.element.android.libraries.network.RetrofitFactory
-import io.element.android.libraries.wellknown.api.ElementWellKnown
-import io.element.android.libraries.wellknown.api.WellknownRetriever
-import io.element.android.libraries.wellknown.api.WellknownRetrieverResult
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.core.uri.ensureProtocol
+import io.prism.android.libraries.network.RetrofitFactory
+import io.prism.android.libraries.wellknown.api.ElementWellKnown
+import io.prism.android.libraries.wellknown.api.WellknownRetriever
+import io.prism.android.libraries.wellknown.api.WellknownRetrieverResult
 import retrofit2.HttpException
 import timber.log.Timber
 import java.net.HttpURLConnection

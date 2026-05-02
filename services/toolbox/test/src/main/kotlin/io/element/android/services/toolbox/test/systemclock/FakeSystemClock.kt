@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.test.systemclock
+package io.prism.android.services.toolbox.test.systemclock
 
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 
 const val A_FAKE_TIMESTAMP = 123L
 

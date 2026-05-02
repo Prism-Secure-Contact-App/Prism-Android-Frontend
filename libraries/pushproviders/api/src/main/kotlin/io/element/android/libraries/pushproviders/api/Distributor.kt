@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.api
+package io.prism.android.libraries.pushproviders.api
 
 /**
  * Firebase does not have the concept of distributor. So for Firebase, there will be one distributor:

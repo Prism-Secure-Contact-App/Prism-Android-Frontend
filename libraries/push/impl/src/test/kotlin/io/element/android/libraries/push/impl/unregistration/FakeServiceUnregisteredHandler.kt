@@ -5,10 +5,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.unregistration
+package io.prism.android.libraries.push.impl.unregistration
 
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeServiceUnregisteredHandler(
     private val handleResult: (UserId) -> Unit = { lambdaError() },

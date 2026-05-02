@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room
+package io.prism.android.libraries.matrix.api.room
 
 /**
  * Room membership details for the current user and the sender of the membership event.

@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.ui.utils.graphics
+package io.prism.android.libraries.ui.utils.graphics
 
 import androidx.compose.ui.draw.CacheDrawScope
 import androidx.compose.ui.graphics.Outline

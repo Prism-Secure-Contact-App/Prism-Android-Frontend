@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.exception
+package io.prism.android.libraries.matrix.api.exception
 
 sealed class ClientException(message: String, val details: String?, cause: Throwable? = null) : Exception(message, cause) {
     class Generic(message: String, details: String?, cause: Throwable? = null) : ClientException(message, details, cause)

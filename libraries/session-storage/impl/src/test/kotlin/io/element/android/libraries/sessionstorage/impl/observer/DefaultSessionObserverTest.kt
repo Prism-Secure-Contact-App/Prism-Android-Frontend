@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.sessionstorage.impl.observer
+package io.prism.android.libraries.sessionstorage.impl.observer
 
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.sessionstorage.impl.DatabaseSessionStore
-import io.element.android.libraries.sessionstorage.impl.SessionDatabase
-import io.element.android.libraries.sessionstorage.impl.aDbSessionData
-import io.element.android.libraries.sessionstorage.impl.toApiModel
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.sessionstorage.impl.DatabaseSessionStore
+import io.prism.android.libraries.sessionstorage.impl.SessionDatabase
+import io.prism.android.libraries.sessionstorage.impl.aDbSessionData
+import io.prism.android.libraries.sessionstorage.impl.toApiModel
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher

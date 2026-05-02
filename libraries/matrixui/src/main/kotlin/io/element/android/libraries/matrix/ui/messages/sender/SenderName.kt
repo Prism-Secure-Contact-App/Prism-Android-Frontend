@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages.sender
+package io.prism.android.libraries.matrix.ui.messages.sender
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -18,12 +18,12 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.timeline.item.event.ProfileDetails
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
 
 // https://www.figma.com/file/Ni6Ii8YKtmXCKYNE90cC67/Timeline-(new)?type=design&node-id=917-80169&mode=design&t=A0CJCBbMqR8NOwUQ-0
 @Composable
@@ -65,9 +65,9 @@ private fun RowScope.MainText(
     mode: SenderNameMode,
 ) {
     val style = when (mode) {
-        is SenderNameMode.Timeline -> ElementTheme.typography.fontBodyMdMedium
+        is SenderNameMode.Timeline -> PRISMTheme.typography.fontBodyMdMedium
         SenderNameMode.ActionList,
-        SenderNameMode.Reply -> ElementTheme.typography.fontBodySmMedium
+        SenderNameMode.Reply -> PRISMTheme.typography.fontBodySmMedium
     }
     val modifier = when (mode) {
         is SenderNameMode.Timeline -> Modifier.alignByBaseline()
@@ -77,7 +77,7 @@ private fun RowScope.MainText(
     val color = when (mode) {
         is SenderNameMode.Timeline -> mode.mainColor
         SenderNameMode.ActionList,
-        SenderNameMode.Reply -> ElementTheme.colors.textPrimary
+        SenderNameMode.Reply -> PRISMTheme.colors.textPrimary
     }
     Text(
         modifier = modifier.clipToBounds(),
@@ -95,9 +95,9 @@ private fun RowScope.SecondaryText(
     mode: SenderNameMode,
 ) {
     val style = when (mode) {
-        is SenderNameMode.Timeline -> ElementTheme.typography.fontBodySmRegular
+        is SenderNameMode.Timeline -> PRISMTheme.typography.fontBodySmRegular
         SenderNameMode.ActionList,
-        SenderNameMode.Reply -> ElementTheme.typography.fontBodyXsRegular
+        SenderNameMode.Reply -> PRISMTheme.typography.fontBodyXsRegular
     }
     val modifier = when (mode) {
         is SenderNameMode.Timeline -> Modifier.alignByBaseline()
@@ -108,7 +108,7 @@ private fun RowScope.SecondaryText(
         modifier = modifier.clipToBounds(),
         text = text,
         style = style,
-        color = ElementTheme.colors.textSecondary,
+        color = PRISMTheme.colors.textSecondary,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
     )
@@ -118,7 +118,7 @@ private fun RowScope.SecondaryText(
 @Composable
 internal fun SenderNamePreview(
     @PreviewParameter(SenderNameDataProvider::class) senderNameData: SenderNameData,
-) = ElementPreview {
+) = PRISMPreview {
     SenderName(
         senderId = senderNameData.userId,
         senderProfile = senderNameData.profileDetails,

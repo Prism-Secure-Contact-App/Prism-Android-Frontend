@@ -17,7 +17,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.features.poll.api.pollcontent.aPollContentState
 import io.prism.android.features.poll.impl.R
 import io.prism.android.features.poll.impl.history.model.PollHistoryFilter
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam

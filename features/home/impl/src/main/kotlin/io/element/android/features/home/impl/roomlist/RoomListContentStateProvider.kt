@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.home.impl.model.RoomListRoomSummary
 import io.prism.android.libraries.fullscreenintent.api.FullScreenIntentPermissionsState
 import io.prism.android.libraries.fullscreenintent.api.aFullScreenIntentPermissionsState
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.push.api.battery.BatteryOptimizationState
 import io.prism.android.libraries.push.api.battery.aBatteryOptimizationState
 import kotlinx.collections.immutable.ImmutableList

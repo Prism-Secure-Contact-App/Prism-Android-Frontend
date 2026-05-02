@@ -11,9 +11,9 @@ package io.prism.android.features.home.impl.model
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
 import kotlinx.collections.immutable.toImmutableList
 import org.junit.Test
 

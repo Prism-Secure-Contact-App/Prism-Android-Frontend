@@ -17,7 +17,7 @@ import io.prism.android.features.messages.test.attachments.video.FakeVideoMetada
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
 import io.prism.android.libraries.mediaupload.api.MaxUploadSizeProvider
 import io.prism.android.libraries.mediaupload.test.FakeMediaOptimizationConfigProvider
 import io.prism.android.libraries.mediaviewer.api.aVideoMediaInfo

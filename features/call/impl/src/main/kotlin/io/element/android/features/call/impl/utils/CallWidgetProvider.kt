@@ -8,9 +8,9 @@
 
 package io.prism.android.features.call.impl.utils
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetDriver
 
 interface CallWidgetProvider {
     suspend fun getWidget(

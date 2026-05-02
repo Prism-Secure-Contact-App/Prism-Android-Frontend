@@ -10,7 +10,7 @@ package io.prism.android.appnav.loggedin
 
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.media.MediaPreviewService
+import io.prism.android.libraries.matrix.api.media.MediaPreviewService
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first

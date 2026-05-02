@@ -9,7 +9,7 @@
 package io.prism.android.libraries.eventformatter.test
 
 import io.prism.android.libraries.eventformatter.api.PinnedMessagesBannerFormatter
-import io.prism.android.libraries.prism.api.timeline.item.event.EventTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventTimelineItem
 
 class FakePinnedMessagesBannerFormatter(
     val formatLambda: (event: EventTimelineItem) -> CharSequence

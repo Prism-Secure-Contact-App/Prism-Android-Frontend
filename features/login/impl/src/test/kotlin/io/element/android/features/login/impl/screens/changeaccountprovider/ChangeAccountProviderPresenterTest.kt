@@ -13,8 +13,8 @@ import io.prism.android.features.enterprise.api.EnterpriseService
 import io.prism.android.features.enterprise.test.FakeEnterpriseService
 import io.prism.android.features.login.impl.accountprovider.AccountProvider
 import io.prism.android.features.login.impl.changeserver.aChangeServerState
-import io.prism.android.libraries.prism.test.AN_ACCOUNT_PROVIDER
-import io.prism.android.libraries.prism.test.AN_ACCOUNT_PROVIDER_2
+import io.prism.android.libraries.matrix.test.AN_ACCOUNT_PROVIDER
+import io.prism.android.libraries.matrix.test.AN_ACCOUNT_PROVIDER_2
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.runTest

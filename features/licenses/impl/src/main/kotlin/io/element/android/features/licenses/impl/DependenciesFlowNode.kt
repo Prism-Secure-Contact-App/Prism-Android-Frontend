@@ -35,7 +35,7 @@ class DependenciesFlowNode(
     @Assisted plugins: List<Plugin>,
 ) : BaseFlowNode<DependenciesFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.LicensesList,
+        initialElement = NavTarget.LicensesList,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

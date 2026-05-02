@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.analytics
+package io.prism.android.libraries.matrix.impl.analytics
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.services.analytics.api.AnalyticsSdkManager
 import io.prism.android.services.analytics.api.AnalyticsSdkSpan
-import org.prism.rustcomponents.sdk.enableSentryLogging
+import org.matrix.rustcomponents.sdk.enableSentryLogging
 
 @ContributesBinding(AppScope::class)
 class RustAnalyticsSdkManager : AnalyticsSdkManager {

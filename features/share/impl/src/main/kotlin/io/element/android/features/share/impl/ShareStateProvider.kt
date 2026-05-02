@@ -10,7 +10,7 @@ package io.prism.android.features.share.impl
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 open class ShareStateProvider : PreviewParameterProvider<ShareState> {
     override val values: Sequence<ShareState>

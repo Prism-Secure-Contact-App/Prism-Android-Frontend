@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.notification
+package io.prism.android.libraries.matrix.test.notification
 
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.notification.NotificationData
-import io.element.android.libraries.matrix.api.notification.NotificationService
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.notification.NotificationData
+import io.prism.android.libraries.matrix.api.notification.NotificationService
 
 class FakeNotificationService : NotificationService {
     private var getNotificationsResult: Result<Map<EventId, Result<NotificationData>>> = Result.success(emptyMap())

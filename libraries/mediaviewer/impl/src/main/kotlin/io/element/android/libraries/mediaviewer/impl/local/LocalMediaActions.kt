@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local
+package io.prism.android.libraries.mediaviewer.impl.local
 
 import androidx.compose.runtime.Composable
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
 
 interface LocalMediaActions {
     @Composable

@@ -13,7 +13,7 @@ import com.bumble.appyx.core.state.SavedStateMap
 import dev.zacsweers.metro.Inject
 import io.prism.android.appnav.di.PRISMSessionCache
 import io.prism.android.features.preferences.api.CacheService
-import io.prism.android.libraries.prism.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
 import io.prism.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import kotlinx.coroutines.flow.Flow

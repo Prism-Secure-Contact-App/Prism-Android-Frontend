@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room.join
+package io.prism.android.libraries.matrix.impl.room.join
 
 import com.google.common.truth.Truth.assertThat
 import im.vector.app.features.analytics.plan.JoinedRoom
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.RoomIdOrAlias
-import io.element.android.libraries.matrix.api.core.toRoomIdOrAlias
-import io.element.android.libraries.matrix.impl.analytics.toAnalyticsJoinedRoom
-import io.element.android.libraries.matrix.test.A_ROOM_ALIAS
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SERVER_LIST
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.room.FakeBaseRoom
-import io.element.android.libraries.matrix.test.room.aRoomInfo
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.impl.analytics.toAnalyticsJoinedRoom
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SERVER_LIST
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -37,7 +37,7 @@ class DefaultJoinRoomTest {
             givenRoomInfo(aRoomInfo())
         }
         val aTrigger = JoinedRoom.Trigger.MobilePermalink
-        val client: MatrixClient = FakeMatrixClient().also {
+        val client: PRISMClient = FakeMatrixClient().also {
             it.joinRoomLambda = joinRoomLambda
             it.joinRoomByIdOrAliasLambda = joinRoomByIdOrAliasLambda
             it.givenGetRoomResult(
@@ -74,7 +74,7 @@ class DefaultJoinRoomTest {
             givenRoomInfo(aRoomInfo())
         }
         val aTrigger = JoinedRoom.Trigger.MobilePermalink
-        val client: MatrixClient = FakeMatrixClient().also {
+        val client: PRISMClient = FakeMatrixClient().also {
             it.joinRoomLambda = joinRoomLambda
             it.joinRoomByIdOrAliasLambda = joinRoomByIdOrAliasLambda
             it.givenGetRoomResult(
@@ -112,7 +112,7 @@ class DefaultJoinRoomTest {
             givenRoomInfo(aRoomInfo())
         }
         val aTrigger = JoinedRoom.Trigger.MobilePermalink
-        val client: MatrixClient = FakeMatrixClient().also {
+        val client: PRISMClient = FakeMatrixClient().also {
             it.joinRoomLambda = joinRoomLambda
             it.joinRoomByIdOrAliasLambda = joinRoomByIdOrAliasLambda
             it.givenGetRoomResult(

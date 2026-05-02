@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.impl.sdk
+package io.prism.android.services.toolbox.impl.sdk
 
 import android.os.Build
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
+import io.prism.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
 
 @ContributesBinding(AppScope::class)
 class DefaultBuildVersionSdkIntProvider :

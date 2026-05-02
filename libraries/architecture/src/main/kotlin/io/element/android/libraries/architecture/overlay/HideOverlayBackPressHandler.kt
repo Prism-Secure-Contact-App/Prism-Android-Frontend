@@ -10,7 +10,7 @@ package io.prism.android.libraries.architecture.overlay
 
 import com.bumble.appyx.core.navigation.backpresshandlerstrategies.BaseBackPressHandlerStrategy
 import com.bumble.appyx.navmodel.backstack.BackStack
-import com.bumble.appyx.navmodel.backstack.BackStackPRISMs
+import com.bumble.appyx.navmodel.backstack.BackStackElements
 import io.prism.android.libraries.architecture.overlay.operation.Hide
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -18,10 +18,10 @@ import kotlinx.coroutines.flow.map
 class HideOverlayBackPressHandler<NavTarget : Any> :
     BaseBackPressHandlerStrategy<NavTarget, BackStack.State>() {
     override val canHandleBackPressFlow: Flow<Boolean> by lazy {
-        navModel.prisms.map(::areTherePRISMs)
+        navModel.elements.map(::areTherePRISMs)
     }
 
-    private fun areTherePRISMs(prisms: BackStackPRISMs<NavTarget>) =
+    private fun areTherePRISMs(prisms: BackStackElements<NavTarget>) =
         prisms.isNotEmpty()
 
     override fun onBackPressed() {

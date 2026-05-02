@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_ID_2
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.test.runAndTestState
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.test.runAndTestState
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest

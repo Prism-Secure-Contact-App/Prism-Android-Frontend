@@ -10,9 +10,9 @@ package io.prism.android.features.roomaliasresolver.impl
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.exception.ClientException
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
 
 open class RoomAliasResolverStateProvider : PreviewParameterProvider<RoomAliasResolverState> {
     override val values: Sequence<RoomAliasResolverState>

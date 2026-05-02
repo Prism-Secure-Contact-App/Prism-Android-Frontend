@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.auth
+package io.prism.android.libraries.matrix.api.auth
 
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 sealed class SessionRestorationException(message: String, cause: Throwable? = null) : Exception(message, cause) {
     data class MissingSession(val sessionId: SessionId) : SessionRestorationException("Session with id $sessionId not found")

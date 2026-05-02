@@ -8,10 +8,10 @@
 
 package io.prism.android.features.startchat.impl.userlist
 
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 sealed interface UserListEvents {
-    data class AddToSelection(val prismUser: PRISMUser) : UserListEvents
-    data class RemoveFromSelection(val prismUser: PRISMUser) : UserListEvents
+    data class AddToSelection(val matrixUser: PRISMUser) : UserListEvents
+    data class RemoveFromSelection(val matrixUser: PRISMUser) : UserListEvents
     data class OnSearchActiveChanged(val active: Boolean) : UserListEvents
 }

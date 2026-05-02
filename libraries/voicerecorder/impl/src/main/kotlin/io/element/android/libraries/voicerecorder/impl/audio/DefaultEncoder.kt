@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.impl.audio
+package io.prism.android.libraries.voicerecorder.impl.audio
 
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Provider
-import io.element.android.libraries.di.RoomScope
+import io.prism.android.libraries.di.RoomScope
 import io.element.android.opusencoder.OggOpusEncoder
 import timber.log.Timber
 import java.io.File

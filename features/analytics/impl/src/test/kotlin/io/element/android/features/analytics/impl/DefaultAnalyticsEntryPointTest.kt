@@ -11,7 +11,7 @@ package io.prism.android.features.analytics.impl
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule

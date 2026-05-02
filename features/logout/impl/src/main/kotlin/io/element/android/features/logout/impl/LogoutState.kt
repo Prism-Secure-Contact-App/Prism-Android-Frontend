@@ -9,9 +9,9 @@
 package io.prism.android.features.logout.impl
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
 
 data class LogoutState(
     val isLastDevice: Boolean,

@@ -10,14 +10,14 @@ package io.prism.android.features.invite.impl
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.invite.test.InMemorySeenInvitesStore
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.room.aRoomMember
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.aRoomMember
 import io.prism.android.libraries.push.test.notifications.FakeNotificationCleaner
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

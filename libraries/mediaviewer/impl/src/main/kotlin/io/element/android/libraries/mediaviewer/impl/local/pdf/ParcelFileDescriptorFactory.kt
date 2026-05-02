@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.pdf
+package io.prism.android.libraries.mediaviewer.impl.local.pdf
 
 import android.content.Context
 import android.net.Uri
 import android.os.ParcelFileDescriptor
-import io.element.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import java.io.File
 
 class ParcelFileDescriptorFactory(private val context: Context) {

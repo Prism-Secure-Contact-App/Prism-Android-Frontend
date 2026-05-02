@@ -22,10 +22,10 @@ import dev.zacsweers.metro.AssistedInject
 import io.prism.android.features.startchat.StartChatNavigator
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.data.tryOrNull
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.time.Duration.Companion.seconds

@@ -6,28 +6,28 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.model
+package io.prism.android.libraries.matrix.ui.model
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.ui.strings.CommonStrings
 
-fun MatrixUser.getAvatarData(size: AvatarSize) = AvatarData(
+fun PRISMUser.getAvatarData(size: AvatarSize) = AvatarData(
     id = userId.value,
     name = displayName,
     url = avatarUrl,
     size = size,
 )
 
-fun MatrixUser.getBestName(): String {
+fun PRISMUser.getBestName(): String {
     return displayName?.takeIf { it.isNotEmpty() } ?: userId.value
 }
 
 @Composable
-fun MatrixUser.getFullName(): String {
+fun PRISMUser.getFullName(): String {
     return displayName.let { name ->
         if (name.isNullOrBlank()) {
             userId.value

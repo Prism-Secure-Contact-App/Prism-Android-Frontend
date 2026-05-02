@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages
+package io.prism.android.libraries.matrix.ui.messages
 
-import io.element.android.libraries.matrix.api.permalink.PermalinkParser
-import io.element.android.libraries.matrix.api.timeline.item.event.FormattedBody
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageFormat
-import io.element.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.timeline.item.event.FormattedBody
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageFormat
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.nodes.Node

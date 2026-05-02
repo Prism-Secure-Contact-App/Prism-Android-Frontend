@@ -5,11 +5,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.location
+package io.prism.android.libraries.matrix.impl.room.location
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.location.LiveLocationShare
-import org.prism.rustcomponents.sdk.LiveLocationShare as RustLiveLocationShare
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.location.LiveLocationShare
+import org.matrix.rustcomponents.sdk.LiveLocationShare as RustLiveLocationShare
 
 fun RustLiveLocationShare.map(): LiveLocationShare {
     return LiveLocationShare(

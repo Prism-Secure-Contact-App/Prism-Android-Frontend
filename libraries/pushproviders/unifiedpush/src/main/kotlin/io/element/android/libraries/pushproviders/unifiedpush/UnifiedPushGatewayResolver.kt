@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.core.data.tryOrNull
-import io.element.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.data.tryOrNull
+import io.prism.android.libraries.core.log.logger.LoggerTag
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import timber.log.Timber

@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediapickers.api
+package io.prism.android.libraries.mediapickers.api
 
 import android.net.Uri
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Immutable
-import io.element.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.core.mimetype.MimeTypes
 
 @Immutable
 sealed interface PickerType<Input, Output> {

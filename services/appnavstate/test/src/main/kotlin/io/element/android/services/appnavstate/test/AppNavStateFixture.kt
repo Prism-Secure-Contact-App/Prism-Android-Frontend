@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.test
+package io.prism.android.services.appnavstate.test
 
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.services.appnavstate.api.AppNavigationState
-import io.element.android.services.appnavstate.api.NavigationState
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.services.appnavstate.api.AppNavigationState
+import io.prism.android.services.appnavstate.api.NavigationState
 
 const val A_SESSION_OWNER = "aSessionOwner"
 const val A_ROOM_OWNER = "aRoomOwner"

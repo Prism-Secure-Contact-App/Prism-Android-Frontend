@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.recentemojis.test
+package io.prism.android.libraries.recentemojis.test
 
 import io.element.android.emojibasebindings.Emoji
 import io.element.android.emojibasebindings.EmojibaseCategory
 import io.element.android.emojibasebindings.EmojibaseStore
-import io.element.android.libraries.recentemojis.api.EmojibaseProvider
+import io.prism.android.libraries.recentemojis.api.EmojibaseProvider
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentMap
 

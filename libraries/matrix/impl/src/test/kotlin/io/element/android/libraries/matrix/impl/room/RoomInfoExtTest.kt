@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomHero
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomInfo
-import io.element.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomHero
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomInfo
+import io.prism.android.libraries.matrix.test.A_USER_ID
 import org.junit.Test
 
 class RoomInfoExtTest {
@@ -26,7 +26,7 @@ class RoomInfoExtTest {
         ).elementHeroes()
         assertThat(result).isEqualTo(
             listOf(
-                MatrixUser(
+                PRISMUser(
                     userId = UserId(A_USER_ID.value),
                     displayName = "displayName",
                     avatarUrl = "avatarUrl",

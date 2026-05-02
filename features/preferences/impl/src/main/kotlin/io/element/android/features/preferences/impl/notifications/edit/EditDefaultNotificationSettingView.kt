@@ -26,8 +26,8 @@ import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.ListItem
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 /**

@@ -22,7 +22,7 @@ import io.prism.android.libraries.designsystem.components.dialogs.ConfirmationDi
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.ui.strings.CommonStrings
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 @Composable
 fun LinkView(

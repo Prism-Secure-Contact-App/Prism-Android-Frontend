@@ -16,11 +16,11 @@ import io.prism.android.features.changeroommemberroles.test.FakeChangeRoomMember
 import io.prism.android.features.createroom.api.FakeCreateRoomEntryPoint
 import io.prism.android.features.space.api.SpaceEntryPoint
 import io.prism.android.features.space.impl.di.FakeSpaceFlowGraph
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceRoomList
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceRoomList
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode
 import kotlinx.coroutines.test.runTest

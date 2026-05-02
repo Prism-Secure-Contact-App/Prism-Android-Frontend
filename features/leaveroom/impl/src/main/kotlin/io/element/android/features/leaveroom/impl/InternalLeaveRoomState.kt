@@ -12,7 +12,7 @@ import androidx.compose.runtime.Immutable
 import io.prism.android.features.leaveroom.api.LeaveRoomEvent
 import io.prism.android.features.leaveroom.api.LeaveRoomState
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 data class InternalLeaveRoomState(
     val leaveAction: AsyncAction<Unit>,

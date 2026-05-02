@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.fake
+package io.prism.android.libraries.push.impl.notifications.fake
 
 import android.app.Notification
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.push.api.notifications.NotificationIdProvider
-import io.element.android.libraries.push.impl.notifications.NotificationDisplayer
-import io.element.android.tests.testutils.lambda.LambdaNoParamRecorder
-import io.element.android.tests.testutils.lambda.LambdaOneParamRecorder
-import io.element.android.tests.testutils.lambda.LambdaThreeParamsRecorder
-import io.element.android.tests.testutils.lambda.LambdaTwoParamsRecorder
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
+import io.prism.android.libraries.push.impl.notifications.NotificationDisplayer
+import io.prism.android.tests.testutils.lambda.LambdaNoParamRecorder
+import io.prism.android.tests.testutils.lambda.LambdaOneParamRecorder
+import io.prism.android.tests.testutils.lambda.LambdaThreeParamsRecorder
+import io.prism.android.tests.testutils.lambda.LambdaTwoParamsRecorder
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 
 class FakeNotificationDisplayer(
     var showNotificationResult: LambdaThreeParamsRecorder<String?, Int, Notification, Boolean> = lambdaRecorder { _, _, _ -> true },

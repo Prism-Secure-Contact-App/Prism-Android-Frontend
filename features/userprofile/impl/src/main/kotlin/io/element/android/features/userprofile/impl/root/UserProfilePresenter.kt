@@ -31,12 +31,12 @@ import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.bool.orFalse
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.powerlevels.canCall
-import io.prism.android.libraries.prism.api.room.powerlevels.use
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.powerlevels.canCall
+import io.prism.android.libraries.matrix.api.room.powerlevels.use
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
@@ -126,7 +126,7 @@ class UserProfilePresenter(
                 UserProfileEvents.StartDM -> {
                     coroutineScope.launch {
                         startDMAction.execute(
-                            prismUser = userProfile ?: PRISMUser(userId),
+                            matrixUser = userProfile ?: PRISMUser(userId),
                             createIfDmDoesNotExist = startDmActionState.value is AsyncAction.Confirming,
                             actionState = startDmActionState,
                         )

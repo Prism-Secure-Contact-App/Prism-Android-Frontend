@@ -8,7 +8,7 @@
 
 package io.prism.android.features.preferences.impl.user.editprofile
 
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 
 sealed interface EditUserProfileEvent {
     data class HandleAvatarAction(val action: AvatarAction) : EditUserProfileEvent

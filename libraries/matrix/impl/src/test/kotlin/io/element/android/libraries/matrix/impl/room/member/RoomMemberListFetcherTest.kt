@@ -6,22 +6,22 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room.member
+package io.prism.android.libraries.matrix.impl.room.member
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.RoomMembersState
-import io.element.android.libraries.matrix.api.room.roomMembers
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomMember
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoom
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomMembersIterator
-import io.element.android.libraries.matrix.impl.room.member.RoomMemberListFetcher.Source.CACHE
-import io.element.android.libraries.matrix.impl.room.member.RoomMemberListFetcher.Source.CACHE_AND_SERVER
-import io.element.android.libraries.matrix.impl.room.member.RoomMemberListFetcher.Source.SERVER
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_ID_2
-import io.element.android.libraries.matrix.test.A_USER_ID_3
-import io.element.android.libraries.matrix.test.A_USER_ID_4
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.roomMembers
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomMember
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoom
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomMembersIterator
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberListFetcher.Source.CACHE
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberListFetcher.Source.CACHE_AND_SERVER
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberListFetcher.Source.SERVER
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_ID_3
+import io.prism.android.libraries.matrix.test.A_USER_ID_4
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

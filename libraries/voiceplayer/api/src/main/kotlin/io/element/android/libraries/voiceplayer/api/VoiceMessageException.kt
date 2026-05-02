@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.api
+package io.prism.android.libraries.voiceplayer.api
 
 sealed class VoiceMessageException : Exception() {
     data class FileException(

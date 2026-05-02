@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.test
+package io.prism.android.libraries.push.test
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.push.api.PushService
-import io.element.android.libraries.push.api.history.PushHistoryItem
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.push.api.PushService
+import io.prism.android.libraries.push.api.history.PushHistoryItem
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class FakePushService(
     private val testPushBlock: suspend (SessionId) -> Boolean = { true },
     private val availablePushProviders: List<PushProvider> = emptyList(),
-    private val registerWithLambda: (MatrixClient, PushProvider, Distributor) -> Result<Unit> = { _, _, _ ->
+    private val registerWithLambda: (PRISMClient, PushProvider, Distributor) -> Result<Unit> = { _, _, _ ->
         Result.success(Unit)
     },
     private val currentPushProvider: (SessionId) -> PushProvider? = { availablePushProviders.firstOrNull() },
@@ -45,7 +45,7 @@ class FakePushService(
     private var registeredPushProvider: PushProvider? = null
 
     override suspend fun registerWith(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         pushProvider: PushProvider,
         distributor: Distributor,
     ): Result<Unit> = simulateLongTask {
@@ -57,7 +57,7 @@ class FakePushService(
             }
     }
 
-    override suspend fun ensurePusherIsRegistered(matrixClient: MatrixClient): Result<Unit> {
+    override suspend fun ensurePusherIsRegistered(matrixClient: PRISMClient): Result<Unit> {
         return ensurePusherIsRegisteredResult()
     }
 

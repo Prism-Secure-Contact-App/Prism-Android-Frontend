@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.debug
+package io.prism.android.libraries.push.impl.notifications.debug
 
 fun CharSequence.annotateForDebug(@Suppress("UNUSED_PARAMETER") prefix: Int): CharSequence {
     return this // "$prefix-$this"

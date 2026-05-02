@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.pushproviders.api.PushData
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.pushproviders.api.PushData
 
 /**
  * In this case, the format is:

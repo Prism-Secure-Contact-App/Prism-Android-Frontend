@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network
+package io.prism.android.libraries.network
 
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.Provider
-import io.element.android.libraries.androidutils.json.JsonProvider
-import io.element.android.libraries.core.uri.ensureTrailingSlash
+import io.prism.android.libraries.androidutils.json.JsonProvider
+import io.prism.android.libraries.core.uri.ensureTrailingSlash
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

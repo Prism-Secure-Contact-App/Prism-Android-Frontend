@@ -13,11 +13,11 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.invite.test.InMemorySeenInvitesStore
 import io.prism.android.features.preferences.impl.DefaultCacheService
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
 import io.prism.android.libraries.push.test.FakePushService
 import io.prism.android.services.appnavstate.impl.DefaultActiveRoomsHolder
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
@@ -36,7 +36,7 @@ class DefaultClearCacheUseCaseTest {
     fun `execute clear cache should do all the expected tasks`() = runTest {
         val activeRoomsHolder = DefaultActiveRoomsHolder().apply { addRoom(FakeJoinedRoom()) }
         val clearCacheLambda = lambdaRecorder<Unit> { }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             sessionId = A_SESSION_ID,
             clearCacheLambda = clearCacheLambda,
         )
@@ -51,7 +51,7 @@ class DefaultClearCacheUseCaseTest {
         assertThat(seenInvitesStore.seenRoomIds().first()).isNotEmpty()
         val sut = DefaultClearCacheUseCase(
             context = InstrumentationRegistry.getInstrumentation().context,
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             coroutineDispatchers = testCoroutineDispatchers(),
             defaultCacheService = defaultCacheService,
             okHttpClient = { OkHttpClient.Builder().build() },
@@ -63,9 +63,9 @@ class DefaultClearCacheUseCaseTest {
             sut.invoke()
             clearCacheLambda.assertions().isCalledOnce()
             setIgnoreRegistrationErrorLambda.assertions().isCalledOnce()
-                .with(value(prismClient.sessionId), value(false))
+                .with(value(matrixClient.sessionId), value(false))
             resetBatteryOptimizationStateResult.assertions().isCalledOnce()
-            assertThat(awaitItem()).isEqualTo(prismClient.sessionId)
+            assertThat(awaitItem()).isEqualTo(matrixClient.sessionId)
             assertThat(seenInvitesStore.seenRoomIds().first()).isEmpty()
             assertThat(activeRoomsHolder.getActiveRoom(A_SESSION_ID)).isNull()
         }

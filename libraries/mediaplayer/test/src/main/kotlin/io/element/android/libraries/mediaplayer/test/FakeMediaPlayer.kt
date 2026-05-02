@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaplayer.test
+package io.prism.android.libraries.mediaplayer.test
 
-import io.element.android.libraries.mediaplayer.api.MediaPlayer
+import io.prism.android.libraries.mediaplayer.api.MediaPlayer
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

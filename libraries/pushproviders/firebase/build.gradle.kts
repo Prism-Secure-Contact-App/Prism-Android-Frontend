@@ -13,11 +13,11 @@ import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.pushproviders.firebase"
+    namespace = "io.prism.android.libraries.pushproviders.firebase"
 
     buildTypes {
         getByName("release") {

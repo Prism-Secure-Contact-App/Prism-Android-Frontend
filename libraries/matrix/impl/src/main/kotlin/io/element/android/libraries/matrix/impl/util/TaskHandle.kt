@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.util
+package io.prism.android.libraries.matrix.impl.util
 
-import org.prism.rustcomponents.sdk.TaskHandle
+import org.matrix.rustcomponents.sdk.TaskHandle
 import java.util.concurrent.CopyOnWriteArraySet
 
 fun TaskHandle.cancelAndDestroy() {

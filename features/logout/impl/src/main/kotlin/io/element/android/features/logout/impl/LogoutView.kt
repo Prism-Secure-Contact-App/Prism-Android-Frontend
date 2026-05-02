@@ -33,10 +33,10 @@ import io.prism.android.libraries.designsystem.theme.components.LinearProgressIn
 import io.prism.android.libraries.designsystem.theme.components.OutlinedButton
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.progressIndicatorTrackColor
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.encryption.SteadyStateException
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.encryption.SteadyStateException
 import io.prism.android.libraries.testtags.TestTags
 import io.prism.android.libraries.testtags.testTag
 import io.prism.android.libraries.ui.strings.CommonStrings

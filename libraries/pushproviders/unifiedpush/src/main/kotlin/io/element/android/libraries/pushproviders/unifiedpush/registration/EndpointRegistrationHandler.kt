@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush.registration
+package io.prism.android.libraries.pushproviders.unifiedpush.registration
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject

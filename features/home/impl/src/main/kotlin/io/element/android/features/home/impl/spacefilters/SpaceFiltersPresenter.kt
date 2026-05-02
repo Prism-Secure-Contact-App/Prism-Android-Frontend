@@ -19,8 +19,8 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.spaces.SpaceServiceFilter
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.spaces.SpaceServiceFilter
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.map
@@ -28,7 +28,7 @@ import kotlinx.coroutines.flow.map
 @Inject
 class SpaceFiltersPresenter(
     private val featureFlagService: FeatureFlagService,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : Presenter<SpaceFiltersState> {
     @Composable
     override fun present(): SpaceFiltersState {
@@ -37,7 +37,7 @@ class SpaceFiltersPresenter(
             .collectAsState(initial = false)
 
         val availableFilters by remember {
-            prismClient.spaceService.spaceFiltersFlow.map { it.toImmutableList() }
+            matrixClient.spaceService.spaceFiltersFlow.map { it.toImmutableList() }
         }.collectAsState(initial = persistentListOf())
 
         if (!isFeatureEnabled || availableFilters.isEmpty()) {

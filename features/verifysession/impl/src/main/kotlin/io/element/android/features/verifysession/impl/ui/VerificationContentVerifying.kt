@@ -33,8 +33,8 @@ import androidx.compose.ui.unit.dp
 import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.features.verifysession.impl.emoji.toEmojiResource
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.verification.SessionVerificationData
-import io.prism.android.libraries.prism.api.verification.VerificationEmoji
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationData
+import io.prism.android.libraries.matrix.api.verification.VerificationEmoji
 
 @Composable
 internal fun VerificationContentVerifying(

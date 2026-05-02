@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.sessionstorage.test
+package io.prism.android.libraries.sessionstorage.test
 
-import io.element.android.libraries.sessionstorage.api.LoginType
-import io.element.android.libraries.sessionstorage.api.SessionData
+import io.prism.android.libraries.sessionstorage.api.LoginType
+import io.prism.android.libraries.sessionstorage.api.SessionData
 
 fun aSessionData(
     sessionId: String = "@alice:server.org",

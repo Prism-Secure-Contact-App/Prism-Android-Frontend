@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.test
+package io.prism.android.libraries.roomselect.test
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
-import io.element.android.libraries.roomselect.api.RoomSelectEntryPoint
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.roomselect.api.RoomSelectEntryPoint
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeRoomSelectEntryPoint : RoomSelectEntryPoint {
     override fun createNode(

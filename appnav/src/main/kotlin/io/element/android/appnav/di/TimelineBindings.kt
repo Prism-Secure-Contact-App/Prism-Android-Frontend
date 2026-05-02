@@ -9,7 +9,7 @@
 package io.prism.android.appnav.di
 
 import io.prism.android.features.messages.api.pinned.PinnedEventsTimelineProvider
-import io.prism.android.libraries.prism.api.timeline.TimelineProvider
+import io.prism.android.libraries.matrix.api.timeline.TimelineProvider
 import io.prism.android.services.analytics.api.watchers.AnalyticsSendMessageWatcher
 
 interface TimelineBindings {

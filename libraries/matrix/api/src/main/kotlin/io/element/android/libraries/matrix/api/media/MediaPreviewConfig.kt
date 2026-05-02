@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.media
+package io.prism.android.libraries.matrix.api.media
 
 /**
  * Configuration for media preview ie. invite avatars and timeline media.

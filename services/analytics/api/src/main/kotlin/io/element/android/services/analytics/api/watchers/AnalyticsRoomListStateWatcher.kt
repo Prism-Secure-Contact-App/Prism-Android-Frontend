@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.api.watchers
+package io.prism.android.services.analytics.api.watchers
 
 /**
  * This component is used to check how long it takes for the room list to be up to date after opening the app while it's on a 'warm' state:

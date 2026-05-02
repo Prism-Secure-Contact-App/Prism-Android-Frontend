@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.txt
+package io.prism.android.libraries.mediaviewer.impl.local.txt
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,16 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import io.element.android.features.viewfolder.api.TextFileViewer
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.CircularProgressIndicator
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.viewer.topAppBarHeight
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.features.viewfolder.api.TextFileViewer
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.viewer.topAppBarHeight
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -99,7 +99,7 @@ private fun TextFileContentView(
 @Composable
 internal fun TextFileContentViewPreview(
     @PreviewParameter(TextFileContentProvider::class) text: AsyncData<ImmutableList<String>>,
-) = ElementPreview {
+) = PRISMPreview {
     TextFileContentView(
         data = text,
         textFileViewer = { lines, modifier ->

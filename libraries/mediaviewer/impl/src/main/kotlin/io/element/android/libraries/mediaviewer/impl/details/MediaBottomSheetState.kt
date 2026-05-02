@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.details
+package io.prism.android.libraries.mediaviewer.impl.details
 
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
 
 sealed interface MediaBottomSheetState {
     data object Hidden : MediaBottomSheetState

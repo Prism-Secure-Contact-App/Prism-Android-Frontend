@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
 import io.prism.android.libraries.core.data.tryOrNull
-import io.prism.android.libraries.prism.impl.util.cancelAndDestroy
-import io.prism.android.libraries.prism.impl.util.mxCallbackFlow
+import io.prism.android.libraries.matrix.impl.util.cancelAndDestroy
+import io.prism.android.libraries.matrix.impl.util.mxCallbackFlow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -18,19 +18,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
-import org.prism.rustcomponents.sdk.Room
-import org.prism.rustcomponents.sdk.RoomListDynamicEntriesController
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind
-import org.prism.rustcomponents.sdk.RoomListEntriesListener
-import org.prism.rustcomponents.sdk.RoomListEntriesUpdate
-import org.prism.rustcomponents.sdk.RoomListInterface
-import org.prism.rustcomponents.sdk.RoomListLoadingState
-import org.prism.rustcomponents.sdk.RoomListLoadingStateListener
-import org.prism.rustcomponents.sdk.RoomListServiceInterface
-import org.prism.rustcomponents.sdk.RoomListServiceState
-import org.prism.rustcomponents.sdk.RoomListServiceStateListener
-import org.prism.rustcomponents.sdk.RoomListServiceSyncIndicator
-import org.prism.rustcomponents.sdk.RoomListServiceSyncIndicatorListener
+import org.matrix.rustcomponents.sdk.Room
+import org.matrix.rustcomponents.sdk.RoomListDynamicEntriesController
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind
+import org.matrix.rustcomponents.sdk.RoomListEntriesListener
+import org.matrix.rustcomponents.sdk.RoomListEntriesUpdate
+import org.matrix.rustcomponents.sdk.RoomListInterface
+import org.matrix.rustcomponents.sdk.RoomListLoadingState
+import org.matrix.rustcomponents.sdk.RoomListLoadingStateListener
+import org.matrix.rustcomponents.sdk.RoomListServiceInterface
+import org.matrix.rustcomponents.sdk.RoomListServiceState
+import org.matrix.rustcomponents.sdk.RoomListServiceStateListener
+import org.matrix.rustcomponents.sdk.RoomListServiceSyncIndicator
+import org.matrix.rustcomponents.sdk.RoomListServiceSyncIndicatorListener
 import timber.log.Timber
 
 private const val SYNC_INDICATOR_DELAY_BEFORE_SHOWING = 1000u

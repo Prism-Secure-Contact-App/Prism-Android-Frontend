@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.tombstone
+package io.prism.android.libraries.matrix.impl.room.tombstone
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.tombstone.PredecessorRoom
-import org.prism.rustcomponents.sdk.PredecessorRoom as RustPredecessorRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.tombstone.PredecessorRoom
+import org.matrix.rustcomponents.sdk.PredecessorRoom as RustPredecessorRoom
 
 fun RustPredecessorRoom.map(): PredecessorRoom {
     return PredecessorRoom(roomId = RoomId(roomId))

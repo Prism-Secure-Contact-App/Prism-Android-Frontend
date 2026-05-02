@@ -70,7 +70,7 @@ import io.prism.android.libraries.textcomposer.model.MessageComposerMode
 import io.prism.android.libraries.textcomposer.model.VoiceMessageState
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.libraries.ui.utils.formatter.rememberFileSizeFormatter
-import io.prism.android.wysiwyg.display.TextDisplay
+import io.element.android.wysiwyg.display.TextDisplay
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

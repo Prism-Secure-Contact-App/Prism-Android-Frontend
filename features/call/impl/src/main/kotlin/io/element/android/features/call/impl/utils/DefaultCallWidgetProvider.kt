@@ -11,11 +11,11 @@ package io.prism.android.features.call.impl.utils
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.widget.CallWidgetSettingsProvider
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.widget.CallWidgetSettingsProvider
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
 import kotlinx.coroutines.flow.firstOrNull
@@ -37,12 +37,12 @@ class DefaultCallWidgetProvider(
         languageTag: String?,
         theme: String?,
     ): Result<CallWidgetProvider.GetWidgetResult> = runCatchingExceptions {
-        val prismClient = prismClientsProvider.getOrRestore(sessionId).getOrThrow()
+        val matrixClient = prismClientsProvider.getOrRestore(sessionId).getOrThrow()
         val room = activeRoomsHolder.getActiveRoomMatching(sessionId, roomId)
-            ?: prismClient.getJoinedRoom(roomId)
+            ?: matrixClient.getJoinedRoom(roomId)
             ?: error("Room not found")
 
-        val customBaseUrl = appPreferencesStore.getCustomPRISMCallBaseUrlFlow().firstOrNull()
+        val customBaseUrl = appPreferencesStore.getCustomElementCallBaseUrlFlow().firstOrNull()
         val baseUrl = customBaseUrl ?: EMBEDDED_CALL_WIDGET_BASE_URL
 
         val roomInfo = room.info()

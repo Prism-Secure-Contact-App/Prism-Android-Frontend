@@ -9,13 +9,13 @@ import extension.setupDependencyInjection
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 setupDependencyInjection()
 
 android {
-    namespace = "io.element.android.libraries.mediapickers.impl"
+    namespace = "io.prism.android.libraries.mediapickers.impl"
 }
 
 dependencies {

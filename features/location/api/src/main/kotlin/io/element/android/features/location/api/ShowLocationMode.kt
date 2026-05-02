@@ -8,8 +8,8 @@
 package io.prism.android.features.location.api
 
 import android.os.Parcelable
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.location.AssetType
 import kotlinx.parcelize.Parcelize
 
 sealed interface ShowLocationMode : Parcelable {

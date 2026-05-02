@@ -10,8 +10,8 @@ package io.prism.android.libraries.eventformatter.impl
 
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.eventformatter.impl.mode.RenderingMode
-import io.prism.android.libraries.prism.api.timeline.item.event.OtherState
-import io.prism.android.libraries.prism.api.timeline.item.event.StateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.OtherState
+import io.prism.android.libraries.matrix.api.timeline.item.event.StateContent
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.toolbox.api.strings.StringProvider
 import timber.log.Timber

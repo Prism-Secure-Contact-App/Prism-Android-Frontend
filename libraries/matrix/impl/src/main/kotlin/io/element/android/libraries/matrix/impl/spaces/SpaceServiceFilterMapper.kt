@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.spaces
+package io.prism.android.libraries.matrix.impl.spaces
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceServiceFilter
-import org.prism.rustcomponents.sdk.SpaceFilter as RustSpaceFilter
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceServiceFilter
+import org.matrix.rustcomponents.sdk.SpaceFilter as RustSpaceFilter
 
 class SpaceServiceFilterMapper(
     private val spaceRoomMapper: SpaceRoomMapper,

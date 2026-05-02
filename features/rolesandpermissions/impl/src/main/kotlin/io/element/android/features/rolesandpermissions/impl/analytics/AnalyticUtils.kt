@@ -8,9 +8,9 @@
 
 package io.prism.android.features.rolesandpermissions.impl.analytics
 
-import uk.fathertkt.prism.features.analytics.plan.RoomModeration
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
+import im.vector.app.features.analytics.plan.RoomModeration
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
 import io.prism.android.services.analytics.api.AnalyticsService
 
 internal fun RoomMember.Role.toAnalyticsMemberRole(): RoomModeration.Role = when (this) {

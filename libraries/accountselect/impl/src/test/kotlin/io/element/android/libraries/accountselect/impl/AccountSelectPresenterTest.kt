@@ -9,9 +9,9 @@
 package io.prism.android.libraries.accountselect.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.A_SESSION_ID_2
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID_2
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
 import io.prism.android.libraries.sessionstorage.test.aSessionData

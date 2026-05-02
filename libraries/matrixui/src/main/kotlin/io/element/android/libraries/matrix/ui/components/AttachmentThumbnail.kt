@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import android.os.Parcelable
 import androidx.compose.foundation.background
@@ -22,13 +22,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.blurhash.BlurHashAsyncImage
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.blurhash.BlurHashAsyncImage
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
 import kotlinx.parcelize.Parcelize
 
 @Composable
@@ -132,7 +132,7 @@ data class AttachmentThumbnailInfo(
 
 @PreviewsDayNight
 @Composable
-internal fun AttachmentThumbnailPreview(@PreviewParameter(AttachmentThumbnailInfoProvider::class) data: AttachmentThumbnailInfo) = ElementPreview {
+internal fun AttachmentThumbnailPreview(@PreviewParameter(AttachmentThumbnailInfoProvider::class) data: AttachmentThumbnailInfo) = PRISMPreview {
     AttachmentThumbnail(
         info = data,
         modifier = Modifier

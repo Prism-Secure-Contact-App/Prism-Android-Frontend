@@ -8,13 +8,13 @@
 
 package io.prism.android.features.poll.impl
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.poll.PollAnswer
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
-import io.prism.android.libraries.prism.test.timeline.aPollContent
-import io.prism.android.libraries.prism.test.timeline.anEventTimelineItem
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.poll.PollAnswer
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.test.timeline.aPollContent
+import io.prism.android.libraries.matrix.test.timeline.anEventTimelineItem
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

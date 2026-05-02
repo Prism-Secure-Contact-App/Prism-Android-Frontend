@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.api.notifications
+package io.prism.android.libraries.push.api.notifications
 
 import android.graphics.Bitmap
 import androidx.core.graphics.drawable.IconCompat
 import coil3.ImageLoader
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.matrix.ui.media.AVATAR_THUMBNAIL_SIZE_IN_PIXEL
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.matrix.ui.media.AVATAR_THUMBNAIL_SIZE_IN_PIXEL
 
 interface NotificationBitmapLoader {
     /**

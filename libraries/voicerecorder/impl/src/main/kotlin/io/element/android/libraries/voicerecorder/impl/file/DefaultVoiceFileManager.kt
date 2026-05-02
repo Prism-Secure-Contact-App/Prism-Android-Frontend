@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.impl.file
+package io.prism.android.libraries.voicerecorder.impl.file
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.hash.md5
-import io.element.android.libraries.di.CacheDirectory
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.core.hash.md5
+import io.prism.android.libraries.di.CacheDirectory
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.BaseRoom
 import java.io.File
 import java.util.UUID
 

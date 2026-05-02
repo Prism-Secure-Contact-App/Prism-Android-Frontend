@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.test.push
+package io.prism.android.libraries.push.test.push
 
-import io.element.android.libraries.push.api.push.PushHandlingWakeLock
+import io.prism.android.libraries.push.api.push.PushHandlingWakeLock
 import kotlin.time.Duration
 
 class FakePushHandlingWakeLock(

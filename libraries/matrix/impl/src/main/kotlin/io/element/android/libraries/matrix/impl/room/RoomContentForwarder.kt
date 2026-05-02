@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import io.prism.android.libraries.core.coroutine.parallelMap
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.ForwardEventException
-import io.prism.android.libraries.prism.impl.roomlist.roomOrNull
-import io.prism.android.libraries.prism.impl.timeline.runWithTimelineListenerRegistered
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.ForwardEventException
+import io.prism.android.libraries.matrix.impl.roomlist.roomOrNull
+import io.prism.android.libraries.matrix.impl.timeline.runWithTimelineListenerRegistered
 import kotlinx.coroutines.withTimeout
-import org.prism.rustcomponents.sdk.MsgLikeKind
-import org.prism.rustcomponents.sdk.RoomListService
-import org.prism.rustcomponents.sdk.Timeline
-import org.prism.rustcomponents.sdk.TimelineItemContent
-import org.prism.rustcomponents.sdk.contentWithoutRelationFromMessage
+import org.matrix.rustcomponents.sdk.MsgLikeKind
+import org.matrix.rustcomponents.sdk.RoomListService
+import org.matrix.rustcomponents.sdk.Timeline
+import org.matrix.rustcomponents.sdk.TimelineItemContent
+import org.matrix.rustcomponents.sdk.contentWithoutRelationFromMessage
 import kotlin.time.Duration.Companion.milliseconds
 
 /**

@@ -16,10 +16,10 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.deeplink.api.DeepLinkCreator
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
 import io.prism.android.libraries.push.impl.intent.IntentProvider
 import io.prism.android.x.MainActivity
 

@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.pdf
+package io.prism.android.libraries.mediaviewer.impl.local.pdf
 
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope

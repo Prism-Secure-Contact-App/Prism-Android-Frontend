@@ -5,14 +5,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
 import android.content.Context
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.push.api.push.PushHandlingWakeLock
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.push.api.push.PushHandlingWakeLock
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.time.Duration

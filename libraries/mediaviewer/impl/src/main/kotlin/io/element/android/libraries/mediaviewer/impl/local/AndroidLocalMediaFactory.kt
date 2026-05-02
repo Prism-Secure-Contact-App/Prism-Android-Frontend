@@ -6,26 +6,26 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local
+package io.prism.android.libraries.mediaviewer.impl.local
 
 import android.content.Context
 import android.net.Uri
 import androidx.core.net.toUri
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.androidutils.file.getFileName
-import io.element.android.libraries.androidutils.file.getFileSize
-import io.element.android.libraries.androidutils.file.getMimeType
-import io.element.android.libraries.androidutils.filesize.FileSizeFormatter
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.media.MediaFile
-import io.element.android.libraries.matrix.api.media.toFile
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.api.local.LocalMediaFactory
-import io.element.android.libraries.mediaviewer.api.util.FileExtensionExtractor
+import io.prism.android.libraries.androidutils.file.getFileName
+import io.prism.android.libraries.androidutils.file.getFileSize
+import io.prism.android.libraries.androidutils.file.getMimeType
+import io.prism.android.libraries.androidutils.filesize.FileSizeFormatter
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.media.MediaFile
+import io.prism.android.libraries.matrix.api.media.toFile
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.api.local.LocalMediaFactory
+import io.prism.android.libraries.mediaviewer.api.util.FileExtensionExtractor
 
 @ContributesBinding(AppScope::class)
 class AndroidLocalMediaFactory(

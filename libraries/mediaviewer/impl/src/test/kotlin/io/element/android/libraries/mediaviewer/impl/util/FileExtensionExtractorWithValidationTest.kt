@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.util
+package io.prism.android.libraries.mediaviewer.impl.util
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test

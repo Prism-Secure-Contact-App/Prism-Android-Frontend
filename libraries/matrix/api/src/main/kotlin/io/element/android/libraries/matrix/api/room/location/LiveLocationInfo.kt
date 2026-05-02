@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.location
+package io.prism.android.libraries.matrix.api.room.location
 
 data class LiveLocationInfo(
     val description: String?,

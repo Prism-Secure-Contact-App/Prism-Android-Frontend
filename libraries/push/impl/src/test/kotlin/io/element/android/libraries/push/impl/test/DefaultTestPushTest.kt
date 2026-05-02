@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.test
+package io.prism.android.libraries.push.impl.test
 
-import io.element.android.appconfig.PushConfig
-import io.element.android.libraries.push.impl.pushgateway.PushGatewayNotifyRequest
-import io.element.android.libraries.pushproviders.test.aSessionPushConfig
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.appconfig.PushConfig
+import io.prism.android.libraries.push.impl.pushgateway.PushGatewayNotifyRequest
+import io.prism.android.libraries.pushproviders.test.aSessionPushConfig
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

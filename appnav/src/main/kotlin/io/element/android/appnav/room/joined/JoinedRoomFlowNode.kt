@@ -35,12 +35,12 @@ import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.ui.room.LoadingRoomState
-import io.prism.android.libraries.prism.ui.room.LoadingRoomStateFlowFactory
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.ui.room.LoadingRoomState
+import io.prism.android.libraries.matrix.ui.room.LoadingRoomStateFlowFactory
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.LoadJoinedRoomFlow
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.NotificationToMessage
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.OpenRoom
@@ -61,7 +61,7 @@ class JoinedRoomFlowNode(
 ) :
     BaseFlowNode<JoinedRoomFlowNode.NavTarget>(
         backstack = BackStack(
-            initialPRISM = NavTarget.Loading,
+            initialElement = NavTarget.Loading,
             savedStateMap = buildContext.savedStateMap,
         ),
         buildContext = buildContext,
@@ -70,7 +70,7 @@ class JoinedRoomFlowNode(
     data class Inputs(
         val roomId: RoomId,
         val joinedRoom: JoinedRoom?,
-        val initialPRISM: RoomNavigationTarget,
+        val initialElement: RoomNavigationTarget,
     ) : NodeInputs
 
     private val inputs: Inputs = inputs()
@@ -114,7 +114,7 @@ class JoinedRoomFlowNode(
                 if (awaitRoomState is LoadingRoomState.Loaded) {
                     val inputs = JoinedRoomLoadedFlowNode.Inputs(
                         room = awaitRoomState.room,
-                        initialPRISM = inputs.initialPRISM
+                        initialElement = inputs.initialElement
                     )
                     createNode<JoinedRoomLoadedFlowNode>(buildContext, plugins = listOf(inputs) + roomFlowNodeCallback)
                 } else {

@@ -11,19 +11,19 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.room.recent.getRecentlyVisitedRoomInfoFlow
-import io.prism.android.libraries.prism.api.roomlist.RoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.roomlist.updateVisibleRange
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
-import io.prism.android.libraries.prism.ui.model.SelectRoomInfo
-import io.prism.android.libraries.prism.ui.model.toSelectRoomInfo
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.room.recent.getRecentlyVisitedRoomInfoFlow
+import io.prism.android.libraries.matrix.api.roomlist.RoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.roomlist.updateVisibleRange
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.toSelectRoomInfo
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
@@ -47,7 +47,7 @@ class AddRoomToSpaceSearchDataSource(
     @Assisted coroutineScope: CoroutineScope,
     roomListService: RoomListService,
     spaceRoomList: SpaceRoomList,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     coroutineDispatchers: CoroutineDispatchers,
 ) {
     @AssistedFactory
@@ -99,7 +99,7 @@ class AddRoomToSpaceSearchDataSource(
         spaceChildrenFlow,
         addedRoomIdsFlow,
     ) { childIds, addedIds ->
-        prismClient
+        matrixClient
             .getRecentlyVisitedRoomInfoFlow { filterRoomPredicate(it, childIds, addedIds) }
             .take(MAX_SUGGESTIONS_COUNT)
             .toList()

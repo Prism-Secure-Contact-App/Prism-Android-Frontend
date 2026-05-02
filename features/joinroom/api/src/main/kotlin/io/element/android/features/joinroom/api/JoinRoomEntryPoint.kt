@@ -10,12 +10,12 @@ package io.prism.android.features.joinroom.api
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.features.roomdirectory.api.RoomDescription
 import io.prism.android.libraries.architecture.FeatureEntryPoint
 import io.prism.android.libraries.architecture.NodeInputs
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
 import java.util.Optional
 
 interface JoinRoomEntryPoint : FeatureEntryPoint {

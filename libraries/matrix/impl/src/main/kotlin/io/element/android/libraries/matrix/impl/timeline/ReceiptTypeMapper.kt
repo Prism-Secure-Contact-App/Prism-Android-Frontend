@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
-import io.prism.android.libraries.prism.api.timeline.ReceiptType
-import org.prism.rustcomponents.sdk.ReceiptType as RustReceiptType
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import org.matrix.rustcomponents.sdk.ReceiptType as RustReceiptType
 
 internal fun ReceiptType.toRustReceiptType(): RustReceiptType = when (this) {
     ReceiptType.READ -> RustReceiptType.READ

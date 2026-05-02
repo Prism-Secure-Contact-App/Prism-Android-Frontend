@@ -5,28 +5,28 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.unregistration
+package io.prism.android.libraries.push.impl.unregistration
 
 import android.app.Notification
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import io.element.android.appconfig.NotificationConfig
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.features.enterprise.test.FakeEnterpriseService
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID_2
-import io.element.android.libraries.push.impl.notifications.NotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.libraries.sessionstorage.test.aSessionData
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.appconfig.NotificationConfig
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.features.enterprise.test.FakeEnterpriseService
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID_2
+import io.prism.android.libraries.push.impl.notifications.NotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.libraries.sessionstorage.test.aSessionData
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -48,7 +48,7 @@ class DefaultServiceUnregisteredHandlerTest {
         createUnregistrationNotificationResult.assertions().isCalledOnce().with(
             value(
                 NotificationAccountParams(
-                    MatrixUser(
+                    PRISMUser(
                         userId = A_SESSION_ID,
                         displayName = null,
                         avatarUrl = null,
@@ -89,7 +89,7 @@ class DefaultServiceUnregisteredHandlerTest {
         createUnregistrationNotificationResult.assertions().isCalledOnce().with(
             value(
                 NotificationAccountParams(
-                    MatrixUser(
+                    PRISMUser(
                         userId = A_SESSION_ID,
                         displayName = null,
                         avatarUrl = null,

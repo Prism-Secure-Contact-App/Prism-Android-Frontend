@@ -18,10 +18,10 @@ import io.prism.android.features.login.impl.screens.onboarding.createLoginHelper
 import io.prism.android.features.login.impl.web.FakeWebClientUrlForAuthenticationRetriever
 import io.prism.android.features.login.impl.web.WebClientUrlForAuthenticationRetriever
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.auth.PRISMAuthenticationService
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.auth.FakePRISMAuthenticationService
-import io.prism.android.libraries.prism.test.auth.aPRISMHomeServerDetails
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.auth.FakePRISMAuthenticationService
+import io.prism.android.libraries.matrix.test.auth.aPRISMHomeServerDetails
 import io.prism.android.libraries.oidc.api.OidcAction
 import io.prism.android.libraries.oidc.api.OidcActionFlow
 import io.prism.android.libraries.oidc.test.customtab.FakeOidcActionFlow

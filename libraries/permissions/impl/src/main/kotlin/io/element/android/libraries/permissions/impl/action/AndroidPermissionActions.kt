@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.impl.action
+package io.prism.android.libraries.permissions.impl.action
 
 import android.Manifest
 import android.content.Context
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.androidutils.system.openAppSettingsPage
-import io.element.android.libraries.androidutils.system.startNotificationSettingsIntent
-import io.element.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.androidutils.system.openAppSettingsPage
+import io.prism.android.libraries.androidutils.system.startNotificationSettingsIntent
+import io.prism.android.libraries.di.annotations.ApplicationContext
 
 @ContributesBinding(AppScope::class)
 class AndroidPermissionActions(

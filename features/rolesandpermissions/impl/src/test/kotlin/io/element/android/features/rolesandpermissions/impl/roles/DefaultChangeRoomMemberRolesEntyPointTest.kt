@@ -12,7 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesListType
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
 import io.prism.android.tests.testutils.node.TestParentNode
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

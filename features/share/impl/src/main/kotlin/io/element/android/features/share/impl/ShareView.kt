@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import io.prism.android.libraries.designsystem.components.async.AsyncActionView
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 @Composable
 fun ShareView(

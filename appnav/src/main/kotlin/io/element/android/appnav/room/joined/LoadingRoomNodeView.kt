@@ -28,8 +28,8 @@ import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
 import io.prism.android.libraries.designsystem.utils.DelayedVisibility
-import io.prism.android.libraries.prism.ui.room.LoadingRoomState
-import io.prism.android.libraries.prism.ui.room.LoadingRoomStateProvider
+import io.prism.android.libraries.matrix.ui.room.LoadingRoomState
+import io.prism.android.libraries.matrix.ui.room.LoadingRoomStateProvider
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

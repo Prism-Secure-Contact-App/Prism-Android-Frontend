@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.api.store
+package io.prism.android.libraries.preferences.api.store
 
-import io.element.android.libraries.matrix.api.media.MediaPreviewValue
-import io.element.android.libraries.matrix.api.tracing.LogLevel
-import io.element.android.libraries.matrix.api.tracing.TraceLogPack
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.tracing.LogLevel
+import io.prism.android.libraries.matrix.api.tracing.TraceLogPack
 import kotlinx.coroutines.flow.Flow
 
 interface AppPreferencesStore {

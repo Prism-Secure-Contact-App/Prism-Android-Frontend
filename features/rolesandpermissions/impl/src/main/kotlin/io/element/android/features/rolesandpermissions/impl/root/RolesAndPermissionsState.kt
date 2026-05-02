@@ -10,7 +10,7 @@ package io.prism.android.features.rolesandpermissions.impl.root
 
 import io.prism.android.features.rolesandpermissions.impl.R
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMember
 import kotlinx.collections.immutable.ImmutableList
 
 data class RolesAndPermissionsState(

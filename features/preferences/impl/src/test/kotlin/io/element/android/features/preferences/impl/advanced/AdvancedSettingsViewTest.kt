@@ -14,10 +14,10 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.features.preferences.impl.R
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.analytics.compose.LocalAnalyticsService

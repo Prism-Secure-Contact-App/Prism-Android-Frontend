@@ -45,8 +45,8 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
 import io.prism.android.libraries.designsystem.theme.components.SearchField
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.spaces.SpaceServiceFilter
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.api.spaces.SpaceServiceFilter
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)

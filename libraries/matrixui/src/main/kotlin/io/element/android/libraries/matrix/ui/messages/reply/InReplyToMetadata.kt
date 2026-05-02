@@ -6,36 +6,36 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages.reply
+package io.prism.android.libraries.matrix.ui.messages.reply
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.res.stringResource
-import io.element.android.libraries.matrix.api.timeline.item.event.AudioMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.CallNotifyContent
-import io.element.android.libraries.matrix.api.timeline.item.event.FailedToParseMessageLikeContent
-import io.element.android.libraries.matrix.api.timeline.item.event.FailedToParseStateContent
-import io.element.android.libraries.matrix.api.timeline.item.event.FileMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.ImageMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.LegacyCallInviteContent
-import io.element.android.libraries.matrix.api.timeline.item.event.LiveLocationContent
-import io.element.android.libraries.matrix.api.timeline.item.event.LocationMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageContent
-import io.element.android.libraries.matrix.api.timeline.item.event.PollContent
-import io.element.android.libraries.matrix.api.timeline.item.event.ProfileChangeContent
-import io.element.android.libraries.matrix.api.timeline.item.event.RedactedContent
-import io.element.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
-import io.element.android.libraries.matrix.api.timeline.item.event.StateContent
-import io.element.android.libraries.matrix.api.timeline.item.event.StickerContent
-import io.element.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
-import io.element.android.libraries.matrix.api.timeline.item.event.UnknownContent
-import io.element.android.libraries.matrix.api.timeline.item.event.VideoMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.VoiceMessageType
-import io.element.android.libraries.matrix.ui.components.AttachmentThumbnailInfo
-import io.element.android.libraries.matrix.ui.components.AttachmentThumbnailType
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToMetadata.Text
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToMetadata.Thumbnail
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.matrix.api.timeline.item.event.AudioMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.CallNotifyContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseMessageLikeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseStateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FileMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.ImageMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.LegacyCallInviteContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.LiveLocationContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocationMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileChangeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RedactedContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnknownContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.VideoMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.VoiceMessageType
+import io.prism.android.libraries.matrix.ui.components.AttachmentThumbnailInfo
+import io.prism.android.libraries.matrix.ui.components.AttachmentThumbnailType
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToMetadata.Text
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToMetadata.Thumbnail
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Immutable
 internal sealed interface InReplyToMetadata {

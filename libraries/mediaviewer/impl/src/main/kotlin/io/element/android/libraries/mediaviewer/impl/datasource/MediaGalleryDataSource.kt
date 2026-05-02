@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.datasource
+package io.prism.android.libraries.mediaviewer.impl.datasource
 
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.room.BaseRoom
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
-import io.element.android.libraries.mediaviewer.impl.model.GroupedMediaItems
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
+import io.prism.android.libraries.mediaviewer.impl.model.GroupedMediaItems
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow

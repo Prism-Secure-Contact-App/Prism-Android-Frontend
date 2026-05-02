@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.test
+package io.prism.android.libraries.mediaupload.test
 
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 
 class FakeMediaOptimizationConfigProvider(
     val config: MediaOptimizationConfig = MediaOptimizationConfig(

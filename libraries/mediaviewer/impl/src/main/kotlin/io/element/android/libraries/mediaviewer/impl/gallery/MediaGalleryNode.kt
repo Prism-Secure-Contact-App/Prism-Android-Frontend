@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery
+package io.prism.android.libraries.mediaviewer.impl.gallery
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -16,13 +16,13 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.annotations.ContributesNode
-import io.element.android.libraries.architecture.callback
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.mediaviewer.impl.gallery.di.LocalMediaItemPresenterFactories
-import io.element.android.libraries.mediaviewer.impl.gallery.di.MediaItemPresenterFactories
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.annotations.ContributesNode
+import io.prism.android.libraries.architecture.callback
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.mediaviewer.impl.gallery.di.LocalMediaItemPresenterFactories
+import io.prism.android.libraries.mediaviewer.impl.gallery.di.MediaItemPresenterFactories
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
 
 @ContributesNode(RoomScope::class)
 @AssistedInject

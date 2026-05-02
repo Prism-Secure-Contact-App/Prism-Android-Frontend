@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.sessionstorage.impl.observer
+package io.prism.android.libraries.sessionstorage.impl.observer
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.libraries.sessionstorage.api.toUserListFlow
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.sessionstorage.api.toUserListFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map

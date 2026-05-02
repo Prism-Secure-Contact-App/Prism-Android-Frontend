@@ -27,8 +27,8 @@ import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber

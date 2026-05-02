@@ -11,7 +11,7 @@ package io.prism.android.features.call.impl.utils
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.features.call.impl.BuildConfig
-import io.prism.android.libraries.prism.api.widget.CallAnalyticCredentialsProvider
+import io.prism.android.libraries.matrix.api.widget.CallAnalyticCredentialsProvider
 
 @ContributesBinding(AppScope::class)
 class DefaultCallAnalyticCredentialsProvider : CallAnalyticCredentialsProvider {

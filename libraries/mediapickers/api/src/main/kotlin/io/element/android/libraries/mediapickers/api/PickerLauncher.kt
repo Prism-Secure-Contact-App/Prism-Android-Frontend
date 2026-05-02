@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediapickers.api
+package io.prism.android.libraries.mediapickers.api
 
 import android.content.ActivityNotFoundException
 import androidx.activity.compose.ManagedActivityResultLauncher

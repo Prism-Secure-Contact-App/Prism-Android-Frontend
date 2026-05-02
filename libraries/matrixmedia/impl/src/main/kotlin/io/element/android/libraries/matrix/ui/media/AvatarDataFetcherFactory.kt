@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import coil3.ImageLoader
 import coil3.fetch.Fetcher
 import coil3.request.Options
 import coil3.toUri
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
 
 internal class AvatarDataFetcherFactory(
-    private val matrixMediaLoader: MatrixMediaLoader
+    private val matrixMediaLoader: PRISMMediaLoader
 ) : Fetcher.Factory<AvatarData> {
     override fun create(
         data: AvatarData,

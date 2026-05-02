@@ -7,7 +7,7 @@
 
 package io.prism.android.features.space.impl.addroom
 
-import io.prism.android.libraries.prism.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
 
 sealed interface AddRoomToSpaceEvent {
     data class ToggleRoom(val room: SelectRoomInfo) : AddRoomToSpaceEvent

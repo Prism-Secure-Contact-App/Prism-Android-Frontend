@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.oidc.impl
+package io.prism.android.libraries.oidc.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.oidc.api.OidcAction
+import io.prism.android.libraries.oidc.api.OidcAction
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest

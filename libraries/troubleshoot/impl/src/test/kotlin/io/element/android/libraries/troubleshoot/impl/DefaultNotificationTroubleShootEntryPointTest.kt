@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.troubleshoot.api.NotificationTroubleShootEntryPoint
-import io.element.android.services.analytics.test.FakeScreenTracker
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.node.TestParentNode
+import io.prism.android.libraries.troubleshoot.api.NotificationTroubleShootEntryPoint
+import io.prism.android.services.analytics.test.FakeScreenTracker
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule
 import org.junit.Test
 

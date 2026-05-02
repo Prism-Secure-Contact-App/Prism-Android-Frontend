@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.pushproviders.api.PushData
+import io.prism.android.libraries.pushproviders.api.PushData
 
 @Inject
 class FirebasePushParser {

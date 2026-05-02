@@ -21,25 +21,25 @@ import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.RoomType
-import io.prism.android.libraries.prism.api.room.join.JoinRoom
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID_2
-import io.prism.android.libraries.prism.test.A_ROOM_ID_3
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.join.FakeJoinRoom
-import io.prism.android.libraries.prism.test.room.powerlevels.FakeRoomPermissions
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceRoomList
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomType
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_3
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.join.FakeJoinRoom
+import io.prism.android.libraries.matrix.test.room.powerlevels.FakeRoomPermissions
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceRoomList
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
 import io.prism.android.libraries.previewutils.room.aSpaceRoom
 import io.prism.android.tests.testutils.EventsRecorder
 import io.prism.android.tests.testutils.lambda.assert
@@ -51,7 +51,7 @@ import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom as AnalyticsJoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom as AnalyticsJoinedRoom
 
 class SpacePresenterTest {
     @Test

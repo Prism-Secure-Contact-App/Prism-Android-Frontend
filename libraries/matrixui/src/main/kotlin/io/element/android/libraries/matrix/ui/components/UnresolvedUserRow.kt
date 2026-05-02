@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,17 +22,17 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.preview.ElementThemedPreview
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.preview.PRISMThemedPreview
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 fun UnresolvedUserRow(
@@ -61,8 +61,8 @@ fun UnresolvedUserRow(
                 text = id,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                color = if (enabled) ElementTheme.colors.textPrimary else ElementTheme.colors.textDisabled,
-                style = ElementTheme.typography.fontBodyLgMedium,
+                color = if (enabled) PRISMTheme.colors.textPrimary else PRISMTheme.colors.textDisabled,
+                style = PRISMTheme.typography.fontBodyLgMedium,
             )
 
             // Warning
@@ -78,12 +78,12 @@ fun UnresolvedUserRow(
                         .size(18.dp)
                         .align(Alignment.Top)
                         .padding(2.dp),
-                    tint = if (enabled) ElementTheme.colors.iconCriticalPrimary else ElementTheme.colors.iconDisabled,
+                    tint = if (enabled) PRISMTheme.colors.iconCriticalPrimary else PRISMTheme.colors.iconDisabled,
                 )
                 Text(
                     text = stringResource(CommonStrings.common_invite_unknown_profile),
-                    color = if (enabled) ElementTheme.colors.textSecondary else ElementTheme.colors.textDisabled,
-                    style = ElementTheme.typography.fontBodySmRegular.copy(lineHeight = 16.sp),
+                    color = if (enabled) PRISMTheme.colors.textSecondary else PRISMTheme.colors.textDisabled,
+                    style = PRISMTheme.typography.fontBodySmRegular.copy(lineHeight = 16.sp),
                 )
             }
         }
@@ -92,7 +92,7 @@ fun UnresolvedUserRow(
 
 @Preview
 @Composable
-internal fun UnresolvedUserRowPreview() = ElementThemedPreview {
+internal fun UnresolvedUserRowPreview() = PRISMThemedPreview {
     val matrixUser = aMatrixUser()
     Column {
         UnresolvedUserRow(matrixUser.getAvatarData(size = AvatarSize.UserListItem), matrixUser.userId.value)

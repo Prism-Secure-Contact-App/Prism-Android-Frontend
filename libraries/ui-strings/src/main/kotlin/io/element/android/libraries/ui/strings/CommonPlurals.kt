@@ -6,6 +6,6 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.ui.strings
+package io.prism.android.libraries.ui.strings
 
 typealias CommonPlurals = R.plurals

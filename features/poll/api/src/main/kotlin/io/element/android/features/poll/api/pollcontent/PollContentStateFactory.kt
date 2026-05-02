@@ -8,9 +8,9 @@
 
 package io.prism.android.features.poll.api.pollcontent
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.item.event.EventTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
 
 interface PollContentStateFactory {
     suspend fun create(eventTimelineItem: EventTimelineItem, content: PollContent): PollContentState {

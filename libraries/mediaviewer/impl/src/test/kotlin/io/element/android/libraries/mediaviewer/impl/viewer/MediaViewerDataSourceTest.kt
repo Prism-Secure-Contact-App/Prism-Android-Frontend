@@ -6,33 +6,33 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import android.net.Uri
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.AN_EVENT_ID_2
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.media.FakeMatrixMediaLoader
-import io.element.android.libraries.mediaviewer.api.MediaViewerEntryPoint.MediaViewerMode
-import io.element.android.libraries.mediaviewer.api.local.LocalMediaFactory
-import io.element.android.libraries.mediaviewer.impl.datasource.FakeMediaGalleryDataSource
-import io.element.android.libraries.mediaviewer.impl.datasource.MediaGalleryDataSource
-import io.element.android.libraries.mediaviewer.impl.gallery.aGroupedMediaItems
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemDateSeparator
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemFile
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemImage
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemLoadingIndicator
-import io.element.android.libraries.mediaviewer.test.FakeLocalMediaFactory
-import io.element.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID_2
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.media.FakeMatrixMediaLoader
+import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint.MediaViewerMode
+import io.prism.android.libraries.mediaviewer.api.local.LocalMediaFactory
+import io.prism.android.libraries.mediaviewer.impl.datasource.FakeMediaGalleryDataSource
+import io.prism.android.libraries.mediaviewer.impl.datasource.MediaGalleryDataSource
+import io.prism.android.libraries.mediaviewer.impl.gallery.aGroupedMediaItems
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemDateSeparator
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemFile
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemImage
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemLoadingIndicator
+import io.prism.android.libraries.mediaviewer.test.FakeLocalMediaFactory
+import io.prism.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import io.mockk.mockk
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
@@ -268,7 +268,7 @@ class MediaViewerDataSourceTest {
     private fun TestScope.createMediaViewerDataSource(
         mode: MediaViewerMode = MediaViewerMode.TimelineImagesAndVideos(timelineMode = Timeline.Mode.Media),
         galleryDataSource: MediaGalleryDataSource = FakeMediaGalleryDataSource(),
-        mediaLoader: MatrixMediaLoader = FakeMatrixMediaLoader(),
+        mediaLoader: PRISMMediaLoader = FakeMatrixMediaLoader(),
         localMediaFactory: LocalMediaFactory = FakeLocalMediaFactory(mockMediaUrl),
     ) = MediaViewerDataSource(
         mode = mode,

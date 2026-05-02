@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth.qrlogin
+package io.prism.android.libraries.matrix.impl.auth.qrlogin
 
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import org.prism.rustcomponents.sdk.QrLoginProgress
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import org.matrix.rustcomponents.sdk.QrLoginProgress
 
 fun QrLoginProgress.toStep(): QrCodeLoginStep {
     return when (this) {

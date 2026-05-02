@@ -6,28 +6,28 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.fake
+package io.prism.android.libraries.push.impl.notifications.fake
 
 import android.app.Notification
 import android.graphics.Bitmap
 import androidx.annotation.ColorInt
 import coil3.ImageLoader
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.push.impl.notifications.RoomEventGroupInfo
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
-import io.element.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
-import io.element.android.tests.testutils.lambda.LambdaFiveParamsRecorder
-import io.element.android.tests.testutils.lambda.LambdaListAnyParamsRecorder
-import io.element.android.tests.testutils.lambda.LambdaOneParamRecorder
-import io.element.android.tests.testutils.lambda.LambdaThreeParamsRecorder
-import io.element.android.tests.testutils.lambda.LambdaTwoParamsRecorder
-import io.element.android.tests.testutils.lambda.lambdaAnyRecorder
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.push.impl.notifications.RoomEventGroupInfo
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
+import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
+import io.prism.android.tests.testutils.lambda.LambdaFiveParamsRecorder
+import io.prism.android.tests.testutils.lambda.LambdaListAnyParamsRecorder
+import io.prism.android.tests.testutils.lambda.LambdaOneParamRecorder
+import io.prism.android.tests.testutils.lambda.LambdaThreeParamsRecorder
+import io.prism.android.tests.testutils.lambda.LambdaTwoParamsRecorder
+import io.prism.android.tests.testutils.lambda.lambdaAnyRecorder
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 
 class FakeNotificationCreator(
     var createMessagesListNotificationResult: LambdaListAnyParamsRecorder<Notification> = lambdaAnyRecorder { A_NOTIFICATION },

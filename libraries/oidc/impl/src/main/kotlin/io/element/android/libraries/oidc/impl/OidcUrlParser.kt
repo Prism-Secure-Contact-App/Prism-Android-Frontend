@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.oidc.impl
+package io.prism.android.libraries.oidc.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.matrix.api.auth.OidcRedirectUrlProvider
-import io.element.android.libraries.oidc.api.OidcAction
+import io.prism.android.libraries.matrix.api.auth.OidcRedirectUrlProvider
+import io.prism.android.libraries.oidc.api.OidcAction
 
 fun interface OidcUrlParser {
     fun parse(url: String): OidcAction?

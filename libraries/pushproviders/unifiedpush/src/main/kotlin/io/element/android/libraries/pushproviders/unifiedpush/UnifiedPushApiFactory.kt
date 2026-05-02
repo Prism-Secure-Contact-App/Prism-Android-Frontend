@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.network.RetrofitFactory
-import io.element.android.libraries.pushproviders.unifiedpush.network.UnifiedPushApi
+import io.prism.android.libraries.network.RetrofitFactory
+import io.prism.android.libraries.pushproviders.unifiedpush.network.UnifiedPushApi
 
 interface UnifiedPushApiFactory {
     fun create(baseUrl: String): UnifiedPushApi

@@ -5,15 +5,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl.watchers
+package io.prism.android.services.analytics.impl.watchers
 
-import io.element.android.libraries.matrix.api.room.SendQueueUpdate
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_TRANSACTION_ID
-import io.element.android.libraries.matrix.test.room.FakeJoinedRoom
-import io.element.android.services.analytics.api.NoopAnalyticsTransaction
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.matrix.api.room.SendQueueUpdate
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_TRANSACTION_ID
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.services.analytics.api.NoopAnalyticsTransaction
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi

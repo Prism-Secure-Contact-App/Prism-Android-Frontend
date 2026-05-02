@@ -20,9 +20,9 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.toPRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.toPRISMUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam
 import io.prism.android.tests.testutils.EventsRecorder
@@ -227,7 +227,7 @@ class ChangeRolesViewTest {
     @Test
     fun `testing removing user from selected list emits the expected event`() {
         val eventsRecorder = EventsRecorder<ChangeRolesEvent>()
-        val selectedUsers = aPRISMUserList().take(2)
+        val selectedUsers = aMatrixUserList().take(2)
         val userToDeselect = selectedUsers[1]
         assertThat(userToDeselect.displayName).isEqualTo("Bob")
         rule.setChangeRolesContent(
@@ -249,7 +249,7 @@ class ChangeRolesViewTest {
     @Config(qualifiers = "h1000dp")
     fun `testing adding user to the selected list emits the expected event`() {
         val eventsRecorder = EventsRecorder<ChangeRolesEvent>()
-        val selectedUsers = aPRISMUserList().take(2)
+        val selectedUsers = aMatrixUserList().take(2)
         val state = aChangeRolesStateWithSelectedUsers().copy(
             selectedUsers = selectedUsers.toImmutableList(),
             eventSink = eventsRecorder,
@@ -267,7 +267,7 @@ class ChangeRolesViewTest {
     @Test
     fun `testing removing user to the selected list emits the expected event`() {
         val eventsRecorder = EventsRecorder<ChangeRolesEvent>()
-        val selectedUsers = aPRISMUserList().take(2)
+        val selectedUsers = aMatrixUserList().take(2)
         val state = aChangeRolesStateWithSelectedUsers().copy(
             selectedUsers = selectedUsers.toImmutableList(),
             eventSink = eventsRecorder,

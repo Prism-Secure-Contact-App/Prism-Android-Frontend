@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.timeline.postprocessor
+package io.prism.android.libraries.matrix.impl.timeline.postprocessor
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
 import org.junit.Test
 
 class LoadingIndicatorsPostProcessorTest {
@@ -27,7 +27,7 @@ class LoadingIndicatorsPostProcessorTest {
             hasMoreToLoadForward = false,
         )
         assertThat(result).containsExactly(
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("BackwardLoadingIndicator"),
                 virtual = VirtualTimelineItem.LoadingIndicator(
                     direction = Timeline.PaginationDirection.BACKWARDS,
@@ -51,7 +51,7 @@ class LoadingIndicatorsPostProcessorTest {
         assertThat(result).containsExactly(
             messageEvent,
             messageEvent2,
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("ForwardLoadingIndicator"),
                 virtual = VirtualTimelineItem.LoadingIndicator(
                     direction = Timeline.PaginationDirection.FORWARDS,
@@ -71,7 +71,7 @@ class LoadingIndicatorsPostProcessorTest {
             hasMoreToLoadForward = true,
         )
         assertThat(result).containsExactly(
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("BackwardLoadingIndicator"),
                 virtual = VirtualTimelineItem.LoadingIndicator(
                     direction = Timeline.PaginationDirection.BACKWARDS,
@@ -80,7 +80,7 @@ class LoadingIndicatorsPostProcessorTest {
             ),
             messageEvent,
             messageEvent2,
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("ForwardLoadingIndicator"),
                 virtual = VirtualTimelineItem.LoadingIndicator(
                     direction = Timeline.PaginationDirection.FORWARDS,
@@ -100,7 +100,7 @@ class LoadingIndicatorsPostProcessorTest {
             hasMoreToLoadForward = true,
         )
         assertThat(result).containsExactly(
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("BackwardLoadingIndicator"),
                 virtual = VirtualTimelineItem.LoadingIndicator(
                     direction = Timeline.PaginationDirection.BACKWARDS,

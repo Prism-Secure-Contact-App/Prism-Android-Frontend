@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.androidutils.json.JsonProvider
-import io.element.android.libraries.core.data.tryOrNull
-import io.element.android.libraries.pushproviders.api.PushData
+import io.prism.android.libraries.androidutils.json.JsonProvider
+import io.prism.android.libraries.core.data.tryOrNull
+import io.prism.android.libraries.pushproviders.api.PushData
 
 @Inject
 class UnifiedPushParser(

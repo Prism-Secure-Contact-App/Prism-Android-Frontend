@@ -7,8 +7,8 @@
 
 package io.prism.android.features.roomdetailsedit.api
 
-import io.prism.android.libraries.prism.api.room.StateEventType
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
 
 data class RoomDetailsEditPermissions(
     val canEditName: Boolean,

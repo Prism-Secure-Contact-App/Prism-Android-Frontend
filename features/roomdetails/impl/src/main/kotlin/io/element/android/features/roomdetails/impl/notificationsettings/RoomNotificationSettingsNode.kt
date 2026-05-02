@@ -16,7 +16,7 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.MobileScreen
+import im.vector.app.features.analytics.plan.MobileScreen
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.callback

@@ -14,8 +14,8 @@ import io.prism.android.libraries.androidutils.system.startSharePlainTextIntent
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.deeplink.api.usecase.InviteFriendsUseCase
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.permalink.PermalinkBuilder
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilder
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.toolbox.api.strings.StringProvider
 import timber.log.Timber
@@ -24,12 +24,12 @@ import io.prism.android.libraries.androidutils.R as AndroidUtilsR
 @ContributesBinding(SessionScope::class)
 class DefaultInviteFriendsUseCase(
     private val stringProvider: StringProvider,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val buildMeta: BuildMeta,
     private val permalinkBuilder: PermalinkBuilder,
 ) : InviteFriendsUseCase {
     override fun execute(activity: Activity) {
-        val permalinkResult = permalinkBuilder.permalinkForUser(prismClient.sessionId)
+        val permalinkResult = permalinkBuilder.permalinkForUser(matrixClient.sessionId)
         permalinkResult.fold(
             onSuccess = { permalink ->
                 val appName = buildMeta.applicationName

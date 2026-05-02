@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.posthog
+package io.prism.android.services.analyticsproviders.posthog
 
 import dev.zacsweers.metro.Inject
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.libraries.core.extensions.isElement
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.core.meta.BuildType
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.libraries.core.extensions.isPRISM
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.core.meta.BuildType
 
 @Inject
 class PosthogEndpointConfigProvider(
@@ -29,7 +29,7 @@ class PosthogEndpointConfigProvider(
                 // So the configuration should be always valid.
                 it.isValid
             }
-        } else if (buildMeta.isElement()) {
+        } else if (buildMeta.isPRISM()) {
             when (buildMeta.buildType) {
                 BuildType.RELEASE -> PosthogEndpointConfig(
                     host = "https://posthog.element.io",

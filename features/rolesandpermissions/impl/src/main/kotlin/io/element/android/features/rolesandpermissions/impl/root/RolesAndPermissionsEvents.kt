@@ -8,7 +8,7 @@
 
 package io.prism.android.features.rolesandpermissions.impl.root
 
-import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMember
 
 sealed interface RolesAndPermissionsEvents {
     data object ChangeOwnRole : RolesAndPermissionsEvents

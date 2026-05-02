@@ -37,12 +37,12 @@ import io.prism.android.libraries.designsystem.theme.components.ListSectionHeade
 import io.prism.android.libraries.designsystem.theme.components.SearchBar
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.CheckableUserRow
-import io.prism.android.libraries.prism.ui.components.CheckableUserRowData
-import io.prism.android.libraries.prism.ui.components.SelectedUsersRowList
-import io.prism.android.libraries.prism.ui.model.getAvatarData
-import io.prism.android.libraries.prism.ui.model.getBestName
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.CheckableUserRow
+import io.prism.android.libraries.matrix.ui.components.CheckableUserRowData
+import io.prism.android.libraries.matrix.ui.components.SelectedUsersRowList
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 
@@ -128,12 +128,12 @@ private fun InvitePeopleContentView(
                         CheckableUserRow(
                             checked = invitableUser.isSelected,
                             onCheckedChange = {
-                                state.eventSink(DefaultInvitePeopleEvents.ToggleUser(invitableUser.prismUser))
+                                state.eventSink(DefaultInvitePeopleEvents.ToggleUser(invitableUser.matrixUser))
                             },
                             data = CheckableUserRowData.Resolved(
-                                avatarData = invitableUser.prismUser.getAvatarData(AvatarSize.UserListItem),
-                                name = invitableUser.prismUser.getBestName(),
-                                subtext = invitableUser.prismUser.userId.value,
+                                avatarData = invitableUser.matrixUser.getAvatarData(AvatarSize.UserListItem),
+                                name = invitableUser.matrixUser.getBestName(),
+                                subtext = invitableUser.matrixUser.userId.value,
                             ),
                         )
                         if (index < state.suggestions.lastIndex) {
@@ -199,20 +199,20 @@ private fun InvitePeopleSearchBar(
                     val enabled = isUnresolved || !invitedOrJoined
                     val data = if (isUnresolved) {
                         CheckableUserRowData.Unresolved(
-                            avatarData = invitableUser.prismUser.getAvatarData(AvatarSize.UserListItem),
-                            id = invitableUser.prismUser.userId.value,
+                            avatarData = invitableUser.matrixUser.getAvatarData(AvatarSize.UserListItem),
+                            id = invitableUser.matrixUser.userId.value,
                         )
                     } else {
                         CheckableUserRowData.Resolved(
-                            avatarData = invitableUser.prismUser.getAvatarData(AvatarSize.UserListItem),
-                            name = invitableUser.prismUser.getBestName(),
+                            avatarData = invitableUser.matrixUser.getAvatarData(AvatarSize.UserListItem),
+                            name = invitableUser.matrixUser.getBestName(),
                             subtext = when {
                                 // If they're already invited or joined we show that information
                                 invitableUser.isAlreadyJoined -> stringResource(R.string.screen_invite_users_already_a_member)
                                 invitableUser.isAlreadyInvited -> stringResource(R.string.screen_invite_users_already_invited)
                                 // Otherwise show the ID, unless that's already used for their name
-                                invitableUser.prismUser.displayName.isNullOrEmpty()
-                                    .not() -> invitableUser.prismUser.userId.value
+                                invitableUser.matrixUser.displayName.isNullOrEmpty()
+                                    .not() -> invitableUser.matrixUser.userId.value
                                 else -> null
                             }
                         )
@@ -221,7 +221,7 @@ private fun InvitePeopleSearchBar(
                         checked = invitableUser.isSelected || invitedOrJoined,
                         enabled = enabled,
                         data = data,
-                        onCheckedChange = { onToggleUser(invitableUser.prismUser) },
+                        onCheckedChange = { onToggleUser(invitableUser.matrixUser) },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }

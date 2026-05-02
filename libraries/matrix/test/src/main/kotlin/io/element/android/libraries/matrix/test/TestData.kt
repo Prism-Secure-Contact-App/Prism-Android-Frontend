@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test
+package io.prism.android.libraries.matrix.test
 
 import androidx.annotation.ColorInt
-import io.element.android.libraries.matrix.api.core.DeviceId
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.SpaceId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.core.TransactionId
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SpaceId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 
 const val A_USER_NAME = "alice"
 const val A_USER_NAME_2 = "Bob"

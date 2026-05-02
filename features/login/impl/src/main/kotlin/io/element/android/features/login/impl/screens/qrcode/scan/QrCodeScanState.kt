@@ -9,7 +9,7 @@
 package io.prism.android.features.login.impl.screens.qrcode.scan
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
 
 data class QrCodeScanState(
     val isScanning: Boolean,

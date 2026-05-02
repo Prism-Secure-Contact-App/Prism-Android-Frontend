@@ -29,11 +29,11 @@ import io.prism.android.libraries.featureflag.api.Feature
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeature
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.analytics.GetDatabaseSizesUseCase
-import io.prism.android.libraries.prism.api.analytics.SdkStoreSizes
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.api.analytics.GetDatabaseSizesUseCase
+import io.prism.android.libraries.matrix.api.analytics.SdkStoreSizes
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.libraries.preferences.test.InMemoryAppPreferencesStore
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

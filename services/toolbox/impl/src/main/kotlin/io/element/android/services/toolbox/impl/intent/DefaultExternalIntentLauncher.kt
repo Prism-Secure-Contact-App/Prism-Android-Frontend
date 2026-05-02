@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.impl.intent
+package io.prism.android.services.toolbox.impl.intent
 
 import android.content.Context
 import android.content.Intent
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.services.toolbox.api.intent.ExternalIntentLauncher
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.services.toolbox.api.intent.ExternalIntentLauncher
 
 @ContributesBinding(AppScope::class)
 class DefaultExternalIntentLauncher(

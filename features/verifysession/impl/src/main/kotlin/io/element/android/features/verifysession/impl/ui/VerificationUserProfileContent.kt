@@ -31,10 +31,10 @@ import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.utils.CommonDrawables
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.model.getAvatarData
-import io.prism.android.libraries.prism.ui.model.getBestName
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 
 /**
  * Ref: https://www.figma.com/design/lMrKOhS8BEb75GXVq7FnNI/ER-96--User-Verification-by-Emoji?node-id=116-52049

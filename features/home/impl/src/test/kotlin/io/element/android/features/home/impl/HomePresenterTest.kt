@@ -21,15 +21,15 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.indicator.api.IndicatorService
 import io.prism.android.libraries.indicator.test.FakeIndicatorService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.AN_AVATAR_URL
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_NAME
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.sync.FakeSyncService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.sync.FakeSyncService
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
 import io.prism.android.libraries.sessionstorage.test.aSessionData
@@ -49,18 +49,18 @@ class HomePresenterTest {
 
     @Test
     fun `present - should start with no user and then load user with success`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             userDisplayName = null,
             userAvatarUrl = null,
         )
-        prismClient.givenGetProfileResult(prismClient.sessionId, Result.success(PRISMUser(prismClient.sessionId, A_USER_NAME, AN_AVATAR_URL)))
+        matrixClient.givenGetProfileResult(matrixClient.sessionId, Result.success(PRISMUser(matrixClient.sessionId, A_USER_NAME, AN_AVATAR_URL)))
         val presenter = createHomePresenter(
-            client = prismClient,
+            client = matrixClient,
             rageshakeFeatureAvailability = { flowOf(false) },
             sessionStore = InMemorySessionStore(
                 initialList = listOf(
                     aSessionData(
-                        sessionId = prismClient.sessionId.value,
+                        sessionId = matrixClient.sessionId.value,
                         userDisplayName = null,
                         userAvatarUrl = null,
                     )
@@ -119,20 +119,20 @@ class HomePresenterTest {
 
     @Test
     fun `present - should start with no user and then load user with error`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             userDisplayName = null,
             userAvatarUrl = null,
         )
-        prismClient.givenGetProfileResult(prismClient.sessionId, Result.failure(AN_EXCEPTION))
+        matrixClient.givenGetProfileResult(matrixClient.sessionId, Result.failure(AN_EXCEPTION))
         val presenter = createHomePresenter(
-            client = prismClient,
+            client = matrixClient,
             sessionStore = InMemorySessionStore(
                 updateUserProfileResult = { _, _, _ -> },
             ),
         )
         presenter.test {
             val initialState = awaitItem()
-            assertThat(initialState.currentUserAndNeighbors.first()).isEqualTo(PRISMUser(prismClient.sessionId))
+            assertThat(initialState.currentUserAndNeighbors.first()).isEqualTo(PRISMUser(matrixClient.sessionId))
             // No new state is coming
         }
     }

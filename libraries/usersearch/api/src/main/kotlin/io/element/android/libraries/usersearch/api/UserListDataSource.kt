@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.usersearch.api
+package io.prism.android.libraries.usersearch.api
 
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixUser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 interface UserListDataSource {
     // TODO should probably have a flow
-    suspend fun search(query: String, count: Long): List<MatrixUser>
-    suspend fun getProfile(userId: UserId): MatrixUser?
+    suspend fun search(query: String, count: Long): List<PRISMUser>
+    suspend fun getProfile(userId: UserId): PRISMUser?
 }

@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.history
+package io.prism.android.libraries.push.impl.history
 
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.tests.testutils.lambda.lambdaError
 import kotlin.time.Instant
 
 class FakePushHistoryService(

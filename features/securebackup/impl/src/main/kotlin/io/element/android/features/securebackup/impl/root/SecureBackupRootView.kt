@@ -31,8 +31,8 @@ import io.prism.android.libraries.designsystem.theme.components.ListItem
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarHost
 import io.prism.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

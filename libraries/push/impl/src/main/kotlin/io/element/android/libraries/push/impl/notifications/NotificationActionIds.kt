@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.core.meta.BuildMeta
 
 /**
  * Util class for creating notifications action Ids, using the application id.

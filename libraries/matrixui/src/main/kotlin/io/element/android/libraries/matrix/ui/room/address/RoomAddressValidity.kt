@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.room.address
+package io.prism.android.libraries.matrix.ui.room.address
 
 import androidx.compose.runtime.Immutable
 

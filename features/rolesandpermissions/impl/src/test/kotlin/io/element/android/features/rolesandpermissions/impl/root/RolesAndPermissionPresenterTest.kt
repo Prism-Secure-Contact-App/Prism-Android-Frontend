@@ -9,14 +9,14 @@
 package io.prism.android.features.rolesandpermissions.impl.root
 
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.RoomModeration
+import im.vector.app.features.analytics.plan.RoomModeration
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.room.aRoomMemberList
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomMemberList
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.test
 import io.prism.android.tests.testutils.testCoroutineDispatchers

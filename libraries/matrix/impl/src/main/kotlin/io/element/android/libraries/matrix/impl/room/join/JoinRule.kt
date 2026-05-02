@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.join
+package io.prism.android.libraries.matrix.impl.room.join
 
-import io.prism.android.libraries.prism.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
 import kotlinx.collections.immutable.toImmutableList
-import org.prism.rustcomponents.sdk.JoinRule as RustJoinRule
+import org.matrix.rustcomponents.sdk.JoinRule as RustJoinRule
 
 fun RustJoinRule.map(): JoinRule {
     return when (this) {

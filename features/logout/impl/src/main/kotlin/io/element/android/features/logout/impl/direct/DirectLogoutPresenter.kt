@@ -22,15 +22,15 @@ import io.prism.android.features.logout.impl.tools.isBackingUp
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Inject
 class DirectLogoutPresenter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val encryptionService: EncryptionService,
 ) : Presenter<DirectLogoutState> {
     @Composable
@@ -76,7 +76,7 @@ class DirectLogoutPresenter(
         ignoreSdkError: Boolean,
     ) = launch {
         suspend {
-            prismClient.logout(userInitiated = true, ignoreSdkError)
+            matrixClient.logout(userInitiated = true, ignoreSdkError)
         }.runCatchingUpdatingState(logoutAction)
     }
 }

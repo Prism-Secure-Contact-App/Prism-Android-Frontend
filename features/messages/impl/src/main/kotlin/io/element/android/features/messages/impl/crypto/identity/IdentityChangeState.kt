@@ -8,7 +8,7 @@
 
 package io.prism.android.features.messages.impl.crypto.identity
 
-import io.prism.android.libraries.prism.ui.room.RoomMemberIdentityStateChange
+import io.prism.android.libraries.matrix.ui.room.RoomMemberIdentityStateChange
 import kotlinx.collections.immutable.ImmutableList
 
 data class IdentityChangeState(

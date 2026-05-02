@@ -8,7 +8,7 @@
 
 package io.prism.android.appnav.di
 
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 fun interface RoomGraphFactory {
     fun create(room: JoinedRoom): Any

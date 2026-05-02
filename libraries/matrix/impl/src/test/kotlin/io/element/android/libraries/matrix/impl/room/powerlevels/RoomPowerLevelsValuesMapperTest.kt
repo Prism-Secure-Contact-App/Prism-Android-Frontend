@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room.powerlevels
+package io.prism.android.libraries.matrix.impl.room.powerlevels
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomPowerLevelsValues
 import org.junit.Test
 
 class RoomPowerLevelsValuesMapperTest {

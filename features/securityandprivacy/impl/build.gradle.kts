@@ -37,7 +37,7 @@ dependencies {
     implementation(projects.libraries.matrix.api)
     // For test fixtures used in previews
     implementation(projects.libraries.previewutils)
-    implementation(projects.libraries.prismui)
+    implementation(projects.libraries.matrixui)
     implementation(projects.libraries.uiStrings)
     implementation(projects.services.analytics.api)
     implementation(projects.libraries.featureflag.api)

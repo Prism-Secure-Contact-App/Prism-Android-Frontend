@@ -14,7 +14,7 @@ import io.prism.android.features.knockrequests.impl.data.KnockRequestPresentable
 import io.prism.android.features.knockrequests.impl.data.aKnockRequestPresentable
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

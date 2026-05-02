@@ -9,15 +9,15 @@
 package io.prism.android.libraries.accountselect.impl
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import kotlinx.collections.immutable.toImmutableList
 
 open class AccountSelectStateProvider : PreviewParameterProvider<AccountSelectState> {
     override val values: Sequence<AccountSelectState>
         get() = sequenceOf(
             anAccountSelectState(),
-            anAccountSelectState(accounts = aPRISMUserList()),
+            anAccountSelectState(accounts = aMatrixUserList()),
         )
 }
 

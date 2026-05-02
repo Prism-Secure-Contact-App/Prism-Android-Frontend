@@ -26,7 +26,7 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.usersearch.api.UserRepository
 import kotlinx.coroutines.launch
 
@@ -62,7 +62,7 @@ class StartChatPresenter(
             when (event) {
                 is StartChatEvents.StartDM -> localCoroutineScope.launch {
                     startDMAction.execute(
-                        prismUser = event.prismUser,
+                        matrixUser = event.matrixUser,
                         createIfDmDoesNotExist = startDmActionState.value is AsyncAction.Confirming,
                         actionState = startDmActionState,
                     )

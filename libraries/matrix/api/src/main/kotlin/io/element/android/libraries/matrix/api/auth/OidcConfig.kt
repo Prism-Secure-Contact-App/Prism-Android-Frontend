@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.auth
+package io.prism.android.libraries.matrix.api.auth
 
-import io.prism.android.libraries.prism.api.BuildConfig
+import io.prism.android.libraries.matrix.api.BuildConfig
 
 object OidcConfig {
     const val CLIENT_URI = BuildConfig.CLIENT_URI

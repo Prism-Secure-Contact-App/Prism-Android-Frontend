@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.widget
+package io.prism.android.libraries.matrix.impl.widget
 
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetSettings
-import org.prism.rustcomponents.sdk.ClientProperties
-import org.prism.rustcomponents.sdk.Room
-import org.prism.rustcomponents.sdk.WidgetSettings
-import org.prism.rustcomponents.sdk.generateWebviewUrl
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetSettings
+import org.matrix.rustcomponents.sdk.ClientProperties
+import org.matrix.rustcomponents.sdk.Room
+import org.matrix.rustcomponents.sdk.WidgetSettings
+import org.matrix.rustcomponents.sdk.generateWebviewUrl
 
 fun PRISMWidgetSettings.toRustWidgetSettings() = WidgetSettings(
     widgetId = this.id,

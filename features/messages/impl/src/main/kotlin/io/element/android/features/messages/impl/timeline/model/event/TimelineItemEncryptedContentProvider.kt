@@ -9,8 +9,8 @@
 package io.prism.android.features.messages.impl.timeline.model.event
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.prism.android.libraries.prism.api.timeline.item.event.UnableToDecryptContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UtdCause
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UtdCause
 
 open class TimelineItemEncryptedContentProvider : PreviewParameterProvider<TimelineItemEncryptedContent> {
     override val values: Sequence<TimelineItemEncryptedContent>

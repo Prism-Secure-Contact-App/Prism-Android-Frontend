@@ -11,9 +11,9 @@ import io.prism.android.features.roomdetailsedit.api.RoomDetailsEditPermissions
 import io.prism.android.features.roomdetailsedit.api.roomDetailsEditPermissions
 import io.prism.android.features.securityandprivacy.api.SecurityAndPrivacyPermissions
 import io.prism.android.features.securityandprivacy.api.securityAndPrivacyPermissions
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
-import io.prism.android.libraries.prism.api.room.powerlevels.canEditRolesAndPermissions
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.powerlevels.canEditRolesAndPermissions
 
 data class SpaceSettingsPermissions(
     val editDetailsPermissions: RoomDetailsEditPermissions,

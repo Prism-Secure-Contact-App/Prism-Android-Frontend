@@ -5,24 +5,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.All
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Any
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Category
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.DeduplicateVersions
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Favourite
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Identifiers
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Invite
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.NonLeft
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.NonSpace
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.None
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.NormalizedMatchRoomName
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Space
-import org.prism.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Unread
-import org.prism.rustcomponents.sdk.RoomListFilterCategory
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.All
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Any
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Category
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.DeduplicateVersions
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Favourite
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Identifiers
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Invite
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.NonLeft
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.NonSpace
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.None
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.NormalizedMatchRoomName
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Space
+import org.matrix.rustcomponents.sdk.RoomListEntriesDynamicFilterKind.Unread
+import org.matrix.rustcomponents.sdk.RoomListFilterCategory
 
 /**
  * Mapper for converting RoomListFilter to Rust SDK filter kinds.

@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.postprocessor
+package io.prism.android.libraries.matrix.impl.timeline.postprocessor
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.timeline.item.event.MembershipChange
-import io.prism.android.libraries.prism.api.timeline.item.event.OtherState
-import io.prism.android.libraries.prism.api.timeline.item.event.RoomMembershipContent
-import io.prism.android.libraries.prism.api.timeline.item.event.StateContent
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.event.MembershipChange
+import io.prism.android.libraries.matrix.api.timeline.item.event.OtherState
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StateContent
 
 /**
  * This timeline post-processor removes the room creation event and the self-join event from the timeline for DMs

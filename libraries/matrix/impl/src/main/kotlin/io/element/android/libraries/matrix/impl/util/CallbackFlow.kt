@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.util
+package io.prism.android.libraries.matrix.impl.util
 
 import io.prism.android.libraries.core.data.tryOrNull
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
-import org.prism.rustcomponents.sdk.TaskHandle
+import org.matrix.rustcomponents.sdk.TaskHandle
 
 internal fun <T> mxCallbackFlow(block: suspend ProducerScope<T>.() -> TaskHandle) =
     callbackFlow {

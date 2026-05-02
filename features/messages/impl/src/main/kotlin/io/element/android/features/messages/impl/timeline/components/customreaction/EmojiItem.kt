@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.prism.android.compound.theme.PRISMTheme
-import io.prism.android.emojibasebindings.Emoji
+import io.element.android.emojibasebindings.Emoji
 import io.prism.android.features.messages.impl.timeline.a11y.a11yReactionAction
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight

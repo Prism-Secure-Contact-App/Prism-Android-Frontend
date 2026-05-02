@@ -16,11 +16,11 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.login.impl.di.FakeQrCodeLoginGraph
 import io.prism.android.features.login.impl.screens.qrcode.confirmation.QrCodeConfirmationStep
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrLoginException
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.auth.FakePRISMAuthenticationService
-import io.prism.android.libraries.prism.test.auth.qrlogin.FakePRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.auth.FakePRISMAuthenticationService
+import io.prism.android.libraries.matrix.test.auth.qrlogin.FakePRISMQrCodeLoginData
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -197,5 +197,5 @@ class QrCodeLoginFlowNodeTest {
         )
     }
 
-    private fun QrCodeLoginFlowNode.currentNavTarget() = backstack.prisms.value.last().key.navTarget
+    private fun QrCodeLoginFlowNode.currentNavTarget() = backstack.elements.value.last().key.navTarget
 }

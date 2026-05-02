@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.mapper
+package io.prism.android.libraries.matrix.impl.mapper
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.auth.external.ExternalSession
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustSession
-import io.element.android.libraries.matrix.impl.paths.SessionPaths
-import io.element.android.libraries.matrix.test.A_DEVICE_ID
-import io.element.android.libraries.matrix.test.A_HOMESERVER_URL
-import io.element.android.libraries.matrix.test.A_HOMESERVER_URL_2
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.sessionstorage.api.LoginType
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustSession
+import io.prism.android.libraries.matrix.impl.paths.SessionPaths
+import io.prism.android.libraries.matrix.test.A_DEVICE_ID
+import io.prism.android.libraries.matrix.test.A_HOMESERVER_URL
+import io.prism.android.libraries.matrix.test.A_HOMESERVER_URL_2
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.sessionstorage.api.LoginType
 import org.junit.Test
 import java.io.File
 

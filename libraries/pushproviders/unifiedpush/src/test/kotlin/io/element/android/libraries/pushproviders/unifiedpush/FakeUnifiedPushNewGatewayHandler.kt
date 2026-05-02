@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeUnifiedPushNewGatewayHandler(
     private val handleResult: (String, String, String) -> Result<Unit> = { _, _, _ -> lambdaError() },

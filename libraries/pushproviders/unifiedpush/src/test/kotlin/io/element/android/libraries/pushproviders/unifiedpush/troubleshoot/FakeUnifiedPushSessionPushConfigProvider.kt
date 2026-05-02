@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush.troubleshoot
+package io.prism.android.libraries.pushproviders.unifiedpush.troubleshoot
 
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushproviders.api.Config
-import io.element.android.libraries.pushproviders.unifiedpush.UnifiedPushSessionPushConfigProvider
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushproviders.unifiedpush.UnifiedPushSessionPushConfigProvider
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeUnifiedPushSessionPushConfigProvider(
     private val config: (SessionId) -> Config? = { lambdaError() },

@@ -5,11 +5,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl.watchers
+package io.prism.android.services.analytics.impl.watchers
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction.ColdStart
-import io.element.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.ColdStart
+import io.prism.android.services.analytics.test.FakeAnalyticsService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runCurrent

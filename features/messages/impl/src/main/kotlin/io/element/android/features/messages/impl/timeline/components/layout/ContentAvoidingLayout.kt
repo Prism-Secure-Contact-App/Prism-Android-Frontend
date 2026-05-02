@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import io.prism.android.libraries.designsystem.text.roundToPx
-import io.prism.android.wysiwyg.compose.EditorStyledText
+import io.element.android.wysiwyg.compose.EditorStyledText
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt

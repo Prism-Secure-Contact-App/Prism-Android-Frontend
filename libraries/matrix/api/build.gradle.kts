@@ -17,7 +17,7 @@ plugins {
 }
 
 android {
-    namespace = "io.prism.android.libraries.prism.api"
+    namespace = "io.prism.android.libraries.matrix.api"
 
     buildFeatures {
         buildConfig = true

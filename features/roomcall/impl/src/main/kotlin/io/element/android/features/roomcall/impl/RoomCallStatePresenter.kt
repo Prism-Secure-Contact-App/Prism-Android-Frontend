@@ -20,10 +20,10 @@ import io.prism.android.features.call.api.CurrentCallService
 import io.prism.android.features.enterprise.api.SessionEnterpriseService
 import io.prism.android.features.roomcall.api.RoomCallState
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.room.powerlevels.canCall
-import io.prism.android.libraries.prism.api.room.powerlevels.permissionsAsState
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.room.powerlevels.canCall
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsAsState
 
 @Inject
 class RoomCallStatePresenter(

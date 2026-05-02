@@ -41,7 +41,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.compound.tokens.generated.CompoundIcons
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
@@ -52,7 +52,7 @@ import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.pinnedMessageBannerBorder
 import io.prism.android.libraries.designsystem.theme.pinnedMessageBannerIndicator
 import io.prism.android.libraries.designsystem.utils.annotatedTextWithBold
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.analytics.compose.LocalAnalyticsService
 import io.prism.android.services.analyticsproviders.api.trackers.captureInteraction

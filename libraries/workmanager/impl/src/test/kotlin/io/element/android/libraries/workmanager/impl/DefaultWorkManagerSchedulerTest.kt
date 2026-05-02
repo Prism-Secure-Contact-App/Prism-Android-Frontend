@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.workmanager.impl
+package io.prism.android.libraries.workmanager.impl
 
 import android.content.Context
 import androidx.work.OneTimeWorkRequest
@@ -13,12 +13,12 @@ import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.sessionstorage.test.observer.FakeSessionObserver
-import io.element.android.libraries.workmanager.api.WorkManagerRequestBuilder
-import io.element.android.libraries.workmanager.api.WorkManagerRequestType
-import io.element.android.libraries.workmanager.api.WorkManagerRequestWrapper
-import io.element.android.libraries.workmanager.api.workManagerTag
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.sessionstorage.test.observer.FakeSessionObserver
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestBuilder
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestType
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestWrapper
+import io.prism.android.libraries.workmanager.api.workManagerTag
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk

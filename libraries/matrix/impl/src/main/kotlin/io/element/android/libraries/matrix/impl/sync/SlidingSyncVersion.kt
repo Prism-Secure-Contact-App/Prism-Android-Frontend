@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.sync
+package io.prism.android.libraries.matrix.impl.sync
 
-import io.prism.android.libraries.prism.api.sync.SlidingSyncVersion
-import org.prism.rustcomponents.sdk.SlidingSyncVersion as RustSlidingSyncVersion
+import io.prism.android.libraries.matrix.api.sync.SlidingSyncVersion
+import org.matrix.rustcomponents.sdk.SlidingSyncVersion as RustSlidingSyncVersion
 
 internal fun RustSlidingSyncVersion.map(): SlidingSyncVersion {
     return when (this) {

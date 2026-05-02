@@ -22,8 +22,8 @@ import io.prism.android.features.login.impl.screens.onboarding.OnBoardingPresent
 import io.prism.android.features.login.impl.web.WebClientUrlForAuthenticationRetriever
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
-import io.prism.android.libraries.prism.api.auth.PRISMAuthenticationService
-import io.prism.android.libraries.prism.api.auth.OidcPrompt
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.auth.OidcPrompt
 import io.prism.android.libraries.oidc.api.OidcAction
 import io.prism.android.libraries.oidc.api.OidcActionFlow
 

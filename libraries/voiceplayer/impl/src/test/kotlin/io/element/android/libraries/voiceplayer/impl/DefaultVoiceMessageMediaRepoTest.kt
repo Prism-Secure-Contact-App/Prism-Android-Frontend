@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.test.media.FakeMatrixMediaLoader
-import io.element.android.libraries.matrix.test.mxc.FakeMxcTools
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.test.media.FakeMatrixMediaLoader
+import io.prism.android.libraries.matrix.test.mxc.FakeMxcTools
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -127,7 +127,7 @@ class DefaultVoiceMessageMediaRepoTest {
 
 private fun createDefaultVoiceMessageMediaRepo(
     temporaryFolder: TemporaryFolder,
-    matrixMediaLoader: MatrixMediaLoader = FakeMatrixMediaLoader(),
+    matrixMediaLoader: PRISMMediaLoader = FakeMatrixMediaLoader(),
     mxcUri: String = MXC_URI,
 ) = DefaultVoiceMessageMediaRepo(
     cacheDir = temporaryFolder.root,

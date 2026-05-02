@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.battery
+package io.prism.android.libraries.push.impl.battery
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -17,11 +17,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.push.api.battery.BatteryOptimizationEvents
-import io.element.android.libraries.push.api.battery.BatteryOptimizationState
-import io.element.android.libraries.push.impl.push.MutableBatteryOptimizationStore
-import io.element.android.libraries.push.impl.store.PushDataStore
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.push.api.battery.BatteryOptimizationEvents
+import io.prism.android.libraries.push.api.battery.BatteryOptimizationState
+import io.prism.android.libraries.push.impl.push.MutableBatteryOptimizationStore
+import io.prism.android.libraries.push.impl.store.PushDataStore
 import kotlinx.coroutines.launch
 
 @Inject

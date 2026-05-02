@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
-import io.element.android.libraries.androidutils.metadata.isInDebug
+import io.prism.android.libraries.androidutils.metadata.isInDebug
 import org.junit.Assert.assertThrows
 
 /**

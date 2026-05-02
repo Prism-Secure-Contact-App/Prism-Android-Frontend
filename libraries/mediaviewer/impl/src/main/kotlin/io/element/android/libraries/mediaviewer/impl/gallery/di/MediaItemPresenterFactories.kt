@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.di
+package io.prism.android.libraries.mediaviewer.impl.gallery.di
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -15,9 +15,9 @@ import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.Multibinds
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
 import kotlin.reflect.KClass
 
 /**

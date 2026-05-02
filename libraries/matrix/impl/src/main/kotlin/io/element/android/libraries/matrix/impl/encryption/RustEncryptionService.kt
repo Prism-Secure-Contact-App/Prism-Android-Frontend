@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.encryption
+package io.prism.android.libraries.matrix.impl.encryption
 
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.extensions.flatMap
 import io.prism.android.libraries.core.extensions.mapFailure
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.EnableRecoveryProgress
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.encryption.IdentityResetHandle
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.api.sync.SyncState
-import io.prism.android.libraries.prism.impl.exception.mapClientException
-import io.prism.android.libraries.prism.impl.sync.RustSyncService
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.EnableRecoveryProgress
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.IdentityResetHandle
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.impl.exception.mapClientException
+import io.prism.android.libraries.matrix.impl.sync.RustSyncService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.currentCoroutineContext
@@ -39,16 +39,16 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.BackupSteadyStateListener
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.EnableRecoveryProgressListener
-import org.prism.rustcomponents.sdk.Encryption
-import org.prism.rustcomponents.sdk.UserIdentity
+import org.matrix.rustcomponents.sdk.BackupSteadyStateListener
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.EnableRecoveryProgressListener
+import org.matrix.rustcomponents.sdk.Encryption
+import org.matrix.rustcomponents.sdk.UserIdentity
 import timber.log.Timber
-import org.prism.rustcomponents.sdk.BackupUploadState as RustBackupUploadState
-import org.prism.rustcomponents.sdk.EnableRecoveryProgress as RustEnableRecoveryProgress
-import org.prism.rustcomponents.sdk.RecoveryException as RustRecoveryException
-import org.prism.rustcomponents.sdk.SteadyStateException as RustSteadyStateException
+import org.matrix.rustcomponents.sdk.BackupUploadState as RustBackupUploadState
+import org.matrix.rustcomponents.sdk.EnableRecoveryProgress as RustEnableRecoveryProgress
+import org.matrix.rustcomponents.sdk.RecoveryException as RustRecoveryException
+import org.matrix.rustcomponents.sdk.SteadyStateException as RustSteadyStateException
 
 class RustEncryptionService(
     client: Client,

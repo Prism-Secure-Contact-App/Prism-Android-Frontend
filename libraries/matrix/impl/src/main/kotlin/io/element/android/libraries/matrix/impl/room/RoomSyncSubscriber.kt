@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.RoomListService
+import org.matrix.rustcomponents.sdk.RoomListService
 import timber.log.Timber
 
 class RoomSyncSubscriber(

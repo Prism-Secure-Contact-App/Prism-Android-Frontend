@@ -8,8 +8,8 @@
 
 package io.prism.android.features.home.impl.spaces
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet
 

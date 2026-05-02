@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomList
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
-import io.element.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomList
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
+import io.prism.android.services.analytics.test.FakeAnalyticsService
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.coroutines.EmptyCoroutineContext

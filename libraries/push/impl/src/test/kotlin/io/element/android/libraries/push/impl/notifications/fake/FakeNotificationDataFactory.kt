@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.fake
+package io.prism.android.libraries.push.impl.notifications.fake
 
 import coil3.ImageLoader
-import io.element.android.libraries.push.impl.notifications.NotificationDataFactory
-import io.element.android.libraries.push.impl.notifications.OneShotNotification
-import io.element.android.libraries.push.impl.notifications.RoomNotification
-import io.element.android.libraries.push.impl.notifications.SummaryNotification
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
-import io.element.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
-import io.element.android.tests.testutils.lambda.LambdaFourParamsRecorder
-import io.element.android.tests.testutils.lambda.LambdaOneParamRecorder
-import io.element.android.tests.testutils.lambda.LambdaThreeParamsRecorder
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.push.impl.notifications.NotificationDataFactory
+import io.prism.android.libraries.push.impl.notifications.OneShotNotification
+import io.prism.android.libraries.push.impl.notifications.RoomNotification
+import io.prism.android.libraries.push.impl.notifications.SummaryNotification
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
+import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
+import io.prism.android.tests.testutils.lambda.LambdaFourParamsRecorder
+import io.prism.android.tests.testutils.lambda.LambdaOneParamRecorder
+import io.prism.android.tests.testutils.lambda.LambdaThreeParamsRecorder
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 
 class FakeNotificationDataFactory(
     var messageEventToNotificationsResult: LambdaThreeParamsRecorder<

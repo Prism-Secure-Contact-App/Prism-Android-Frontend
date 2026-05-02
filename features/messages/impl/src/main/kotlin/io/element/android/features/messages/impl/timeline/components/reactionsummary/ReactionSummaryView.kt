@@ -69,10 +69,10 @@ import io.prism.android.libraries.designsystem.text.toDp
 import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
 import io.prism.android.libraries.designsystem.theme.components.Surface
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.media.MediaSource
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.media.MediaRequestData
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import kotlinx.coroutines.launch
 
 internal val REACTION_SUMMARY_LINE_HEIGHT = 25.sp

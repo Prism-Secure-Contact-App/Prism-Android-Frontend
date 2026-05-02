@@ -16,10 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
 import io.prism.android.libraries.designsystem.preview.PRISMThemedPreview
 import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.prism.android.libraries.prism.ui.components.PRISMUserRow
-import io.prism.android.libraries.prism.ui.components.UnresolvedUserRow
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.components.MatrixUserRow
+import io.prism.android.libraries.matrix.ui.components.UnresolvedUserRow
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.usersearch.api.UserSearchResult
 
 @Composable
@@ -31,13 +31,13 @@ fun SearchSingleUserResultItem(
     if (searchResult.isUnresolved) {
         UnresolvedUserRow(
             modifier = modifier.clickable(onClick = onClick),
-            avatarData = searchResult.prismUser.getAvatarData(AvatarSize.UserListItem),
-            id = searchResult.prismUser.userId.value,
+            avatarData = searchResult.matrixUser.getAvatarData(AvatarSize.UserListItem),
+            id = searchResult.matrixUser.userId.value,
         )
     } else {
-        PRISMUserRow(
+        MatrixUserRow(
             modifier = modifier.clickable(onClick = onClick),
-            prismUser = searchResult.prismUser,
+            matrixUser = searchResult.matrixUser,
             avatarSize = AvatarSize.UserListItem,
         )
     }
@@ -48,12 +48,12 @@ fun SearchSingleUserResultItem(
 internal fun SearchSingleUserResultItemPreview() = PRISMThemedPreview {
     Column {
         SearchSingleUserResultItem(
-            searchResult = UserSearchResult(aPRISMUser(), isUnresolved = false),
+            searchResult = UserSearchResult(aMatrixUser(), isUnresolved = false),
             onClick = {},
         )
         HorizontalDivider()
         SearchSingleUserResultItem(
-            searchResult = UserSearchResult(aPRISMUser(), isUnresolved = true),
+            searchResult = UserSearchResult(aMatrixUser(), isUnresolved = true),
             onClick = {},
         )
     }

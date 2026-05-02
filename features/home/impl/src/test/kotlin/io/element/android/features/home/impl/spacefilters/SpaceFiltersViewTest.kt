@@ -13,7 +13,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.prism.android.libraries.prism.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
 import io.prism.android.tests.testutils.EventsRecorder
 import org.junit.Rule
 import org.junit.Test

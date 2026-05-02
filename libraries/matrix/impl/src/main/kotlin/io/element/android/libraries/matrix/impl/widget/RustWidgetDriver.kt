@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.widget
+package io.prism.android.libraries.matrix.impl.widget
 
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetDriver
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetSettings
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetSettings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import org.prism.rustcomponents.sdk.Room
-import org.prism.rustcomponents.sdk.WidgetCapabilitiesProvider
-import org.prism.rustcomponents.sdk.makeWidgetDriver
+import org.matrix.rustcomponents.sdk.Room
+import org.matrix.rustcomponents.sdk.WidgetCapabilitiesProvider
+import org.matrix.rustcomponents.sdk.makeWidgetDriver
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.coroutines.coroutineContext
 

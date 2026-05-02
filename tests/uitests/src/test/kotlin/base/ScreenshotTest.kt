@@ -23,7 +23,7 @@ import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.RenderExtension
 import app.cash.paparazzi.TestName
 import com.android.resources.NightMode
-import io.element.android.compound.theme.ElementTheme
+import io.prism.android.compound.theme.PRISMTheme
 import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
 import java.util.Locale
@@ -53,10 +53,10 @@ object ScreenshotTest {
                     uiMode = preview.previewInfo.uiMode
                 },
             ) {
-                ElementTheme {
+                PRISMTheme {
                     Box(
                         modifier = Modifier
-                            .background(ElementTheme.colors.bgCanvasDefault)
+                            .background(PRISMTheme.colors.bgCanvasDefault)
                     ) {
                         preview()
                     }

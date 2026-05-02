@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.widget
+package io.prism.android.libraries.matrix.test.widget
 
-import io.element.android.libraries.matrix.api.widget.MatrixWidgetDriver
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetDriver
 import kotlinx.coroutines.flow.MutableSharedFlow
 import java.util.UUID
 
 class FakeMatrixWidgetDriver(
     override val id: String = UUID.randomUUID().toString(),
-) : MatrixWidgetDriver {
+) : PRISMWidgetDriver {
     private val _sentMessages = mutableListOf<String>()
     val sentMessages: List<String> = _sentMessages
 

@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.model
+package io.prism.android.libraries.mediaviewer.impl.model
 
-import io.element.android.libraries.designsystem.components.media.WaveFormSamples
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.api.aPdfMediaInfo
-import io.element.android.libraries.mediaviewer.api.aVideoMediaInfo
-import io.element.android.libraries.mediaviewer.api.aVoiceMediaInfo
-import io.element.android.libraries.mediaviewer.api.anAudioMediaInfo
-import io.element.android.libraries.mediaviewer.api.anImageMediaInfo
+import io.prism.android.libraries.designsystem.components.media.WaveFormSamples
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.api.aPdfMediaInfo
+import io.prism.android.libraries.mediaviewer.api.aVideoMediaInfo
+import io.prism.android.libraries.mediaviewer.api.aVoiceMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anAudioMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anImageMediaInfo
 
 fun aMediaItemImage(
     id: UniqueId = UniqueId("imageId"),

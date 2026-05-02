@@ -43,9 +43,9 @@ import io.prism.android.libraries.dateformatter.api.DateFormatterMode
 import io.prism.android.libraries.di.RoomScope
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.libraries.recentemojis.api.GetRecentEmojis
 import kotlinx.collections.immutable.ImmutableList

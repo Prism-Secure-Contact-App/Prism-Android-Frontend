@@ -14,7 +14,7 @@ import androidx.startup.Initializer
 import io.prism.android.features.rageshake.api.logs.createWriteToFilesConfiguration
 import io.prism.android.libraries.architecture.bindings
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.tracing.TracingConfiguration
+import io.prism.android.libraries.matrix.api.tracing.TracingConfiguration
 import io.prism.android.x.di.AppBindings
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking

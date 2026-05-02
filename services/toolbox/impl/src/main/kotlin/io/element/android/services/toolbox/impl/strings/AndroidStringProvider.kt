@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.impl.strings
+package io.prism.android.services.toolbox.impl.strings
 
 import android.content.res.Resources
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.strings.StringProvider
 
 @ContributesBinding(AppScope::class)
 class AndroidStringProvider(private val resources: Resources) : StringProvider {

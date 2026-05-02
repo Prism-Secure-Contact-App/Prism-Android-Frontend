@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.AN_EVENT_ID_2
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemImage
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemLoadingIndicator
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID_2
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemImage
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemLoadingIndicator
 import org.junit.Test
 
 class PagerKeysHandlerTest {

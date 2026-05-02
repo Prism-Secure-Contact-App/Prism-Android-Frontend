@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.impl
+package io.prism.android.libraries.pushstore.impl
 
 import androidx.test.platform.app.InstrumentationRegistry
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushstore.api.UserPushStore
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushstore.api.UserPushStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -18,7 +18,7 @@ import kotlin.concurrent.thread
 
 /**
  * Note: to clear the emulator, invoke:
- * adb uninstall io.element.android.libraries.push.pushstore.impl.test
+ * adb uninstall io.prism.android.libraries.push.pushstore.impl.test
  */
 class DefaultUserPushStoreFactoryTest {
     /**

@@ -10,9 +10,9 @@ package io.prism.android.libraries.architecture.overlay.operation
 
 import com.bumble.appyx.core.navigation.NavKey
 import com.bumble.appyx.navmodel.backstack.BackStack
-import com.bumble.appyx.navmodel.backstack.BackStackPRISM
-import com.bumble.appyx.navmodel.backstack.BackStackPRISMs
-import com.bumble.appyx.navmodel.backstack.activePRISM
+import com.bumble.appyx.navmodel.backstack.BackStackElement
+import com.bumble.appyx.navmodel.backstack.BackStackElements
+import com.bumble.appyx.navmodel.backstack.activeElement
 import io.prism.android.libraries.architecture.overlay.Overlay
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
@@ -21,11 +21,11 @@ import kotlinx.parcelize.RawValue
 data class Show<T : Any>(
     private val prism: @RawValue T
 ) : OverlayOperation<T> {
-    override fun isApplicable(prisms: BackStackPRISMs<T>): Boolean =
-        prism != prisms.activePRISM
+    override fun isApplicable(prisms: BackStackElements<T>): Boolean =
+        prism != prisms.activeElement
 
-    override fun invoke(prisms: BackStackPRISMs<T>): BackStackPRISMs<T> = listOf(
-        BackStackPRISM(
+    override fun invoke(prisms: BackStackElements<T>): BackStackElements<T> = listOf(
+        BackStackElement(
             key = NavKey(prism),
             fromState = BackStack.State.CREATED,
             targetState = BackStack.State.ACTIVE,

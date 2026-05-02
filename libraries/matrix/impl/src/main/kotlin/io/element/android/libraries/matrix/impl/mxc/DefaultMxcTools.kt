@@ -5,11 +5,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.mxc
+package io.prism.android.libraries.matrix.impl.mxc
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.prism.android.libraries.prism.api.mxc.MxcTools
+import io.prism.android.libraries.matrix.api.mxc.MxcTools
 
 @ContributesBinding(AppScope::class)
 class DefaultMxcTools : MxcTools {

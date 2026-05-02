@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.recentemojis.impl
+package io.prism.android.libraries.recentemojis.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.recentemojis.api.AddRecentEmoji
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.recentemojis.api.AddRecentEmoji
 import kotlinx.coroutines.withContext
 
 @ContributesBinding(SessionScope::class)
 class DefaultAddRecentEmoji(
-    private val client: MatrixClient,
+    private val client: PRISMClient,
     private val dispatchers: CoroutineDispatchers,
 ) : AddRecentEmoji {
     override suspend operator fun invoke(emoji: String): Result<Unit> = withContext(dispatchers.io) {

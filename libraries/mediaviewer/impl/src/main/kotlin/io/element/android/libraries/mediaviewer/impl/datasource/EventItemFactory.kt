@@ -6,44 +6,44 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.datasource
+package io.prism.android.libraries.mediaviewer.impl.datasource
 
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.androidutils.filesize.FileSizeFormatter
-import io.element.android.libraries.dateformatter.api.DateFormatter
-import io.element.android.libraries.dateformatter.api.DateFormatterMode
-import io.element.android.libraries.dateformatter.api.toHumanReadableDuration
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.matrix.api.timeline.item.event.AudioMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.CallNotifyContent
-import io.element.android.libraries.matrix.api.timeline.item.event.EmoteMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.FailedToParseMessageLikeContent
-import io.element.android.libraries.matrix.api.timeline.item.event.FailedToParseStateContent
-import io.element.android.libraries.matrix.api.timeline.item.event.FileMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.ImageMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.LegacyCallInviteContent
-import io.element.android.libraries.matrix.api.timeline.item.event.LiveLocationContent
-import io.element.android.libraries.matrix.api.timeline.item.event.LocationMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageContent
-import io.element.android.libraries.matrix.api.timeline.item.event.NoticeMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.OtherMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.PollContent
-import io.element.android.libraries.matrix.api.timeline.item.event.ProfileChangeContent
-import io.element.android.libraries.matrix.api.timeline.item.event.RedactedContent
-import io.element.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
-import io.element.android.libraries.matrix.api.timeline.item.event.StateContent
-import io.element.android.libraries.matrix.api.timeline.item.event.StickerContent
-import io.element.android.libraries.matrix.api.timeline.item.event.StickerMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.TextMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
-import io.element.android.libraries.matrix.api.timeline.item.event.UnknownContent
-import io.element.android.libraries.matrix.api.timeline.item.event.VideoMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.VoiceMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.getAvatarUrl
-import io.element.android.libraries.matrix.api.timeline.item.event.getDisambiguatedDisplayName
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.util.FileExtensionExtractor
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.androidutils.filesize.FileSizeFormatter
+import io.prism.android.libraries.dateformatter.api.DateFormatter
+import io.prism.android.libraries.dateformatter.api.DateFormatterMode
+import io.prism.android.libraries.dateformatter.api.toHumanReadableDuration
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.AudioMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.CallNotifyContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.EmoteMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseMessageLikeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseStateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FileMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.ImageMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.LegacyCallInviteContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.LiveLocationContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocationMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.NoticeMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.OtherMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileChangeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RedactedContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnknownContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.VideoMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.VoiceMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.getAvatarUrl
+import io.prism.android.libraries.matrix.api.timeline.item.event.getDisambiguatedDisplayName
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.util.FileExtensionExtractor
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
 import timber.log.Timber
 
 @Inject
@@ -53,7 +53,7 @@ class EventItemFactory(
     private val dateFormatter: DateFormatter,
 ) {
     fun create(
-        currentTimelineItem: MatrixTimelineItem.Event,
+        currentTimelineItem: PRISMTimelineItem.Event,
     ): MediaItem.Event? {
         val event = currentTimelineItem.event
         val dateSent = dateFormatter.format(

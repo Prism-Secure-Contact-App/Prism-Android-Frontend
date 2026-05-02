@@ -22,7 +22,7 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.features.messages.impl.pinned.DefaultPinnedEventsTimelineProvider
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.BaseRoom
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.ExperimentalCoroutinesApi

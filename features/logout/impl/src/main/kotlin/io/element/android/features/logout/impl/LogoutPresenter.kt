@@ -23,10 +23,10 @@ import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.bool.orTrue
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
 import io.prism.android.libraries.workmanager.api.WorkManagerScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 
 @Inject
 class LogoutPresenter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val encryptionService: EncryptionService,
     private val workManagerScheduler: WorkManagerScheduler,
 ) : Presenter<LogoutState> {
@@ -113,9 +113,9 @@ class LogoutPresenter(
     ) = launch {
         suspend {
             // Cancel any pending work (e.g. notification sync)
-            workManagerScheduler.cancel(prismClient.sessionId)
+            workManagerScheduler.cancel(matrixClient.sessionId)
 
-            prismClient.logout(userInitiated = true, ignoreSdkError)
+            matrixClient.logout(userInitiated = true, ignoreSdkError)
         }.runCatchingUpdatingState(logoutAction)
     }
 }

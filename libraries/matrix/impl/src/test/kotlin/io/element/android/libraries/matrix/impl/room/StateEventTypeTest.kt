@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.StateEventType
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.StateEventType as RustStateEventType
 

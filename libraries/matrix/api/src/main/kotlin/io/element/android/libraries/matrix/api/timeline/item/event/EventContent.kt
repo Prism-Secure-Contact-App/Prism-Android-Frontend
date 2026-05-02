@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.timeline.item.event
+package io.prism.android.libraries.matrix.api.timeline.item.event
 
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.media.ImageInfo
-import io.prism.android.libraries.prism.api.media.MediaSource
-import io.prism.android.libraries.prism.api.poll.PollAnswer
-import io.prism.android.libraries.prism.api.poll.PollKind
-import io.prism.android.libraries.prism.api.room.location.AssetType
-import io.prism.android.libraries.prism.api.room.location.LiveLocationInfo
-import io.prism.android.libraries.prism.api.timeline.item.EventThreadInfo
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.poll.PollAnswer
+import io.prism.android.libraries.matrix.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.room.location.LiveLocationInfo
+import io.prism.android.libraries.matrix.api.timeline.item.EventThreadInfo
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 

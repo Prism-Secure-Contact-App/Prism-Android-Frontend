@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.test.notifications.push
+package io.prism.android.libraries.push.test.notifications.push
 
 import android.graphics.Bitmap
 import androidx.core.graphics.drawable.IconCompat
 import coil3.ImageLoader
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.push.api.notifications.NotificationBitmapLoader
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.push.api.notifications.NotificationBitmapLoader
 
 class FakeNotificationBitmapLoader(
     var getRoomBitmapResult: (AvatarData, ImageLoader, Long) -> Bitmap? = { _, _, _ -> null },

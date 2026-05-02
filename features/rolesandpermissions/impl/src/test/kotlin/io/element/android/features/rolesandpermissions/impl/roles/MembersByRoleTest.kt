@@ -9,16 +9,16 @@
 package io.prism.android.features.rolesandpermissions.impl.roles
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.A_USER_ID_3
-import io.prism.android.libraries.prism.test.A_USER_ID_4
-import io.prism.android.libraries.prism.test.A_USER_ID_5
-import io.prism.android.libraries.prism.test.A_USER_ID_6
-import io.prism.android.libraries.prism.test.A_USER_ID_7
-import io.prism.android.libraries.prism.test.room.aRoomMember
-import io.prism.android.libraries.prism.ui.room.PowerLevelRoomMemberComparator
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_ID_3
+import io.prism.android.libraries.matrix.test.A_USER_ID_4
+import io.prism.android.libraries.matrix.test.A_USER_ID_5
+import io.prism.android.libraries.matrix.test.A_USER_ID_6
+import io.prism.android.libraries.matrix.test.A_USER_ID_7
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.ui.room.PowerLevelRoomMemberComparator
 import kotlinx.collections.immutable.persistentListOf
 import org.junit.Test
 

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.konsist.failures
+package io.prism.android.tests.konsist.failures
 
 // Make test `Fake classes must be named using Fake and the interface it fakes` fails
 

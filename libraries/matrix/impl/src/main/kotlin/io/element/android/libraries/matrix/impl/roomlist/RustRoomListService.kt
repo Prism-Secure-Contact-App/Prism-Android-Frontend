@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.roomlist.DynamicRoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.impl.room.RoomSyncSubscriber
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.roomlist.DynamicRoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.impl.room.RoomSyncSubscriber
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -21,11 +21,11 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import org.prism.rustcomponents.sdk.RoomListServiceState
-import org.prism.rustcomponents.sdk.RoomListServiceSyncIndicator
+import org.matrix.rustcomponents.sdk.RoomListServiceState
+import org.matrix.rustcomponents.sdk.RoomListServiceSyncIndicator
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicBoolean
-import org.prism.rustcomponents.sdk.RoomListService as InnerRustRoomListService
+import org.matrix.rustcomponents.sdk.RoomListService as InnerRustRoomListService
 
 internal class RustRoomListService(
     private val innerRoomListService: InnerRustRoomListService,

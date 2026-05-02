@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.recentemojis.impl
+package io.prism.android.libraries.recentemojis.impl
 
 import com.google.common.truth.Truth.assertThat
 import io.element.android.emojibasebindings.Emoji
 import io.element.android.emojibasebindings.EmojibaseCategory
 import io.element.android.emojibasebindings.EmojibaseCategory.People
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.recentemojis.test.FakeEmojibaseProvider
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.recentemojis.test.FakeEmojibaseProvider
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf

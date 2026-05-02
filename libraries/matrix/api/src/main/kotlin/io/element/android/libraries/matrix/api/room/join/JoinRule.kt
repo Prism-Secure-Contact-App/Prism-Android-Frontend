@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.join
+package io.prism.android.libraries.matrix.api.room.join
 
 import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList

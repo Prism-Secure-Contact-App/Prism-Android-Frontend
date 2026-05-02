@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.pinned.banner
 
 import androidx.compose.ui.text.AnnotatedString
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 
 data class PinnedMessagesBannerItem(
     val eventId: EventId,

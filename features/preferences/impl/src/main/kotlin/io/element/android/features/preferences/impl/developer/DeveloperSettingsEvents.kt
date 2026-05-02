@@ -11,7 +11,7 @@ package io.prism.android.features.preferences.impl.developer
 import androidx.compose.ui.graphics.Color
 import io.prism.android.features.preferences.impl.developer.tracing.LogLevelItem
 import io.prism.android.libraries.featureflag.ui.model.FeatureUiModel
-import io.prism.android.libraries.prism.api.tracing.TraceLogPack
+import io.prism.android.libraries.matrix.api.tracing.TraceLogPack
 
 sealed interface DeveloperSettingsEvents {
     data class UpdateEnabledFeature(val feature: FeatureUiModel, val isEnabled: Boolean) : DeveloperSettingsEvents

@@ -8,7 +8,7 @@
 
 package io.prism.android.features.invite.api
 
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import kotlinx.coroutines.flow.Flow
 
 interface SeenInvitesStore {

@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 
 @Composable
 fun RoomNotificationSettingsOptions(

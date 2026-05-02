@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.media
+package io.prism.android.libraries.matrix.test.media
 
-import io.element.android.libraries.matrix.api.media.MediaUploadHandler
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.media.MediaUploadHandler
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlin.coroutines.cancellation.CancellationException
 
 class FakeMediaUploadHandler(

@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.item.event
+package io.prism.android.libraries.matrix.impl.timeline.item.event
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.TransactionId
-import io.prism.android.libraries.prism.api.timeline.item.event.EventOrTransactionId
-import org.prism.rustcomponents.sdk.EventOrTransactionId as RustEventOrTransactionId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
+import org.matrix.rustcomponents.sdk.EventOrTransactionId as RustEventOrTransactionId
 
 fun RustEventOrTransactionId.map(): EventOrTransactionId = when (this) {
     is RustEventOrTransactionId.EventId -> EventOrTransactionId.Event(EventId(eventId))

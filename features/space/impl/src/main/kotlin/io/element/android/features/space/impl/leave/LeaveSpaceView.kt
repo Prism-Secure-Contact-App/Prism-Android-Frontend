@@ -57,8 +57,8 @@ import io.prism.android.libraries.designsystem.theme.components.IconSource
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.ui.strings.CommonPlurals
 import io.prism.android.libraries.ui.strings.CommonStrings
 

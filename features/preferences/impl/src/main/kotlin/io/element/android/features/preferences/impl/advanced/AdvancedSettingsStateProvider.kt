@@ -10,7 +10,7 @@ package io.prism.android.features.preferences.impl.advanced
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
 import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 
 open class AdvancedSettingsStateProvider : PreviewParameterProvider<AdvancedSettingsState> {

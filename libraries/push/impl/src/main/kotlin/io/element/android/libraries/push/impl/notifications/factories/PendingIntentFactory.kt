@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.factories
+package io.prism.android.libraries.push.impl.notifications.factories
 
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.androidutils.uri.createIgnoredUri
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.push.impl.intent.IntentProvider
-import io.element.android.libraries.push.impl.notifications.NotificationActionIds
-import io.element.android.libraries.push.impl.notifications.NotificationBroadcastReceiver
-import io.element.android.libraries.push.impl.notifications.TestNotificationReceiver
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.libraries.androidutils.uri.createIgnoredUri
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.push.impl.intent.IntentProvider
+import io.prism.android.libraries.push.impl.notifications.NotificationActionIds
+import io.prism.android.libraries.push.impl.notifications.NotificationBroadcastReceiver
+import io.prism.android.libraries.push.impl.notifications.TestNotificationReceiver
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 
 @Inject
 class PendingIntentFactory(

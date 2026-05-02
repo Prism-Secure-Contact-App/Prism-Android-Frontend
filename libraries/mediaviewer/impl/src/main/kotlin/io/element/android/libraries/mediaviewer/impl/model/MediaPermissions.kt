@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.model
+package io.prism.android.libraries.mediaviewer.impl.model
 
-import io.element.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
 
 data class MediaPermissions(
     val canRedactOwn: Boolean,

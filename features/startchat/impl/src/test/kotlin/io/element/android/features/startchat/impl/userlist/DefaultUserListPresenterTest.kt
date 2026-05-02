@@ -11,9 +11,9 @@ package io.prism.android.features.startchat.impl.userlist
 import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import io.prism.android.libraries.usersearch.api.UserSearchResult
 import io.prism.android.libraries.usersearch.api.UserSearchResultState
 import io.prism.android.libraries.usersearch.test.FakeUserRepository
@@ -125,28 +125,28 @@ class DefaultUserListPresenterTest {
 
             // When the user repository emits a result, it's copied to the state
             val result = UserSearchResultState(
-                results = listOf(UserSearchResult(aPRISMUser())),
+                results = listOf(UserSearchResult(aMatrixUser())),
                 isSearching = false,
             )
             userRepository.emitState(result)
             awaitItem().also { state ->
                 assertThat(state.searchResults).isEqualTo(
                     SearchBarResultState.Results(
-                        persistentListOf(UserSearchResult(aPRISMUser()))
+                        persistentListOf(UserSearchResult(aMatrixUser()))
                     )
                 )
                 assertThat(state.showSearchLoader).isFalse()
             }
             // When the user repository emits another result, it replaces the previous value
             val newResult = UserSearchResultState(
-                results = aPRISMUserList().map { UserSearchResult(it) },
+                results = aMatrixUserList().map { UserSearchResult(it) },
                 isSearching = false,
             )
             userRepository.emitState(newResult)
             awaitItem().also { state ->
                 assertThat(state.searchResults).isEqualTo(
                     SearchBarResultState.Results(
-                        aPRISMUserList().map { UserSearchResult(it) }
+                        aMatrixUserList().map { UserSearchResult(it) }
                     )
                 )
                 assertThat(state.showSearchLoader).isFalse()
@@ -193,10 +193,10 @@ class DefaultUserListPresenterTest {
             skipItems(1)
             val initialState = awaitItem()
 
-            val userA = aPRISMUser("@userA:domain", "A")
-            val userB = aPRISMUser("@userB:domain", "B")
-            val userABis = aPRISMUser("@userA:domain", "A")
-            val userC = aPRISMUser("@userC:domain", "C")
+            val userA = aMatrixUser("@userA:domain", "A")
+            val userB = aMatrixUser("@userB:domain", "B")
+            val userABis = aMatrixUser("@userA:domain", "A")
+            val userC = aMatrixUser("@userC:domain", "C")
 
             initialState.eventSink(UserListEvents.AddToSelection(userA))
             assertThat(awaitItem().selectedUsers).containsExactly(userA)

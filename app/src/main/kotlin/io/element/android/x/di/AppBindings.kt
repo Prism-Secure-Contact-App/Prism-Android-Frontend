@@ -19,8 +19,8 @@ import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.di.identifiers.SentrySdkDsn
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
-import io.prism.android.libraries.prism.api.platform.InitPlatformService
-import io.prism.android.libraries.prism.api.tracing.TracingService
+import io.prism.android.libraries.matrix.api.platform.InitPlatformService
+import io.prism.android.libraries.matrix.api.tracing.TracingService
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.services.analytics.api.AnalyticsService
 

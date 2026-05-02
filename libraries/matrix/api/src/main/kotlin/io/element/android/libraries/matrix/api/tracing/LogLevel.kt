@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.tracing
+package io.prism.android.libraries.matrix.api.tracing
 
 /**
  * Log levels for tracing in the SDK.

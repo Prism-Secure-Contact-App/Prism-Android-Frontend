@@ -10,7 +10,7 @@ package io.prism.android.features.rageshake.impl.bugreport
 
 import io.prism.android.features.rageshake.api.reporter.BugReporter
 import io.prism.android.features.rageshake.api.reporter.BugReporterListener
-import io.prism.android.libraries.prism.test.A_FAILURE_REASON
+import io.prism.android.libraries.matrix.test.A_FAILURE_REASON
 import kotlinx.coroutines.delay
 import java.io.File
 

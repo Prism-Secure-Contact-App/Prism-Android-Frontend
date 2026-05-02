@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -18,8 +18,8 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.androidutils.system.areAnimationsEnabled
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.androidutils.system.areAnimationsEnabled
 import kotlinx.coroutines.delay
 import me.saket.telephoto.ExperimentalTelephotoApi
 import me.saket.telephoto.flick.FlickToDismiss
@@ -100,5 +100,5 @@ private fun backgroundColorFor(flickState: FlickToDismissState): Color {
         },
         label = "Background alpha",
     )
-    return ElementTheme.colors.bgCanvasDefault.copy(alpha = animatedAlpha)
+    return PRISMTheme.colors.bgCanvasDefault.copy(alpha = animatedAlpha)
 }

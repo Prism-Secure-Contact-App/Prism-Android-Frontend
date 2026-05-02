@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.fixtures.fakes
+package io.prism.android.libraries.matrix.impl.fixtures.fakes
 
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.tests.testutils.simulateLongTask
 import org.matrix.rustcomponents.sdk.BackupState
 import org.matrix.rustcomponents.sdk.BackupStateListener
 import org.matrix.rustcomponents.sdk.Encryption

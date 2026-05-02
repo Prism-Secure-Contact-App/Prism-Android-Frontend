@@ -9,8 +9,8 @@
 package io.prism.android.features.poll.test.actions
 
 import io.prism.android.features.poll.api.actions.EndPollAction
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 class FakeEndPollAction : EndPollAction {
     private var executionCount = 0

@@ -39,7 +39,7 @@ import io.prism.android.libraries.designsystem.theme.components.ListItem
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.featureflag.ui.FeatureListView
 import io.prism.android.libraries.featureflag.ui.model.FeatureUiModel
-import io.prism.android.libraries.prism.api.tracing.TraceLogPack
+import io.prism.android.libraries.matrix.api.tracing.TraceLogPack
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.mhssn.colorpicker.ColorPickerDialog
 import io.mhssn.colorpicker.ColorPickerType

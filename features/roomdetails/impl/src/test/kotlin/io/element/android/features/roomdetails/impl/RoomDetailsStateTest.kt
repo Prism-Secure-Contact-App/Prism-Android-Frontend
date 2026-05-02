@@ -9,7 +9,7 @@
 package io.prism.android.features.roomdetails.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
 import kotlinx.collections.immutable.persistentListOf
 import org.junit.Test
 

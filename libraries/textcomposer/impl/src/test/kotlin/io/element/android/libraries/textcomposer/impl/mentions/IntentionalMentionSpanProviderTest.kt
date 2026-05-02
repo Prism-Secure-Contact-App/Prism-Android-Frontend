@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.impl.mentions
+package io.prism.android.libraries.textcomposer.impl.mentions
 
 import android.net.Uri
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.toRoomIdOrAlias
-import io.element.android.libraries.matrix.api.permalink.PermalinkData
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.permalink.FakePermalinkParser
-import io.element.android.libraries.textcomposer.mentions.MentionType
-import io.element.android.tests.testutils.WarmUpRule
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.textcomposer.mentions.MentionType
+import io.prism.android.tests.testutils.WarmUpRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

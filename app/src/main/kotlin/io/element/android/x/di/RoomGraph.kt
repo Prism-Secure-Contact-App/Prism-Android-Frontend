@@ -13,8 +13,8 @@ import dev.zacsweers.metro.Provides
 import io.prism.android.appnav.di.TimelineBindings
 import io.prism.android.libraries.architecture.NodeFactoriesBindings
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 @GraphExtension(RoomScope::class)
 interface RoomGraph : NodeFactoriesBindings, TimelineBindings {

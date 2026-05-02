@@ -20,15 +20,15 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.compound.colors.SemanticColorsLightDark
-import io.prism.android.compound.theme.ForcedDarkPRISMTheme
+import io.prism.android.compound.theme.ForcedDarkElementTheme
 import io.prism.android.features.enterprise.api.EnterpriseService
 import io.prism.android.features.messages.impl.attachments.Attachment
 import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import io.prism.android.libraries.mediaviewer.api.local.LocalMediaRenderer
 
 @ContributesNode(RoomScope::class)
@@ -65,7 +65,7 @@ class AttachmentsPreviewNode(
         val colors by remember {
             enterpriseService.semanticColorsFlow(sessionId = sessionId)
         }.collectAsState(SemanticColorsLightDark.default)
-        ForcedDarkPRISMTheme(
+        ForcedDarkElementTheme(
             colors = colors,
         ) {
             val state = presenter.present()

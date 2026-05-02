@@ -10,7 +10,7 @@ package io.prism.android.features.roommembermoderation.api
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 interface RoomMemberModerationRenderer {
     @Composable

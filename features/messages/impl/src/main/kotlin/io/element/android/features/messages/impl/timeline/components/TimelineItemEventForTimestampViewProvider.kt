@@ -13,8 +13,8 @@ import io.prism.android.features.messages.impl.timeline.aTimelineItemEvent
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.event.aTimelineItemRedactedContent
 import io.prism.android.features.messages.impl.timeline.model.event.aTimelineItemTextContent
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageShield
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageShield
 
 class TimelineItemEventForTimestampViewProvider : PreviewParameterProvider<TimelineItem.Event> {
     override val values: Sequence<TimelineItem.Event>

@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.timeline.model
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 import kotlinx.collections.immutable.toImmutableList
 import java.text.DateFormat
 import java.util.Date

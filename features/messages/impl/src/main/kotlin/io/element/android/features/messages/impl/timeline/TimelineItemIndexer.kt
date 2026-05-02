@@ -10,7 +10,7 @@ package io.prism.android.features.messages.impl.timeline
 
 import dev.zacsweers.metro.Inject
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock

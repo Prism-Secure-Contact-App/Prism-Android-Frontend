@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush.troubleshoot
+package io.prism.android.libraries.pushproviders.unifiedpush.troubleshoot
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.unifiedpush.UnifiedPushConfig
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.api.test.TestFilterData
-import io.element.android.libraries.troubleshoot.test.FakeNotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.test.runAndTestState
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.unifiedpush.UnifiedPushConfig
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.api.test.TestFilterData
+import io.prism.android.libraries.troubleshoot.test.FakeNotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.test.runAndTestState
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

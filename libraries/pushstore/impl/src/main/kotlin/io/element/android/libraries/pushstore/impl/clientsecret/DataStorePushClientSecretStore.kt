@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.impl.clientsecret
+package io.prism.android.libraries.pushstore.impl.clientsecret
 
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.preferences.api.store.PreferenceDataStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecretStore
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.preferences.api.store.PreferenceDataStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecretStore
 import kotlinx.coroutines.flow.first
 
 @ContributesBinding(AppScope::class)

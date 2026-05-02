@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.model
+package io.prism.android.libraries.matrix.ui.model
 
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.room.RoomInfo
-import io.element.android.libraries.matrix.api.roomlist.RoomSummary
-import io.element.android.libraries.matrix.api.user.MatrixUser
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.ImmutableList
 
 data class SelectRoomInfo(
@@ -22,7 +22,7 @@ data class SelectRoomInfo(
     val name: String?,
     val canonicalAlias: RoomAlias?,
     val avatarUrl: String?,
-    val heroes: ImmutableList<MatrixUser>,
+    val heroes: ImmutableList<PRISMUser>,
     val isTombstoned: Boolean,
 ) {
     fun getAvatarData(size: AvatarSize) = AvatarData(

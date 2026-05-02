@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.certificates
+package io.prism.android.libraries.matrix.impl.certificates
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding

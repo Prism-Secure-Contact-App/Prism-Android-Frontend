@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.media
+package io.prism.android.libraries.matrix.impl.media
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.media.MediaPreviewConfig
-import io.prism.android.libraries.prism.api.media.MediaPreviewService
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
-import io.prism.android.libraries.prism.impl.util.mxCallbackFlow
+import io.prism.android.libraries.matrix.api.media.MediaPreviewConfig
+import io.prism.android.libraries.matrix.api.media.MediaPreviewService
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.impl.util.mxCallbackFlow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.InviteAvatars
-import org.prism.rustcomponents.sdk.MediaPreviewConfigListener
-import org.prism.rustcomponents.sdk.MediaPreviews
-import org.prism.rustcomponents.sdk.MediaPreviewConfig as RustMediaPreviewConfig
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.InviteAvatars
+import org.matrix.rustcomponents.sdk.MediaPreviewConfigListener
+import org.matrix.rustcomponents.sdk.MediaPreviews
+import org.matrix.rustcomponents.sdk.MediaPreviewConfig as RustMediaPreviewConfig
 
 class RustMediaPreviewService(
     sessionCoroutineScope: CoroutineScope,

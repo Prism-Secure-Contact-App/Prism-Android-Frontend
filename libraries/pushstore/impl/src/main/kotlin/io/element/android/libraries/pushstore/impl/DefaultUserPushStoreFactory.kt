@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.impl
+package io.prism.android.libraries.pushstore.impl
 
 import android.content.Context
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.preferences.api.store.PreferenceDataStoreFactory
-import io.element.android.libraries.pushstore.api.UserPushStore
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.preferences.api.store.PreferenceDataStoreFactory
+import io.prism.android.libraries.pushstore.api.UserPushStore
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
 import java.util.concurrent.ConcurrentHashMap
 
 @SingleIn(AppScope::class)

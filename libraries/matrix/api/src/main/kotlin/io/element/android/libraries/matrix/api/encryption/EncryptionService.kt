@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.encryption
+package io.prism.android.libraries.matrix.api.encryption
 
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 

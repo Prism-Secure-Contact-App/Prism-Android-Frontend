@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room
+package io.prism.android.libraries.matrix.api.room
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraft
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
-import io.prism.android.libraries.prism.api.room.tombstone.PredecessorRoom
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.api.timeline.ReceiptType
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraft
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.tombstone.PredecessorRoom
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow

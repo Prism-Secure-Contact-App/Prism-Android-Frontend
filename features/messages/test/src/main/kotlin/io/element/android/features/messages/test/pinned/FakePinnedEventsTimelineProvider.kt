@@ -8,8 +8,8 @@
 package io.prism.android.features.messages.test.pinned
 
 import io.prism.android.features.messages.api.pinned.PinnedEventsTimelineProvider
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.test.timeline.FakeTimelineProvider
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.timeline.FakeTimelineProvider
 import kotlinx.coroutines.flow.StateFlow
 
 class FakePinnedEventsTimelineProvider(

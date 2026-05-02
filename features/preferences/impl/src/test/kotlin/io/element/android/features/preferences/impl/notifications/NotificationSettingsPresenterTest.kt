@@ -12,11 +12,11 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.fullscreenintent.api.FullScreenIntentPermissionsState
 import io.prism.android.libraries.fullscreenintent.api.aFullScreenIntentPermissionsState
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
 import io.prism.android.libraries.push.api.PushService
 import io.prism.android.libraries.push.test.FakePushService
 import io.prism.android.libraries.pushproviders.api.Distributor
@@ -358,11 +358,11 @@ class NotificationSettingsPresenterTest {
         pushService: PushService = FakePushService(),
         fullScreenIntentPermissionsStateLambda: () -> FullScreenIntentPermissionsState = { aFullScreenIntentPermissionsState() },
     ): NotificationSettingsPresenter {
-        val prismClient = FakePRISMClient(notificationSettingsService = notificationSettingsService)
+        val matrixClient = FakePRISMClient(notificationSettingsService = notificationSettingsService)
         return NotificationSettingsPresenter(
             notificationSettingsService = notificationSettingsService,
             userPushStoreFactory = FakeUserPushStoreFactory(),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             pushService = pushService,
             systemNotificationsEnabledProvider = FakeSystemNotificationsEnabledProvider(),
             fullScreenIntentPermissionsPresenter = { fullScreenIntentPermissionsStateLambda() },

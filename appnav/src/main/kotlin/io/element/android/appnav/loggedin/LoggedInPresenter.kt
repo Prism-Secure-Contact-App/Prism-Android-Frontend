@@ -19,22 +19,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Inject
-import uk.fathertkt.prism.features.analytics.plan.CryptoSessionStateChange
-import uk.fathertkt.prism.features.analytics.plan.UserProperties
+import im.vector.app.features.analytics.plan.CryptoSessionStateChange
+import im.vector.app.features.analytics.plan.UserProperties
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.core.log.logger.LoggerTag
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.oidc.AccountManagementAction
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.sync.SlidingSyncVersion
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.oidc.AccountManagementAction
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.sync.SlidingSyncVersion
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
 import io.prism.android.libraries.push.api.PushService
 import io.prism.android.libraries.push.api.PusherRegistrationFailure
 import io.prism.android.services.analytics.api.AnalyticsService
@@ -49,7 +49,7 @@ private val pusherTag = LoggerTag("Pusher", LoggerTag.PushLoggerTag)
 
 @Inject
 class LoggedInPresenter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val syncService: SyncService,
     private val pushService: PushService,
     private val sessionVerificationService: SessionVerificationService,
@@ -61,7 +61,7 @@ class LoggedInPresenter(
     override fun present(): LoggedInState {
         val coroutineScope = rememberCoroutineScope()
         val ignoreRegistrationError by remember {
-            pushService.ignoreRegistrationError(prismClient.sessionId)
+            pushService.ignoreRegistrationError(matrixClient.sessionId)
         }.collectAsState(initial = false)
         val pusherRegistrationState = remember<MutableState<AsyncData<Unit>>> { mutableStateOf(AsyncData.Uninitialized) }
         LaunchedEffect(Unit) { preloadAccountManagementUrl() }
@@ -72,7 +72,7 @@ class LoggedInPresenter(
                         SessionVerifiedStatus.Unknown -> Unit
                         SessionVerifiedStatus.Verified -> {
                             Timber.tag(pusherTag.value).d("Ensure pusher is registered")
-                            pushService.ensurePusherIsRegistered(prismClient).fold(
+                            pushService.ensurePusherIsRegistered(matrixClient).fold(
                                 onSuccess = {
                                     Timber.tag(pusherTag.value).d("Pusher registered")
                                     pusherRegistrationState.value = AsyncData.Success(Unit)
@@ -90,7 +90,7 @@ class LoggedInPresenter(
                 }
                 .launchIn(this)
         }
-        val syncIndicator by prismClient.roomListService.syncIndicator.collectAsState()
+        val syncIndicator by matrixClient.roomListService.syncIndicator.collectAsState()
         val isOnline by syncService.isOnline.collectAsState()
         val showSyncSpinner by remember {
             derivedStateOf {
@@ -113,16 +113,16 @@ class LoggedInPresenter(
                     pusherRegistrationState.value = AsyncData.Uninitialized
                     if (event.doNotShowAgain) {
                         coroutineScope.launch {
-                            pushService.setIgnoreRegistrationError(prismClient.sessionId, true)
+                            pushService.setIgnoreRegistrationError(matrixClient.sessionId, true)
                         }
                     }
                 }
                 LoggedInEvents.CheckSlidingSyncProxyAvailability -> coroutineScope.launch {
-                    forceNativeSlidingSyncMigration = prismClient.needsForcedNativeSlidingSyncMigration().getOrDefault(false)
+                    forceNativeSlidingSyncMigration = matrixClient.needsForcedNativeSlidingSyncMigration().getOrDefault(false)
                 }
                 LoggedInEvents.LogoutAndMigrateToNativeSlidingSync -> coroutineScope.launch {
                     // Force the logout since Native Sliding Sync is already enforced by the SDK
-                    prismClient.logout(userInitiated = true, ignoreSdkError = true)
+                    matrixClient.logout(userInitiated = true, ignoreSdkError = true)
                 }
             }
         }
@@ -166,7 +166,7 @@ class LoggedInPresenter(
     }
 
     private fun CoroutineScope.preloadAccountManagementUrl() = launch {
-        prismClient.getAccountManagementUrl(AccountManagementAction.Profile)
-        prismClient.getAccountManagementUrl(AccountManagementAction.DevicesList)
+        matrixClient.getAccountManagementUrl(AccountManagementAction.Profile)
+        matrixClient.getAccountManagementUrl(AccountManagementAction.DevicesList)
     }
 }

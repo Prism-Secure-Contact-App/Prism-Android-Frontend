@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.auth
+package io.prism.android.libraries.matrix.test.auth
 
-import io.element.android.libraries.matrix.api.auth.OidcRedirectUrlProvider
+import io.prism.android.libraries.matrix.api.auth.OidcRedirectUrlProvider
 
 const val FAKE_REDIRECT_URL = "io.element.android:/"
 

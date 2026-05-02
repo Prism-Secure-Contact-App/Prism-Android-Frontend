@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room
+package io.prism.android.libraries.matrix.api.room
 
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.SendHandle
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityStateChange
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.knock.KnockRequest
-import io.prism.android.libraries.prism.api.room.location.LiveLocationShare
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
-import io.prism.android.libraries.prism.api.room.powerlevels.UserRoleChange
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetDriver
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetSettings
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.SendHandle
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityStateChange
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.knock.KnockRequest
+import io.prism.android.libraries.matrix.api.room.location.LiveLocationShare
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.powerlevels.UserRoleChange
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 

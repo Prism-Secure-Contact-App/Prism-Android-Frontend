@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.analytics
+package io.prism.android.libraries.matrix.impl.analytics
 
 import com.google.common.truth.Truth.assertThat
 import im.vector.app.features.analytics.plan.Error
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustUnableToDecryptInfo
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustUnableToDecryptInfo
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.services.analytics.test.FakeAnalyticsService
 import org.junit.Test
 import uniffi.matrix_sdk_crypto.UtdCause
 

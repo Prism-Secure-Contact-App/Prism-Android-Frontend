@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.api
+package io.prism.android.services.analytics.api
 
 object NoopAnalyticsSdkSpan : AnalyticsSdkSpan {
     override fun enter() {}

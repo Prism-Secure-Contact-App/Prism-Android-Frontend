@@ -5,12 +5,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.linknewdevice
+package io.prism.android.libraries.matrix.test.linknewdevice
 
-import io.element.android.libraries.matrix.api.linknewdevice.LinkMobileHandler
-import io.element.android.libraries.matrix.api.linknewdevice.LinkMobileStep
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileHandler
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileStep
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

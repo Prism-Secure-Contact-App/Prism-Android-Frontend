@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.pushgateway
+package io.prism.android.libraries.push.impl.pushgateway
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.push.api.gateway.PushGatewayFailure
-import io.element.android.libraries.push.impl.test.DefaultTestPush
+import io.prism.android.libraries.push.api.gateway.PushGatewayFailure
+import io.prism.android.libraries.push.impl.test.DefaultTestPush
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertThrows
 import org.junit.Test

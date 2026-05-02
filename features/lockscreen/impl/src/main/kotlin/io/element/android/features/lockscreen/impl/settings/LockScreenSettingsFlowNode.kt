@@ -43,7 +43,7 @@ class LockScreenSettingsFlowNode(
     private val pinCodeManager: PinCodeManager,
 ) : BaseFlowNode<LockScreenSettingsFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Loading,
+        initialElement = NavTarget.Loading,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

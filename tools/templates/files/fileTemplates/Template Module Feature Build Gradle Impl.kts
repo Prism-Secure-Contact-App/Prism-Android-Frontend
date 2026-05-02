@@ -2,12 +2,12 @@ import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
 }
 
 android {
-    namespace = "io.element.android.features.${MODULE_NAME}.impl"
+    namespace = "io.prism.android.features.${MODULE_NAME}.impl"
 }
 
 setupDependencyInjection()

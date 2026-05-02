@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.workmanager
+package io.prism.android.libraries.push.impl.workmanager
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,23 +17,23 @@ import androidx.work.impl.utils.taskexecutor.WorkManagerTaskExecutor
 import androidx.work.workDataOf
 import com.google.common.truth.Truth.assertThat
 import com.google.common.util.concurrent.ListenableFuture
-import io.element.android.features.networkmonitor.api.NetworkStatus
-import io.element.android.features.networkmonitor.test.FakeNetworkMonitor
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.exception.ClientException
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.libraries.push.impl.history.FakePushHistoryService
-import io.element.android.libraries.push.impl.notifications.FakeNotifiableEventResolver
-import io.element.android.libraries.push.impl.notifications.FakeNotificationResultProcessor
-import io.element.android.libraries.push.impl.notifications.fixtures.aPushRequest
-import io.element.android.libraries.push.impl.notifications.model.ResolvedPushEvent
-import io.element.android.libraries.push.impl.push.SyncOnNotifiableEvent
-import io.element.android.libraries.push.test.push.FakePushHandlingWakeLock
-import io.element.android.libraries.workmanager.api.WorkManagerRequestBuilder
-import io.element.android.libraries.workmanager.api.di.MetroWorkerFactory
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.features.networkmonitor.api.NetworkStatus
+import io.prism.android.features.networkmonitor.test.FakeNetworkMonitor
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.push.impl.history.FakePushHistoryService
+import io.prism.android.libraries.push.impl.notifications.FakeNotifiableEventResolver
+import io.prism.android.libraries.push.impl.notifications.FakeNotificationResultProcessor
+import io.prism.android.libraries.push.impl.notifications.fixtures.aPushRequest
+import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
+import io.prism.android.libraries.push.impl.push.SyncOnNotifiableEvent
+import io.prism.android.libraries.push.test.push.FakePushHandlingWakeLock
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestBuilder
+import io.prism.android.libraries.workmanager.api.di.MetroWorkerFactory
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy

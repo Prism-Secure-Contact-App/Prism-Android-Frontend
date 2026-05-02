@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.sync
+package io.prism.android.libraries.matrix.impl.sync
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.sync.SyncState
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.SyncServiceState
 

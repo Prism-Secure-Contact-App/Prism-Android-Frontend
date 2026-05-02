@@ -7,7 +7,7 @@
 
 package io.prism.android.features.home.impl.spacefilters
 
-import io.prism.android.libraries.prism.api.spaces.SpaceServiceFilter
+import io.prism.android.libraries.matrix.api.spaces.SpaceServiceFilter
 
 sealed interface SpaceFiltersEvent {
     // Only valid in Unselected state

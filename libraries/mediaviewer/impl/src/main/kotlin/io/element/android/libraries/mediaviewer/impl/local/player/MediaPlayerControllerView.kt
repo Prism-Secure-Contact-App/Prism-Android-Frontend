@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.player
+package io.prism.android.libraries.mediaviewer.impl.local.player
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -33,19 +33,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.audio.api.AudioFocus
-import io.element.android.libraries.audio.api.AudioFocusRequester
-import io.element.android.libraries.dateformatter.api.toHumanReadableDuration
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.IconButton
-import io.element.android.libraries.designsystem.theme.components.Slider
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.mediaviewer.impl.util.bgCanvasWithTransparency
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.audio.api.AudioFocus
+import io.prism.android.libraries.audio.api.AudioFocusRequester
+import io.prism.android.libraries.dateformatter.api.toHumanReadableDuration
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.IconButton
+import io.prism.android.libraries.designsystem.theme.components.Slider
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.mediaviewer.impl.util.bgCanvasWithTransparency
+import io.prism.android.libraries.ui.strings.CommonStrings
 import timber.log.Timber
 
 @Composable
@@ -92,9 +92,9 @@ fun MediaPlayerControllerView(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 val bgColor = if (state.isPlaying) {
-                    ElementTheme.colors.bgCanvasDefault
+                    PRISMTheme.colors.bgCanvasDefault
                 } else {
-                    ElementTheme.colors.textPrimary
+                    PRISMTheme.colors.textPrimary
                 }
                 Box(
                     modifier = Modifier
@@ -111,13 +111,13 @@ fun MediaPlayerControllerView(
                     if (state.isPlaying) {
                         Icon(
                             imageVector = CompoundIcons.PauseSolid(),
-                            tint = ElementTheme.colors.iconPrimary,
+                            tint = PRISMTheme.colors.iconPrimary,
                             contentDescription = stringResource(CommonStrings.a11y_pause)
                         )
                     } else {
                         Icon(
                             imageVector = CompoundIcons.PlaySolid(),
-                            tint = ElementTheme.colors.iconOnSolidPrimary,
+                            tint = PRISMTheme.colors.iconOnSolidPrimary,
                             contentDescription = stringResource(CommonStrings.a11y_play)
                         )
                     }
@@ -128,8 +128,8 @@ fun MediaPlayerControllerView(
                         .padding(horizontal = 8.dp),
                     text = state.displayProgressInMillis.toHumanReadableDuration(),
                     textAlign = TextAlign.Center,
-                    color = ElementTheme.colors.textPrimary,
-                    style = ElementTheme.typography.fontBodyXsMedium,
+                    color = PRISMTheme.colors.textPrimary,
+                    style = PRISMTheme.typography.fontBodyXsMedium,
                 )
                 var lastSelectedValue by remember { mutableFloatStateOf(-1f) }
                 Slider(
@@ -156,8 +156,8 @@ fun MediaPlayerControllerView(
                         .padding(horizontal = 8.dp),
                     text = formattedDuration,
                     textAlign = TextAlign.Center,
-                    color = ElementTheme.colors.textPrimary,
-                    style = ElementTheme.typography.fontBodyXsMedium,
+                    color = PRISMTheme.colors.textPrimary,
+                    style = PRISMTheme.typography.fontBodyXsMedium,
                 )
                 if (state.canMute) {
                     IconButton(
@@ -166,13 +166,13 @@ fun MediaPlayerControllerView(
                         if (state.isMuted) {
                             Icon(
                                 imageVector = CompoundIcons.VolumeOffSolid(),
-                                tint = ElementTheme.colors.iconPrimary,
+                                tint = PRISMTheme.colors.iconPrimary,
                                 contentDescription = stringResource(CommonStrings.common_unmute)
                             )
                         } else {
                             Icon(
                                 imageVector = CompoundIcons.VolumeOnSolid(),
-                                tint = ElementTheme.colors.iconPrimary,
+                                tint = PRISMTheme.colors.iconPrimary,
                                 contentDescription = stringResource(CommonStrings.common_mute)
                             )
                         }
@@ -187,7 +187,7 @@ fun MediaPlayerControllerView(
 @Composable
 internal fun MediaPlayerControllerViewPreview(
     @PreviewParameter(MediaPlayerControllerStateProvider::class) state: MediaPlayerControllerState
-) = ElementPreview {
+) = PRISMPreview {
     MediaPlayerControllerView(
         state = state,
         onTogglePlay = {},

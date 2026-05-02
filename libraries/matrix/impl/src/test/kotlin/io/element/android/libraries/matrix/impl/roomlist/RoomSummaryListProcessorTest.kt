@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.roomlist.RoomSummary
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoom
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID_2
-import io.element.android.libraries.matrix.test.A_ROOM_ID_3
-import io.element.android.libraries.matrix.test.A_ROOM_ID_4
-import io.element.android.libraries.matrix.test.room.aRoomSummary
-import io.element.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoom
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_3
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_4
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.services.analytics.test.FakeAnalyticsService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope

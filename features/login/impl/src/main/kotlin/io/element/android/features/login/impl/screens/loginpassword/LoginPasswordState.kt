@@ -11,7 +11,7 @@ package io.prism.android.features.login.impl.screens.loginpassword
 import android.os.Parcelable
 import io.prism.android.features.login.impl.accountprovider.AccountProvider
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 import kotlinx.parcelize.Parcelize
 
 data class LoginPasswordState(

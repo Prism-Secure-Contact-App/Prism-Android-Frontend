@@ -12,8 +12,7 @@ import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.Assisted
-import dev.zacsweers.metro.assisted.AssistedFactory
-import io.prism.android.libraries.architecture.presentNode
+import dev.zacsweers.metro.AssistedFactory
 
 class VaultNode @AssistedInject constructor(
     @Assisted buildContext: BuildContext,
@@ -33,7 +32,7 @@ class VaultNode @AssistedInject constructor(
 
     @Composable
     override fun View(modifier: Modifier) {
-        val state = presentNode(presenter)
+        val state = presenter.present()
         VaultView(
             state = state,
             onBack = onBack,

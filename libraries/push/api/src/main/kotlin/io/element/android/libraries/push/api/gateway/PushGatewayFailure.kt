@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.api.gateway
+package io.prism.android.libraries.push.api.gateway
 
 sealed class PushGatewayFailure : Exception() {
     class PusherRejected : PushGatewayFailure()

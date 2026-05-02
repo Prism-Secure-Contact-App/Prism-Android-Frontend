@@ -20,8 +20,8 @@ import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.Interaction
-import uk.fathertkt.prism.features.analytics.plan.PinUnpinAction
+import im.vector.app.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.PinUnpinAction
 import io.prism.android.features.messages.api.timeline.HtmlConverterProvider
 import io.prism.android.features.messages.impl.UserEventPermissions
 import io.prism.android.features.messages.impl.actionlist.ActionListState
@@ -43,10 +43,10 @@ import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.room.powerlevels.permissionsAsState
-import io.prism.android.libraries.prism.api.room.roomMembers
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsAsState
+import io.prism.android.libraries.matrix.api.room.roomMembers
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.analyticsproviders.api.trackers.captureInteraction

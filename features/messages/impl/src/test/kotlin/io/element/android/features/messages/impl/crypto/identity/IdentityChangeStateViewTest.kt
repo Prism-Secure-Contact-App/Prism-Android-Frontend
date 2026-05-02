@@ -14,10 +14,10 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.libraries.designsystem.components.avatar.anAvatarData
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.ui.room.IdentityRoomMember
-import io.prism.android.libraries.prism.ui.room.RoomMemberIdentityStateChange
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.ui.room.IdentityRoomMember
+import io.prism.android.libraries.matrix.ui.room.RoomMemberIdentityStateChange
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EventsRecorder
 import io.prism.android.tests.testutils.clickOn

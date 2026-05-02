@@ -20,8 +20,8 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.features.login.impl.accountprovider.AccountProviderDataSource
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.auth.PRISMAuthenticationService
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.core.SessionId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

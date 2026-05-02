@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl.history
+package io.prism.android.libraries.troubleshoot.impl.history
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -33,26 +33,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.async.AsyncActionView
-import io.element.android.libraries.designsystem.components.button.BackButton
-import io.element.android.libraries.designsystem.components.dialogs.ConfirmationDialog
-import io.element.android.libraries.designsystem.components.dialogs.ErrorDialog
-import io.element.android.libraries.designsystem.components.list.ListItemContent
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.DropdownMenu
-import io.element.android.libraries.designsystem.theme.components.DropdownMenuItem
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.IconButton
-import io.element.android.libraries.designsystem.theme.components.ListItem
-import io.element.android.libraries.designsystem.theme.components.Scaffold
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.components.TopAppBar
-import io.element.android.libraries.push.api.history.PushHistoryItem
-import io.element.android.libraries.troubleshoot.impl.R
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.async.AsyncActionView
+import io.prism.android.libraries.designsystem.components.button.BackButton
+import io.prism.android.libraries.designsystem.components.dialogs.ConfirmationDialog
+import io.prism.android.libraries.designsystem.components.dialogs.ErrorDialog
+import io.prism.android.libraries.designsystem.components.list.ListItemContent
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.DropdownMenu
+import io.prism.android.libraries.designsystem.theme.components.DropdownMenuItem
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.IconButton
+import io.prism.android.libraries.designsystem.theme.components.ListItem
+import io.prism.android.libraries.designsystem.theme.components.Scaffold
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.components.TopAppBar
+import io.prism.android.libraries.push.api.history.PushHistoryItem
+import io.prism.android.libraries.troubleshoot.impl.R
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -210,40 +210,40 @@ private fun PushHistoryItem(
             ) {
                 Text(
                     text = pushHistoryItem.formattedDate,
-                    color = ElementTheme.colors.textPrimary,
+                    color = PRISMTheme.colors.textPrimary,
                 )
                 Text(
                     text = pushHistoryItem.providerInfo,
-                    color = ElementTheme.colors.textPrimary,
+                    color = PRISMTheme.colors.textPrimary,
                 )
                 Text(
                     modifier = Modifier.padding(start = 8.dp, top = 8.dp),
                     text = pushHistoryItem.sessionId?.value ?: "No sessionId",
-                    color = ElementTheme.colors.textPrimary,
-                    style = ElementTheme.typography.fontBodyMdRegular,
+                    color = PRISMTheme.colors.textPrimary,
+                    style = PRISMTheme.typography.fontBodyMdRegular,
                 )
                 Text(
                     modifier = Modifier.padding(start = 8.dp),
                     text = pushHistoryItem.roomId?.value ?: "No roomId",
-                    color = ElementTheme.colors.textPrimary,
-                    style = ElementTheme.typography.fontBodyMdRegular,
+                    color = PRISMTheme.colors.textPrimary,
+                    style = PRISMTheme.typography.fontBodyMdRegular,
                 )
                 Text(
                     modifier = Modifier.padding(start = 8.dp),
                     text = pushHistoryItem.eventId?.value ?: "No eventId",
-                    color = ElementTheme.colors.textPrimary,
-                    style = ElementTheme.typography.fontBodyMdRegular,
+                    color = PRISMTheme.colors.textPrimary,
+                    style = PRISMTheme.typography.fontBodyMdRegular,
                 )
                 pushHistoryItem.comment?.let {
                     Text(
                         modifier = Modifier.padding(top = 8.dp),
                         text = it,
                         color = if (pushHistoryItem.hasBeenResolved) {
-                            ElementTheme.colors.textSecondary
+                            PRISMTheme.colors.textSecondary
                         } else {
-                            ElementTheme.colors.textCriticalPrimary
+                            PRISMTheme.colors.textCriticalPrimary
                         },
-                        style = ElementTheme.typography.fontBodyMdRegular,
+                        style = PRISMTheme.typography.fontBodyMdRegular,
                     )
                 }
             }
@@ -251,14 +251,14 @@ private fun PushHistoryItem(
                 Icon(
                     imageVector = CompoundIcons.CheckCircleSolid(),
                     modifier = Modifier.size(24.dp),
-                    tint = ElementTheme.colors.iconSuccessPrimary,
+                    tint = PRISMTheme.colors.iconSuccessPrimary,
                     contentDescription = null,
                 )
             } else {
                 Icon(
                     imageVector = CompoundIcons.Error(),
                     modifier = Modifier.size(24.dp),
-                    tint = ElementTheme.colors.iconCriticalPrimary,
+                    tint = PRISMTheme.colors.iconCriticalPrimary,
                     contentDescription = null,
                 )
             }
@@ -270,7 +270,7 @@ private fun PushHistoryItem(
 @Composable
 internal fun PushHistoryViewPreview(
     @PreviewParameter(PushHistoryStateProvider::class) state: PushHistoryState,
-) = ElementPreview {
+) = PRISMPreview {
     PushHistoryView(
         state = state,
         onBackClick = {},

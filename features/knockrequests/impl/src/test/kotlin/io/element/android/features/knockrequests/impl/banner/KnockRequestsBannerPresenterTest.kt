@@ -11,11 +11,11 @@ package io.prism.android.features.knockrequests.impl.banner
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.knockrequests.api.KnockRequestPermissions
 import io.prism.android.features.knockrequests.impl.data.KnockRequestsService
-import io.prism.android.libraries.prism.api.room.knock.KnockRequest
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.A_USER_ID_3
-import io.prism.android.libraries.prism.test.room.knock.FakeKnockRequest
+import io.prism.android.libraries.matrix.api.room.knock.KnockRequest
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_ID_3
+import io.prism.android.libraries.matrix.test.room.knock.FakeKnockRequest
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.test

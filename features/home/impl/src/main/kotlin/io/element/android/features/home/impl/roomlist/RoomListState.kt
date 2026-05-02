@@ -16,7 +16,7 @@ import io.prism.android.features.home.impl.spacefilters.SpaceFiltersState
 import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteState
 import io.prism.android.features.leaveroom.api.LeaveRoomState
 import io.prism.android.libraries.fullscreenintent.api.FullScreenIntentPermissionsState
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.push.api.battery.BatteryOptimizationState
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet

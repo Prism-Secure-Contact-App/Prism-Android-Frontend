@@ -9,7 +9,7 @@
 package io.prism.android.features.invite.impl.fake
 
 import io.prism.android.features.invite.impl.DeclineInvite
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.simulateLongTask
 

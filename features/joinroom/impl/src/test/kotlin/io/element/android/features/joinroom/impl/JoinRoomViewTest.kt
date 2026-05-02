@@ -15,9 +15,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.features.invite.api.InviteData
 import io.prism.android.features.invite.test.anInviteData
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.room.join.JoinRoom
-import io.prism.android.libraries.prism.test.room.aRoomMember
-import io.prism.android.libraries.prism.ui.model.toInviteSender
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.ui.model.toInviteSender
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam

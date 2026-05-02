@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.impl
+package io.prism.android.libraries.permissions.impl
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.bool.orFalse
-import io.element.android.libraries.permissions.api.PermissionsStore
-import io.element.android.libraries.preferences.api.store.PreferenceDataStoreFactory
+import io.prism.android.libraries.core.bool.orFalse
+import io.prism.android.libraries.permissions.api.PermissionsStore
+import io.prism.android.libraries.preferences.api.store.PreferenceDataStoreFactory
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

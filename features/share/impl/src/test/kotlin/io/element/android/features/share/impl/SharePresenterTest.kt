@@ -18,12 +18,12 @@ import io.prism.android.features.share.api.ShareIntentData
 import io.prism.android.features.share.api.UriToShare
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.test.A_MESSAGE
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.timeline.FakeTimeline
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.test.A_MESSAGE
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.timeline.FakeTimeline
 import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
 import io.prism.android.libraries.mediaupload.api.MediaSenderRoomFactory
 import io.prism.android.libraries.mediaupload.test.FakeMediaOptimizationConfigProvider
@@ -79,11 +79,11 @@ class SharePresenterTest {
                 sendMessageLambda = { _, _, _ -> Result.success(Unit) }
             },
         )
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, joinedRoom)
         }
         val presenter = createSharePresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             shareIntentData = ShareIntentData.PlainText(A_MESSAGE),
         )
         moleculeFlow(RecompositionMode.Immediate) {
@@ -106,11 +106,11 @@ class SharePresenterTest {
                 sendMessageLambda = { _, _, _ -> Result.success(Unit) }
             },
         )
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, joinedRoom)
         }
         val presenter = createSharePresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             shareIntentData = ShareIntentData.PlainText(A_MESSAGE),
         )
         moleculeFlow(RecompositionMode.Immediate) {
@@ -132,14 +132,14 @@ class SharePresenterTest {
         val joinedRoom = FakeJoinedRoom(
             liveTimeline = FakeTimeline(),
         )
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, joinedRoom)
         }
         val mediaSender = FakeMediaSender(
             sendMediaResult = sendMediaResult,
         )
         val presenter = createSharePresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             shareIntentData = ShareIntentData.Uris(
                 text = A_MESSAGE,
                 listOf(
@@ -168,7 +168,7 @@ class SharePresenterTest {
 
 internal fun TestScope.createSharePresenter(
     shareIntentData: ShareIntentData = ShareIntentData.PlainText(A_MESSAGE),
-    prismClient: PRISMClient = FakePRISMClient(),
+    matrixClient: PRISMClient = FakePRISMClient(),
     activeRoomsHolder: ActiveRoomsHolder = DefaultActiveRoomsHolder(),
     mediaSenderRoomFactory: MediaSenderRoomFactory = MediaSenderRoomFactory { FakeMediaSender() },
     mediaOptimizationConfigProvider: MediaOptimizationConfigProvider = FakeMediaOptimizationConfigProvider(),
@@ -177,7 +177,7 @@ internal fun TestScope.createSharePresenter(
     return SharePresenter(
         shareIntentData = shareIntentData,
         sessionCoroutineScope = this,
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         activeRoomsHolder = activeRoomsHolder,
         mediaSenderRoomFactory = mediaSenderRoomFactory,
         mediaOptimizationConfigProvider = mediaOptimizationConfigProvider,

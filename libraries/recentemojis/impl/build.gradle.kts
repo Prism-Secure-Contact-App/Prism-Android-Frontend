@@ -9,12 +9,12 @@
 import extension.setupDependencyInjection
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
 }
 
 android {
-    namespace = "io.element.android.libraries.recentemojis.impl"
+    namespace = "io.prism.android.libraries.recentemojis.impl"
 }
 
 setupDependencyInjection()

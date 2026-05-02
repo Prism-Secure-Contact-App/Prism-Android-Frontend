@@ -14,9 +14,9 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
-import io.prism.android.libraries.prism.api.media.MediaPreviewConfig
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
-import io.prism.android.libraries.prism.test.media.FakeMediaPreviewService
+import io.prism.android.libraries.matrix.api.media.MediaPreviewConfig
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.test.media.FakeMediaPreviewService
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

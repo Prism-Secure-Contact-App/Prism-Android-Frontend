@@ -8,7 +8,7 @@
 
 package io.prism.android.libraries.accountselect.impl
 
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.ImmutableList
 
 data class AccountSelectState(

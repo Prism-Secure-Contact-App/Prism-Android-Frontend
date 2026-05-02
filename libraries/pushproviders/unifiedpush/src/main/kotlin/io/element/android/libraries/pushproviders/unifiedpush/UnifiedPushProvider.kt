@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesIntoSet
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushproviders.api.Config
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
 
 @ContributesIntoSet(AppScope::class)
 class UnifiedPushProvider(
@@ -34,7 +34,7 @@ class UnifiedPushProvider(
         return unifiedPushDistributorProvider.getDistributors()
     }
 
-    override suspend fun registerWith(matrixClient: MatrixClient, distributor: Distributor): Result<Unit> {
+    override suspend fun registerWith(matrixClient: PRISMClient, distributor: Distributor): Result<Unit> {
         val clientSecret = pushClientSecret.getSecretForUser(matrixClient.sessionId)
         return registerUnifiedPushUseCase.execute(distributor, clientSecret)
             .onSuccess {
@@ -51,7 +51,7 @@ class UnifiedPushProvider(
         return getDistributors().find { it.value == distributorValue }
     }
 
-    override suspend fun unregister(matrixClient: MatrixClient): Result<Unit> {
+    override suspend fun unregister(matrixClient: PRISMClient): Result<Unit> {
         val clientSecret = pushClientSecret.getSecretForUser(matrixClient.sessionId)
         return unRegisterUnifiedPushUseCase.unregister(matrixClient, clientSecret)
     }

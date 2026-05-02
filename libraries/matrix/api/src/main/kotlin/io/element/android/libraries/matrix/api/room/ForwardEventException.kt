@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room
+package io.prism.android.libraries.matrix.api.room
 
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 class ForwardEventException(
     val roomIds: List<RoomId>

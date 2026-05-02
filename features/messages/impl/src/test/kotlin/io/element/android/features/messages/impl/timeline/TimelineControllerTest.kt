@@ -10,14 +10,14 @@ package io.prism.android.features.messages.impl.timeline
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.room.IntentionalMention
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_UNIQUE_ID
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.timeline.FakeTimeline
-import io.prism.android.libraries.prism.test.timeline.anEventTimelineItem
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_UNIQUE_ID
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.timeline.FakeTimeline
+import io.prism.android.libraries.matrix.test.timeline.anEventTimelineItem
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.flow.first

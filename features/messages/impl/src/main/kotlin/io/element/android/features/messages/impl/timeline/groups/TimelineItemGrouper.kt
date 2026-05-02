@@ -13,7 +13,7 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.core.UniqueId
 import kotlinx.collections.immutable.toImmutableList
 
 @SingleIn(RoomScope::class)

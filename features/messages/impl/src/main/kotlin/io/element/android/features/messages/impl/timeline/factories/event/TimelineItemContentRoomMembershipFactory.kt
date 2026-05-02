@@ -13,8 +13,8 @@ import io.prism.android.features.messages.impl.timeline.model.event.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemRoomMembershipContent
 import io.prism.android.libraries.core.extensions.orEmpty
 import io.prism.android.libraries.eventformatter.api.TimelineEventFormatter
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.event.EventContent
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventContent
 
 @Inject
 class TimelineItemContentRoomMembershipFactory(

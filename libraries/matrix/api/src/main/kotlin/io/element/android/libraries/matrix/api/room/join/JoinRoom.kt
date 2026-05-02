@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.join
+package io.prism.android.libraries.matrix.api.room.join
 
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
+import im.vector.app.features.analytics.plan.JoinedRoom
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
 
 interface JoinRoom {
     suspend operator fun invoke(

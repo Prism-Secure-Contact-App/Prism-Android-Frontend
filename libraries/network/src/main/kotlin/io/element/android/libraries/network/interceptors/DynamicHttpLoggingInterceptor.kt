@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network.interceptors
+package io.prism.android.libraries.network.interceptors
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.matrix.api.tracing.LogLevel
-import io.element.android.libraries.preferences.api.store.AppPreferencesStore
+import io.prism.android.libraries.matrix.api.tracing.LogLevel
+import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor

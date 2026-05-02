@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.link
 
 import io.prism.android.tests.testutils.lambda.lambdaError
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 class FakeLinkChecker(
     private val isSafeResult: (Link) -> Boolean = { lambdaError() }

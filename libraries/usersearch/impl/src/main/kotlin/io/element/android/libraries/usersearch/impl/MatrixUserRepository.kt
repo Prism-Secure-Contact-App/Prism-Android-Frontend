@@ -6,33 +6,33 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.usersearch.impl
+package io.prism.android.libraries.usersearch.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.MatrixPatterns
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.usersearch.api.UserListDataSource
-import io.element.android.libraries.usersearch.api.UserRepository
-import io.element.android.libraries.usersearch.api.UserSearchResult
-import io.element.android.libraries.usersearch.api.UserSearchResultState
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.PRISMPatterns
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.usersearch.api.UserListDataSource
+import io.prism.android.libraries.usersearch.api.UserRepository
+import io.prism.android.libraries.usersearch.api.UserSearchResult
+import io.prism.android.libraries.usersearch.api.UserSearchResultState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 @ContributesBinding(SessionScope::class)
 class MatrixUserRepository(
-    private val client: MatrixClient,
+    private val client: PRISMClient,
     private val dataSource: UserListDataSource
 ) : UserRepository {
     override fun search(query: String): Flow<UserSearchResultState> = flow {
-        val shouldQueryProfile = MatrixPatterns.isUserId(query) && !client.isMe(UserId(query))
+        val shouldQueryProfile = PRISMPatterns.isUserId(query) && !client.isMe(UserId(query))
         val shouldFetchSearchResults = query.length >= MINIMUM_SEARCH_LENGTH
         // If the search term is a MXID that's not ours, we'll show a 'fake' result for that user, then update it when we get search results.
         val fakeSearchResult = if (shouldQueryProfile) {
-            UserSearchResult(MatrixUser(UserId(query)))
+            UserSearchResult(PRISMUser(UserId(query)))
         } else {
             null
         }
@@ -60,7 +60,7 @@ class MatrixUserRepository(
                 0,
                 dataSource.getProfile(UserId(query))
                     ?.let { UserSearchResult(it) }
-                    ?: UserSearchResult(MatrixUser(UserId(query)), isUnresolved = true)
+                    ?: UserSearchResult(PRISMUser(UserId(query)), isUnresolved = true)
             )
         }
 

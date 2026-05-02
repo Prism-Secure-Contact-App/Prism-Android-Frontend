@@ -11,8 +11,8 @@ package io.prism.android.features.messages.impl.messagecomposer
 import androidx.compose.runtime.Composable
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.prism.android.wysiwyg.compose.RichTextEditorState
-import io.prism.android.wysiwyg.compose.rememberRichTextEditorState
+import io.element.android.wysiwyg.compose.RichTextEditorState
+import io.element.android.wysiwyg.compose.rememberRichTextEditorState
 
 interface RichTextEditorStateFactory {
     @Composable

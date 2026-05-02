@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,14 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.components.avatar.anAvatarData
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.components.avatar.anAvatarData
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 
 /**
  * Ref: https://www.figma.com/design/G1xy0HDZKJf5TCRFmKb5d5/Compound-Android-Components?node-id=3643-2048&m=dev
@@ -52,8 +52,8 @@ fun OrganizationHeader(
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = name,
-            style = ElementTheme.typography.fontHeadingLgBold,
-            color = ElementTheme.colors.textPrimary,
+            style = PRISMTheme.typography.fontHeadingLgBold,
+            color = PRISMTheme.colors.textPrimary,
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(12.dp))
@@ -66,7 +66,7 @@ fun OrganizationHeader(
 
 @PreviewsDayNight
 @Composable
-internal fun OrganizationHeaderPreview() = ElementPreview {
+internal fun OrganizationHeaderPreview() = PRISMPreview {
     OrganizationHeader(
         avatarData = anAvatarData(
             url = "anUrl",

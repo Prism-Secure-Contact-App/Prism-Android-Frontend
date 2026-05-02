@@ -9,7 +9,7 @@
 package io.prism.android.features.invite.test
 
 import io.prism.android.features.invite.api.SeenInvitesStore
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 

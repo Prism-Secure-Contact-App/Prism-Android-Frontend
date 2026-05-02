@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.auth.FAKE_REDIRECT_URL
-import io.element.android.libraries.matrix.test.auth.FakeOidcRedirectUrlProvider
-import io.element.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.auth.FAKE_REDIRECT_URL
+import io.prism.android.libraries.matrix.test.auth.FakeOidcRedirectUrlProvider
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import org.junit.Test
 
 class OidcConfigurationProviderTest {

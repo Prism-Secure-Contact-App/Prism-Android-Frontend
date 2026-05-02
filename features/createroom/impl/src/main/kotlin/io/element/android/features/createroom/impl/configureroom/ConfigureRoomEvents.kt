@@ -8,8 +8,8 @@
 
 package io.prism.android.features.createroom.impl.configureroom
 
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 
 sealed interface ConfigureRoomEvents {
     data class RoomNameChanged(val name: String) : ConfigureRoomEvents

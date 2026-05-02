@@ -43,8 +43,8 @@ fun Project.setupDependencyInjection(
 
 // These dependencies should only be needed for compose library or application modules
 private fun Project.shouldApplyAppyxCodegen(): Boolean {
-    return project.pluginManager.hasPlugin("io.element.android-compose-library")
-        || project.pluginManager.hasPlugin("io.element.android-compose-application")
+    return project.pluginManager.hasPlugin("io.prism.android-compose-library")
+        || project.pluginManager.hasPlugin("io.prism.android-compose-application")
 }
 
 private fun Project.applyPluginIfNeeded(plugin: Provider<PluginDependency>) {

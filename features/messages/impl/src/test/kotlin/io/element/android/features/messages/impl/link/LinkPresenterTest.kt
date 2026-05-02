@@ -14,7 +14,7 @@ import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.lambda.value
 import io.prism.android.tests.testutils.test
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test

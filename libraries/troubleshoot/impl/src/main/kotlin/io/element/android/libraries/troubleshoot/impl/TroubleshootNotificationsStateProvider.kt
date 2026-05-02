@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
 import kotlinx.collections.immutable.toImmutableList
 
 open class TroubleshootNotificationsStateProvider : PreviewParameterProvider<TroubleshootNotificationsState> {

@@ -20,7 +20,7 @@ import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.Composer
+import im.vector.app.features.analytics.plan.Composer
 import io.prism.android.features.location.impl.common.LocationConstraintsCheck
 import io.prism.android.features.location.impl.common.MapDefaults
 import io.prism.android.features.location.impl.common.actions.LocationActions
@@ -37,11 +37,11 @@ import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.dateformatter.api.DurationFormatter
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.room.CreateTimelineParams
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.location.AssetType
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.room.CreateTimelineParams
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import io.prism.android.libraries.textcomposer.model.MessageComposerMode
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.collections.immutable.toImmutableList

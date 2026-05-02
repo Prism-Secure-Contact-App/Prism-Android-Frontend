@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.auth
+package io.prism.android.libraries.matrix.test.auth
 
-import io.element.android.libraries.matrix.api.auth.HomeServerLoginCompatibilityChecker
+import io.prism.android.libraries.matrix.api.auth.HomeServerLoginCompatibilityChecker
 
 class FakeHomeServerLoginCompatibilityChecker(
     private val checkResult: (String) -> Result<Boolean>,

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.core
+package io.prism.android.libraries.matrix.test.core
 
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.core.meta.BuildType
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.core.meta.BuildType
 
 fun aBuildMeta(
     buildType: BuildType = BuildType.DEBUG,

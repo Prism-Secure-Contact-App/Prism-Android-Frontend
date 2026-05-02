@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.mapCatchingExceptions
-import io.element.android.libraries.di.CacheDirectory
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.mxc.MxcTools
+import io.prism.android.libraries.core.extensions.mapCatchingExceptions
+import io.prism.android.libraries.di.CacheDirectory
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.mxc.MxcTools
 import java.io.File
 
 /**
@@ -61,7 +61,7 @@ interface VoiceMessageMediaRepo {
 class DefaultVoiceMessageMediaRepo(
     @CacheDirectory private val cacheDir: File,
     mxcTools: MxcTools,
-    private val matrixMediaLoader: MatrixMediaLoader,
+    private val matrixMediaLoader: PRISMMediaLoader,
     @Assisted private val mediaSource: MediaSource,
     @Assisted private val mimeType: String?,
     @Assisted private val filename: String?,

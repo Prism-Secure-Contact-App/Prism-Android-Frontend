@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.room
+package io.prism.android.libraries.matrix.ui.room
 
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.RoomMembersState
-import io.element.android.libraries.matrix.api.room.RoomMembershipState
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_ID_2
-import io.element.android.libraries.matrix.test.A_USER_ID_3
-import io.element.android.libraries.matrix.test.room.FakeBaseRoom
-import io.element.android.libraries.matrix.test.room.aRoomInfo
-import io.element.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_ID_3
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.aRoomMember
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

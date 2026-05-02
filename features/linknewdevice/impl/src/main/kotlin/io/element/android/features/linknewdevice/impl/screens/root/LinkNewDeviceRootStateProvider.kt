@@ -9,7 +9,7 @@ package io.prism.android.features.linknewdevice.impl.screens.root
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.linknewdevice.ErrorType
+import io.prism.android.libraries.matrix.api.linknewdevice.ErrorType
 
 open class LinkNewDeviceRootStateProvider : PreviewParameterProvider<LinkNewDeviceRootState> {
     override val values: Sequence<LinkNewDeviceRootState>

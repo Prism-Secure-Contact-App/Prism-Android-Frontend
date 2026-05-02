@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.sentry
+package io.prism.android.services.analyticsproviders.sentry
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
@@ -16,18 +16,18 @@ import im.vector.app.features.analytics.itf.VectorAnalyticsEvent
 import im.vector.app.features.analytics.itf.VectorAnalyticsScreen
 import im.vector.app.features.analytics.plan.SuperProperties
 import im.vector.app.features.analytics.plan.UserProperties
-import io.element.android.libraries.core.data.ByteUnit
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.core.meta.BuildType
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.di.identifiers.SentryDsn
-import io.element.android.libraries.matrix.api.analytics.GetDatabaseSizesUseCase
-import io.element.android.services.analyticsproviders.api.AnalyticsProvider
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
-import io.element.android.services.analyticsproviders.api.AnalyticsUserData
-import io.element.android.services.analyticsproviders.sentry.log.analyticsTag
-import io.element.android.services.appnavstate.api.AppNavigationStateService
-import io.element.android.services.appnavstate.api.currentSessionId
+import io.prism.android.libraries.core.data.ByteUnit
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.core.meta.BuildType
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.di.identifiers.SentryDsn
+import io.prism.android.libraries.matrix.api.analytics.GetDatabaseSizesUseCase
+import io.prism.android.services.analyticsproviders.api.AnalyticsProvider
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.services.analyticsproviders.api.AnalyticsUserData
+import io.prism.android.services.analyticsproviders.sentry.log.analyticsTag
+import io.prism.android.services.appnavstate.api.AppNavigationStateService
+import io.prism.android.services.appnavstate.api.currentSessionId
 import io.sentry.Breadcrumb
 import io.sentry.Sentry
 import io.sentry.SentryOptions

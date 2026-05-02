@@ -13,8 +13,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf

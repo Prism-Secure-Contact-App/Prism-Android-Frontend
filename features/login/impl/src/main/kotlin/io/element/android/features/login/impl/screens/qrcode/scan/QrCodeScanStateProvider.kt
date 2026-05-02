@@ -11,8 +11,8 @@ package io.prism.android.features.login.impl.screens.qrcode.scan
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.login.impl.changeserver.AccountProviderAccessException
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrLoginException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
 
 open class QrCodeScanStateProvider : PreviewParameterProvider<QrCodeScanState> {
     override val values: Sequence<QrCodeScanState>

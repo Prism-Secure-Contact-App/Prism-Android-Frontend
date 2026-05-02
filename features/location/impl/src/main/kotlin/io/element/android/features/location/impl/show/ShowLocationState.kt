@@ -13,8 +13,8 @@ import io.prism.android.features.location.impl.common.ui.LocationConstraintsDial
 import io.prism.android.features.location.impl.common.ui.LocationMarkerData
 import io.prism.android.libraries.designsystem.components.PinVariant
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.location.AssetType
 import kotlinx.collections.immutable.ImmutableList
 
 data class ShowLocationState(

@@ -11,11 +11,11 @@ package io.prism.android.features.linknewdevice.impl.screens.number
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.linknewdevice.impl.LinkNewMobileHandler
-import io.prism.android.libraries.prism.api.linknewdevice.LinkMobileStep
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.linknewdevice.FakeCheckCodeSender
-import io.prism.android.libraries.prism.test.linknewdevice.FakeLinkMobileHandler
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileStep
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.linknewdevice.FakeCheckCodeSender
+import io.prism.android.libraries.matrix.test.linknewdevice.FakeLinkMobileHandler
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.lambda.value
@@ -74,11 +74,11 @@ class EnterNumberPresenterTest {
         val checkCodeSender = FakeCheckCodeSender(
             validateResult = validateResult,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             sessionCoroutineScope = backgroundScope,
             createLinkMobileHandlerResult = { Result.success(linkMobileHandler) }
         )
-        val linkNewMobileHandler = LinkNewMobileHandler(prismClient)
+        val linkNewMobileHandler = LinkNewMobileHandler(matrixClient)
         linkNewMobileHandler.createAndStartNewHandler()
         val navigateToWrongNumberErrorLambda = lambdaRecorder<Unit> { }
         val navigator = FakeEnterNumberNavigator(
@@ -116,11 +116,11 @@ class EnterNumberPresenterTest {
             validateResult = validateResult,
             sendResult = sendResult,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             sessionCoroutineScope = backgroundScope,
             createLinkMobileHandlerResult = { Result.success(linkMobileHandler) }
         )
-        val linkNewMobileHandler = LinkNewMobileHandler(prismClient)
+        val linkNewMobileHandler = LinkNewMobileHandler(matrixClient)
         linkNewMobileHandler.createAndStartNewHandler()
         createPresenter(
             linkNewMobileHandler = linkNewMobileHandler,
@@ -154,11 +154,11 @@ class EnterNumberPresenterTest {
             validateResult = validateResult,
             sendResult = sendResult,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             sessionCoroutineScope = backgroundScope,
             createLinkMobileHandlerResult = { Result.success(linkMobileHandler) }
         )
-        val linkNewMobileHandler = LinkNewMobileHandler(prismClient)
+        val linkNewMobileHandler = LinkNewMobileHandler(matrixClient)
         linkNewMobileHandler.createAndStartNewHandler()
         createPresenter(
             linkNewMobileHandler = linkNewMobileHandler,

@@ -13,19 +13,19 @@ import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID_2
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.aRoomSummary
-import io.prism.android.libraries.prism.test.roomlist.FakeDynamicRoomList
-import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceRoomList
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceService
-import io.prism.android.libraries.prism.ui.components.aSelectRoomInfo
-import io.prism.android.libraries.prism.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceRoomList
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.ui.components.aSelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.test
@@ -376,7 +376,7 @@ class AddRoomToSpacePresenterTest {
             addChildToSpaceResult = { _, _ -> Result.success(Unit) },
         ),
         roomListService: FakeRoomListService = FakeRoomListService(),
-        prismClient: FakePRISMClient = FakePRISMClient(
+        matrixClient: FakePRISMClient = FakePRISMClient(
             roomListService = roomListService,
         ),
     ): AddRoomToSpacePresenter {
@@ -385,7 +385,7 @@ class AddRoomToSpacePresenterTest {
                 coroutineScope = coroutineScope,
                 roomListService = roomListService,
                 spaceRoomList = spaceRoomList,
-                prismClient = prismClient,
+                matrixClient = matrixClient,
                 coroutineDispatchers = testCoroutineDispatchers(),
             )
         }

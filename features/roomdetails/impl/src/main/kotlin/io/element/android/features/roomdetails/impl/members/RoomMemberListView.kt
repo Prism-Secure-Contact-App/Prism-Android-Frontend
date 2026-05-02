@@ -50,11 +50,11 @@ import io.prism.android.libraries.designsystem.theme.components.SegmentedButton
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.getBestName
-import io.prism.android.libraries.prism.api.room.toPRISMUser
-import io.prism.android.libraries.prism.ui.components.PRISMUserRow
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.getBestName
+import io.prism.android.libraries.matrix.api.room.toPRISMUser
+import io.prism.android.libraries.matrix.ui.components.MatrixUserRow
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -246,11 +246,11 @@ private fun LazyListScope.roomMemberListSectionItems(
     members: ImmutableList<RoomMemberWithIdentityState>?,
     onMemberSelected: (RoomMember) -> Unit,
 ) {
-    items(members.orEmpty()) { prismUser ->
+    items(members.orEmpty()) { matrixUser ->
         RoomMemberListItem(
             modifier = Modifier.fillMaxWidth(),
-            roomMemberWithIdentity = prismUser,
-            onClick = { onMemberSelected(prismUser.roomMember) }
+            roomMemberWithIdentity = matrixUser,
+            onClick = { onMemberSelected(matrixUser.roomMember) }
         )
     }
 }
@@ -285,9 +285,9 @@ private fun RoomMemberListItem(
         else -> null
     }
 
-    PRISMUserRow(
+    MatrixUserRow(
         modifier = modifier.clickable(onClick = onClick),
-        prismUser = roomMemberWithIdentity.roomMember.toPRISMUser(),
+        matrixUser = roomMemberWithIdentity.roomMember.toPRISMUser(),
         avatarSize = AvatarSize.UserListItem,
         trailingContent = {
             Row(

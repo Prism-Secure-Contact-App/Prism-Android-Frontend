@@ -11,7 +11,7 @@ package io.prism.android.features.poll.api.create
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import io.prism.android.libraries.architecture.FeatureEntryPoint
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 interface CreatePollEntryPoint : FeatureEntryPoint {
     data class Params(

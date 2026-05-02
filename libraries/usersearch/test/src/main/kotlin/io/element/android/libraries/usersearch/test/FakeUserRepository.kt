@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.usersearch.test
+package io.prism.android.libraries.usersearch.test
 
-import io.element.android.libraries.usersearch.api.UserRepository
-import io.element.android.libraries.usersearch.api.UserSearchResultState
+import io.prism.android.libraries.usersearch.api.UserRepository
+import io.prism.android.libraries.usersearch.api.UserSearchResultState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 

@@ -14,9 +14,9 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 import io.prism.android.libraries.previewutils.room.aSpaceRoom
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EventsRecorder

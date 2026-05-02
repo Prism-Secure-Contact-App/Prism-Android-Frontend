@@ -24,21 +24,21 @@ import io.prism.android.features.userprofile.api.UserProfileVerificationState
 import io.prism.android.features.userprofile.impl.root.UserProfilePresenter
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.api.room.StateEventType
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.powerlevels.FakeRoomPermissions
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.powerlevels.FakeRoomPermissions
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.any
 import io.prism.android.tests.testutils.lambda.lambdaError
@@ -61,18 +61,18 @@ class UserProfilePresenterTest {
 
     @Test
     fun `present - returns the user profile data`() = runTest {
-        val prismUser = aPRISMUser(A_USER_ID.value, "Alice", "anAvatarUrl")
+        val matrixUser = aMatrixUser(A_USER_ID.value, "Alice", "anAvatarUrl")
         val client = createFakePRISMClient().apply {
-            givenGetProfileResult(A_USER_ID, Result.success(prismUser))
+            givenGetProfileResult(A_USER_ID, Result.success(matrixUser))
         }
         val presenter = createUserProfilePresenter(
             client = client,
         )
         presenter.test {
             val initialState = awaitFirstItem()
-            assertThat(initialState.userId).isEqualTo(prismUser.userId)
-            assertThat(initialState.userName).isEqualTo(prismUser.displayName)
-            assertThat(initialState.avatarUrl).isEqualTo(prismUser.avatarUrl)
+            assertThat(initialState.userId).isEqualTo(matrixUser.userId)
+            assertThat(initialState.userName).isEqualTo(matrixUser.displayName)
+            assertThat(initialState.avatarUrl).isEqualTo(matrixUser.avatarUrl)
             assertThat(initialState.isBlocked).isEqualTo(AsyncData.Success(false))
             assertThat(initialState.verificationState).isEqualTo(UserProfileVerificationState.UNKNOWN)
             assertThat(initialState.dmRoomId).isEqualTo(A_ROOM_ID)
@@ -216,10 +216,10 @@ class UserProfilePresenterTest {
 
     @Test
     fun `present - BlockUser with error`() = runTest {
-        val prismClient = createFakePRISMClient(
+        val matrixClient = createFakePRISMClient(
             ignoreUserResult = { Result.failure(AN_EXCEPTION) }
         )
-        val presenter = createUserProfilePresenter(client = prismClient)
+        val presenter = createUserProfilePresenter(client = matrixClient)
         presenter.test {
             val initialState = awaitFirstItem(count = 2)
             initialState.eventSink(UserProfileEvents.BlockUser(needsConfirmation = false))
@@ -234,10 +234,10 @@ class UserProfilePresenterTest {
 
     @Test
     fun `present - UnblockUser with error`() = runTest {
-        val prismClient = createFakePRISMClient(
+        val matrixClient = createFakePRISMClient(
             unIgnoreUserResult = { Result.failure(AN_EXCEPTION) }
         )
-        val presenter = createUserProfilePresenter(client = prismClient)
+        val presenter = createUserProfilePresenter(client = matrixClient)
         presenter.test {
             val initialState = awaitFirstItem(count = 2)
             initialState.eventSink(UserProfileEvents.UnblockUser(needsConfirmation = false))
@@ -278,12 +278,12 @@ class UserProfilePresenterTest {
         }.test {
             val initialState = awaitFirstItem()
             assertThat(initialState.startDmActionState).isInstanceOf(AsyncAction.Uninitialized::class.java)
-            val prismUser = PRISMUser(UserId("@alice:server.org"))
+            val matrixUser = PRISMUser(UserId("@alice:server.org"))
             initialState.eventSink(UserProfileEvents.StartDM)
             awaitItem().also { state ->
                 assertThat(state.startDmActionState).isEqualTo(startDMFailureResult)
                 executeResult.assertions().isCalledOnce().with(
-                    value(prismUser),
+                    value(matrixUser),
                     value(false),
                     any(),
                 )
@@ -308,12 +308,12 @@ class UserProfilePresenterTest {
         }.test {
             val initialState = awaitFirstItem()
             assertThat(initialState.startDmActionState).isInstanceOf(AsyncAction.Uninitialized::class.java)
-            val prismUser = PRISMUser(UserId("@alice:server.org"))
+            val matrixUser = PRISMUser(UserId("@alice:server.org"))
             initialState.eventSink(UserProfileEvents.StartDM)
             awaitItem().also { state ->
                 assertThat(state.startDmActionState).isEqualTo(startDMSuccessResult)
                 executeResult.assertions().isCalledOnce().with(
-                    value(prismUser),
+                    value(matrixUser),
                     value(false),
                     any(),
                 )
@@ -323,8 +323,8 @@ class UserProfilePresenterTest {
 
     @Test
     fun `present - start DM action confirmation scenario - cancel`() = runTest {
-        val prismUser = PRISMUser(UserId("@alice:server.org"))
-        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(prismUser)
+        val matrixUser = PRISMUser(UserId("@alice:server.org"))
+        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(matrixUser)
         val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
             actionState.value = startDMConfirmationResult
         }
@@ -339,7 +339,7 @@ class UserProfilePresenterTest {
             val confirmingState = awaitItem()
             assertThat(confirmingState.startDmActionState).isEqualTo(startDMConfirmationResult)
             executeResult.assertions().isCalledOnce().with(
-                value(prismUser),
+                value(matrixUser),
                 value(false),
                 any(),
             )
@@ -353,8 +353,8 @@ class UserProfilePresenterTest {
 
     @Test
     fun `present - start DM action confirmation scenario - confirm`() = runTest {
-        val prismUser = PRISMUser(UserId("@alice:server.org"))
-        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(prismUser)
+        val matrixUser = PRISMUser(UserId("@alice:server.org"))
+        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(matrixUser)
         val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
             actionState.value = startDMConfirmationResult
         }
@@ -369,15 +369,15 @@ class UserProfilePresenterTest {
             val confirmingState = awaitItem()
             assertThat(confirmingState.startDmActionState).isEqualTo(startDMConfirmationResult)
             executeResult.assertions().isCalledOnce().with(
-                value(prismUser),
+                value(matrixUser),
                 value(false),
                 any(),
             )
             // Start DM again should invoke the action with createIfDmDoesNotExist = true
             confirmingState.eventSink(UserProfileEvents.StartDM)
             executeResult.assertions().isCalledExactly(2).withSequence(
-                listOf(value(prismUser), value(false), any()),
-                listOf(value(prismUser), value(true), any()),
+                listOf(value(matrixUser), value(false), any()),
+                listOf(value(matrixUser), value(true), any()),
             )
         }
     }

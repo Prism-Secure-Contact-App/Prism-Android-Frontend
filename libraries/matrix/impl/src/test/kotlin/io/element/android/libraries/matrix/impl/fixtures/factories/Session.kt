@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.fixtures.factories
+package io.prism.android.libraries.matrix.impl.fixtures.factories
 
-import io.element.android.libraries.matrix.test.A_DEVICE_ID
-import io.element.android.libraries.matrix.test.A_HOMESERVER_URL
-import io.element.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_DEVICE_ID
+import io.prism.android.libraries.matrix.test.A_HOMESERVER_URL
+import io.prism.android.libraries.matrix.test.A_USER_ID
 import org.matrix.rustcomponents.sdk.Session
 import org.matrix.rustcomponents.sdk.SlidingSyncVersion
 

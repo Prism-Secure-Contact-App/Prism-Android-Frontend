@@ -10,7 +10,7 @@ package io.prism.android.features.startchat.impl.root
 
 import io.prism.android.features.startchat.impl.userlist.UserListState
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 data class StartChatState(
     val applicationName: String,

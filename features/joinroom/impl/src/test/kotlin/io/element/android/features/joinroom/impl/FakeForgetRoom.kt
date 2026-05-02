@@ -9,7 +9,7 @@
 package io.prism.android.features.joinroom.impl
 
 import io.prism.android.features.joinroom.impl.di.ForgetRoom
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.tests.testutils.simulateLongTask
 
 class FakeForgetRoom(

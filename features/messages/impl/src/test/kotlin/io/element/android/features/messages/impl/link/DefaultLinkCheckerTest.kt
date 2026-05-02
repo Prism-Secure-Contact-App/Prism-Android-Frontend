@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.link
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 import org.junit.Test
 
 class DefaultLinkCheckerTest {

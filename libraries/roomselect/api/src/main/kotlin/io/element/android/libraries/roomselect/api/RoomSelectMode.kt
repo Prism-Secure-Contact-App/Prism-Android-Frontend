@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.api
+package io.prism.android.libraries.roomselect.api
 
 enum class RoomSelectMode {
     Forward,

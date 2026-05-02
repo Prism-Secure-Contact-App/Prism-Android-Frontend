@@ -10,9 +10,9 @@ package io.prism.android.features.home.impl.spacefilters
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
 import io.prism.android.tests.testutils.awaitLastSequentialItem
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -51,13 +51,13 @@ class SpaceFiltersPresenterTest {
     fun `present - when feature flag is enabled and filters exist returns Unselected state`() = runTest {
         val spaceFilter = aSpaceServiceFilter(displayName = "Test Space")
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit filters
@@ -72,13 +72,13 @@ class SpaceFiltersPresenterTest {
     fun `present - ShowFilters event transitions from Unselected to Selecting`() = runTest {
         val spaceFilter = aSpaceServiceFilter(displayName = "Test Space")
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit filters first
@@ -96,13 +96,13 @@ class SpaceFiltersPresenterTest {
     fun `present - Cancel event in Selecting state transitions back to Unselected`() = runTest {
         val spaceFilter = aSpaceServiceFilter(displayName = "Test Space")
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit filters first
@@ -126,13 +126,13 @@ class SpaceFiltersPresenterTest {
     fun `present - SelectFilter event in Selecting state transitions to Selected`() = runTest {
         val spaceFilter = aSpaceServiceFilter(displayName = "Test Space")
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit filters first
@@ -156,13 +156,13 @@ class SpaceFiltersPresenterTest {
     fun `present - ClearSelection event in Selected state transitions back to Unselected`() = runTest {
         val spaceFilter = aSpaceServiceFilter(displayName = "Test Space")
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit filters first
@@ -193,13 +193,13 @@ class SpaceFiltersPresenterTest {
         val spaceFilters = listOf(spaceFilter1, spaceFilter2)
 
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit space filters
@@ -221,13 +221,13 @@ class SpaceFiltersPresenterTest {
         val otherSpaceFilter = aSpaceServiceFilter(displayName = "Personal", roomId = RoomId("!personal:example.com"))
 
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit filters first
@@ -268,13 +268,13 @@ class SpaceFiltersPresenterTest {
         )
 
         val spaceService = FakeSpaceService()
-        val prismClient = FakePRISMClient(spaceService = spaceService)
+        val matrixClient = FakePRISMClient(spaceService = spaceService)
 
         val presenter = createSpaceFiltersPresenter(
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.RoomListSpaceFilters.key to true)
             ),
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             // Emit initial space filters
@@ -303,11 +303,11 @@ class SpaceFiltersPresenterTest {
 
     private fun createSpaceFiltersPresenter(
         featureFlagService: FakeFeatureFlagService = FakeFeatureFlagService(),
-        prismClient: FakePRISMClient = FakePRISMClient(),
+        matrixClient: FakePRISMClient = FakePRISMClient(),
     ): SpaceFiltersPresenter {
         return SpaceFiltersPresenter(
             featureFlagService = featureFlagService,
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
     }
 }

@@ -6,22 +6,22 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixUser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
-open class MatrixUserProvider : PreviewParameterProvider<MatrixUser> {
-    override val values: Sequence<MatrixUser>
+open class MatrixUserProvider : PreviewParameterProvider<PRISMUser> {
+    override val values: Sequence<PRISMUser>
         get() = sequenceOf(
             aMatrixUser(),
             aMatrixUser(displayName = null),
         )
 }
 
-open class MatrixUserWithNullProvider : PreviewParameterProvider<MatrixUser?> {
-    override val values: Sequence<MatrixUser?>
+open class MatrixUserWithNullProvider : PreviewParameterProvider<PRISMUser?> {
+    override val values: Sequence<PRISMUser?>
         get() = sequenceOf(
             aMatrixUser(),
             aMatrixUser(displayName = null),
@@ -29,8 +29,8 @@ open class MatrixUserWithNullProvider : PreviewParameterProvider<MatrixUser?> {
         )
 }
 
-open class MatrixUserWithAvatarProvider : PreviewParameterProvider<MatrixUser?> {
-    override val values: Sequence<MatrixUser?>
+open class MatrixUserWithAvatarProvider : PreviewParameterProvider<PRISMUser?> {
+    override val values: Sequence<PRISMUser?>
         get() = sequenceOf(
             aMatrixUser(displayName = "John Doe"),
             aMatrixUser(displayName = "John Doe", avatarUrl = "anUrl"),
@@ -41,7 +41,7 @@ fun aMatrixUser(
     id: String = "@id_of_alice:server.org",
     displayName: String? = "Alice",
     avatarUrl: String? = null,
-) = MatrixUser(
+) = PRISMUser(
     userId = UserId(id),
     displayName = displayName,
     avatarUrl = avatarUrl,

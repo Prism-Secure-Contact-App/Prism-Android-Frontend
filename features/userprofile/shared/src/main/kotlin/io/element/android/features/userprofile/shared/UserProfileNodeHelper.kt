@@ -12,10 +12,10 @@ import android.content.Context
 import io.prism.android.libraries.androidutils.R
 import io.prism.android.libraries.androidutils.system.startSharePlainTextIntent
 import io.prism.android.libraries.architecture.NodeInputs
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.notification.CallIntent
-import io.prism.android.libraries.prism.api.permalink.PermalinkBuilder
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilder
 import io.prism.android.libraries.ui.strings.CommonStrings
 import timber.log.Timber
 

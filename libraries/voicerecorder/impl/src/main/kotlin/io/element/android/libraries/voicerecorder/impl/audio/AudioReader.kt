@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.impl.audio
+package io.prism.android.libraries.voicerecorder.impl.audio
 
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 
 interface AudioReader {
     /**

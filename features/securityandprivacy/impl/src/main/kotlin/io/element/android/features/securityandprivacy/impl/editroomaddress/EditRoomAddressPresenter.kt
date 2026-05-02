@@ -24,14 +24,14 @@ import io.prism.android.features.securityandprivacy.impl.SecurityAndPrivacyNavig
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.alias.RoomAliasHelper
-import io.prism.android.libraries.prism.api.roomAliasFromName
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidityEffect
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.api.roomAliasFromName
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidityEffect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

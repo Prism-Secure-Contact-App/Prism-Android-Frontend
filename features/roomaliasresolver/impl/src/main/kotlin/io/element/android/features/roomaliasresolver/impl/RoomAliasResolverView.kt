@@ -36,8 +36,8 @@ import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

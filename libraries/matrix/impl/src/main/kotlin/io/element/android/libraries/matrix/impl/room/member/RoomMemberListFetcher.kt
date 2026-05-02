@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.member
+package io.prism.android.libraries.matrix.impl.room.member
 
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.api.room.roomMembers
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.roomMembers
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,9 +20,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.RoomInterface
-import org.prism.rustcomponents.sdk.RoomMembersIterator
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.RoomInterface
+import org.matrix.rustcomponents.sdk.RoomMembersIterator
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.coroutines.coroutineContext

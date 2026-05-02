@@ -9,7 +9,7 @@
 package io.prism.android.features.rageshake.impl.crash
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
 import io.prism.android.libraries.preferences.test.FakePreferenceDataStoreFactory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest

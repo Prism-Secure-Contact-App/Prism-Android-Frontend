@@ -29,7 +29,7 @@ import com.bumble.appyx.navmodel.backstack.operation.pop
 import com.bumble.appyx.navmodel.backstack.operation.push
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.MobileScreen
+import im.vector.app.features.analytics.plan.MobileScreen
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.features.home.api.HomeEntryPoint
 import io.prism.android.features.vault.api.VaultEntryPoint
@@ -55,8 +55,8 @@ import io.prism.android.libraries.designsystem.components.ProgressDialog
 import io.prism.android.libraries.designsystem.utils.DelayedVisibility
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -77,7 +77,7 @@ import kotlin.time.Duration.Companion.milliseconds
 class HomeFlowNode(
     @Assisted buildContext: BuildContext,
     @Assisted plugins: List<Plugin>,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val presenter: HomePresenter,
     private val inviteFriendsUseCase: InviteFriendsUseCase,
     private val analyticsService: AnalyticsService,
@@ -91,7 +91,7 @@ class HomeFlowNode(
     @SessionCoroutineScope private val sessionCoroutineScope: CoroutineScope,
 ) : BaseFlowNode<HomeFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,
@@ -191,7 +191,7 @@ class HomeFlowNode(
 
                 val job = sessionCoroutineScope.launch {
                     runCatchingExceptions {
-                        prismClient.getJoinedRoom(roomId)
+                        matrixClient.getJoinedRoom(roomId)
                     }.fold(
                         onSuccess = { joinedRoom ->
                             if (isActive) {
@@ -272,7 +272,7 @@ class HomeFlowNode(
                 )
             }
             is NavTarget.SelectNewOwnersWhenLeavingRoom -> {
-                val room = runBlocking { prismClient.getJoinedRoom(navTarget.roomId) } ?: error("Room ${navTarget.roomId} not found")
+                val room = runBlocking { matrixClient.getJoinedRoom(navTarget.roomId) } ?: error("Room ${navTarget.roomId} not found")
                 changeRoomMemberRolesEntryPoint.createNode(
                     parentNode = this,
                     buildContext = buildContext,

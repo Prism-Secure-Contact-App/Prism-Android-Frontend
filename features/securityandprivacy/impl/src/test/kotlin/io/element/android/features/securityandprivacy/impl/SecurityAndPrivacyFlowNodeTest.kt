@@ -11,15 +11,15 @@ package io.prism.android.features.securityandprivacy.impl
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.bumble.appyx.core.modality.AncestryInfo
 import com.bumble.appyx.core.modality.BuildContext
-import com.bumble.appyx.navmodel.backstack.activePRISM
+import com.bumble.appyx.navmodel.backstack.activeElement
 import com.bumble.appyx.utils.customisations.NodeCustomisationDirectoryImpl
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.securityandprivacy.api.SecurityAndPrivacyEntryPoint
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -103,5 +103,5 @@ class SecurityAndPrivacyFlowNodeTest {
         )
     }
 
-    private fun SecurityAndPrivacyFlowNode.currentNavTarget() = backstack.activePRISM
+    private fun SecurityAndPrivacyFlowNode.currentNavTarget() = backstack.activeElement
 }

@@ -9,6 +9,7 @@ package uk.fathertkt.prism.bridge
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 
 /**
  * Tek bir kişiyle farklı platformlarda (WhatsApp, Instagram) süregelen

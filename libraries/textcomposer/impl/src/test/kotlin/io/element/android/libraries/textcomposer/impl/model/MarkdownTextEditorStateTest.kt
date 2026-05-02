@@ -6,30 +6,30 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.impl.model
+package io.prism.android.libraries.textcomposer.impl.model
 
 import android.net.Uri
 import androidx.core.text.buildSpannedString
 import androidx.core.text.inSpans
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.core.toRoomIdOrAlias
-import io.element.android.libraries.matrix.api.permalink.PermalinkData
-import io.element.android.libraries.matrix.api.room.IntentionalMention
-import io.element.android.libraries.matrix.test.A_ROOM_ALIAS
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.permalink.FakePermalinkBuilder
-import io.element.android.libraries.matrix.test.permalink.FakePermalinkParser
-import io.element.android.libraries.matrix.test.room.aRoomMember
-import io.element.android.libraries.textcomposer.impl.mentions.aMentionSpanProvider
-import io.element.android.libraries.textcomposer.mentions.MentionSpan
-import io.element.android.libraries.textcomposer.mentions.MentionType
-import io.element.android.libraries.textcomposer.mentions.ResolvedSuggestion
-import io.element.android.libraries.textcomposer.model.Suggestion
-import io.element.android.libraries.textcomposer.model.SuggestionType
-import io.element.android.libraries.textcomposer.model.aMarkdownTextEditorState
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkBuilder
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.textcomposer.impl.mentions.aMentionSpanProvider
+import io.prism.android.libraries.textcomposer.mentions.MentionSpan
+import io.prism.android.libraries.textcomposer.mentions.MentionType
+import io.prism.android.libraries.textcomposer.mentions.ResolvedSuggestion
+import io.prism.android.libraries.textcomposer.model.Suggestion
+import io.prism.android.libraries.textcomposer.model.SuggestionType
+import io.prism.android.libraries.textcomposer.model.aMarkdownTextEditorState
 import org.junit.Test
 import org.junit.runner.RunWith
 

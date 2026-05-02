@@ -17,7 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.features.preferences.impl.R
 import io.prism.android.libraries.architecture.coverage.ExcludeFromCoverage
@@ -41,7 +41,7 @@ import io.prism.android.libraries.designsystem.utils.snackbar.LocalSnackbarDispa
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarHost
 import io.prism.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
 import io.prism.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
 import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.analytics.compose.LocalAnalyticsService

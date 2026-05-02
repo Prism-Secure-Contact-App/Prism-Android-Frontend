@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -29,21 +29,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.dp
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.text.toPx
-import io.element.android.libraries.matrix.api.user.MatrixUser
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.text.toPx
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlin.math.floor
 
 @Composable
 fun SelectedUsersRowList(
-    selectedUsers: ImmutableList<MatrixUser>,
-    onUserRemove: (MatrixUser) -> Unit,
+    selectedUsers: ImmutableList<PRISMUser>,
+    onUserRemove: (PRISMUser) -> Unit,
     modifier: Modifier = Modifier,
     autoScroll: Boolean = false,
-    canDeselect: (MatrixUser) -> Boolean = { true },
+    canDeselect: (PRISMUser) -> Boolean = { true },
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
     val lazyListState = rememberLazyListState()
@@ -124,7 +124,7 @@ fun SelectedUsersRowList(
 
 @PreviewsDayNight
 @Composable
-internal fun SelectedUsersRowListPreview() = ElementPreview {
+internal fun SelectedUsersRowListPreview() = PRISMPreview {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         // Two users that will be visible with no scrolling
         SelectedUsersRowList(

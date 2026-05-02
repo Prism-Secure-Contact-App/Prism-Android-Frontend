@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.details
+package io.prism.android.libraries.mediaviewer.impl.details
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.tests.testutils.EnsureNeverCalled
-import io.element.android.tests.testutils.EnsureNeverCalledWithParam
-import io.element.android.tests.testutils.clickOn
-import io.element.android.tests.testutils.ensureCalledOnceWithParam
-import io.element.android.tests.testutils.setSafeContent
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.tests.testutils.EnsureNeverCalled
+import io.prism.android.tests.testutils.EnsureNeverCalledWithParam
+import io.prism.android.tests.testutils.clickOn
+import io.prism.android.tests.testutils.ensureCalledOnceWithParam
+import io.prism.android.tests.testutils.setSafeContent
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule

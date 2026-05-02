@@ -16,22 +16,22 @@ import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.StateEventType
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import io.prism.android.libraries.prism.api.room.join.AllowRule
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.test.A_ROOM_ALIAS
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.room.powerlevels.FakeRoomPermissions
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.AllowRule
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.powerlevels.FakeRoomPermissions
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
 import io.prism.android.libraries.previewutils.room.aSpaceRoom
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaError
@@ -415,7 +415,7 @@ class SecurityAndPrivacyPresenterTest {
         )
         val presenter = createSecurityAndPrivacyPresenter(
             room = room,
-            prismClient = client,
+            matrixClient = client,
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(
                     FeatureFlags.SpaceSettings.key to true,
@@ -460,7 +460,7 @@ class SecurityAndPrivacyPresenterTest {
         val presenter = createSecurityAndPrivacyPresenter(
             room = room,
             navigator = navigator,
-            prismClient = client,
+            matrixClient = client,
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(
                     FeatureFlags.SpaceSettings.key to true,
@@ -629,7 +629,7 @@ class SecurityAndPrivacyPresenterTest {
         val presenter = createSecurityAndPrivacyPresenter(
             room = room,
             navigator = navigator,
-            prismClient = client,
+            matrixClient = client,
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(
                     FeatureFlags.Knock.key to true,
@@ -858,7 +858,7 @@ class SecurityAndPrivacyPresenterTest {
         )
         val presenter = createSecurityAndPrivacyPresenter(
             room = room,
-            prismClient = client,
+            matrixClient = client,
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.SpaceSettings.key to true)
             )
@@ -900,7 +900,7 @@ class SecurityAndPrivacyPresenterTest {
         )
         val presenter = createSecurityAndPrivacyPresenter(
             room = room,
-            prismClient = client,
+            matrixClient = client,
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(FeatureFlags.SpaceSettings.key to true)
             )
@@ -971,7 +971,7 @@ class SecurityAndPrivacyPresenterTest {
         )
         val presenter = createSecurityAndPrivacyPresenter(
             room = room,
-            prismClient = client,
+            matrixClient = client,
             featureFlagService = FakeFeatureFlagService(
                 initialState = mapOf(
                     FeatureFlags.Knock.key to true,
@@ -1095,7 +1095,7 @@ class SecurityAndPrivacyPresenterTest {
         ),
         navigator: SecurityAndPrivacyNavigator = FakeSecurityAndPrivacyNavigator(),
         featureFlagService: FeatureFlagService = FakeFeatureFlagService(),
-        prismClient: PRISMClient = FakePRISMClient(
+        matrixClient: PRISMClient = FakePRISMClient(
             userIdServerNameLambda = { serverName },
             spaceService = FakeSpaceService(
                 joinedParentsResult = { Result.success(emptyList()) },
@@ -1106,7 +1106,7 @@ class SecurityAndPrivacyPresenterTest {
     ): SecurityAndPrivacyPresenter {
         return SecurityAndPrivacyPresenter(
             room = room,
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             navigator = navigator,
             featureFlagService = featureFlagService,
             spaceSelectionStateHolder = spaceSelectionStateHolder,

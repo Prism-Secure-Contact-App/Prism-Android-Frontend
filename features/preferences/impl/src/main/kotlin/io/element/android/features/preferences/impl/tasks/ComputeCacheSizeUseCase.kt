@@ -15,7 +15,7 @@ import io.prism.android.libraries.androidutils.filesize.FileSizeFormatter
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 import kotlinx.coroutines.withContext
 
 interface ComputeCacheSizeUseCase {
@@ -25,13 +25,13 @@ interface ComputeCacheSizeUseCase {
 @ContributesBinding(SessionScope::class)
 class DefaultComputeCacheSizeUseCase(
     @ApplicationContext private val context: Context,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val coroutineDispatchers: CoroutineDispatchers,
     private val fileSizeFormatter: FileSizeFormatter,
 ) : ComputeCacheSizeUseCase {
     override suspend fun invoke(): String = withContext(coroutineDispatchers.io) {
         var cumulativeSize = 0L
-        cumulativeSize += prismClient.getCacheSize()
+        cumulativeSize += matrixClient.getCacheSize()
         // - 4096 to not include the size fo the folder
         cumulativeSize += (context.cacheDir.getSizeOfFiles() - 4096).coerceAtLeast(0)
         fileSizeFormatter.format(cumulativeSize)

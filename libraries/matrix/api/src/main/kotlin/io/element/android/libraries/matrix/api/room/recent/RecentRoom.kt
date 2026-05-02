@@ -5,10 +5,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.recent
+package io.prism.android.libraries.matrix.api.room.recent
 
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.room.RoomInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

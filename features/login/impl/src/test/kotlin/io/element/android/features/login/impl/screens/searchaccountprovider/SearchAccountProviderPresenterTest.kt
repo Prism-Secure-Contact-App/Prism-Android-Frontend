@@ -12,7 +12,7 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.login.impl.changeserver.aChangeServerState
 import io.prism.android.features.login.impl.resolver.HomeserverResolver
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.test.auth.FakeHomeServerLoginCompatibilityChecker
+import io.prism.android.libraries.matrix.test.auth.FakeHomeServerLoginCompatibilityChecker
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.lambda.value

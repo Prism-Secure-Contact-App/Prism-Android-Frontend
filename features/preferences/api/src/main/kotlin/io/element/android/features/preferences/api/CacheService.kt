@@ -8,7 +8,7 @@
 
 package io.prism.android.features.preferences.api
 
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 import kotlinx.coroutines.flow.Flow
 
 interface CacheService {

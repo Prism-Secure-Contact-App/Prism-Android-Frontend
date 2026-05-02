@@ -28,8 +28,8 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.ui.components.PRISMUserRow
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.ui.components.MatrixUserRow
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Suppress("MultipleEmitters") // False positive
@@ -59,16 +59,16 @@ fun AccountSelectView(
                 .consumeWindowInsets(paddingValues)
         ) {
             LazyColumn {
-                items(state.accounts, key = { it.userId }) { prismUser ->
+                items(state.accounts, key = { it.userId }) { matrixUser ->
                     Column {
-                        PRISMUserRow(
+                        MatrixUserRow(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
-                                    onSelectAccount(prismUser.userId)
+                                    onSelectAccount(matrixUser.userId)
                                 }
                                 .padding(vertical = 8.dp),
-                            prismUser = prismUser,
+                            matrixUser = matrixUser,
                         )
                         HorizontalDivider()
                     }

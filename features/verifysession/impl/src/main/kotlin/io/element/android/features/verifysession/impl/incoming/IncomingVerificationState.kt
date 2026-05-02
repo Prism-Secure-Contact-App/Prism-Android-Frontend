@@ -9,9 +9,9 @@
 package io.prism.android.features.verifysession.impl.incoming
 
 import androidx.compose.runtime.Stable
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.verification.SessionVerificationData
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationData
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 
 data class IncomingVerificationState(
     val step: Step,

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,26 +18,26 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.annotations.ContributesNode
-import io.element.android.compound.colors.SemanticColorsLightDark
-import io.element.android.compound.theme.ForcedDarkElementTheme
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.features.viewfolder.api.TextFileViewer
-import io.element.android.libraries.architecture.callback
-import io.element.android.libraries.architecture.inputs
-import io.element.android.libraries.audio.api.AudioFocus
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.api.MediaViewerEntryPoint
-import io.element.android.libraries.mediaviewer.api.local.LocalMediaFactory
-import io.element.android.libraries.mediaviewer.impl.datasource.FocusedTimelineMediaGalleryDataSourceFactory
-import io.element.android.libraries.mediaviewer.impl.datasource.TimelineMediaGalleryDataSource
-import io.element.android.libraries.mediaviewer.impl.model.hasEvent
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.annotations.ContributesNode
+import io.prism.android.compound.colors.SemanticColorsLightDark
+import io.prism.android.compound.theme.ForcedDarkElementTheme
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.features.viewfolder.api.TextFileViewer
+import io.prism.android.libraries.architecture.callback
+import io.prism.android.libraries.architecture.inputs
+import io.prism.android.libraries.audio.api.AudioFocus
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint
+import io.prism.android.libraries.mediaviewer.api.local.LocalMediaFactory
+import io.prism.android.libraries.mediaviewer.impl.datasource.FocusedTimelineMediaGalleryDataSourceFactory
+import io.prism.android.libraries.mediaviewer.impl.datasource.TimelineMediaGalleryDataSource
+import io.prism.android.libraries.mediaviewer.impl.model.hasEvent
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 
 @ContributesNode(RoomScope::class)
 @AssistedInject
@@ -47,7 +47,7 @@ class MediaViewerNode(
     presenterFactory: MediaViewerPresenter.Factory,
     timelineMediaGalleryDataSource: TimelineMediaGalleryDataSource,
     focusedTimelineMediaGalleryDataSourceFactory: FocusedTimelineMediaGalleryDataSourceFactory,
-    mediaLoader: MatrixMediaLoader,
+    mediaLoader: PRISMMediaLoader,
     localMediaFactory: LocalMediaFactory,
     coroutineDispatchers: CoroutineDispatchers,
     systemClock: SystemClock,

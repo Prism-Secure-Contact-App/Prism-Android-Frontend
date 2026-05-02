@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.spaces
+package io.prism.android.libraries.matrix.impl.spaces
 
 import io.prism.android.libraries.core.bool.orFalse
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.impl.room.join.map
-import io.prism.android.libraries.prism.impl.room.map
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.impl.room.join.map
+import io.prism.android.libraries.matrix.impl.room.map
 import kotlinx.collections.immutable.toImmutableList
-import org.prism.rustcomponents.sdk.SpaceRoom as RustSpaceRoom
+import org.matrix.rustcomponents.sdk.SpaceRoom as RustSpaceRoom
 
 class SpaceRoomMapper {
     fun map(spaceRoom: RustSpaceRoom): SpaceRoom {

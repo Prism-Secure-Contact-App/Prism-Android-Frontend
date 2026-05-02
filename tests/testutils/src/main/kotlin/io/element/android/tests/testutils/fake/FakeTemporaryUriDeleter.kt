@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils.fake
+package io.prism.android.tests.testutils.fake
 
 import android.net.Uri
-import io.element.android.libraries.androidutils.file.TemporaryUriDeleter
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.androidutils.file.TemporaryUriDeleter
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeTemporaryUriDeleter(
     val deleteLambda: (uri: Uri?) -> Unit = { lambdaError() }

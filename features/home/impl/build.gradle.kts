@@ -33,7 +33,7 @@ dependencies {
     implementation(projects.libraries.architecture)
     implementation(projects.libraries.featureflag.api)
     implementation(projects.libraries.matrix.api)
-    implementation(projects.libraries.prismui)
+    implementation(projects.libraries.matrixui)
     implementation(projects.libraries.designsystem)
     implementation(projects.libraries.testtags)
     implementation(projects.libraries.uiStrings)
@@ -61,7 +61,6 @@ dependencies {
     implementation(projects.libraries.previewutils)
     api(projects.features.home.api)
     implementation(projects.features.vault.api)
-    implementation(projects.features.lightning.api)
 
     testCommonDependencies(libs, true)
     testImplementation(projects.features.announcement.test)

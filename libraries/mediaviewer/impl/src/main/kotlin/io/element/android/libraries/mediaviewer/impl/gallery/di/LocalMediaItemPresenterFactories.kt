@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.di
+package io.prism.android.libraries.mediaviewer.impl.gallery.di
 
 import androidx.compose.runtime.staticCompositionLocalOf
 

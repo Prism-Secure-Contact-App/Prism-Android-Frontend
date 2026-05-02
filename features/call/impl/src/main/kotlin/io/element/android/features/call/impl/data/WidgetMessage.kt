@@ -10,7 +10,7 @@ package io.prism.android.features.call.impl.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonPRISM
+import kotlinx.serialization.json.JsonElement
 
 @Serializable
 data class WidgetMessage(
@@ -18,7 +18,7 @@ data class WidgetMessage(
     @SerialName("widgetId") val widgetId: String,
     @SerialName("requestId") val requestId: String,
     @SerialName("action") val action: Action,
-    @SerialName("data") val data: JsonPRISM? = null,
+    @SerialName("data") val data: JsonElement? = null,
 ) {
     @Serializable
     enum class Direction {

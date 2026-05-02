@@ -13,7 +13,7 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.features.home.impl.R
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureCalledOnceWithParam
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam

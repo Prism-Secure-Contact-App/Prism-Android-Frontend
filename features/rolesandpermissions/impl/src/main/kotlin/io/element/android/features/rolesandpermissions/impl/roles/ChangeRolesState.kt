@@ -11,9 +11,9 @@ package io.prism.android.features.rolesandpermissions.impl.roles
 import androidx.compose.foundation.text.input.TextFieldState
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList

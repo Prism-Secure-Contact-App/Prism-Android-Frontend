@@ -14,8 +14,8 @@ import com.bumble.appyx.testing.junit4.util.MainDispatcherRule
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.share.api.ShareEntryPoint
 import io.prism.android.features.share.api.ShareIntentData
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.A_MESSAGE
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.A_MESSAGE
 import io.prism.android.libraries.roomselect.test.FakeRoomSelectEntryPoint
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode

@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.ui.messages.reply.InReplyToDetails
-import io.prism.android.libraries.prism.ui.messages.reply.InReplyToDetailsOtherProvider
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetails
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetailsOtherProvider
 
 @PreviewsDayNight
 @Composable

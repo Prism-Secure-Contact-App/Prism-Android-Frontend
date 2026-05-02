@@ -15,9 +15,9 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.call.test.FakePRISMCallEntryPoint
 import io.prism.android.features.userprofile.api.UserProfileEntryPoint
 import io.prism.android.features.verifysession.test.FakeOutgoingVerificationEntryPoint
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.A_USER_ID
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
 import io.prism.android.libraries.mediaviewer.test.FakeMediaViewerEntryPoint
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode

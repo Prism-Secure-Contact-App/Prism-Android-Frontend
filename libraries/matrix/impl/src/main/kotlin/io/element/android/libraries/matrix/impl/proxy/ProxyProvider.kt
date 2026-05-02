@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.proxy
+package io.prism.android.libraries.matrix.impl.proxy
 
 interface ProxyProvider {
     fun provides(): String?

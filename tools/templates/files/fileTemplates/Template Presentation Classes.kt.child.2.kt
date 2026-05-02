@@ -6,10 +6,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
 
 @Composable
 fun ${NAME}View(
@@ -19,7 +19,7 @@ fun ${NAME}View(
     Box(modifier, contentAlignment = Alignment.Center) {
         Text(
             "${NAME} feature view",
-            color = ElementTheme.colors.textPrimary,
+            color = PRISMTheme.colors.textPrimary,
         )
     }
 }
@@ -28,7 +28,7 @@ fun ${NAME}View(
 @Composable
 internal fun ${NAME}ViewPreview(
     @PreviewParameter(${NAME}StateProvider::class) state: ${NAME}State
-) = ElementPreview {
+) = PRISMPreview {
     ${NAME}View(
         state = state,
     )

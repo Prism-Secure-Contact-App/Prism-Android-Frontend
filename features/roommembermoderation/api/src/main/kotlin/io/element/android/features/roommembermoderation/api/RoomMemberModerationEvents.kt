@@ -8,7 +8,7 @@
 
 package io.prism.android.features.roommembermoderation.api
 
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 interface RoomMemberModerationEvents {
     data class ShowActionsForUser(val user: PRISMUser) : RoomMemberModerationEvents

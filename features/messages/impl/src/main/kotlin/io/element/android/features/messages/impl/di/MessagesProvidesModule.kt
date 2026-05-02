@@ -13,8 +13,8 @@ import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import io.prism.android.features.messages.impl.timeline.di.LiveTimeline
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 @ContributesTo(RoomScope::class)
 @BindingContainer

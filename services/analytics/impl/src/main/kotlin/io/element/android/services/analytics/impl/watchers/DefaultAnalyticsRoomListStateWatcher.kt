@@ -5,20 +5,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl.watchers
+package io.prism.android.services.analytics.impl.watchers
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.features.networkmonitor.api.NetworkMonitor
-import io.element.android.features.networkmonitor.api.NetworkStatus
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.core.coroutine.childScope
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.di.annotations.SessionCoroutineScope
-import io.element.android.libraries.matrix.api.roomlist.RoomListService
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.watchers.AnalyticsRoomListStateWatcher
-import io.element.android.services.appnavstate.api.AppForegroundStateService
+import io.prism.android.features.networkmonitor.api.NetworkMonitor
+import io.prism.android.features.networkmonitor.api.NetworkStatus
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.coroutine.childScope
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.di.annotations.SessionCoroutineScope
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.watchers.AnalyticsRoomListStateWatcher
+import io.prism.android.services.appnavstate.api.AppForegroundStateService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.flow.combine

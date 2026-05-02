@@ -10,12 +10,12 @@ package io.prism.android.features.createroom.impl.configureroom
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
-import io.prism.android.libraries.prism.ui.media.AvatarAction
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
 import io.prism.android.libraries.permissions.api.PermissionsState
 import io.prism.android.libraries.permissions.api.aPermissionsState
 import io.prism.android.libraries.previewutils.room.aSpaceRoom
@@ -30,7 +30,7 @@ open class ConfigureRoomStateProvider : PreviewParameterProvider<ConfigureRoomSt
                 config = CreateRoomConfig(
                     roomName = "Room 101",
                     topic = "Room topic for this room when the text goes onto multiple lines and is really long, there shouldn’t be more than 3 lines",
-                    invites = aPRISMUserList().toImmutableList(),
+                    invites = aMatrixUserList().toImmutableList(),
                     visibilityState = RoomVisibilityState.Public(
                         roomAddress = RoomAddress.AutoFilled("Room-101"),
                         joinRuleItem = JoinRuleItem.PublicVisibility.AskToJoin,
@@ -41,7 +41,7 @@ open class ConfigureRoomStateProvider : PreviewParameterProvider<ConfigureRoomSt
                 config = CreateRoomConfig(
                     roomName = "Room 101",
                     topic = "Room topic for this room when the text goes onto multiple lines and is really long, there shouldn’t be more than 3 lines",
-                    invites = aPRISMUserList().toImmutableList(),
+                    invites = aMatrixUserList().toImmutableList(),
                     visibilityState = RoomVisibilityState.Public(
                         roomAddress = RoomAddress.AutoFilled("Room-101"),
                         joinRuleItem = JoinRuleItem.PublicVisibility.AskToJoin,

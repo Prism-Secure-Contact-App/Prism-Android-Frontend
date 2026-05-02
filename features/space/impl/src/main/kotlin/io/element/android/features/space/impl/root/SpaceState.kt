@@ -11,9 +11,9 @@ package io.prism.android.features.space.impl.root
 import androidx.compose.runtime.Immutable
 import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteState
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.ImmutableSet

@@ -27,14 +27,14 @@ import io.prism.android.libraries.dateformatter.api.DateFormatter
 import io.prism.android.libraries.dateformatter.api.DateFormatterMode
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.permalink.PermalinkParser
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.EventThreadInfo
-import io.prism.android.libraries.prism.api.timeline.item.event.getAvatarUrl
-import io.prism.android.libraries.prism.api.timeline.item.event.getDisambiguatedDisplayName
-import io.prism.android.libraries.prism.ui.messages.reply.map
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.EventThreadInfo
+import io.prism.android.libraries.matrix.api.timeline.item.event.getAvatarUrl
+import io.prism.android.libraries.matrix.api.timeline.item.event.getDisambiguatedDisplayName
+import io.prism.android.libraries.matrix.ui.messages.reply.map
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
@@ -42,7 +42,7 @@ import kotlinx.collections.immutable.toImmutableList
 class TimelineItemEventFactory(
     @Assisted private val config: TimelineItemsFactoryConfig,
     private val contentFactory: TimelineItemContentFactory,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val dateFormatter: DateFormatter,
     private val permalinkParser: PermalinkParser,
     private val summaryFormatter: MessageSummaryFormatter,
@@ -143,7 +143,7 @@ class TimelineItemEventFactory(
             // reaction summary view or getting the most recent reaction.
             AggregatedReaction(
                 key = reaction.key,
-                currentUserId = prismClient.sessionId,
+                currentUserId = matrixClient.sessionId,
                 senders = reaction.senders
                     .sortedByDescending { it.timestamp }
                     .map {

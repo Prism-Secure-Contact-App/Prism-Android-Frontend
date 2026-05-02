@@ -59,14 +59,14 @@ import io.prism.android.libraries.designsystem.modifiers.onKeyboardContextMenuAc
 import io.prism.android.libraries.designsystem.modifiers.roundedBackground
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.ui.media.MAX_THUMBNAIL_HEIGHT
-import io.prism.android.libraries.prism.ui.media.MAX_THUMBNAIL_WIDTH
-import io.prism.android.libraries.prism.ui.media.MediaRequestData
-import io.prism.android.libraries.textcomposer.PRISMRichTextEditorStyle
+import io.prism.android.libraries.matrix.ui.media.MAX_THUMBNAIL_HEIGHT
+import io.prism.android.libraries.matrix.ui.media.MAX_THUMBNAIL_WIDTH
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.textcomposer.ElementRichTextEditorStyle
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.libraries.ui.utils.time.isTalkbackActive
-import io.prism.android.wysiwyg.compose.EditorStyledText
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.compose.EditorStyledText
+import io.element.android.wysiwyg.link.Link
 
 @Composable
 fun TimelineItemVideoView(
@@ -163,7 +163,7 @@ fun TimelineItemVideoView(
                     text = caption,
                     onLinkClickedListener = onLinkClick,
                     onLinkLongClickedListener = onLinkLongClick,
-                    style = PRISMRichTextEditorStyle.textStyle(),
+                    style = ElementRichTextEditorStyle.textStyle(),
                     releaseOnDetach = false,
                     onTextLayout = ContentAvoidingLayout.measureLegacyLastTextLine(onContentLayoutChange = onContentLayoutChange),
                 )

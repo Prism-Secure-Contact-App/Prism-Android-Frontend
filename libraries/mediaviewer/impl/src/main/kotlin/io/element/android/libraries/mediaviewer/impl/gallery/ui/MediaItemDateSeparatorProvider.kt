@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.ui
+package io.prism.android.libraries.mediaviewer.impl.gallery.ui
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemDateSeparator
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemDateSeparator
 
 class MediaItemDateSeparatorProvider : PreviewParameterProvider<MediaItem.DateSeparator> {
     override val values: Sequence<MediaItem.DateSeparator>

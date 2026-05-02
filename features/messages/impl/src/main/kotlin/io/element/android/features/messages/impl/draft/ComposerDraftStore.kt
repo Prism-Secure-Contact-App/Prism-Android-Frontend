@@ -8,9 +8,9 @@
 
 package io.prism.android.features.messages.impl.draft
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraft
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraft
 
 interface ComposerDraftStore {
     suspend fun loadDraft(roomId: RoomId, threadRoot: ThreadId?): ComposerDraft?

@@ -6,29 +6,29 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.room
+package io.prism.android.libraries.matrix.test.room
 
-import io.element.android.libraries.core.bool.orFalse
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.room.BaseRoom
-import io.element.android.libraries.matrix.api.room.RoomInfo
-import io.element.android.libraries.matrix.api.room.RoomMember
-import io.element.android.libraries.matrix.api.room.RoomMembersState
-import io.element.android.libraries.matrix.api.room.draft.ComposerDraft
-import io.element.android.libraries.matrix.api.room.powerlevels.RoomPermissions
-import io.element.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
-import io.element.android.libraries.matrix.api.room.tombstone.PredecessorRoom
-import io.element.android.libraries.matrix.api.roomdirectory.RoomVisibility
-import io.element.android.libraries.matrix.api.timeline.ReceiptType
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.room.powerlevels.FakeRoomPermissions
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.core.bool.orFalse
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraft
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.tombstone.PredecessorRoom
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.room.powerlevels.FakeRoomPermissions
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow

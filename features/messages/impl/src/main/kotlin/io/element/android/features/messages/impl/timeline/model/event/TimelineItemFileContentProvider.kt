@@ -10,7 +10,7 @@ package io.prism.android.features.messages.impl.timeline.model.event
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.media.MediaSource
 
 open class TimelineItemFileContentProvider : PreviewParameterProvider<TimelineItemFileContent> {
     override val values: Sequence<TimelineItemFileContent>

@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.test
+package io.prism.android.libraries.mediaviewer.test
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
-import io.element.android.libraries.mediaviewer.api.MediaGalleryEntryPoint
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.mediaviewer.api.MediaGalleryEntryPoint
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeMediaGalleryEntryPoint : MediaGalleryEntryPoint {
     override fun createNode(

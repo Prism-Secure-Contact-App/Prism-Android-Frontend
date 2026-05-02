@@ -7,23 +7,23 @@
 
 package io.prism.android.appnav
 
-import com.bumble.appyx.core.navigation.NavPRISMs
+import com.bumble.appyx.core.navigation.NavElements
 import com.bumble.appyx.core.navigation.Operation
 import com.bumble.appyx.navmodel.backstack.BackStack
 import kotlinx.parcelize.Parcelize
 
 /**
- * Replaces all the current prisms with the provided [navPRISMs], keeping their [BackStack.State] too.
+ * Replaces all the current prisms with the provided [navElements], keeping their [BackStack.State] too.
  */
 @Parcelize
 class ReplaceAllOperation<NavTarget : Any>(
-    private val navPRISMs: NavPRISMs<NavTarget, BackStack.State>
+    private val navElements: NavElements<NavTarget, BackStack.State>
 ) : Operation<NavTarget, BackStack.State> {
-    override fun isApplicable(prisms: NavPRISMs<NavTarget, BackStack.State>): Boolean {
+    override fun isApplicable(prisms: NavElements<NavTarget, BackStack.State>): Boolean {
         return true
     }
 
-    override fun invoke(existing: NavPRISMs<NavTarget, BackStack.State>): NavPRISMs<NavTarget, BackStack.State> {
-        return navPRISMs
+    override fun invoke(existing: NavElements<NavTarget, BackStack.State>): NavElements<NavTarget, BackStack.State> {
+        return navElements
     }
 }

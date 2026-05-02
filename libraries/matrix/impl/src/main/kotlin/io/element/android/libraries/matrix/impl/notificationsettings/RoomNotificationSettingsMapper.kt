@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.notificationsettings
+package io.prism.android.libraries.matrix.impl.notificationsettings
 
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.api.room.RoomNotificationSettings
-import org.prism.rustcomponents.sdk.RoomNotificationMode as RustRoomNotificationMode
-import org.prism.rustcomponents.sdk.RoomNotificationSettings as RustRoomNotificationSettings
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationSettings
+import org.matrix.rustcomponents.sdk.RoomNotificationMode as RustRoomNotificationMode
+import org.matrix.rustcomponents.sdk.RoomNotificationSettings as RustRoomNotificationSettings
 
 object RoomNotificationSettingsMapper {
     fun map(roomNotificationSettings: RustRoomNotificationSettings): RoomNotificationSettings =

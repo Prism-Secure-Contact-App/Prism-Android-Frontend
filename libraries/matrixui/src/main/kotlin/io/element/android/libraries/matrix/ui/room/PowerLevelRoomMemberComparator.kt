@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.room
+package io.prism.android.libraries.matrix.ui.room
 
-import io.element.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMember
 import java.text.Collator
 
 // Comparator used to sort room members by power level (descending) and then by name (ascending)

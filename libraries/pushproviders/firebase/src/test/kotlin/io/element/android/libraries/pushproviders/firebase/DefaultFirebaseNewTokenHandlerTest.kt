@@ -6,27 +6,27 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_ID_2
-import io.element.android.libraries.matrix.test.A_USER_ID_3
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.FakeMatrixClientProvider
-import io.element.android.libraries.push.test.FakePusherSubscriber
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.libraries.sessionstorage.test.aSessionData
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_ID_3
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.FakeMatrixClientProvider
+import io.prism.android.libraries.push.test.FakePusherSubscriber
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.libraries.sessionstorage.test.aSessionData
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -47,7 +47,7 @@ class DefaultFirebaseNewTokenHandlerTest {
         val aMatrixClient1 = FakeMatrixClient(A_USER_ID)
         val aMatrixClient2 = FakeMatrixClient(A_USER_ID_2)
         val aMatrixClient3 = FakeMatrixClient(A_USER_ID_3)
-        val registerPusherResult = lambdaRecorder<MatrixClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val registerPusherResult = lambdaRecorder<PRISMClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
         val pusherSubscriber = FakePusherSubscriber(registerPusherResult = registerPusherResult)
         val firebaseNewTokenHandler = createDefaultFirebaseNewTokenHandler(
             sessionStore = InMemorySessionStore(
@@ -88,7 +88,7 @@ class DefaultFirebaseNewTokenHandlerTest {
 
     @Test
     fun `when a new token is received, if the session cannot be restore, nothing happen`() = runTest {
-        val registerPusherResult = lambdaRecorder<MatrixClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val registerPusherResult = lambdaRecorder<PRISMClient, String, String, Result<Unit>> { _, _, _ -> Result.success(Unit) }
         val pusherSubscriber = FakePusherSubscriber(registerPusherResult = registerPusherResult)
         val firebaseNewTokenHandler = createDefaultFirebaseNewTokenHandler(
             sessionStore = InMemorySessionStore(
@@ -112,7 +112,7 @@ class DefaultFirebaseNewTokenHandlerTest {
     @Test
     fun `when a new token is received, error when registering the pusher is ignored`() = runTest {
         val aMatrixClient1 = FakeMatrixClient(A_USER_ID)
-        val registerPusherResult = lambdaRecorder<MatrixClient, String, String, Result<Unit>> { _, _, _ -> Result.failure(AN_EXCEPTION) }
+        val registerPusherResult = lambdaRecorder<PRISMClient, String, String, Result<Unit>> { _, _, _ -> Result.failure(AN_EXCEPTION) }
         val pusherSubscriber = FakePusherSubscriber(registerPusherResult = registerPusherResult)
         val firebaseNewTokenHandler = createDefaultFirebaseNewTokenHandler(
             sessionStore = InMemorySessionStore(
@@ -139,7 +139,7 @@ class DefaultFirebaseNewTokenHandlerTest {
         pusherSubscriber: PusherSubscriber = FakePusherSubscriber(),
         sessionStore: SessionStore = InMemorySessionStore(),
         userPushStoreFactory: UserPushStoreFactory = FakeUserPushStoreFactory(),
-        matrixClientProvider: MatrixClientProvider = FakeMatrixClientProvider(),
+        matrixClientProvider: PRISMClientProvider = FakeMatrixClientProvider(),
         firebaseStore: FirebaseStore = InMemoryFirebaseStore(),
         firebaseGatewayProvider: FirebaseGatewayProvider = FakeFirebaseGatewayProvider(),
     ): FirebaseNewTokenHandler {

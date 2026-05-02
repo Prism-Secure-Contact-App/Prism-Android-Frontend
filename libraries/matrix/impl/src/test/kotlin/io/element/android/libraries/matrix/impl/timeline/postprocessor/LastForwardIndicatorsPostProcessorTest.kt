@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.timeline.postprocessor
+package io.prism.android.libraries.matrix.impl.timeline.postprocessor
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
 import org.junit.Test
 
 class LastForwardIndicatorsPostProcessorTest {
@@ -30,7 +30,7 @@ class LastForwardIndicatorsPostProcessorTest {
         val result = sut.process(listOf(messageEvent))
         assertThat(result).containsExactly(
             messageEvent,
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("last_forward_indicator_${messageEvent.uniqueId}"),
                 virtual = VirtualTimelineItem.LastForwardIndicator
             )
@@ -42,7 +42,7 @@ class LastForwardIndicatorsPostProcessorTest {
         val sut = LastForwardIndicatorsPostProcessor(Timeline.Mode.FocusedOnEvent(AN_EVENT_ID))
         val result = sut.process(listOf())
         assertThat(result).containsExactly(
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("last_forward_indicator_fake_id"),
                 virtual = VirtualTimelineItem.LastForwardIndicator
             )
@@ -58,7 +58,7 @@ class LastForwardIndicatorsPostProcessorTest {
         val result = sut.process(listOf(messageEvent))
         assertThat(result).containsExactly(
             messageEvent,
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("last_forward_indicator_${messageEvent.uniqueId}"),
                 virtual = VirtualTimelineItem.LastForwardIndicator
             )
@@ -75,12 +75,12 @@ class LastForwardIndicatorsPostProcessorTest {
         assertThat(result).containsExactly(
             dayEvent,
             messageEvent,
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("last_forward_indicator_${messageEvent.uniqueId}"),
                 virtual = VirtualTimelineItem.LastForwardIndicator
             ),
             messageEvent2,
-            MatrixTimelineItem.Virtual(
+            PRISMTimelineItem.Virtual(
                 uniqueId = UniqueId("last_forward_indicator_${messageEvent2.uniqueId}"),
                 virtual = VirtualTimelineItem.LastForwardIndicator
             )

@@ -11,9 +11,9 @@ package io.prism.android.features.messages.impl.timeline
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.virtual.TimelineItemReadMarkerModel
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl.history
+package io.prism.android.libraries.troubleshoot.impl.history
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.architecture.AsyncAction
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.api.history.PushHistoryItem
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.api.history.PushHistoryItem
 import kotlinx.collections.immutable.toImmutableList
 
 open class PushHistoryStateProvider : PreviewParameterProvider<PushHistoryState> {

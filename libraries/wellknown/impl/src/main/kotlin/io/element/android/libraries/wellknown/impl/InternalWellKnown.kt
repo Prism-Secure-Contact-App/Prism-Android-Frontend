@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.wellknown.impl
+package io.prism.android.libraries.wellknown.impl
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

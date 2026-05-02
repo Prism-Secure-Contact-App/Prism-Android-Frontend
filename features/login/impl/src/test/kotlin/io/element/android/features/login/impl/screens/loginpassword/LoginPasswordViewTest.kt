@@ -21,8 +21,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.prism.android.libraries.prism.test.A_PASSWORD
-import io.prism.android.libraries.prism.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.A_PASSWORD
+import io.prism.android.libraries.matrix.test.A_USER_NAME
 import io.prism.android.libraries.testtags.TestTags
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled

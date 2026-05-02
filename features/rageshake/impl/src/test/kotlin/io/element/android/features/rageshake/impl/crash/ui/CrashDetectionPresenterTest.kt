@@ -14,7 +14,7 @@ import io.prism.android.features.rageshake.impl.crash.A_CRASH_DATA
 import io.prism.android.features.rageshake.impl.crash.DefaultCrashDetectionPresenter
 import io.prism.android.features.rageshake.impl.crash.FakeCrashDataStore
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.flow.Flow

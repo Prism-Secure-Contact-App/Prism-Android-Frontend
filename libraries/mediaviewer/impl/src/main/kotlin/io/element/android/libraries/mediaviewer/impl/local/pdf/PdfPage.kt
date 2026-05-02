@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.pdf
+package io.prism.android.libraries.mediaviewer.impl.local.pdf
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

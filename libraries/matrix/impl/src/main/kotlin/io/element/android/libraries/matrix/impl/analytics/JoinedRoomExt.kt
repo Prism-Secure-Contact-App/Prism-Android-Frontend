@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.analytics
+package io.prism.android.libraries.matrix.impl.analytics
 
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.isDm
+import im.vector.app.features.analytics.plan.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.isDm
 import kotlinx.coroutines.flow.first
 
 private fun Long.toAnalyticsRoomSize(): JoinedRoom.RoomSize {

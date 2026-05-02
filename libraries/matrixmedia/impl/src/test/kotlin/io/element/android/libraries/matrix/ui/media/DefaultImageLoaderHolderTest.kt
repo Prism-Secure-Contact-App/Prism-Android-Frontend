@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import androidx.test.platform.app.InstrumentationRegistry
 import coil3.ImageLoader
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.libraries.sessionstorage.test.observer.FakeSessionObserver
-import io.element.android.libraries.sessionstorage.test.observer.NoOpSessionObserver
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.sessionstorage.test.observer.FakeSessionObserver
+import io.prism.android.libraries.sessionstorage.test.observer.NoOpSessionObserver
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,7 +29,7 @@ class DefaultImageLoaderHolderTest {
     @Test
     fun `get - returns the same ImageLoader for the same client`() {
         val context = InstrumentationRegistry.getInstrumentation().context
-        val lambda = lambdaRecorder<MatrixMediaLoader, ImageLoader> { ImageLoader.Builder(context).build() }
+        val lambda = lambdaRecorder<PRISMMediaLoader, ImageLoader> { ImageLoader.Builder(context).build() }
 
         val holder = createDefaultImageLoaderHolder(
             imageLoaderFactory = FakeImageLoaderFactory(
@@ -42,14 +42,14 @@ class DefaultImageLoaderHolderTest {
         assert(imageLoader1 === imageLoader2)
         lambda.assertions()
             .isCalledOnce()
-            .with(value(client.matrixMediaLoader))
+            .with(value(client.prismMediaLoader))
     }
 
     @Test
     fun `when session is deleted, the image loader is deleted`() = runTest {
         val context = InstrumentationRegistry.getInstrumentation().context
         val lambda =
-            lambdaRecorder<MatrixMediaLoader, ImageLoader> { ImageLoader.Builder(context).build() }
+            lambdaRecorder<PRISMMediaLoader, ImageLoader> { ImageLoader.Builder(context).build() }
         val sessionObserver = FakeSessionObserver()
         val holder = DefaultImageLoaderHolder(
             imageLoaderFactory = FakeImageLoaderFactory(
@@ -70,7 +70,7 @@ class DefaultImageLoaderHolderTest {
     fun `when session is created, nothing happen`() = runTest {
         val context = InstrumentationRegistry.getInstrumentation().context
         val lambda =
-            lambdaRecorder<MatrixMediaLoader, ImageLoader> { ImageLoader.Builder(context).build() }
+            lambdaRecorder<PRISMMediaLoader, ImageLoader> { ImageLoader.Builder(context).build() }
         val sessionObserver = FakeSessionObserver()
         DefaultImageLoaderHolder(
             imageLoaderFactory = FakeImageLoaderFactory(

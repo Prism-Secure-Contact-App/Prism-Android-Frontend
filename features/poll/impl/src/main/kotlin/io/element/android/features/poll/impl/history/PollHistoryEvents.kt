@@ -9,7 +9,7 @@
 package io.prism.android.features.poll.impl.history
 
 import io.prism.android.features.poll.impl.history.model.PollHistoryFilter
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 
 sealed interface PollHistoryEvents {
     data object LoadMore : PollHistoryEvents

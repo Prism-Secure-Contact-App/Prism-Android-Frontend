@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
 import androidx.compose.ui.util.fastForEach
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.RoomMembershipContent
-import io.prism.android.libraries.prism.api.timeline.item.event.TimelineItemEventOrigin
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.TimelineItemEventOrigin
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import org.prism.rustcomponents.sdk.TimelineDiff
-import org.prism.rustcomponents.sdk.TimelineItem
+import org.matrix.rustcomponents.sdk.TimelineDiff
+import org.matrix.rustcomponents.sdk.TimelineItem
 import timber.log.Timber
 
 internal class PRISMTimelineDiffProcessor(

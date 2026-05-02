@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.media
+package io.prism.android.libraries.matrix.impl.media
 
-import io.prism.android.libraries.prism.api.media.ThumbnailInfo
-import org.prism.rustcomponents.sdk.ThumbnailInfo as RustThumbnailInfo
+import io.prism.android.libraries.matrix.api.media.ThumbnailInfo
+import org.matrix.rustcomponents.sdk.ThumbnailInfo as RustThumbnailInfo
 
 fun RustThumbnailInfo.map(): ThumbnailInfo = ThumbnailInfo(
     height = height?.toLong(),

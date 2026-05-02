@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.mapper
+package io.prism.android.libraries.matrix.impl.mapper
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustUserProfile
-import io.element.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustUserProfile
+import io.prism.android.libraries.matrix.test.A_USER_ID
 import org.junit.Test
 
 class UserProfileMapperTest {
     @Test
     fun map() {
         assertThat(aRustUserProfile(A_USER_ID.value, "displayName", "avatarUrl").map())
-            .isEqualTo(MatrixUser(A_USER_ID, "displayName", "avatarUrl"))
+            .isEqualTo(PRISMUser(A_USER_ID, "displayName", "avatarUrl"))
     }
 }

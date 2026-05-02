@@ -10,9 +10,9 @@ package io.prism.android.features.messages.impl.messagecomposer.suggestions
 
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

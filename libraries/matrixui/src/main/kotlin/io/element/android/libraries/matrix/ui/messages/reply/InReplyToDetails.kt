@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages.reply
+package io.prism.android.libraries.matrix.ui.messages.reply
 
 import androidx.compose.runtime.Immutable
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.permalink.PermalinkParser
-import io.element.android.libraries.matrix.api.timeline.item.event.EventContent
-import io.element.android.libraries.matrix.api.timeline.item.event.InReplyTo
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageContent
-import io.element.android.libraries.matrix.api.timeline.item.event.ProfileDetails
-import io.element.android.libraries.matrix.api.timeline.item.event.StickerContent
-import io.element.android.libraries.matrix.api.timeline.item.event.TextMessageType
-import io.element.android.libraries.matrix.ui.messages.toPlainText
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.InReplyTo
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.ui.messages.toPlainText
 
 @Immutable
 sealed interface InReplyToDetails {

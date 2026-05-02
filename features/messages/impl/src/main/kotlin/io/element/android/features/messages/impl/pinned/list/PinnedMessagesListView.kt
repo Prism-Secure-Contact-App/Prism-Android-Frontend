@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.compound.tokens.generated.CompoundIcons
 import io.prism.android.features.messages.impl.actionlist.ActionListEvent
 import io.prism.android.features.messages.impl.actionlist.ActionListView
@@ -47,12 +47,12 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.analytics.compose.LocalAnalyticsService
 import io.prism.android.services.analyticsproviders.api.trackers.captureInteraction
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 @Composable
 fun PinnedMessagesListView(

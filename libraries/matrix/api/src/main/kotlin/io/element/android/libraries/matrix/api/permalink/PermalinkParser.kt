@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.permalink
+package io.prism.android.libraries.matrix.api.permalink
 
 /**
  * This class turns a uri to a [PermalinkData].

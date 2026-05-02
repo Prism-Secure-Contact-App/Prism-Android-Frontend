@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.test
+package io.prism.android.libraries.preferences.test
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import io.element.android.libraries.preferences.api.store.PreferenceDataStoreFactory
+import io.prism.android.libraries.preferences.api.store.PreferenceDataStoreFactory
 import java.io.File
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory as AndroidPreferenceDataStoreFactory
 

@@ -40,13 +40,13 @@ import io.prism.android.libraries.architecture.waitForChildAttached
 import io.prism.android.libraries.di.DependencyInjectionGraphOwner
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.LoadJoinedRoomFlow
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.analytics.api.finishLongRunningTransaction
@@ -69,13 +69,13 @@ class JoinedRoomLoadedFlowNode(
     private val appNavigationStateService: AppNavigationStateService,
     @SessionCoroutineScope
     private val sessionCoroutineScope: CoroutineScope,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val activeRoomsHolder: ActiveRoomsHolder,
     private val analyticsService: AnalyticsService,
     roomGraphFactory: RoomGraphFactory,
 ) : BaseFlowNode<JoinedRoomLoadedFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = initialPRISM(plugins),
+        initialElement = initialElement(plugins),
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,
@@ -89,7 +89,7 @@ class JoinedRoomLoadedFlowNode(
 
     data class Inputs(
         val room: JoinedRoom,
-        val initialPRISM: RoomNavigationTarget,
+        val initialElement: RoomNavigationTarget,
     ) : NodeInputs
 
     private val inputs: Inputs = inputs()
@@ -132,7 +132,7 @@ class JoinedRoomLoadedFlowNode(
     }
 
     private fun trackVisitedRoom() = lifecycleScope.launch {
-        prismClient.trackRecentlyVisitedRoom(inputs.room.roomId)
+        matrixClient.trackRecentlyVisitedRoom(inputs.room.roomId)
     }
 
     private fun fetchRoomMembers() = lifecycleScope.launch {
@@ -304,14 +304,14 @@ class JoinedRoomLoadedFlowNode(
     }
 }
 
-private fun initialPRISM(plugins: List<Plugin>): JoinedRoomLoadedFlowNode.NavTarget {
+private fun initialElement(plugins: List<Plugin>): JoinedRoomLoadedFlowNode.NavTarget {
     val input = plugins.filterIsInstance<JoinedRoomLoadedFlowNode.Inputs>().single()
-    return when (input.initialPRISM) {
+    return when (input.initialElement) {
         is RoomNavigationTarget.Root -> {
             if (input.room.roomInfoFlow.value.isSpace) {
                 JoinedRoomLoadedFlowNode.NavTarget.Space
             } else {
-                JoinedRoomLoadedFlowNode.NavTarget.Messages(input.initialPRISM.eventId)
+                JoinedRoomLoadedFlowNode.NavTarget.Messages(input.initialElement.eventId)
             }
         }
         RoomNavigationTarget.Details -> JoinedRoomLoadedFlowNode.NavTarget.RoomDetails

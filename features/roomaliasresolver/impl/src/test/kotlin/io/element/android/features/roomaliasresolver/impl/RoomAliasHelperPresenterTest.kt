@@ -12,15 +12,15 @@ import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ALIAS
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_SERVER_LIST
-import io.prism.android.libraries.prism.test.FakePRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SERVER_LIST
+import io.prism.android.libraries.matrix.test.FakePRISMClient
 import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
@@ -48,7 +48,7 @@ class RoomAliasHelperPresenterTest {
         val client = FakePRISMClient(
             resolveRoomAliasResult = { Result.success(result) }
         )
-        val presenter = createPresenter(prismClient = client)
+        val presenter = createPresenter(matrixClient = client)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -65,7 +65,7 @@ class RoomAliasHelperPresenterTest {
         val client = FakePRISMClient(
             resolveRoomAliasResult = { Result.failure(AN_EXCEPTION) }
         )
-        val presenter = createPresenter(prismClient = client)
+        val presenter = createPresenter(matrixClient = client)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -84,10 +84,10 @@ class RoomAliasHelperPresenterTest {
 
 internal fun createPresenter(
     roomAlias: RoomAlias = A_ROOM_ALIAS,
-    prismClient: PRISMClient = FakePRISMClient(),
+    matrixClient: PRISMClient = FakePRISMClient(),
 ) = RoomAliasResolverPresenter(
     roomAlias = roomAlias,
-    prismClient = prismClient,
+    matrixClient = matrixClient,
 )
 
 internal fun aResolvedRoomAlias(

@@ -21,8 +21,8 @@ import io.prism.android.features.location.impl.common.permissions.PermissionsEve
 import io.prism.android.features.location.impl.common.permissions.PermissionsState
 import io.prism.android.features.location.impl.common.ui.LocationConstraintsDialogState
 import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.services.toolbox.test.strings.FakeStringProvider
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test

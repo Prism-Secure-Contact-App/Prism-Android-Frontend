@@ -9,9 +9,9 @@
 package io.prism.android.features.call.utils
 
 import io.prism.android.features.call.impl.utils.CallWidgetProvider
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.test.widget.FakePRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.test.widget.FakePRISMWidgetDriver
 
 class FakeCallWidgetProvider(
     private val widgetDriver: FakePRISMWidgetDriver = FakePRISMWidgetDriver(),

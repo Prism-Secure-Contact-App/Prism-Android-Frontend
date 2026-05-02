@@ -40,7 +40,7 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.ButtonSize
 import io.prism.android.libraries.designsystem.theme.components.OutlinedButton
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 import io.prism.android.libraries.testtags.TestTags
 import io.prism.android.libraries.testtags.testTag
 import io.prism.android.libraries.ui.strings.CommonStrings

@@ -5,14 +5,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.powerlevels
+package io.prism.android.libraries.matrix.impl.room.powerlevels
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.MessageEventType
-import io.prism.android.libraries.prism.api.room.StateEventType
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
-import io.prism.android.libraries.prism.impl.room.map
-import org.prism.rustcomponents.sdk.RoomPowerLevels
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.MessageEventType
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.impl.room.map
+import org.matrix.rustcomponents.sdk.RoomPowerLevels
 
 class RustRoomPermissions(
     private val inner: RoomPowerLevels,

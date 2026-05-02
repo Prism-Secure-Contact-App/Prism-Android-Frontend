@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.battery
+package io.prism.android.libraries.push.impl.battery
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -18,8 +18,8 @@ import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.services.toolbox.api.intent.ExternalIntentLauncher
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.services.toolbox.api.intent.ExternalIntentLauncher
 import timber.log.Timber
 
 interface BatteryOptimization {

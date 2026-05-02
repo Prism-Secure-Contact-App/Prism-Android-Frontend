@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import io.prism.android.compound.colors.SemanticColorsLightDark
 import io.prism.android.features.enterprise.api.BugReportUrl
 import io.prism.android.features.enterprise.api.EnterpriseService
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.flow.Flow

@@ -10,11 +10,11 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.mediaupload.impl"
+    namespace = "io.prism.android.libraries.mediaupload.impl"
 
     testOptions {
         unitTests {

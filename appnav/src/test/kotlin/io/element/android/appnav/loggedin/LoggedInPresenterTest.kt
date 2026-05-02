@@ -12,27 +12,27 @@ package io.prism.android.appnav.loggedin
 
 import app.cash.turbine.ReceiveTurbine
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.CryptoSessionStateChange
-import uk.fathertkt.prism.features.analytics.plan.UserProperties
+import im.vector.app.features.analytics.plan.CryptoSessionStateChange
+import im.vector.app.features.analytics.plan.UserProperties
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.oidc.AccountManagementAction
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.sync.SlidingSyncVersion
-import io.prism.android.libraries.prism.api.sync.SyncState
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.core.aBuildMeta
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
-import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
-import io.prism.android.libraries.prism.test.sync.FakeSyncService
-import io.prism.android.libraries.prism.test.verification.FakeSessionVerificationService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.oidc.AccountManagementAction
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.sync.SlidingSyncVersion
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.test.sync.FakeSyncService
+import io.prism.android.libraries.matrix.test.verification.FakeSessionVerificationService
 import io.prism.android.libraries.push.api.PushService
 import io.prism.android.libraries.push.api.PusherRegistrationFailure
 import io.prism.android.libraries.push.test.FakePushService
@@ -70,11 +70,11 @@ class LoggedInPresenterTest {
     @Test
     fun `present - ensure that account urls are preloaded`() = runTest {
         val accountManagementUrlResult = lambdaRecorder<AccountManagementAction?, Result<String?>> { Result.success("aUrl") }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             accountManagementUrlResult = accountManagementUrlResult,
         )
         createLoggedInPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             awaitItem()
             advanceUntilIdle()
@@ -91,7 +91,7 @@ class LoggedInPresenterTest {
         val roomListService = FakeRoomListService()
         createLoggedInPresenter(
             syncState = SyncState.Running,
-            prismClient = FakePRISMClient(roomListService = roomListService),
+            matrixClient = FakePRISMClient(roomListService = roomListService),
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.showSyncSpinner).isFalse()
@@ -110,7 +110,7 @@ class LoggedInPresenterTest {
         val encryptionService = FakeEncryptionService()
         val buildMeta = aBuildMeta()
         LoggedInPresenter(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 roomListService = roomListService,
                 encryptionService = encryptionService,
             ),
@@ -171,7 +171,7 @@ class LoggedInPresenterTest {
         createLoggedInPresenter(
             pushService = pushService,
             sessionVerificationService = sessionVerificationService,
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 accountManagementUrlResult = { Result.success(null) },
             ),
         ).test {
@@ -194,7 +194,7 @@ class LoggedInPresenterTest {
         createLoggedInPresenter(
             pushService = pushService,
             sessionVerificationService = sessionVerificationService,
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 accountManagementUrlResult = { Result.success(null) },
             ),
         ).test {
@@ -224,7 +224,7 @@ class LoggedInPresenterTest {
         createLoggedInPresenter(
             pushService = pushService,
             sessionVerificationService = sessionVerificationService,
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 accountManagementUrlResult = { Result.success(null) },
             ),
         ).test {
@@ -281,11 +281,11 @@ class LoggedInPresenterTest {
     @Test
     fun `present - CheckSlidingSyncProxyAvailability forces the sliding sync migration under the right circumstances`() = runTest {
         // The migration will be forced if the user is not using the native sliding sync
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             currentSlidingSyncVersionLambda = { Result.success(SlidingSyncVersion.Proxy) },
         )
         createLoggedInPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.forceNativeSlidingSyncMigration).isFalse()
@@ -301,13 +301,13 @@ class LoggedInPresenterTest {
             assertThat(userInitiated).isTrue()
             assertThat(ignoreSdkError).isTrue()
         }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             accountManagementUrlResult = { Result.success(null) },
         ).apply {
             this.logoutLambda = logoutLambda
         }
         createLoggedInPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
 
@@ -330,13 +330,13 @@ class LoggedInPresenterTest {
         sessionVerificationService: SessionVerificationService = FakeSessionVerificationService(),
         encryptionService: EncryptionService = FakeEncryptionService(),
         pushService: PushService = FakePushService(),
-        prismClient: PRISMClient = FakePRISMClient(
+        matrixClient: PRISMClient = FakePRISMClient(
             accountManagementUrlResult = { Result.success(null) },
         ),
         buildMeta: BuildMeta = aBuildMeta(),
     ): LoggedInPresenter {
         return LoggedInPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             syncService = FakeSyncService(initialSyncState = syncState),
             pushService = pushService,
             sessionVerificationService = sessionVerificationService,

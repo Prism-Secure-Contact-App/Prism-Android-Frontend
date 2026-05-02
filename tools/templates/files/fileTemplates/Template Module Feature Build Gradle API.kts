@@ -1,9 +1,9 @@
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.features.${MODULE_NAME}.api"
+    namespace = "io.prism.android.features.${MODULE_NAME}.api"
 }
 
 dependencies {

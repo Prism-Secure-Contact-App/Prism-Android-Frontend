@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.storage
+package io.prism.android.libraries.matrix.impl.storage
 
 import io.prism.android.libraries.core.data.ByteUnit
 import io.prism.android.libraries.core.data.megaBytes
-import io.prism.android.libraries.prism.impl.paths.SessionPaths
-import org.prism.rustcomponents.sdk.ClientBuilder
-import org.prism.rustcomponents.sdk.SqliteStoreBuilder as SdkSqliteStoreBuilder
+import io.prism.android.libraries.matrix.impl.paths.SessionPaths
+import org.matrix.rustcomponents.sdk.ClientBuilder
+import org.matrix.rustcomponents.sdk.SqliteStoreBuilder as SdkSqliteStoreBuilder
 
 interface SqliteStoreBuilder {
     fun passphrase(passphrase: String?): SqliteStoreBuilder

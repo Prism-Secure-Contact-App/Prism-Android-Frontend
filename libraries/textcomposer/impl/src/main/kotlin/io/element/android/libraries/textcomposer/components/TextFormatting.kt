@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -22,12 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.textcomposer.R
-import io.element.android.libraries.textcomposer.TextComposerLinkDialog
-import io.element.android.libraries.textcomposer.model.aRichTextEditorState
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.textcomposer.R
+import io.prism.android.libraries.textcomposer.TextComposerLinkDialog
+import io.prism.android.libraries.textcomposer.model.aRichTextEditorState
 import io.element.android.wysiwyg.compose.RichTextEditorState
 import io.element.android.wysiwyg.view.models.InlineFormat
 import io.element.android.wysiwyg.view.models.LinkAction
@@ -213,6 +213,6 @@ private fun ActionState?.toButtonState(): FormattingOptionState =
 
 @PreviewsDayNight
 @Composable
-internal fun TextFormattingPreview() = ElementPreview {
+internal fun TextFormattingPreview() = PRISMPreview {
     TextFormatting(state = aRichTextEditorState())
 }

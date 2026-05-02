@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaplayer.impl
+package io.prism.android.libraries.mediaplayer.impl
 
 import android.content.Context
 import androidx.media3.common.MediaItem
@@ -15,8 +15,8 @@ import androidx.media3.exoplayer.ExoPlayer
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.di.annotations.ApplicationContext
 
 /**
  * A subset of media3 [Player] that only exposes the few methods we need making it easier to mock.

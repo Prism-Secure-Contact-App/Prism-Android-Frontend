@@ -11,7 +11,7 @@ package io.prism.android.features.preferences.impl.advanced
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
 
 class FakeMediaPreviewConfigStateStore(
     hideInviteAvatarsValue: Boolean = false,

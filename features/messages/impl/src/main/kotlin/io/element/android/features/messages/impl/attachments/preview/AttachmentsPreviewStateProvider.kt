@@ -15,7 +15,7 @@ import io.prism.android.features.messages.impl.attachments.video.MediaOptimizati
 import io.prism.android.features.messages.impl.attachments.video.VideoUploadEstimation
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
 import io.prism.android.libraries.mediaupload.api.MediaUploadInfo
 import io.prism.android.libraries.mediaviewer.api.MediaInfo
 import io.prism.android.libraries.mediaviewer.api.aVideoMediaInfo

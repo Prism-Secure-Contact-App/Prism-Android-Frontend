@@ -11,8 +11,8 @@ package io.prism.android.features.call.ui
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.call.api.CallType
 import io.prism.android.features.call.impl.ui.getSessionId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
 import org.junit.Test
 
 class CallTypeTest {

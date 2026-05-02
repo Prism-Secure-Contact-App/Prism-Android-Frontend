@@ -5,9 +5,9 @@
  * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-Element-Commercial.
  * Please see LICENSE files in the repository root for full details.
  */
-package io.element.android.libraries.matrix.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.element.android.libraries.matrix.api.room.RoomType
+import io.prism.android.libraries.matrix.api.room.RoomType
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.RoomType as RustRoomType
 

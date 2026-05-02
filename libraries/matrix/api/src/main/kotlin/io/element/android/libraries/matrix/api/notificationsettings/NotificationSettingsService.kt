@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.notificationsettings
+package io.prism.android.libraries.matrix.api.notificationsettings
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.api.room.RoomNotificationSettings
-import io.prism.android.libraries.prism.api.room.RoomNotificationSettingsState
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationSettings
+import io.prism.android.libraries.matrix.api.room.RoomNotificationSettingsState
 import kotlinx.coroutines.flow.SharedFlow
 
 interface NotificationSettingsService {

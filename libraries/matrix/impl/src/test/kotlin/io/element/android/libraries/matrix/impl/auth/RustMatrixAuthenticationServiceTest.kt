@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.impl.ClientBuilderProvider
-import io.element.android.libraries.matrix.impl.FakeClientBuilderProvider
-import io.element.android.libraries.matrix.impl.createRustMatrixClientFactory
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClientBuilder
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiHomeserverLoginDetails
-import io.element.android.libraries.matrix.impl.paths.SessionPathsFactory
-import io.element.android.libraries.matrix.test.auth.FakeOidcRedirectUrlProvider
-import io.element.android.libraries.matrix.test.core.aBuildMeta
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.impl.ClientBuilderProvider
+import io.prism.android.libraries.matrix.impl.FakeClientBuilderProvider
+import io.prism.android.libraries.matrix.impl.createRustMatrixClientFactory
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClientBuilder
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiHomeserverLoginDetails
+import io.prism.android.libraries.matrix.impl.paths.SessionPathsFactory
+import io.prism.android.libraries.matrix.test.auth.FakeOidcRedirectUrlProvider
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

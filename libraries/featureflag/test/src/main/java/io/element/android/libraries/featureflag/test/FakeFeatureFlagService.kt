@@ -11,7 +11,7 @@ package io.prism.android.libraries.featureflag.test
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.featureflag.api.Feature
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 

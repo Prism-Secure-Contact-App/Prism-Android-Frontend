@@ -6,48 +6,48 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.content.Intent
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.room.IntentionalMention
-import io.element.android.libraries.matrix.api.room.RoomInfo
-import io.element.android.libraries.matrix.api.timeline.ReceiptType
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_MESSAGE
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_THREAD_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.FakeMatrixClientProvider
-import io.element.android.libraries.matrix.test.core.aBuildMeta
-import io.element.android.libraries.matrix.test.room.FakeBaseRoom
-import io.element.android.libraries.matrix.test.room.FakeJoinedRoom
-import io.element.android.libraries.matrix.test.room.aRoomInfo
-import io.element.android.libraries.matrix.test.room.aRoomMember
-import io.element.android.libraries.matrix.test.timeline.FakeTimeline
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStore
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
-import io.element.android.libraries.preferences.test.FakeSessionPreferencesStoreFactory
-import io.element.android.libraries.preferences.test.InMemorySessionPreferencesStore
-import io.element.android.libraries.push.api.notifications.NotificationCleaner
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.libraries.push.impl.push.FakeOnNotifiableEventReceived
-import io.element.android.libraries.push.impl.push.OnNotifiableEventReceived
-import io.element.android.libraries.push.test.notifications.FakeNotificationCleaner
-import io.element.android.services.appnavstate.api.ActiveRoomsHolder
-import io.element.android.services.appnavstate.impl.DefaultActiveRoomsHolder
-import io.element.android.services.toolbox.api.strings.StringProvider
-import io.element.android.services.toolbox.api.systemclock.SystemClock
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_MESSAGE
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_THREAD_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.FakeMatrixClientProvider
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.timeline.FakeTimeline
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
+import io.prism.android.libraries.preferences.test.FakeSessionPreferencesStoreFactory
+import io.prism.android.libraries.preferences.test.InMemorySessionPreferencesStore
+import io.prism.android.libraries.push.api.notifications.NotificationCleaner
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.libraries.push.impl.push.FakeOnNotifiableEventReceived
+import io.prism.android.libraries.push.impl.push.OnNotifiableEventReceived
+import io.prism.android.libraries.push.test.notifications.FakeNotificationCleaner
+import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
+import io.prism.android.services.appnavstate.impl.DefaultActiveRoomsHolder
+import io.prism.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
@@ -473,7 +473,7 @@ class NotificationBroadcastReceiverHandlerTest {
     private fun TestScope.createNotificationBroadcastReceiverHandler(
         joinedRoom: FakeJoinedRoom? = FakeJoinedRoom(),
         joinRoom: (RoomId) -> Result<RoomInfo?> = { lambdaError() },
-        matrixClient: MatrixClient? = FakeMatrixClient().apply {
+        matrixClient: PRISMClient? = FakeMatrixClient().apply {
             givenGetRoomResult(A_ROOM_ID, joinedRoom)
             joinRoomLambda = joinRoom
         },

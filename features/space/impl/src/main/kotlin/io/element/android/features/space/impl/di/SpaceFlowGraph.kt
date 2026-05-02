@@ -13,7 +13,7 @@ import dev.zacsweers.metro.GraphExtension
 import dev.zacsweers.metro.Provides
 import io.prism.android.libraries.architecture.NodeFactoriesBindings
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
 
 @GraphExtension(SpaceFlowScope::class)
 interface SpaceFlowGraph : NodeFactoriesBindings {

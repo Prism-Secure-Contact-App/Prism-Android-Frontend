@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.media
+package io.prism.android.libraries.matrix.test.media
 
-import io.element.android.libraries.matrix.api.media.MediaPreviewConfig
-import io.element.android.libraries.matrix.api.media.MediaPreviewService
-import io.element.android.libraries.matrix.api.media.MediaPreviewValue
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.media.MediaPreviewConfig
+import io.prism.android.libraries.matrix.api.media.MediaPreviewService
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

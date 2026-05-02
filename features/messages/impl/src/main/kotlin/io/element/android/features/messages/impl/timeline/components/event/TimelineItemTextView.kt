@@ -30,10 +30,10 @@ import io.prism.android.features.messages.impl.utils.containsOnlyEmojis
 import io.prism.android.libraries.androidutils.text.LinkifyHelper
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.textcomposer.PRISMRichTextEditorStyle
+import io.prism.android.libraries.textcomposer.ElementRichTextEditorStyle
 import io.prism.android.libraries.textcomposer.mentions.LocalMentionSpanUpdater
-import io.prism.android.wysiwyg.compose.EditorStyledText
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.compose.EditorStyledText
+import io.element.android.wysiwyg.link.Link
 
 @Composable
 fun TimelineItemTextView(
@@ -59,7 +59,7 @@ fun TimelineItemTextView(
                 text = text,
                 onLinkClickedListener = onLinkClick,
                 onLinkLongClickedListener = onLinkLongClick,
-                style = PRISMRichTextEditorStyle.textStyle(),
+                style = ElementRichTextEditorStyle.textStyle(),
                 onTextLayout = ContentAvoidingLayout.measureLegacyLastTextLine(onContentLayoutChange = onContentLayoutChange),
                 releaseOnDetach = false,
             )

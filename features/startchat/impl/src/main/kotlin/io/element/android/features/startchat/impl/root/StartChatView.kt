@@ -45,9 +45,9 @@ import io.prism.android.libraries.designsystem.theme.components.ListSectionHeade
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.ui.components.CreateDmConfirmationBottomSheet
-import io.prism.android.libraries.prism.ui.components.PRISMUserRow
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.ui.components.CreateDmConfirmationBottomSheet
+import io.prism.android.libraries.matrix.ui.components.MatrixUserRow
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
@@ -129,9 +129,9 @@ fun StartChatView(
         confirmationDialog = { data ->
             if (data is ConfirmingStartDmWithPRISMUser) {
                 CreateDmConfirmationBottomSheet(
-                    prismUser = data.prismUser,
+                    matrixUser = data.matrixUser,
                     onSendInvite = {
-                        state.eventSink(StartChatEvents.StartDM(data.prismUser))
+                        state.eventSink(StartChatEvents.StartDM(data.matrixUser))
                     },
                     onDismiss = {
                         state.eventSink(StartChatEvents.CancelStartDM)
@@ -207,13 +207,13 @@ private fun CreateRoomActionButtonsList(
             }
             state.userListState.recentDirectRooms.forEach { recentDirectRoom ->
                 item {
-                    PRISMUserRow(
+                    MatrixUserRow(
                         modifier = Modifier.clickable(
                             onClick = {
                                 onDmClick(recentDirectRoom.roomId)
                             }
                         ),
-                        prismUser = recentDirectRoom.prismUser,
+                        matrixUser = recentDirectRoom.matrixUser,
                     )
                 }
             }

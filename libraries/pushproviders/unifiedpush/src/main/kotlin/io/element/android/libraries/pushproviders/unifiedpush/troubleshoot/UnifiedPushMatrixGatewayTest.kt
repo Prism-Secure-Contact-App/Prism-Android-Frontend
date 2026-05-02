@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush.troubleshoot
+package io.prism.android.libraries.pushproviders.unifiedpush.troubleshoot
 
 import dev.zacsweers.metro.ContributesIntoSet
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushproviders.unifiedpush.UnifiedPushApiFactory
-import io.element.android.libraries.pushproviders.unifiedpush.UnifiedPushConfig
-import io.element.android.libraries.pushproviders.unifiedpush.UnifiedPushSessionPushConfigProvider
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.api.test.TestFilterData
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushproviders.unifiedpush.UnifiedPushApiFactory
+import io.prism.android.libraries.pushproviders.unifiedpush.UnifiedPushConfig
+import io.prism.android.libraries.pushproviders.unifiedpush.UnifiedPushSessionPushConfigProvider
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.api.test.TestFilterData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

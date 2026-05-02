@@ -18,8 +18,8 @@ import io.prism.android.features.lockscreen.api.LockScreenService
 import io.prism.android.libraries.core.coroutine.mapState
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
 import io.prism.android.libraries.permissions.api.PermissionStateProvider
 import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
 import io.prism.android.services.analytics.api.AnalyticsService

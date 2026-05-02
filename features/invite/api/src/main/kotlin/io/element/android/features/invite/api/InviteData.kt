@@ -9,11 +9,11 @@
 package io.prism.android.features.invite.api
 
 import android.os.Parcelable
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.room.preview.RoomPreviewInfo
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.room.preview.RoomPreviewInfo
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

@@ -15,7 +15,7 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.appnav.root.RootPresenter
 import io.prism.android.features.rageshake.api.crash.aCrashDetectionState
 import io.prism.android.features.rageshake.api.detection.aRageshakeDetectionState
-import io.prism.android.libraries.prism.test.FakeSdkMetadata
+import io.prism.android.libraries.matrix.test.FakeSdkMetadata
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.services.apperror.api.AppErrorState
 import io.prism.android.services.apperror.api.AppErrorStateService

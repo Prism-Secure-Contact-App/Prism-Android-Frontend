@@ -60,9 +60,9 @@ import io.prism.android.libraries.designsystem.theme.roomListRoomMessage
 import io.prism.android.libraries.designsystem.theme.roomListRoomMessageDate
 import io.prism.android.libraries.designsystem.theme.roomListRoomName
 import io.prism.android.libraries.designsystem.theme.unreadIndicator
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.ui.components.InviteSenderView
-import io.prism.android.libraries.prism.ui.model.InviteSender
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.ui.components.InviteSenderView
+import io.prism.android.libraries.matrix.ui.model.InviteSender
 import io.prism.android.libraries.ui.strings.CommonStrings
 import timber.log.Timber
 

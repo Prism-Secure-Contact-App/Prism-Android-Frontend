@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer
+package io.prism.android.libraries.textcomposer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -16,14 +16,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.dialogs.ListDialog
-import io.element.android.libraries.designsystem.components.list.TextFieldListItem
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.ListItem
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.dialogs.ListDialog
+import io.prism.android.libraries.designsystem.components.list.TextFieldListItem
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.ListItem
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.ui.strings.CommonStrings
 import io.element.android.wysiwyg.view.models.LinkAction
 
 @Composable
@@ -182,7 +182,7 @@ private fun EditLinkDialog(
                 headlineContent = {
                     Text(
                         text = stringResource(R.string.rich_text_editor_remove_link),
-                        color = ElementTheme.colors.textCriticalPrimary
+                        color = PRISMTheme.colors.textCriticalPrimary
                     )
                 },
                 onClick = ::onRemoveClick,
@@ -193,7 +193,7 @@ private fun EditLinkDialog(
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerLinkDialogCreateLinkPreview() = ElementPreview {
+internal fun TextComposerLinkDialogCreateLinkPreview() = PRISMPreview {
     TextComposerLinkDialog(
         onDismissRequest = {},
         linkAction = LinkAction.InsertLink,
@@ -205,7 +205,7 @@ internal fun TextComposerLinkDialogCreateLinkPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerLinkDialogCreateLinkWithoutTextPreview() = ElementPreview {
+internal fun TextComposerLinkDialogCreateLinkWithoutTextPreview() = PRISMPreview {
     TextComposerLinkDialog(
         onDismissRequest = {},
         linkAction = LinkAction.SetLink(null),
@@ -217,7 +217,7 @@ internal fun TextComposerLinkDialogCreateLinkWithoutTextPreview() = ElementPrevi
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerLinkDialogEditLinkPreview() = ElementPreview {
+internal fun TextComposerLinkDialogEditLinkPreview() = PRISMPreview {
     TextComposerLinkDialog(
         onDismissRequest = {},
         linkAction = LinkAction.SetLink("https://element.io"),

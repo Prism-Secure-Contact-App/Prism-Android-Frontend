@@ -17,8 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalInspectionMode
 import io.prism.android.compound.tokens.generated.CompoundIcons
-import io.prism.android.emojibasebindings.Emoji
-import io.prism.android.emojibasebindings.EmojibaseStore
+import io.element.android.emojibasebindings.Emoji
+import io.element.android.emojibasebindings.EmojibaseStore
 import io.prism.android.features.messages.impl.R
 import io.prism.android.features.messages.impl.timeline.components.customreaction.icon
 import io.prism.android.features.messages.impl.timeline.components.customreaction.title

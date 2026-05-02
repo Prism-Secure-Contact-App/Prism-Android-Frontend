@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.core
+package io.prism.android.libraries.matrix.impl.core
 
-import io.prism.android.libraries.prism.api.core.ProgressCallback
-import org.prism.rustcomponents.sdk.ProgressWatcher
-import org.prism.rustcomponents.sdk.TransmissionProgress
+import io.prism.android.libraries.matrix.api.core.ProgressCallback
+import org.matrix.rustcomponents.sdk.ProgressWatcher
+import org.matrix.rustcomponents.sdk.TransmissionProgress
 
 internal class ProgressWatcherWrapper(private val progressCallback: ProgressCallback) : ProgressWatcher {
     override fun transmissionProgress(progress: TransmissionProgress) {

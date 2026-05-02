@@ -17,8 +17,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.features.startchat.impl.R
 import io.prism.android.features.startchat.impl.userlist.aRecentDirectRoomList
 import io.prism.android.features.startchat.impl.userlist.aUserListState
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.ui.model.getBestName
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.ui.model.getBestName
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam
@@ -99,7 +99,7 @@ class StartChatViewTest {
                 ),
                 onOpenDM = it
             )
-            rule.onNodeWithText(firstRoom.prismUser.getBestName()).performClick()
+            rule.onNodeWithText(firstRoom.matrixUser.getBestName()).performClick()
         }
     }
 

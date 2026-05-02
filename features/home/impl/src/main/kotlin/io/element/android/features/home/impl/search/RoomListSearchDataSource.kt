@@ -14,10 +14,10 @@ import dev.zacsweers.metro.AssistedInject
 import io.prism.android.features.home.impl.datasource.RoomListRoomSummaryFactory
 import io.prism.android.features.home.impl.model.RoomListRoomSummary
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.roomlist.RoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.roomlist.updateVisibleRange
+import io.prism.android.libraries.matrix.api.roomlist.RoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.roomlist.updateVisibleRange
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope

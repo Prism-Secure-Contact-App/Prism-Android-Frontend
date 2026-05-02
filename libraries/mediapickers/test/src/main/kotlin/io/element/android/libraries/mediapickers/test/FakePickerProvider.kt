@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediapickers.test
+package io.prism.android.libraries.mediapickers.test
 
 import android.net.Uri
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.compose.runtime.Composable
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.mediapickers.api.NoOpPickerLauncher
-import io.element.android.libraries.mediapickers.api.PickerLauncher
-import io.element.android.libraries.mediapickers.api.PickerProvider
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.mediapickers.api.NoOpPickerLauncher
+import io.prism.android.libraries.mediapickers.api.PickerLauncher
+import io.prism.android.libraries.mediapickers.api.PickerProvider
 
 class FakePickerProvider : PickerProvider {
     private var mimeType = MimeTypes.Any

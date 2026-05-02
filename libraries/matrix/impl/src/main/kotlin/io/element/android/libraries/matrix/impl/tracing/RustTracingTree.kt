@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.tracing
+package io.prism.android.libraries.matrix.impl.tracing
 
 import android.util.Log
-import org.prism.rustcomponents.sdk.LogLevel
-import org.prism.rustcomponents.sdk.logEvent
+import org.matrix.rustcomponents.sdk.LogLevel
+import org.matrix.rustcomponents.sdk.logEvent
 import timber.log.Timber
 
 /**

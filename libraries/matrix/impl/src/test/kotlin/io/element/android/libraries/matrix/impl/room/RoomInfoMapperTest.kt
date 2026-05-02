@@ -6,31 +6,31 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.notification.CallIntent
-import io.element.android.libraries.matrix.api.room.CallIntentConsensus
-import io.element.android.libraries.matrix.api.room.CurrentUserMembership
-import io.element.android.libraries.matrix.api.room.RoomInfo
-import io.element.android.libraries.matrix.api.room.RoomNotificationMode
-import io.element.android.libraries.matrix.api.room.history.RoomHistoryVisibility
-import io.element.android.libraries.matrix.api.room.join.JoinRule
-import io.element.android.libraries.matrix.api.room.powerlevels.RoomPowerLevels
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomHero
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomInfo
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomMember
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomPowerLevels
-import io.element.android.libraries.matrix.test.AN_AVATAR_URL
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ALIAS
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_ID_3
-import io.element.android.libraries.matrix.test.A_USER_ID_6
-import io.element.android.libraries.matrix.test.room.aRoomMember
-import io.element.android.libraries.matrix.test.room.defaultRoomPowerLevelValues
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.room.CallIntentConsensus
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevels
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomHero
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomInfo
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomMember
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomPowerLevels
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_3
+import io.prism.android.libraries.matrix.test.A_USER_ID_6
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.room.defaultRoomPowerLevelValues
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList
@@ -118,7 +118,7 @@ class RoomInfoMapperTest {
                 hasRoomCall = true,
                 activeRoomCallParticipants = persistentListOf(A_USER_ID_3),
                 heroes = persistentListOf(
-                    MatrixUser(
+                    PRISMUser(
                         userId = A_USER_ID,
                         displayName = "displayName",
                         avatarUrl = "avatarUrl",

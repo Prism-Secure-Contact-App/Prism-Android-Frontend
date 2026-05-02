@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.linknewdevice
+package io.prism.android.libraries.matrix.impl.linknewdevice
 
 import io.prism.android.libraries.core.log.logger.LoggerTag
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopHandler
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopStep
-import io.prism.android.libraries.prism.api.logs.LoggerTags
-import io.prism.android.libraries.prism.impl.auth.qrlogin.QrErrorMapper
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopHandler
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopStep
+import io.prism.android.libraries.matrix.api.logs.LoggerTags
+import io.prism.android.libraries.matrix.impl.auth.qrlogin.QrErrorMapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,11 +19,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.GrantLoginWithQrCodeHandler
-import org.prism.rustcomponents.sdk.GrantQrLoginProgress
-import org.prism.rustcomponents.sdk.GrantQrLoginProgressListener
-import org.prism.rustcomponents.sdk.HumanQrGrantLoginException
-import org.prism.rustcomponents.sdk.QrCodeDecodeException
+import org.matrix.rustcomponents.sdk.GrantLoginWithQrCodeHandler
+import org.matrix.rustcomponents.sdk.GrantQrLoginProgress
+import org.matrix.rustcomponents.sdk.GrantQrLoginProgressListener
+import org.matrix.rustcomponents.sdk.HumanQrGrantLoginException
+import org.matrix.rustcomponents.sdk.QrCodeDecodeException
 import timber.log.Timber
 
 private val tag = LoggerTag("RustLinkDesktopHandler", LoggerTags.linkNewDevice)

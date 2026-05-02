@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.spaces
+package io.prism.android.libraries.matrix.test.spaces
 
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.spaces.SpaceRoom
-import io.element.android.libraries.matrix.api.spaces.SpaceRoomList
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

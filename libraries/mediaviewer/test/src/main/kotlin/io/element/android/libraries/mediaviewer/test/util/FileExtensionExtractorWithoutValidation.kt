@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.test.util
+package io.prism.android.libraries.mediaviewer.test.util
 
-import io.element.android.libraries.mediaviewer.api.util.FileExtensionExtractor
+import io.prism.android.libraries.mediaviewer.api.util.FileExtensionExtractor
 
 class FileExtensionExtractorWithoutValidation : FileExtensionExtractor {
     override fun extractFromName(name: String): String {

@@ -36,7 +36,7 @@ import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 // Figma design: https://www.figma.com/design/kcnHxunG1LDWXsJhaNuiHz/ER-145--Spaces-on-PRISM-X?node-id=6361-86274&m=dev

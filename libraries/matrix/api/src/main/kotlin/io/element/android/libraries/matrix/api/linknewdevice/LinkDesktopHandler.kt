@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.linknewdevice
+package io.prism.android.libraries.matrix.api.linknewdevice
 
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeDecodeException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeDecodeException
 import kotlinx.coroutines.flow.StateFlow
 
 interface LinkDesktopHandler {

@@ -5,19 +5,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.unregistration
+package io.prism.android.libraries.push.impl.unregistration
 
 import androidx.compose.ui.graphics.toArgb
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.appconfig.NotificationConfig
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.push.impl.notifications.NotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.appconfig.NotificationConfig
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.push.impl.notifications.NotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.sessionstorage.api.SessionStore
 import kotlinx.coroutines.flow.first
 
 interface ServiceUnregisteredHandler {
@@ -37,7 +37,7 @@ class DefaultServiceUnregisteredHandler(
         val hasMultipleAccounts = sessionStore.numberOfSessions() > 1
         val notification = notificationCreator.createUnregistrationNotification(
             NotificationAccountParams(
-                user = MatrixUser(userId),
+                user = PRISMUser(userId),
                 color = color,
                 showSessionId = hasMultipleAccounts,
             )

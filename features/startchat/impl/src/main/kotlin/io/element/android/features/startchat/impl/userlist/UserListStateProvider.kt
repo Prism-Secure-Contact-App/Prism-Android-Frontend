@@ -11,10 +11,10 @@ package io.prism.android.features.startchat.impl.userlist
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.recent.RecentDirectRoom
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.recent.RecentDirectRoom
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import io.prism.android.libraries.usersearch.api.UserSearchResult
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -34,14 +34,14 @@ open class UserListStateProvider : PreviewParameterProvider<UserListState> {
             aUserListState(
                 isSearchActive = true,
                 searchQuery = "@someone:prism.org",
-                selectedUsers = aPRISMUserList().toImmutableList(),
+                selectedUsers = aMatrixUserList().toImmutableList(),
                 searchResults = SearchBarResultState.Results(aListOfUserSearchResults()),
             ),
             aUserListState(
                 isSearchActive = true,
                 searchQuery = "@someone:prism.org",
                 selectionMode = SelectionMode.Multiple,
-                selectedUsers = aPRISMUserList().toImmutableList(),
+                selectedUsers = aMatrixUserList().toImmutableList(),
                 searchResults = SearchBarResultState.Results(aListOfUserSearchResults()),
             ),
             aUserListState(
@@ -80,12 +80,12 @@ fun aUserListState(
     eventSink = eventSink
 )
 
-fun aListOfSelectedUsers() = aPRISMUserList().take(6).toImmutableList()
-fun aListOfUserSearchResults() = aPRISMUserList().take(6).map { UserSearchResult(it) }.toImmutableList()
+fun aListOfSelectedUsers() = aMatrixUserList().take(6).toImmutableList()
+fun aListOfUserSearchResults() = aMatrixUserList().take(6).map { UserSearchResult(it) }.toImmutableList()
 
 fun aRecentDirectRoomList(
     count: Int = 5
-): List<RecentDirectRoom> = aPRISMUserList()
+): List<RecentDirectRoom> = aMatrixUserList()
     .take(count)
     .map {
         RecentDirectRoom(RoomId("!aRoom:id"), it)

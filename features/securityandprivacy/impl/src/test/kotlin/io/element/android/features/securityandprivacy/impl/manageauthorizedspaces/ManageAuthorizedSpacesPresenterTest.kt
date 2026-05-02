@@ -9,7 +9,7 @@
 package io.prism.android.features.securityandprivacy.impl.manageauthorizedspaces
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 import io.prism.android.tests.testutils.test
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentSetOf

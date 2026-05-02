@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.permalink
+package io.prism.android.libraries.matrix.impl.permalink
 
 import android.net.Uri
 import com.google.common.truth.Truth.assertThat

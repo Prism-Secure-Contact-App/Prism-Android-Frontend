@@ -19,9 +19,9 @@ import dev.zacsweers.metro.AssistedInject
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.jvm.optionals.getOrElse
@@ -29,7 +29,7 @@ import kotlin.jvm.optionals.getOrElse
 @AssistedInject
 class RoomAliasResolverPresenter(
     @Assisted private val roomAlias: RoomAlias,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : Presenter<RoomAliasResolverState> {
     fun interface Factory {
         fun create(
@@ -61,7 +61,7 @@ class RoomAliasResolverPresenter(
 
     private fun CoroutineScope.resolveAlias(resolveState: MutableState<AsyncData<ResolvedRoomAlias>>) = launch {
         suspend {
-            prismClient.resolveRoomAlias(roomAlias)
+            matrixClient.resolveRoomAlias(roomAlias)
                 .getOrThrow()
                 .getOrElse { throw RoomAliasResolverFailures.UnknownAlias }
         }.runCatchingUpdatingState(resolveState)

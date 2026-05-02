@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.mediaplayer.test.FakeMediaPlayer
-import io.element.android.libraries.voiceplayer.api.VoiceMessageEvent
-import io.element.android.libraries.voiceplayer.api.VoiceMessageException
-import io.element.android.libraries.voiceplayer.api.VoiceMessageState
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.test
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.mediaplayer.test.FakeMediaPlayer
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageEvent
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageException
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageState
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

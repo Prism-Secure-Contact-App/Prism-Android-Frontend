@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 internal enum class FormattingOptionState {
     Default,

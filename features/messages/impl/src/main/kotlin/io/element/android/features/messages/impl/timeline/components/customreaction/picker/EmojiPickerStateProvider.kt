@@ -10,8 +10,8 @@ package io.prism.android.features.messages.impl.timeline.components.customreacti
 
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.prism.android.emojibasebindings.Emoji
-import io.prism.android.emojibasebindings.EmojibaseCategory
+import io.element.android.emojibasebindings.Emoji
+import io.element.android.emojibasebindings.EmojibaseCategory
 import io.prism.android.features.messages.impl.R
 import io.prism.android.features.messages.impl.timeline.components.customreaction.icon
 import io.prism.android.features.messages.impl.timeline.components.customreaction.title

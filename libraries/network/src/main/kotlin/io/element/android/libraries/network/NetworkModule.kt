@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network
+package io.prism.android.libraries.network
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.network.interceptors.DynamicHttpLoggingInterceptor
-import io.element.android.libraries.network.interceptors.FormattedJsonHttpLogger
-import io.element.android.libraries.network.interceptors.UserAgentInterceptor
+import io.prism.android.libraries.network.interceptors.DynamicHttpLoggingInterceptor
+import io.prism.android.libraries.network.interceptors.FormattedJsonHttpLogger
+import io.prism.android.libraries.network.interceptors.UserAgentInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit

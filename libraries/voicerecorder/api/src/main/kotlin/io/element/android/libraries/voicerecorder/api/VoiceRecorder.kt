@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.api
+package io.prism.android.libraries.voicerecorder.api
 
 import android.Manifest
 import androidx.annotation.RequiresPermission

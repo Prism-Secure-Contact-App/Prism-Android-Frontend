@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
-import io.element.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.core.mimetype.MimeTypes
 
 data class Asset(
     val filename: String,

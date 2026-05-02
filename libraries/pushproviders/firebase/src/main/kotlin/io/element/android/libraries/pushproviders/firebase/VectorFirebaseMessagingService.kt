@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.architecture.bindings
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.push.api.push.PushHandlingWakeLock
-import io.element.android.libraries.pushproviders.api.PushHandler
+import io.prism.android.libraries.architecture.bindings
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.push.api.push.PushHandlingWakeLock
+import io.prism.android.libraries.pushproviders.api.PushHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber

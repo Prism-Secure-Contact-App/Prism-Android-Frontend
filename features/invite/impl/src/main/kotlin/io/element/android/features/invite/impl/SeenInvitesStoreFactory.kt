@@ -9,7 +9,7 @@
 package io.prism.android.features.invite.impl
 
 import io.prism.android.features.invite.api.SeenInvitesStore
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 import kotlinx.coroutines.CoroutineScope
 
 interface SeenInvitesStoreFactory {

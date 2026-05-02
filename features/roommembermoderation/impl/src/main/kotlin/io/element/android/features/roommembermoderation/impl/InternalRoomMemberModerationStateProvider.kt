@@ -14,8 +14,8 @@ import io.prism.android.features.roommembermoderation.api.ModerationActionState
 import io.prism.android.features.roommembermoderation.api.RoomMemberModerationEvents
 import io.prism.android.features.roommembermoderation.api.RoomMemberModerationPermissions
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.toImmutableList
 
 class InternalRoomMemberModerationStateProvider : PreviewParameterProvider<InternalRoomMemberModerationState> {

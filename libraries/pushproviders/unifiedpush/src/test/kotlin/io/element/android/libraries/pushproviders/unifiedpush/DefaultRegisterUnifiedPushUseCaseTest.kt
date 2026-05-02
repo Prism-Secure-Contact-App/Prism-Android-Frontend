@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.unifiedpush.registration.EndpointRegistrationHandler
-import io.element.android.libraries.pushproviders.unifiedpush.registration.RegistrationResult
-import io.element.android.tests.testutils.fake.FakeAndroidKeyStore
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.unifiedpush.registration.EndpointRegistrationHandler
+import io.prism.android.libraries.pushproviders.unifiedpush.registration.RegistrationResult
+import io.prism.android.tests.testutils.fake.FakeAndroidKeyStore
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope

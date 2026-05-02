@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.api.clientsecret
+package io.prism.android.libraries.pushstore.api.clientsecret
 
 interface PushClientSecretFactory {
     fun create(): String

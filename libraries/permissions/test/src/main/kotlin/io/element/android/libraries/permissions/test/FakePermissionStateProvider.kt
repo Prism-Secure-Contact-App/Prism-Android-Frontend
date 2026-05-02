@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.test
+package io.prism.android.libraries.permissions.test
 
-import io.element.android.libraries.permissions.api.PermissionStateProvider
+import io.prism.android.libraries.permissions.api.PermissionStateProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 

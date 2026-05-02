@@ -24,9 +24,9 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runUpdatingState
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.model
+package io.prism.android.libraries.textcomposer.model
 
 sealed interface VoiceMessageRecorderEvent {
     data object Start : VoiceMessageRecorderEvent

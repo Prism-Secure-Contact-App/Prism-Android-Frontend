@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.room.address
+package io.prism.android.libraries.matrix.ui.room.address
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.room.alias.RoomAliasHelper
-import io.element.android.libraries.matrix.api.roomAliasFromName
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.api.roomAliasFromName
 import kotlinx.coroutines.delay
 
 @Composable
 fun RoomAddressValidityEffect(
-    client: MatrixClient,
+    client: PRISMClient,
     roomAliasHelper: RoomAliasHelper,
     newRoomAddress: String,
     knownRoomAddress: String?,

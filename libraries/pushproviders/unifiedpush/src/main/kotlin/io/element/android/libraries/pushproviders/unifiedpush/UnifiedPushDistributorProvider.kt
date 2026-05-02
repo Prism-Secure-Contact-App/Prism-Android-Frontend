@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import android.content.Context
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.androidutils.system.getApplicationLabel
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.androidutils.system.getApplicationLabel
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.pushproviders.api.Distributor
 import org.unifiedpush.android.connector.UnifiedPush
 
 interface UnifiedPushDistributorProvider {

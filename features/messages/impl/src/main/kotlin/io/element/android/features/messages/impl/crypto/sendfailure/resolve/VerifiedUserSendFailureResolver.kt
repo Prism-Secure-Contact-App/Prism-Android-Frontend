@@ -9,10 +9,10 @@
 package io.prism.android.features.messages.impl.crypto.sendfailure.resolve
 
 import androidx.compose.runtime.mutableStateOf
-import io.prism.android.libraries.prism.api.core.SendHandle
-import io.prism.android.libraries.prism.api.core.TransactionId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.api.core.SendHandle
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
 import timber.log.Timber
 
 /**

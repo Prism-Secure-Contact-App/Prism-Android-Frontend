@@ -6,40 +6,40 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.auth
+package io.prism.android.libraries.matrix.test.auth
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.auth.MatrixAuthenticationService
-import io.element.android.libraries.matrix.api.auth.MatrixHomeServerDetails
-import io.element.android.libraries.matrix.api.auth.OidcDetails
-import io.element.android.libraries.matrix.api.auth.OidcPrompt
-import io.element.android.libraries.matrix.api.auth.external.ExternalSession
-import io.element.android.libraries.matrix.api.auth.qrlogin.MatrixQrCodeLoginData
-import io.element.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.auth.PRISMHomeServerDetails
+import io.prism.android.libraries.matrix.api.auth.OidcDetails
+import io.prism.android.libraries.matrix.api.auth.OidcPrompt
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.simulateLongTask
 
 val A_OIDC_DATA = OidcDetails(url = "a-url")
 
 class FakeMatrixAuthenticationService(
-    var matrixClientResult: ((SessionId) -> Result<MatrixClient>)? = null,
-    var loginWithQrCodeResult: (qrCodeData: MatrixQrCodeLoginData, progress: (QrCodeLoginStep) -> Unit) -> Result<SessionId> =
-        lambdaRecorder<MatrixQrCodeLoginData, (QrCodeLoginStep) -> Unit, Result<SessionId>> { _, _ -> Result.success(A_SESSION_ID) },
+    var matrixClientResult: ((SessionId) -> Result<PRISMClient>)? = null,
+    var loginWithQrCodeResult: (qrCodeData: PRISMQrCodeLoginData, progress: (QrCodeLoginStep) -> Unit) -> Result<SessionId> =
+        lambdaRecorder<PRISMQrCodeLoginData, (QrCodeLoginStep) -> Unit, Result<SessionId>> { _, _ -> Result.success(A_SESSION_ID) },
     private val importCreatedSessionLambda: (ExternalSession) -> Result<SessionId> = { lambdaError() },
-    private val setHomeserverResult: (String) -> Result<MatrixHomeServerDetails> = { lambdaError() },
-) : MatrixAuthenticationService {
+    private val setHomeserverResult: (String) -> Result<PRISMHomeServerDetails> = { lambdaError() },
+) : PRISMAuthenticationService {
     private var oidcError: Throwable? = null
     private var oidcCancelError: Throwable? = null
     private var loginError: Throwable? = null
-    private var matrixClient: MatrixClient? = null
-    private var onAuthenticationListener: ((MatrixClient) -> Unit)? = null
+    private var matrixClient: PRISMClient? = null
+    private var onAuthenticationListener: ((PRISMClient) -> Unit)? = null
 
-    override suspend fun restoreSession(sessionId: SessionId): Result<MatrixClient> {
+    override suspend fun restoreSession(sessionId: SessionId): Result<PRISMClient> {
         matrixClientResult?.let {
             return it.invoke(sessionId)
         }
@@ -51,7 +51,7 @@ class FakeMatrixAuthenticationService(
         }
     }
 
-    override suspend fun setHomeserver(homeserver: String): Result<MatrixHomeServerDetails> = simulateLongTask {
+    override suspend fun setHomeserver(homeserver: String): Result<PRISMHomeServerDetails> = simulateLongTask {
         setHomeserverResult(homeserver)
     }
 
@@ -84,12 +84,12 @@ class FakeMatrixAuthenticationService(
         }
     }
 
-    override suspend fun loginWithQrCode(qrCodeData: MatrixQrCodeLoginData, progress: (QrCodeLoginStep) -> Unit): Result<SessionId> = simulateLongTask {
+    override suspend fun loginWithQrCode(qrCodeData: PRISMQrCodeLoginData, progress: (QrCodeLoginStep) -> Unit): Result<SessionId> = simulateLongTask {
         onAuthenticationListener?.invoke(matrixClient ?: FakeMatrixClient())
         loginWithQrCodeResult(qrCodeData, progress)
     }
 
-    override fun listenToNewMatrixClients(lambda: (MatrixClient) -> Unit) {
+    override fun listenToNewMatrixClients(lambda: (PRISMClient) -> Unit) {
         onAuthenticationListener = lambda
     }
 
@@ -105,7 +105,7 @@ class FakeMatrixAuthenticationService(
         loginError = throwable
     }
 
-    fun givenMatrixClient(matrixClient: MatrixClient) {
+    fun givenMatrixClient(matrixClient: PRISMClient) {
         this.matrixClient = matrixClient
     }
 }

@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.roomdetails.impl.aRoomNotificationSettings
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 
 internal class UserDefinedRoomNotificationSettingsStateProvider : PreviewParameterProvider<RoomNotificationSettingsState> {
     override val values: Sequence<RoomNotificationSettingsState>

@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import io.element.android.libraries.architecture.Presenter
+import io.prism.android.libraries.architecture.Presenter
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class MutablePresenter<State>(initialState: State) : Presenter<State> {

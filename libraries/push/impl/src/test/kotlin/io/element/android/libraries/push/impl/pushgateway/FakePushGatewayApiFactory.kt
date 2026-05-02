@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.pushgateway
+package io.prism.android.libraries.push.impl.pushgateway
 
 class FakePushGatewayApiFactory(
     private val notifyResponse: () -> PushGatewayNotifyResponse

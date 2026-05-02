@@ -8,7 +8,7 @@
 
 package io.prism.android.appconfig
 
-import io.prism.android.libraries.prism.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.StateEventType
 
 object TimelineConfig {
     const val MAX_READ_RECEIPT_TO_DISPLAY = 3

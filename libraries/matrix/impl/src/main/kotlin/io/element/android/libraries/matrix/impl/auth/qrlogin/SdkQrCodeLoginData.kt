@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth.qrlogin
+package io.prism.android.libraries.matrix.impl.auth.qrlogin
 
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import org.prism.rustcomponents.sdk.QrCodeData as RustQrCodeData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import org.matrix.rustcomponents.sdk.QrCodeData as RustQrCodeData
 
 class SdkQrCodeLoginData(
     internal val rustQrCodeData: RustQrCodeData,

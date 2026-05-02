@@ -10,7 +10,7 @@ package io.prism.android.features.forward.impl
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 open class ForwardMessagesStateProvider : PreviewParameterProvider<ForwardMessagesState> {
     override val values: Sequence<ForwardMessagesState>

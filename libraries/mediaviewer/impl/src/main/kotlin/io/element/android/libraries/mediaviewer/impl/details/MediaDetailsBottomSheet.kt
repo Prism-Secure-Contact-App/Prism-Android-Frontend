@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.details
+package io.prism.android.libraries.mediaviewer.impl.details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,25 +24,25 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.colors.AvatarColorsProvider
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.components.list.ListItemContent
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.element.android.libraries.designsystem.theme.components.IconSource
-import io.element.android.libraries.designsystem.theme.components.ListItem
-import io.element.android.libraries.designsystem.theme.components.ListItemStyle
-import io.element.android.libraries.designsystem.theme.components.ModalBottomSheet
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.impl.R
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.colors.AvatarColorsProvider
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.components.list.ListItemContent
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.designsystem.theme.components.IconSource
+import io.prism.android.libraries.designsystem.theme.components.ListItem
+import io.prism.android.libraries.designsystem.theme.components.ListItemStyle
+import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.impl.R
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -171,15 +171,15 @@ private fun SenderRow(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = avatarColors.foreground,
-                style = ElementTheme.typography.fontBodyMdMedium,
+                style = PRISMTheme.typography.fontBodyMdMedium,
             )
             // Id
             Text(
                 text = mediaInfo.senderId?.value.orEmpty(),
-                color = ElementTheme.colors.textSecondary,
+                color = PRISMTheme.colors.textSecondary,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                style = ElementTheme.typography.fontBodyMdRegular,
+                style = PRISMTheme.typography.fontBodyMdRegular,
             )
         }
     }
@@ -198,8 +198,8 @@ private fun Section(
     ) {
         Text(
             text = title.uppercase(),
-            style = ElementTheme.typography.fontBodySmRegular,
-            color = ElementTheme.colors.textSecondary,
+            style = PRISMTheme.typography.fontBodySmRegular,
+            color = PRISMTheme.colors.textSecondary,
         )
         content()
     }
@@ -213,15 +213,15 @@ private fun SectionText(
     Section(title = title) {
         Text(
             text = text,
-            style = ElementTheme.typography.fontBodyLgRegular,
-            color = ElementTheme.colors.textPrimary,
+            style = PRISMTheme.typography.fontBodyLgRegular,
+            color = PRISMTheme.colors.textPrimary,
         )
     }
 }
 
 @PreviewsDayNight
 @Composable
-internal fun MediaDetailsBottomSheetPreview() = ElementPreview {
+internal fun MediaDetailsBottomSheetPreview() = PRISMPreview {
     MediaDetailsBottomSheet(
         state = aMediaDetailsBottomSheetState(),
         onViewInTimeline = {},

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.spaces
+package io.prism.android.libraries.matrix.api.spaces
 
 data class LeaveSpaceRoom(
     val spaceRoom: SpaceRoom,

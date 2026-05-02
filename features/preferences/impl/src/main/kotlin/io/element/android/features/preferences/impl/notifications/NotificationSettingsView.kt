@@ -40,7 +40,7 @@ import io.prism.android.libraries.designsystem.theme.components.ListItem
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.utils.OnLifecycleEvent
 import io.prism.android.libraries.fullscreenintent.api.FullScreenIntentPermissionsEvents
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.toImmutableList
 

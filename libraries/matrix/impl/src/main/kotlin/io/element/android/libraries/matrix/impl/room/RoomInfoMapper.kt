@@ -6,31 +6,31 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevels
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.impl.room.history.map
-import io.prism.android.libraries.prism.impl.room.join.map
-import io.prism.android.libraries.prism.impl.room.member.RoomMemberMapper
-import io.prism.android.libraries.prism.impl.room.powerlevels.RoomPowerLevelsValuesMapper
-import io.prism.android.libraries.prism.impl.room.tombstone.map
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevels
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.impl.room.history.map
+import io.prism.android.libraries.matrix.impl.room.join.map
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberMapper
+import io.prism.android.libraries.matrix.impl.room.powerlevels.RoomPowerLevelsValuesMapper
+import io.prism.android.libraries.matrix.impl.room.tombstone.map
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
-import org.prism.rustcomponents.sdk.Membership
-import org.prism.rustcomponents.sdk.RoomHero
-import uniffi.prism_sdk_base.EncryptionState
-import org.prism.rustcomponents.sdk.Membership as RustMembership
-import org.prism.rustcomponents.sdk.RoomInfo as RustRoomInfo
-import org.prism.rustcomponents.sdk.RoomNotificationMode as RustRoomNotificationMode
-import org.prism.rustcomponents.sdk.RoomPowerLevels as RustRoomPowerLevels
+import org.matrix.rustcomponents.sdk.Membership
+import org.matrix.rustcomponents.sdk.RoomHero
+import uniffi.matrix_sdk_base.EncryptionState
+import org.matrix.rustcomponents.sdk.Membership as RustMembership
+import org.matrix.rustcomponents.sdk.RoomInfo as RustRoomInfo
+import org.matrix.rustcomponents.sdk.RoomNotificationMode as RustRoomNotificationMode
+import org.matrix.rustcomponents.sdk.RoomPowerLevels as RustRoomPowerLevels
 
 class RoomInfoMapper {
     fun map(rustRoomInfo: RustRoomInfo): RoomInfo = rustRoomInfo.let {

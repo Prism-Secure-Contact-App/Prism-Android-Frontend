@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.impl
+package io.prism.android.libraries.roomselect.impl
 
-import io.element.android.libraries.matrix.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
 
 sealed interface RoomSelectEvents {
     data class SetSelectedRoom(val room: SelectRoomInfo) : RoomSelectEvents

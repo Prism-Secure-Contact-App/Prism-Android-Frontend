@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.battery
+package io.prism.android.libraries.push.impl.battery
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.provider.Settings
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import io.element.android.services.toolbox.api.intent.ExternalIntentLauncher
-import io.element.android.services.toolbox.test.intent.FakeExternalIntentLauncher
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.services.toolbox.api.intent.ExternalIntentLauncher
+import io.prism.android.services.toolbox.test.intent.FakeExternalIntentLauncher
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner

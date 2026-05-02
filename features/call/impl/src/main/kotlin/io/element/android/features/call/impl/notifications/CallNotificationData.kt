@@ -9,10 +9,10 @@
 package io.prism.android.features.call.impl.notifications
 
 import android.os.Parcelable
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

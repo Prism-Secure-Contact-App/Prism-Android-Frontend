@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
 import android.app.Notification
 import android.service.notification.StatusBarNotification
@@ -14,22 +14,22 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.AN_EVENT_ID_2
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_THREAD_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_NAME
-import io.element.android.libraries.push.impl.notifications.factories.DefaultNotificationCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.model.ResolvedPushEvent
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_THREAD_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.push.impl.notifications.factories.DefaultNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest

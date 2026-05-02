@@ -23,7 +23,7 @@ import io.prism.android.features.securebackup.impl.tools.RecoveryKeyTools
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

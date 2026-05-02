@@ -11,8 +11,8 @@ package io.prism.android.features.roomdirectory.api
 import android.os.Parcelable
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 

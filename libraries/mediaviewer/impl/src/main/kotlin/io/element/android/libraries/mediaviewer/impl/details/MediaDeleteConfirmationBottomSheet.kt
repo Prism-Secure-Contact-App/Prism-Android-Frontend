@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.details
+package io.prism.android.libraries.mediaviewer.impl.details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -29,19 +29,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.atomic.molecules.IconTitleSubtitleMolecule
-import io.element.android.libraries.designsystem.components.BigIcon
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Button
-import io.element.android.libraries.designsystem.theme.components.ModalBottomSheet
-import io.element.android.libraries.designsystem.theme.components.TextButton
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.ui.media.MediaRequestData
-import io.element.android.libraries.mediaviewer.impl.R
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.atomic.molecules.IconTitleSubtitleMolecule
+import io.prism.android.libraries.designsystem.components.BigIcon
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Button
+import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
+import io.prism.android.libraries.designsystem.theme.components.TextButton
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.mediaviewer.impl.R
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -139,15 +139,15 @@ private fun MediaRow(
                 text = state.mediaInfo.filename,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                style = ElementTheme.typography.fontBodyLgRegular,
+                style = PRISMTheme.typography.fontBodyLgRegular,
             )
             // Info
             Text(
                 text = state.mediaInfo.mimeType + " - " + state.mediaInfo.formattedFileSize,
-                color = ElementTheme.colors.textSecondary,
+                color = PRISMTheme.colors.textSecondary,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                style = ElementTheme.typography.fontBodySmRegular,
+                style = PRISMTheme.typography.fontBodySmRegular,
             )
         }
     }
@@ -155,7 +155,7 @@ private fun MediaRow(
 
 @PreviewsDayNight
 @Composable
-internal fun MediaDeleteConfirmationBottomSheetPreview() = ElementPreview {
+internal fun MediaDeleteConfirmationBottomSheetPreview() = PRISMPreview {
     MediaDeleteConfirmationBottomSheet(
         state = aMediaDeleteConfirmationState(),
         onDelete = {},

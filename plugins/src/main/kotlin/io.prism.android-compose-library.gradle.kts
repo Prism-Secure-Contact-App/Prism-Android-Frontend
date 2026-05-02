@@ -7,7 +7,7 @@
  */
 
 /**
- * This will generate the plugin "io.element.android-compose-library", used in android library with compose modules.
+ * This will generate the plugin "io.prism.android-compose-library", used in android library with compose modules.
  */
 import extension.androidConfig
 import extension.commonDependencies

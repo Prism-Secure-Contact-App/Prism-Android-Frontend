@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.impl.store
+package io.prism.android.libraries.preferences.impl.store
 
 import android.content.Context
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStore
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
 import kotlinx.coroutines.CoroutineScope
 import java.util.concurrent.ConcurrentHashMap
 

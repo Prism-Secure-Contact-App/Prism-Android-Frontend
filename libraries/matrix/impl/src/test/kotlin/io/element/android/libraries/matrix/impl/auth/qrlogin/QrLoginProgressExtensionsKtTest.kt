@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth.qrlogin
+package io.prism.android.libraries.matrix.impl.auth.qrlogin
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.QrLoginProgress
 

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.api
+package io.prism.android.libraries.permissions.api
 
 import android.Manifest
 import androidx.compose.runtime.Composable
@@ -14,10 +14,10 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import io.element.android.libraries.designsystem.components.dialogs.ConfirmationDialog
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.designsystem.components.dialogs.ConfirmationDialog
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 fun PermissionsView(
@@ -55,7 +55,7 @@ private fun String.toDialogContent(): String {
 
 @PreviewsDayNight
 @Composable
-internal fun PermissionsViewPreview(@PreviewParameter(PermissionsStateProvider::class) state: PermissionsState) = ElementPreview {
+internal fun PermissionsViewPreview(@PreviewParameter(PermissionsStateProvider::class) state: PermissionsState) = PRISMPreview {
     PermissionsView(
         state = state,
     )

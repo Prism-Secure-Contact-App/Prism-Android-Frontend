@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.reply
+package io.prism.android.libraries.matrix.impl.timeline.reply
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.event.InReplyTo
-import io.prism.android.libraries.prism.impl.timeline.item.event.TimelineEventContentMapper
-import io.prism.android.libraries.prism.impl.timeline.item.event.map
-import org.prism.rustcomponents.sdk.EmbeddedEventDetails
-import org.prism.rustcomponents.sdk.InReplyToDetails
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.InReplyTo
+import io.prism.android.libraries.matrix.impl.timeline.item.event.TimelineEventContentMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.event.map
+import org.matrix.rustcomponents.sdk.EmbeddedEventDetails
+import org.matrix.rustcomponents.sdk.InReplyToDetails
 
 class InReplyToMapper(
     private val timelineEventContentMapper: TimelineEventContentMapper,

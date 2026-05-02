@@ -5,15 +5,15 @@
  * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-Element-Commercial.
  * Please see LICENSE files in the repository root for full details.
  */
-package io.element.android.libraries.matrix.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.roomlist.RoomListService
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
-import io.element.android.libraries.matrix.impl.room.RoomSyncSubscriber
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
+import io.prism.android.libraries.matrix.impl.room.RoomSyncSubscriber
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope

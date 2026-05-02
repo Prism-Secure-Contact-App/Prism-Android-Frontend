@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
 import com.google.common.truth.Truth.assertThat
 

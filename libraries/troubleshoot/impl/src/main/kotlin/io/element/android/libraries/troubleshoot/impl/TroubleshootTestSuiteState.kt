@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
-import io.element.android.libraries.architecture.AsyncAction
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
 import kotlinx.collections.immutable.ImmutableList
 
 data class TroubleshootTestSuiteState(

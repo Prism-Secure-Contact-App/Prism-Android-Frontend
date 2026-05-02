@@ -12,8 +12,8 @@ import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import io.prism.android.libraries.architecture.FeatureEntryPoint
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 interface HomeEntryPoint : FeatureEntryPoint {
     fun createNode(

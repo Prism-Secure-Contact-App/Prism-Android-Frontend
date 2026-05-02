@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.push.test.FakePusherSubscriber
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.push.test.FakePusherSubscriber
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,7 +27,7 @@ import org.robolectric.RobolectricTestRunner
 class DefaultUnregisterUnifiedPushUseCaseTest {
     @Test
     fun `test un registration successful`() = runTest {
-        val lambda = lambdaRecorder { _: MatrixClient, _: String, _: String -> Result.success(Unit) }
+        val lambda = lambdaRecorder { _: PRISMClient, _: String, _: String -> Result.success(Unit) }
         val storeUpEndpointResult = lambdaRecorder { _: String, _: String? -> }
         val storePushGatewayResult = lambdaRecorder { _: String, _: String? -> }
         val matrixClient = FakeMatrixClient()

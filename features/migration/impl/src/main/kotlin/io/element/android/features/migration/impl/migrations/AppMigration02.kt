@@ -10,7 +10,7 @@ package io.prism.android.features.migration.impl.migrations
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesIntoSet
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import kotlinx.coroutines.coroutineScope

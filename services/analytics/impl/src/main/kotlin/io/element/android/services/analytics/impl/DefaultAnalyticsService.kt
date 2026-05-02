@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl
+package io.prism.android.services.analytics.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
@@ -16,19 +16,19 @@ import im.vector.app.features.analytics.itf.VectorAnalyticsEvent
 import im.vector.app.features.analytics.itf.VectorAnalyticsScreen
 import im.vector.app.features.analytics.plan.SuperProperties
 import im.vector.app.features.analytics.plan.UserProperties
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction
-import io.element.android.services.analytics.api.AnalyticsSdkManager
-import io.element.android.services.analytics.api.AnalyticsSdkSpan
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.NoopAnalyticsSdkSpan
-import io.element.android.services.analytics.api.NoopAnalyticsTransaction
-import io.element.android.services.analytics.impl.log.analyticsTag
-import io.element.android.services.analytics.impl.store.AnalyticsStore
-import io.element.android.services.analyticsproviders.api.AnalyticsProvider
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
+import io.prism.android.services.analytics.api.AnalyticsSdkManager
+import io.prism.android.services.analytics.api.AnalyticsSdkSpan
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.NoopAnalyticsSdkSpan
+import io.prism.android.services.analytics.api.NoopAnalyticsTransaction
+import io.prism.android.services.analytics.impl.log.analyticsTag
+import io.prism.android.services.analytics.impl.store.AnalyticsStore
+import io.prism.android.services.analyticsproviders.api.AnalyticsProvider
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn

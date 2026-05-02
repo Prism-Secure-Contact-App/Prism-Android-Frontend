@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.impl.FakeClientBuilderProvider
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClientBuilder
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiHomeserverLoginDetails
+import io.prism.android.libraries.matrix.impl.FakeClientBuilderProvider
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClientBuilder
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiHomeserverLoginDetails
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -8,8 +8,8 @@
 
 package io.prism.android.features.space.impl.root
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
 
 sealed interface SpaceEvents {
     data object LoadMore : SpaceEvents

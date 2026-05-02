@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.matrix.ui.model.getBestName
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 
 @Composable
 fun MatrixUserRow(
-    matrixUser: MatrixUser,
+    matrixUser: PRISMUser,
     modifier: Modifier = Modifier,
     avatarSize: AvatarSize = AvatarSize.UserListItem,
     trailingContent: @Composable (() -> Unit)? = null,
@@ -34,6 +34,6 @@ fun MatrixUserRow(
 
 @PreviewsDayNight
 @Composable
-internal fun MatrixUserRowPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: MatrixUser) = ElementPreview {
+internal fun MatrixUserRowPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: PRISMUser) = PRISMPreview {
     MatrixUserRow(matrixUser)
 }

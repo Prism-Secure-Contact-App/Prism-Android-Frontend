@@ -13,8 +13,8 @@ import io.prism.android.features.poll.api.pollcontent.PollContentStateFactory
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.dateformatter.api.DateFormatter
 import io.prism.android.libraries.dateformatter.api.DateFormatterMode
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.withContext
 

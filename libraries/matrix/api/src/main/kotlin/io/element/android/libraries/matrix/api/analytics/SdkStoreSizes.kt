@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.analytics
+package io.prism.android.libraries.matrix.api.analytics
 
 import io.prism.android.libraries.core.data.ByteSize
 

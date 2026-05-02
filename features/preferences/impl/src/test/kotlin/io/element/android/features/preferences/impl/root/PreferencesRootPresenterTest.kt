@@ -23,15 +23,15 @@ import io.prism.android.libraries.featureflag.test.FakeFeature
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
 import io.prism.android.libraries.indicator.api.IndicatorService
 import io.prism.android.libraries.indicator.test.FakeIndicatorService
-import io.prism.android.libraries.prism.api.oidc.AccountManagementAction
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.AN_AVATAR_URL
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.A_SESSION_ID_2
-import io.prism.android.libraries.prism.test.A_USER_NAME
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.core.aBuildMeta
-import io.prism.android.libraries.prism.test.verification.FakeSessionVerificationService
+import io.prism.android.libraries.matrix.api.oidc.AccountManagementAction
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.verification.FakeSessionVerificationService
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
 import io.prism.android.libraries.sessionstorage.test.aSessionData
@@ -55,17 +55,17 @@ class PreferencesRootPresenterTest {
         val accountManagementUrlResult = lambdaRecorder<AccountManagementAction?, Result<String?>> { action ->
             Result.success("$action url")
         }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             canDeactivateAccountResult = { true },
             accountManagementUrlResult = accountManagementUrlResult,
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.myUser).isEqualTo(
                 PRISMUser(
-                    userId = prismClient.sessionId,
+                    userId = matrixClient.sessionId,
                     displayName = A_USER_NAME,
                     avatarUrl = AN_AVATAR_URL
                 )
@@ -76,7 +76,7 @@ class PreferencesRootPresenterTest {
             val loadedState = awaitItem()
             assertThat(loadedState.myUser).isEqualTo(
                 PRISMUser(
-                    userId = prismClient.sessionId,
+                    userId = matrixClient.sessionId,
                     displayName = A_USER_NAME,
                     avatarUrl = AN_AVATAR_URL
                 )
@@ -107,12 +107,12 @@ class PreferencesRootPresenterTest {
 
     @Test
     fun `present - cannot report bug`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             canDeactivateAccountResult = { true },
             accountManagementUrlResult = { Result.success("") },
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             rageshakeFeatureAvailability = { flowOf(false) },
         ).test {
             val initialState = awaitItem()
@@ -123,13 +123,13 @@ class PreferencesRootPresenterTest {
 
     @Test
     fun `present - secure backup badge`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             canDeactivateAccountResult = { true },
             accountManagementUrlResult = { Result.success("") },
         )
         val indicatorService = FakeIndicatorService()
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             rageshakeFeatureAvailability = { flowOf(false) },
             indicatorService = indicatorService,
         ).test {
@@ -145,7 +145,7 @@ class PreferencesRootPresenterTest {
     @Test
     fun `present - can deactivate account is false if the PRISM client say so`() = runTest {
         createPresenter(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 canDeactivateAccountResult = { false },
                 accountManagementUrlResult = { Result.success(null) },
             ),
@@ -158,7 +158,7 @@ class PreferencesRootPresenterTest {
     @Test
     fun `present - developer settings is hidden by default in release builds`() = runTest {
         createPresenter(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 canDeactivateAccountResult = { true },
                 accountManagementUrlResult = { Result.success(null) },
             ),
@@ -172,7 +172,7 @@ class PreferencesRootPresenterTest {
     @Test
     fun `present - developer settings can be enabled in release builds`() = runTest {
         createPresenter(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 canDeactivateAccountResult = { true },
                 accountManagementUrlResult = { Result.success(null) },
             ),
@@ -202,7 +202,7 @@ class PreferencesRootPresenterTest {
                     )
                 }
             ),
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 canDeactivateAccountResult = { true },
                 accountManagementUrlResult = { Result.success(null) },
             ),
@@ -220,7 +220,7 @@ class PreferencesRootPresenterTest {
                     emptyList()
                 }
             ),
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 canDeactivateAccountResult = { true },
                 accountManagementUrlResult = { Result.success(null) },
             ),
@@ -234,7 +234,7 @@ class PreferencesRootPresenterTest {
     @Test
     fun `present - multiple accounts`() = runTest {
         createPresenter(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 sessionId = A_SESSION_ID,
                 canDeactivateAccountResult = { true },
             ),
@@ -262,7 +262,7 @@ class PreferencesRootPresenterTest {
     @Test
     fun `present - link new device`() = runTest {
         createPresenter(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 sessionId = A_SESSION_ID,
                 canDeactivateAccountResult = { true },
             ),
@@ -281,7 +281,7 @@ class PreferencesRootPresenterTest {
     }
 
     private fun createPresenter(
-        prismClient: FakePRISMClient = FakePRISMClient(),
+        matrixClient: FakePRISMClient = FakePRISMClient(),
         sessionVerificationService: FakeSessionVerificationService = FakeSessionVerificationService(),
         showDeveloperSettingsProvider: ShowDeveloperSettingsProvider = ShowDeveloperSettingsProvider(aBuildMeta(BuildType.DEBUG)),
         rageshakeFeatureAvailability: RageshakeFeatureAvailability = RageshakeFeatureAvailability { flowOf(true) },
@@ -289,7 +289,7 @@ class PreferencesRootPresenterTest {
         featureFlagService: FeatureFlagService = FakeFeatureFlagService(),
         sessionStore: SessionStore = InMemorySessionStore(),
     ) = PreferencesRootPresenter(
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         sessionVerificationService = sessionVerificationService,
         analyticsService = FakeAnalyticsService(),
         versionFormatter = FakeVersionFormatter(),

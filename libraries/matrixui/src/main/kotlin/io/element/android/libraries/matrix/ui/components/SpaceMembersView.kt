@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -14,18 +14,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.atomic.molecules.MembersCountMolecule
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarRow
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.utils.CommonDrawables
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.atomic.molecules.MembersCountMolecule
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarRow
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.utils.CommonDrawables
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -35,7 +35,7 @@ import kotlinx.collections.immutable.toImmutableList
  */
 @Composable
 fun SpaceMembersView(
-    heroes: ImmutableList<MatrixUser>,
+    heroes: ImmutableList<PRISMUser>,
     numberOfMembers: Int,
     modifier: Modifier = Modifier,
 ) {
@@ -76,15 +76,15 @@ private fun SpaceMembersWithAvatar(
         )
         Text(
             text = "$numberOfMembers",
-            style = ElementTheme.typography.fontBodyMdRegular,
-            color = ElementTheme.colors.textSecondary,
+            style = PRISMTheme.typography.fontBodyMdRegular,
+            color = PRISMTheme.colors.textSecondary,
         )
     }
 }
 
 @Composable
 @PreviewsDayNight
-internal fun SpaceMembersViewNoHeroesPreview() = ElementPreview {
+internal fun SpaceMembersViewNoHeroesPreview() = PRISMPreview {
     SpaceMembersView(
         heroes = persistentListOf(),
         numberOfMembers = 123,
@@ -93,7 +93,7 @@ internal fun SpaceMembersViewNoHeroesPreview() = ElementPreview {
 
 @Composable
 @PreviewsDayNight
-internal fun SpaceMembersViewPreview() = ElementPreview(
+internal fun SpaceMembersViewPreview() = PRISMPreview(
     drawableFallbackForImages = CommonDrawables.sample_avatar,
 ) {
     SpaceMembersView(

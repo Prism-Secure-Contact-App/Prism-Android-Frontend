@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
-import io.prism.android.libraries.prism.api.roomlist.DynamicRoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter.Companion.all
-import io.prism.android.libraries.prism.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.api.roomlist.DynamicRoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter.Companion.all
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.analytics.api.finishLongRunningTransaction
@@ -23,11 +23,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.prism.rustcomponents.sdk.RoomListDynamicEntriesController
-import org.prism.rustcomponents.sdk.RoomListLoadingState
-import org.prism.rustcomponents.sdk.RoomListService
+import org.matrix.rustcomponents.sdk.RoomListDynamicEntriesController
+import org.matrix.rustcomponents.sdk.RoomListLoadingState
+import org.matrix.rustcomponents.sdk.RoomListService
 import kotlin.coroutines.CoroutineContext
-import org.prism.rustcomponents.sdk.RoomList as InnerRoomList
+import org.matrix.rustcomponents.sdk.RoomList as InnerRoomList
 
 internal class RoomListFactory(
     private val innerRoomListService: RoomListService,

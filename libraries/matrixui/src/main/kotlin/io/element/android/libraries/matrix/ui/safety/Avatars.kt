@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.safety
+package io.prism.android.libraries.matrix.ui.safety
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
-import io.element.android.libraries.core.coroutine.mapState
-import io.element.android.libraries.matrix.api.MatrixClient
+import io.prism.android.libraries.core.coroutine.mapState
+import io.prism.android.libraries.matrix.api.PRISMClient
 
 @Composable
-fun MatrixClient.rememberHideInvitesAvatar(): State<Boolean> {
+fun PRISMClient.rememberHideInvitesAvatar(): State<Boolean> {
     return remember {
         mediaPreviewService
             .mediaPreviewConfigFlow

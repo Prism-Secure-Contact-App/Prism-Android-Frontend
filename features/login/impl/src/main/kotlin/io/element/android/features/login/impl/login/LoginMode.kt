@@ -8,7 +8,7 @@
 
 package io.prism.android.features.login.impl.login
 
-import io.prism.android.libraries.prism.api.auth.OidcDetails
+import io.prism.android.libraries.matrix.api.auth.OidcDetails
 
 sealed interface LoginMode {
     data object PasswordLogin : LoginMode

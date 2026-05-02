@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.ui
+package io.prism.android.libraries.mediaviewer.impl.gallery.ui
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.core.preview.loremIpsum
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemVoice
+import io.prism.android.libraries.core.preview.loremIpsum
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemVoice
 
 class MediaItemVoiceProvider : PreviewParameterProvider<MediaItem.Voice> {
     override val values: Sequence<MediaItem.Voice>

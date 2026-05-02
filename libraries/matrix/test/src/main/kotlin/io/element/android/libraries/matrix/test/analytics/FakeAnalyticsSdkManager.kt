@@ -5,12 +5,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.analytics
+package io.prism.android.libraries.matrix.test.analytics
 
-import io.element.android.services.analytics.api.AnalyticsSdkManager
-import io.element.android.services.analytics.api.AnalyticsSdkSpan
-import io.element.android.services.analytics.api.NoopAnalyticsSdkSpan
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.services.analytics.api.AnalyticsSdkManager
+import io.prism.android.services.analytics.api.AnalyticsSdkSpan
+import io.prism.android.services.analytics.api.NoopAnalyticsSdkSpan
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeAnalyticsSdkManager(
     private val enableSdkAnalyticsLambda: ((Boolean) -> Unit) = { lambdaError() },

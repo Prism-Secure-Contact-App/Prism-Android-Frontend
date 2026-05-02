@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.impl
+package io.prism.android.libraries.voicerecorder.impl
 
 import android.media.AudioFormat
 import android.media.MediaRecorder
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.appconfig.VoiceMessageConfig
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.voicerecorder.api.VoiceRecorderState
-import io.element.android.libraries.voicerecorder.impl.audio.Audio
-import io.element.android.libraries.voicerecorder.impl.audio.AudioConfig
-import io.element.android.libraries.voicerecorder.impl.audio.SampleRate
-import io.element.android.libraries.voicerecorder.impl.di.VoiceRecorderModule
-import io.element.android.libraries.voicerecorder.test.FakeAudioLevelCalculator
-import io.element.android.libraries.voicerecorder.test.FakeAudioReaderFactory
-import io.element.android.libraries.voicerecorder.test.FakeEncoder
-import io.element.android.libraries.voicerecorder.test.FakeFileSystem
-import io.element.android.libraries.voicerecorder.test.FakeVoiceFileManager
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.appconfig.VoiceMessageConfig
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.voicerecorder.api.VoiceRecorderState
+import io.prism.android.libraries.voicerecorder.impl.audio.Audio
+import io.prism.android.libraries.voicerecorder.impl.audio.AudioConfig
+import io.prism.android.libraries.voicerecorder.impl.audio.SampleRate
+import io.prism.android.libraries.voicerecorder.impl.di.VoiceRecorderModule
+import io.prism.android.libraries.voicerecorder.test.FakeAudioLevelCalculator
+import io.prism.android.libraries.voicerecorder.test.FakeAudioReaderFactory
+import io.prism.android.libraries.voicerecorder.test.FakeEncoder
+import io.prism.android.libraries.voicerecorder.test.FakeFileSystem
+import io.prism.android.libraries.voicerecorder.test.FakeVoiceFileManager
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import io.mockk.mockk
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest

@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.sync
+package io.prism.android.libraries.matrix.impl.sync
 
 import io.prism.android.libraries.core.coroutine.mapState
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.sync.SyncState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.NonCancellable
@@ -22,10 +22,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.SyncServiceState
+import org.matrix.rustcomponents.sdk.SyncServiceState
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicBoolean
-import org.prism.rustcomponents.sdk.SyncService as InnerSyncService
+import org.matrix.rustcomponents.sdk.SyncService as InnerSyncService
 
 class RustSyncService(
     private val inner: InnerSyncService,

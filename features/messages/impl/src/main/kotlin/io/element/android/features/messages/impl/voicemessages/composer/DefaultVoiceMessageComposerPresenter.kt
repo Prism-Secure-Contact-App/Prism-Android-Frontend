@@ -25,7 +25,7 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesBinding
-import uk.fathertkt.prism.features.analytics.plan.Composer
+import im.vector.app.features.analytics.plan.Composer
 import io.prism.android.features.messages.api.MessageComposerContext
 import io.prism.android.features.messages.api.timeline.voicemessages.composer.VoiceMessageComposerEvent
 import io.prism.android.features.messages.api.timeline.voicemessages.composer.VoiceMessageComposerPresenter
@@ -34,7 +34,7 @@ import io.prism.android.libraries.audio.api.AudioFocus
 import io.prism.android.libraries.audio.api.AudioFocusRequester
 import io.prism.android.libraries.di.RoomScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import io.prism.android.libraries.mediaupload.api.MediaSenderFactory
 import io.prism.android.libraries.permissions.api.PermissionsEvent
 import io.prism.android.libraries.permissions.api.PermissionsPresenter

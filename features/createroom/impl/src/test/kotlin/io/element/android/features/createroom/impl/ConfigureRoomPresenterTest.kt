@@ -11,7 +11,7 @@ import android.net.Uri
 import androidx.core.net.toUri
 import app.cash.turbine.TurbineTestContext
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.CreatedRoom
+import im.vector.app.features.analytics.plan.CreatedRoom
 import io.prism.android.features.createroom.impl.configureroom.ConfigureRoomEvents
 import io.prism.android.features.createroom.impl.configureroom.ConfigureRoomPresenter
 import io.prism.android.features.createroom.impl.configureroom.ConfigureRoomState
@@ -23,25 +23,25 @@ import io.prism.android.features.createroom.impl.configureroom.RoomVisibilitySta
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
-import io.prism.android.libraries.prism.api.room.alias.RoomAliasHelper
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevels
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
-import io.prism.android.libraries.prism.test.AN_AVATAR_URL
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_MESSAGE
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_NAME
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.room.alias.FakeRoomAliasHelper
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceService
-import io.prism.android.libraries.prism.ui.media.AvatarAction
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevels
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_MESSAGE
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.alias.FakeRoomAliasHelper
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
 import io.prism.android.libraries.mediapickers.api.PickerProvider
 import io.prism.android.libraries.mediapickers.test.FakePickerProvider
 import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
@@ -197,15 +197,15 @@ class ConfigureRoomPresenterTest {
 
     @Test
     fun `present - trigger create room action`() = runTest {
-        val prismClient = createPRISMClient()
+        val matrixClient = createPRISMClient()
         val presenter = createConfigureRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             val initialState = initialState()
             val createRoomResult = Result.success(RoomId("!createRoomResult:domain"))
 
-            prismClient.givenCreateRoomResult(createRoomResult)
+            matrixClient.givenCreateRoomResult(createRoomResult)
 
             initialState.eventSink(ConfigureRoomEvents.CreateRoom)
             assertThat(awaitItem().createRoomAction).isInstanceOf(AsyncAction.Loading::class.java)
@@ -224,17 +224,17 @@ class ConfigureRoomPresenterTest {
         )
         val roomInfoFlow = MutableStateFlow<Optional<RoomInfo>>(Optional.empty())
         val getRoomInfoFlowLambda = lambdaRecorder<RoomId, Flow<Optional<RoomInfo>>> { roomInfoFlow }
-        val prismClient = createPRISMClient(spaceService = spaceService).apply {
+        val matrixClient = createPRISMClient(spaceService = spaceService).apply {
             this.getRoomInfoFlowLambda = getRoomInfoFlowLambda
         }
         val presenter = createConfigureRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             val initialState = initialState()
             val createRoomResult = Result.success(RoomId("!createRoomResult:domain"))
 
-            prismClient.givenCreateRoomResult(createRoomResult)
+            matrixClient.givenCreateRoomResult(createRoomResult)
 
             // Use a public parent space so AskToJoin is a valid option
             val parentSpace = aSpaceRoom(joinRule = JoinRule.Public)
@@ -267,17 +267,17 @@ class ConfigureRoomPresenterTest {
         )
         val roomInfoFlow = MutableStateFlow<Optional<RoomInfo>>(Optional.empty())
         val getRoomInfoFlowLambda = lambdaRecorder<RoomId, Flow<Optional<RoomInfo>>> { roomInfoFlow }
-        val prismClient = createPRISMClient(spaceService = spaceService).apply {
+        val matrixClient = createPRISMClient(spaceService = spaceService).apply {
             this.getRoomInfoFlowLambda = getRoomInfoFlowLambda
         }
         val presenter = createConfigureRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             val initialState = initialState()
             val createRoomResult = Result.success(RoomId("!createRoomResult:domain"))
 
-            prismClient.givenCreateRoomResult(createRoomResult)
+            matrixClient.givenCreateRoomResult(createRoomResult)
 
             // Use a public parent space so AskToJoin is a valid option
             val parentSpace = aSpaceRoom(joinRule = JoinRule.Public)
@@ -324,17 +324,17 @@ class ConfigureRoomPresenterTest {
 
     @Test
     fun `present - record analytics when creating room`() = runTest {
-        val prismClient = createPRISMClient()
+        val matrixClient = createPRISMClient()
         val analyticsService = FakeAnalyticsService()
         val presenter = createConfigureRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             analyticsService = analyticsService
         )
         presenter.test {
             val initialState = initialState()
             val createRoomResult = Result.success(RoomId("!createRoomResult:domain"))
 
-            prismClient.givenCreateRoomResult(createRoomResult)
+            matrixClient.givenCreateRoomResult(createRoomResult)
 
             initialState.eventSink(ConfigureRoomEvents.CreateRoom)
             skipItems(2)
@@ -347,14 +347,14 @@ class ConfigureRoomPresenterTest {
 
     @Test
     fun `present - trigger create room with upload error and retry`() = runTest {
-        val prismClient = createPRISMClient()
+        val matrixClient = createPRISMClient()
         val analyticsService = FakeAnalyticsService()
         val mediaPreProcessor = FakeMediaPreProcessor()
         val dataStore = CreateRoomConfigStore(FakeRoomAliasHelper())
         val presenter = createConfigureRoomPresenter(
             dataStore = dataStore,
             mediaPreProcessor = mediaPreProcessor,
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             analyticsService = analyticsService
         )
         presenter.test {
@@ -364,7 +364,7 @@ class ConfigureRoomPresenterTest {
             val file = File.createTempFile("test", "jpg")
             try {
                 mediaPreProcessor.givenResult(Result.success(MediaUploadInfo.Image(file, mockk(), mockk())))
-                prismClient.givenUploadMediaResult(Result.failure(AN_EXCEPTION))
+                matrixClient.givenUploadMediaResult(Result.failure(AN_EXCEPTION))
 
                 initialState.eventSink(ConfigureRoomEvents.CreateRoom)
                 assertThat(awaitItem().createRoomAction).isInstanceOf(AsyncAction.Loading::class.java)
@@ -372,7 +372,7 @@ class ConfigureRoomPresenterTest {
                 assertThat(stateAfterCreateRoom.createRoomAction).isInstanceOf(AsyncAction.Failure::class.java)
                 assertThat(analyticsService.capturedEvents.filterIsInstance<CreatedRoom>()).isEmpty()
 
-                prismClient.givenUploadMediaResult(Result.success(AN_AVATAR_URL))
+                matrixClient.givenUploadMediaResult(Result.success(AN_AVATAR_URL))
                 stateAfterCreateRoom.eventSink(ConfigureRoomEvents.CreateRoom)
                 assertThat(awaitItem().createRoomAction).isInstanceOf(AsyncAction.Uninitialized::class.java)
                 assertThat(awaitItem().createRoomAction).isInstanceOf(AsyncAction.Loading::class.java)
@@ -387,7 +387,7 @@ class ConfigureRoomPresenterTest {
     fun `present - trigger retry and cancel actions`() = runTest {
         val fakePRISMClient = createPRISMClient()
         val presenter = createConfigureRoomPresenter(
-            prismClient = fakePRISMClient
+            matrixClient = fakePRISMClient
         )
         presenter.test {
             val initialState = initialState()
@@ -443,7 +443,7 @@ class ConfigureRoomPresenterTest {
     fun `present - address is not available when alias is not available`() = runTest {
         val fakePRISMClient = createPRISMClient(isAliasAvailable = false)
         val presenter = createConfigureRoomPresenter(
-            prismClient = fakePRISMClient,
+            matrixClient = fakePRISMClient,
         )
         presenter.test {
             val initialState = initialState()
@@ -463,7 +463,7 @@ class ConfigureRoomPresenterTest {
     fun `present - address is valid when alias is available and format is valid`() = runTest {
         val fakePRISMClient = createPRISMClient(isAliasAvailable = true)
         val presenter = createConfigureRoomPresenter(
-            prismClient = fakePRISMClient,
+            matrixClient = fakePRISMClient,
         )
         presenter.test {
             val initialState = initialState()
@@ -545,7 +545,7 @@ class ConfigureRoomPresenterTest {
         initialParenSpaceId: RoomId? = null,
         roomAliasHelper: RoomAliasHelper = FakeRoomAliasHelper(),
         dataStore: CreateRoomConfigStore = CreateRoomConfigStore(roomAliasHelper),
-        prismClient: PRISMClient = createPRISMClient(),
+        matrixClient: PRISMClient = createPRISMClient(),
         pickerProvider: PickerProvider = FakePickerProvider(),
         mediaPreProcessor: MediaPreProcessor = FakeMediaPreProcessor(),
         analyticsService: AnalyticsService = FakeAnalyticsService(),
@@ -556,7 +556,7 @@ class ConfigureRoomPresenterTest {
         isSpace = isSpace,
         initialParentSpaceId = initialParenSpaceId,
         dataStore = dataStore,
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         mediaPickerProvider = pickerProvider,
         mediaPreProcessor = mediaPreProcessor,
         analyticsService = analyticsService,

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils.lambda
+package io.prism.android.tests.testutils.lambda
 
 /**
  * A recorder that can be used to record the parameters of lambda invocation.

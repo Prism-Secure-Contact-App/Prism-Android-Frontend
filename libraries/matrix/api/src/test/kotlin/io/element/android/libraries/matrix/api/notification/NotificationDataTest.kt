@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.notification
+package io.prism.android.libraries.matrix.api.notification
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.notification.aNotificationData
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.notification.aNotificationData
 import org.junit.Test
 
 class NotificationDataTest {

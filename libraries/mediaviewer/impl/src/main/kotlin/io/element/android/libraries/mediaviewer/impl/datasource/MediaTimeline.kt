@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.datasource
+package io.prism.android.libraries.mediaviewer.impl.datasource
 
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.matrix.api.room.CreateTimelineParams
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.impl.model.GroupedMediaItems
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.hasEvent
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.room.CreateTimelineParams
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.impl.model.GroupedMediaItems
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.hasEvent
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock

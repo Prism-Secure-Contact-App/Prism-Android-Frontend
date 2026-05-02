@@ -24,9 +24,9 @@ import io.prism.android.features.roommembermoderation.api.RoomMemberModerationSt
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.api.room.tombstone.SuccessorRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.room.tombstone.SuccessorRoom
 import kotlinx.collections.immutable.ImmutableList
 
 data class MessagesState(

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,8 +16,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
 import kotlinx.coroutines.launch
 
 @AssistedInject

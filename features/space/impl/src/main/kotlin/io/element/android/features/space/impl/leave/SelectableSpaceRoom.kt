@@ -8,7 +8,7 @@
 
 package io.prism.android.features.space.impl.leave
 
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
 
 data class SelectableSpaceRoom(
     val spaceRoom: SpaceRoom,

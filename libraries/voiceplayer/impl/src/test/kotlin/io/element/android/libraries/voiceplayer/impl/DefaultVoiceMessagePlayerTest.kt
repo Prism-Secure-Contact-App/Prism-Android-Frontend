@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 import app.cash.turbine.TurbineTestContext
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.mediaplayer.api.MediaPlayer
-import io.element.android.libraries.mediaplayer.test.FakeMediaPlayer
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.mediaplayer.api.MediaPlayer
+import io.prism.android.libraries.mediaplayer.test.FakeMediaPlayer
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.api
+package io.prism.android.services.analytics.api
 
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 

@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.pushproviders.api.Config
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
-import io.element.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

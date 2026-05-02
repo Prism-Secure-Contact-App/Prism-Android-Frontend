@@ -9,7 +9,7 @@
 package io.prism.android.features.home.impl.roomlist
 
 import io.prism.android.features.home.impl.model.RoomListRoomSummary
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 sealed interface RoomListEvent {
     data class UpdateVisibleRange(val range: IntRange) : RoomListEvent

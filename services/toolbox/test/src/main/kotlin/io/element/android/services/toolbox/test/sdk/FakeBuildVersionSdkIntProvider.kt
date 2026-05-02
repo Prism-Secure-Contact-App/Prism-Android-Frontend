@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.test.sdk
+package io.prism.android.services.toolbox.test.sdk
 
-import io.element.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
+import io.prism.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
 
 class FakeBuildVersionSdkIntProvider(
     private val sdkInt: Int

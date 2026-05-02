@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.encryption
+package io.prism.android.libraries.matrix.impl.encryption
 
-import io.prism.android.libraries.prism.api.encryption.EnableRecoveryProgress
-import org.prism.rustcomponents.sdk.EnableRecoveryProgress as RustEnableRecoveryProgress
+import io.prism.android.libraries.matrix.api.encryption.EnableRecoveryProgress
+import org.matrix.rustcomponents.sdk.EnableRecoveryProgress as RustEnableRecoveryProgress
 
 class EnableRecoveryProgressMapper {
     fun map(rustEnableProgress: RustEnableRecoveryProgress): EnableRecoveryProgress {

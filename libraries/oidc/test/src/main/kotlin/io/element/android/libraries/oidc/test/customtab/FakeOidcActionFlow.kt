@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.oidc.test.customtab
+package io.prism.android.libraries.oidc.test.customtab
 
-import io.element.android.libraries.oidc.api.OidcAction
-import io.element.android.libraries.oidc.api.OidcActionFlow
+import io.prism.android.libraries.oidc.api.OidcAction
+import io.prism.android.libraries.oidc.api.OidcActionFlow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 

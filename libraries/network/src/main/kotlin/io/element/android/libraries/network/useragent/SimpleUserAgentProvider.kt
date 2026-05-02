@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network.useragent
+package io.prism.android.libraries.network.useragent
 
 class SimpleUserAgentProvider(
     private val userAgent: String = "User agent"

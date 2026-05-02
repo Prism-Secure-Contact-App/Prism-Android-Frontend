@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.konsist.failures
+package io.prism.android.tests.konsist.failures
 
 import androidx.compose.runtime.Composable
 

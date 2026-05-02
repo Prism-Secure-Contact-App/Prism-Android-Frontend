@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import androidx.media3.transformer.VideoEncoderSettings
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner

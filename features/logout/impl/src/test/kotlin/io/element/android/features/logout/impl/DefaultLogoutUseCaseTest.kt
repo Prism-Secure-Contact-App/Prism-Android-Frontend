@@ -10,10 +10,10 @@
 
 package io.prism.android.features.logout.impl
 
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.FakePRISMClientProvider
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.FakePRISMClientProvider
 import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
 import io.prism.android.libraries.sessionstorage.test.aSessionData
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

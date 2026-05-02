@@ -5,11 +5,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.libraries.push.impl.notifications.model.ResolvedPushEvent
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeNotificationResultProcessor(
     private val emit: (Map<PushRequest, Result<ResolvedPushEvent>>) -> Unit = { lambdaError() },

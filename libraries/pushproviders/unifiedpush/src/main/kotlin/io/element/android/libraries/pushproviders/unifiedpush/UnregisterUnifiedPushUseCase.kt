@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import android.content.Context
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
 import org.unifiedpush.android.connector.UnifiedPush
 import timber.log.Timber
 
@@ -22,7 +22,7 @@ interface UnregisterUnifiedPushUseCase {
      * Unregister the app from the homeserver, then from UnifiedPush if [unregisterUnifiedPush] is true.
      */
     suspend fun unregister(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         clientSecret: String,
         unregisterUnifiedPush: Boolean = true,
     ): Result<Unit>
@@ -43,7 +43,7 @@ class DefaultUnregisterUnifiedPushUseCase(
     private val pusherSubscriber: PusherSubscriber,
 ) : UnregisterUnifiedPushUseCase {
     override suspend fun unregister(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         clientSecret: String,
         unregisterUnifiedPush: Boolean,
     ): Result<Unit> {

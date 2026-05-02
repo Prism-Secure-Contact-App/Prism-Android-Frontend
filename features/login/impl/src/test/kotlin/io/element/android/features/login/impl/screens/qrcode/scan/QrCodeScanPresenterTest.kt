@@ -16,10 +16,10 @@ import io.prism.android.features.login.impl.changeserver.AccountProviderAccessEx
 import io.prism.android.features.login.impl.qrcode.FakeQrCodeLoginManager
 import io.prism.android.features.wellknown.test.FakeWellknownRetriever
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrLoginException
-import io.prism.android.libraries.prism.test.auth.qrlogin.FakePRISMQrCodeLoginData
-import io.prism.android.libraries.prism.test.auth.qrlogin.FakePRISMQrCodeLoginDataFactory
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
+import io.prism.android.libraries.matrix.test.auth.qrlogin.FakePRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.test.auth.qrlogin.FakePRISMQrCodeLoginDataFactory
 import io.prism.android.libraries.wellknown.api.WellknownRetriever
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.test

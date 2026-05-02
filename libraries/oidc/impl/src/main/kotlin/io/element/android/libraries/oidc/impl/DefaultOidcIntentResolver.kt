@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.oidc.impl
+package io.prism.android.libraries.oidc.impl
 
 import android.content.Intent
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.oidc.api.OidcAction
-import io.element.android.libraries.oidc.api.OidcIntentResolver
+import io.prism.android.libraries.oidc.api.OidcAction
+import io.prism.android.libraries.oidc.api.OidcIntentResolver
 
 @ContributesBinding(AppScope::class)
 class DefaultOidcIntentResolver(

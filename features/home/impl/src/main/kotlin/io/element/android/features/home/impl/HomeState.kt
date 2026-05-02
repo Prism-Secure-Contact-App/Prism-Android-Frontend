@@ -13,7 +13,7 @@ import io.prism.android.features.home.impl.spacefilters.SpaceFiltersState
 import io.prism.android.features.home.impl.spaces.HomeSpacesState
 import io.prism.android.features.logout.api.direct.DirectLogoutState
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.ImmutableList
 
 data class HomeState(

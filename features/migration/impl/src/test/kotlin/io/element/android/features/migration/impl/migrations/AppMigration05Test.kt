@@ -9,7 +9,7 @@
 package io.prism.android.features.migration.impl.migrations
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
 import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
 import io.prism.android.libraries.sessionstorage.test.aSessionData
 import kotlinx.coroutines.test.runTest

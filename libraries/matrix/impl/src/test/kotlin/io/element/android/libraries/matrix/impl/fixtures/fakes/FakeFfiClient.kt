@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.fixtures.fakes
+package io.prism.android.libraries.matrix.impl.fixtures.fakes
 
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustSession
-import io.element.android.libraries.matrix.test.A_DEVICE_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustSession
+import io.prism.android.libraries.matrix.test.A_DEVICE_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.simulateLongTask
 import org.matrix.rustcomponents.sdk.Client
 import org.matrix.rustcomponents.sdk.ClientDelegate
 import org.matrix.rustcomponents.sdk.CreateRoomParameters

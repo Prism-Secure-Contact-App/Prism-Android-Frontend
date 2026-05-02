@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.fake
+package io.prism.android.libraries.push.impl.notifications.fake
 
 import android.service.notification.StatusBarNotification
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.push.impl.notifications.ActiveNotificationsProvider
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.push.impl.notifications.ActiveNotificationsProvider
 
 class FakeActiveNotificationsProvider(
     private val getMessageNotificationsForRoomResult: (SessionId, RoomId, ThreadId?) -> List<StatusBarNotification> = { _, _, _ -> emptyList() },

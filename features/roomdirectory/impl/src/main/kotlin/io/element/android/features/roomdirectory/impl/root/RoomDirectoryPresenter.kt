@@ -22,8 +22,8 @@ import io.prism.android.features.roomdirectory.impl.root.model.RoomDirectoryList
 import io.prism.android.features.roomdirectory.impl.root.model.toFeatureModel
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDirectoryList
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDirectoryService
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryList
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOn

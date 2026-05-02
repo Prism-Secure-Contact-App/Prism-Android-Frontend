@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.pushers
+package io.prism.android.libraries.matrix.impl.pushers
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.extensions.mapFailure
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.pusher.PushersService
-import io.prism.android.libraries.prism.api.pusher.SetHttpPusherData
-import io.prism.android.libraries.prism.api.pusher.UnsetHttpPusherData
-import io.prism.android.libraries.prism.impl.exception.mapClientException
+import io.prism.android.libraries.matrix.api.pusher.PushersService
+import io.prism.android.libraries.matrix.api.pusher.SetHttpPusherData
+import io.prism.android.libraries.matrix.api.pusher.UnsetHttpPusherData
+import io.prism.android.libraries.matrix.impl.exception.mapClientException
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.HttpPusherData
-import org.prism.rustcomponents.sdk.PushFormat
-import org.prism.rustcomponents.sdk.PusherIdentifiers
-import org.prism.rustcomponents.sdk.PusherKind
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.HttpPusherData
+import org.matrix.rustcomponents.sdk.PushFormat
+import org.matrix.rustcomponents.sdk.PusherIdentifiers
+import org.matrix.rustcomponents.sdk.PusherKind
 
 class RustPushersService(
     private val client: Client,

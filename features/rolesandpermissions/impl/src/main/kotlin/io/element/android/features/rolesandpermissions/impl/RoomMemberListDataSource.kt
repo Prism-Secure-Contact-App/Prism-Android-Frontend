@@ -11,9 +11,9 @@ package io.prism.android.features.rolesandpermissions.impl
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.core.bool.orFalse
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.roomMembers
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.roomMembers
 import kotlinx.coroutines.withContext
 
 @Inject

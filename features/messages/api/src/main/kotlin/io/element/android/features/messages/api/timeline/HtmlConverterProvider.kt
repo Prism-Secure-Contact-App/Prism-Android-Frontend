@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.api.timeline
 
 import androidx.compose.runtime.Composable
-import io.prism.android.wysiwyg.utils.HtmlConverter
+import io.element.android.wysiwyg.utils.HtmlConverter
 
 interface HtmlConverterProvider {
     @Composable

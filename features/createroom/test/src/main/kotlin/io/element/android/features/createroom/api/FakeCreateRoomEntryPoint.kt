@@ -10,7 +10,7 @@ package io.prism.android.features.createroom.api
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeCreateRoomEntryPoint : CreateRoomEntryPoint {

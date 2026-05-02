@@ -8,7 +8,7 @@
 
 package io.prism.android.features.messages.impl.link
 
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 sealed interface LinkEvent {
     data class OnLinkClick(val link: Link) : LinkEvent

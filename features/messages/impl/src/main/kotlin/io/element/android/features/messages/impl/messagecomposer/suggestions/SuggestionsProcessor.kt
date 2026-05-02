@@ -10,11 +10,11 @@ package io.prism.android.features.messages.impl.messagecomposer.suggestions
 
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.core.data.filterUpTo
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
-import io.prism.android.libraries.prism.api.room.roomMembers
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.api.room.roomMembers
 import io.prism.android.libraries.textcomposer.mentions.ResolvedSuggestion
 import io.prism.android.libraries.textcomposer.model.Suggestion
 import io.prism.android.libraries.textcomposer.model.SuggestionType

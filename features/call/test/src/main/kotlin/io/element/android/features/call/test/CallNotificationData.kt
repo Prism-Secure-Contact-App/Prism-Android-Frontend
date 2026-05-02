@@ -9,17 +9,17 @@
 package io.prism.android.features.call.test
 
 import io.prism.android.features.call.impl.notifications.CallNotificationData
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.test.AN_AVATAR_URL
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_NAME
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.A_USER_NAME
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_NAME
 
 fun aCallNotificationData(
     sessionId: SessionId = A_SESSION_ID,

@@ -23,10 +23,10 @@ import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginDataFactory
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrLoginException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginDataFactory
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

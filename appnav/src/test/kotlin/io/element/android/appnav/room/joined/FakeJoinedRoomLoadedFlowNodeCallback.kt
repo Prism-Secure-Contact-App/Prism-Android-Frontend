@@ -8,8 +8,8 @@
 
 package io.prism.android.appnav.room.joined
 
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeJoinedRoomLoadedFlowNodeCallback : JoinedRoomLoadedFlowNode.Callback {

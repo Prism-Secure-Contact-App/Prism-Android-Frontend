@@ -12,8 +12,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
 
 open class SecureBackupRootStateProvider : PreviewParameterProvider<SecureBackupRootState> {
     override val values: Sequence<SecureBackupRootState>

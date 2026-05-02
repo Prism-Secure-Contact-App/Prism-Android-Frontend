@@ -5,15 +5,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.room
+package io.prism.android.libraries.matrix.test.room
 
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.roomlist.LatestEventValue
-import io.element.android.libraries.matrix.api.timeline.item.event.EventContent
-import io.element.android.libraries.matrix.api.timeline.item.event.ProfileDetails
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.timeline.aMessageContent
-import io.element.android.libraries.matrix.test.timeline.aProfileDetails
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.roomlist.LatestEventValue
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.timeline.aMessageContent
+import io.prism.android.libraries.matrix.test.timeline.aProfileDetails
 
 fun aRemoteLatestEvent(
     content: EventContent = aMessageContent(),

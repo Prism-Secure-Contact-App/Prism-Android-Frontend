@@ -13,9 +13,9 @@ import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.testing.junit4.util.MainDispatcherRule
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.forward.api.ForwardEntryPoint
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.timeline.FakeTimelineProvider
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.timeline.FakeTimelineProvider
 import io.prism.android.libraries.roomselect.test.FakeRoomSelectEntryPoint
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode

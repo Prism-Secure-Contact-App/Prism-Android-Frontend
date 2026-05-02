@@ -21,7 +21,7 @@ import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.MobileScreen
+import im.vector.app.features.analytics.plan.MobileScreen
 import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.features.call.api.CallType
 import io.prism.android.features.call.impl.data.WidgetMessage
@@ -34,9 +34,9 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.di.annotations.AppCoroutineScope
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.sync.SyncState
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetDriver
 import io.prism.android.libraries.network.useragent.UserAgentProvider
 import io.prism.android.services.analytics.api.ScreenTracker
 import io.prism.android.services.appnavstate.api.AppForegroundStateService

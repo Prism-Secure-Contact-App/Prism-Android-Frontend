@@ -24,7 +24,7 @@ import io.prism.android.features.login.impl.BuildConfig
 import io.prism.android.libraries.core.log.logger.LoggerTag
 import io.prism.android.libraries.di.annotations.AppCoroutineScope
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

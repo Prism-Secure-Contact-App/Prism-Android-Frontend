@@ -5,12 +5,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.notification.CallIntent
-import io.prism.android.libraries.prism.api.room.CallIntentConsensus
-import org.prism.rustcomponents.sdk.RtcCallIntent
-import org.prism.rustcomponents.sdk.RtcCallIntentConsensus
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.room.CallIntentConsensus
+import org.matrix.rustcomponents.sdk.RtcCallIntent
+import org.matrix.rustcomponents.sdk.RtcCallIntentConsensus
 
 fun RtcCallIntentConsensus.map(): CallIntentConsensus = when (this) {
     is RtcCallIntentConsensus.Full -> CallIntentConsensus.Full(v1.map())

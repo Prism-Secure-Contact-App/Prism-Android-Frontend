@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.model
+package io.prism.android.libraries.textcomposer.model
 
 import androidx.compose.runtime.Immutable
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.timeline.item.EventThreadInfo
-import io.element.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageContent
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToDetails
-import io.element.android.libraries.matrix.ui.messages.reply.eventId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.item.EventThreadInfo
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetails
+import io.prism.android.libraries.matrix.ui.messages.reply.eventId
 
 @Immutable
 sealed interface MessageComposerMode {

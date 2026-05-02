@@ -22,7 +22,7 @@ import io.prism.android.features.login.impl.util.openLearnMorePage
 import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.inputs
-import io.prism.android.libraries.prism.api.auth.OidcDetails
+import io.prism.android.libraries.matrix.api.auth.OidcDetails
 
 @ContributesNode(AppScope::class)
 @AssistedInject

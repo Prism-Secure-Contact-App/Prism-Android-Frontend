@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.voice
+package io.prism.android.libraries.mediaviewer.impl.gallery.voice
 
 import androidx.compose.runtime.Composable
 import dev.zacsweers.metro.Assisted
@@ -16,13 +16,13 @@ import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.Binds
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.IntoMap
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.mediaviewer.impl.gallery.di.MediaItemEventContentKey
-import io.element.android.libraries.mediaviewer.impl.gallery.di.MediaItemPresenterFactory
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.voiceplayer.api.VoiceMessagePresenterFactory
-import io.element.android.libraries.voiceplayer.api.VoiceMessageState
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.mediaviewer.impl.gallery.di.MediaItemEventContentKey
+import io.prism.android.libraries.mediaviewer.impl.gallery.di.MediaItemPresenterFactory
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.voiceplayer.api.VoiceMessagePresenterFactory
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageState
 import kotlin.time.Duration
 
 @BindingContainer

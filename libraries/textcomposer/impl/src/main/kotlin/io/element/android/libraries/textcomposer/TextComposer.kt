@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer
+package io.prism.android.libraries.textcomposer
 
 import android.content.res.Configuration
 import android.net.Uri
@@ -51,45 +51,45 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.androidutils.ui.showKeyboard
-import io.element.android.libraries.designsystem.components.media.WaveFormSamples
-import io.element.android.libraries.designsystem.preview.DAY_MODE_NAME
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.NIGHT_MODE_NAME
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.CircularProgressIndicator
-import io.element.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.IconButton
-import io.element.android.libraries.designsystem.theme.components.IconColorButton
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
-import io.element.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToDetails
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToDetailsProvider
-import io.element.android.libraries.testtags.TestTags
-import io.element.android.libraries.testtags.testTag
-import io.element.android.libraries.textcomposer.components.SendButtonIcon
-import io.element.android.libraries.textcomposer.components.TextFormatting
-import io.element.android.libraries.textcomposer.components.VoiceMessageDeleteButtonIcon
-import io.element.android.libraries.textcomposer.components.VoiceMessagePreview
-import io.element.android.libraries.textcomposer.components.VoiceMessageRecorderButtonIcon
-import io.element.android.libraries.textcomposer.components.VoiceMessageRecording
-import io.element.android.libraries.textcomposer.components.markdown.MarkdownTextInput
-import io.element.android.libraries.textcomposer.components.textInputRoundedCornerShape
-import io.element.android.libraries.textcomposer.model.MessageComposerMode
-import io.element.android.libraries.textcomposer.model.Suggestion
-import io.element.android.libraries.textcomposer.model.TextEditorState
-import io.element.android.libraries.textcomposer.model.VoiceMessagePlayerEvent
-import io.element.android.libraries.textcomposer.model.VoiceMessageRecorderEvent
-import io.element.android.libraries.textcomposer.model.VoiceMessageState
-import io.element.android.libraries.textcomposer.model.aTextEditorStateMarkdown
-import io.element.android.libraries.textcomposer.model.aTextEditorStateRich
-import io.element.android.libraries.textcomposer.model.showCaptionCompatibilityWarning
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.androidutils.ui.showKeyboard
+import io.prism.android.libraries.designsystem.components.media.WaveFormSamples
+import io.prism.android.libraries.designsystem.preview.DAY_MODE_NAME
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.NIGHT_MODE_NAME
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.IconButton
+import io.prism.android.libraries.designsystem.theme.components.IconColorButton
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
+import io.prism.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetails
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetailsProvider
+import io.prism.android.libraries.testtags.TestTags
+import io.prism.android.libraries.testtags.testTag
+import io.prism.android.libraries.textcomposer.components.SendButtonIcon
+import io.prism.android.libraries.textcomposer.components.TextFormatting
+import io.prism.android.libraries.textcomposer.components.VoiceMessageDeleteButtonIcon
+import io.prism.android.libraries.textcomposer.components.VoiceMessagePreview
+import io.prism.android.libraries.textcomposer.components.VoiceMessageRecorderButtonIcon
+import io.prism.android.libraries.textcomposer.components.VoiceMessageRecording
+import io.prism.android.libraries.textcomposer.components.markdown.MarkdownTextInput
+import io.prism.android.libraries.textcomposer.components.textInputRoundedCornerShape
+import io.prism.android.libraries.textcomposer.model.MessageComposerMode
+import io.prism.android.libraries.textcomposer.model.Suggestion
+import io.prism.android.libraries.textcomposer.model.TextEditorState
+import io.prism.android.libraries.textcomposer.model.VoiceMessagePlayerEvent
+import io.prism.android.libraries.textcomposer.model.VoiceMessageRecorderEvent
+import io.prism.android.libraries.textcomposer.model.VoiceMessageState
+import io.prism.android.libraries.textcomposer.model.aTextEditorStateMarkdown
+import io.prism.android.libraries.textcomposer.model.aTextEditorStateRich
+import io.prism.android.libraries.textcomposer.model.showCaptionCompatibilityWarning
+import io.prism.android.libraries.ui.strings.CommonStrings
 import io.element.android.wysiwyg.compose.RichTextEditor
 import io.element.android.wysiwyg.display.TextDisplay
 import kotlinx.collections.immutable.ImmutableList
@@ -205,7 +205,7 @@ fun TextComposer(
                     MarkdownTextInput(
                         state = state.state,
                         placeholder = placeholder,
-                        placeholderColor = ElementTheme.colors.textSecondary,
+                        placeholderColor = PRISMTheme.colors.textSecondary,
                         onTyping = onTyping,
                         onReceiveSuggestion = onReceiveSuggestion,
                         richTextEditorStyle = style,
@@ -482,11 +482,11 @@ private fun StandardLayout(
                                 modifier = Modifier
                                     .clip(CircleShape)
                                     .size(30.dp)
-                                    .background(ElementTheme.colors.iconPrimary)
+                                    .background(PRISMTheme.colors.iconPrimary)
                                     .padding(3.dp),
                                 imageVector = CompoundIcons.Plus(),
                                 contentDescription = stringResource(R.string.rich_text_editor_a11y_add_attachment),
-                                tint = ElementTheme.colors.iconOnSolidPrimary
+                                tint = PRISMTheme.colors.iconOnSolidPrimary
                             )
                         } else {
                             when (voiceMessageState) {
@@ -538,13 +538,13 @@ private fun NotEncryptedBadge() {
             modifier = Modifier.size(16.dp),
             imageVector = CompoundIcons.LockOff(),
             contentDescription = null,
-            tint = ElementTheme.colors.iconInfoPrimary,
+            tint = PRISMTheme.colors.iconInfoPrimary,
         )
         Spacer(Modifier.width(4.dp))
         Text(
             text = stringResource(CommonStrings.common_not_encrypted),
-            style = ElementTheme.typography.fontBodySmRegular,
-            color = ElementTheme.colors.textSecondary,
+            style = PRISMTheme.typography.fontBodySmRegular,
+            color = PRISMTheme.colors.textSecondary,
         )
     }
 }
@@ -614,8 +614,8 @@ private fun TextInputBox(
     modifier: Modifier = Modifier,
     textInput: @Composable () -> Unit,
 ) {
-    val bgColor = ElementTheme.colors.bgSubtleSecondary
-    val borderColor = ElementTheme.colors.borderDisabled
+    val bgColor = PRISMTheme.colors.bgSubtleSecondary
+    val borderColor = PRISMTheme.colors.borderDisabled
     val roundedCorners = textInputRoundedCornerShape(composerMode = composerMode)
 
     Column(
@@ -648,7 +648,7 @@ private fun TextInputBox(
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                         .align(Alignment.CenterEnd),
                     imageVector = CompoundIcons.InfoSolid(),
-                    tint = ElementTheme.colors.iconCriticalPrimary,
+                    tint = PRISMTheme.colors.iconCriticalPrimary,
                     contentDescription = null,
                 )
                 if (showBottomSheet) {
@@ -691,7 +691,7 @@ private fun aTextEditorStateRichList(isRoomEncrypted: Boolean? = null) = persist
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerSimplePreview() = ElementPreview {
+internal fun TextComposerSimplePreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateMarkdownList()
     ) { textEditorState ->
@@ -705,7 +705,7 @@ internal fun TextComposerSimplePreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerSimpleNotEncryptedPreview() = ElementPreview {
+internal fun TextComposerSimpleNotEncryptedPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateMarkdownList(isRoomEncrypted = false),
     ) { textEditorState ->
@@ -719,7 +719,7 @@ internal fun TextComposerSimpleNotEncryptedPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerFormattingPreview() = ElementPreview {
+internal fun TextComposerFormattingPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList()
     ) { textEditorState ->
@@ -734,7 +734,7 @@ internal fun TextComposerFormattingPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerFormattingNotEncryptedPreview() = ElementPreview {
+internal fun TextComposerFormattingNotEncryptedPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList(isRoomEncrypted = false)
     ) { textEditorState ->
@@ -749,7 +749,7 @@ internal fun TextComposerFormattingNotEncryptedPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerEditPreview() = ElementPreview {
+internal fun TextComposerEditPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList()
     ) { textEditorState ->
@@ -763,7 +763,7 @@ internal fun TextComposerEditPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerEditNotEncryptedPreview() = ElementPreview {
+internal fun TextComposerEditNotEncryptedPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList(isRoomEncrypted = false)
     ) { textEditorState ->
@@ -777,7 +777,7 @@ internal fun TextComposerEditNotEncryptedPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerEditCaptionPreview() = ElementPreview {
+internal fun TextComposerEditCaptionPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList()
     ) { textEditorState ->
@@ -794,7 +794,7 @@ internal fun TextComposerEditCaptionPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerAddCaptionPreview() = ElementPreview {
+internal fun TextComposerAddCaptionPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList()
     ) { textEditorState ->
@@ -811,7 +811,7 @@ internal fun TextComposerAddCaptionPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun MarkdownTextComposerEditPreview() = ElementPreview {
+internal fun MarkdownTextComposerEditPreview() = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateMarkdownList()
     ) { textEditorState ->
@@ -825,7 +825,7 @@ internal fun MarkdownTextComposerEditPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerReplyPreview(@PreviewParameter(InReplyToDetailsProvider::class) inReplyToDetails: InReplyToDetails) = ElementPreview {
+internal fun TextComposerReplyPreview(@PreviewParameter(InReplyToDetailsProvider::class) inReplyToDetails: InReplyToDetails) = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList()
     ) { textEditorState ->
@@ -849,7 +849,7 @@ internal fun TextComposerReplyPreview(@PreviewParameter(InReplyToDetailsProvider
     heightDp = 800,
 )
 @Composable
-internal fun TextComposerReplyNotEncryptedPreview(@PreviewParameter(InReplyToDetailsProvider::class) inReplyToDetails: InReplyToDetails) = ElementPreview {
+internal fun TextComposerReplyNotEncryptedPreview(@PreviewParameter(InReplyToDetailsProvider::class) inReplyToDetails: InReplyToDetails) = PRISMPreview {
     PreviewColumn(
         items = aTextEditorStateRichList(isRoomEncrypted = false)
     ) { textEditorState ->
@@ -865,7 +865,7 @@ internal fun TextComposerReplyNotEncryptedPreview(@PreviewParameter(InReplyToDet
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerCaptionPreview() = ElementPreview {
+internal fun TextComposerCaptionPreview() = PRISMPreview {
     val list = aTextEditorStateMarkdownList()
     PreviewColumn(
         items = list,
@@ -880,7 +880,7 @@ internal fun TextComposerCaptionPreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerVoicePreview() = ElementPreview {
+internal fun TextComposerVoicePreview() = PRISMPreview {
     PreviewColumn(
         items = persistentListOf(
             VoiceMessageState.Recording(
@@ -923,7 +923,7 @@ internal fun TextComposerVoicePreview() = ElementPreview {
 
 @PreviewsDayNight
 @Composable
-internal fun TextComposerVoiceNotEncryptedPreview() = ElementPreview {
+internal fun TextComposerVoiceNotEncryptedPreview() = PRISMPreview {
     PreviewColumn(
         items = persistentListOf(
             VoiceMessageState.Recording(

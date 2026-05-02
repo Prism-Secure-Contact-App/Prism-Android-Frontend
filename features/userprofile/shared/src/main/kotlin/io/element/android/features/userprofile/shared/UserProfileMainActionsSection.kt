@@ -20,7 +20,7 @@ import io.prism.android.compound.tokens.generated.CompoundIcons
 import io.prism.android.libraries.designsystem.components.button.MainActionButton
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.notification.CallIntent
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

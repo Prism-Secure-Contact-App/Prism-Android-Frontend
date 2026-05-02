@@ -11,7 +11,7 @@ package io.prism.android.features.messages.impl.timeline.factories.event
 import dev.zacsweers.metro.Inject
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemEncryptedContent
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemEventContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
 
 @Inject
 class TimelineItemContentUTDFactory {

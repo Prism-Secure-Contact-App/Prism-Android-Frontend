@@ -10,8 +10,8 @@ package io.prism.android.features.verifysession.impl.outgoing
 
 import androidx.compose.runtime.Stable
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.verification.SessionVerificationData
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationData
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 
 data class OutgoingVerificationState(
     val step: Step,

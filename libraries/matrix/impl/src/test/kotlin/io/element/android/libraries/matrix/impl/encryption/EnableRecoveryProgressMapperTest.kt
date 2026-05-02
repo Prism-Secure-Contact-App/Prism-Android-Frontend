@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.encryption
+package io.prism.android.libraries.matrix.impl.encryption
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.encryption.EnableRecoveryProgress
+import io.prism.android.libraries.matrix.api.encryption.EnableRecoveryProgress
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.EnableRecoveryProgress as RustEnableRecoveryProgress
 

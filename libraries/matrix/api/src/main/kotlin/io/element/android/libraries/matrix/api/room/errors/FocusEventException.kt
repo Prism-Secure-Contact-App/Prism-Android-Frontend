@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.errors
+package io.prism.android.libraries.matrix.api.room.errors
 
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 
 sealed class FocusEventException : Exception() {
     data class InvalidEventId(

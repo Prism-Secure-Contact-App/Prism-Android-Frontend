@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.api
+package io.prism.android.services.appnavstate.api
 
 /**
  * A wrapper for the current navigation state of the app, along with its foreground/background state.

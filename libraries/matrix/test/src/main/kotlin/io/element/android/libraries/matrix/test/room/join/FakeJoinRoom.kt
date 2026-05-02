@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.room.join
+package io.prism.android.libraries.matrix.test.room.join
 
 import im.vector.app.features.analytics.plan.JoinedRoom
-import io.element.android.libraries.matrix.api.core.RoomIdOrAlias
-import io.element.android.libraries.matrix.api.room.join.JoinRoom
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
+import io.prism.android.tests.testutils.simulateLongTask
 
 class FakeJoinRoom(
     var lambda: (RoomIdOrAlias, List<String>, JoinedRoom.Trigger) -> Result<Unit>

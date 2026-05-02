@@ -13,7 +13,7 @@ import io.prism.android.features.messages.impl.timeline.model.event.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemStickerContent
 import io.prism.android.libraries.androidutils.filesize.FileSizeFormatter
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.timeline.item.event.StickerContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerContent
 import io.prism.android.libraries.mediaviewer.api.util.FileExtensionExtractor
 
 @Inject

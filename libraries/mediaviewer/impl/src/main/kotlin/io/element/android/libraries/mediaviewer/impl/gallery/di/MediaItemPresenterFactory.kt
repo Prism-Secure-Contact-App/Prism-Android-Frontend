@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.di
+package io.prism.android.libraries.mediaviewer.impl.gallery.di
 
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
 
 /**
  * A factory for a [Presenter] associated with a timeline item.

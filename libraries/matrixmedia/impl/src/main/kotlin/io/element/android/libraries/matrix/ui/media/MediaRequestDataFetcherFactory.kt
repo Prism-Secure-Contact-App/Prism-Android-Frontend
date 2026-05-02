@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import coil3.ImageLoader
 import coil3.fetch.Fetcher
 import coil3.request.Options
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
 
 internal class MediaRequestDataFetcherFactory(
-    private val matrixMediaLoader: MatrixMediaLoader,
+    private val matrixMediaLoader: PRISMMediaLoader,
 ) : Fetcher.Factory<MediaRequestData> {
     override fun create(
         data: MediaRequestData,

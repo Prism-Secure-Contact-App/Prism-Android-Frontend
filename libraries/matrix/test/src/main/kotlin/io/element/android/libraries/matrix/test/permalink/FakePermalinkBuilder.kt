@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.permalink
+package io.prism.android.libraries.matrix.test.permalink
 
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.permalink.PermalinkBuilder
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilder
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePermalinkBuilder(
     private val permalinkForUserLambda: (UserId) -> Result<String> = { lambdaError() },

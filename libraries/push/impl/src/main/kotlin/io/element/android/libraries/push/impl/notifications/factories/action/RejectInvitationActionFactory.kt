@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.factories.action
+package io.prism.android.libraries.push.impl.notifications.factories.action
 
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import dev.zacsweers.metro.Inject
-import io.element.android.appconfig.NotificationConfig
-import io.element.android.libraries.androidutils.uri.createIgnoredUri
-import io.element.android.libraries.designsystem.icons.CompoundDrawables
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.push.impl.notifications.NotificationActionIds
-import io.element.android.libraries.push.impl.notifications.NotificationBroadcastReceiver
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.services.toolbox.api.strings.StringProvider
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.appconfig.NotificationConfig
+import io.prism.android.libraries.androidutils.uri.createIgnoredUri
+import io.prism.android.libraries.designsystem.icons.CompoundDrawables
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.push.impl.notifications.NotificationActionIds
+import io.prism.android.libraries.push.impl.notifications.NotificationBroadcastReceiver
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 
 @Inject
 class RejectInvitationActionFactory(

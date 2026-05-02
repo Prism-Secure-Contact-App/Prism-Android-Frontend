@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
-import io.element.android.libraries.designsystem.utils.LocalUiTestMode
+import io.prism.android.libraries.designsystem.utils.LocalUiTestMode
 import org.junit.Assert.assertFalse
 import org.junit.rules.TestRule
 import kotlin.coroutines.CoroutineContext

@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.widget
+package io.prism.android.libraries.matrix.impl.widget
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.core.meta.BuildType
-import io.prism.android.libraries.prism.api.widget.CallAnalyticCredentialsProvider
-import io.prism.android.libraries.prism.api.widget.CallWidgetSettingsProvider
-import io.prism.android.libraries.prism.api.widget.PRISMWidgetSettings
+import io.prism.android.libraries.matrix.api.widget.CallAnalyticCredentialsProvider
+import io.prism.android.libraries.matrix.api.widget.CallWidgetSettingsProvider
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetSettings
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.flow.first
-import org.prism.rustcomponents.sdk.newVirtualPRISMCallWidget
+import org.matrix.rustcomponents.sdk.newVirtualElementCallWidget
 import timber.log.Timber
-import uniffi.prism_sdk.EncryptionSystem
-import uniffi.prism_sdk.VirtualPRISMCallWidgetConfig
-import uniffi.prism_sdk.VirtualPRISMCallWidgetProperties
-import uniffi.prism_sdk.Intent as CallIntent
+import uniffi.matrix_sdk.EncryptionSystem
+import uniffi.matrix_sdk.VirtualElementCallWidgetConfig
+import uniffi.matrix_sdk.VirtualElementCallWidgetProperties
+import uniffi.matrix_sdk.Intent as CallIntent
 
 @ContributesBinding(AppScope::class)
 class DefaultCallWidgetSettingsProvider(
@@ -39,8 +39,8 @@ class DefaultCallWidgetSettingsProvider(
         hasActiveCall: Boolean
     ): PRISMWidgetSettings {
         val isAnalyticsEnabled = analyticsService.userConsentFlow.first()
-        val properties = VirtualPRISMCallWidgetProperties(
-            prismCallUrl = baseUrl,
+        val properties = VirtualElementCallWidgetProperties(
+            elementCallUrl = baseUrl,
             widgetId = widgetId,
             fontScale = null,
             font = null,
@@ -53,7 +53,7 @@ class DefaultCallWidgetSettingsProvider(
             sentryEnvironment = if (buildMeta.buildType == BuildType.RELEASE) "RELEASE" else "DEBUG",
             parentUrl = null,
         )
-        val config = VirtualPRISMCallWidgetConfig(
+        val config = VirtualElementCallWidgetConfig(
 //            // TODO remove this once we have the next EC version
 //            preload = false,
 //            // TODO remove this once we have the next EC version
@@ -71,7 +71,7 @@ class DefaultCallWidgetSettingsProvider(
                 Timber.d("Starting/joining call with intent: $it")
             }
         )
-        val rustWidgetSettings = newVirtualPRISMCallWidget(
+        val rustWidgetSettings = newVirtualElementCallWidget(
             props = properties,
             config = config,
         )

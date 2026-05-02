@@ -9,8 +9,8 @@
 package io.prism.android.features.space.impl.settings
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 open class SpaceSettingsStateProvider : PreviewParameterProvider<SpaceSettingsState> {
     override val values: Sequence<SpaceSettingsState>

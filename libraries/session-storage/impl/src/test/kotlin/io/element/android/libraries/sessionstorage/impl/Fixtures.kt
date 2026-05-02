@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.sessionstorage.impl
+package io.prism.android.libraries.sessionstorage.impl
 
-import io.element.android.libraries.matrix.session.SessionData
-import io.element.android.libraries.sessionstorage.api.LoginType
+import io.prism.android.libraries.matrix.session.SessionData
+import io.prism.android.libraries.sessionstorage.api.LoginType
 
 internal fun aDbSessionData(
     userId: String = "userId",

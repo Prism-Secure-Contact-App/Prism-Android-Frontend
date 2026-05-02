@@ -11,11 +11,11 @@
 package io.prism.android.features.messages.impl.timeline
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.lambda.value
 import io.prism.android.tests.testutils.testCoroutineDispatchers
@@ -28,7 +28,7 @@ class DefaultMarkAsFullyReadTest {
     @Test
     fun `When marking as read fails, no exception is thrown`() = runTest {
         val markAsFullyRead = DefaultMarkAsFullyRead(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 markRoomAsFullyReadResult = { _, _ -> Result.failure(IllegalStateException("Room not found")) },
             ).apply {
                 givenGetRoomResult(A_ROOM_ID, null)
@@ -43,7 +43,7 @@ class DefaultMarkAsFullyReadTest {
     fun `When marking as read is successful, the expected method is invoked`() = runTest {
         val markAsFullyReadResult = lambdaRecorder<RoomId, EventId, Result<Unit>> { _, _ -> Result.success(Unit) }
         val markAsFullyRead = DefaultMarkAsFullyRead(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 markRoomAsFullyReadResult = markAsFullyReadResult,
             ),
             coroutineDispatchers = testCoroutineDispatchers(),

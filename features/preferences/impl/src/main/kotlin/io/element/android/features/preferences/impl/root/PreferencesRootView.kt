@@ -40,11 +40,11 @@ import io.prism.android.libraries.designsystem.theme.components.ListItemStyle
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarHost
 import io.prism.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.PRISMUserProvider
-import io.prism.android.libraries.prism.ui.components.PRISMUserRow
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.MatrixUserProvider
+import io.prism.android.libraries.matrix.ui.components.MatrixUserRow
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
@@ -140,12 +140,12 @@ private fun ColumnScope.MultiAccountSection(
         thickness = 8.dp,
         color = PRISMTheme.colors.bgSubtleSecondary,
     )
-    state.otherSessions.forEach { prismUser ->
-        PRISMUserRow(
+    state.otherSessions.forEach { matrixUser ->
+        MatrixUserRow(
             modifier = Modifier.clickable {
-                state.eventSink(PreferencesRootEvents.SwitchToSession(prismUser.userId))
+                state.eventSink(PreferencesRootEvents.SwitchToSession(matrixUser.userId))
             },
-            prismUser = prismUser,
+            matrixUser = matrixUser,
             avatarSize = AvatarSize.AccountItem,
         )
         HorizontalDivider()
@@ -340,19 +340,19 @@ private fun DeveloperPreferencesView(onOpenDeveloperSettings: () -> Unit) {
 
 @PreviewWithLargeHeight
 @Composable
-internal fun PreferencesRootViewLightPreview(@PreviewParameter(PRISMUserProvider::class) prismUser: PRISMUser) =
-    PRISMPreviewLight { ContentToPreview(prismUser) }
+internal fun PreferencesRootViewLightPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: PRISMUser) =
+    PRISMPreviewLight { ContentToPreview(matrixUser) }
 
 @PreviewWithLargeHeight
 @Composable
-internal fun PreferencesRootViewDarkPreview(@PreviewParameter(PRISMUserProvider::class) prismUser: PRISMUser) =
-    PRISMPreviewDark { ContentToPreview(prismUser) }
+internal fun PreferencesRootViewDarkPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: PRISMUser) =
+    PRISMPreviewDark { ContentToPreview(matrixUser) }
 
 @ExcludeFromCoverage
 @Composable
-private fun ContentToPreview(prismUser: PRISMUser) {
+private fun ContentToPreview(matrixUser: PRISMUser) {
     PreferencesRootView(
-        state = aPreferencesRootState(myUser = prismUser),
+        state = aPreferencesRootState(myUser = matrixUser),
         onBackClick = {},
         onAddAccountClick = {},
         onOpenAnalytics = {},
@@ -379,7 +379,7 @@ internal fun MultiAccountSectionPreview() = PRISMPreview {
     Column {
         MultiAccountSection(
             state = aPreferencesRootState(
-                otherSessions = aPRISMUserList(),
+                otherSessions = aMatrixUserList(),
             ),
             onAddAccountClick = {},
         )

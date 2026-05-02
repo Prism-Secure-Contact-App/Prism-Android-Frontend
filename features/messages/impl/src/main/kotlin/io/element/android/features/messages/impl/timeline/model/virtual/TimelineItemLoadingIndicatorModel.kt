@@ -8,7 +8,7 @@
 
 package io.prism.android.features.messages.impl.timeline.model.virtual
 
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 data class TimelineItemLoadingIndicatorModel(
     val direction: Timeline.PaginationDirection,

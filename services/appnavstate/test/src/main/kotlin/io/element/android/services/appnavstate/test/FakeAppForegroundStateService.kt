@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.test
+package io.prism.android.services.appnavstate.test
 
-import io.element.android.services.appnavstate.api.AppForegroundStateService
+import io.prism.android.services.appnavstate.api.AppForegroundStateService
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class FakeAppForegroundStateService(

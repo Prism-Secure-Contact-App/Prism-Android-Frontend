@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.fixtures.factories
+package io.prism.android.libraries.matrix.impl.fixtures.factories
 
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineEvent
-import io.element.android.libraries.matrix.test.A_ROOM_NAME
-import io.element.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineEvent
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.test.A_USER_NAME
 import org.matrix.rustcomponents.sdk.Action
 import org.matrix.rustcomponents.sdk.BatchNotificationResult
 import org.matrix.rustcomponents.sdk.JoinRule

@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.push.test.FakePushService
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.test.FakePushProvider
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.test.runAndTestState
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.push.test.FakePushService
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.test.FakePushProvider
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.test.runAndTestState
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

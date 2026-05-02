@@ -8,7 +8,7 @@
 
 package io.prism.android.features.poll.api.pollcontent
 
-import io.prism.android.libraries.prism.api.poll.PollAnswer
+import io.prism.android.libraries.matrix.api.poll.PollAnswer
 
 /**
  * UI model for a [PollAnswer].

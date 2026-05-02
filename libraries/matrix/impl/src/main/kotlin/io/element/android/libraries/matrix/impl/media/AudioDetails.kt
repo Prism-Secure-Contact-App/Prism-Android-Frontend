@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.media
+package io.prism.android.libraries.matrix.impl.media
 
-import io.prism.android.libraries.prism.api.media.AudioDetails
+import io.prism.android.libraries.matrix.api.media.AudioDetails
 import kotlinx.collections.immutable.toImmutableList
 import kotlin.time.toJavaDuration
 import kotlin.time.toKotlinDuration
-import org.prism.rustcomponents.sdk.UnstableAudioDetailsContent as RustAudioDetails
+import org.matrix.rustcomponents.sdk.UnstableAudioDetailsContent as RustAudioDetails
 
 fun RustAudioDetails.map(): AudioDetails = AudioDetails(
     duration = duration.toKotlinDuration(),

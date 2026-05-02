@@ -9,8 +9,8 @@
 package io.prism.android.features.messages.impl.timeline.model.event
 
 import io.prism.android.features.poll.api.pollcontent.PollAnswerItem
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.poll.PollKind
 
 data class TimelineItemPollContent(
     val isMine: Boolean,

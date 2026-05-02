@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.spaces
+package io.prism.android.libraries.matrix.api.spaces
 
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
 @Immutable
 sealed interface SpaceRoomVisibility {
     data object Private : SpaceRoomVisibility

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush.troubleshoot
+package io.prism.android.libraries.pushproviders.unifiedpush.troubleshoot
 
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.unifiedpush.UnifiedPushDistributorProvider
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.unifiedpush.UnifiedPushDistributorProvider
 
 class FakeUnifiedPushDistributorProvider(
     private var getDistributorsResult: List<Distributor> = emptyList()

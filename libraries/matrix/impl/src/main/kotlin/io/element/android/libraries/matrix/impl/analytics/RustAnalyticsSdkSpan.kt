@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.analytics
+package io.prism.android.libraries.matrix.impl.analytics
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.services.analytics.api.AnalyticsSdkSpan
 import kotlinx.coroutines.DelicateCoroutinesApi
-import org.prism.rustcomponents.sdk.LogLevel
-import org.prism.rustcomponents.sdk.Span
+import org.matrix.rustcomponents.sdk.LogLevel
+import org.matrix.rustcomponents.sdk.Span
 import timber.log.Timber
 
 class RustAnalyticsSdkSpan(

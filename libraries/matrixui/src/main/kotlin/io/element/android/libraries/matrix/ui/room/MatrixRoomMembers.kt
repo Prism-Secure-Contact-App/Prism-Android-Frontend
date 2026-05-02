@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.room
+package io.prism.android.libraries.matrix.ui.room
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -14,12 +14,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.room.BaseRoom
-import io.element.android.libraries.matrix.api.room.RoomMember
-import io.element.android.libraries.matrix.api.room.RoomMembersState
-import io.element.android.libraries.matrix.api.room.getDirectRoomMember
-import io.element.android.libraries.matrix.api.room.roomMembers
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.getDirectRoomMember
+import io.prism.android.libraries.matrix.api.room.roomMembers
 
 @Composable
 fun BaseRoom.getRoomMemberAsState(userId: UserId): State<RoomMember?> {

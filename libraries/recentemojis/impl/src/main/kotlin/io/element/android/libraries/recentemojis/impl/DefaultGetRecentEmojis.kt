@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.recentemojis.impl
+package io.prism.android.libraries.recentemojis.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.recentemojis.api.EmojibaseProvider
-import io.element.android.libraries.recentemojis.api.GetRecentEmojis
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.recentemojis.api.EmojibaseProvider
+import io.prism.android.libraries.recentemojis.api.GetRecentEmojis
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.withContext
 
 @ContributesBinding(SessionScope::class)
 class DefaultGetRecentEmojis(
-    private val client: MatrixClient,
+    private val client: PRISMClient,
     private val dispatchers: CoroutineDispatchers,
     private val emojibaseProvider: EmojibaseProvider,
 ) : GetRecentEmojis {

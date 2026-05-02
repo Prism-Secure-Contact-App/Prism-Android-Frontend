@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.impl.systemclock
+package io.prism.android.services.toolbox.impl.systemclock
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 
 @ContributesBinding(AppScope::class)
 class DefaultSystemClock : SystemClock {

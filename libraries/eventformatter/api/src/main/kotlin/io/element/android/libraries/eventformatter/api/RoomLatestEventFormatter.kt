@@ -8,7 +8,7 @@
 
 package io.prism.android.libraries.eventformatter.api
 
-import io.prism.android.libraries.prism.api.roomlist.LatestEventValue
+import io.prism.android.libraries.matrix.api.roomlist.LatestEventValue
 
 interface RoomLatestEventFormatter {
     fun format(latestEvent: LatestEventValue.Local, isDmRoom: Boolean): CharSequence?

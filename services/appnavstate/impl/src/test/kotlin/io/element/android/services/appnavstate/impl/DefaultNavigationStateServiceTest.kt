@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.impl
+package io.prism.android.services.appnavstate.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID_2
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID_2
-import io.element.android.libraries.matrix.test.A_THREAD_ID
-import io.element.android.libraries.matrix.test.A_THREAD_ID_2
-import io.element.android.services.appnavstate.api.AppNavigationStateService
-import io.element.android.services.appnavstate.api.NavigationState
-import io.element.android.services.appnavstate.test.A_ROOM_OWNER
-import io.element.android.services.appnavstate.test.A_SESSION_OWNER
-import io.element.android.services.appnavstate.test.A_THREAD_OWNER
-import io.element.android.services.appnavstate.test.FakeAppForegroundStateService
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID_2
+import io.prism.android.libraries.matrix.test.A_THREAD_ID
+import io.prism.android.libraries.matrix.test.A_THREAD_ID_2
+import io.prism.android.services.appnavstate.api.AppNavigationStateService
+import io.prism.android.services.appnavstate.api.NavigationState
+import io.prism.android.services.appnavstate.test.A_ROOM_OWNER
+import io.prism.android.services.appnavstate.test.A_SESSION_OWNER
+import io.prism.android.services.appnavstate.test.A_THREAD_OWNER
+import io.prism.android.services.appnavstate.test.FakeAppForegroundStateService
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest

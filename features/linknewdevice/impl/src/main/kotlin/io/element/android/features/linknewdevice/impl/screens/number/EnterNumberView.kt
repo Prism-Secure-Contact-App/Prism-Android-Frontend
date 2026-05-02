@@ -35,7 +35,7 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Button
 import io.prism.android.libraries.designsystem.theme.components.Icon
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.linknewdevice.ErrorType
+import io.prism.android.libraries.matrix.api.linknewdevice.ErrorType
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 /**

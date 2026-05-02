@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomdirectory
+package io.prism.android.libraries.matrix.impl.roomdirectory
 
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDescription
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDescription
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.RoomDirectorySearchEntryUpdate
+import org.matrix.rustcomponents.sdk.RoomDirectorySearchEntryUpdate
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 

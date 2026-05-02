@@ -8,7 +8,7 @@
 
 package io.prism.android.features.leaveroom.api
 
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 interface LeaveRoomEvent {
     data class LeaveRoom(val roomId: RoomId, val needsConfirmation: Boolean) : LeaveRoomEvent

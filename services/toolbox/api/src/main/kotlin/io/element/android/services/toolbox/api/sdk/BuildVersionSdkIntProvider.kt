@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.api.sdk
+package io.prism.android.services.toolbox.api.sdk
 
 import androidx.annotation.ChecksSdkIntAtLeast
 

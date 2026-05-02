@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.notificationsettings
+package io.prism.android.libraries.matrix.impl.notificationsettings
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.RoomNotificationMode
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiNotificationSettings
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiNotificationSettings
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -15,13 +15,13 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.LayoutDirection
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.matrix.ui.model.SelectRoomInfo
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
@@ -52,7 +52,7 @@ fun SelectedRoom(
 @Composable
 internal fun SelectedRoomPreview(
     @PreviewParameter(SelectRoomInfoProvider::class) roomInfo: SelectRoomInfo
-) = ElementPreview {
+) = PRISMPreview {
     SelectedRoom(
         roomInfo = roomInfo,
         onRemoveRoom = {},
@@ -66,7 +66,7 @@ internal fun SelectedRoomRtlPreview(
 ) = CompositionLocalProvider(
     LocalLayoutDirection provides LayoutDirection.Rtl,
 ) {
-    ElementPreview {
+    PRISMPreview {
         SelectedRoom(
             roomInfo = roomInfo,
             onRemoveRoom = {},

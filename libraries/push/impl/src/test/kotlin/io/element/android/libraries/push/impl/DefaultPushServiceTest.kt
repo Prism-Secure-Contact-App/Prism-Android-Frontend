@@ -6,46 +6,46 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl
+package io.prism.android.libraries.push.impl
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.verification.SessionVerifiedStatus
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.verification.FakeSessionVerificationService
-import io.element.android.libraries.push.api.GetCurrentPushProvider
-import io.element.android.libraries.push.api.PusherRegistrationFailure
-import io.element.android.libraries.push.api.history.PushHistoryItem
-import io.element.android.libraries.push.impl.push.FakeMutableBatteryOptimizationStore
-import io.element.android.libraries.push.impl.push.MutableBatteryOptimizationStore
-import io.element.android.libraries.push.impl.store.InMemoryPushDataStore
-import io.element.android.libraries.push.impl.store.PushDataStore
-import io.element.android.libraries.push.impl.test.FakeTestPush
-import io.element.android.libraries.push.impl.test.TestPush
-import io.element.android.libraries.push.impl.unregistration.FakeServiceUnregisteredHandler
-import io.element.android.libraries.push.impl.unregistration.ServiceUnregisteredHandler
-import io.element.android.libraries.push.test.FakeGetCurrentPushProvider
-import io.element.android.libraries.pushproviders.api.Config
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
-import io.element.android.libraries.pushproviders.test.FakePushProvider
-import io.element.android.libraries.pushproviders.test.aSessionPushConfig
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecretStore
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
-import io.element.android.libraries.pushstore.test.userpushstore.clientsecret.InMemoryPushClientSecretStore
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.libraries.sessionstorage.test.observer.NoOpSessionObserver
-import io.element.android.tests.testutils.lambda.any
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.verification.FakeSessionVerificationService
+import io.prism.android.libraries.push.api.GetCurrentPushProvider
+import io.prism.android.libraries.push.api.PusherRegistrationFailure
+import io.prism.android.libraries.push.api.history.PushHistoryItem
+import io.prism.android.libraries.push.impl.push.FakeMutableBatteryOptimizationStore
+import io.prism.android.libraries.push.impl.push.MutableBatteryOptimizationStore
+import io.prism.android.libraries.push.impl.store.InMemoryPushDataStore
+import io.prism.android.libraries.push.impl.store.PushDataStore
+import io.prism.android.libraries.push.impl.test.FakeTestPush
+import io.prism.android.libraries.push.impl.test.TestPush
+import io.prism.android.libraries.push.impl.unregistration.FakeServiceUnregisteredHandler
+import io.prism.android.libraries.push.impl.unregistration.ServiceUnregisteredHandler
+import io.prism.android.libraries.push.test.FakeGetCurrentPushProvider
+import io.prism.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.libraries.pushproviders.test.FakePushProvider
+import io.prism.android.libraries.pushproviders.test.aSessionPushConfig
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecretStore
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
+import io.prism.android.libraries.pushstore.test.userpushstore.clientsecret.InMemoryPushClientSecretStore
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.sessionstorage.test.observer.NoOpSessionObserver
+import io.prism.android.tests.testutils.lambda.any
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -163,8 +163,8 @@ class DefaultPushServiceTest {
     @Test
     fun `registerWith unregister previous push provider and register new OK`() = runTest {
         val client = FakeMatrixClient()
-        val unregisterLambda = lambdaRecorder<MatrixClient, Result<Unit>> { Result.success(Unit) }
-        val registerLambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ -> Result.success(Unit) }
+        val unregisterLambda = lambdaRecorder<PRISMClient, Result<Unit>> { Result.success(Unit) }
+        val registerLambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ -> Result.success(Unit) }
         val aCurrentPushProvider = FakePushProvider(
             unregisterWithResult = unregisterLambda,
             name = "aCurrentPushProvider",
@@ -359,7 +359,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - case two push providers but first one does not have distributor - second one will be used`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
         val sessionVerificationService = FakeSessionVerificationService(
@@ -391,7 +391,7 @@ class DefaultPushServiceTest {
         assertThat(result.isSuccess).isTrue()
         lambda.assertions().isCalledOnce()
             .with(
-                // MatrixClient
+                // PRISMClient
                 any(),
                 // First distributor of second push provider
                 value(distributor),
@@ -400,7 +400,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - case one push provider but no distributor available`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
         val sessionVerificationService = FakeSessionVerificationService(
@@ -426,7 +426,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - ensure default pusher is registered with default provider`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
         val sessionVerificationService = FakeSessionVerificationService(
@@ -451,7 +451,7 @@ class DefaultPushServiceTest {
         lambda.assertions()
             .isCalledOnce()
             .with(
-                // MatrixClient
+                // PRISMClient
                 any(),
                 // First distributor
                 value(pushService.getAvailablePushProviders()[0].getDistributors()[0]),
@@ -460,7 +460,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - ensure default pusher is registered with default provider - fail to register`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.failure(AN_EXCEPTION)
         }
         val sessionVerificationService = FakeSessionVerificationService(
@@ -485,7 +485,7 @@ class DefaultPushServiceTest {
         lambda.assertions()
             .isCalledOnce()
             .with(
-                // MatrixClient
+                // PRISMClient
                 any(),
                 // First distributor
                 value(pushService.getAvailablePushProviders()[0].getDistributors()[0]),
@@ -494,7 +494,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - if current push provider does not have distributors, nothing happen`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
         val sessionVerificationService = FakeSessionVerificationService(
@@ -523,7 +523,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - ensure current provider is registered with current distributor`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
         val sessionVerificationService = FakeSessionVerificationService(
@@ -553,7 +553,7 @@ class DefaultPushServiceTest {
         lambda.assertions()
             .isCalledOnce()
             .with(
-                // MatrixClient
+                // PRISMClient
                 any(),
                 // Current distributor
                 value(distributor),
@@ -562,7 +562,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - case no push provider available provider`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
         val sessionVerificationService = FakeSessionVerificationService(SessionVerifiedStatus.Verified)
@@ -582,7 +582,7 @@ class DefaultPushServiceTest {
 
     @Test
     fun `ensurePusher - if current push provider does not have current distributor, the first one is used`() = runTest {
-        val lambda = lambdaRecorder<MatrixClient, Distributor, Result<Unit>> { _, _ ->
+        val lambda = lambdaRecorder<PRISMClient, Distributor, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
         val sessionVerificationService = FakeSessionVerificationService(
@@ -611,7 +611,7 @@ class DefaultPushServiceTest {
         lambda.assertions()
             .isCalledOnce()
             .with(
-                // MatrixClient
+                // PRISMClient
                 any(),
                 // First distributor
                 value(pushService.getAvailablePushProviders()[0].getDistributors()[0]),

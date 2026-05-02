@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery
+package io.prism.android.libraries.mediaviewer.impl.gallery
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.designsystem.components.media.WaveFormSamples
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.details.aMediaDetailsBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.model.GroupedMediaItems
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemAudio
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemDateSeparator
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemFile
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemImage
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemLoadingIndicator
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemVideo
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemVoice
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.designsystem.components.media.WaveFormSamples
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.details.aMediaDetailsBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.model.GroupedMediaItems
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemAudio
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemDateSeparator
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemFile
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemImage
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemLoadingIndicator
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemVideo
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemVoice
 import kotlinx.collections.immutable.toImmutableList
 
 open class MediaGalleryStateProvider : PreviewParameterProvider<MediaGalleryState> {

@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
-import io.element.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.push.impl.db.PushRequest
 
 fun interface SyncOnNotifiableEvent {
     suspend operator fun invoke(requests: List<PushRequest>)

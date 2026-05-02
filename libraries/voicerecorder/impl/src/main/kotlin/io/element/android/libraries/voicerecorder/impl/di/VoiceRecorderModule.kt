@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.impl.di
+package io.prism.android.libraries.voicerecorder.impl.di
 
 import android.media.AudioFormat
 import android.media.MediaRecorder
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.voicerecorder.impl.audio.AudioConfig
-import io.element.android.libraries.voicerecorder.impl.audio.SampleRate
-import io.element.android.libraries.voicerecorder.impl.file.VoiceFileConfig
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.voicerecorder.impl.audio.AudioConfig
+import io.prism.android.libraries.voicerecorder.impl.audio.SampleRate
+import io.prism.android.libraries.voicerecorder.impl.file.VoiceFileConfig
 import io.element.android.opusencoder.OggOpusEncoder
 
 @BindingContainer

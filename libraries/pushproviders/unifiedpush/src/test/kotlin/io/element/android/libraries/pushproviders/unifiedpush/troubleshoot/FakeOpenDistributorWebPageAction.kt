@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush.troubleshoot
+package io.prism.android.libraries.pushproviders.unifiedpush.troubleshoot
 
 class FakeOpenDistributorWebPageAction(
     private val executeAction: () -> Unit = {}

@@ -32,8 +32,8 @@ import io.prism.android.libraries.designsystem.components.async.AsyncLoading
 import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
 import io.prism.android.libraries.designsystem.theme.components.SearchBar
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.SelectedUsersRowList
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.SelectedUsersRowList
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.libraries.usersearch.api.UserSearchResult
 import kotlinx.collections.immutable.ImmutableList
@@ -105,12 +105,12 @@ fun SearchUserBar(
                         SearchMultipleUsersResultItem(
                             modifier = Modifier.fillMaxWidth(),
                             searchResult = searchResult,
-                            isUserSelected = selectedUsers.contains(searchResult.prismUser),
+                            isUserSelected = selectedUsers.contains(searchResult.matrixUser),
                             onCheckedChange = { checked ->
                                 if (checked) {
-                                    onUserSelect(searchResult.prismUser)
+                                    onUserSelect(searchResult.matrixUser)
                                 } else {
-                                    onUserDeselect(searchResult.prismUser)
+                                    onUserDeselect(searchResult.matrixUser)
                                 }
                             }
                         )
@@ -123,7 +123,7 @@ fun SearchUserBar(
                         SearchSingleUserResultItem(
                             modifier = Modifier.fillMaxWidth(),
                             searchResult = searchResult,
-                            onClick = { onUserSelect(searchResult.prismUser) }
+                            onClick = { onUserSelect(searchResult.matrixUser) }
                         )
                         if (index < users.lastIndex) {
                             HorizontalDivider()

@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.architecture.AsyncAction
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.push.test.FakeGetCurrentPushProvider
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.test
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.push.test.FakeGetCurrentPushProvider
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

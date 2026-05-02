@@ -11,12 +11,12 @@ package io.prism.android.features.linknewdevice.impl.screens.scan
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.linknewdevice.impl.LinkNewDesktopHandler
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeDecodeException
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopStep
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.QR_CODE_DATA_RECIPROCATE
-import io.prism.android.libraries.prism.test.linknewdevice.FakeLinkDesktopHandler
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeDecodeException
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopStep
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.QR_CODE_DATA_RECIPROCATE
+import io.prism.android.libraries.matrix.test.linknewdevice.FakeLinkDesktopHandler
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.lambda.value
@@ -33,11 +33,11 @@ class ScanQrCodePresenterTest {
 
     @Test
     fun `present - initial state`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             createLinkDesktopHandlerResult = { Result.success(FakeLinkDesktopHandler()) }
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.scanAction.isLoading()).isTrue()
@@ -47,7 +47,7 @@ class ScanQrCodePresenterTest {
     @Test
     fun `present - handle scanned event - success`() = runTest {
         val handleScannedQrCodeResult = lambdaRecorder<ByteArray, Unit> { }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             sessionCoroutineScope = backgroundScope,
             createLinkDesktopHandlerResult = {
                 Result.success(
@@ -58,7 +58,7 @@ class ScanQrCodePresenterTest {
             }
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.scanAction.isLoading()).isTrue()
@@ -76,14 +76,14 @@ class ScanQrCodePresenterTest {
         val handler = FakeLinkDesktopHandler(
             handleScannedQrCodeResult = handleScannedQrCodeResult,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             sessionCoroutineScope = backgroundScope,
             createLinkDesktopHandlerResult = {
                 Result.success(handler)
             }
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.scanAction.isLoading()).isTrue()
@@ -104,7 +104,7 @@ class ScanQrCodePresenterTest {
 }
 
 private fun createPresenter(
-    prismClient: PRISMClient,
+    matrixClient: PRISMClient,
 ) = ScanQrCodePresenter(
-    linkNewDesktopHandler = LinkNewDesktopHandler(prismClient),
+    linkNewDesktopHandler = LinkNewDesktopHandler(matrixClient),
 )

@@ -12,7 +12,7 @@ import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import io.prism.android.libraries.architecture.FeatureEntryPoint
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 interface AccountSelectEntryPoint : FeatureEntryPoint {
     fun createNode(

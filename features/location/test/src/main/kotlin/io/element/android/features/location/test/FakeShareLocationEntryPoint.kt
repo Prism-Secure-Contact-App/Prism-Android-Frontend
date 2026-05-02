@@ -11,7 +11,7 @@ package io.prism.android.features.location.test
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import io.prism.android.features.location.api.ShareLocationEntryPoint
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeShareLocationEntryPoint : ShareLocationEntryPoint {

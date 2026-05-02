@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.flatMap
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.api.toUserList
+import io.prism.android.libraries.core.extensions.flatMap
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.api.toUserList
 import timber.log.Timber
 
 private val loggerTag = LoggerTag("FirebaseNewTokenHandler", LoggerTag.PushLoggerTag)
@@ -34,7 +34,7 @@ class DefaultFirebaseNewTokenHandler(
     private val pusherSubscriber: PusherSubscriber,
     private val sessionStore: SessionStore,
     private val userPushStoreFactory: UserPushStoreFactory,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
     private val firebaseStore: FirebaseStore,
     private val firebaseGatewayProvider: FirebaseGatewayProvider,
 ) : FirebaseNewTokenHandler {

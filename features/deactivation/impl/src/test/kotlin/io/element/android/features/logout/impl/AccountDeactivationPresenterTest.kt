@@ -13,9 +13,9 @@ import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.FakePRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.FakePRISMClient
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.lambda.value
@@ -63,10 +63,10 @@ class AccountDeactivationPresenterTest {
         val recorder = lambdaRecorder<String, Boolean, Result<Unit>> { _, _ ->
             Result.success(Unit)
         }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             deactivateAccountResult = recorder
         )
-        val presenter = createPresenter(prismClient)
+        val presenter = createPresenter(matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -90,10 +90,10 @@ class AccountDeactivationPresenterTest {
         val recorder = lambdaRecorder<String, Boolean, Result<Unit>> { _, _ ->
             Result.failure(AN_EXCEPTION)
         }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             deactivateAccountResult = recorder
         )
-        val presenter = createPresenter(prismClient)
+        val presenter = createPresenter(matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -123,10 +123,10 @@ class AccountDeactivationPresenterTest {
         val recorder = lambdaRecorder<String, Boolean, Result<Unit>> { _, _ ->
             Result.failure(AN_EXCEPTION)
         }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             deactivateAccountResult = recorder
         )
-        val presenter = createPresenter(prismClient)
+        val presenter = createPresenter(matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -152,7 +152,7 @@ class AccountDeactivationPresenterTest {
 }
 
 internal fun createPresenter(
-    prismClient: PRISMClient = FakePRISMClient(),
+    matrixClient: PRISMClient = FakePRISMClient(),
 ) = AccountDeactivationPresenter(
-    prismClient = prismClient,
+    matrixClient = matrixClient,
 )

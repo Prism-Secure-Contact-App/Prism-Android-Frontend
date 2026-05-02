@@ -23,7 +23,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.features.invite.api.InviteData
 import io.prism.android.features.invite.api.SeenInvitesStore
 import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteEvents
@@ -37,20 +37,20 @@ import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runUpdatingState
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.RoomMembershipDetails
-import io.prism.android.libraries.prism.api.room.RoomType
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.room.join.JoinRoom
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.preview.RoomPreviewInfo
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.ui.model.toInviteSender
-import io.prism.android.libraries.prism.ui.safety.rememberHideInvitesAvatar
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomMembershipDetails
+import io.prism.android.libraries.matrix.api.room.RoomType
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.preview.RoomPreviewInfo
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.ui.model.toInviteSender
+import io.prism.android.libraries.matrix.ui.safety.rememberHideInvitesAvatar
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
@@ -65,7 +65,7 @@ class JoinRoomPresenter(
     @Assisted private val roomDescription: Optional<RoomDescription>,
     @Assisted private val serverNames: List<String>,
     @Assisted private val trigger: JoinedRoom.Trigger,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val joinRoom: JoinRoom,
     private val knockRoom: KnockRoom,
     private val cancelKnockRoom: CancelKnockRoom,
@@ -84,14 +84,14 @@ class JoinRoomPresenter(
         ): JoinRoomPresenter
     }
 
-    private val spaceList = prismClient.spaceService.spaceRoomList(roomId)
+    private val spaceList = matrixClient.spaceService.spaceRoomList(roomId)
 
     @Composable
     override fun present(): JoinRoomState {
         val coroutineScope = rememberCoroutineScope()
         var retryCount by remember { mutableIntStateOf(0) }
         val roomInfo by remember {
-            prismClient.getRoomInfoFlow(roomId)
+            matrixClient.getRoomInfoFlow(roomId)
         }.collectAsState(initial = Optional.empty())
         val spaceRoom by spaceList.currentSpaceFlow.collectAsState()
         val joinAction: MutableState<AsyncAction<Unit>> = remember { mutableStateOf(AsyncAction.Uninitialized) }
@@ -100,8 +100,8 @@ class JoinRoomPresenter(
         val forgetRoomAction: MutableState<AsyncAction<Unit>> = remember { mutableStateOf(AsyncAction.Uninitialized) }
         var knockMessage by rememberSaveable { mutableStateOf("") }
         var isDismissingContent by remember { mutableStateOf(false) }
-        val hideInviteAvatars by prismClient.rememberHideInvitesAvatar()
-        val canReportRoom by produceState(false) { value = prismClient.canReportRoom() }
+        val hideInviteAvatars by matrixClient.rememberHideInvitesAvatar()
+        val canReportRoom by produceState(false) { value = matrixClient.canReportRoom() }
 
         var contentState by remember {
             mutableStateOf<ContentState>(ContentState.Loading)
@@ -110,7 +110,7 @@ class JoinRoomPresenter(
             when {
                 isDismissingContent -> contentState = ContentState.Dismissing
                 roomInfo.isPresent -> {
-                    val notJoinedRoom = prismClient.getRoomPreview(roomIdOrAlias, serverNames).getOrNull()
+                    val notJoinedRoom = matrixClient.getRoomPreview(roomIdOrAlias, serverNames).getOrNull()
                     val membershipDetails = notJoinedRoom?.membershipDetails()?.getOrNull()
                     val joinedMembersCountOverride = notJoinedRoom?.previewInfo?.numberOfJoinedMembers
                     contentState = roomInfo.get().toContentState(
@@ -133,7 +133,7 @@ class JoinRoomPresenter(
                 }
                 else -> {
                     contentState = ContentState.Loading
-                    val result = prismClient.getRoomPreview(roomIdOrAlias, serverNames)
+                    val result = matrixClient.getRoomPreview(roomIdOrAlias, serverNames)
                     contentState = result.fold(
                         onSuccess = { preview ->
                             val membershipDetails = preview.membershipDetails().getOrNull()

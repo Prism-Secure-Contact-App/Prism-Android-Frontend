@@ -67,7 +67,7 @@ import io.prism.android.libraries.designsystem.theme.components.Icon
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarHost
 import io.prism.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.launch
 

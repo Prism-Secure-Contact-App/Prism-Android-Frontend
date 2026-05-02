@@ -5,10 +5,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.test.workmanager
+package io.prism.android.libraries.push.test.workmanager
 
-import io.element.android.libraries.push.impl.workmanager.SyncPendingNotificationsRequestBuilder
-import io.element.android.libraries.workmanager.api.WorkManagerRequestWrapper
+import io.prism.android.libraries.push.impl.workmanager.SyncPendingNotificationsRequestBuilder
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestWrapper
 
 class FakeSyncPendingNotificationsRequestBuilder(
     private val build: () -> Result<List<WorkManagerRequestWrapper>> = { Result.success(emptyList()) },

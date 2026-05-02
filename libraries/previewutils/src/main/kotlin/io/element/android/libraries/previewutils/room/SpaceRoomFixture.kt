@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.previewutils.room
+package io.prism.android.libraries.previewutils.room
 
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.room.CurrentUserMembership
-import io.element.android.libraries.matrix.api.room.RoomType
-import io.element.android.libraries.matrix.api.room.join.JoinRule
-import io.element.android.libraries.matrix.api.spaces.SpaceRoom
-import io.element.android.libraries.matrix.api.user.MatrixUser
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomType
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.toImmutableList
 
 fun aSpaceRoom(
@@ -24,7 +24,7 @@ fun aSpaceRoom(
     canonicalAlias: RoomAlias? = null,
     childrenCount: Int = 0,
     guestCanJoin: Boolean = false,
-    heroes: List<MatrixUser> = emptyList(),
+    heroes: List<PRISMUser> = emptyList(),
     joinRule: JoinRule? = null,
     numJoinedMembers: Int = 0,
     roomId: RoomId = RoomId("!roomId:example.com"),

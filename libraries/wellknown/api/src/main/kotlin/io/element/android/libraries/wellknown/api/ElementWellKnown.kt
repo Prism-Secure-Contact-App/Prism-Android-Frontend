@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.wellknown.api
+package io.prism.android.libraries.wellknown.api
 
 data class ElementWellKnown(
     val registrationHelperUrl: String?,

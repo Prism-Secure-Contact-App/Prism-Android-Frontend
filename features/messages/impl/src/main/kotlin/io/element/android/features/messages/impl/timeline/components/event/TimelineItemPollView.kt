@@ -17,7 +17,7 @@ import io.prism.android.features.messages.impl.timeline.model.event.TimelineItem
 import io.prism.android.features.poll.api.pollcontent.PollContentView
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable

@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl
+package io.prism.android.libraries.push.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.appconfig.PushConfig
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.matrix.api.pusher.SetHttpPusherData
-import io.element.android.libraries.matrix.api.pusher.UnsetHttpPusherData
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.core.aBuildMeta
-import io.element.android.libraries.matrix.test.pushers.FakePushersService
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
-import io.element.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.appconfig.PushConfig
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.matrix.api.pusher.SetHttpPusherData
+import io.prism.android.libraries.matrix.api.pusher.UnsetHttpPusherData
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.pushers.FakePushersService
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
+import io.prism.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

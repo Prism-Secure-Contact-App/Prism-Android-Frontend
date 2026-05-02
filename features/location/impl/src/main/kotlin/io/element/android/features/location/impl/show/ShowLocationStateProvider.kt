@@ -13,8 +13,8 @@ import io.prism.android.features.location.api.Location
 import io.prism.android.features.location.impl.common.ui.LocationConstraintsDialogState
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.location.AssetType
 import kotlinx.collections.immutable.toImmutableList
 
 class ShowLocationStateProvider : PreviewParameterProvider<ShowLocationState> {

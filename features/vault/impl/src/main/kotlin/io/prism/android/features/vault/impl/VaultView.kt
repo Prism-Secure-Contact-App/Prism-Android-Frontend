@@ -26,13 +26,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import io.prism.android.libraries.designsystem.theme.components.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.prism.android.libraries.designsystem.theme.components.Button
+import io.prism.android.libraries.designsystem.components.list.ListItemContent
 import io.prism.android.libraries.designsystem.theme.components.ListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -89,9 +90,10 @@ fun VaultView(
             title = { Text("Doğrulama Hatası") },
             text = { Text(error) },
             confirmButton = {
-                TextButton(onClick = { state.eventSink(VaultEvent.DismissBiometricError) }) {
-                    Text("Tamam")
-                }
+                TextButton(
+                    text = "Tamam",
+                    onClick = { state.eventSink(VaultEvent.DismissBiometricError) },
+                )
             }
         )
     }
@@ -115,9 +117,10 @@ private fun LockedContent(
         Text("Gizli sohbetleriniz kilitli")
         Spacer(modifier = Modifier.height(24.dp))
         if (isBiometricAvailable) {
-            Button(onClick = onUnlock) {
-                Text("Parmak izi / Yüz ile Aç")
-            }
+            Button(
+                text = "Parmak izi / Yüz ile Aç",
+                onClick = onUnlock,
+            )
         } else {
             Text("Bu cihazda biyometrik doğrulama mevcut değil.")
         }
@@ -140,10 +143,11 @@ private fun UnlockedContent(
         items(roomIds) { roomId ->
             ListItem(
                 headlineContent = { Text(roomId) },
-                trailingContent = {
-                    TextButton(onClick = { onRemove(roomId) }) {
-                        Text("Çıkar")
-                    }
+                trailingContent = ListItemContent.Custom { _ ->
+                    TextButton(
+                        text = "Çıkar",
+                        onClick = { onRemove(roomId) },
+                    )
                 },
                 modifier = Modifier
                     .fillMaxWidth()

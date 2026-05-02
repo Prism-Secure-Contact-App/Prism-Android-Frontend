@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
-import io.element.android.libraries.matrix.impl.certificates.UserCertificatesProvider
+import io.prism.android.libraries.matrix.impl.certificates.UserCertificatesProvider
 
 class FakeUserCertificatesProvider : UserCertificatesProvider {
     override fun provides(): List<ByteArray> {

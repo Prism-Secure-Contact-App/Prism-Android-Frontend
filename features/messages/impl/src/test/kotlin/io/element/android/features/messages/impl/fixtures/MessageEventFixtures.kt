@@ -18,20 +18,20 @@ import io.prism.android.features.messages.impl.timeline.model.event.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemTextContent
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.TransactionId
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageShieldProvider
-import io.prism.android.libraries.prism.api.timeline.item.event.SendHandleProvider
-import io.prism.android.libraries.prism.api.timeline.item.event.TimelineItemDebugInfoProvider
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_MESSAGE
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_NAME
-import io.prism.android.libraries.prism.test.core.FakeSendHandle
-import io.prism.android.libraries.prism.ui.messages.reply.InReplyToDetails
-import io.prism.android.libraries.prism.ui.messages.reply.aProfileDetailsReady
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageShieldProvider
+import io.prism.android.libraries.matrix.api.timeline.item.event.SendHandleProvider
+import io.prism.android.libraries.matrix.api.timeline.item.event.TimelineItemDebugInfoProvider
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_MESSAGE
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.core.FakeSendHandle
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetails
+import io.prism.android.libraries.matrix.ui.messages.reply.aProfileDetailsReady
 import kotlinx.collections.immutable.toImmutableList
 
 internal fun aMessageEvent(

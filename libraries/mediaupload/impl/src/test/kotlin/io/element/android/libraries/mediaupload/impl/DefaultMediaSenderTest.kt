@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import android.net.Uri
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.FileInfo
-import io.element.android.libraries.matrix.api.media.ImageInfo
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.test.media.FakeMediaUploadHandler
-import io.element.android.libraries.matrix.test.room.FakeJoinedRoom
-import io.element.android.libraries.matrix.test.timeline.FakeTimeline
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
-import io.element.android.libraries.mediaupload.api.MediaPreProcessor
-import io.element.android.libraries.mediaupload.test.FakeMediaPreProcessor
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.media.FakeMediaUploadHandler
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.timeline.FakeTimeline
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
+import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
+import io.prism.android.libraries.mediaupload.test.FakeMediaPreProcessor
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher

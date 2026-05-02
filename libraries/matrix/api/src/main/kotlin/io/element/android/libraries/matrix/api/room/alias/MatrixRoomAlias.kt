@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.alias
+package io.prism.android.libraries.matrix.api.room.alias
 
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.room.BaseRoom
 
 /**
  * Return true if the given roomIdOrAlias is the same room as this room.

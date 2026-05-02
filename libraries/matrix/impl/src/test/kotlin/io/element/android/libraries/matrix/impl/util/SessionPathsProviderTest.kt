@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.util
+package io.prism.android.libraries.matrix.impl.util
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.libraries.sessionstorage.test.aSessionData
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.libraries.sessionstorage.test.aSessionData
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -18,7 +18,7 @@ import dev.zacsweers.metro.AssistedInject
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 
 @ContributesNode(RoomScope::class)
 @AssistedInject

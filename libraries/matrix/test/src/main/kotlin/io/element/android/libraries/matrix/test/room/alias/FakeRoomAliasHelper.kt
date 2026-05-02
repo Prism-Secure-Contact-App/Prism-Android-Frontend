@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.room.alias
+package io.prism.android.libraries.matrix.test.room.alias
 
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
 
 class FakeRoomAliasHelper(
     private val roomAliasNameFromRoomDisplayNameLambda: (String) -> String = { name ->

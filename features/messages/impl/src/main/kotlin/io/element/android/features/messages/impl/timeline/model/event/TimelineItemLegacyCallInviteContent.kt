@@ -8,7 +8,7 @@
 
 package io.prism.android.features.messages.impl.timeline.model.event
 
-import io.prism.android.libraries.prism.api.timeline.item.event.EventType
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventType
 
 data object TimelineItemLegacyCallInviteContent : TimelineItemEventContent {
     override val type: String

@@ -35,7 +35,7 @@ dependencies {
     implementation(projects.libraries.designsystem)
     implementation(projects.libraries.androidutils)
     implementation(projects.libraries.core)
-    implementation(projects.libraries.prismui)
+    implementation(projects.libraries.matrixui)
     implementation(projects.services.analytics.api)
     implementation(libs.accompanist.permission)
     implementation(projects.libraries.uiStrings)

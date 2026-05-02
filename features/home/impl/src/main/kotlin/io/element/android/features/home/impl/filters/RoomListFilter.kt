@@ -9,7 +9,7 @@
 package io.prism.android.features.home.impl.filters
 
 import io.prism.android.features.home.impl.R
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter as PRISMRoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter as PRISMRoomListFilter
 
 /**
  * Enum class representing the different filters that can be applied to the room list.

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import android.content.Context
 import android.os.Build
@@ -17,13 +17,13 @@ import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Provider
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
 import okhttp3.OkHttpClient
 
 interface ImageLoaderFactory {
     fun newImageLoader(): ImageLoader
-    fun newImageLoader(matrixMediaLoader: MatrixMediaLoader): ImageLoader
+    fun newImageLoader(matrixMediaLoader: PRISMMediaLoader): ImageLoader
 }
 
 @ContributesBinding(AppScope::class)
@@ -46,7 +46,7 @@ class DefaultImageLoaderFactory(
             .build()
     }
 
-    override fun newImageLoader(matrixMediaLoader: MatrixMediaLoader): ImageLoader {
+    override fun newImageLoader(matrixMediaLoader: PRISMMediaLoader): ImageLoader {
         return ImageLoader.Builder(context)
             .components {
                 add(okHttpNetworkFetcherFactory)

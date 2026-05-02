@@ -6,8 +6,8 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.sentry.log
+package io.prism.android.services.analyticsproviders.sentry.log
 
-import io.element.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.core.log.logger.LoggerTag
 
 internal val analyticsTag = LoggerTag("Sentry")

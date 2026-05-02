@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.api
+package io.prism.android.libraries.pushproviders.api
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.exception.ClientException
 
 interface PusherSubscriber {
     /**
      * Register a pusher. Note that failure will be a [RegistrationFailure].
      */
-    suspend fun registerPusher(matrixClient: MatrixClient, pushKey: String, gateway: String): Result<Unit>
+    suspend fun registerPusher(matrixClient: PRISMClient, pushKey: String, gateway: String): Result<Unit>
 
     /**
      * Unregister a pusher.
      */
-    suspend fun unregisterPusher(matrixClient: MatrixClient, pushKey: String, gateway: String): Result<Unit>
+    suspend fun unregisterPusher(matrixClient: PRISMClient, pushKey: String, gateway: String): Result<Unit>
 }
 
 class RegistrationFailure(

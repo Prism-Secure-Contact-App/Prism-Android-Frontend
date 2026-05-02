@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl
+package io.prism.android.libraries.matrix.impl
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.log.logger.LoggerTag
-import io.prism.android.libraries.prism.impl.core.SdkBackgroundTaskError
-import io.prism.android.libraries.prism.impl.mapper.toSessionData
-import io.prism.android.libraries.prism.impl.paths.getSessionPaths
-import io.prism.android.libraries.prism.impl.util.anonymizedTokens
+import io.prism.android.libraries.matrix.impl.core.SdkBackgroundTaskError
+import io.prism.android.libraries.matrix.impl.mapper.toSessionData
+import io.prism.android.libraries.matrix.impl.paths.getSessionPaths
+import io.prism.android.libraries.matrix.impl.util.anonymizedTokens
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.prism.rustcomponents.sdk.ClientDelegate
-import org.prism.rustcomponents.sdk.ClientSessionDelegate
-import org.prism.rustcomponents.sdk.Session
+import org.matrix.rustcomponents.sdk.ClientDelegate
+import org.matrix.rustcomponents.sdk.ClientSessionDelegate
+import org.matrix.rustcomponents.sdk.Session
 import timber.log.Timber
-import uniffi.prism_sdk_common.BackgroundTaskFailureReason
+import uniffi.matrix_sdk_common.BackgroundTaskFailureReason
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.time.Duration.Companion.milliseconds

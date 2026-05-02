@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.mapper
+package io.prism.android.libraries.matrix.impl.mapper
 
-import io.prism.android.libraries.prism.api.auth.external.ExternalSession
-import io.prism.android.libraries.prism.impl.paths.SessionPaths
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.impl.paths.SessionPaths
 import io.prism.android.libraries.sessionstorage.api.LoginType
 import io.prism.android.libraries.sessionstorage.api.SessionData
-import org.prism.rustcomponents.sdk.Session
+import org.matrix.rustcomponents.sdk.Session
 import java.util.Date
 
 internal fun Session.toSessionData(

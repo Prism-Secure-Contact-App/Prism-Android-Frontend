@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.app.Notification
 import coil3.ImageLoader
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
 
 interface NotificationDataFactory {
     suspend fun toNotifications(

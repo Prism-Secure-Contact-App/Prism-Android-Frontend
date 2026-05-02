@@ -32,12 +32,12 @@ import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.notification.CallIntent
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint
 import kotlinx.parcelize.Parcelize
 
@@ -52,7 +52,7 @@ class UserProfileFlowNode(
     private val outgoingVerificationEntryPoint: OutgoingVerificationEntryPoint,
 ) : BaseFlowNode<UserProfileFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

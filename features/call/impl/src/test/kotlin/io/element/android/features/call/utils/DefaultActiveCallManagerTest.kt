@@ -20,21 +20,21 @@ import io.prism.android.features.call.impl.utils.CallState
 import io.prism.android.features.call.impl.utils.DefaultActiveCallManager
 import io.prism.android.features.call.impl.utils.DefaultCurrentCallService
 import io.prism.android.features.call.test.aCallNotificationData
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.AN_EVENT_ID_2
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID_2
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.FakePRISMClientProvider
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.ui.media.test.FakeImageLoaderHolder
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.FakePRISMClientProvider
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.ui.media.test.FakeImageLoaderHolder
 import io.prism.android.libraries.push.api.notifications.ForegroundServiceType
 import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
 import io.prism.android.libraries.push.test.notifications.FakeOnMissedCallNotificationHandler
@@ -202,10 +202,10 @@ class DefaultActiveCallManagerTest {
 
         val room = mockk<JoinedRoom>(relaxed = true)
 
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, room)
         }
-        val clientProvider = FakePRISMClientProvider({ Result.success(prismClient) })
+        val clientProvider = FakePRISMClientProvider({ Result.success(matrixClient) })
 
         val manager = createActiveCallManager(
             prismClientProvider = clientProvider,
@@ -229,10 +229,10 @@ class DefaultActiveCallManagerTest {
 
         val room = mockk<JoinedRoom>(relaxed = true)
 
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, room)
         }
-        val clientProvider = FakePRISMClientProvider({ Result.success(prismClient) })
+        val clientProvider = FakePRISMClientProvider({ Result.success(matrixClient) })
 
         val manager = createActiveCallManager(
             prismClientProvider = clientProvider,
@@ -258,10 +258,10 @@ class DefaultActiveCallManagerTest {
 
         val room = FakeJoinedRoom()
 
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, room)
         }
-        val clientProvider = FakePRISMClientProvider({ Result.success(prismClient) })
+        val clientProvider = FakePRISMClientProvider({ Result.success(matrixClient) })
 
         val manager = createActiveCallManager(
             prismClientProvider = clientProvider,
@@ -274,7 +274,7 @@ class DefaultActiveCallManagerTest {
         runCurrent()
 
         // Simulate declined from other session
-        room.baseRoom.givenDecliner(prismClient.sessionId, notificationData.eventId)
+        room.baseRoom.givenDecliner(matrixClient.sessionId, notificationData.eventId)
 
         runCurrent()
 
@@ -293,10 +293,10 @@ class DefaultActiveCallManagerTest {
 
         val room = FakeJoinedRoom()
 
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, room)
         }
-        val clientProvider = FakePRISMClientProvider({ Result.success(prismClient) })
+        val clientProvider = FakePRISMClientProvider({ Result.success(matrixClient) })
 
         val manager = createActiveCallManager(
             prismClientProvider = clientProvider,
@@ -309,7 +309,7 @@ class DefaultActiveCallManagerTest {
         runCurrent()
 
         // Simulate declined for another notification event
-        room.baseRoom.givenDecliner(prismClient.sessionId, AN_EVENT_ID_2)
+        room.baseRoom.givenDecliner(matrixClient.sessionId, AN_EVENT_ID_2)
 
         runCurrent()
 

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.animation.core.RepeatMode
@@ -30,11 +30,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.ui.utils.time.formatShort
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.ui.utils.time.formatShort
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlin.time.Duration
@@ -50,7 +50,7 @@ internal fun VoiceMessageRecording(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = ElementTheme.colors.bgSubtleSecondary,
+                color = PRISMTheme.colors.bgSubtleSecondary,
                 shape = MaterialTheme.shapes.medium,
             )
             .padding(start = 12.dp, end = 20.dp, top = 8.dp, bottom = 8.dp)
@@ -64,8 +64,8 @@ internal fun VoiceMessageRecording(
         // Timer
         Text(
             text = duration.formatShort(),
-            color = ElementTheme.colors.textSecondary,
-            style = ElementTheme.typography.fontBodySmMedium
+            color = PRISMTheme.colors.textSecondary,
+            style = PRISMTheme.typography.fontBodySmMedium
         )
 
         Spacer(Modifier.size(20.dp))
@@ -95,12 +95,12 @@ private fun RedRecordingDot() {
         modifier = Modifier
             .size(8.dp)
             .alpha(alpha)
-            .background(color = ElementTheme.colors.textCriticalPrimary, shape = CircleShape)
+            .background(color = PRISMTheme.colors.textCriticalPrimary, shape = CircleShape)
     )
 }
 
 @PreviewsDayNight
 @Composable
-internal fun VoiceMessageRecordingPreview() = ElementPreview {
+internal fun VoiceMessageRecordingPreview() = PRISMPreview {
     VoiceMessageRecording(List(100) { it.toFloat() / 100 }.toImmutableList(), 0.seconds)
 }

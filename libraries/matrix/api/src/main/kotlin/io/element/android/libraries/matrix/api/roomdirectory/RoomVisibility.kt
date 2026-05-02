@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.roomdirectory
+package io.prism.android.libraries.matrix.api.roomdirectory
 
 /**
  * Enum class representing the visibility of a room in the room directory.

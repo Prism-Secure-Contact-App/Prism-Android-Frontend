@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.app.Notification
 import androidx.core.app.NotificationCompat
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
-import io.element.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
-import io.element.android.tests.testutils.lambda.any
-import io.element.android.tests.testutils.lambda.nonNull
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
+import io.prism.android.tests.testutils.lambda.any
+import io.prism.android.tests.testutils.lambda.nonNull
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith

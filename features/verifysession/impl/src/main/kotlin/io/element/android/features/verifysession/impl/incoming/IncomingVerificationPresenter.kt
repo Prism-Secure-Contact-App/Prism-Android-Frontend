@@ -26,10 +26,10 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.dateformatter.api.DateFormatter
 import io.prism.android.libraries.dateformatter.api.DateFormatterMode
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.verification.SessionVerificationRequestDetails
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
-import io.prism.android.libraries.prism.api.verification.VerificationFlowState
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationRequestDetails
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.VerificationFlowState
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn

@@ -8,19 +8,19 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import android.os.Bundle
 import com.google.firebase.messaging.RemoteMessage
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.push.test.push.FakePushHandlingWakeLock
-import io.element.android.libraries.push.test.test.FakePushHandler
-import io.element.android.libraries.pushproviders.api.PushData
-import io.element.android.libraries.pushproviders.api.PushHandler
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.push.test.push.FakePushHandlingWakeLock
+import io.prism.android.libraries.push.test.test.FakePushHandler
+import io.prism.android.libraries.pushproviders.api.PushData
+import io.prism.android.libraries.pushproviders.api.PushHandler
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle

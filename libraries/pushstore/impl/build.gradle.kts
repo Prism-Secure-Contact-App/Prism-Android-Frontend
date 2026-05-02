@@ -9,11 +9,11 @@ import extension.testCommonDependencies
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.push.pushstore.impl"
+    namespace = "io.prism.android.libraries.push.pushstore.impl"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

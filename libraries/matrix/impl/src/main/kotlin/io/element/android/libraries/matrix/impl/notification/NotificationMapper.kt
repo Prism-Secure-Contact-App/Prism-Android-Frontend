@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.notification
+package io.prism.android.libraries.matrix.impl.notification
 
 import io.prism.android.libraries.core.bool.orFalse
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.notification.NotificationContent
-import io.prism.android.libraries.prism.api.notification.NotificationData
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.impl.room.join.map
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.notification.NotificationContent
+import io.prism.android.libraries.matrix.api.notification.NotificationData
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.impl.room.join.map
 import io.prism.android.services.toolbox.api.systemclock.SystemClock
-import org.prism.rustcomponents.sdk.NotificationEvent
-import org.prism.rustcomponents.sdk.NotificationItem
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.NotificationEvent
+import org.matrix.rustcomponents.sdk.NotificationItem
+import org.matrix.rustcomponents.sdk.use
 
 class NotificationMapper(
     private val clock: SystemClock,

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.room.RoomType
-import org.prism.rustcomponents.sdk.RoomType as RustRoomType
+import io.prism.android.libraries.matrix.api.room.RoomType
+import org.matrix.rustcomponents.sdk.RoomType as RustRoomType
 
 fun RustRoomType.map(): RoomType {
     return when (this) {

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.apperror.api
+package io.prism.android.services.apperror.api
 
 fun aAppErrorState() = AppErrorState.Error(
     title = "An error occurred",

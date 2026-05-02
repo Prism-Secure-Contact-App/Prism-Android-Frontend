@@ -12,11 +12,11 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.testing.junit4.util.MainDispatcherRule
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.features.invite.test.declineandblock.FakeDeclineInviteAndBlockEntryPoint
 import io.prism.android.features.joinroom.api.JoinRoomEntryPoint
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule

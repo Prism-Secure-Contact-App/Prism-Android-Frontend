@@ -8,8 +8,8 @@
 
 package io.prism.android.features.logout.impl.tools
 
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.SteadyStateException
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.SteadyStateException
 
 internal fun BackupUploadState.isBackingUp(): Boolean {
     return when (this) {

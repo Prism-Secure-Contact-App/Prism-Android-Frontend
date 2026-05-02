@@ -11,7 +11,7 @@ package io.prism.android.x.di
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.appnav.di.SessionGraphFactory
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 
 @ContributesBinding(AppScope::class)
 class DefaultSessionGraphFactory(

@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
  * Please see LICENSE files in the repository root for full details.
  */
-package io.prism.android.libraries.prism.api.createroom
+package io.prism.android.libraries.matrix.api.createroom
 
 enum class RoomPreset {
     PRIVATE_CHAT,

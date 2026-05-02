@@ -10,9 +10,9 @@ package io.prism.android.features.messages.impl.timeline.model.event
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.location.api.Location
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.event.ProfileDetails
-import io.prism.android.libraries.prism.ui.messages.reply.aProfileDetailsReady
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
+import io.prism.android.libraries.matrix.ui.messages.reply.aProfileDetailsReady
 
 open class TimelineItemLocationContentProvider : PreviewParameterProvider<TimelineItemLocationContent> {
     override val values: Sequence<TimelineItemLocationContent>

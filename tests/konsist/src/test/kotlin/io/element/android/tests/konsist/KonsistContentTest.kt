@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.konsist
+package io.prism.android.tests.konsist
 
 import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.ext.list.withImportNamed
@@ -19,7 +19,7 @@ class KonsistContentTest {
         Konsist
             .scopeFromProduction()
             .files
-            .withImportNamed("io.element.android.x.BuildConfig")
+            .withImportNamed("io.prism.android.x.BuildConfig")
             .assertFalse(additionalMessage = "Please do not use BuildConfig.VERSION_CODE, but use the versionCode from BuildMeta") {
                 it.text.contains("BuildConfig.VERSION_CODE")
             }

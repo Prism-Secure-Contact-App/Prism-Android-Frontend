@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.apperror.impl
+package io.prism.android.services.apperror.impl
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.services.apperror.api.AppErrorState
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.services.apperror.api.AppErrorState
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

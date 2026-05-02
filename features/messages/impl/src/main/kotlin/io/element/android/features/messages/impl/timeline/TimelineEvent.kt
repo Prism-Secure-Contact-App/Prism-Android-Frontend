@@ -10,10 +10,10 @@ package io.prism.android.features.messages.impl.timeline
 
 import io.prism.android.features.messages.impl.timeline.components.MessageShieldData
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import kotlin.time.Duration
 
 sealed interface TimelineEvent {

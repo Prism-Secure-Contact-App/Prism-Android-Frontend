@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.conversations
+package io.prism.android.libraries.push.impl.notifications.conversations
 
 import android.content.Context
 import android.content.pm.ShortcutInfo
@@ -17,25 +17,25 @@ import androidx.core.graphics.drawable.IconCompat
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.features.lockscreen.api.LockScreenService
-import io.element.android.libraries.core.coroutine.withPreviousValue
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.ui.media.ImageLoaderHolder
-import io.element.android.libraries.push.api.notifications.NotificationBitmapLoader
-import io.element.android.libraries.push.api.notifications.conversations.NotificationConversationService
-import io.element.android.libraries.push.impl.intent.IntentProvider
-import io.element.android.libraries.push.impl.notifications.shortcut.createShortcutId
-import io.element.android.libraries.push.impl.notifications.shortcut.filterBySession
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.features.lockscreen.api.LockScreenService
+import io.prism.android.libraries.core.coroutine.withPreviousValue
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.push.api.notifications.NotificationBitmapLoader
+import io.prism.android.libraries.push.api.notifications.conversations.NotificationConversationService
+import io.prism.android.libraries.push.impl.intent.IntentProvider
+import io.prism.android.libraries.push.impl.notifications.shortcut.createShortcutId
+import io.prism.android.libraries.push.impl.notifications.shortcut.filterBySession
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
@@ -48,7 +48,7 @@ class DefaultNotificationConversationService(
     @ApplicationContext private val context: Context,
     private val intentProvider: IntentProvider,
     private val bitmapLoader: NotificationBitmapLoader,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
     private val imageLoaderHolder: ImageLoaderHolder,
     private val lockScreenService: LockScreenService,
     sessionObserver: SessionObserver,

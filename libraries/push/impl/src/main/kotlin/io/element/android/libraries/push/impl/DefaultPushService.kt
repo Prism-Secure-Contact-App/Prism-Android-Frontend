@@ -6,31 +6,31 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl
+package io.prism.android.libraries.push.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
 import dev.zacsweers.metro.binding
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.verification.SessionVerifiedStatus
-import io.element.android.libraries.push.api.GetCurrentPushProvider
-import io.element.android.libraries.push.api.PushService
-import io.element.android.libraries.push.api.PusherRegistrationFailure
-import io.element.android.libraries.push.api.history.PushHistoryItem
-import io.element.android.libraries.push.impl.push.MutableBatteryOptimizationStore
-import io.element.android.libraries.push.impl.store.PushDataStore
-import io.element.android.libraries.push.impl.test.TestPush
-import io.element.android.libraries.push.impl.unregistration.ServiceUnregisteredHandler
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
-import io.element.android.libraries.pushproviders.api.RegistrationFailure
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecretStore
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.push.api.GetCurrentPushProvider
+import io.prism.android.libraries.push.api.PushService
+import io.prism.android.libraries.push.api.PusherRegistrationFailure
+import io.prism.android.libraries.push.api.history.PushHistoryItem
+import io.prism.android.libraries.push.impl.push.MutableBatteryOptimizationStore
+import io.prism.android.libraries.push.impl.store.PushDataStore
+import io.prism.android.libraries.push.impl.test.TestPush
+import io.prism.android.libraries.push.impl.unregistration.ServiceUnregisteredHandler
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.libraries.pushproviders.api.RegistrationFailure
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecretStore
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import timber.log.Timber
@@ -63,7 +63,7 @@ class DefaultPushService(
     }
 
     override suspend fun registerWith(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         pushProvider: PushProvider,
         distributor: Distributor,
     ): Result<Unit> {
@@ -88,7 +88,7 @@ class DefaultPushService(
         return pushProvider.registerWith(matrixClient, distributor)
     }
 
-    override suspend fun ensurePusherIsRegistered(matrixClient: MatrixClient): Result<Unit> {
+    override suspend fun ensurePusherIsRegistered(matrixClient: PRISMClient): Result<Unit> {
         val verificationStatus = matrixClient.sessionVerificationService.sessionVerifiedStatus.first()
         if (verificationStatus != SessionVerifiedStatus.Verified) {
             return Result.failure<Unit>(PusherRegistrationFailure.AccountNotVerified())

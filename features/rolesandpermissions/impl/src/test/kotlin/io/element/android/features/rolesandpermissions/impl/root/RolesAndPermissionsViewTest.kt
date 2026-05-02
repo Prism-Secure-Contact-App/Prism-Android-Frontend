@@ -14,7 +14,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.features.rolesandpermissions.impl.R
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMember
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EventsRecorder

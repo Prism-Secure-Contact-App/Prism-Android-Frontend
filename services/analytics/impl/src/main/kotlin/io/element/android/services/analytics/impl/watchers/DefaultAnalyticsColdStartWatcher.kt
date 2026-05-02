@@ -5,17 +5,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl.watchers
+package io.prism.android.services.analytics.impl.watchers
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.cancelLongRunningTransaction
-import io.element.android.services.analytics.api.finishLongRunningTransaction
-import io.element.android.services.analytics.api.watchers.AnalyticsColdStartWatcher
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.cancelLongRunningTransaction
+import io.prism.android.services.analytics.api.finishLongRunningTransaction
+import io.prism.android.services.analytics.api.watchers.AnalyticsColdStartWatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn

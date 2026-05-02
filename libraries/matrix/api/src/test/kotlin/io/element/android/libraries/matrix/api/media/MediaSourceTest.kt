@@ -5,10 +5,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.media
+package io.prism.android.libraries.matrix.api.media
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.media.aMediaSource
+import io.prism.android.libraries.matrix.test.media.aMediaSource
 import org.junit.Test
 
 class MediaSourceTest {

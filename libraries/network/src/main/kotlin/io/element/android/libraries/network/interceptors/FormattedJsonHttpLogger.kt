@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network.interceptors
+package io.prism.android.libraries.network.interceptors
 
-import io.element.android.libraries.core.extensions.ellipsize
+import io.prism.android.libraries.core.extensions.ellipsize
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
 import org.json.JSONException

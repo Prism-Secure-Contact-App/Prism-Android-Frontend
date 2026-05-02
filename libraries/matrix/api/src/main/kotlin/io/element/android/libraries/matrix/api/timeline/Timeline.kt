@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.timeline
+package io.prism.android.libraries.matrix.api.timeline
 
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.TransactionId
-import io.prism.android.libraries.prism.api.media.AudioInfo
-import io.prism.android.libraries.prism.api.media.FileInfo
-import io.prism.android.libraries.prism.api.media.ImageInfo
-import io.prism.android.libraries.prism.api.media.MediaUploadHandler
-import io.prism.android.libraries.prism.api.media.VideoInfo
-import io.prism.android.libraries.prism.api.poll.PollKind
-import io.prism.android.libraries.prism.api.room.IntentionalMention
-import io.prism.android.libraries.prism.api.room.location.AssetType
-import io.prism.android.libraries.prism.api.timeline.item.event.EventOrTransactionId
-import io.prism.android.libraries.prism.api.timeline.item.event.InReplyTo
-import io.prism.android.libraries.prism.api.timeline.item.event.toEventOrTransactionId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.media.AudioInfo
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.MediaUploadHandler
+import io.prism.android.libraries.matrix.api.media.VideoInfo
+import io.prism.android.libraries.matrix.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
+import io.prism.android.libraries.matrix.api.timeline.item.event.InReplyTo
+import io.prism.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.parcelize.Parcelize

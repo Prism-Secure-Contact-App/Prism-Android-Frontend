@@ -15,13 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import io.prism.android.emojibasebindings.Emoji
+import io.element.android.emojibasebindings.Emoji
 import io.prism.android.features.messages.impl.timeline.components.customreaction.picker.EmojiPicker
 import io.prism.android.features.messages.impl.timeline.components.customreaction.picker.EmojiPickerPresenter
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
 import io.prism.android.libraries.designsystem.theme.components.hide
-import io.prism.android.libraries.prism.api.timeline.item.event.EventOrTransactionId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

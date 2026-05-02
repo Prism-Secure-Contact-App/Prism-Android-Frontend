@@ -35,7 +35,7 @@ import io.prism.android.libraries.designsystem.components.blurhash.blurHashBackg
 import io.prism.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.ui.media.MediaRequestData
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 private const val STICKER_SIZE_IN_DP = 128

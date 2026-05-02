@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.analytics
+package io.prism.android.libraries.matrix.impl.analytics
 
-import uk.fathertkt.prism.features.analytics.plan.Error
+import im.vector.app.features.analytics.plan.Error
 import io.prism.android.services.analytics.api.AnalyticsService
-import org.prism.rustcomponents.sdk.UnableToDecryptDelegate
-import org.prism.rustcomponents.sdk.UnableToDecryptInfo
+import org.matrix.rustcomponents.sdk.UnableToDecryptDelegate
+import org.matrix.rustcomponents.sdk.UnableToDecryptInfo
 import timber.log.Timber
-import uniffi.prism_sdk_crypto.UtdCause
+import uniffi.matrix_sdk_crypto.UtdCause
 
 class UtdTracker(
     private val analyticsService: AnalyticsService,
@@ -45,7 +45,7 @@ class UtdTracker(
             eventLocalAgeMillis = info.eventLocalAgeMillis.toInt(),
             userTrustsOwnIdentity = info.userTrustsOwnIdentity,
             isFederated = info.ownHomeserver != info.senderHomeserver,
-            isPRISMDotOrg = info.ownHomeserver == "prism.org",
+            isMatrixDotOrg = info.ownHomeserver == "prism.org",
         )
         analyticsService.capture(event)
     }

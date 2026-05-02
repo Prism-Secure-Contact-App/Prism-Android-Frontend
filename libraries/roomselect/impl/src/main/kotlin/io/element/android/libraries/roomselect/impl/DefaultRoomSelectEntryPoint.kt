@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.impl
+package io.prism.android.libraries.roomselect.impl
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.architecture.createNode
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.roomselect.api.RoomSelectEntryPoint
+import io.prism.android.libraries.architecture.createNode
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.roomselect.api.RoomSelectEntryPoint
 
 @ContributesBinding(SessionScope::class)
 class DefaultRoomSelectEntryPoint : RoomSelectEntryPoint {

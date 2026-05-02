@@ -13,23 +13,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.PRISMUserHeader
-import io.prism.android.libraries.prism.ui.components.PRISMUserWithNullProvider
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.MatrixUserHeader
+import io.prism.android.libraries.matrix.ui.components.MatrixUserWithNullProvider
 
 @Composable
 fun UserPreferences(
     user: PRISMUser?,
     modifier: Modifier = Modifier,
 ) {
-    PRISMUserHeader(
+    MatrixUserHeader(
         modifier = modifier,
-        prismUser = user
+        matrixUser = user
     )
 }
 
 @PreviewsDayNight
 @Composable
-internal fun UserPreferencesPreview(@PreviewParameter(PRISMUserWithNullProvider::class) prismUser: PRISMUser?) = PRISMPreview {
-    UserPreferences(prismUser)
+internal fun UserPreferencesPreview(@PreviewParameter(MatrixUserWithNullProvider::class) matrixUser: PRISMUser?) = PRISMPreview {
+    UserPreferences(matrixUser)
 }

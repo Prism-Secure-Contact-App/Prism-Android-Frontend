@@ -49,9 +49,9 @@ import io.prism.android.libraries.designsystem.theme.components.ListItem
 import io.prism.android.libraries.designsystem.theme.components.ListItemStyle
 import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.model.getAvatarData
-import io.prism.android.libraries.prism.ui.model.getBestName
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.launch

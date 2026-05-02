@@ -8,7 +8,7 @@
 
 @file:OptIn(ExperimentalPermissionsApi::class)
 
-package io.element.android.libraries.permissions.impl
+package io.prism.android.libraries.permissions.impl
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

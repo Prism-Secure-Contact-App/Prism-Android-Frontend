@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth.qrlogin
+package io.prism.android.libraries.matrix.impl.auth.qrlogin
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginDataFactory
-import org.prism.rustcomponents.sdk.QrCodeData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginDataFactory
+import org.matrix.rustcomponents.sdk.QrCodeData
 
 @ContributesBinding(AppScope::class)
 class RustQrCodeLoginDataFactory : PRISMQrCodeLoginDataFactory {

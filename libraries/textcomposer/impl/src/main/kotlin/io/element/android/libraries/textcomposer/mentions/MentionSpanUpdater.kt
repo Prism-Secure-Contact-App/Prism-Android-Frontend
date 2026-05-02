@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.mentions
+package io.prism.android.libraries.textcomposer.mentions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -14,10 +14,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
-import io.element.android.libraries.matrix.ui.messages.RoomNamesCache
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
+import io.prism.android.libraries.matrix.ui.messages.RoomNamesCache
 
 interface MentionSpanUpdater {
     fun updateMentionSpans(text: CharSequence): CharSequence
@@ -35,7 +35,7 @@ class DefaultMentionSpanUpdater(
 ) : MentionSpanUpdater {
     @Composable
     override fun rememberMentionSpans(text: CharSequence): CharSequence {
-        val isLightTheme = ElementTheme.isLightTheme
+        val isLightTheme = PRISMTheme.isLightTheme
         val roomInfoCacheUpdate by roomNamesCache.updateFlow.collectAsState(0)
         val roomMemberProfilesCacheUpdate by roomMemberProfilesCache.updateFlow.collectAsState(0)
         return remember(text, roomInfoCacheUpdate, roomMemberProfilesCacheUpdate, isLightTheme) {

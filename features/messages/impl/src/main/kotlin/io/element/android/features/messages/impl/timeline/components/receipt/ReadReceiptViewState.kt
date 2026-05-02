@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.timeline.components.receipt
 
 import io.prism.android.features.messages.impl.timeline.model.ReadReceiptData
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
 import kotlinx.collections.immutable.ImmutableList
 
 data class ReadReceiptViewState(

@@ -17,8 +17,8 @@ import io.prism.android.features.licenses.test.FakeOpenSourceLicensesEntryPoint
 import io.prism.android.features.lockscreen.test.FakeLockScreenEntryPoint
 import io.prism.android.features.logout.test.FakeLogoutEntryPoint
 import io.prism.android.features.preferences.api.PreferencesEntryPoint
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.troubleshoot.test.FakeNotificationTroubleShootEntryPoint
 import io.prism.android.libraries.troubleshoot.test.FakePushHistoryEntryPoint
 import io.prism.android.tests.testutils.lambda.lambdaError
@@ -57,7 +57,7 @@ class DefaultPreferencesEntryPointTest {
             override fun navigateToEvent(roomId: RoomId, eventId: EventId) = lambdaError()
         }
         val params = PreferencesEntryPoint.Params(
-            initialPRISM = PreferencesEntryPoint.InitialTarget.NotificationSettings,
+            initialElement = PreferencesEntryPoint.InitialTarget.NotificationSettings,
         )
         val result = entryPoint.createNode(
             parentNode = parentNode,

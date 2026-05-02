@@ -22,7 +22,7 @@ import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
 import io.prism.android.libraries.designsystem.theme.components.LinearProgressIndicator
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 @Composable
 internal fun TimelineLoadingMoreIndicator(

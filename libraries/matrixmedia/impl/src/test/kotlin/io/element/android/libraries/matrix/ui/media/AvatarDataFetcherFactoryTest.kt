@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import android.graphics.Bitmap
 import coil3.ComponentRegistry
@@ -19,8 +19,8 @@ import coil3.request.ImageResult
 import coil3.request.Options
 import coil3.request.SuccessResult
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.designsystem.components.avatar.anAvatarData
-import io.element.android.libraries.matrix.test.media.FakeMatrixMediaLoader
+import io.prism.android.libraries.designsystem.components.avatar.anAvatarData
+import io.prism.android.libraries.matrix.test.media.FakeMatrixMediaLoader
 import io.mockk.mockk
 import org.junit.Test
 

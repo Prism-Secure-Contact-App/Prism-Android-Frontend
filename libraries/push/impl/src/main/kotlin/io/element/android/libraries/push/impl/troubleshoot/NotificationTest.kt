@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import androidx.compose.ui.graphics.toArgb
 import dev.zacsweers.metro.ContributesIntoSet
-import io.element.android.appconfig.NotificationConfig
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.push.impl.notifications.NotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.appconfig.NotificationConfig
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.push.impl.notifications.NotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first

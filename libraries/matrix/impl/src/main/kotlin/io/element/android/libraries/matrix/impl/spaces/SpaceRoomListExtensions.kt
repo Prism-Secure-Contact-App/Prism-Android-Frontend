@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.spaces
+package io.prism.android.libraries.matrix.impl.spaces
 
-import io.prism.android.libraries.prism.impl.util.cancelAndDestroy
+import io.prism.android.libraries.matrix.impl.util.cancelAndDestroy
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -16,14 +16,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
-import org.prism.rustcomponents.sdk.SpaceListUpdate
-import org.prism.rustcomponents.sdk.SpaceRoom
-import org.prism.rustcomponents.sdk.SpaceRoomListEntriesListener
-import org.prism.rustcomponents.sdk.SpaceRoomListInterface
-import org.prism.rustcomponents.sdk.SpaceRoomListPaginationStateListener
-import org.prism.rustcomponents.sdk.SpaceRoomListSpaceListener
+import org.matrix.rustcomponents.sdk.SpaceListUpdate
+import org.matrix.rustcomponents.sdk.SpaceRoom
+import org.matrix.rustcomponents.sdk.SpaceRoomListEntriesListener
+import org.matrix.rustcomponents.sdk.SpaceRoomListInterface
+import org.matrix.rustcomponents.sdk.SpaceRoomListPaginationStateListener
+import org.matrix.rustcomponents.sdk.SpaceRoomListSpaceListener
 import timber.log.Timber
-import uniffi.prism_sdk_ui.SpaceRoomListPaginationState
+import uniffi.matrix_sdk_ui.SpaceRoomListPaginationState
 import java.util.Optional
 
 internal fun SpaceRoomListInterface.paginationStateFlow(): Flow<SpaceRoomListPaginationState> = callbackFlow {

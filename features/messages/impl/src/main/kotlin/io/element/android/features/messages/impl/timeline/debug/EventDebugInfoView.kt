@@ -49,7 +49,7 @@ import io.prism.android.libraries.designsystem.theme.components.Icon
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import org.json.JSONException
 import org.json.JSONObject
 

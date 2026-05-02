@@ -5,27 +5,27 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.FakeMatrixClientProvider
-import io.element.android.libraries.push.api.PushService
-import io.element.android.libraries.push.test.FakePushService
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
-import io.element.android.libraries.pushproviders.test.FakePushProvider
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
-import io.element.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
-import io.element.android.tests.testutils.lambda.any
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.FakeMatrixClientProvider
+import io.prism.android.libraries.push.api.PushService
+import io.prism.android.libraries.push.test.FakePushService
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.libraries.pushproviders.test.FakePushProvider
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
+import io.prism.android.tests.testutils.lambda.any
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy
@@ -162,7 +162,7 @@ class DefaultUnifiedPushRemovedGatewayHandlerTest {
     @Test
     fun `handle returns success if can register again, and user is not notified`() = runTest {
         val onServiceUnregisteredResult = lambdaRecorder<UserId, Unit> { }
-        val unregisterLambda = lambdaRecorder<MatrixClient, String, Boolean, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val unregisterLambda = lambdaRecorder<PRISMClient, String, Boolean, Result<Unit>> { _, _, _ -> Result.success(Unit) }
         val sut = createDefaultUnifiedPushRemovedGatewayHandler(
             pushClientSecret = FakePushClientSecret(
                 getUserIdFromSecretResult = { A_SESSION_ID },
@@ -196,8 +196,8 @@ class DefaultUnifiedPushRemovedGatewayHandlerTest {
     @Test
     fun `handle returns success if can register again, but after 2 removals user is notified`() = runTest {
         val onServiceUnregisteredResult = lambdaRecorder<UserId, Unit> { }
-        val unregisterLambda = lambdaRecorder<MatrixClient, String, Boolean, Result<Unit>> { _, _, _ -> Result.success(Unit) }
-        val registerWithLambda = lambdaRecorder<MatrixClient, PushProvider, Distributor, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val unregisterLambda = lambdaRecorder<PRISMClient, String, Boolean, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val registerWithLambda = lambdaRecorder<PRISMClient, PushProvider, Distributor, Result<Unit>> { _, _, _ -> Result.success(Unit) }
         val sut = createDefaultUnifiedPushRemovedGatewayHandler(
             pushClientSecret = FakePushClientSecret(
                 getUserIdFromSecretResult = { A_SESSION_ID },
@@ -240,8 +240,8 @@ class DefaultUnifiedPushRemovedGatewayHandlerTest {
     @Test
     fun `handle returns success if can register again, but after 2 distant removals user is not notified`() = runTest {
         val onServiceUnregisteredResult = lambdaRecorder<UserId, Unit> { }
-        val unregisterLambda = lambdaRecorder<MatrixClient, String, Boolean, Result<Unit>> { _, _, _ -> Result.success(Unit) }
-        val registerWithLambda = lambdaRecorder<MatrixClient, PushProvider, Distributor, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val unregisterLambda = lambdaRecorder<PRISMClient, String, Boolean, Result<Unit>> { _, _, _ -> Result.success(Unit) }
+        val registerWithLambda = lambdaRecorder<PRISMClient, PushProvider, Distributor, Result<Unit>> { _, _, _ -> Result.success(Unit) }
         val sut = createDefaultUnifiedPushRemovedGatewayHandler(
             pushClientSecret = FakePushClientSecret(
                 getUserIdFromSecretResult = { A_SESSION_ID },
@@ -284,7 +284,7 @@ class DefaultUnifiedPushRemovedGatewayHandlerTest {
     private fun TestScope.createDefaultUnifiedPushRemovedGatewayHandler(
         unregisterUnifiedPushUseCase: UnregisterUnifiedPushUseCase = FakeUnregisterUnifiedPushUseCase(),
         pushClientSecret: PushClientSecret = FakePushClientSecret(),
-        matrixClientProvider: MatrixClientProvider = FakeMatrixClientProvider(),
+        matrixClientProvider: PRISMClientProvider = FakeMatrixClientProvider(),
         pushService: PushService = FakePushService(),
     ) = DefaultUnifiedPushRemovedGatewayHandler(
         unregisterUnifiedPushUseCase = unregisterUnifiedPushUseCase,

@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network.interceptors
+package io.prism.android.libraries.network.interceptors
 
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.network.headers.HttpHeaders
-import io.element.android.libraries.network.useragent.UserAgentProvider
+import io.prism.android.libraries.network.headers.HttpHeaders
+import io.prism.android.libraries.network.useragent.UserAgentProvider
 import okhttp3.Interceptor
 import okhttp3.Response
 

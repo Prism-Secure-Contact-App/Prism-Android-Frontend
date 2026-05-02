@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.tracing
+package io.prism.android.libraries.matrix.impl.tracing
 
 /**
- * This class is used to provide file, line, column information to the Rust SDK [org.prism.rustcomponents.sdk.logEvent] method.
- * The data is extracted from a [StackTracePRISM] instance.
+ * This class is used to provide file, line, column information to the Rust SDK [org.matrix.rustcomponents.sdk.logEvent] method.
+ * The data is extracted from a [StackTraceElement] instance.
  */
 data class LogEventLocation(
     val file: String,
@@ -18,12 +18,12 @@ data class LogEventLocation(
 ) {
     companion object {
         /**
-         * Create a [LogEventLocation] from a [StackTracePRISM].
+         * Create a [LogEventLocation] from a [StackTraceElement].
          */
-        fun from(stackTracePRISM: StackTracePRISM): LogEventLocation {
+        fun from(stackTraceElement: StackTraceElement): LogEventLocation {
             return LogEventLocation(
-                file = stackTracePRISM.fileName ?: "",
-                line = stackTracePRISM.lineNumber.takeIf { it >= 0 }?.toUInt()
+                file = stackTraceElement.fileName ?: "",
+                line = stackTraceElement.lineNumber.takeIf { it >= 0 }?.toUInt()
             )
         }
     }

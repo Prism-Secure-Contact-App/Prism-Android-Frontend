@@ -12,8 +12,8 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.compound.colors.SemanticColorsLightDark
 import io.prism.android.features.enterprise.api.BugReportUrl
-import io.prism.android.libraries.prism.test.A_HOMESERVER_URL
-import io.prism.android.libraries.prism.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_HOMESERVER_URL
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

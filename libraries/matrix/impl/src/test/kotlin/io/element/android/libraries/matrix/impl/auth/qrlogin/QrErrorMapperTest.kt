@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth.qrlogin
+package io.prism.android.libraries.matrix.impl.auth.qrlogin
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.auth.qrlogin.QrCodeDecodeException
-import io.element.android.libraries.matrix.api.auth.qrlogin.QrLoginException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeDecodeException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.HumanQrLoginException as RustHumanQrLoginException
 import org.matrix.rustcomponents.sdk.QrCodeDecodeException as RustQrCodeDecodeException

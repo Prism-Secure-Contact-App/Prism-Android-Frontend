@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.encryption
+package io.prism.android.libraries.matrix.impl.encryption
 
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import org.prism.rustcomponents.sdk.RecoveryState as RustRecoveryState
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import org.matrix.rustcomponents.sdk.RecoveryState as RustRecoveryState
 
 class RecoveryStateMapper {
     fun map(state: RustRecoveryState): RecoveryState {

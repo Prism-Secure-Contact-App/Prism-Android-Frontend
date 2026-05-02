@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.login.impl.accountprovider.AccountProvider
 import io.prism.android.features.login.impl.accountprovider.anAccountProvider
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 open class LoginPasswordStateProvider : PreviewParameterProvider<LoginPasswordState> {
     override val values: Sequence<LoginPasswordState>

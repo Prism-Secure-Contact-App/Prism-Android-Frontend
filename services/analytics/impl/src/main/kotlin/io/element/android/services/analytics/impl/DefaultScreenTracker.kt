@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl
+package io.prism.android.services.analytics.impl
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,10 +17,10 @@ import androidx.lifecycle.Lifecycle
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import im.vector.app.features.analytics.plan.MobileScreen
-import io.element.android.libraries.designsystem.utils.OnLifecycleEvent
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.ScreenTracker
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.libraries.designsystem.utils.OnLifecycleEvent
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.ScreenTracker
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 
 @ContributesBinding(AppScope::class)
 class DefaultScreenTracker(

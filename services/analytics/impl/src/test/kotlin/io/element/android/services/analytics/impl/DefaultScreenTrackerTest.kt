@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl
+package io.prism.android.services.analytics.impl
 
 import androidx.lifecycle.Lifecycle
 import app.cash.molecule.RecompositionMode
@@ -14,12 +14,12 @@ import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import im.vector.app.features.analytics.plan.MobileScreen
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.services.toolbox.api.systemclock.SystemClock
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.FakeLifecycleOwner
-import io.element.android.tests.testutils.withFakeLifecycleOwner
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.FakeLifecycleOwner
+import io.prism.android.tests.testutils.withFakeLifecycleOwner
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

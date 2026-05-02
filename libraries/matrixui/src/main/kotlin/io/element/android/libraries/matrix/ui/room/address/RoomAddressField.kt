@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.room.address
+package io.prism.android.libraries.matrix.ui.room.address
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.components.TextField
-import io.element.android.libraries.designsystem.theme.components.TextFieldValidity
-import io.element.android.libraries.testtags.TestTags
-import io.element.android.libraries.testtags.testTag
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.components.TextField
+import io.prism.android.libraries.designsystem.theme.components.TextFieldValidity
+import io.prism.android.libraries.testtags.TestTags
+import io.prism.android.libraries.testtags.testTag
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 fun RoomAddressField(
@@ -38,15 +38,15 @@ fun RoomAddressField(
         leadingIcon = {
             Text(
                 text = "#",
-                style = ElementTheme.typography.fontBodyLgMedium,
-                color = ElementTheme.colors.textSecondary,
+                style = PRISMTheme.typography.fontBodyLgMedium,
+                color = PRISMTheme.colors.textSecondary,
             )
         },
         trailingIcon = {
             Text(
                 text = homeserverName,
-                style = ElementTheme.typography.fontBodyLgMedium,
-                color = ElementTheme.colors.textSecondary,
+                style = PRISMTheme.typography.fontBodyLgMedium,
+                color = PRISMTheme.colors.textSecondary,
             )
         },
         supportingText = when (addressValidity) {
@@ -69,7 +69,7 @@ fun RoomAddressField(
 
 @PreviewsDayNight
 @Composable
-internal fun RoomAddressFieldPreview() = ElementPreview {
+internal fun RoomAddressFieldPreview() = PRISMPreview {
     RoomAddressField(
         address = "room",
         homeserverName = "element.io",

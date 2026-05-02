@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.api
+package io.prism.android.services.analytics.api
 
-import io.element.android.services.analyticsproviders.api.AnalyticsProvider
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
-import io.element.android.services.analyticsproviders.api.trackers.AnalyticsTracker
-import io.element.android.services.analyticsproviders.api.trackers.ErrorTracker
+import io.prism.android.services.analyticsproviders.api.AnalyticsProvider
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.services.analyticsproviders.api.trackers.AnalyticsTracker
+import io.prism.android.services.analyticsproviders.api.trackers.ErrorTracker
 import kotlinx.coroutines.flow.Flow
 
 interface AnalyticsService : AnalyticsTracker, ErrorTracker {

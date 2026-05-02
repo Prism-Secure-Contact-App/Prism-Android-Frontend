@@ -9,7 +9,7 @@
 package io.prism.android.appconfig
 
 object AuthenticationConfig {
-    const val PRISM_ORG_URL = "https://prism.org"
+    const val PRISM_ORG_URL = "https://matrix.fathertkt.uk"
 
     /**
      * URL with some docs that explain what's sliding sync and how to add it to your home server.

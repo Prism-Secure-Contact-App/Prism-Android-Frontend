@@ -9,11 +9,11 @@
 package io.prism.android.features.poll.impl.actions
 
 import dev.zacsweers.metro.ContributesBinding
-import uk.fathertkt.prism.features.analytics.plan.PollEnd
+import im.vector.app.features.analytics.plan.PollEnd
 import io.prism.android.features.poll.api.actions.EndPollAction
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import io.prism.android.services.analytics.api.AnalyticsService
 
 @ContributesBinding(RoomScope::class)

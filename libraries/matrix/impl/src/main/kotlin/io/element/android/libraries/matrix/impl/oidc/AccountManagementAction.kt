@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.oidc
+package io.prism.android.libraries.matrix.impl.oidc
 
-import io.prism.android.libraries.prism.api.oidc.AccountManagementAction
-import org.prism.rustcomponents.sdk.AccountManagementAction as RustAccountManagementAction
+import io.prism.android.libraries.matrix.api.oidc.AccountManagementAction
+import org.matrix.rustcomponents.sdk.AccountManagementAction as RustAccountManagementAction
 
 fun AccountManagementAction.toRustAction(): RustAccountManagementAction {
     return when (this) {

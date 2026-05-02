@@ -12,7 +12,7 @@ import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesEntryPoint
 import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesListType
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeChangeRoomMemberRolesEntryPoint : ChangeRoomMemberRolesEntryPoint {

@@ -8,7 +8,7 @@
 
 package io.prism.android.features.call.api
 
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 /**
  * Value for the local current call.

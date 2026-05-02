@@ -15,12 +15,12 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.logout.api.direct.DirectLogoutEvents
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
 import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
@@ -116,13 +116,13 @@ class DirectLogoutPresenterTest {
 
     @Test
     fun `present - logout with error then cancel`() = runTest {
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             logoutLambda = { _, _ ->
                 throw AN_EXCEPTION
             }
         }
         val presenter = createDirectLogoutPresenter(
-            prismClient,
+            matrixClient,
         )
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
@@ -144,7 +144,7 @@ class DirectLogoutPresenterTest {
 
     @Test
     fun `present - logout with error then force`() = runTest {
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             logoutLambda = { ignoreSdkError, _ ->
                 if (!ignoreSdkError) {
                     throw AN_EXCEPTION
@@ -152,7 +152,7 @@ class DirectLogoutPresenterTest {
             }
         }
         val presenter = createDirectLogoutPresenter(
-            prismClient,
+            matrixClient,
         )
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
@@ -179,10 +179,10 @@ class DirectLogoutPresenterTest {
     }
 
     private fun createDirectLogoutPresenter(
-        prismClient: PRISMClient = FakePRISMClient(),
+        matrixClient: PRISMClient = FakePRISMClient(),
         encryptionService: EncryptionService = FakeEncryptionService(),
     ): DirectLogoutPresenter = DirectLogoutPresenter(
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         encryptionService = encryptionService,
     )
 }

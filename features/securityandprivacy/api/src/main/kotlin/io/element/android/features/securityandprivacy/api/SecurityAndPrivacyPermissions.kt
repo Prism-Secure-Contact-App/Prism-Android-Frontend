@@ -8,9 +8,9 @@
 
 package io.prism.android.features.securityandprivacy.api
 
-import io.prism.android.libraries.prism.api.room.StateEventType
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
 
 data class SecurityAndPrivacyPermissions(
     val canChangeRoomAccess: Boolean,

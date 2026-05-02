@@ -7,7 +7,7 @@
 
 @file:Suppress("UnstableApiUsage")
 
-package io.element.android.services.analyticsproviders.sentry
+package io.prism.android.services.analyticsproviders.sentry
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -16,17 +16,17 @@ import im.vector.app.features.analytics.itf.VectorAnalyticsEvent
 import im.vector.app.features.analytics.itf.VectorAnalyticsScreen
 import im.vector.app.features.analytics.plan.SuperProperties
 import im.vector.app.features.analytics.plan.UserProperties
-import io.element.android.libraries.core.data.megaBytes
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.di.identifiers.SentryDsn
-import io.element.android.libraries.matrix.api.analytics.GetDatabaseSizesUseCase
-import io.element.android.libraries.matrix.api.analytics.SdkStoreSizes
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.core.aBuildMeta
-import io.element.android.services.analyticsproviders.api.AnalyticsUserData
-import io.element.android.services.appnavstate.api.AppNavigationState
-import io.element.android.services.appnavstate.api.NavigationState
-import io.element.android.services.appnavstate.test.FakeAppNavigationStateService
+import io.prism.android.libraries.core.data.megaBytes
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.di.identifiers.SentryDsn
+import io.prism.android.libraries.matrix.api.analytics.GetDatabaseSizesUseCase
+import io.prism.android.libraries.matrix.api.analytics.SdkStoreSizes
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.services.analyticsproviders.api.AnalyticsUserData
+import io.prism.android.services.appnavstate.api.AppNavigationState
+import io.prism.android.services.appnavstate.api.NavigationState
+import io.prism.android.services.appnavstate.test.FakeAppNavigationStateService
 import io.sentry.Sentry
 import io.sentry.SentryTracer
 import io.sentry.protocol.SentryId

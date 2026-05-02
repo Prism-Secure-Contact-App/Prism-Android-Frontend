@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import androidx.compose.runtime.State
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
 import kotlinx.collections.immutable.ImmutableList
 
 data class MediaViewerState(

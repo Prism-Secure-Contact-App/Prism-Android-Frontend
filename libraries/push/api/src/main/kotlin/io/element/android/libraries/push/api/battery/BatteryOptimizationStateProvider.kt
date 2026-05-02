@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.api.battery
+package io.prism.android.libraries.push.api.battery
 
 fun aBatteryOptimizationState(
     shouldDisplayBanner: Boolean = false,

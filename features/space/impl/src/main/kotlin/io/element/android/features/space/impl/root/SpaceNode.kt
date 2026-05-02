@@ -24,9 +24,9 @@ import io.prism.android.features.space.impl.di.SpaceFlowScope
 import io.prism.android.libraries.androidutils.R
 import io.prism.android.libraries.androidutils.system.startSharePlainTextIntent
 import io.prism.android.libraries.architecture.callback
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -37,7 +37,7 @@ class SpaceNode(
     @Assisted buildContext: BuildContext,
     @Assisted plugins: List<Plugin>,
     private val presenter: SpacePresenter,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val spaceRoomList: SpaceRoomList,
     private val acceptDeclineInviteView: AcceptDeclineInviteView,
 ) : Node(buildContext, plugins = plugins) {
@@ -54,7 +54,7 @@ class SpaceNode(
     private val callback: Callback = callback()
 
     private fun onShareRoom(context: Context) = lifecycleScope.launch {
-        prismClient.getRoom(spaceRoomList.spaceId)?.use { room ->
+        matrixClient.getRoom(spaceRoomList.spaceId)?.use { room ->
             room.getPermalink()
                 .onSuccess { permalink ->
                     context.startSharePlainTextIntent(

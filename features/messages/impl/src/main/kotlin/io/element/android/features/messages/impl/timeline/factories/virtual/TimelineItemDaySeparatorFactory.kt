@@ -13,7 +13,7 @@ import io.prism.android.features.messages.impl.timeline.model.virtual.TimelineIt
 import io.prism.android.features.messages.impl.timeline.model.virtual.TimelineItemVirtualModel
 import io.prism.android.libraries.dateformatter.api.DateFormatter
 import io.prism.android.libraries.dateformatter.api.DateFormatterMode
-import io.prism.android.libraries.prism.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
 
 @Inject
 class TimelineItemDaySeparatorFactory(

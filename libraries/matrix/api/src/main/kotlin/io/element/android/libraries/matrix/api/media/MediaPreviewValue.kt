@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.media
+package io.prism.android.libraries.matrix.api.media
 
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue.Off
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue.On
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue.Private
-import io.prism.android.libraries.prism.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue.Off
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue.On
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue.Private
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
 
 /**
  * Represents the values for media preview settings.

@@ -19,7 +19,7 @@ import io.prism.android.features.viewfolder.impl.file.FileShare
 import io.prism.android.features.viewfolder.impl.file.ViewFileEvents
 import io.prism.android.features.viewfolder.impl.file.ViewFilePresenter
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
 import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule

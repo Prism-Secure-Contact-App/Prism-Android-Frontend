@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl.history
+package io.prism.android.libraries.troubleshoot.impl.history
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.push.test.FakePushService
-import io.element.android.libraries.troubleshoot.api.PushHistoryEntryPoint
-import io.element.android.services.analytics.test.FakeScreenTracker
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.node.TestParentNode
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.push.test.FakePushService
+import io.prism.android.libraries.troubleshoot.api.PushHistoryEntryPoint
+import io.prism.android.services.analytics.test.FakeScreenTracker
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule
 import org.junit.Test
 

@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.media
+package io.prism.android.libraries.matrix.impl.media
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.media.PRISMMediaLoader
-import io.prism.android.libraries.prism.api.media.MediaFile
-import io.prism.android.libraries.prism.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaFile
+import io.prism.android.libraries.matrix.api.media.MediaSource
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.use
 import java.io.File
-import org.prism.rustcomponents.sdk.MediaSource as RustMediaSource
+import org.matrix.rustcomponents.sdk.MediaSource as RustMediaSource
 
 class RustMediaLoader(
     private val baseCacheDirectory: File,

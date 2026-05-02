@@ -22,11 +22,11 @@ import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
-import io.prism.android.libraries.prism.api.verification.VerificationFlowState
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.api.verification.VerificationFlowState
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn

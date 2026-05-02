@@ -6,10 +6,10 @@
 
 package uk.fathertkt.prism.bridge
 
-import io.prism.android.libraries.prism.api.MatrixClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
@@ -30,7 +30,7 @@ import kotlinx.coroutines.flow.map
  * @param matrixClient Oturumu açık olan Matrix istemcisi. DI ile inject edilir.
  */
 class MatrixRoomEventSource(
-    private val matrixClient: MatrixClient,
+    private val matrixClient: PRISMClient,
 ) : RoomEventSource {
 
     /**

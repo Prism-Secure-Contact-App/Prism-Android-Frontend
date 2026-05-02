@@ -9,7 +9,7 @@
 package io.prism.android.features.login.impl.error
 
 import io.prism.android.features.login.impl.changeserver.AccountProviderAccessException
-import io.prism.android.libraries.prism.api.auth.AuthenticationException
+import io.prism.android.libraries.matrix.api.auth.AuthenticationException
 
 sealed class ChangeServerError : Exception() {
     data class Error(

@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.datasource
+package io.prism.android.libraries.mediaviewer.impl.datasource
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.room.FakeJoinedRoom
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemImage
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemImage
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

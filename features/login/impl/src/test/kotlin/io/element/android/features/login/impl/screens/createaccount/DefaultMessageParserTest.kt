@@ -13,7 +13,7 @@ import io.prism.android.appconfig.AuthenticationConfig
 import io.prism.android.features.enterprise.test.FakeEnterpriseService
 import io.prism.android.features.login.impl.accountprovider.AccountProviderDataSource
 import io.prism.android.libraries.androidutils.json.DefaultJsonProvider
-import io.prism.android.libraries.prism.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
 import kotlinx.serialization.SerializationException
 import org.junit.Assert.assertThrows
 import org.junit.Test

@@ -7,11 +7,11 @@
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 android {
-    namespace = "io.element.android.tests.konsist"
+    namespace = "io.prism.android.tests.konsist"
 }
 
 dependencies {

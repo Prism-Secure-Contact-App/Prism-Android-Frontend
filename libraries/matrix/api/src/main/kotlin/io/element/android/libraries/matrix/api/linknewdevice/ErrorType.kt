@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.linknewdevice
+package io.prism.android.libraries.matrix.api.linknewdevice
 
 sealed class ErrorType(message: String) : Exception(message) {
     /**

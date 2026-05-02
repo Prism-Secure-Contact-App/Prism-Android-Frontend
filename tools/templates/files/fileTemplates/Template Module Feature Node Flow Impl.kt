@@ -1,4 +1,4 @@
-package io.element.android.features.${MODULE_NAME}.impl
+package io.prism.android.features.${MODULE_NAME}.impl
 
 import android.os.Parcelable
 import androidx.compose.runtime.Composable
@@ -11,10 +11,10 @@ import com.bumble.appyx.navmodel.backstack.BackStack
 import com.bumble.appyx.navmodel.backstack.operation.push
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.annotations.ContributesNode
-import io.element.android.libraries.architecture.BackstackNode
-import io.element.android.libraries.architecture.animation.rememberDefaultTransitionHandler
-import io.element.android.libraries.architecture.createNode
+import io.prism.android.annotations.ContributesNode
+import io.prism.android.libraries.architecture.BackstackNode
+import io.prism.android.libraries.architecture.animation.rememberDefaultTransitionHandler
+import io.prism.android.libraries.architecture.createNode
 import dev.zacsweers.metro.AppScope
 import kotlinx.parcelize.Parcelize
 

@@ -9,8 +9,8 @@
 package io.prism.android.features.startchat.impl.joinbyaddress
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
 
 open class JoinRoomByAddressStateProvider : PreviewParameterProvider<JoinRoomByAddressState> {
     override val values: Sequence<JoinRoomByAddressState>

@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.impl
+package io.prism.android.services.appnavstate.impl
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.ProcessLifecycleOwner
-import io.element.android.services.appnavstate.api.AppForegroundStateService
+import io.prism.android.services.appnavstate.api.AppForegroundStateService
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class DefaultAppForegroundStateService : AppForegroundStateService {

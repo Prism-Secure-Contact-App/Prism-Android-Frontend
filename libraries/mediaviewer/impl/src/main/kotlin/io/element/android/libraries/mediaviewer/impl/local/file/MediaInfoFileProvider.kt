@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.file
+package io.prism.android.libraries.mediaviewer.impl.local.file
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.aPdfMediaInfo
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.aPdfMediaInfo
 
 open class MediaInfoFileProvider : PreviewParameterProvider<MediaInfo> {
     override val values: Sequence<MediaInfo>

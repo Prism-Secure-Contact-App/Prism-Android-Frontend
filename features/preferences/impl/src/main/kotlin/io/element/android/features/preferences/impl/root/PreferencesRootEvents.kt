@@ -8,7 +8,7 @@
 
 package io.prism.android.features.preferences.impl.root
 
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 sealed interface PreferencesRootEvents {
     data object OnVersionInfoClick : PreferencesRootEvents

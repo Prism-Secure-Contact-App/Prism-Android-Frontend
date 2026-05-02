@@ -13,8 +13,8 @@ import io.prism.android.features.messages.impl.timeline.model.ReadReceiptData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
 import io.prism.android.libraries.designsystem.components.avatar.anAvatarData
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
 import kotlinx.collections.immutable.toImmutableList
 
 class ReadReceiptViewStateProvider : PreviewParameterProvider<ReadReceiptViewState> {

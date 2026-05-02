@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.impl.clientsecret
+package io.prism.android.libraries.pushstore.impl.clientsecret
 
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecretFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecretFactory
 
 private const val A_SECRET_PREFIX = "A_SECRET_"
 

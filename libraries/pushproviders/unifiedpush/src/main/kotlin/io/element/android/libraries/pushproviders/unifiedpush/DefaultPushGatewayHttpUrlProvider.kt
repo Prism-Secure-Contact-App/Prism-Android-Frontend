@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.features.enterprise.api.EnterpriseService
+import io.prism.android.features.enterprise.api.EnterpriseService
 
 interface DefaultPushGatewayHttpUrlProvider {
     fun provide(): String

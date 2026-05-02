@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.media
+package io.prism.android.libraries.matrix.impl.media
 
-import io.prism.android.libraries.prism.api.media.FileInfo
-import org.prism.rustcomponents.sdk.FileInfo as RustFileInfo
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import org.matrix.rustcomponents.sdk.FileInfo as RustFileInfo
 
 fun RustFileInfo.map(): FileInfo = FileInfo(
     mimetype = mimetype,

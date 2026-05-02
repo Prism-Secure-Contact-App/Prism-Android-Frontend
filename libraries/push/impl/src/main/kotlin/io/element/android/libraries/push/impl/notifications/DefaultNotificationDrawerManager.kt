@@ -6,36 +6,36 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.media.ImageLoaderHolder
-import io.element.android.libraries.push.api.notifications.NotificationCleaner
-import io.element.android.libraries.push.api.notifications.NotificationIdProvider
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
-import io.element.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.services.appnavstate.api.AppNavigationState
-import io.element.android.services.appnavstate.api.AppNavigationStateService
-import io.element.android.services.appnavstate.api.NavigationState
-import io.element.android.services.appnavstate.api.currentRoomId
-import io.element.android.services.appnavstate.api.currentSessionId
-import io.element.android.services.appnavstate.api.currentThreadId
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.push.api.notifications.NotificationCleaner
+import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
+import io.prism.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.services.appnavstate.api.AppNavigationState
+import io.prism.android.services.appnavstate.api.AppNavigationStateService
+import io.prism.android.services.appnavstate.api.NavigationState
+import io.prism.android.services.appnavstate.api.currentRoomId
+import io.prism.android.services.appnavstate.api.currentSessionId
+import io.prism.android.services.appnavstate.api.currentThreadId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -52,7 +52,7 @@ class DefaultNotificationDrawerManager(
     private val appNavigationStateService: AppNavigationStateService,
     @AppCoroutineScope
     coroutineScope: CoroutineScope,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
     private val imageLoaderHolder: ImageLoaderHolder,
     private val activeNotificationsProvider: ActiveNotificationsProvider,
     sessionObserver: SessionObserver,
@@ -205,7 +205,7 @@ class DefaultNotificationDrawerManager(
                 // We have an avatar and a display name, use it
                 userFromCache
             } else {
-                client.getUserProfile().getOrNull() ?: MatrixUser(sessionId)
+                client.getUserProfile().getOrNull() ?: PRISMUser(sessionId)
             }
             notificationRenderer.render(currentUser, useCompleteNotificationFormat, notifiableEvents, imageLoader)
         }

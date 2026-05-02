@@ -5,10 +5,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.linknewdevice
+package io.prism.android.libraries.matrix.impl.linknewdevice
 
-import io.prism.android.libraries.prism.api.linknewdevice.ErrorType
-import org.prism.rustcomponents.sdk.HumanQrGrantLoginException
+import io.prism.android.libraries.matrix.api.linknewdevice.ErrorType
+import org.matrix.rustcomponents.sdk.HumanQrGrantLoginException
 
 internal fun HumanQrGrantLoginException.map() = when (this) {
     is HumanQrGrantLoginException.DeviceIdAlreadyInUse -> ErrorType.DeviceIdAlreadyInUse(message.orEmpty())

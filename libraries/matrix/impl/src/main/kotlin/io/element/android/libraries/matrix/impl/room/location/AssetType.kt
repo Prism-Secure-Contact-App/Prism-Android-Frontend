@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.location
+package io.prism.android.libraries.matrix.impl.room.location
 
-import io.prism.android.libraries.prism.api.room.location.AssetType
-import org.prism.rustcomponents.sdk.AssetType as RustAssetType
+import io.prism.android.libraries.matrix.api.room.location.AssetType
+import org.matrix.rustcomponents.sdk.AssetType as RustAssetType
 
 fun AssetType.into(): RustAssetType = when (this) {
     AssetType.SENDER -> RustAssetType.SENDER

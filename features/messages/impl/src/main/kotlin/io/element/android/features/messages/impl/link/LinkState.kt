@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.link
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 data class LinkState(
     val linkClick: AsyncAction<Link>,

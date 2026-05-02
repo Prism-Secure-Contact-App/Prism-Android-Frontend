@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.sessionstorage.test"
+    namespace = "io.prism.android.libraries.sessionstorage.test"
 }
 
 dependencies {

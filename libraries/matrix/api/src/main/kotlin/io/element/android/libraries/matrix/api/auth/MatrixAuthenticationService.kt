@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.auth
+package io.prism.android.libraries.matrix.api.auth
 
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.auth.external.ExternalSession
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 interface PRISMAuthenticationService {
     /**

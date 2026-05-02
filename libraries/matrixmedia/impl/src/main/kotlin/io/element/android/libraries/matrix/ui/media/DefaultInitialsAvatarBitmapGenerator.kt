@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -26,16 +26,16 @@ import androidx.core.graphics.createBitmap
 import coil3.Bitmap
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.compound.theme.AvatarColors
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.SemanticColors
-import io.element.android.compound.tokens.generated.compoundColorsDark
-import io.element.android.compound.tokens.generated.compoundColorsLight
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
+import io.prism.android.compound.theme.AvatarColors
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.SemanticColors
+import io.prism.android.compound.tokens.generated.compoundColorsDark
+import io.prism.android.compound.tokens.generated.compoundColorsLight
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
 
 @ContributesBinding(AppScope::class)
 class DefaultInitialsAvatarBitmapGenerator : InitialsAvatarBitmapGenerator {
@@ -104,14 +104,14 @@ private fun SemanticColors.buildAvatarColors(): List<AvatarColors> = listOf(
 
 @Composable
 @PreviewsDayNight
-internal fun InitialsAvatarBitmapGeneratorPreview() = ElementPreview {
+internal fun InitialsAvatarBitmapGeneratorPreview() = PRISMPreview {
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         val generator = remember { DefaultInitialsAvatarBitmapGenerator() }
         repeat(6) { index ->
             val avatarData = remember { AvatarData(id = index.toString(), name = Char('0'.code + index).toString(), size = AvatarSize.IncomingCall) }
-            val isLightTheme = ElementTheme.isLightTheme
+            val isLightTheme = PRISMTheme.isLightTheme
             val bitmap = remember(isLightTheme) {
                 generator.generateBitmap(
                     size = 512,

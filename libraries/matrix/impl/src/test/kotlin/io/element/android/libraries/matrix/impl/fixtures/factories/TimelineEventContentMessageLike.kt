@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.fixtures.factories
+package io.prism.android.libraries.matrix.impl.fixtures.factories
 
-import io.element.android.libraries.matrix.test.A_MESSAGE
+import io.prism.android.libraries.matrix.test.A_MESSAGE
 import org.matrix.rustcomponents.sdk.FormattedBody
 import org.matrix.rustcomponents.sdk.MessageLikeEventContent
 import org.matrix.rustcomponents.sdk.MessageType

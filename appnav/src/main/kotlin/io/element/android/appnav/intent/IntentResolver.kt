@@ -16,8 +16,8 @@ import io.prism.android.features.share.api.ShareIntentData
 import io.prism.android.features.share.api.ShareIntentHandler
 import io.prism.android.libraries.deeplink.api.DeeplinkData
 import io.prism.android.libraries.deeplink.api.DeeplinkParser
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
 import io.prism.android.libraries.oidc.api.OidcAction
 import io.prism.android.libraries.oidc.api.OidcIntentResolver
 import timber.log.Timber

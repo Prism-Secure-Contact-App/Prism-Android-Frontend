@@ -8,7 +8,7 @@
 package io.prism.android.features.login.impl.screens.onboarding.classic
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 
 class ConfirmingLoginWithPRISMClassic(
     val userId: UserId,

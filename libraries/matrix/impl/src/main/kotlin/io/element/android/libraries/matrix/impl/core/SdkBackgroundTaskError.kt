@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.core
+package io.prism.android.libraries.matrix.impl.core
 
-import uniffi.prism_sdk_common.BackgroundTaskFailureReason
+import uniffi.matrix_sdk_common.BackgroundTaskFailureReason
 
 /**
  * Error thrown when a background SDK task panics and can't recover.

@@ -37,7 +37,7 @@ class BugReportFlowNode(
     private val viewFolderEntryPoint: ViewFolderEntryPoint,
 ) : BaseFlowNode<BugReportFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

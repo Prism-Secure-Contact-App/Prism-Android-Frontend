@@ -12,7 +12,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.features.login.impl.accountprovider.AccountProviderDataSource
 import io.prism.android.libraries.androidutils.json.JsonProvider
-import io.prism.android.libraries.prism.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
 
 interface MessageParser {
     /**

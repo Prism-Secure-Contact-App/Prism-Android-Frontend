@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.join
+package io.prism.android.libraries.matrix.impl.room.join
 
 import dev.zacsweers.metro.ContributesBinding
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.libraries.core.extensions.mapFailure
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.exception.ClientException
-import io.prism.android.libraries.prism.api.exception.ErrorKind
-import io.prism.android.libraries.prism.api.room.join.JoinRoom
-import io.prism.android.libraries.prism.impl.analytics.toAnalyticsJoinedRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.exception.ErrorKind
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
+import io.prism.android.libraries.matrix.impl.analytics.toAnalyticsJoinedRoom
 import io.prism.android.services.analytics.api.AnalyticsService
 
 @ContributesBinding(SessionScope::class)

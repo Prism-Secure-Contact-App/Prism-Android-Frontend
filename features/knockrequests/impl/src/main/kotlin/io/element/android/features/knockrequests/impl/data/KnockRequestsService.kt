@@ -10,8 +10,8 @@ package io.prism.android.features.knockrequests.impl.data
 
 import io.prism.android.features.knockrequests.api.KnockRequestPermissions
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.room.knock.KnockRequest
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.knock.KnockRequest
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope

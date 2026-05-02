@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.notificationsettings
+package io.prism.android.libraries.matrix.impl.notificationsettings
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.coroutine.suspendLazy
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.notificationsettings.NotificationSettingsService
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.api.room.RoomNotificationSettings
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.notificationsettings.NotificationSettingsService
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationSettings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.NotificationSettingsDelegate
-import org.prism.rustcomponents.sdk.NotificationSettingsException
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.NotificationSettingsDelegate
+import org.matrix.rustcomponents.sdk.NotificationSettingsException
 import timber.log.Timber
 
 class RustNotificationSettingsService(

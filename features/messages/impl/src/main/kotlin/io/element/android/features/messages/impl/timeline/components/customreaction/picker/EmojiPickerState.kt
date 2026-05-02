@@ -11,7 +11,7 @@ package io.prism.android.features.messages.impl.timeline.components.customreacti
 import androidx.annotation.StringRes
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.Immutable
-import io.prism.android.emojibasebindings.Emoji
+import io.element.android.emojibasebindings.Emoji
 import io.prism.android.libraries.designsystem.theme.components.IconSource
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
 import kotlinx.collections.immutable.ImmutableList

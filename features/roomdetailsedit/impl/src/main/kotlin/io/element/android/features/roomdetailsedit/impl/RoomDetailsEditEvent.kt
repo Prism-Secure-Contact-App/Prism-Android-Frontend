@@ -8,7 +8,7 @@
 
 package io.prism.android.features.roomdetailsedit.impl
 
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 
 sealed interface RoomDetailsEditEvent {
     data class HandleAvatarAction(val action: AvatarAction) : RoomDetailsEditEvent

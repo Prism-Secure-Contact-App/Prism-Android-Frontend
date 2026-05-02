@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.ui.utils
+package io.prism.android.libraries.ui.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

@@ -9,7 +9,7 @@
 package io.prism.android.features.rageshake.api.logs
 
 import io.prism.android.features.rageshake.api.reporter.BugReporter
-import io.prism.android.libraries.prism.api.tracing.WriteToFilesConfiguration
+import io.prism.android.libraries.matrix.api.tracing.WriteToFilesConfiguration
 
 fun BugReporter.createWriteToFilesConfiguration(): WriteToFilesConfiguration {
     return WriteToFilesConfiguration.Enabled(

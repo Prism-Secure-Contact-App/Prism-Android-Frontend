@@ -17,10 +17,10 @@ import androidx.compose.runtime.remember
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.indicator.api.IndicatorService
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
 
 @ContributesBinding(SessionScope::class)
 class DefaultIndicatorService(

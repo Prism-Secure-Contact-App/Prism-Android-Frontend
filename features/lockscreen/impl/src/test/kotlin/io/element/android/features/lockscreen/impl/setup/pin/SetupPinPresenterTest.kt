@@ -21,7 +21,7 @@ import io.prism.android.features.lockscreen.impl.pin.model.assertEmpty
 import io.prism.android.features.lockscreen.impl.pin.model.assertText
 import io.prism.android.features.lockscreen.impl.setup.pin.validation.PinValidator
 import io.prism.android.features.lockscreen.impl.setup.pin.validation.SetupPinFailure
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.tests.testutils.awaitLastSequentialItem
 import io.prism.android.tests.testutils.consumeItemsUntilPredicate
 import kotlinx.coroutines.CompletableDeferred

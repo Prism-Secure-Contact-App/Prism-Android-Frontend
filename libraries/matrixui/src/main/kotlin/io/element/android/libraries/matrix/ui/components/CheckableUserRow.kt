@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -21,12 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.preview.ElementThemedPreview
-import io.element.android.libraries.designsystem.theme.components.Checkbox
-import io.element.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.element.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.preview.PRISMThemedPreview
+import io.prism.android.libraries.designsystem.theme.components.Checkbox
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 
 @Composable
 fun CheckableUserRow(
@@ -89,7 +89,7 @@ sealed interface CheckableUserRowData {
 
 @Preview
 @Composable
-internal fun CheckableResolvedUserRowPreview() = ElementThemedPreview {
+internal fun CheckableResolvedUserRowPreview() = PRISMThemedPreview {
     val matrixUser = aMatrixUser()
     val data = CheckableUserRowData.Resolved(
         avatarData = matrixUser.getAvatarData(AvatarSize.UserListItem),
@@ -127,7 +127,7 @@ internal fun CheckableResolvedUserRowPreview() = ElementThemedPreview {
 
 @Preview
 @Composable
-internal fun CheckableUnresolvedUserRowPreview() = ElementThemedPreview {
+internal fun CheckableUnresolvedUserRowPreview() = PRISMThemedPreview {
     val matrixUser = aMatrixUser()
     val data = CheckableUserRowData.Unresolved(
         avatarData = matrixUser.getAvatarData(AvatarSize.UserListItem),

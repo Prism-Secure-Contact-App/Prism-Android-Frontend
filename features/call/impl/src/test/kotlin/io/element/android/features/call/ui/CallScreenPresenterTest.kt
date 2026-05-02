@@ -12,7 +12,7 @@ import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.MobileScreen
+import im.vector.app.features.analytics.plan.MobileScreen
 import io.prism.android.features.call.api.CallType
 import io.prism.android.features.call.impl.ui.CallScreenEvents
 import io.prism.android.features.call.impl.ui.CallScreenNavigator
@@ -24,13 +24,13 @@ import io.prism.android.features.call.utils.FakeWidgetMessageInterceptor
 import io.prism.android.libraries.androidutils.json.DefaultJsonProvider
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.sync.SyncState
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.FakePRISMClientProvider
-import io.prism.android.libraries.prism.test.sync.FakeSyncService
-import io.prism.android.libraries.prism.test.widget.FakePRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.FakePRISMClientProvider
+import io.prism.android.libraries.matrix.test.sync.FakeSyncService
+import io.prism.android.libraries.matrix.test.widget.FakePRISMWidgetDriver
 import io.prism.android.libraries.network.useragent.UserAgentProvider
 import io.prism.android.services.analytics.api.ScreenTracker
 import io.prism.android.services.analytics.test.FakeScreenTracker
@@ -297,14 +297,14 @@ class CallScreenPresenterTest {
         val syncService = FakeSyncService(SyncState.Idle).apply {
             this.startSyncLambda = startSyncLambda
         }
-        val prismClient = FakePRISMClient(syncService = syncService)
+        val matrixClient = FakePRISMClient(syncService = syncService)
         val appForegroundStateService = FakeAppForegroundStateService()
         val presenter = createCallScreenPresenter(
             callType = CallType.RoomCall(A_SESSION_ID, A_ROOM_ID, false),
             widgetDriver = widgetDriver,
             navigator = navigator,
             dispatchers = testCoroutineDispatchers(useUnconfinedTestDispatcher = true),
-            prismClientsProvider = FakePRISMClientProvider(getClient = { Result.success(prismClient) }),
+            prismClientsProvider = FakePRISMClientProvider(getClient = { Result.success(matrixClient) }),
             screenTracker = FakeScreenTracker {},
             appForegroundStateService = appForegroundStateService,
         )

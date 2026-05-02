@@ -41,9 +41,9 @@ import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.di.DependencyInjectionGraphOwner
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrLoginException
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrLoginException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -59,7 +59,7 @@ class QrCodeLoginFlowNode(
     private val coroutineDispatchers: CoroutineDispatchers,
 ) : BaseFlowNode<QrCodeLoginFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Initial,
+        initialElement = NavTarget.Initial,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

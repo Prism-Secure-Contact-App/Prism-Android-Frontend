@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.impl.systemclock
+package io.prism.android.services.toolbox.impl.systemclock
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer

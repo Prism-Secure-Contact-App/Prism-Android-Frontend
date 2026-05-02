@@ -30,7 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.prism.android.emojibasebindings.Emoji
+import io.element.android.emojibasebindings.Emoji
 import io.prism.android.features.messages.impl.timeline.components.customreaction.EmojiItem
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight

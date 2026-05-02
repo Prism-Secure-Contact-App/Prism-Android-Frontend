@@ -8,8 +8,8 @@
 
 package io.prism.android.features.messages.impl.timeline.model.event
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
 import kotlinx.collections.immutable.ImmutableList
 import kotlin.time.Duration
 

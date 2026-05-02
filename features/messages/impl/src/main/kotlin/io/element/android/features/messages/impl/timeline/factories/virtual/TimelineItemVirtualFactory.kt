@@ -16,8 +16,8 @@ import io.prism.android.features.messages.impl.timeline.model.virtual.TimelineIt
 import io.prism.android.features.messages.impl.timeline.model.virtual.TimelineItemRoomBeginningModel
 import io.prism.android.features.messages.impl.timeline.model.virtual.TimelineItemTypingNotificationModel
 import io.prism.android.features.messages.impl.timeline.model.virtual.TimelineItemVirtualModel
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
 
 @Inject
 class TimelineItemVirtualFactory(

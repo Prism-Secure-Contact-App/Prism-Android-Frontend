@@ -1,7 +1,7 @@
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}#end
 
 import androidx.compose.runtime.Composable
-import io.element.android.libraries.architecture.Presenter
+import io.prism.android.libraries.architecture.Presenter
 import dev.zacsweers.metro.Inject
 
 @Inject

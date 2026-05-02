@@ -25,12 +25,12 @@ import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
 import io.prism.android.libraries.designsystem.theme.components.ListSectionHeader
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.CheckableUserRow
-import io.prism.android.libraries.prism.ui.components.CheckableUserRowData
-import io.prism.android.libraries.prism.ui.components.SelectedUsersRowList
-import io.prism.android.libraries.prism.ui.model.getAvatarData
-import io.prism.android.libraries.prism.ui.model.getBestName
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.CheckableUserRow
+import io.prism.android.libraries.matrix.ui.components.CheckableUserRowData
+import io.prism.android.libraries.matrix.ui.components.SelectedUsersRowList
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
@@ -86,23 +86,23 @@ fun UserListView(
                 state.recentDirectRooms.forEachIndexed { index, recentDirectRoom ->
                     item {
                         val isSelected = state.selectedUsers.any {
-                            recentDirectRoom.prismUser.userId == it.userId
+                            recentDirectRoom.matrixUser.userId == it.userId
                         }
                         CheckableUserRow(
                             checked = isSelected,
                             onCheckedChange = {
                                 if (isSelected) {
-                                    state.eventSink(UserListEvents.RemoveFromSelection(recentDirectRoom.prismUser))
-                                    onDeselectUser(recentDirectRoom.prismUser)
+                                    state.eventSink(UserListEvents.RemoveFromSelection(recentDirectRoom.matrixUser))
+                                    onDeselectUser(recentDirectRoom.matrixUser)
                                 } else {
-                                    state.eventSink(UserListEvents.AddToSelection(recentDirectRoom.prismUser))
-                                    onSelectUser(recentDirectRoom.prismUser)
+                                    state.eventSink(UserListEvents.AddToSelection(recentDirectRoom.matrixUser))
+                                    onSelectUser(recentDirectRoom.matrixUser)
                                 }
                             },
                             data = CheckableUserRowData.Resolved(
-                                avatarData = recentDirectRoom.prismUser.getAvatarData(AvatarSize.UserListItem),
-                                name = recentDirectRoom.prismUser.getBestName(),
-                                subtext = recentDirectRoom.prismUser.userId.value,
+                                avatarData = recentDirectRoom.matrixUser.getAvatarData(AvatarSize.UserListItem),
+                                name = recentDirectRoom.matrixUser.getBestName(),
+                                subtext = recentDirectRoom.matrixUser.userId.value,
                             ),
                         )
                         if (index < state.recentDirectRooms.lastIndex) {

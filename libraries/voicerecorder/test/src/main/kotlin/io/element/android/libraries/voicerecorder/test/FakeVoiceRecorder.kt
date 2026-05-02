@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.test
+package io.prism.android.libraries.voicerecorder.test
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.voicerecorder.api.VoiceRecorder
-import io.element.android.libraries.voicerecorder.api.VoiceRecorderState
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.voicerecorder.api.VoiceRecorder
+import io.prism.android.libraries.voicerecorder.api.VoiceRecorderState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.yield

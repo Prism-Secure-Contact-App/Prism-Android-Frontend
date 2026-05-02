@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.ui.media.test.FakeImageLoader
-import io.element.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeRoomGroupMessageCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeSummaryGroupMessageCreator
-import io.element.android.libraries.push.impl.notifications.fixtures.aFallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.aSimpleNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.anInviteNotifiableEvent
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.ui.media.test.FakeImageLoader
+import io.prism.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeRoomGroupMessageCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeSummaryGroupMessageCreator
+import io.prism.android.libraries.push.impl.notifications.fixtures.aFallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.aSimpleNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.anInviteNotifiableEvent
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -113,7 +113,7 @@ class NotificationDataFactoryTest {
         val expectedNotification = RoomNotification(
             notification = fakeRoomGroupMessageCreator.createRoomMessage(
                 notificationAccountParams = aNotificationAccountParams(
-                    user = MatrixUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
+                    user = PRISMUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
                 ),
                 events = events,
                 roomId = A_ROOM_ID,
@@ -131,7 +131,7 @@ class NotificationDataFactoryTest {
         val result = toNotifications(
             messages = listOf(A_MESSAGE_EVENT),
             notificationAccountParams = aNotificationAccountParams(
-                user = MatrixUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
+                user = PRISMUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
             ),
             imageLoader = fakeImageLoader,
         )
@@ -148,7 +148,7 @@ class NotificationDataFactoryTest {
         val result = toNotifications(
             messages = listOf(redactedRoom),
             notificationAccountParams = aNotificationAccountParams(
-                user = MatrixUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
+                user = PRISMUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
             ),
             imageLoader = fakeImageLoader,
         )
@@ -168,7 +168,7 @@ class NotificationDataFactoryTest {
         val expectedNotification = RoomNotification(
             notification = fakeRoomGroupMessageCreator.createRoomMessage(
                 notificationAccountParams = aNotificationAccountParams(
-                    user = MatrixUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
+                    user = PRISMUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
                 ),
                 events = withRedactedRemoved,
                 roomId = A_ROOM_ID,
@@ -187,7 +187,7 @@ class NotificationDataFactoryTest {
         val result = toNotifications(
             messages = roomWithRedactedMessage,
             notificationAccountParams = aNotificationAccountParams(
-                user = MatrixUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
+                user = PRISMUser(A_SESSION_ID, A_SESSION_ID.value, MY_AVATAR_URL),
             ),
             imageLoader = fakeImageLoader,
         )

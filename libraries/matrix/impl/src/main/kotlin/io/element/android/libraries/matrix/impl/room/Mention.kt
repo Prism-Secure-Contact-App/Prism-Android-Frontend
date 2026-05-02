@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.room.IntentionalMention
-import org.prism.rustcomponents.sdk.Mentions
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import org.matrix.rustcomponents.sdk.Mentions
 
 fun List<IntentionalMention>.map(): Mentions {
     val hasRoom = any { it is IntentionalMention.Room }

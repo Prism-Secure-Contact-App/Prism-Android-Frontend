@@ -31,9 +31,9 @@ import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Button
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.poll.PollAnswer
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.poll.PollAnswer
+import io.prism.android.libraries.matrix.api.poll.PollKind
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 

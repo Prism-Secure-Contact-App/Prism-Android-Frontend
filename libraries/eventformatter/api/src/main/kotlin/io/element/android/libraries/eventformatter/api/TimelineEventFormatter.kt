@@ -8,10 +8,10 @@
 
 package io.prism.android.libraries.eventformatter.api
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.event.EventContent
-import io.prism.android.libraries.prism.api.timeline.item.event.EventTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.getDisambiguatedDisplayName
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.getDisambiguatedDisplayName
 
 interface TimelineEventFormatter {
     fun format(event: EventTimelineItem): CharSequence? {

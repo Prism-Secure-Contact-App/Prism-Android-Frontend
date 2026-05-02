@@ -11,7 +11,7 @@ package io.prism.android.features.joinroom.impl.di
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.features.invite.api.SeenInvitesStore
 import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteState
 import io.prism.android.features.joinroom.impl.JoinRoomPresenter
@@ -19,10 +19,10 @@ import io.prism.android.features.roomdirectory.api.RoomDescription
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.room.join.JoinRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
 import java.util.Optional
 
 @BindingContainer
@@ -53,7 +53,7 @@ object JoinRoomModule {
                     roomDescription = roomDescription,
                     serverNames = serverNames,
                     trigger = trigger,
-                    prismClient = client,
+                    matrixClient = client,
                     joinRoom = joinRoom,
                     knockRoom = knockRoom,
                     forgetRoom = forgetRoom,

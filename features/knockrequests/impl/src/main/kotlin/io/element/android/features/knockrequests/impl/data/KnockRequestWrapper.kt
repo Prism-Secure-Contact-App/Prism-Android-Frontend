@@ -8,9 +8,9 @@
 
 package io.prism.android.features.knockrequests.impl.data
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.knock.KnockRequest
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.knock.KnockRequest
 
 class KnockRequestWrapper(
     private val inner: KnockRequest,

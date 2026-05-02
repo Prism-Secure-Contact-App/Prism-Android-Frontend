@@ -9,8 +9,8 @@ package io.prism.android.features.home.impl.spacefilters
 
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter
-import io.prism.android.libraries.prism.api.spaces.SpaceServiceFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.spaces.SpaceServiceFilter
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

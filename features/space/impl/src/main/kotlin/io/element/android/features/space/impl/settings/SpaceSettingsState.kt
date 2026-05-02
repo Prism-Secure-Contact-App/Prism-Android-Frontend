@@ -8,8 +8,8 @@
 
 package io.prism.android.features.space.impl.settings
 
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 data class SpaceSettingsState(
     val roomId: RoomId,

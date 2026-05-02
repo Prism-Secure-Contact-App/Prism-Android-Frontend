@@ -9,7 +9,7 @@
 package io.prism.android.features.call.impl.ui
 
 import io.prism.android.features.call.api.CallType
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 fun CallType.getSessionId(): SessionId? {
     return when (this) {

@@ -7,23 +7,23 @@
  */
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.libraries.matrix.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimeline
-import io.element.android.libraries.matrix.impl.room.RoomContentForwarder
-import io.element.android.libraries.matrix.test.room.FakeJoinedRoom
-import io.element.android.libraries.matrix.test.room.aRoomInfo
-import io.element.android.services.toolbox.api.systemclock.SystemClock
-import io.element.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomListService
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimeline
+import io.prism.android.libraries.matrix.impl.room.RoomContentForwarder
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -55,14 +55,14 @@ class RustTimelineTest {
             with(awaitItem()) {
                 assertThat(size).isEqualTo(2)
                 // The loading
-                assertThat((get(0) as MatrixTimelineItem.Virtual).virtual).isEqualTo(
+                assertThat((get(0) as PRISMTimelineItem.Virtual).virtual).isEqualTo(
                     VirtualTimelineItem.LoadingIndicator(
                         direction = Timeline.PaginationDirection.BACKWARDS,
                         timestamp = A_FAKE_TIMESTAMP,
                     )
                 )
                 // Typing notification
-                assertThat((get(1) as MatrixTimelineItem.Virtual).virtual).isEqualTo(VirtualTimelineItem.TypingNotification)
+                assertThat((get(1) as PRISMTimelineItem.Virtual).virtual).isEqualTo(VirtualTimelineItem.TypingNotification)
             }
             systemClock.epochMillisResult = A_FAKE_TIMESTAMP + 1
             // Start pagination
@@ -76,14 +76,14 @@ class RustTimelineTest {
             with(awaitItem()) {
                 assertThat(size).isEqualTo(2)
                 // The loading
-                assertThat((get(0) as MatrixTimelineItem.Virtual).virtual).isEqualTo(
+                assertThat((get(0) as PRISMTimelineItem.Virtual).virtual).isEqualTo(
                     VirtualTimelineItem.LoadingIndicator(
                         direction = Timeline.PaginationDirection.BACKWARDS,
                         timestamp = A_FAKE_TIMESTAMP + 1,
                     )
                 )
                 // Typing notification
-                assertThat((get(1) as MatrixTimelineItem.Virtual).virtual).isEqualTo(VirtualTimelineItem.TypingNotification)
+                assertThat((get(1) as PRISMTimelineItem.Virtual).virtual).isEqualTo(VirtualTimelineItem.TypingNotification)
             }
         }
     }

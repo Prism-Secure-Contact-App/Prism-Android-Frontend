@@ -6,38 +6,38 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.room
+package io.prism.android.libraries.matrix.test.room
 
-import io.element.android.libraries.core.bool.orFalse
-import io.element.android.libraries.matrix.api.core.DeviceId
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.ProgressCallback
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.SendHandle
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.encryption.identity.IdentityStateChange
-import io.element.android.libraries.matrix.api.room.BaseRoom
-import io.element.android.libraries.matrix.api.room.CreateTimelineParams
-import io.element.android.libraries.matrix.api.room.IntentionalMention
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.room.RoomInfo
-import io.element.android.libraries.matrix.api.room.RoomMembersState
-import io.element.android.libraries.matrix.api.room.RoomNotificationSettingsState
-import io.element.android.libraries.matrix.api.room.SendQueueUpdate
-import io.element.android.libraries.matrix.api.room.history.RoomHistoryVisibility
-import io.element.android.libraries.matrix.api.room.join.JoinRule
-import io.element.android.libraries.matrix.api.room.knock.KnockRequest
-import io.element.android.libraries.matrix.api.room.location.LiveLocationShare
-import io.element.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
-import io.element.android.libraries.matrix.api.room.powerlevels.UserRoleChange
-import io.element.android.libraries.matrix.api.roomdirectory.RoomVisibility
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.api.widget.MatrixWidgetDriver
-import io.element.android.libraries.matrix.api.widget.MatrixWidgetSettings
-import io.element.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
-import io.element.android.libraries.matrix.test.timeline.FakeTimeline
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.core.bool.orFalse
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.ProgressCallback
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.SendHandle
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityStateChange
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.CreateTimelineParams
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.RoomNotificationSettingsState
+import io.prism.android.libraries.matrix.api.room.SendQueueUpdate
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.knock.KnockRequest
+import io.prism.android.libraries.matrix.api.room.location.LiveLocationShare
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.powerlevels.UserRoleChange
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetSettings
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.test.timeline.FakeTimeline
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -60,8 +60,8 @@ class FakeJoinedRoom(
     private var createTimelineResult: (CreateTimelineParams) -> Result<Timeline> = { lambdaError() },
     private val editMessageLambda: (EventId, String, String?, List<IntentionalMention>) -> Result<Unit> = { _, _, _, _ -> lambdaError() },
     private val progressCallbackValues: List<Pair<Long, Long>> = emptyList(),
-    private val generateWidgetWebViewUrlResult: (MatrixWidgetSettings, String, String?, String?) -> Result<String> = { _, _, _, _ -> lambdaError() },
-    private val getWidgetDriverResult: (MatrixWidgetSettings) -> Result<MatrixWidgetDriver> = { lambdaError() },
+    private val generateWidgetWebViewUrlResult: (PRISMWidgetSettings, String, String?, String?) -> Result<String> = { _, _, _, _ -> lambdaError() },
+    private val getWidgetDriverResult: (PRISMWidgetSettings) -> Result<PRISMWidgetDriver> = { lambdaError() },
     private val typingNoticeResult: (Boolean) -> Result<Unit> = { lambdaError() },
     private val inviteUserResult: (UserId) -> Result<Unit> = { lambdaError() },
     private val setNameResult: (String) -> Result<Unit> = { lambdaError() },
@@ -204,7 +204,7 @@ class FakeJoinedRoom(
     }
 
     override suspend fun generateWidgetWebViewUrl(
-        widgetSettings: MatrixWidgetSettings,
+        widgetSettings: PRISMWidgetSettings,
         clientId: String,
         languageTag: String?,
         theme: String?
@@ -212,7 +212,7 @@ class FakeJoinedRoom(
         generateWidgetWebViewUrlResult(widgetSettings, clientId, languageTag, theme)
     }
 
-    override fun getWidgetDriver(widgetSettings: MatrixWidgetSettings): Result<MatrixWidgetDriver> {
+    override fun getWidgetDriver(widgetSettings: PRISMWidgetSettings): Result<PRISMWidgetDriver> {
         return getWidgetDriverResult(widgetSettings)
     }
 

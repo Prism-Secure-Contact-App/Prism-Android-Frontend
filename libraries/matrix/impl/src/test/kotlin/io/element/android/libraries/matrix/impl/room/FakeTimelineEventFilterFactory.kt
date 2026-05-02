@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.element.android.libraries.matrix.api.room.StateEventType
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineEventFilter
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineEventFilter
 import org.matrix.rustcomponents.sdk.TimelineEventFilter
 
 class FakeTimelineEventFilterFactory : TimelineEventFilterFactory {

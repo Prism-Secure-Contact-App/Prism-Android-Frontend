@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.recentemojis.api
+package io.prism.android.libraries.recentemojis.api
 
 fun interface AddRecentEmoji {
     suspend operator fun invoke(emoji: String): Result<Unit>

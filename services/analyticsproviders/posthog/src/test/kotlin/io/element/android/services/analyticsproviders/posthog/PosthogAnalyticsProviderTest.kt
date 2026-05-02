@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.posthog
+package io.prism.android.services.analyticsproviders.posthog
 
 import com.google.common.truth.Truth.assertThat
 import com.posthog.PostHogInterface
@@ -14,7 +14,7 @@ import im.vector.app.features.analytics.itf.VectorAnalyticsEvent
 import im.vector.app.features.analytics.plan.MobileScreen
 import im.vector.app.features.analytics.plan.SuperProperties
 import im.vector.app.features.analytics.plan.UserProperties
-import io.element.android.tests.testutils.WarmUpRule
+import io.prism.android.tests.testutils.WarmUpRule
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk

@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer
+package io.prism.android.libraries.textcomposer
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToDetailsProvider
-import io.element.android.libraries.textcomposer.model.MessageComposerMode
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetailsProvider
+import io.prism.android.libraries.textcomposer.model.MessageComposerMode
 
 class MessageComposerModeSpecialProvider : PreviewParameterProvider<MessageComposerMode.Special> {
     override val values: Sequence<MessageComposerMode.Special> = sequenceOf(

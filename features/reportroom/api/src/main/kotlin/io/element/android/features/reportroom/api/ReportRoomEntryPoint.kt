@@ -11,7 +11,7 @@ package io.prism.android.features.reportroom.api
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import io.prism.android.libraries.architecture.FeatureEntryPoint
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 fun interface ReportRoomEntryPoint : FeatureEntryPoint {
     fun createNode(

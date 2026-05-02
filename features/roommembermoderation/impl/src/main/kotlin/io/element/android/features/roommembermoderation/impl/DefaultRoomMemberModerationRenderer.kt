@@ -16,7 +16,7 @@ import io.prism.android.features.roommembermoderation.api.ModerationAction
 import io.prism.android.features.roommembermoderation.api.RoomMemberModerationRenderer
 import io.prism.android.features.roommembermoderation.api.RoomMemberModerationState
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import timber.log.Timber
 
 @ContributesBinding(RoomScope::class)

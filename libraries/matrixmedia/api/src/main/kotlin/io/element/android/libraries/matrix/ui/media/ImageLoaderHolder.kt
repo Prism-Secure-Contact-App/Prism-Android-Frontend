@@ -5,14 +5,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import coil3.ImageLoader
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 interface ImageLoaderHolder {
     fun get(): ImageLoader
-    fun get(client: MatrixClient): ImageLoader
+    fun get(client: PRISMClient): ImageLoader
     fun remove(sessionId: SessionId)
 }

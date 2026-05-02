@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.postprocessor
+package io.prism.android.libraries.matrix.impl.timeline.postprocessor
 
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
 
 /**
  * This post processor is responsible for adding a typing notification item to the timeline items when the timeline is in live mode.

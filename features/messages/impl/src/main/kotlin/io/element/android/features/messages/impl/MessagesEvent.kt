@@ -10,8 +10,8 @@ package io.prism.android.features.messages.impl
 
 import io.prism.android.features.messages.impl.actionlist.model.TimelineItemAction
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.EventOrTransactionId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 sealed interface MessagesEvent {
     data class HandleAction(val action: TimelineItemAction, val event: TimelineItem.Event) : MessagesEvent

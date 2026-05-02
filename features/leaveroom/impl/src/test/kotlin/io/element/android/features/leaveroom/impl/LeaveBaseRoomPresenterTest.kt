@@ -14,11 +14,11 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.leaveroom.api.LeaveRoomEvent
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
 import io.prism.android.libraries.push.test.notifications.conversations.FakeNotificationConversationService
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.assert

@@ -6,28 +6,28 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.designsystem.components.media.WaveFormSamples
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.media.aMediaSource
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.MediaViewerEntryPoint
-import io.element.android.libraries.mediaviewer.api.aVideoMediaInfo
-import io.element.android.libraries.mediaviewer.api.aVoiceMediaInfo
-import io.element.android.libraries.mediaviewer.api.anApkMediaInfo
-import io.element.android.libraries.mediaviewer.api.anAudioMediaInfo
-import io.element.android.libraries.mediaviewer.api.anImageMediaInfo
-import io.element.android.libraries.mediaviewer.impl.gallery.aGroupedMediaItems
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemFile
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemImage
-import io.element.android.tests.testutils.WarmUpRule
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.designsystem.components.media.WaveFormSamples
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.media.aMediaSource
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint
+import io.prism.android.libraries.mediaviewer.api.aVideoMediaInfo
+import io.prism.android.libraries.mediaviewer.api.aVoiceMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anApkMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anAudioMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anImageMediaInfo
+import io.prism.android.libraries.mediaviewer.impl.gallery.aGroupedMediaItems
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemFile
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemImage
+import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test

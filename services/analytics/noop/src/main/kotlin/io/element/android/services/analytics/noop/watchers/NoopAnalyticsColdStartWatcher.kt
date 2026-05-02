@@ -5,11 +5,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.noop.watchers
+package io.prism.android.services.analytics.noop.watchers
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.services.analytics.api.watchers.AnalyticsColdStartWatcher
+import io.prism.android.services.analytics.api.watchers.AnalyticsColdStartWatcher
 
 @ContributesBinding(AppScope::class)
 class NoopAnalyticsColdStartWatcher : AnalyticsColdStartWatcher {

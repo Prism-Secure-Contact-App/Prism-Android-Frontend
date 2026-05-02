@@ -26,9 +26,9 @@ import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.timeline.TimelineProvider
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.timeline.TimelineProvider
 import io.prism.android.libraries.roomselect.api.RoomSelectEntryPoint
 import io.prism.android.libraries.roomselect.api.RoomSelectMode
 import kotlinx.parcelize.Parcelize

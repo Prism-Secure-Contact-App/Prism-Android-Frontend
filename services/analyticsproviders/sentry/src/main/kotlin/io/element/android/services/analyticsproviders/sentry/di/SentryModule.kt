@@ -5,15 +5,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.sentry.di
+package io.prism.android.services.analyticsproviders.sentry.di
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
-import io.element.android.libraries.di.identifiers.SentryDsn
-import io.element.android.libraries.di.identifiers.SentrySdkDsn
-import io.element.android.services.analyticsproviders.sentry.SentryConfig
+import io.prism.android.libraries.di.identifiers.SentryDsn
+import io.prism.android.libraries.di.identifiers.SentrySdkDsn
+import io.prism.android.services.analyticsproviders.sentry.SentryConfig
 
 @BindingContainer
 @ContributesTo(AppScope::class)

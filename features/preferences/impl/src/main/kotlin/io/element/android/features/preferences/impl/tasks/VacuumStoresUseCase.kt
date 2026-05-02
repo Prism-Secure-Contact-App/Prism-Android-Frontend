@@ -9,7 +9,7 @@ package io.prism.android.features.preferences.impl.tasks
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 import timber.log.Timber
 
 fun interface VacuumStoresUseCase {
@@ -18,10 +18,10 @@ fun interface VacuumStoresUseCase {
 
 @ContributesBinding(AppScope::class)
 class DefaultVacuumStoresUseCase(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : VacuumStoresUseCase {
     override suspend fun invoke() {
-        prismClient.performDatabaseVacuum()
+        matrixClient.performDatabaseVacuum()
             .onFailure { Timber.e(it, "Failed to vacuum stores") }
     }
 }

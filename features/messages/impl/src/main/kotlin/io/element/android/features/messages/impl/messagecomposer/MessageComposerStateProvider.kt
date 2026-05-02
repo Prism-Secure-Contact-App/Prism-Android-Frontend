@@ -13,7 +13,7 @@ import io.prism.android.libraries.textcomposer.mentions.ResolvedSuggestion
 import io.prism.android.libraries.textcomposer.model.MessageComposerMode
 import io.prism.android.libraries.textcomposer.model.TextEditorState
 import io.prism.android.libraries.textcomposer.model.aTextEditorStateRich
-import io.prism.android.wysiwyg.display.TextDisplay
+import io.element.android.wysiwyg.display.TextDisplay
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.usersearch
+package io.prism.android.libraries.matrix.impl.usersearch
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.user.MatrixSearchUserResults
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustSearchUsersResults
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustUserProfile
-import io.element.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.api.user.PRISMSearchUserResults
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustSearchUsersResults
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustUserProfile
+import io.prism.android.libraries.matrix.test.A_USER_ID
 import kotlinx.collections.immutable.toImmutableList
 import org.junit.Test
 
@@ -29,8 +29,8 @@ class UserSearchResultMapperTest {
             )
         )
             .isEqualTo(
-                MatrixSearchUserResults(
-                    results = listOf(MatrixUser(A_USER_ID, "displayName", "avatarUrl")).toImmutableList(),
+                PRISMSearchUserResults(
+                    results = listOf(PRISMUser(A_USER_ID, "displayName", "avatarUrl")).toImmutableList(),
                     limited = true,
                 )
             )
@@ -47,8 +47,8 @@ class UserSearchResultMapperTest {
             )
         )
             .isEqualTo(
-                MatrixSearchUserResults(
-                    results = listOf(MatrixUser(A_USER_ID, "displayName", "avatarUrl")).toImmutableList(),
+                PRISMSearchUserResults(
+                    results = listOf(PRISMUser(A_USER_ID, "displayName", "avatarUrl")).toImmutableList(),
                     limited = false,
                 )
             )

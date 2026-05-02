@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -39,16 +39,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.text.toPx
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Surface
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.text.toPx
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Surface
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 fun SelectedItem(
@@ -119,13 +119,13 @@ fun SelectedItem(
                 overflow = TextOverflow.Ellipsis,
                 maxLines = maxLines,
                 style = MaterialTheme.typography.bodyMedium,
-                color = ElementTheme.colors.textSecondary,
+                color = PRISMTheme.colors.textSecondary,
                 textAlign = TextAlign.Center,
             )
         }
         if (canRemove) {
             Surface(
-                color = ElementTheme.colors.bgActionPrimaryRest,
+                color = PRISMTheme.colors.bgActionPrimaryRest,
                 modifier = Modifier
                     .clip(CircleShape)
                     .size(20.dp)
@@ -140,7 +140,7 @@ fun SelectedItem(
                     imageVector = CompoundIcons.Close(),
                     // Note: keep the context description for the test
                     contentDescription = stringResource(id = CommonStrings.action_remove),
-                    tint = ElementTheme.colors.iconOnSolidPrimary,
+                    tint = PRISMTheme.colors.iconOnSolidPrimary,
                     modifier = Modifier.padding(2.dp)
                 )
             }

@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
 import dev.zacsweers.metro.Inject
 import im.vector.app.features.analytics.plan.NotificationTroubleshoot
-import io.element.android.libraries.architecture.AsyncAction
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.api.GetCurrentPushProvider
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.api.test.TestFilterData
-import io.element.android.services.analytics.api.AnalyticsService
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.api.GetCurrentPushProvider
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.api.test.TestFilterData
+import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.verification
+package io.prism.android.libraries.matrix.impl.verification
 
 import io.prism.android.libraries.core.data.tryOrNull
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.verification.SessionVerificationData
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
-import io.prism.android.libraries.prism.api.verification.SessionVerificationServiceListener
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
-import io.prism.android.libraries.prism.api.verification.VerificationEmoji
-import io.prism.android.libraries.prism.api.verification.VerificationFlowState
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
-import io.prism.android.libraries.prism.impl.util.cancelAndDestroy
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationData
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationServiceListener
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.api.verification.VerificationEmoji
+import io.prism.android.libraries.matrix.api.verification.VerificationFlowState
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.impl.util.cancelAndDestroy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.Flow
@@ -34,20 +34,20 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.Encryption
-import org.prism.rustcomponents.sdk.RecoveryState
-import org.prism.rustcomponents.sdk.RecoveryStateListener
-import org.prism.rustcomponents.sdk.SessionVerificationController
-import org.prism.rustcomponents.sdk.SessionVerificationControllerDelegate
-import org.prism.rustcomponents.sdk.VerificationState
-import org.prism.rustcomponents.sdk.VerificationStateListener
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.Encryption
+import org.matrix.rustcomponents.sdk.RecoveryState
+import org.matrix.rustcomponents.sdk.RecoveryStateListener
+import org.matrix.rustcomponents.sdk.SessionVerificationController
+import org.matrix.rustcomponents.sdk.SessionVerificationControllerDelegate
+import org.matrix.rustcomponents.sdk.VerificationState
+import org.matrix.rustcomponents.sdk.VerificationStateListener
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.time.Duration.Companion.seconds
-import org.prism.rustcomponents.sdk.SessionVerificationData as RustSessionVerificationData
-import org.prism.rustcomponents.sdk.SessionVerificationRequestDetails as RustSessionVerificationRequestDetails
+import org.matrix.rustcomponents.sdk.SessionVerificationData as RustSessionVerificationData
+import org.matrix.rustcomponents.sdk.SessionVerificationRequestDetails as RustSessionVerificationRequestDetails
 
 class RustSessionVerificationService(
     private val client: Client,

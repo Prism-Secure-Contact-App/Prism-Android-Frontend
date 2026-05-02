@@ -6,11 +6,11 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.matrix.ui.media.test"
+    namespace = "io.prism.android.libraries.matrix.ui.media.test"
 }
 
 dependencies {

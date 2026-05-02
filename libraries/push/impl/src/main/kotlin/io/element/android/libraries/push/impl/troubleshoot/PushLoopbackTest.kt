@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import dev.zacsweers.metro.ContributesIntoSet
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.api.PushService
-import io.element.android.libraries.push.api.gateway.PushGatewayFailure
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.services.toolbox.api.strings.StringProvider
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.api.PushService
+import io.prism.android.libraries.push.api.gateway.PushGatewayFailure
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow

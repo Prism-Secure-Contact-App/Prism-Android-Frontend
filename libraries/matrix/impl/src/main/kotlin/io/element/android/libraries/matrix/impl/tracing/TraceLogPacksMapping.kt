@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.tracing
+package io.prism.android.libraries.matrix.impl.tracing
 
-import io.prism.android.libraries.prism.api.tracing.TraceLogPack
-import org.prism.rustcomponents.sdk.TraceLogPacks as RustTraceLogPack
+import io.prism.android.libraries.matrix.api.tracing.TraceLogPack
+import org.matrix.rustcomponents.sdk.TraceLogPacks as RustTraceLogPack
 
 fun TraceLogPack.map(): RustTraceLogPack = when (this) {
     TraceLogPack.SEND_QUEUE -> RustTraceLogPack.SEND_QUEUE

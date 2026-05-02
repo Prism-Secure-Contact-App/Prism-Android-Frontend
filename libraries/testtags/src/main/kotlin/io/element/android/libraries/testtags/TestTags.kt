@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.testtags
+package io.prism.android.libraries.testtags
 
 @JvmInline
 value class TestTag internal constructor(val value: String)

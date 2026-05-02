@@ -8,7 +8,7 @@
 
 package io.prism.android.features.home.impl
 
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 sealed interface HomeEvent {
     data class SelectHomeNavigationBarItem(val item: HomeNavigationBarItem) : HomeEvent

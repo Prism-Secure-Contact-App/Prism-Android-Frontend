@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl.history
+package io.prism.android.libraries.troubleshoot.impl.history
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.architecture.createNode
-import io.element.android.libraries.troubleshoot.api.PushHistoryEntryPoint
+import io.prism.android.libraries.architecture.createNode
+import io.prism.android.libraries.troubleshoot.api.PushHistoryEntryPoint
 
 @ContributesBinding(AppScope::class)
 class DefaultPushHistoryEntryPoint : PushHistoryEntryPoint {

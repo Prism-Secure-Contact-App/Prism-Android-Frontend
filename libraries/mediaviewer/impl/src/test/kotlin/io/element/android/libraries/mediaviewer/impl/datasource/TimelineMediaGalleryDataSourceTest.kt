@@ -6,42 +6,42 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.datasource
+package io.prism.android.libraries.mediaviewer.impl.datasource
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.androidutils.filesize.FakeFileSizeFormatter
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.dateformatter.test.FakeDateFormatter
-import io.element.android.libraries.matrix.api.media.ImageInfo
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.media.ThumbnailInfo
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
-import io.element.android.libraries.matrix.api.timeline.item.event.FormattedBody
-import io.element.android.libraries.matrix.api.timeline.item.event.ImageMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageFormat
-import io.element.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_UNIQUE_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.room.FakeJoinedRoom
-import io.element.android.libraries.matrix.test.timeline.FakeTimeline
-import io.element.android.libraries.matrix.test.timeline.aMessageContent
-import io.element.android.libraries.matrix.test.timeline.anEventTimelineItem
-import io.element.android.libraries.matrix.ui.components.A_BLUR_HASH
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.impl.model.GroupedMediaItems
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.test.util.FileExtensionExtractorWithoutValidation
-import io.element.android.tests.testutils.WarmUpRule
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.androidutils.filesize.FakeFileSizeFormatter
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.media.ThumbnailInfo
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
+import io.prism.android.libraries.matrix.api.timeline.item.event.FormattedBody
+import io.prism.android.libraries.matrix.api.timeline.item.event.ImageMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageFormat
+import io.prism.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_UNIQUE_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.timeline.FakeTimeline
+import io.prism.android.libraries.matrix.test.timeline.aMessageContent
+import io.prism.android.libraries.matrix.test.timeline.anEventTimelineItem
+import io.prism.android.libraries.matrix.ui.components.A_BLUR_HASH
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.impl.model.GroupedMediaItems
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.test.util.FileExtensionExtractorWithoutValidation
+import io.prism.android.tests.testutils.WarmUpRule
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.TestScope
@@ -171,7 +171,7 @@ class TimelineMediaGalleryDataSourceTest {
 
     @Test
     fun `test - when timeline emits new data, the flow emits the data`() = runTest {
-        val timelineItems = MutableStateFlow<List<MatrixTimelineItem>>(emptyList())
+        val timelineItems = MutableStateFlow<List<PRISMTimelineItem>>(emptyList())
         val fakeTimeline = FakeTimeline(
             timelineItems = timelineItems,
         )
@@ -195,7 +195,7 @@ class TimelineMediaGalleryDataSourceTest {
             )
             timelineItems.emit(
                 listOf(
-                    MatrixTimelineItem.Event(
+                    PRISMTimelineItem.Event(
                         uniqueId = A_UNIQUE_ID,
                         event = anEventTimelineItem(
                             content = aMessageContent(

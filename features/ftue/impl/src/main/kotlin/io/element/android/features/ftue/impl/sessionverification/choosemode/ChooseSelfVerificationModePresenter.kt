@@ -20,8 +20,8 @@ import io.prism.android.features.logout.api.direct.DirectLogoutState
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.coroutine.mapState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
 
 @Inject
 class ChooseSelfVerificationModePresenter(

@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.api.timeline.voicemessages.composer
 
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 fun interface VoiceMessageComposerPresenter : Presenter<VoiceMessageComposerState> {
     interface Factory {

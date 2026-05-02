@@ -21,9 +21,9 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.bool.orFalse
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
 import io.prism.android.libraries.mediaupload.api.MediaSenderRoomFactory
 import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
@@ -36,7 +36,7 @@ class SharePresenter(
     @Assisted private val shareIntentData: ShareIntentData,
     @SessionCoroutineScope
     private val sessionCoroutineScope: CoroutineScope,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val mediaSenderRoomFactory: MediaSenderRoomFactory,
     private val activeRoomsHolder: ActiveRoomsHolder,
     private val mediaOptimizationConfigProvider: MediaOptimizationConfigProvider,
@@ -68,9 +68,9 @@ class SharePresenter(
     }
 
     private suspend fun getJoinedRoom(roomId: RoomId): JoinedRoom? {
-        return activeRoomsHolder.getActiveRoom(prismClient.sessionId)
+        return activeRoomsHolder.getActiveRoom(matrixClient.sessionId)
             ?.takeIf { it.roomId == roomId }
-            ?: prismClient.getJoinedRoom(roomId)
+            ?: matrixClient.getJoinedRoom(roomId)
     }
 
     private fun CoroutineScope.share(
@@ -110,7 +110,7 @@ class SharePresenter(
                                         // If the coroutine was cancelled, destroy the room and rethrow the exception
                                         val cancellationException = result.exceptionOrNull() as? CancellationException
                                         if (cancellationException != null) {
-                                            if (activeRoomsHolder.getActiveRoomMatching(prismClient.sessionId, roomId) == null) {
+                                            if (activeRoomsHolder.getActiveRoomMatching(matrixClient.sessionId, roomId) == null) {
                                                 room.destroy()
                                             }
                                             throw cancellationException
@@ -119,7 +119,7 @@ class SharePresenter(
                                     }
                                     .all { isSuccess -> isSuccess }
                                     .also {
-                                        if (activeRoomsHolder.getActiveRoomMatching(prismClient.sessionId, roomId) == null) {
+                                        if (activeRoomsHolder.getActiveRoomMatching(matrixClient.sessionId, roomId) == null) {
                                             room.destroy()
                                         }
                                     }

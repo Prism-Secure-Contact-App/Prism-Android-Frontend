@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,11 +18,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.theme.components.Text
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.theme.components.Text
 
 @Composable
 internal fun UserRow(
@@ -54,17 +54,17 @@ internal fun UserRow(
                 text = name,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                color = if (enabled) ElementTheme.colors.textPrimary else ElementTheme.colors.textDisabled,
-                style = ElementTheme.typography.fontBodyLgRegular,
+                color = if (enabled) PRISMTheme.colors.textPrimary else PRISMTheme.colors.textDisabled,
+                style = PRISMTheme.typography.fontBodyLgRegular,
             )
             // Id
             subtext?.let {
                 Text(
                     text = subtext,
-                    color = if (enabled) ElementTheme.colors.textSecondary else ElementTheme.colors.textDisabled,
+                    color = if (enabled) PRISMTheme.colors.textSecondary else PRISMTheme.colors.textDisabled,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    style = ElementTheme.typography.fontBodySmRegular,
+                    style = PRISMTheme.typography.fontBodySmRegular,
                 )
             }
         }

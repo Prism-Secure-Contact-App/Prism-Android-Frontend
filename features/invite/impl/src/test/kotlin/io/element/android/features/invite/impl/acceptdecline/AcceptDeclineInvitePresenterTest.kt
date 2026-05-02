@@ -17,9 +17,9 @@ import io.prism.android.features.invite.impl.DeclineInvite
 import io.prism.android.features.invite.impl.fake.FakeAcceptInvite
 import io.prism.android.features.invite.impl.fake.FakeDeclineInvite
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

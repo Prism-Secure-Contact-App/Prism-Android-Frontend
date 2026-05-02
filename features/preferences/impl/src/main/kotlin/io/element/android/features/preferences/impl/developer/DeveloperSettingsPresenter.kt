@@ -43,8 +43,8 @@ import io.prism.android.libraries.core.meta.BuildType
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.ui.model.FeatureUiModel
-import io.prism.android.libraries.prism.api.analytics.GetDatabaseSizesUseCase
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.analytics.GetDatabaseSizesUseCase
+import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
@@ -91,7 +91,7 @@ class DeveloperSettingsPresenter(
         }
         val customPRISMCallBaseUrl by remember {
             appPreferencesStore
-                .getCustomPRISMCallBaseUrlFlow()
+                .getCustomElementCallBaseUrlFlow()
         }.collectAsState(initial = null)
 
         val tracingLogLevelFlow = remember {
@@ -137,7 +137,7 @@ class DeveloperSettingsPresenter(
                 )
                 is DeveloperSettingsEvents.SetCustomPRISMCallBaseUrl -> coroutineScope.launch {
                     val urlToSave = event.baseUrl.takeIf { !it.isNullOrEmpty() }
-                    appPreferencesStore.setCustomPRISMCallBaseUrl(urlToSave)
+                    appPreferencesStore.setCustomElementCallBaseUrl(urlToSave)
                 }
                 DeveloperSettingsEvents.ClearCache -> coroutineScope.clearCache(clearCacheAction)
                 is DeveloperSettingsEvents.SetTracingLogLevel -> coroutineScope.launch {

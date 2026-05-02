@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local
+package io.prism.android.libraries.mediaviewer.impl.local
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import io.element.android.features.viewfolder.api.TextFileViewer
-import io.element.android.libraries.audio.api.AudioFocus
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.core.mimetype.MimeTypes.isMimeTypeAudio
-import io.element.android.libraries.core.mimetype.MimeTypes.isMimeTypeImage
-import io.element.android.libraries.core.mimetype.MimeTypes.isMimeTypeVideo
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.local.audio.MediaAudioView
-import io.element.android.libraries.mediaviewer.impl.local.file.MediaFileView
-import io.element.android.libraries.mediaviewer.impl.local.image.MediaImageView
-import io.element.android.libraries.mediaviewer.impl.local.pdf.MediaPdfView
-import io.element.android.libraries.mediaviewer.impl.local.txt.TextFileView
-import io.element.android.libraries.mediaviewer.impl.local.video.MediaVideoView
+import io.prism.android.features.viewfolder.api.TextFileViewer
+import io.prism.android.libraries.audio.api.AudioFocus
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeAudio
+import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeImage
+import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeVideo
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.local.audio.MediaAudioView
+import io.prism.android.libraries.mediaviewer.impl.local.file.MediaFileView
+import io.prism.android.libraries.mediaviewer.impl.local.image.MediaImageView
+import io.prism.android.libraries.mediaviewer.impl.local.pdf.MediaPdfView
+import io.prism.android.libraries.mediaviewer.impl.local.txt.TextFileView
+import io.prism.android.libraries.mediaviewer.impl.local.video.MediaVideoView
 
 @Composable
 fun LocalMediaView(

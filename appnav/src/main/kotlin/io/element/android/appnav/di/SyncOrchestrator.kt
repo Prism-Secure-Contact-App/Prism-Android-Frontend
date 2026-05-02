@@ -16,8 +16,8 @@ import io.prism.android.features.networkmonitor.api.NetworkMonitor
 import io.prism.android.features.networkmonitor.api.NetworkStatus
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.coroutine.childScope
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.sync.SyncState
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.analytics.api.recordTransaction
 import io.prism.android.services.analyticsproviders.api.AnalyticsUserData

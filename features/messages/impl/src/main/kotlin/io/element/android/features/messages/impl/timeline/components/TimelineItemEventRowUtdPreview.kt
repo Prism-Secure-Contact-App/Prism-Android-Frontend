@@ -16,8 +16,8 @@ import io.prism.android.features.messages.impl.timeline.model.TimelineItemGroupP
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemEncryptedContent
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.timeline.item.event.UnableToDecryptContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UtdCause
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UtdCause
 
 @PreviewsDayNight
 @Composable

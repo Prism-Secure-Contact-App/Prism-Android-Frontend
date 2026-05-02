@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.test
+package io.prism.android.libraries.pushproviders.test
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushproviders.api.Config
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePushProvider(
     override val index: Int = 0,
@@ -23,15 +23,15 @@ class FakePushProvider(
     private val currentDistributorValue: () -> String? = { lambdaError() },
     private val currentDistributor: () -> Distributor? = { distributors.firstOrNull() },
     private val config: Config? = null,
-    private val registerWithResult: (MatrixClient, Distributor) -> Result<Unit> = { _, _ -> lambdaError() },
-    private val unregisterWithResult: (MatrixClient) -> Result<Unit> = { lambdaError() },
+    private val registerWithResult: (PRISMClient, Distributor) -> Result<Unit> = { _, _ -> lambdaError() },
+    private val unregisterWithResult: (PRISMClient) -> Result<Unit> = { lambdaError() },
     private val onSessionDeletedLambda: (SessionId) -> Unit = { lambdaError() },
     private val canRotateTokenResult: () -> Boolean = { lambdaError() },
     private val rotateTokenLambda: () -> Result<Unit> = { lambdaError() },
 ) : PushProvider {
     override fun getDistributors(): List<Distributor> = distributors
 
-    override suspend fun registerWith(matrixClient: MatrixClient, distributor: Distributor): Result<Unit> {
+    override suspend fun registerWith(matrixClient: PRISMClient, distributor: Distributor): Result<Unit> {
         return registerWithResult(matrixClient, distributor)
     }
 
@@ -43,7 +43,7 @@ class FakePushProvider(
         return currentDistributor()
     }
 
-    override suspend fun unregister(matrixClient: MatrixClient): Result<Unit> {
+    override suspend fun unregister(matrixClient: PRISMClient): Result<Unit> {
         return unregisterWithResult(matrixClient)
     }
 

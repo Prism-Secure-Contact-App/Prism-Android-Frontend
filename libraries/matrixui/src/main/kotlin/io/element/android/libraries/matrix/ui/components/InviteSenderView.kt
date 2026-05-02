@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,16 +15,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.ui.model.InviteSender
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.ui.model.InviteSender
 
 @Composable
 fun InviteSenderView(
@@ -45,15 +45,15 @@ fun InviteSenderView(
         }
         Text(
             text = inviteSender.annotatedString(),
-            style = ElementTheme.typography.fontBodyMdRegular,
-            color = ElementTheme.colors.textSecondary,
+            style = PRISMTheme.typography.fontBodyMdRegular,
+            color = PRISMTheme.colors.textSecondary,
         )
     }
 }
 
 @PreviewsDayNight
 @Composable
-internal fun InviteSenderViewPreview() = ElementPreview {
+internal fun InviteSenderViewPreview() = PRISMPreview {
     InviteSenderView(
         inviteSender = InviteSender(
             userId = UserId("@bob:example.com"),

@@ -14,15 +14,15 @@ import app.cash.turbine.ReceiveTurbine
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.BackupUploadState
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.BackupUploadState
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
 import io.prism.android.libraries.workmanager.api.WorkManagerRequestType
 import io.prism.android.libraries.workmanager.test.FakeWorkManagerScheduler
 import io.prism.android.tests.testutils.WarmUpRule
@@ -172,13 +172,13 @@ class LogoutPresenterTest {
 
     @Test
     fun `present - logout with error then cancel`() = runTest {
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             logoutLambda = { _, _ ->
                 throw AN_EXCEPTION
             }
         }
         val presenter = createLogoutPresenter(
-            prismClient,
+            matrixClient,
         )
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
@@ -200,7 +200,7 @@ class LogoutPresenterTest {
 
     @Test
     fun `present - logout with error then force`() = runTest {
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             logoutLambda = { ignoreSdkError, _ ->
                 if (!ignoreSdkError) {
                     throw AN_EXCEPTION
@@ -208,7 +208,7 @@ class LogoutPresenterTest {
             }
         }
         val presenter = createLogoutPresenter(
-            prismClient,
+            matrixClient,
         )
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
@@ -237,11 +237,11 @@ class LogoutPresenterTest {
 }
 
 internal fun createLogoutPresenter(
-    prismClient: PRISMClient = FakePRISMClient(),
+    matrixClient: PRISMClient = FakePRISMClient(),
     encryptionService: EncryptionService = FakeEncryptionService(),
     workManagerScheduler: FakeWorkManagerScheduler = FakeWorkManagerScheduler(cancelLambda = { _, _ -> }),
 ): LogoutPresenter = LogoutPresenter(
-    prismClient = prismClient,
+    matrixClient = matrixClient,
     encryptionService = encryptionService,
     workManagerScheduler = workManagerScheduler,
 )

@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.battery
+package io.prism.android.libraries.push.impl.battery
 
 import androidx.lifecycle.Lifecycle
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.push.api.battery.BatteryOptimizationEvents
-import io.element.android.libraries.push.impl.push.FakeMutableBatteryOptimizationStore
-import io.element.android.libraries.push.impl.push.MutableBatteryOptimizationStore
-import io.element.android.libraries.push.impl.store.InMemoryPushDataStore
-import io.element.android.libraries.push.impl.store.PushDataStore
-import io.element.android.tests.testutils.FakeLifecycleOwner
-import io.element.android.tests.testutils.WarmUpRule
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.testWithLifecycleOwner
+import io.prism.android.libraries.push.api.battery.BatteryOptimizationEvents
+import io.prism.android.libraries.push.impl.push.FakeMutableBatteryOptimizationStore
+import io.prism.android.libraries.push.impl.push.MutableBatteryOptimizationStore
+import io.prism.android.libraries.push.impl.store.InMemoryPushDataStore
+import io.prism.android.libraries.push.impl.store.PushDataStore
+import io.prism.android.tests.testutils.FakeLifecycleOwner
+import io.prism.android.tests.testutils.WarmUpRule
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.testWithLifecycleOwner
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test

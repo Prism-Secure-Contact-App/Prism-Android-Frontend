@@ -10,13 +10,13 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 setupDependencyInjection()
 
 android {
-    namespace = "io.element.android.services.appnavstate.impl"
+    namespace = "io.prism.android.services.appnavstate.impl"
 }
 
 dependencies {

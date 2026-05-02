@@ -8,8 +8,8 @@
 
 package io.prism.android.features.verifysession.impl.ui
 
-import io.prism.android.libraries.prism.api.verification.SessionVerificationData
-import io.prism.android.libraries.prism.api.verification.VerificationEmoji
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationData
+import io.prism.android.libraries.matrix.api.verification.VerificationEmoji
 
 internal fun aEmojisSessionVerificationData(
     emojiList: List<VerificationEmoji> = aVerificationEmojiList(),

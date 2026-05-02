@@ -41,7 +41,7 @@ class TranslationsScreenshotTest(
             return
         }
         // Skip for design system screenshots
-        if (preview.previewInfo.name.startsWith("io.element.android.libraries.designsystem")) {
+        if (preview.previewInfo.name.startsWith("io.prism.android.libraries.designsystem")) {
             return
         }
         ScreenshotTest.runTest(paparazzi = paparazziRule, preview = preview, localeStr = localeStr)

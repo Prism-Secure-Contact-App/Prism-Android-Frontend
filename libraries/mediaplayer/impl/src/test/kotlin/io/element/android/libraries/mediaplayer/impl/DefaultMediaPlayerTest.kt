@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaplayer.impl
+package io.prism.android.libraries.mediaplayer.impl
 
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.audio.api.AudioFocus
-import io.element.android.libraries.audio.api.AudioFocusRequester
-import io.element.android.libraries.mediaplayer.api.MediaPlayer
-import io.element.android.libraries.mediaplayer.test.FakeAudioFocus
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.audio.api.AudioFocus
+import io.prism.android.libraries.audio.api.AudioFocusRequester
+import io.prism.android.libraries.mediaplayer.api.MediaPlayer
+import io.prism.android.libraries.mediaplayer.test.FakeAudioFocus
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest

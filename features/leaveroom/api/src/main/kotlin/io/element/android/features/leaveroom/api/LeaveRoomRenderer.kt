@@ -10,7 +10,7 @@ package io.prism.android.features.leaveroom.api
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 fun interface LeaveRoomRenderer {
     @Composable

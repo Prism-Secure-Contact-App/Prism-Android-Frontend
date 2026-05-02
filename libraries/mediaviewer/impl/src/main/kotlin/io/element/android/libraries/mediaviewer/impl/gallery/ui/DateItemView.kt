@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.ui
+package io.prism.android.libraries.mediaviewer.impl.gallery.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,11 +17,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
 
 @Composable
 fun DateItemView(
@@ -37,8 +37,8 @@ fun DateItemView(
             },
         text = item.formattedDate,
         textAlign = TextAlign.Center,
-        style = ElementTheme.typography.fontBodyMdMedium,
-        color = ElementTheme.colors.textPrimary,
+        style = PRISMTheme.typography.fontBodyMdMedium,
+        color = PRISMTheme.colors.textPrimary,
     )
 }
 
@@ -46,6 +46,6 @@ fun DateItemView(
 @Composable
 internal fun DateItemViewPreview(
     @PreviewParameter(MediaItemDateSeparatorProvider::class) date: MediaItem.DateSeparator,
-) = ElementPreview {
+) = PRISMPreview {
     DateItemView(date)
 }

@@ -16,10 +16,10 @@ import io.prism.android.features.call.impl.DefaultPRISMCallEntryPoint
 import io.prism.android.features.call.impl.notifications.CallNotificationData
 import io.prism.android.features.call.impl.ui.PRISMCallActivity
 import io.prism.android.features.call.utils.FakeActiveCallManager
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope

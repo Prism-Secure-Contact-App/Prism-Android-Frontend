@@ -55,7 +55,7 @@ import io.prism.android.libraries.designsystem.theme.components.Button
 import io.prism.android.libraries.designsystem.theme.components.IconSource
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextButton
-import io.prism.android.libraries.prism.api.auth.OidcDetails
+import io.prism.android.libraries.matrix.api.auth.OidcDetails
 import io.prism.android.libraries.testtags.TestTags
 import io.prism.android.libraries.testtags.testTag
 import io.prism.android.libraries.ui.strings.CommonStrings
@@ -278,62 +278,26 @@ private fun OnBoardingButtons(
     }
 
     ButtonColumnMolecule {
-        val signInButtonStringRes = if (state.canLoginWithQrCode || state.canCreateAccount) {
-            R.string.screen_onboarding_sign_in_manually
-        } else {
-            CommonStrings.action_continue
-        }
-        if (state.loginWithClassicState.canLoginWithClassic) {
-            Button(
-                text = "Sign in with PRISM Classic",
-                leadingIcon = IconSource.Vector(CompoundIcons.Mobile()),
-                onClick = {
-                    state.loginWithClassicState.eventSink(
-                        LoginWithClassicEvent.StartLoginWithClassic
-                    )
-                },
-                modifier = Modifier.fillMaxWidth(),
-            )
-        }
-        if (state.canLoginWithQrCode) {
-            Button(
-                text = stringResource(id = R.string.screen_onboarding_sign_in_with_qr_code),
-                leadingIcon = IconSource.Vector(CompoundIcons.QrCode()),
-                onClick = onSignInWithQrCode,
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-        val defaultAccountProvider = state.defaultAccountProvider
-        if (defaultAccountProvider == null) {
-            Button(
-                text = stringResource(id = signInButtonStringRes),
-                onClick = {
-                    onSignIn(state.mustChooseAccountProvider)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag(TestTags.onBoardingSignIn)
-            )
-        } else {
-            Button(
-                text = stringResource(id = R.string.screen_onboarding_sign_in_to, defaultAccountProvider),
-                showProgress = isLoading,
-                onClick = {
-                    state.eventSink(OnBoardingEvents.OnSignIn(defaultAccountProvider))
-                },
-                enabled = state.submitEnabled || isLoading,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-        }
-        if (state.canCreateAccount) {
-            TextButton(
-                text = stringResource(id = R.string.screen_onboarding_sign_up),
-                onClick = onCreateAccount,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-        }
+        // PRISM v1.0.0 — Single fixed homeserver (matrix.fathertkt.uk). The QR-code path,
+        // the "Sign in to <provider>" leak, and the manual provider selection are removed
+        // intentionally; the user must never see or pick a homeserver in the welcome screen.
+        Button(
+            text = "Giriş Yap",
+            showProgress = isLoading,
+            onClick = {
+                onSignIn(false)
+            },
+            enabled = state.submitEnabled || isLoading,
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag(TestTags.onBoardingSignIn)
+        )
+        TextButton(
+            text = "Hesap Oluştur",
+            onClick = onCreateAccount,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
         if (state.isAddingAccount.not()) {
             if (state.canReportBug) {
                 // Add a report problem text button. Use a Text since we need a special theme here.

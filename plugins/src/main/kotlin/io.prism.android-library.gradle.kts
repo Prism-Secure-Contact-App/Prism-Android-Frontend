@@ -7,7 +7,7 @@
  */
 
 /**
- * This will generate the plugin "io.element.android-library", used in android library without compose modules.
+ * This will generate the plugin "io.prism.android-library", used in android library without compose modules.
  */
 import extension.androidConfig
 import extension.commonDependencies

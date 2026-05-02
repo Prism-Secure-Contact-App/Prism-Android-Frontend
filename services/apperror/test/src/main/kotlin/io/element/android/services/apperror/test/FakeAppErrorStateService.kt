@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.apperror.test
+package io.prism.android.services.apperror.test
 
-import io.element.android.services.apperror.api.AppErrorState
-import io.element.android.services.apperror.api.AppErrorStateService
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.services.apperror.api.AppErrorState
+import io.prism.android.services.apperror.api.AppErrorStateService
+import io.prism.android.tests.testutils.lambda.lambdaError
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

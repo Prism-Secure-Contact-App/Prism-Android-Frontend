@@ -10,8 +10,8 @@ package io.prism.android.features.messages.impl.timeline.focus
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.messages.impl.timeline.FocusRequestState
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.room.errors.FocusEventException
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.errors.FocusEventException
 
 open class FocusRequestStateProvider : PreviewParameterProvider<FocusRequestState> {
     override val values: Sequence<FocusRequestState>

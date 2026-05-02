@@ -9,7 +9,7 @@
 package io.prism.android.features.preferences.impl.root
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.services.toolbox.test.strings.FakeStringProvider
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

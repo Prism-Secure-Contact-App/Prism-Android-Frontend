@@ -10,12 +10,12 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
 }
 
 android {
-    namespace = "io.element.android.libraries.roomselect.impl"
+    namespace = "io.prism.android.libraries.roomselect.impl"
 
     testOptions {
         unitTests {

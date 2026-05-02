@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
 import io.prism.android.libraries.core.coroutine.childScope
 import kotlinx.coroutines.CoroutineDispatcher
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import org.prism.rustcomponents.sdk.Timeline
+import org.matrix.rustcomponents.sdk.Timeline
 
 /**
  * This class is responsible for subscribing to a timeline and post the items/diffs to the timelineDiffProcessor.

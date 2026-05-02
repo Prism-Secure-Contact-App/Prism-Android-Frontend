@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject

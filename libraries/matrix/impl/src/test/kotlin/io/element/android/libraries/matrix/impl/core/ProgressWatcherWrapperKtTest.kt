@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.core
+package io.prism.android.libraries.matrix.impl.core
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.ProgressCallback
+import io.prism.android.libraries.matrix.api.core.ProgressCallback
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.TransmissionProgress

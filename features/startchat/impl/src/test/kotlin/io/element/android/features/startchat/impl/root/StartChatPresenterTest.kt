@@ -19,12 +19,12 @@ import io.prism.android.features.startchat.impl.userlist.UserListDataStore
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.libraries.usersearch.test.FakeUserRepository
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.any
@@ -54,12 +54,12 @@ class StartChatPresenterTest {
             assertThat(initialState.userListState.selectedUsers).isEmpty()
             assertThat(initialState.userListState.isSearchActive).isFalse()
             assertThat(initialState.userListState.isMultiSelectionEnabled).isFalse()
-            val prismUser = PRISMUser(UserId("@name:domain"))
-            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            val matrixUser = PRISMUser(UserId("@name:domain"))
+            initialState.eventSink(StartChatEvents.StartDM(matrixUser))
             awaitItem().also { state ->
                 assertThat(state.startDmAction).isEqualTo(startDMFailureResult)
                 executeResult.assertions().isCalledOnce().with(
-                    value(prismUser),
+                    value(matrixUser),
                     value(false),
                     any(),
                 )
@@ -86,12 +86,12 @@ class StartChatPresenterTest {
             assertThat(initialState.userListState.selectedUsers).isEmpty()
             assertThat(initialState.userListState.isSearchActive).isFalse()
             assertThat(initialState.userListState.isMultiSelectionEnabled).isFalse()
-            val prismUser = PRISMUser(UserId("@name:domain"))
-            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            val matrixUser = PRISMUser(UserId("@name:domain"))
+            initialState.eventSink(StartChatEvents.StartDM(matrixUser))
             awaitItem().also { state ->
                 assertThat(state.startDmAction).isEqualTo(startDMSuccessResult)
                 executeResult.assertions().isCalledOnce().with(
-                    value(prismUser),
+                    value(matrixUser),
                     value(false),
                     any(),
                 )
@@ -101,8 +101,8 @@ class StartChatPresenterTest {
 
     @Test
     fun `present - start DM action confirmation scenario - cancel`() = runTest {
-        val prismUser = PRISMUser(UserId("@name:domain"))
-        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(prismUser)
+        val matrixUser = PRISMUser(UserId("@name:domain"))
+        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(matrixUser)
         val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
             actionState.value = startDMConfirmationResult
         }
@@ -111,11 +111,11 @@ class StartChatPresenterTest {
         presenter.test {
             val initialState = awaitItem()
             assertThat(initialState.startDmAction).isInstanceOf(AsyncAction.Uninitialized::class.java)
-            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            initialState.eventSink(StartChatEvents.StartDM(matrixUser))
             val confirmingState = awaitItem()
             assertThat(confirmingState.startDmAction).isEqualTo(startDMConfirmationResult)
             executeResult.assertions().isCalledOnce().with(
-                value(prismUser),
+                value(matrixUser),
                 value(false),
                 any(),
             )
@@ -129,8 +129,8 @@ class StartChatPresenterTest {
 
     @Test
     fun `present - start DM action confirmation scenario - confirm`() = runTest {
-        val prismUser = PRISMUser(UserId("@name:domain"))
-        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(prismUser)
+        val matrixUser = PRISMUser(UserId("@name:domain"))
+        val startDMConfirmationResult = ConfirmingStartDmWithPRISMUser(matrixUser)
         val executeResult = lambdaRecorder<PRISMUser, Boolean, MutableState<AsyncAction<RoomId>>, Unit> { _, _, actionState ->
             actionState.value = startDMConfirmationResult
         }
@@ -139,19 +139,19 @@ class StartChatPresenterTest {
         presenter.test {
             val initialState = awaitItem()
             assertThat(initialState.startDmAction).isInstanceOf(AsyncAction.Uninitialized::class.java)
-            initialState.eventSink(StartChatEvents.StartDM(prismUser))
+            initialState.eventSink(StartChatEvents.StartDM(matrixUser))
             val confirmingState = awaitItem()
             assertThat(confirmingState.startDmAction).isEqualTo(startDMConfirmationResult)
             executeResult.assertions().isCalledOnce().with(
-                value(prismUser),
+                value(matrixUser),
                 value(false),
                 any(),
             )
             // Start DM again should invoke the action with createIfDmDoesNotExist = true
-            confirmingState.eventSink(StartChatEvents.StartDM(prismUser))
+            confirmingState.eventSink(StartChatEvents.StartDM(matrixUser))
             executeResult.assertions().isCalledExactly(2).withSequence(
-                listOf(value(prismUser), value(false), any()),
-                listOf(value(prismUser), value(true), any()),
+                listOf(value(matrixUser), value(false), any()),
+                listOf(value(matrixUser), value(true), any()),
             )
         }
     }

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.qrcode
+package io.prism.android.libraries.qrcode
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -35,8 +35,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.theme.components.Text
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.theme.components.Text
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -115,7 +115,7 @@ fun QrCodeCameraView(
         if (LocalInspectionMode.current) {
             Box(
                 modifier = modifier
-                    .background(color = ElementTheme.colors.bgSubtlePrimary),
+                    .background(color = PRISMTheme.colors.bgSubtlePrimary),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(

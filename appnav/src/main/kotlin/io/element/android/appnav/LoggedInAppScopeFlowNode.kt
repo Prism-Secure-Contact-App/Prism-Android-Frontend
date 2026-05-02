@@ -32,8 +32,8 @@ import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.DependencyInjectionGraphOwner
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -67,17 +67,17 @@ class LoggedInAppScopeFlowNode(
     object NavTarget : Parcelable
 
     data class Inputs(
-        val prismClient: PRISMClient
+        val matrixClient: PRISMClient
     ) : NodeInputs
 
     private val inputs: Inputs = inputs()
-    override val graph = sessionGraphFactory.create(inputs.prismClient)
+    override val graph = sessionGraphFactory.create(inputs.matrixClient)
 
     override fun onBuilt() {
         super.onBuilt()
         lifecycle.subscribe(
             onResume = {
-                SingletonImageLoader.setUnsafe(imageLoaderHolder.get(inputs.prismClient))
+                SingletonImageLoader.setUnsafe(imageLoaderHolder.get(inputs.matrixClient))
             },
         )
     }

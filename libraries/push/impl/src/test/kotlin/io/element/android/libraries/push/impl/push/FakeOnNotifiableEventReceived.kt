@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeOnNotifiableEventReceived(
     private val onNotifiableEventsReceivedResult: (List<NotifiableEvent>) -> Unit = { lambdaError() },

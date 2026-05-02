@@ -6,27 +6,27 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.notification
+package io.prism.android.libraries.matrix.impl.notification
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.exception.NotificationResolverException
-import io.element.android.libraries.matrix.api.notification.NotificationContent
-import io.element.android.libraries.matrix.api.timeline.item.event.TextMessageType
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustBatchNotificationResultOk
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustNotificationEventTimeline
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustNotificationItem
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiNotificationClient
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineEvent
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.AN_EVENT_ID_2
-import io.element.android.libraries.matrix.test.A_MESSAGE
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_USER_ID_2
-import io.element.android.services.toolbox.api.systemclock.SystemClock
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.api.exception.NotificationResolverException
+import io.prism.android.libraries.matrix.api.notification.NotificationContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustBatchNotificationResultOk
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustNotificationEventTimeline
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustNotificationItem
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiNotificationClient
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineEvent
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID_2
+import io.prism.android.libraries.matrix.test.A_MESSAGE
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

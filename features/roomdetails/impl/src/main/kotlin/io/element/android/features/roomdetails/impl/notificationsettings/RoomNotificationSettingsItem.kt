@@ -11,7 +11,7 @@ package io.prism.android.features.roomdetails.impl.notificationsettings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import io.prism.android.features.roomdetails.impl.R
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList

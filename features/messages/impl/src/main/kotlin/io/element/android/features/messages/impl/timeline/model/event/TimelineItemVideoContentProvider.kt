@@ -10,8 +10,8 @@ package io.prism.android.features.messages.impl.timeline.model.event
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.media.MediaSource
-import io.prism.android.libraries.prism.ui.components.A_BLUR_HASH
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.ui.components.A_BLUR_HASH
 import kotlin.time.Duration.Companion.milliseconds
 
 open class TimelineItemVideoContentProvider : PreviewParameterProvider<TimelineItemVideoContent> {

@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.platform
+package io.prism.android.libraries.matrix.impl.platform
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.platform.InitPlatformService
-import io.prism.android.libraries.prism.api.tracing.TracingConfiguration
-import io.prism.android.libraries.prism.impl.tracing.map
-import org.prism.rustcomponents.sdk.initPlatform
+import io.prism.android.libraries.matrix.api.platform.InitPlatformService
+import io.prism.android.libraries.matrix.api.tracing.TracingConfiguration
+import io.prism.android.libraries.matrix.impl.tracing.map
+import org.matrix.rustcomponents.sdk.initPlatform
 
 @ContributesBinding(AppScope::class)
 class RustInitPlatformService(

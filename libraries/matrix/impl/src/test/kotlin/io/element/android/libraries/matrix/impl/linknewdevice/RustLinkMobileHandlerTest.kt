@@ -7,16 +7,16 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.libraries.matrix.impl.linknewdevice
+package io.prism.android.libraries.matrix.impl.linknewdevice
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.linknewdevice.ErrorType
-import io.element.android.libraries.matrix.api.linknewdevice.LinkMobileStep
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiCheckCodeSender
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiGrantLoginWithQrCodeHandler
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiQrCodeData
-import io.element.android.libraries.matrix.test.QR_CODE_DATA_RECIPROCATE
+import io.prism.android.libraries.matrix.api.linknewdevice.ErrorType
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileStep
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiCheckCodeSender
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiGrantLoginWithQrCodeHandler
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiQrCodeData
+import io.prism.android.libraries.matrix.test.QR_CODE_DATA_RECIPROCATE
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher

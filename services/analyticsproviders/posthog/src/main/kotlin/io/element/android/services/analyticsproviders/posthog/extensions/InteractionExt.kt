@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.posthog.extensions
+package io.prism.android.services.analyticsproviders.posthog.extensions
 
 import im.vector.app.features.analytics.plan.Interaction
 

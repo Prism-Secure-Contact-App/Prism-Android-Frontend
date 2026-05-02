@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.permalink
+package io.prism.android.libraries.matrix.impl.permalink
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.PRISMPatterns
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.permalink.PermalinkBuilder
-import io.prism.android.libraries.prism.api.permalink.PermalinkBuilderError
-import org.prism.rustcomponents.sdk.prismToRoomAliasPermalink
-import org.prism.rustcomponents.sdk.prismToUserPermalink
+import io.prism.android.libraries.matrix.api.core.PRISMPatterns
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilder
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilderError
+import org.matrix.rustcomponents.sdk.matrixToRoomAliasPermalink
+import org.matrix.rustcomponents.sdk.matrixToUserPermalink
 
 @ContributesBinding(AppScope::class)
 class DefaultPermalinkBuilder : PermalinkBuilder {
@@ -26,7 +26,7 @@ class DefaultPermalinkBuilder : PermalinkBuilder {
             return Result.failure(PermalinkBuilderError.InvalidData)
         }
         return runCatchingExceptions {
-            prismToUserPermalink(userId.value)
+            matrixToUserPermalink(userId.value)
         }
     }
 
@@ -35,7 +35,7 @@ class DefaultPermalinkBuilder : PermalinkBuilder {
             return Result.failure(PermalinkBuilderError.InvalidData)
         }
         return runCatchingExceptions {
-            prismToRoomAliasPermalink(roomAlias.value)
+            matrixToRoomAliasPermalink(roomAlias.value)
         }
     }
 }

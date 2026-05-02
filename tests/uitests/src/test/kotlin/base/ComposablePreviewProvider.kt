@@ -17,12 +17,12 @@ import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
 
 // Make sure we don't import Compound previews by mistake
 private val PACKAGE_TREES = arrayOf(
-    "io.element.android.features",
-    "io.element.android.libraries",
-    "io.element.android.services",
+    "io.prism.android.features",
+    "io.prism.android.libraries",
+    "io.prism.android.services",
     "io.element.android.appicon",
     "io.element.android.appnav",
-    "io.element.android.x",
+    "io.prism.android.x",
 )
 
 object ComposablePreviewProvider : TestParameterValuesProvider() {

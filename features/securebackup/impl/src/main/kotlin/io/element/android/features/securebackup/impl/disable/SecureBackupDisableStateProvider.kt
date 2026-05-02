@@ -10,7 +10,7 @@ package io.prism.android.features.securebackup.impl.disable
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.BackupState
 
 open class SecureBackupDisableStateProvider : PreviewParameterProvider<SecureBackupDisableState> {
     override val values: Sequence<SecureBackupDisableState>

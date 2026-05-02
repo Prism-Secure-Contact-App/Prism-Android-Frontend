@@ -9,7 +9,7 @@
 package io.prism.android.features.startchat.impl
 
 import io.prism.android.features.startchat.StartChatNavigator
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
 
 class FakeStartChatNavigator(
     private val openRoomLambda: (roomIdOrAlias: RoomIdOrAlias, serverNames: List<String>) -> Unit = { _, _ -> },

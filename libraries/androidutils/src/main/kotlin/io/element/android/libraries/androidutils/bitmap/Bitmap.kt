@@ -10,7 +10,7 @@ package io.prism.android.libraries.androidutils.bitmap
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.PRISM
+import android.graphics.Matrix
 import androidx.core.graphics.scale
 import androidx.exifinterface.media.ExifInterface
 import java.io.File
@@ -66,23 +66,23 @@ fun BitmapFactory.Options.calculateInSampleSize(desiredWidth: Int, desiredHeight
  * This orientation value must be one of `ExifInterface.ORIENTATION_*` constants.
  */
 fun Bitmap.rotateToExifMetadataOrientation(orientation: Int): Bitmap {
-    val prism = PRISM()
+    val matrix = Matrix()
     when (orientation) {
-        ExifInterface.ORIENTATION_ROTATE_270 -> prism.postRotate(270f)
-        ExifInterface.ORIENTATION_ROTATE_180 -> prism.postRotate(180f)
-        ExifInterface.ORIENTATION_ROTATE_90 -> prism.postRotate(90f)
-        ExifInterface.ORIENTATION_FLIP_HORIZONTAL -> prism.preScale(-1f, 1f)
-        ExifInterface.ORIENTATION_FLIP_VERTICAL -> prism.preScale(1f, -1f)
+        ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
+        ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
+        ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
+        ExifInterface.ORIENTATION_FLIP_HORIZONTAL -> matrix.preScale(-1f, 1f)
+        ExifInterface.ORIENTATION_FLIP_VERTICAL -> matrix.preScale(1f, -1f)
         ExifInterface.ORIENTATION_TRANSPOSE -> {
-            prism.preRotate(-90f)
-            prism.preScale(-1f, 1f)
+            matrix.preRotate(-90f)
+            matrix.preScale(-1f, 1f)
         }
         ExifInterface.ORIENTATION_TRANSVERSE -> {
-            prism.preRotate(90f)
-            prism.preScale(-1f, 1f)
+            matrix.preRotate(90f)
+            matrix.preScale(-1f, 1f)
         }
         else -> return this
     }
 
-    return Bitmap.createBitmap(this, 0, 0, width, height, prism, true)
+    return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
 }

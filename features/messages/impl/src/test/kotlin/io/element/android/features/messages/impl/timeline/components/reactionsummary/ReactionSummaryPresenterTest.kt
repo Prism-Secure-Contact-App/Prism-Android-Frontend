@@ -10,13 +10,13 @@ package io.prism.android.features.messages.impl.timeline.components.reactionsumm
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.messages.impl.timeline.model.anAggregatedReaction
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.test.AN_AVATAR_URL
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_NAME
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.aRoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.aRoomMember
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import kotlinx.collections.immutable.persistentListOf

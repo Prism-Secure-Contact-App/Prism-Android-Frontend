@@ -15,7 +15,7 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
 import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 import io.prism.android.libraries.preferences.test.InMemoryAppPreferencesStore
 import io.prism.android.libraries.preferences.test.InMemorySessionPreferencesStore

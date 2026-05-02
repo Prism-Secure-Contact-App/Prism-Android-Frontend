@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.member
+package io.prism.android.libraries.matrix.impl.room.member
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
-import io.prism.android.libraries.prism.impl.room.powerlevels.into
-import uniffi.prism_sdk.RoomMemberRole
-import org.prism.rustcomponents.sdk.MembershipState as RustMembershipState
-import org.prism.rustcomponents.sdk.RoomMember as RustRoomMember
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.impl.room.powerlevels.into
+import uniffi.matrix_sdk.RoomMemberRole
+import org.matrix.rustcomponents.sdk.MembershipState as RustMembershipState
+import org.matrix.rustcomponents.sdk.RoomMember as RustRoomMember
 
 object RoomMemberMapper {
     fun map(roomMember: RustRoomMember): RoomMember {

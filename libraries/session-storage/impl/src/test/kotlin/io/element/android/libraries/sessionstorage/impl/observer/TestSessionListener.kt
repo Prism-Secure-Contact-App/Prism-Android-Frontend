@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.sessionstorage.impl.observer
+package io.prism.android.libraries.sessionstorage.impl.observer
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
 
 class TestSessionListener : SessionListener {
     sealed interface Event {

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
@@ -30,10 +30,10 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.media.drawWaveform
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.media.drawWaveform
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import java.lang.Float.min
@@ -45,7 +45,7 @@ private val waveFormHeight = 26.dp
 fun LiveWaveformView(
     levels: ImmutableList<Float>,
     modifier: Modifier = Modifier,
-    brush: Brush = SolidColor(ElementTheme.colors.iconQuaternary),
+    brush: Brush = SolidColor(PRISMTheme.colors.iconQuaternary),
     lineWidth: Dp = 2.dp,
     linePadding: Dp = 2.dp,
 ) {
@@ -84,7 +84,7 @@ fun LiveWaveformView(
 
 @PreviewsDayNight
 @Composable
-internal fun LiveWaveformViewPreview() = ElementPreview {
+internal fun LiveWaveformViewPreview() = PRISMPreview {
     Column {
         LiveWaveformView(
             levels = List(100) { it.toFloat() / 100 }.toImmutableList(),

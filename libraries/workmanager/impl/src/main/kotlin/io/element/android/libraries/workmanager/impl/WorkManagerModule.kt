@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.workmanager.impl
+package io.prism.android.libraries.workmanager.impl
 
 import android.content.Context
 import androidx.work.WorkManager
@@ -14,7 +14,7 @@ import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.di.annotations.ApplicationContext
 
 @BindingContainer
 @ContributesTo(AppScope::class)

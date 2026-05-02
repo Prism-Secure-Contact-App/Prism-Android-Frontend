@@ -15,7 +15,7 @@ import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesEn
 import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesListType
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 @ContributesBinding(SessionScope::class)
 class DefaultChangeRoomMemberRolesEntyPoint : ChangeRoomMemberRolesEntryPoint {

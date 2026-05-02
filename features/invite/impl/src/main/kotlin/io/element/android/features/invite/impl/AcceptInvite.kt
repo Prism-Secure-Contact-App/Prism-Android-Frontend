@@ -9,16 +9,16 @@
 package io.prism.android.features.invite.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.features.invite.api.SeenInvitesStore
 import io.prism.android.libraries.core.extensions.mapFailure
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.exception.ClientException
-import io.prism.android.libraries.prism.api.exception.ErrorKind
-import io.prism.android.libraries.prism.api.room.join.JoinRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.exception.ErrorKind
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
 import io.prism.android.libraries.push.api.notifications.NotificationCleaner
 
 interface AcceptInvite {

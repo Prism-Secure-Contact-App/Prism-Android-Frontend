@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.impl
+package io.prism.android.libraries.pushstore.impl
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -15,12 +15,12 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStoreFile
-import io.element.android.libraries.androidutils.hash.hash
-import io.element.android.libraries.core.bool.orFalse
-import io.element.android.libraries.core.bool.orTrue
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.preferences.api.store.PreferenceDataStoreFactory
-import io.element.android.libraries.pushstore.api.UserPushStore
+import io.prism.android.libraries.androidutils.hash.hash
+import io.prism.android.libraries.core.bool.orFalse
+import io.prism.android.libraries.core.bool.orTrue
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.preferences.api.store.PreferenceDataStoreFactory
+import io.prism.android.libraries.pushstore.api.UserPushStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -41,7 +41,7 @@ class UserPushStoreDataStore(
     init {
         // Migrate legacy data. Previous file can be too long if the userId is too long. The userId can be up to 255 chars.
         // Example of long file path, with `averylonguserid` replacing a very longer name
-        // /data/user/0/io.element.android.x.debug/files/datastore/push_store_@averylonguserid:example.org.preferences_pb
+        // /data/user/0/io.prism.android.x.debug/files/datastore/push_store_@averylonguserid:example.org.preferences_pb
         val legacyFile = context.preferencesDataStoreFile("push_store_$userId")
         if (legacyFile.exists()) {
             Timber.d("Migrating legacy push data store for $userId")

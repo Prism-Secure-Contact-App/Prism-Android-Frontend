@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.api
+package io.prism.android.libraries.push.api
 
-import io.element.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.exception.ClientException
 
 sealed class PusherRegistrationFailure : Exception() {
     class AccountNotVerified : PusherRegistrationFailure()

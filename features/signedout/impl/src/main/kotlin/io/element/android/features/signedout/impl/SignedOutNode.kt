@@ -19,7 +19,7 @@ import dev.zacsweers.metro.AssistedInject
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.inputs
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 @ContributesNode(AppScope::class)
 @AssistedInject

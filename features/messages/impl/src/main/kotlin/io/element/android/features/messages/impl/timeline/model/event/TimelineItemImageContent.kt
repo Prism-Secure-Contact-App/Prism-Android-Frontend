@@ -9,10 +9,10 @@
 package io.prism.android.features.messages.impl.timeline.model.event
 
 import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeAnimatedImage
-import io.prism.android.libraries.prism.api.media.MediaSource
-import io.prism.android.libraries.prism.ui.media.MAX_THUMBNAIL_HEIGHT
-import io.prism.android.libraries.prism.ui.media.MAX_THUMBNAIL_WIDTH
-import io.prism.android.libraries.prism.ui.media.MediaRequestData
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.ui.media.MAX_THUMBNAIL_HEIGHT
+import io.prism.android.libraries.matrix.ui.media.MAX_THUMBNAIL_WIDTH
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
 
 data class TimelineItemImageContent(
     override val filename: String,

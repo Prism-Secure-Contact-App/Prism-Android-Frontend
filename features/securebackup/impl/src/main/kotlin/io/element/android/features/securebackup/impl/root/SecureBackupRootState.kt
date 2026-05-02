@@ -11,8 +11,8 @@ package io.prism.android.features.securebackup.impl.root
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
 
 data class SecureBackupRootState(
     val enableAction: AsyncAction<Unit>,

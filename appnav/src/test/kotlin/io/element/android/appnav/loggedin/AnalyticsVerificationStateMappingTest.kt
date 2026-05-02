@@ -9,10 +9,10 @@
 package io.prism.android.appnav.loggedin
 
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.CryptoSessionStateChange
-import uk.fathertkt.prism.features.analytics.plan.UserProperties
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
+import im.vector.app.features.analytics.plan.CryptoSessionStateChange
+import im.vector.app.features.analytics.plan.UserProperties
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
 import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule

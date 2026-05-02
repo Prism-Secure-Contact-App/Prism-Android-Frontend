@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.test
+package io.prism.android.libraries.preferences.test
 
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStore
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
-import io.element.android.tests.testutils.lambda.LambdaOneParamRecorder
-import io.element.android.tests.testutils.lambda.LambdaTwoParamsRecorder
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
+import io.prism.android.tests.testutils.lambda.LambdaOneParamRecorder
+import io.prism.android.tests.testutils.lambda.LambdaTwoParamsRecorder
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.CoroutineScope
 
 class FakeSessionPreferencesStoreFactory(

@@ -61,14 +61,14 @@ import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
 import io.prism.android.libraries.designsystem.utils.CommonDrawables
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
-import io.prism.android.libraries.prism.api.room.getBestName
-import io.prism.android.libraries.prism.api.room.toPRISMUser
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.SelectedUsersRowList
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.api.room.getBestName
+import io.prism.android.libraries.matrix.api.room.toPRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.SelectedUsersRowList
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 

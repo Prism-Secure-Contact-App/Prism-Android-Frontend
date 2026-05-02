@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.fixtures.factories
+package io.prism.android.libraries.matrix.impl.fixtures.factories
 
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiLazyTimelineItemProvider
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiLazyTimelineItemProvider
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
 import org.matrix.rustcomponents.sdk.EventOrTransactionId
 import org.matrix.rustcomponents.sdk.EventSendState
 import org.matrix.rustcomponents.sdk.EventTimelineItem

@@ -5,17 +5,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
-import io.prism.android.libraries.prism.api.roomlist.DynamicRoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomList
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter
-import io.prism.android.libraries.prism.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.api.roomlist.DynamicRoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import org.prism.rustcomponents.sdk.RoomListDynamicEntriesController
+import org.matrix.rustcomponents.sdk.RoomListDynamicEntriesController
 
 private const val DEFAULT_ADD_PAGES_COUNT = 3
 

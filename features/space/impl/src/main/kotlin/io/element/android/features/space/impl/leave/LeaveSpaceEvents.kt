@@ -8,7 +8,7 @@
 
 package io.prism.android.features.space.impl.leave
 
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 sealed interface LeaveSpaceEvents {
     data object Retry : LeaveSpaceEvents

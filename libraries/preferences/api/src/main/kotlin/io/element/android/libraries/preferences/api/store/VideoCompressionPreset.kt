@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.api.store
+package io.prism.android.libraries.preferences.api.store
 
 /**
  * Video compression presets to use when processing videos before uploading them.

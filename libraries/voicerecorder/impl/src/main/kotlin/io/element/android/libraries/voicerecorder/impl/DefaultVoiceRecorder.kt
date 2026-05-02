@@ -6,27 +6,27 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.impl
+package io.prism.android.libraries.voicerecorder.impl
 
 import android.Manifest
 import androidx.annotation.RequiresPermission
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.appconfig.VoiceMessageConfig
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.core.coroutine.childScope
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.di.annotations.SessionCoroutineScope
-import io.element.android.libraries.voicerecorder.api.VoiceRecorder
-import io.element.android.libraries.voicerecorder.api.VoiceRecorderState
-import io.element.android.libraries.voicerecorder.impl.audio.Audio
-import io.element.android.libraries.voicerecorder.impl.audio.AudioConfig
-import io.element.android.libraries.voicerecorder.impl.audio.AudioLevelCalculator
-import io.element.android.libraries.voicerecorder.impl.audio.AudioReader
-import io.element.android.libraries.voicerecorder.impl.audio.Encoder
-import io.element.android.libraries.voicerecorder.impl.audio.resample
-import io.element.android.libraries.voicerecorder.impl.file.VoiceFileConfig
-import io.element.android.libraries.voicerecorder.impl.file.VoiceFileManager
+import io.prism.android.appconfig.VoiceMessageConfig
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.coroutine.childScope
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.di.annotations.SessionCoroutineScope
+import io.prism.android.libraries.voicerecorder.api.VoiceRecorder
+import io.prism.android.libraries.voicerecorder.api.VoiceRecorderState
+import io.prism.android.libraries.voicerecorder.impl.audio.Audio
+import io.prism.android.libraries.voicerecorder.impl.audio.AudioConfig
+import io.prism.android.libraries.voicerecorder.impl.audio.AudioLevelCalculator
+import io.prism.android.libraries.voicerecorder.impl.audio.AudioReader
+import io.prism.android.libraries.voicerecorder.impl.audio.Encoder
+import io.prism.android.libraries.voicerecorder.impl.audio.resample
+import io.prism.android.libraries.voicerecorder.impl.file.VoiceFileConfig
+import io.prism.android.libraries.voicerecorder.impl.file.VoiceFileManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow

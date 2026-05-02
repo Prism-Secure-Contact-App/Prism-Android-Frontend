@@ -13,15 +13,15 @@ import io.prism.android.features.poll.api.pollcontent.PollAnswerItem
 import io.prism.android.features.poll.api.pollcontent.PollContentState
 import io.prism.android.features.poll.api.pollcontent.PollContentStateFactory
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.poll.isDisclosed
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.poll.isDisclosed
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
 import kotlinx.collections.immutable.toImmutableList
 
 @ContributesBinding(RoomScope::class)
 class DefaultPollContentStateFactory(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : PollContentStateFactory {
     override suspend fun create(
         eventId: EventId?,
@@ -30,7 +30,7 @@ class DefaultPollContentStateFactory(
         content: PollContent,
     ): PollContentState {
         val totalVoteCount = content.votes.flatMap { it.value }.size
-        val myVotes = content.votes.filter { prismClient.sessionId in it.value }.keys
+        val myVotes = content.votes.filter { matrixClient.sessionId in it.value }.keys
         val isPollEnded = content.endTime != null
         val winnerIds = if (!isPollEnded) {
             emptyList()

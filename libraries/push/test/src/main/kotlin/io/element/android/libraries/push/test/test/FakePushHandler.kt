@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.test.test
+package io.prism.android.libraries.push.test.test
 
-import io.element.android.libraries.pushproviders.api.PushData
-import io.element.android.libraries.pushproviders.api.PushHandler
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.pushproviders.api.PushData
+import io.prism.android.libraries.pushproviders.api.PushHandler
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePushHandler(
     private val handleResult: (PushData, String) -> Boolean = { _, _ -> lambdaError() },

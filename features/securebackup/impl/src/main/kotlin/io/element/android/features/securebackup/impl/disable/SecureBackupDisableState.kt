@@ -9,7 +9,7 @@
 package io.prism.android.features.securebackup.impl.disable
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.BackupState
 
 data class SecureBackupDisableState(
     val backupState: BackupState,

@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils.fake
+package io.prism.android.tests.testutils.fake
 
 import java.io.InputStream
 import java.io.OutputStream

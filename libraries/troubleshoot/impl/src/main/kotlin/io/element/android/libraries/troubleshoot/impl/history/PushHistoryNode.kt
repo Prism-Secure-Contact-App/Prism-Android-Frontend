@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl.history
+package io.prism.android.libraries.troubleshoot.impl.history
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,13 +16,13 @@ import com.bumble.appyx.core.plugin.Plugin
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
 import im.vector.app.features.analytics.plan.MobileScreen
-import io.element.android.annotations.ContributesNode
-import io.element.android.libraries.architecture.callback
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.troubleshoot.api.PushHistoryEntryPoint
-import io.element.android.services.analytics.api.ScreenTracker
+import io.prism.android.annotations.ContributesNode
+import io.prism.android.libraries.architecture.callback
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.troubleshoot.api.PushHistoryEntryPoint
+import io.prism.android.services.analytics.api.ScreenTracker
 
 @ContributesNode(SessionScope::class)
 @AssistedInject

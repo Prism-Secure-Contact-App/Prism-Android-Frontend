@@ -6,49 +6,49 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.app.Notification
 import androidx.compose.ui.graphics.Color
 import com.google.common.truth.Truth.assertThat
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.features.enterprise.test.FakeEnterpriseService
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID_2
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID_2
-import io.element.android.libraries.matrix.test.A_THREAD_ID
-import io.element.android.libraries.matrix.test.A_THREAD_ID_2
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.FakeMatrixClientProvider
-import io.element.android.libraries.matrix.ui.components.aMatrixUser
-import io.element.android.libraries.matrix.ui.media.test.FakeImageLoaderHolder
-import io.element.android.libraries.push.api.notifications.NotificationIdProvider
-import io.element.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.fake.FakeRoomGroupMessageCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeSummaryGroupMessageCreator
-import io.element.android.libraries.push.impl.notifications.fixtures.aFallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.aSimpleNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.anInviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.libraries.sessionstorage.test.observer.FakeSessionObserver
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.services.appnavstate.api.AppNavigationState
-import io.element.android.services.appnavstate.api.AppNavigationStateService
-import io.element.android.services.appnavstate.test.FakeAppNavigationStateService
-import io.element.android.services.appnavstate.test.aNavigationState
-import io.element.android.services.appnavstate.test.anAppNavigationState
-import io.element.android.tests.testutils.lambda.any
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.features.enterprise.test.FakeEnterpriseService
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID_2
+import io.prism.android.libraries.matrix.test.A_THREAD_ID
+import io.prism.android.libraries.matrix.test.A_THREAD_ID_2
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.FakeMatrixClientProvider
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.media.test.FakeImageLoaderHolder
+import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
+import io.prism.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.fake.FakeRoomGroupMessageCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeSummaryGroupMessageCreator
+import io.prism.android.libraries.push.impl.notifications.fixtures.aFallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.aSimpleNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.anInviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.libraries.sessionstorage.test.observer.FakeSessionObserver
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.services.appnavstate.api.AppNavigationState
+import io.prism.android.services.appnavstate.api.AppNavigationStateService
+import io.prism.android.services.appnavstate.test.FakeAppNavigationStateService
+import io.prism.android.services.appnavstate.test.aNavigationState
+import io.prism.android.services.appnavstate.test.anAppNavigationState
+import io.prism.android.tests.testutils.lambda.any
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -122,7 +122,7 @@ class DefaultNotificationDrawerManagerTest {
     }
 
     @Test
-    fun `when MatrixClient has no cached user name and avatar, the profile is loaded to render the notification`() = runTest {
+    fun `when PRISMClient has no cached user name and avatar, the profile is loaded to render the notification`() = runTest {
         val matrixClient = FakeMatrixClient(
             userDisplayName = null,
             userAvatarUrl = null,
@@ -136,7 +136,7 @@ class DefaultNotificationDrawerManagerTest {
                 initialBrandColor = Color.Red,
             )
         )
-        // Gets a display name from MatrixClient.getUserProfile
+        // Gets a display name from PRISMClient.getUserProfile
         matrixClient.givenGetProfileResult(A_SESSION_ID, Result.success(aMatrixUser(id = A_SESSION_ID.value, displayName = "alice")))
         defaultNotificationDrawerManager.onNotifiableEventReceived(aNotifiableMessageEvent())
 

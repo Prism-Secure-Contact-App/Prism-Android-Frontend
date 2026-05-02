@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
 sealed interface TroubleshootNotificationsEvents {
     data object StartTests : TroubleshootNotificationsEvents

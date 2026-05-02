@@ -29,7 +29,7 @@ class DefaultWebClientUrlForAuthenticationRetriever(
             Timber.w("Temporary account creation flow is only supported on prism.org")
             throw AccountCreationNotSupported()
         }
-        val wellknown = wellknownRetriever.getPRISMWellKnown(homeServerUrl).dataOrNull()
+        val wellknown = wellknownRetriever.getElementWellKnown(homeServerUrl).dataOrNull()
             ?: throw AccountCreationNotSupported()
         val registrationHelperUrl = wellknown.registrationHelperUrl
         return if (registrationHelperUrl != null) {

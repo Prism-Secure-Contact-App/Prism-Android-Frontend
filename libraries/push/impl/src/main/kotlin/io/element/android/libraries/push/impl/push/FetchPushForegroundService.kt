@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
 import android.app.ActivityManager
 import android.app.Service
@@ -16,13 +16,13 @@ import android.os.IBinder
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.architecture.bindings
-import io.element.android.libraries.designsystem.utils.CommonDrawables
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.push.api.push.PushHandlingWakeLock
-import io.element.android.libraries.push.impl.di.PushBindings
-import io.element.android.libraries.push.impl.notifications.channels.NotificationChannels
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.architecture.bindings
+import io.prism.android.libraries.designsystem.utils.CommonDrawables
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.push.api.push.PushHandlingWakeLock
+import io.prism.android.libraries.push.impl.di.PushBindings
+import io.prism.android.libraries.push.impl.notifications.channels.NotificationChannels
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

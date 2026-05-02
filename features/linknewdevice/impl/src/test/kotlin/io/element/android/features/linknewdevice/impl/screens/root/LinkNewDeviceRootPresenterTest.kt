@@ -9,10 +9,10 @@ package io.prism.android.features.linknewdevice.impl.screens.root
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.linknewdevice.impl.LinkNewMobileHandler
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.linknewdevice.FakeLinkMobileHandler
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.linknewdevice.FakeLinkMobileHandler
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.runTest
@@ -25,11 +25,11 @@ class LinkNewDeviceRootPresenterTest {
 
     @Test
     fun `present - initial state`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             canLinkNewDeviceResult = { Result.success(true) },
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.isSupported.isUninitialized()).isTrue()
@@ -39,11 +39,11 @@ class LinkNewDeviceRootPresenterTest {
 
     @Test
     fun `present - new login device not supported`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             canLinkNewDeviceResult = { Result.success(false) },
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.isSupported.isUninitialized()).isTrue()
@@ -53,11 +53,11 @@ class LinkNewDeviceRootPresenterTest {
 
     @Test
     fun `present - error`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             canLinkNewDeviceResult = { Result.failure(AN_EXCEPTION) },
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             val initialState = awaitItem()
             assertThat(initialState.isSupported.isUninitialized()).isTrue()
@@ -70,13 +70,13 @@ class LinkNewDeviceRootPresenterTest {
         val linkMobileHandler = FakeLinkMobileHandler(
             startResult = {},
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             canLinkNewDeviceResult = { Result.success(true) },
             sessionCoroutineScope = backgroundScope,
             createLinkMobileHandlerResult = { Result.success(linkMobileHandler) }
         )
         createPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         ).test {
             skipItems(1)
             val initialState = awaitItem()
@@ -88,10 +88,10 @@ class LinkNewDeviceRootPresenterTest {
     }
 
     private fun createPresenter(
-        prismClient: PRISMClient = FakePRISMClient(),
-        linkNewMobileHandler: LinkNewMobileHandler = LinkNewMobileHandler(prismClient),
+        matrixClient: PRISMClient = FakePRISMClient(),
+        linkNewMobileHandler: LinkNewMobileHandler = LinkNewMobileHandler(matrixClient),
     ) = LinkNewDeviceRootPresenter(
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         linkNewMobileHandler = linkNewMobileHandler,
     )
 }

@@ -29,8 +29,8 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
 import io.prism.android.libraries.indicator.api.IndicatorService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.sync.SyncService
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.combine
@@ -54,14 +54,14 @@ class HomePresenter(
     @Composable
     override fun present(): HomeState {
         val coroutineState = rememberCoroutineScope()
-        val prismUser by client.userProfile.collectAsState()
+        val matrixUser by client.userProfile.collectAsState()
         val currentUserAndNeighbors by remember {
             combine(
                 client.userProfile,
                 sessionStore.sessionsFlow(),
                 currentUserWithNeighborsBuilder::build,
             )
-        }.collectAsState(initial = persistentListOf(prismUser))
+        }.collectAsState(initial = persistentListOf(matrixUser))
         val isOnline by syncService.isOnline.collectAsState()
         val canReportBug by remember { rageshakeFeatureAvailability.isAvailable() }.collectAsState(false)
         val roomListState = roomListPresenter.present()

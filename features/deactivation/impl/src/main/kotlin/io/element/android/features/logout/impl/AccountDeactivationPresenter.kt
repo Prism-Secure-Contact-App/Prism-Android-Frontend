@@ -17,13 +17,13 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Inject
 class AccountDeactivationPresenter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : Presenter<AccountDeactivationState> {
     @Composable
     override fun present(): AccountDeactivationState {
@@ -77,7 +77,7 @@ class AccountDeactivationPresenter(
         action: MutableState<AsyncAction<Unit>>,
     ) = launch {
         suspend {
-            prismClient.deactivateAccount(
+            matrixClient.deactivateAccount(
                 password = formState.password,
                 eraseData = formState.eraseData,
             ).getOrThrow()

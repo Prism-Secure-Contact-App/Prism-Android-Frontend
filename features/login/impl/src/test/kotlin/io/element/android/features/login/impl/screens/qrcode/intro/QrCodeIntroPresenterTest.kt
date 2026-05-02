@@ -10,7 +10,7 @@ package io.prism.android.features.login.impl.screens.qrcode.intro
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.libraries.permissions.test.FakePermissionsPresenter
 import io.prism.android.libraries.permissions.test.FakePermissionsPresenterFactory
 import io.prism.android.tests.testutils.test

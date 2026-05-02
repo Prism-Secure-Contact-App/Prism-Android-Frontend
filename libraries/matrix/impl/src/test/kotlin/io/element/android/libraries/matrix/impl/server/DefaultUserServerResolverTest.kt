@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.server
+package io.prism.android.libraries.matrix.impl.server
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
 import org.junit.Test
 
 class DefaultUserServerResolverTest {

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.api.trackers
+package io.prism.android.services.analyticsproviders.api.trackers
 
 interface ErrorTracker {
     fun trackError(throwable: Throwable)

@@ -19,13 +19,13 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.features.linknewdevice.impl.LinkNewMobileHandler
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.linknewdevice.LinkMobileStep
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileStep
 import kotlinx.coroutines.launch
 
 @Inject
 class LinkNewDeviceRootPresenter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val linkNewMobileHandler: LinkNewMobileHandler,
 ) : Presenter<LinkNewDeviceRootState> {
     @Composable
@@ -35,7 +35,7 @@ class LinkNewDeviceRootPresenter(
         var qrCodeData by remember { mutableStateOf<AsyncData<Unit>>(AsyncData.Uninitialized) }
 
         LaunchedEffect(Unit) {
-            prismClient.canLinkNewDevice().fold(
+            matrixClient.canLinkNewDevice().fold(
                 onSuccess = { supported ->
                     isSupported = AsyncData.Success(supported)
                 },

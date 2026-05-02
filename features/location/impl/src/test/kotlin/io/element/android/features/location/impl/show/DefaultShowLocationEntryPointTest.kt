@@ -17,8 +17,8 @@ import io.prism.android.features.location.api.ShowLocationMode
 import io.prism.android.features.location.impl.common.actions.FakeLocationActions
 import io.prism.android.features.location.impl.common.permissions.FakePermissionsPresenter
 import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.services.toolbox.test.strings.FakeStringProvider
 import io.prism.android.tests.testutils.node.TestParentNode

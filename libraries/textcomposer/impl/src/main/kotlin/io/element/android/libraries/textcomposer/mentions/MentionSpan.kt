@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.mentions
+package io.prism.android.libraries.textcomposer.mentions
 
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -16,9 +16,9 @@ import android.text.TextPaint
 import android.text.TextUtils
 import android.text.style.ReplacementSpan
 import androidx.core.text.getSpans
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomIdOrAlias
-import io.element.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.UserId
 import io.element.android.wysiwyg.view.spans.CustomMentionSpan
 import kotlin.math.roundToInt
 

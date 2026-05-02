@@ -18,7 +18,7 @@ import io.prism.android.features.invite.impl.SeenInvitesStoreFactory
 import io.prism.android.features.invite.impl.acceptdecline.AcceptDeclineInvitePresenter
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 
 @ContributesTo(SessionScope::class)
 @BindingContainer
@@ -30,11 +30,11 @@ interface InviteModule {
         @Provides
         fun providesSeenInvitesStore(
             factory: SeenInvitesStoreFactory,
-            prismClient: PRISMClient,
+            matrixClient: PRISMClient,
         ): SeenInvitesStore {
             return factory.getOrCreate(
-                prismClient.sessionId,
-                prismClient.sessionCoroutineScope,
+                matrixClient.sessionId,
+                matrixClient.sessionCoroutineScope,
             )
         }
     }

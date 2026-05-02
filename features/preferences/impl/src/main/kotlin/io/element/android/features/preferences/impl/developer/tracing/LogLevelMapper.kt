@@ -8,15 +8,15 @@
 
 package io.prism.android.features.preferences.impl.developer.tracing
 
-import io.prism.android.libraries.prism.api.tracing.LogLevel
+import io.prism.android.libraries.matrix.api.tracing.LogLevel
 
 fun LogLevelItem.toLogLevel(): LogLevel {
     return when (this) {
-        LogLevelItem.ERROR -> io.prism.android.libraries.prism.api.tracing.LogLevel.ERROR
-        LogLevelItem.WARN -> io.prism.android.libraries.prism.api.tracing.LogLevel.WARN
-        LogLevelItem.INFO -> io.prism.android.libraries.prism.api.tracing.LogLevel.INFO
-        LogLevelItem.DEBUG -> io.prism.android.libraries.prism.api.tracing.LogLevel.DEBUG
-        LogLevelItem.TRACE -> io.prism.android.libraries.prism.api.tracing.LogLevel.TRACE
+        LogLevelItem.ERROR -> io.prism.android.libraries.matrix.api.tracing.LogLevel.ERROR
+        LogLevelItem.WARN -> io.prism.android.libraries.matrix.api.tracing.LogLevel.WARN
+        LogLevelItem.INFO -> io.prism.android.libraries.matrix.api.tracing.LogLevel.INFO
+        LogLevelItem.DEBUG -> io.prism.android.libraries.matrix.api.tracing.LogLevel.DEBUG
+        LogLevelItem.TRACE -> io.prism.android.libraries.matrix.api.tracing.LogLevel.TRACE
     }
 }
 

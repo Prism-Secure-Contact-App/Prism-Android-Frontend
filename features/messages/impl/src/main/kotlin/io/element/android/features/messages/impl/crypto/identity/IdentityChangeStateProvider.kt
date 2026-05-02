@@ -11,10 +11,10 @@ package io.prism.android.features.messages.impl.crypto.identity
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.ui.room.IdentityRoomMember
-import io.prism.android.libraries.prism.ui.room.RoomMemberIdentityStateChange
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.ui.room.IdentityRoomMember
+import io.prism.android.libraries.matrix.ui.room.RoomMemberIdentityStateChange
 import kotlinx.collections.immutable.toImmutableList
 
 class IdentityChangeStateProvider : PreviewParameterProvider<IdentityChangeState> {

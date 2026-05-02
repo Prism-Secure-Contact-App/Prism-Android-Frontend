@@ -40,7 +40,7 @@ class JoinRoomFlowNode(
     private val declineAndBlockEntryPoint: DeclineInviteAndBlockEntryPoint
 ) : BaseFlowNode<JoinRoomFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

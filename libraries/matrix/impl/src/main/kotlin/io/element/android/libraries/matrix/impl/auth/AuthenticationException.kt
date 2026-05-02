@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
-import io.prism.android.libraries.prism.api.auth.AuthenticationException
-import org.prism.rustcomponents.sdk.ClientBuildException
-import org.prism.rustcomponents.sdk.OidcException
+import io.prism.android.libraries.matrix.api.auth.AuthenticationException
+import org.matrix.rustcomponents.sdk.ClientBuildException
+import org.matrix.rustcomponents.sdk.OidcException
 
 fun Throwable.mapAuthenticationException(): AuthenticationException {
     return when (this) {

@@ -26,8 +26,8 @@ import io.prism.android.features.securebackup.impl.loggerTagSetup
 import io.prism.android.features.securebackup.impl.setup.views.RecoveryKeyUserStory
 import io.prism.android.features.securebackup.impl.setup.views.RecoveryKeyViewState
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.encryption.EnableRecoveryProgress
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.encryption.EnableRecoveryProgress
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

@@ -8,7 +8,7 @@
 
 package io.prism.android.features.messages.impl.timeline.components.customreaction
 
-import io.prism.android.emojibasebindings.EmojibaseStore
+import io.element.android.emojibasebindings.EmojibaseStore
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet

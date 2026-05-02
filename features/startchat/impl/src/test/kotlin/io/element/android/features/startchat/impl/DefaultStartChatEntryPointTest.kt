@@ -14,7 +14,7 @@ import com.bumble.appyx.testing.junit4.util.MainDispatcherRule
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.createroom.api.FakeCreateRoomEntryPoint
 import io.prism.android.features.startchat.api.StartChatEntryPoint
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule

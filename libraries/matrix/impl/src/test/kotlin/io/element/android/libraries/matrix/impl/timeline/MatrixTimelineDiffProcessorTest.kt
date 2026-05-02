@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineItem
-import io.element.android.libraries.matrix.impl.timeline.item.event.EventTimelineItemMapper
-import io.element.android.libraries.matrix.impl.timeline.item.event.TimelineEventContentMapper
-import io.element.android.libraries.matrix.impl.timeline.item.virtual.VirtualTimelineItemMapper
-import io.element.android.libraries.matrix.test.A_UNIQUE_ID
-import io.element.android.libraries.matrix.test.A_UNIQUE_ID_2
-import io.element.android.libraries.matrix.test.timeline.anEventTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiTimelineItem
+import io.prism.android.libraries.matrix.impl.timeline.item.event.EventTimelineItemMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.event.TimelineEventContentMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.virtual.VirtualTimelineItemMapper
+import io.prism.android.libraries.matrix.test.A_UNIQUE_ID
+import io.prism.android.libraries.matrix.test.A_UNIQUE_ID_2
+import io.prism.android.libraries.matrix.test.timeline.anEventTimelineItem
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.TestScope
@@ -25,10 +25,10 @@ import org.junit.Test
 import org.matrix.rustcomponents.sdk.TimelineDiff
 
 class MatrixTimelineDiffProcessorTest {
-    private val timelineItems = MutableStateFlow<List<MatrixTimelineItem>>(emptyList())
+    private val timelineItems = MutableStateFlow<List<PRISMTimelineItem>>(emptyList())
 
-    private val anEvent = MatrixTimelineItem.Event(A_UNIQUE_ID, anEventTimelineItem())
-    private val anEvent2 = MatrixTimelineItem.Event(A_UNIQUE_ID_2, anEventTimelineItem())
+    private val anEvent = PRISMTimelineItem.Event(A_UNIQUE_ID, anEventTimelineItem())
+    private val anEvent2 = PRISMTimelineItem.Event(A_UNIQUE_ID_2, anEventTimelineItem())
 
     @Test
     fun `Append adds new entries at the end of the list`() = runTest {
@@ -38,7 +38,7 @@ class MatrixTimelineDiffProcessorTest {
         assertThat(timelineItems.value.count()).isEqualTo(2)
         assertThat(timelineItems.value).containsExactly(
             anEvent,
-            MatrixTimelineItem.Other,
+            PRISMTimelineItem.Other,
         )
     }
 
@@ -50,7 +50,7 @@ class MatrixTimelineDiffProcessorTest {
         assertThat(timelineItems.value.count()).isEqualTo(2)
         assertThat(timelineItems.value).containsExactly(
             anEvent,
-            MatrixTimelineItem.Other,
+            PRISMTimelineItem.Other,
         )
     }
 
@@ -61,7 +61,7 @@ class MatrixTimelineDiffProcessorTest {
         processor.postDiffs(listOf(TimelineDiff.PushFront(FakeFfiTimelineItem())))
         assertThat(timelineItems.value.count()).isEqualTo(2)
         assertThat(timelineItems.value).containsExactly(
-            MatrixTimelineItem.Other,
+            PRISMTimelineItem.Other,
             anEvent,
         )
     }
@@ -74,7 +74,7 @@ class MatrixTimelineDiffProcessorTest {
         assertThat(timelineItems.value.count()).isEqualTo(2)
         assertThat(timelineItems.value).containsExactly(
             anEvent,
-            MatrixTimelineItem.Other
+            PRISMTimelineItem.Other
         )
     }
 
@@ -86,14 +86,14 @@ class MatrixTimelineDiffProcessorTest {
         assertThat(timelineItems.value.count()).isEqualTo(3)
         assertThat(timelineItems.value).containsExactly(
             anEvent,
-            MatrixTimelineItem.Other,
+            PRISMTimelineItem.Other,
             anEvent2,
         )
     }
 
     @Test
     fun `Remove removes an entry at some index`() = runTest {
-        timelineItems.value = listOf(anEvent, MatrixTimelineItem.Other, anEvent2)
+        timelineItems.value = listOf(anEvent, PRISMTimelineItem.Other, anEvent2)
         val processor = createMatrixTimelineDiffProcessor(timelineItems)
         processor.postDiffs(listOf(TimelineDiff.Remove(1u)))
         assertThat(timelineItems.value.count()).isEqualTo(2)
@@ -135,7 +135,7 @@ class MatrixTimelineDiffProcessorTest {
 
     @Test
     fun `Truncate removes all entries after the provided length`() = runTest {
-        timelineItems.value = listOf(anEvent, MatrixTimelineItem.Other, anEvent2)
+        timelineItems.value = listOf(anEvent, PRISMTimelineItem.Other, anEvent2)
         val processor = createMatrixTimelineDiffProcessor(timelineItems)
         processor.postDiffs(listOf(TimelineDiff.Truncate(1u)))
         assertThat(timelineItems.value.count()).isEqualTo(1)
@@ -146,23 +146,23 @@ class MatrixTimelineDiffProcessorTest {
 
     @Test
     fun `Reset removes all entries and add the provided ones`() = runTest {
-        timelineItems.value = listOf(anEvent, MatrixTimelineItem.Other, anEvent2)
+        timelineItems.value = listOf(anEvent, PRISMTimelineItem.Other, anEvent2)
         val processor = createMatrixTimelineDiffProcessor(timelineItems)
         processor.postDiffs(listOf(TimelineDiff.Reset(listOf(FakeFfiTimelineItem()))))
         assertThat(timelineItems.value.count()).isEqualTo(1)
         assertThat(timelineItems.value).containsExactly(
-            MatrixTimelineItem.Other,
+            PRISMTimelineItem.Other,
         )
     }
 }
 
 internal fun TestScope.createMatrixTimelineDiffProcessor(
-    timelineItems: MutableSharedFlow<List<MatrixTimelineItem>> = MutableSharedFlow(),
+    timelineItems: MutableSharedFlow<List<PRISMTimelineItem>> = MutableSharedFlow(),
     membershipChangeEventReceivedFlow: MutableSharedFlow<Unit> = MutableSharedFlow(),
     syncedEventReceivedFlow: MutableSharedFlow<Unit> = MutableSharedFlow(),
-    ): MatrixTimelineDiffProcessor {
+    ): PRISMTimelineDiffProcessor {
     val timelineEventContentMapper = TimelineEventContentMapper()
-    val timelineItemFactory = MatrixTimelineItemMapper(
+    val timelineItemFactory = PRISMTimelineItemMapper(
         fetchDetailsForEvent = { _ -> Result.success(Unit) },
         coroutineScope = this,
         virtualTimelineItemMapper = VirtualTimelineItemMapper(),
@@ -170,7 +170,7 @@ internal fun TestScope.createMatrixTimelineDiffProcessor(
             contentMapper = timelineEventContentMapper
         )
     )
-    return MatrixTimelineDiffProcessor(
+    return PRISMTimelineDiffProcessor(
         timelineItems = timelineItems,
         membershipChangeEventReceivedFlow = membershipChangeEventReceivedFlow,
         syncedEventReceivedFlow = syncedEventReceivedFlow,

@@ -10,16 +10,16 @@ package io.prism.android.features.call.utils
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.call.impl.utils.DefaultCallWidgetProvider
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.widget.CallWidgetSettingsProvider
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.FakePRISMClientProvider
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.widget.FakeCallWidgetSettingsProvider
-import io.prism.android.libraries.prism.test.widget.FakePRISMWidgetDriver
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.widget.CallWidgetSettingsProvider
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.FakePRISMClientProvider
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.widget.FakeCallWidgetSettingsProvider
+import io.prism.android.libraries.matrix.test.widget.FakePRISMWidgetDriver
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.libraries.preferences.test.InMemoryAppPreferencesStore
 import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
@@ -114,7 +114,7 @@ class DefaultCallWidgetProviderTest {
             givenGetRoomResult(A_ROOM_ID, room)
         }
         val preferencesStore = InMemoryAppPreferencesStore().apply {
-            setCustomPRISMCallBaseUrl("https://custom.prism.io")
+            setCustomElementCallBaseUrl("https://custom.prism.io")
         }
         val settingsProvider = FakeCallWidgetSettingsProvider()
         val provider = createProvider(

@@ -9,8 +9,8 @@
 package io.prism.android.features.roomdetailsedit.impl
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 import io.prism.android.libraries.permissions.api.PermissionsState
 import kotlinx.collections.immutable.ImmutableList
 

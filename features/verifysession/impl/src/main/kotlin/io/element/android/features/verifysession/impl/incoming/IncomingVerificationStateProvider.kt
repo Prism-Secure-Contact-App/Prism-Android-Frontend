@@ -12,12 +12,12 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.verifysession.impl.incoming.IncomingVerificationState.Step
 import io.prism.android.features.verifysession.impl.ui.aDecimalsSessionVerificationData
 import io.prism.android.features.verifysession.impl.ui.aEmojisSessionVerificationData
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.FlowId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.api.verification.SessionVerificationRequestDetails
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.FlowId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationRequestDetails
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 
 open class IncomingVerificationStateProvider : PreviewParameterProvider<IncomingVerificationState> {
     override val values: Sequence<IncomingVerificationState>

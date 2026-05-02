@@ -7,11 +7,11 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.pushstore.test"
+    namespace = "io.prism.android.libraries.pushstore.test"
 }
 
 dependencies {

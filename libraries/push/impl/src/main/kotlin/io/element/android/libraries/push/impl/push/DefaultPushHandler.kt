@@ -6,31 +6,31 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.libraries.push.impl.history.PushHistoryService
-import io.element.android.libraries.push.impl.history.onDiagnosticPush
-import io.element.android.libraries.push.impl.history.onInvalidPushReceived
-import io.element.android.libraries.push.impl.history.onUnableToRetrieveSession
-import io.element.android.libraries.push.impl.notifications.NotificationResultProcessor
-import io.element.android.libraries.push.impl.test.DefaultTestPush
-import io.element.android.libraries.push.impl.troubleshoot.DiagnosticPushHandler
-import io.element.android.libraries.push.impl.workmanager.SyncPendingNotificationsRequestBuilder
-import io.element.android.libraries.pushproviders.api.PushData
-import io.element.android.libraries.pushproviders.api.PushHandler
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
-import io.element.android.libraries.workmanager.api.WorkManagerRequestType
-import io.element.android.libraries.workmanager.api.WorkManagerScheduler
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.push.impl.history.PushHistoryService
+import io.prism.android.libraries.push.impl.history.onDiagnosticPush
+import io.prism.android.libraries.push.impl.history.onInvalidPushReceived
+import io.prism.android.libraries.push.impl.history.onUnableToRetrieveSession
+import io.prism.android.libraries.push.impl.notifications.NotificationResultProcessor
+import io.prism.android.libraries.push.impl.test.DefaultTestPush
+import io.prism.android.libraries.push.impl.troubleshoot.DiagnosticPushHandler
+import io.prism.android.libraries.push.impl.workmanager.SyncPendingNotificationsRequestBuilder
+import io.prism.android.libraries.pushproviders.api.PushData
+import io.prism.android.libraries.pushproviders.api.PushHandler
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestType
+import io.prism.android.libraries.workmanager.api.WorkManagerScheduler
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.first

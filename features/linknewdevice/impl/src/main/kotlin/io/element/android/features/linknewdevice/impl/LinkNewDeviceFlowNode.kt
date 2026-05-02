@@ -42,10 +42,10 @@ import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.core.log.logger.LoggerTag
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.linknewdevice.ErrorType
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopStep
-import io.prism.android.libraries.prism.api.linknewdevice.LinkMobileStep
-import io.prism.android.libraries.prism.api.logs.LoggerTags
+import io.prism.android.libraries.matrix.api.linknewdevice.ErrorType
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopStep
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileStep
+import io.prism.android.libraries.matrix.api.logs.LoggerTags
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
@@ -66,7 +66,7 @@ class LinkNewDeviceFlowNode(
     private val linkNewDesktopHandler: LinkNewDesktopHandler,
 ) : BaseFlowNode<LinkNewDeviceFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

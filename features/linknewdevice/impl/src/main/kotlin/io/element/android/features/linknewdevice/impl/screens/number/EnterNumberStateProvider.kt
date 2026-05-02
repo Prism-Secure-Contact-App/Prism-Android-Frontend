@@ -9,7 +9,7 @@ package io.prism.android.features.linknewdevice.impl.screens.number
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.linknewdevice.ErrorType
+import io.prism.android.libraries.matrix.api.linknewdevice.ErrorType
 
 open class EnterNumberStateProvider : PreviewParameterProvider<EnterNumberState> {
     override val values: Sequence<EnterNumberState>

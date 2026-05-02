@@ -94,8 +94,8 @@ import io.prism.android.libraries.designsystem.theme.components.ListItemStyle
 import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.hide
-import io.prism.android.libraries.prism.ui.messages.sender.SenderName
-import io.prism.android.libraries.prism.ui.messages.sender.SenderNameMode
+import io.prism.android.libraries.matrix.ui.messages.sender.SenderName
+import io.prism.android.libraries.matrix.ui.messages.sender.SenderNameMode
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 

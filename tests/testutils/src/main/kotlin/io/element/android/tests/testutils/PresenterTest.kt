@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.TurbineTestContext
 import app.cash.turbine.test
-import io.element.android.libraries.architecture.Presenter
+import io.prism.android.libraries.architecture.Presenter
 import org.junit.Assert.fail
 import kotlin.time.Duration
 

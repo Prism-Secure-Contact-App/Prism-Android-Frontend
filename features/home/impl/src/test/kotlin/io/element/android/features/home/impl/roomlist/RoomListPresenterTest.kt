@@ -9,7 +9,7 @@
 package io.prism.android.features.home.impl.roomlist
 
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.features.announcement.api.Announcement
 import io.prism.android.features.announcement.api.AnnouncementService
 import io.prism.android.features.home.impl.FakeDateTimeObserver
@@ -37,30 +37,30 @@ import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
 import io.prism.android.libraries.eventformatter.api.RoomLatestEventFormatter
 import io.prism.android.libraries.eventformatter.test.FakeRoomLatestEventFormatter
 import io.prism.android.libraries.fullscreenintent.api.aFullScreenIntentPermissionsState
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.api.roomlist.RoomList
-import io.prism.android.libraries.prism.api.sync.SyncState
-import io.prism.android.libraries.prism.api.timeline.ReceiptType
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID_2
-import io.prism.android.libraries.prism.test.A_ROOM_ID_3
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
-import io.prism.android.libraries.prism.test.notificationsettings.FakeNotificationSettingsService
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.room.aRoomMember
-import io.prism.android.libraries.prism.test.room.aRoomSummary
-import io.prism.android.libraries.prism.test.roomlist.FakeDynamicRoomList
-import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
-import io.prism.android.libraries.prism.test.sync.FakeSyncService
-import io.prism.android.libraries.prism.test.verification.FakeSessionVerificationService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.roomlist.RoomList
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_3
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.test.sync.FakeSyncService
+import io.prism.android.libraries.matrix.test.verification.FakeSessionVerificationService
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
 import io.prism.android.libraries.preferences.test.InMemoryAppPreferencesStore
@@ -99,11 +99,11 @@ class RoomListPresenterTest {
         val roomListService = FakeRoomListService(
             createRoomListLambda = { roomList }
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
             seenInvitesStore = InMemorySeenInvitesStore(setOf(A_ROOM_ID, A_ROOM_ID_2, A_ROOM_ID_3)),
         )
         presenter.test {
@@ -170,7 +170,7 @@ class RoomListPresenterTest {
         val roomListService = FakeRoomListService(
             createRoomListLambda = { roomList }
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService,
             encryptionService = encryptionService,
             sessionVerificationService = FakeSessionVerificationService().apply {
@@ -179,7 +179,7 @@ class RoomListPresenterTest {
             syncService = FakeSyncService(initialSyncState = SyncState.Running),
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
         )
         presenter.test {
             val initialState = consumeItemsUntilPredicate {
@@ -364,11 +364,11 @@ class RoomListPresenterTest {
         val roomListService = FakeRoomListService(
             createRoomListLambda = { roomList }
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService,
             notificationSettingsService = notificationSettingsService
         )
-        val presenter = createRoomListPresenter(client = prismClient)
+        val presenter = createRoomListPresenter(client = matrixClient)
         presenter.test {
             notificationSettingsService.setRoomNotificationMode(A_ROOM_ID, userDefinedMode)
             val updatedState = consumeItemsUntilPredicate { state ->
@@ -420,11 +420,11 @@ class RoomListPresenterTest {
         val roomListService = FakeRoomListService(
             createRoomListLambda = { roomList }
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService,
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
         )
         presenter.test {
             assertThat(awaitItem().contentState).isInstanceOf(RoomListContentState.Empty::class.java)
@@ -447,7 +447,7 @@ class RoomListPresenterTest {
         )
         val allRooms = setOf(room, room2, room3)
         val sessionPreferencesStore = InMemorySessionPreferencesStore()
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, room)
             givenGetRoomResult(A_ROOM_ID_2, room2)
             givenGetRoomResult(A_ROOM_ID_3, room3)
@@ -458,7 +458,7 @@ class RoomListPresenterTest {
             clearMessagesForRoomLambda = clearMessagesForRoomLambda,
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
             sessionPreferencesStore = sessionPreferencesStore,
             analyticsService = analyticsService,
             notificationCleaner = notificationCleaner,
@@ -512,11 +512,11 @@ class RoomListPresenterTest {
         val roomListService = FakeRoomListService(
             createRoomListLambda = { roomList }
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService,
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
             acceptDeclineInvitePresenter = acceptDeclinePresenter
         )
         presenter.test {
@@ -556,11 +556,11 @@ class RoomListPresenterTest {
             createRoomListLambda = { roomList },
             subscribeToVisibleRoomsLambda = subscribeToVisibleRoomsLambda,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService,
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
         )
         presenter.test {
             val state = consumeItemsUntilPredicate {
@@ -590,11 +590,11 @@ class RoomListPresenterTest {
             createRoomListLambda = { roomList },
             subscribeToVisibleRoomsLambda = subscribeToVisibleRoomsLambda,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService,
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
         )
         presenter.test {
             val state = consumeItemsUntilPredicate {
@@ -626,7 +626,7 @@ class RoomListPresenterTest {
             createRoomListLambda = { roomList },
             subscribeToVisibleRoomsLambda = subscribeToVisibleRoomsLambda,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             roomListService = roomListService,
         )
         val onAnnouncementDismissedResult = lambdaRecorder<Announcement, Unit> { }
@@ -634,7 +634,7 @@ class RoomListPresenterTest {
             onAnnouncementDismissedResult = onAnnouncementDismissedResult,
         )
         val presenter = createRoomListPresenter(
-            client = prismClient,
+            client = matrixClient,
             announcementService = announcementService,
         )
         presenter.test {

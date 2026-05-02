@@ -8,6 +8,6 @@
 
 package io.prism.android.features.messages.api.pinned
 
-import io.prism.android.libraries.prism.api.timeline.TimelineProvider
+import io.prism.android.libraries.matrix.api.timeline.TimelineProvider
 
 interface PinnedEventsTimelineProvider : TimelineProvider

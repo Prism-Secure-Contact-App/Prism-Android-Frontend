@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.impl
+package io.prism.android.libraries.roomselect.impl
 
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.ui.components.aSelectRoomInfo
-import io.element.android.libraries.matrix.ui.model.SelectRoomInfo
-import io.element.android.libraries.roomselect.api.RoomSelectMode
+import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.ui.components.aSelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
+import io.prism.android.libraries.roomselect.api.RoomSelectMode
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

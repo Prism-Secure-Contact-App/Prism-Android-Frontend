@@ -36,14 +36,14 @@ import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
-import io.prism.android.libraries.prism.api.room.filterMembers
-import io.prism.android.libraries.prism.api.room.recent.getRecentDirectRooms
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.api.room.filterMembers
+import io.prism.android.libraries.matrix.api.room.recent.getRecentDirectRooms
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.libraries.usersearch.api.UserRepository
 import io.prism.android.services.apperror.api.AppErrorStateService
@@ -69,7 +69,7 @@ class DefaultInvitePeoplePresenter(
     private val coroutineDispatchers: CoroutineDispatchers,
     @SessionCoroutineScope private val sessionCoroutineScope: CoroutineScope,
     private val appErrorStateService: AppErrorStateService,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : InvitePeoplePresenter {
     @AssistedFactory
     @ContributesBinding(SessionScope::class)
@@ -93,8 +93,8 @@ class DefaultInvitePeoplePresenter(
                     .filter { it.membership.isActive() }
                     .mapTo(mutableSetOf()) { it.userId }
 
-                value = prismClient.getRecentDirectRooms()
-                    .filterNot { it.prismUser.userId in activeMemberIds }
+                value = matrixClient.getRecentDirectRooms()
+                    .filterNot { it.matrixUser.userId in activeMemberIds }
                     .take(MAX_SUGGESTIONS_COUNT)
                     .toList()
             }
@@ -105,8 +105,8 @@ class DefaultInvitePeoplePresenter(
             derivedStateOf {
                 recentDirectRooms.map { recentDirectRoom ->
                     InvitableUser(
-                        prismUser = recentDirectRoom.prismUser,
-                        isSelected = recentDirectRoom.prismUser in selectedUsers.value,
+                        matrixUser = recentDirectRoom.matrixUser,
+                        isSelected = recentDirectRoom.matrixUser in selectedUsers.value,
                         isAlreadyJoined = false,
                         isAlreadyInvited = false,
                         isUnresolved = false,
@@ -117,7 +117,7 @@ class DefaultInvitePeoplePresenter(
 
         val room by produceState(if (joinedRoom != null) AsyncData.Success(joinedRoom) else AsyncData.Loading()) {
             if (joinedRoom == null) {
-                val result = prismClient.getJoinedRoom(roomId)
+                val result = matrixClient.getJoinedRoom(roomId)
                 value = if (result == null) {
                     AsyncData.Failure(Exception("Room not found"))
                 } else {
@@ -218,7 +218,7 @@ class DefaultInvitePeoplePresenter(
         if (existingResults is SearchBarResultState.Results) {
             value = SearchBarResultState.Results(
                 existingResults.results.map { iu ->
-                    if (iu.prismUser == user) {
+                    if (iu.matrixUser == user) {
                         iu.copy(isSelected = !iu.isSelected)
                     } else {
                         iu
@@ -245,12 +245,12 @@ class DefaultInvitePeoplePresenter(
                 state.results.isEmpty() && state.isSearching -> SearchBarResultState.Initial()
                 state.results.isEmpty() && !state.isSearching -> SearchBarResultState.NoResultsFound()
                 else -> SearchBarResultState.Results(state.results.map { result ->
-                    val existingMembership = joinedMembers.firstOrNull { j -> j.userId == result.prismUser.userId }?.membership
+                    val existingMembership = joinedMembers.firstOrNull { j -> j.userId == result.matrixUser.userId }?.membership
                     val isJoined = existingMembership == RoomMembershipState.JOIN
                     val isInvited = existingMembership == RoomMembershipState.INVITE
                     InvitableUser(
-                        prismUser = result.prismUser,
-                        isSelected = selectedUsers.value.contains(result.prismUser),
+                        matrixUser = result.matrixUser,
+                        isSelected = selectedUsers.value.contains(result.matrixUser),
                         isAlreadyJoined = isJoined,
                         isAlreadyInvited = isInvited,
                         isUnresolved = result.isUnresolved,

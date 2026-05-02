@@ -46,7 +46,7 @@ import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.annotations.AppCoroutineScope
-import io.prism.android.libraries.prism.api.auth.OidcDetails
+import io.prism.android.libraries.matrix.api.auth.OidcDetails
 import io.prism.android.libraries.oidc.api.OidcAction
 import io.prism.android.libraries.oidc.api.OidcActionFlow
 import kotlinx.coroutines.CoroutineScope
@@ -65,7 +65,7 @@ class LoginFlowNode(
     private val appCoroutineScope: CoroutineScope,
 ) : BaseFlowNode<LoginFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.OnBoarding,
+        initialElement = NavTarget.OnBoarding,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,
@@ -134,19 +134,11 @@ class LoginFlowNode(
             NavTarget.OnBoarding -> {
                 val callback = object : OnBoardingNode.Callback {
                     override fun navigateToSignUpFlow() {
-                        backstack.push(
-                            NavTarget.ConfirmAccountProvider(isAccountCreation = true)
-                        )
+                        backstack.push(NavTarget.CreateAccount(url = "https://matrix.fathertkt.uk/_matrix/static/client/register/"))
                     }
 
                     override fun navigateToSignInFlow(mustChooseAccountProvider: Boolean) {
-                        backstack.push(
-                            if (mustChooseAccountProvider) {
-                                NavTarget.ChooseAccountProvider
-                            } else {
-                                NavTarget.ConfirmAccountProvider(isAccountCreation = false)
-                            }
-                        )
+                        backstack.push(NavTarget.LoginPassword)
                     }
 
                     override fun navigateToQrCode() {
@@ -231,7 +223,7 @@ class LoginFlowNode(
                 val callback = object : ChangeAccountProviderNode.Callback {
                     override fun onDone() {
                         // Go back to the Account Provider screen
-                        val confirmAccountProvider = backstack.prisms.value.firstOrNull {
+                        val confirmAccountProvider = backstack.elements.value.firstOrNull {
                             it.key.navTarget is NavTarget.ConfirmAccountProvider
                         }?.key?.navTarget ?: NavTarget.ConfirmAccountProvider(isAccountCreation = false)
                         backstack.singleTop(confirmAccountProvider)
@@ -248,7 +240,7 @@ class LoginFlowNode(
                 val callback = object : SearchAccountProviderNode.Callback {
                     override fun onDone() {
                         // Go back to the Account Provider screen
-                        val confirmAccountProvider = backstack.prisms.value.firstOrNull {
+                        val confirmAccountProvider = backstack.elements.value.firstOrNull {
                             it.key.navTarget is NavTarget.ConfirmAccountProvider
                         }?.key?.navTarget ?: NavTarget.ConfirmAccountProvider(isAccountCreation = false)
                         backstack.singleTop(confirmAccountProvider)

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.recentemojis.api
+package io.prism.android.libraries.recentemojis.api
 
 import kotlinx.collections.immutable.ImmutableList
 

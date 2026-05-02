@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.media
+package io.prism.android.libraries.matrix.impl.media
 
-import io.prism.android.libraries.prism.api.media.AudioInfo
+import io.prism.android.libraries.matrix.api.media.AudioInfo
 import kotlin.time.toJavaDuration
 import kotlin.time.toKotlinDuration
-import org.prism.rustcomponents.sdk.AudioInfo as RustAudioInfo
+import org.matrix.rustcomponents.sdk.AudioInfo as RustAudioInfo
 
 fun RustAudioInfo.map(): AudioInfo = AudioInfo(
     duration = duration?.toKotlinDuration(),

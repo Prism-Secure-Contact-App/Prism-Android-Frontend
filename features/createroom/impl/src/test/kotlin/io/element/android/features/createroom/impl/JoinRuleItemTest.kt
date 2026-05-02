@@ -9,9 +9,9 @@ package io.prism.android.features.createroom.impl
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.createroom.impl.configureroom.JoinRuleItem
-import io.prism.android.libraries.prism.api.room.join.AllowRule
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.api.room.join.AllowRule
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 import kotlinx.collections.immutable.persistentListOf
 import org.junit.Test
 

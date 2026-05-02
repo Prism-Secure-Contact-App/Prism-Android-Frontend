@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local
+package io.prism.android.libraries.mediaviewer.impl.local
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable

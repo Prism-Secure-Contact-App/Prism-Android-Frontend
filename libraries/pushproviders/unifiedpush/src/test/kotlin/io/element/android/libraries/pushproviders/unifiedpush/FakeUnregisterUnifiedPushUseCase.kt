@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeUnregisterUnifiedPushUseCase(
-    private val unregisterLambda: (MatrixClient, String, Boolean) -> Result<Unit> = { _, _, _ -> lambdaError() },
+    private val unregisterLambda: (PRISMClient, String, Boolean) -> Result<Unit> = { _, _, _ -> lambdaError() },
     private val cleanupLambda: (String, Boolean) -> Unit = { _, _ -> lambdaError() },
 ) : UnregisterUnifiedPushUseCase {
     override suspend fun unregister(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         clientSecret: String,
         unregisterUnifiedPush: Boolean,
     ): Result<Unit> {

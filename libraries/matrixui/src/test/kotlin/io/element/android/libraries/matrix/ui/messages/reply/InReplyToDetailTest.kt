@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages.reply
+package io.prism.android.libraries.matrix.ui.messages.reply
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.timeline.item.event.FormattedBody
-import io.element.android.libraries.matrix.api.timeline.item.event.InReplyTo
-import io.element.android.libraries.matrix.api.timeline.item.event.MembershipChange
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageContent
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageFormat
-import io.element.android.libraries.matrix.api.timeline.item.event.TextMessageType
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.permalink.FakePermalinkParser
-import io.element.android.libraries.matrix.test.timeline.aProfileDetails
-import io.element.android.libraries.matrix.test.timeline.item.event.aRoomMembershipContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FormattedBody
+import io.prism.android.libraries.matrix.api.timeline.item.event.InReplyTo
+import io.prism.android.libraries.matrix.api.timeline.item.event.MembershipChange
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageFormat
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.matrix.test.timeline.aProfileDetails
+import io.prism.android.libraries.matrix.test.timeline.item.event.aRoomMembershipContent
 import org.junit.Test
 
 class InReplyToDetailTest {

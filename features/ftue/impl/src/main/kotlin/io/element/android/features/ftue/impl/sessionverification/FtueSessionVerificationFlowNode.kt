@@ -33,7 +33,7 @@ import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.designsystem.utils.OpenUrlInTabView
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
@@ -46,7 +46,7 @@ class FtueSessionVerificationFlowNode(
     private val secureBackupEntryPoint: SecureBackupEntryPoint,
 ) : BaseFlowNode<FtueSessionVerificationFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

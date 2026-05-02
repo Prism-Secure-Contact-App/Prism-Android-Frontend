@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.api.local
+package io.prism.android.libraries.mediaviewer.api.local
 
 import android.net.Uri
-import io.element.android.libraries.matrix.api.media.MediaFile
-import io.element.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.matrix.api.media.MediaFile
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
 
 interface LocalMediaFactory {
     /**

@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.posthog
+package io.prism.android.services.analyticsproviders.posthog
 
 import android.content.Context
 import com.posthog.PostHogInterface
 import com.posthog.android.PostHogAndroid
 import com.posthog.android.PostHogAndroidConfig
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.di.annotations.ApplicationContext
 
 @Inject
 class PostHogFactory(

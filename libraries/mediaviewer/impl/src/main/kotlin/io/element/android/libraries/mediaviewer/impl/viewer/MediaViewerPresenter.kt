@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import android.content.ActivityNotFoundException
 import androidx.compose.runtime.Composable
@@ -25,24 +25,24 @@ import androidx.compose.runtime.snapshotFlow
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.element.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.room.powerlevels.permissionsAsState
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
-import io.element.android.libraries.mediaviewer.api.MediaViewerEntryPoint
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.R
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.local.LocalMediaActions
-import io.element.android.libraries.mediaviewer.impl.model.MediaPermissions
-import io.element.android.libraries.mediaviewer.impl.model.mediaPermissions
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
+import io.prism.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsAsState
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.event.toEventOrTransactionId
+import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.R
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.local.LocalMediaActions
+import io.prism.android.libraries.mediaviewer.impl.model.MediaPermissions
+import io.prism.android.libraries.mediaviewer.impl.model.mediaPermissions
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -50,7 +50,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import io.element.android.libraries.androidutils.R as UtilsR
+import io.prism.android.libraries.androidutils.R as UtilsR
 
 @AssistedInject
 class MediaViewerPresenter(

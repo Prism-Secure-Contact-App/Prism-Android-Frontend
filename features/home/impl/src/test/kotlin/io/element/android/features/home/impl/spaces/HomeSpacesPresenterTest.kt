@@ -14,8 +14,8 @@ import io.prism.android.features.invite.test.InMemorySeenInvitesStore
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.test.FakePRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.test.FakePRISMClient
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

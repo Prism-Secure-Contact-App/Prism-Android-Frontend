@@ -17,10 +17,10 @@ import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.features.roomdetails.impl.members.aRoomMember
 import io.prism.android.features.userprofile.shared.aUserProfileState
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.notification.CallIntent
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.test.A_USER_ID
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.test.A_USER_ID
 import io.prism.android.libraries.testtags.TestTags
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureCalledOnceWithTwoParams

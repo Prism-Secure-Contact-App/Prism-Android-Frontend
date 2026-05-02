@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.roomdirectory
+package io.prism.android.libraries.matrix.test.roomdirectory
 
-import io.element.android.libraries.matrix.api.roomdirectory.RoomDirectoryList
-import io.element.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryList
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
 import kotlinx.coroutines.CoroutineScope
 
 class FakeRoomDirectoryService(

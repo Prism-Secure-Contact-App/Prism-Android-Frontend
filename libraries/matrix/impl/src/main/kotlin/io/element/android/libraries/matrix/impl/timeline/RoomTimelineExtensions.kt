@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
-import io.prism.android.libraries.prism.impl.util.cancelAndDestroy
+import io.prism.android.libraries.matrix.impl.util.cancelAndDestroy
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -16,12 +16,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
-import org.prism.rustcomponents.sdk.PaginationStatusListener
-import org.prism.rustcomponents.sdk.TimelineDiff
-import org.prism.rustcomponents.sdk.TimelineInterface
-import org.prism.rustcomponents.sdk.TimelineListener
+import org.matrix.rustcomponents.sdk.PaginationStatusListener
+import org.matrix.rustcomponents.sdk.TimelineDiff
+import org.matrix.rustcomponents.sdk.TimelineInterface
+import org.matrix.rustcomponents.sdk.TimelineListener
 import timber.log.Timber
-import uniffi.prism_sdk.PaginationStatus
+import uniffi.matrix_sdk.PaginationStatus
 
 internal fun TimelineInterface.liveBackPaginationStatus(): Flow<PaginationStatus> = callbackFlow {
     val listener = object : PaginationStatusListener {

@@ -13,7 +13,7 @@ import android.text.style.StyleSpan
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.core.text.buildSpannedString
 import androidx.core.text.inSpans
-import io.prism.android.libraries.prism.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
 import org.jsoup.nodes.Document
 
 class TimelineItemEventContentProvider : PreviewParameterProvider<TimelineItemEventContent> {

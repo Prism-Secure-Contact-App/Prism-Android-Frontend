@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import android.util.Size
 import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi
-import io.element.android.libraries.androidutils.media.VideoCompressorHelper
-import io.element.android.libraries.mediaupload.api.compressorHelper
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.libraries.androidutils.media.VideoCompressorHelper
+import io.prism.android.libraries.mediaupload.api.compressorHelper
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 import kotlin.math.min
 
 @OptIn(UnstableApi::class)

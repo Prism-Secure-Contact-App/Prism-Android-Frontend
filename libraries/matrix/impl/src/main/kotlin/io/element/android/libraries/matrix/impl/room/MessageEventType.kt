@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.room.MessageEventType
-import org.prism.rustcomponents.sdk.MessageLikeEventType
+import io.prism.android.libraries.matrix.api.room.MessageEventType
+import org.matrix.rustcomponents.sdk.MessageLikeEventType
 
 fun MessageEventType.map(): MessageLikeEventType = when (this) {
     MessageEventType.Audio -> MessageLikeEventType.Audio

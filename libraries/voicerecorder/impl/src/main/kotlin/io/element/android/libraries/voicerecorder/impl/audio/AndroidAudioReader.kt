@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voicerecorder.impl.audio
+package io.prism.android.libraries.voicerecorder.impl.audio
 
 import android.Manifest
 import android.media.AudioRecord
@@ -14,9 +14,9 @@ import android.media.audiofx.AutomaticGainControl
 import android.media.audiofx.NoiseSuppressor
 import androidx.annotation.RequiresPermission
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.core.data.tryOrNull
-import io.element.android.libraries.di.RoomScope
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.data.tryOrNull
+import io.prism.android.libraries.di.RoomScope
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
 

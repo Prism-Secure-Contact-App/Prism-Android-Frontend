@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,21 +19,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
-import io.element.android.libraries.designsystem.atomic.atoms.RoomPreviewAliasAtom
-import io.element.android.libraries.designsystem.atomic.atoms.RoomPreviewDescriptionAtom
-import io.element.android.libraries.designsystem.atomic.atoms.RoomPreviewTitleAtom
-import io.element.android.libraries.designsystem.atomic.organisms.RoomPreviewOrganism
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.components.avatar.anAvatarData
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.spaces.SpaceRoomVisibility
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.designsystem.atomic.atoms.RoomPreviewAliasAtom
+import io.prism.android.libraries.designsystem.atomic.atoms.RoomPreviewDescriptionAtom
+import io.prism.android.libraries.designsystem.atomic.atoms.RoomPreviewTitleAtom
+import io.prism.android.libraries.designsystem.atomic.organisms.RoomPreviewOrganism
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.components.avatar.anAvatarData
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomVisibility
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -47,7 +47,7 @@ fun SpaceHeaderView(
     alias: RoomAlias?,
     topic: String?,
     visibility: SpaceRoomVisibility,
-    heroes: ImmutableList<MatrixUser>,
+    heroes: ImmutableList<PRISMUser>,
     numberOfMembers: Int,
     modifier: Modifier = Modifier,
     topicMaxLines: Int = Int.MAX_VALUE,
@@ -108,7 +108,7 @@ fun SpaceHeaderView(
 
 @PreviewsDayNight
 @Composable
-internal fun SpaceHeaderViewPreview() = ElementPreview {
+internal fun SpaceHeaderViewPreview() = PRISMPreview {
     SpaceHeaderView(
         avatarData = anAvatarData(
             url = "anUrl",

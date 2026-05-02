@@ -11,8 +11,8 @@ package io.prism.android.features.knockrequests.impl.data
 import androidx.compose.runtime.Immutable
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
 
 @Immutable
 interface KnockRequestPresentable {

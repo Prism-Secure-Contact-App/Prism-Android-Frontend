@@ -11,8 +11,8 @@ package io.prism.android.features.messages.test.timeline.voicemessages.composer
 import io.prism.android.features.messages.impl.voicemessages.composer.DefaultVoiceMessageComposerPresenter
 import io.prism.android.features.messages.impl.voicemessages.composer.VoiceMessageComposerPlayer
 import io.prism.android.features.messages.test.FakeMessageComposerContext
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
 import io.prism.android.libraries.mediaplayer.test.FakeAudioFocus
 import io.prism.android.libraries.mediaplayer.test.FakeMediaPlayer
 import io.prism.android.libraries.mediaupload.api.MediaSender

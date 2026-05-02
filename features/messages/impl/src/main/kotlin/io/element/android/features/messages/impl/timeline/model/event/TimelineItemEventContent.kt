@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.timeline.model.event
 
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.media.MediaSource
 import kotlin.time.Duration
 
 @Immutable

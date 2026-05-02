@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.impl.mentions
+package io.prism.android.libraries.textcomposer.impl.mentions
 
-import io.element.android.libraries.matrix.api.permalink.PermalinkParser
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.permalink.FakePermalinkParser
-import io.element.android.libraries.textcomposer.mentions.MentionSpanFormatter
-import io.element.android.libraries.textcomposer.mentions.MentionSpanProvider
-import io.element.android.libraries.textcomposer.mentions.MentionSpanTheme
-import io.element.android.libraries.textcomposer.mentions.MentionType
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.textcomposer.mentions.MentionSpanFormatter
+import io.prism.android.libraries.textcomposer.mentions.MentionSpanProvider
+import io.prism.android.libraries.textcomposer.mentions.MentionSpanTheme
+import io.prism.android.libraries.textcomposer.mentions.MentionType
 
 fun aMentionSpanProvider(
     permalinkParser: PermalinkParser = FakePermalinkParser(),

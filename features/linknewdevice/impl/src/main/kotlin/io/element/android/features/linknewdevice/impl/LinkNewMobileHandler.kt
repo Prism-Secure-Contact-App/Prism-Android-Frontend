@@ -11,10 +11,10 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import io.prism.android.libraries.core.log.logger.LoggerTag
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.linknewdevice.LinkMobileHandler
-import io.prism.android.libraries.prism.api.linknewdevice.LinkMobileStep
-import io.prism.android.libraries.prism.api.logs.LoggerTags
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileHandler
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileStep
+import io.prism.android.libraries.matrix.api.logs.LoggerTags
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,9 +29,9 @@ private val loggerTag = LoggerTag("LinkNewMobileHandler", LoggerTags.linkNewDevi
 @Inject
 @SingleIn(SessionScope::class)
 class LinkNewMobileHandler(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) {
-    private val sessionScope = prismClient.sessionCoroutineScope
+    private val sessionScope = matrixClient.sessionCoroutineScope
     private var currentJob: Job? = null
     private var handler: LinkMobileHandler? = null
 
@@ -45,7 +45,7 @@ class LinkNewMobileHandler(
     fun createAndStartNewHandler() {
         Timber.tag(loggerTag.value).d("createAndStartNewHandler()")
         currentJob?.cancel()
-        handler = prismClient.createLinkMobileHandler().getOrNull()
+        handler = matrixClient.createLinkMobileHandler().getOrNull()
         handler?.let { h ->
             currentJob = sessionScope.launch {
                 h.linkMobileStep

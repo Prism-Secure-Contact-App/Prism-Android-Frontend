@@ -8,24 +8,24 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.libraries.troubleshoot.impl.history
+package io.prism.android.libraries.troubleshoot.impl.history
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.architecture.AsyncAction
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID_2
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.push.api.PushService
-import io.element.android.libraries.push.test.FakePushService
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
-import io.element.android.tests.testutils.test
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID_2
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.push.api.PushService
+import io.prism.android.libraries.push.test.FakePushService
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
+import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -176,7 +176,7 @@ class PushHistoryPresenterTest {
     private fun createPushHistoryPresenter(
         pushHistoryNavigator: PushHistoryNavigator = PushHistoryNavigator { _, _ -> lambdaError() },
         pushService: PushService = FakePushService(),
-        matrixClient: MatrixClient = FakeMatrixClient(),
+        matrixClient: PRISMClient = FakeMatrixClient(),
     ): PushHistoryPresenter {
         return PushHistoryPresenter(
             pushHistoryNavigator = pushHistoryNavigator,

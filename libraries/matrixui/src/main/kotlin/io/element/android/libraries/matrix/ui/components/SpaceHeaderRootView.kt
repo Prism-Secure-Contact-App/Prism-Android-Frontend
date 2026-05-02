@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,12 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.BigIcon
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.BigIcon
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 /**
  * Ref: https://www.figma.com/design/G1xy0HDZKJf5TCRFmKb5d5/Compound-Android-Components?node-id=3643-2048
@@ -46,8 +46,8 @@ fun SpaceHeaderRootView(
         )
         Text(
             text = stringResource(CommonStrings.screen_space_list_title),
-            style = ElementTheme.typography.fontHeadingLgBold,
-            color = ElementTheme.colors.textPrimary,
+            style = PRISMTheme.typography.fontHeadingLgBold,
+            color = PRISMTheme.colors.textPrimary,
             textAlign = TextAlign.Center,
         )
         SpaceInfoRow(
@@ -56,8 +56,8 @@ fun SpaceHeaderRootView(
         )
         Text(
             text = stringResource(CommonStrings.screen_space_list_description),
-            style = ElementTheme.typography.fontBodyMdRegular,
-            color = ElementTheme.colors.textPrimary,
+            style = PRISMTheme.typography.fontBodyMdRegular,
+            color = PRISMTheme.colors.textPrimary,
             textAlign = TextAlign.Center,
         )
     }
@@ -65,7 +65,7 @@ fun SpaceHeaderRootView(
 
 @PreviewsDayNight
 @Composable
-internal fun SpaceHeaderRootViewPreview() = ElementPreview {
+internal fun SpaceHeaderRootViewPreview() = PRISMPreview {
     SpaceHeaderRootView(
         numberOfSpaces = 3,
     )

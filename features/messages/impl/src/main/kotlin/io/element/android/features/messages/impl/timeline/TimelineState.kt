@@ -15,10 +15,10 @@ import io.prism.android.features.messages.impl.timeline.model.NewEventState
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import io.prism.android.features.messages.impl.typing.TypingNotificationState
 import io.prism.android.features.roomcall.api.RoomCallState
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.room.tombstone.PredecessorRoom
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.room.tombstone.PredecessorRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import kotlinx.collections.immutable.ImmutableList
 import kotlin.time.Duration
 

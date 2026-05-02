@@ -16,7 +16,7 @@ import io.prism.android.features.rageshake.impl.preferences.DefaultRageshakePref
 import io.prism.android.features.rageshake.impl.rageshake.FakeRageShake
 import io.prism.android.features.rageshake.impl.rageshake.FakeRageshakeDataStore
 import io.prism.android.features.rageshake.impl.screenshot.FakeScreenshotHolder
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import io.mockk.mockk

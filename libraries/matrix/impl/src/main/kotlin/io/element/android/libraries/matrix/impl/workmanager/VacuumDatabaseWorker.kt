@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.workmanager
+package io.prism.android.libraries.matrix.impl.workmanager
 
 import android.content.Context
 import androidx.work.CoroutineWorker
@@ -16,20 +16,20 @@ import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.binding
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.workmanager.api.di.MetroWorkerFactory
-import io.element.android.libraries.workmanager.api.di.WorkerKey
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.recordTransaction
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.workmanager.api.di.MetroWorkerFactory
+import io.prism.android.libraries.workmanager.api.di.WorkerKey
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.recordTransaction
 import timber.log.Timber
 
 @AssistedInject
 class VacuumDatabaseWorker(
     @Assisted params: WorkerParameters,
     @ApplicationContext private val context: Context,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
     private val analyticsService: AnalyticsService,
 ) : CoroutineWorker(context, params) {
     companion object {

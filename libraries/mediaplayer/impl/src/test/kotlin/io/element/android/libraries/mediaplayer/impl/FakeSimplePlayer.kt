@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaplayer.impl
+package io.prism.android.libraries.mediaplayer.impl
 
 import androidx.media3.common.MediaItem
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeSimplePlayer(
     private val clearMediaItemsLambda: () -> Unit = { lambdaError() },

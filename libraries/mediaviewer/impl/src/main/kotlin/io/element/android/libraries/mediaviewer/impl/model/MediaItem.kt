@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.model
+package io.prism.android.libraries.mediaviewer.impl.model
 
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.UniqueId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.matrix.ui.media.MediaRequestData
-import io.element.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
 
 sealed interface MediaItem {
     data class DateSeparator(

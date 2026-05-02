@@ -12,7 +12,7 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.mapSaver
 import io.prism.android.features.poll.impl.PollConstants
 import io.prism.android.features.poll.impl.PollConstants.MIN_ANSWERS
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.poll.PollKind
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

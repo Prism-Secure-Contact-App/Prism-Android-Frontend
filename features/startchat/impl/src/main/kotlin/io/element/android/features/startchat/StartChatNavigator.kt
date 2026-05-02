@@ -15,7 +15,7 @@ import io.prism.android.features.startchat.impl.StartChatFlowNode.NavTarget
 import io.prism.android.libraries.architecture.overlay.Overlay
 import io.prism.android.libraries.architecture.overlay.operation.hide
 import io.prism.android.libraries.architecture.overlay.operation.show
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
 
 interface StartChatNavigator : Plugin {
     fun onRoomCreated(roomIdOrAlias: RoomIdOrAlias, serverNames: List<String>)

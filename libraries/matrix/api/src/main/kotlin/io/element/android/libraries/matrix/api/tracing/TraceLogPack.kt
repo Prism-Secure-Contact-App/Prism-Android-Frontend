@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.tracing
+package io.prism.android.libraries.matrix.api.tracing
 
 enum class TraceLogPack(val key: String) {
     EVENT_CACHE("event_cache") {

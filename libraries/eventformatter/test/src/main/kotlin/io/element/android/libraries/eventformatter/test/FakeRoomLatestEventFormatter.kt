@@ -9,7 +9,7 @@
 package io.prism.android.libraries.eventformatter.test
 
 import io.prism.android.libraries.eventformatter.api.RoomLatestEventFormatter
-import io.prism.android.libraries.prism.api.roomlist.LatestEventValue
+import io.prism.android.libraries.matrix.api.roomlist.LatestEventValue
 
 class FakeRoomLatestEventFormatter : RoomLatestEventFormatter {
     private var result: CharSequence? = null

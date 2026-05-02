@@ -16,7 +16,7 @@ import io.prism.android.features.viewfolder.impl.folder.FolderExplorer
 import io.prism.android.features.viewfolder.impl.folder.ViewFolderPresenter
 import io.prism.android.features.viewfolder.impl.model.Item
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.runTest

@@ -10,11 +10,11 @@ package io.prism.android.features.roomdetails.impl.notificationsettings
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.roomdetails.impl.aJoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.notificationsettings.FakeNotificationSettingsService
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
 import io.prism.android.tests.testutils.awaitLastSequentialItem
 import io.prism.android.tests.testutils.consumeItemsUntilPredicate
 import io.prism.android.tests.testutils.test

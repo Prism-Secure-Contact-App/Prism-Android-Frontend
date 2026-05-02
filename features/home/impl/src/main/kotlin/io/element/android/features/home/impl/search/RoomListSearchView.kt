@@ -49,7 +49,7 @@ import io.prism.android.libraries.designsystem.theme.components.IconButton
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
 import io.prism.android.libraries.designsystem.utils.OnVisibleRangeChangeEffect
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

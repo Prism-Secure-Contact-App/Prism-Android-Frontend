@@ -34,8 +34,8 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Icon
 import io.prism.android.libraries.designsystem.theme.components.IconButton
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.location.AssetType
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

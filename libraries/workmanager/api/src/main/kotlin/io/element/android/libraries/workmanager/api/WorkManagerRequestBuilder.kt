@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.workmanager.api
+package io.prism.android.libraries.workmanager.api
 
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkRequest

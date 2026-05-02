@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.channels
+package io.prism.android.libraries.push.impl.notifications.channels
 
-import io.element.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 class FakeNotificationChannels(
     var channelForIncomingCall: (ring: Boolean) -> String = { _ -> "" },

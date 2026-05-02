@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.flatMap
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.core.extensions.flatMap
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
 import timber.log.Timber
 
 private val loggerTag = LoggerTag("DefaultUnifiedPushNewGatewayHandler", LoggerTag.PushLoggerTag)
@@ -32,7 +32,7 @@ class DefaultUnifiedPushNewGatewayHandler(
     private val pusherSubscriber: PusherSubscriber,
     private val userPushStoreFactory: UserPushStoreFactory,
     private val pushClientSecret: PushClientSecret,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
 ) : UnifiedPushNewGatewayHandler {
     override suspend fun handle(endpoint: String, pushGateway: String, clientSecret: String): Result<Unit> {
         // Register the pusher for the session with this client secret, if is it using UnifiedPush.

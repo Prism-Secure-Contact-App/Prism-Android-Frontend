@@ -8,7 +8,7 @@
 
 package io.prism.android.libraries.eventformatter.api
 
-import io.prism.android.libraries.prism.api.timeline.item.event.EventTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventTimelineItem
 
 interface PinnedMessagesBannerFormatter {
     fun format(event: EventTimelineItem): CharSequence

@@ -10,7 +10,7 @@ package io.prism.android.x.oidc
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.prism.android.libraries.prism.api.auth.OidcRedirectUrlProvider
+import io.prism.android.libraries.matrix.api.auth.OidcRedirectUrlProvider
 import io.prism.android.services.toolbox.api.strings.StringProvider
 import io.prism.android.x.R
 

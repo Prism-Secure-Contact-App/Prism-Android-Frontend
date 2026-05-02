@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
 import androidx.test.platform.app.InstrumentationRegistry
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.strings.StringProvider
 
 class InstrumentationStringProvider : StringProvider {
     private val resource = InstrumentationRegistry.getInstrumentation().context.resources

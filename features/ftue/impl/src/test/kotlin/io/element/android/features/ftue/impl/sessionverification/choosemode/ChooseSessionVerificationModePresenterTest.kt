@@ -14,8 +14,8 @@ import io.prism.android.features.logout.api.direct.DirectLogoutState
 import io.prism.android.features.logout.api.direct.aDirectLogoutState
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.lambda.value
 import io.prism.android.tests.testutils.test

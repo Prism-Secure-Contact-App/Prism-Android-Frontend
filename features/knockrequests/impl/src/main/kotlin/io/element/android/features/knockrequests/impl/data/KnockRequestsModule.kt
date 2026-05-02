@@ -17,8 +17,8 @@ import io.prism.android.features.knockrequests.api.knockRequestPermissions
 import io.prism.android.libraries.di.RoomScope
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.powerlevels.permissionsFlow
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsFlow
 
 @BindingContainer
 @ContributesTo(RoomScope::class)

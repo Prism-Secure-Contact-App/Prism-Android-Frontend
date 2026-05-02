@@ -9,8 +9,8 @@
 package io.prism.android.features.invitepeople.api
 
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 interface InvitePeoplePresenter : Presenter<InvitePeopleState> {
     interface Factory {

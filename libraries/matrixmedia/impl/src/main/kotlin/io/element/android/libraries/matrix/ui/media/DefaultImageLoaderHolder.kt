@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import coil3.ImageLoader
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.sessionstorage.api.observer.SessionListener
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.sessionstorage.api.observer.SessionListener
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
 
 @ContributesBinding(AppScope::class)
 @SingleIn(AppScope::class)
@@ -44,11 +44,11 @@ class DefaultImageLoaderHolder(
         return notLoggedInImageLoader
     }
 
-    override fun get(client: MatrixClient): ImageLoader {
+    override fun get(client: PRISMClient): ImageLoader {
         return synchronized(map) {
             map.getOrPut(client.sessionId) {
                 imageLoaderFactory
-                    .newImageLoader(client.matrixMediaLoader)
+                    .newImageLoader(client.prismMediaLoader)
             }
         }
     }

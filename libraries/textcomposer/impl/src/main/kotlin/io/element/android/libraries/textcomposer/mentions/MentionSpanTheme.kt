@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.mentions
+package io.prism.android.libraries.textcomposer.mentions
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -33,20 +33,20 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.buildSpannedString
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.text.rememberTypeface
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.messageFromMeBackground
-import io.element.android.libraries.designsystem.theme.messageFromOtherBackground
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.core.toRoomIdOrAlias
-import io.element.android.libraries.matrix.api.permalink.PermalinkData
-import io.element.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.text.rememberTypeface
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.messageFromMeBackground
+import io.prism.android.libraries.designsystem.theme.messageFromOtherBackground
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
 import kotlinx.collections.immutable.persistentListOf
 
 /**
@@ -60,7 +60,7 @@ import kotlinx.collections.immutable.persistentListOf
 @SingleIn(SessionScope::class)
 class MentionSpanTheme(val currentUserId: UserId) {
     @Inject
-    constructor(matrixClient: MatrixClient) : this(matrixClient.sessionId)
+    constructor(matrixClient: PRISMClient) : this(matrixClient.sessionId)
 
     internal var currentUserTextColor: Int = Color.BLACK
         private set
@@ -76,17 +76,17 @@ class MentionSpanTheme(val currentUserId: UserId) {
     internal val typeface = mutableStateOf(Typeface.DEFAULT)
 
     /**
-     * Updates the styles of the mention spans based on the [ElementTheme] and [currentUserId].
+     * Updates the styles of the mention spans based on the [PRISMTheme] and [currentUserId].
      */
     @Suppress("ComposableNaming")
     @Composable
     fun updateStyles() {
-        currentUserTextColor = ElementTheme.colors.textBadgeAccent.toArgb()
-        currentUserBackgroundColor = ElementTheme.colors.bgBadgeAccent.toArgb()
-        otherTextColor = ElementTheme.colors.textOnSolidPrimary.toArgb()
-        otherBackgroundColor = ElementTheme.colors.bgBadgePrimary.toArgb()
+        currentUserTextColor = PRISMTheme.colors.textBadgeAccent.toArgb()
+        currentUserBackgroundColor = PRISMTheme.colors.bgBadgeAccent.toArgb()
+        otherTextColor = PRISMTheme.colors.textOnSolidPrimary.toArgb()
+        otherBackgroundColor = PRISMTheme.colors.bgBadgePrimary.toArgb()
 
-        typeface.value = ElementTheme.typography.fontBodyLgMedium.rememberTypeface().value
+        typeface.value = PRISMTheme.typography.fontBodyLgMedium.rememberTypeface().value
         val density = LocalDensity.current
         val layoutDirection = LocalLayoutDirection.current
         paddingValuesPx.value = remember(paddingValues, density, layoutDirection) {
@@ -113,7 +113,7 @@ fun MentionSpanTheme.updateMentionStyles(charSequence: CharSequence) {
 @PreviewsDayNight
 @Composable
 internal fun MentionSpanThemePreview() {
-    ElementPreview {
+    PRISMPreview {
         val mentionSpanTheme = remember { MentionSpanTheme(UserId("@me:matrix.org")) }
         val provider = remember {
             MentionSpanProvider(
@@ -146,7 +146,7 @@ internal fun MentionSpanThemePreview() {
             )
         }
 
-        val textColor = ElementTheme.colors.textPrimary.toArgb()
+        val textColor = PRISMTheme.colors.textPrimary.toArgb()
         fun mentionSpanMe() = provider.getMentionSpanFor("mention", "https://matrix.to/#/@me:matrix.org")
         fun mentionSpanOther() = provider.getMentionSpanFor("mention", "https://matrix.to/#/@other:matrix.org")
         fun mentionSpanRoom() = provider.getMentionSpanFor("room:matrix.org", "https://matrix.to/#/#room:matrix.org")
@@ -208,7 +208,7 @@ private fun MentionSpanThemeInTimelineContent(
         )
     }
 
-    val textColor = ElementTheme.colors.textPrimary.toArgb()
+    val textColor = PRISMTheme.colors.textPrimary.toArgb()
     fun mentionSpanMe() = provider.getMentionSpanFor("mention", "https://matrix.to/#/@me:matrix.org")
     fun mentionSpanOther() = provider.getMentionSpanFor("mention", "https://matrix.to/#/@other:matrix.org")
     mentionSpanTheme.updateStyles()
@@ -234,7 +234,7 @@ private fun MentionSpanThemeInTimelineContent(
 
 @PreviewsDayNight
 @Composable
-internal fun MentionSpanThemeInTimelinePreview() = ElementPreview {
+internal fun MentionSpanThemeInTimelinePreview() = PRISMPreview {
     Column(
         modifier = Modifier.padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -242,9 +242,9 @@ internal fun MentionSpanThemeInTimelinePreview() = ElementPreview {
         // Message from me
         Text(
             text = "Message from me",
-            style = ElementTheme.typography.fontBodySmMedium,
+            style = PRISMTheme.typography.fontBodySmMedium,
         )
-        ElementTheme.colors.messageFromMeBackground.let { color ->
+        PRISMTheme.colors.messageFromMeBackground.let { color ->
             MentionSpanThemeInTimelineContent(
                 modifier = Modifier
                     .padding(start = 60.dp, end = 8.dp)
@@ -257,10 +257,10 @@ internal fun MentionSpanThemeInTimelinePreview() = ElementPreview {
             )
         }
         // Message from other
-        ElementTheme.colors.messageFromOtherBackground.let { color ->
+        PRISMTheme.colors.messageFromOtherBackground.let { color ->
             Text(
                 text = "Message from other",
-                style = ElementTheme.typography.fontBodySmMedium,
+                style = PRISMTheme.typography.fontBodySmMedium,
             )
             MentionSpanThemeInTimelineContent(
                 modifier = Modifier
@@ -275,10 +275,10 @@ internal fun MentionSpanThemeInTimelinePreview() = ElementPreview {
             )
         }
         // Composer
-        ElementTheme.colors.bgSubtleSecondary.let { color ->
+        PRISMTheme.colors.bgSubtleSecondary.let { color ->
             Text(
                 text = "Composer",
-                style = ElementTheme.typography.fontBodySmMedium,
+                style = PRISMTheme.typography.fontBodySmMedium,
             )
             MentionSpanThemeInTimelineContent(
                 modifier = Modifier

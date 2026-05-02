@@ -6,88 +6,88 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.di
+package io.prism.android.libraries.matrix.impl.di
 
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.media.PRISMMediaLoader
-import io.prism.android.libraries.prism.api.media.MediaPreviewService
-import io.prism.android.libraries.prism.api.notificationsettings.NotificationSettingsService
-import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDirectoryService
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.spaces.SpaceService
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaPreviewService
+import io.prism.android.libraries.matrix.api.notificationsettings.NotificationSettingsService
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.spaces.SpaceService
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
 import kotlinx.coroutines.CoroutineScope
 
 @BindingContainer
 @ContributesTo(SessionScope::class)
 object SessionPRISMModule {
     @Provides
-    fun providesSessionId(prismClient: PRISMClient): SessionId {
-        return prismClient.sessionId
+    fun providesSessionId(matrixClient: PRISMClient): SessionId {
+        return matrixClient.sessionId
     }
 
     @Provides
-    fun providesSessionVerificationService(prismClient: PRISMClient): SessionVerificationService {
-        return prismClient.sessionVerificationService
+    fun providesSessionVerificationService(matrixClient: PRISMClient): SessionVerificationService {
+        return matrixClient.sessionVerificationService
     }
 
     @Provides
-    fun providesNotificationSettingsService(prismClient: PRISMClient): NotificationSettingsService {
-        return prismClient.notificationSettingsService
+    fun providesNotificationSettingsService(matrixClient: PRISMClient): NotificationSettingsService {
+        return matrixClient.notificationSettingsService
     }
 
     @Provides
-    fun provideRoomMembershipObserver(prismClient: PRISMClient): RoomMembershipObserver {
-        return prismClient.roomMembershipObserver
+    fun provideRoomMembershipObserver(matrixClient: PRISMClient): RoomMembershipObserver {
+        return matrixClient.roomMembershipObserver
     }
 
     @Provides
-    fun providesRoomListService(prismClient: PRISMClient): RoomListService {
-        return prismClient.roomListService
+    fun providesRoomListService(matrixClient: PRISMClient): RoomListService {
+        return matrixClient.roomListService
     }
 
     @Provides
-    fun providesSyncService(prismClient: PRISMClient): SyncService {
-        return prismClient.syncService
+    fun providesSyncService(matrixClient: PRISMClient): SyncService {
+        return matrixClient.syncService
     }
 
     @Provides
-    fun providesEncryptionService(prismClient: PRISMClient): EncryptionService {
-        return prismClient.encryptionService
+    fun providesEncryptionService(matrixClient: PRISMClient): EncryptionService {
+        return matrixClient.encryptionService
     }
 
     @Provides
-    fun providesPRISMMediaLoader(prismClient: PRISMClient): PRISMMediaLoader {
-        return prismClient.prismMediaLoader
+    fun providesPRISMMediaLoader(matrixClient: PRISMClient): PRISMMediaLoader {
+        return matrixClient.prismMediaLoader
     }
 
     @SessionCoroutineScope
     @Provides
-    fun providesSessionCoroutineScope(prismClient: PRISMClient): CoroutineScope {
-        return prismClient.sessionCoroutineScope
+    fun providesSessionCoroutineScope(matrixClient: PRISMClient): CoroutineScope {
+        return matrixClient.sessionCoroutineScope
     }
 
     @Provides
-    fun providesRoomDirectoryService(prismClient: PRISMClient): RoomDirectoryService {
-        return prismClient.roomDirectoryService
+    fun providesRoomDirectoryService(matrixClient: PRISMClient): RoomDirectoryService {
+        return matrixClient.roomDirectoryService
     }
 
     @Provides
-    fun providesMediaPreviewService(prismClient: PRISMClient): MediaPreviewService {
-        return prismClient.mediaPreviewService
+    fun providesMediaPreviewService(matrixClient: PRISMClient): MediaPreviewService {
+        return matrixClient.mediaPreviewService
     }
 
     @Provides
-    fun providesSpaceService(prismClient: PRISMClient): SpaceService {
-        return prismClient.spaceService
+    fun providesSpaceService(matrixClient: PRISMClient): SpaceService {
+        return matrixClient.spaceService
     }
 }

@@ -17,12 +17,12 @@ import io.prism.android.libraries.dateformatter.api.DateFormatter
 import io.prism.android.libraries.dateformatter.api.DateFormatterMode
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
 import io.prism.android.libraries.eventformatter.api.RoomLatestEventFormatter
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.roomlist.LatestEventValue
-import io.prism.android.libraries.prism.api.roomlist.RoomSummary
-import io.prism.android.libraries.prism.ui.model.getAvatarData
-import io.prism.android.libraries.prism.ui.model.toInviteSender
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.roomlist.LatestEventValue
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.toInviteSender
 import kotlinx.collections.immutable.toImmutableList
 
 @Inject

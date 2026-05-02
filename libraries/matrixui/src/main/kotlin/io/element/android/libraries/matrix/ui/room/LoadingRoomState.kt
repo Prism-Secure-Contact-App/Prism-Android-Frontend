@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.room
+package io.prism.android.libraries.matrix.ui.room
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,7 +39,7 @@ open class LoadingRoomStateProvider : PreviewParameterProvider<LoadingRoomState>
 }
 
 @Inject
-class LoadingRoomStateFlowFactory(private val matrixClient: MatrixClient) {
+class LoadingRoomStateFlowFactory(private val matrixClient: PRISMClient) {
     fun create(lifecycleScope: CoroutineScope, roomId: RoomId, joinedRoom: JoinedRoom?): StateFlow<LoadingRoomState> {
         return if (joinedRoom != null) {
             MutableStateFlow<LoadingRoomState>(LoadingRoomState.Loaded(joinedRoom))

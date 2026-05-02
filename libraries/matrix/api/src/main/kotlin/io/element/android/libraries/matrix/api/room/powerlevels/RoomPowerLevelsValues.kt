@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.powerlevels
+package io.prism.android.libraries.matrix.api.room.powerlevels
 
 data class RoomPowerLevelsValues(
     val ban: Long,

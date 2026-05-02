@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.timeline.item.event
+package io.prism.android.libraries.matrix.api.timeline.item.event
 
 /**
  * Constants defining known event types from PRISM specifications.

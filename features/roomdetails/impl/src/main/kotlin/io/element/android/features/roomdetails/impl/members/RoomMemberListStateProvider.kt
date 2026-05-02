@@ -15,10 +15,10 @@ import io.prism.android.features.roommembermoderation.api.RoomMemberModerationPe
 import io.prism.android.features.roommembermoderation.api.RoomMemberModerationState
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.map
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
 import kotlinx.collections.immutable.persistentListOf
 
 internal class RoomMemberListStateProvider : PreviewParameterProvider<RoomMemberListState> {

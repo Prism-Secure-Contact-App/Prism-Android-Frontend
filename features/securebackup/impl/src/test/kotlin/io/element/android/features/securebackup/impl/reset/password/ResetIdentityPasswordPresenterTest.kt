@@ -12,7 +12,7 @@ import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.encryption.FakeIdentityPasswordResetHandle
+import io.prism.android.libraries.matrix.test.encryption.FakeIdentityPasswordResetHandle
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages.sender
+package io.prism.android.libraries.matrix.ui.messages.sender
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color

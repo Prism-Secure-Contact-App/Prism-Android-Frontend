@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.encryption
+package io.prism.android.libraries.matrix.impl.encryption
 
-import io.prism.android.libraries.prism.api.encryption.RecoveryException
-import io.prism.android.libraries.prism.api.exception.ClientException
-import io.prism.android.libraries.prism.impl.exception.mapClientException
-import org.prism.rustcomponents.sdk.RecoveryException as RustRecoveryException
+import io.prism.android.libraries.matrix.api.encryption.RecoveryException
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.impl.exception.mapClientException
+import org.matrix.rustcomponents.sdk.RecoveryException as RustRecoveryException
 
 fun Throwable.mapRecoveryException(): RecoveryException {
     return when (this) {

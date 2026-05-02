@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,17 +16,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.architecture.runUpdatingState
-import io.element.android.libraries.core.extensions.flatMap
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.ui.utils.time.formatShort
-import io.element.android.libraries.voiceplayer.api.VoiceMessageEvent
-import io.element.android.libraries.voiceplayer.api.VoiceMessageException
-import io.element.android.libraries.voiceplayer.api.VoiceMessageState
-import io.element.android.services.analytics.api.AnalyticsService
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.architecture.runUpdatingState
+import io.prism.android.libraries.core.extensions.flatMap
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.ui.utils.time.formatShort
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageEvent
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageException
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageState
+import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.time.Duration

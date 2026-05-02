@@ -15,7 +15,7 @@ import io.prism.android.features.invite.api.acceptdecline.ConfirmingDeclineInvit
 import io.prism.android.features.invite.api.acceptdecline.anAcceptDeclineInviteState
 import io.prism.android.features.invite.impl.AcceptInvite
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 open class AcceptDeclineInviteStateProvider : PreviewParameterProvider<AcceptDeclineInviteState> {
     override val values: Sequence<AcceptDeclineInviteState>

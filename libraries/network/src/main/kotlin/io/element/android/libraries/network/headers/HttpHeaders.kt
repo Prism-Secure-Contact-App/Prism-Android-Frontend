@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network.headers
+package io.prism.android.libraries.network.headers
 
 @Suppress("ktlint:standard:property-naming")
 internal object HttpHeaders {

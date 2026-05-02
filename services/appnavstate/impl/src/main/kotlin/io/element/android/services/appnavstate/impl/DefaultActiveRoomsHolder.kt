@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.impl
+package io.prism.android.services.appnavstate.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.services.appnavstate.api.ActiveRoomsHolder
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
 import java.util.concurrent.ConcurrentHashMap
 
 @SingleIn(AppScope::class)

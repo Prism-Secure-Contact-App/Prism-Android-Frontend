@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
@@ -21,7 +21,7 @@ import androidx.compose.ui.test.isDialog
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.ui.strings.CommonStrings
 import org.junit.rules.TestRule
 
 val trueMatcher = SemanticsMatcher("true matcher") { true }

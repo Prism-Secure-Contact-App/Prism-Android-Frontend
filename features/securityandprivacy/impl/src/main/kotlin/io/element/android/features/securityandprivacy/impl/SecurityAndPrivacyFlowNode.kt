@@ -32,8 +32,8 @@ import io.prism.android.libraries.architecture.BaseFlowNode
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.powerlevels.use
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.powerlevels.use
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -48,7 +48,7 @@ class SecurityAndPrivacyFlowNode(
     private val room: JoinedRoom,
 ) : BaseFlowNode<SecurityAndPrivacyFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.SecurityAndPrivacy,
+        initialElement = NavTarget.SecurityAndPrivacy,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

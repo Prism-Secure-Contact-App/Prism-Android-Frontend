@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.model
+package io.prism.android.libraries.matrix.ui.model
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.tests.testutils.WarmUpRule
-import io.element.android.tests.testutils.withConfigurationAndContext
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.tests.testutils.WarmUpRule
+import io.prism.android.tests.testutils.withConfigurationAndContext
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -31,7 +31,7 @@ class MatrixUserExtensionsTest {
 
     @Test
     fun `getAvatarData should return the expected value`() {
-        val matrixUser = MatrixUser(
+        val matrixUser = PRISMUser(
             userId = A_USER_ID,
             displayName = "displayName",
             avatarUrl = "avatarUrl",
@@ -47,7 +47,7 @@ class MatrixUserExtensionsTest {
 
     @Test
     fun `getBestName should return the display name is available`() {
-        val matrixUser = MatrixUser(
+        val matrixUser = PRISMUser(
             userId = A_USER_ID,
             displayName = "displayName",
         )
@@ -56,7 +56,7 @@ class MatrixUserExtensionsTest {
 
     @Test
     fun `getBestName should return the id when name is not available`() {
-        val matrixUser = MatrixUser(
+        val matrixUser = PRISMUser(
             userId = A_USER_ID,
             displayName = null,
         )
@@ -65,7 +65,7 @@ class MatrixUserExtensionsTest {
 
     @Test
     fun `getBestName should return the id when name is empty`() {
-        val matrixUser = MatrixUser(
+        val matrixUser = PRISMUser(
             userId = A_USER_ID,
             displayName = "",
         )
@@ -74,7 +74,7 @@ class MatrixUserExtensionsTest {
 
     @Test
     fun `getFullName should return the display name is available and the userId`() = runTest {
-        val matrixUser = MatrixUser(
+        val matrixUser = PRISMUser(
             userId = A_USER_ID,
             displayName = "displayName",
         )
@@ -89,7 +89,7 @@ class MatrixUserExtensionsTest {
 
     @Test
     fun `getBestName should return only the id when name is not available`() = runTest {
-        val matrixUser = MatrixUser(
+        val matrixUser = PRISMUser(
             userId = A_USER_ID,
             displayName = null,
         )

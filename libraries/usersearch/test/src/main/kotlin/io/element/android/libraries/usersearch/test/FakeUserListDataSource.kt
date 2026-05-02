@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.usersearch.test
+package io.prism.android.libraries.usersearch.test
 
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.usersearch.api.UserListDataSource
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.usersearch.api.UserListDataSource
 
 class FakeUserListDataSource : UserListDataSource {
-    private var searchResult: List<MatrixUser> = emptyList()
-    private var profile: MatrixUser? = null
+    private var searchResult: List<PRISMUser> = emptyList()
+    private var profile: PRISMUser? = null
 
-    override suspend fun search(query: String, count: Long): List<MatrixUser> = searchResult.take(count.toInt())
+    override suspend fun search(query: String, count: Long): List<PRISMUser> = searchResult.take(count.toInt())
 
-    override suspend fun getProfile(userId: UserId): MatrixUser? = profile
+    override suspend fun getProfile(userId: UserId): PRISMUser? = profile
 
-    fun givenSearchResult(users: List<MatrixUser>) {
+    fun givenSearchResult(users: List<PRISMUser>) {
         this.searchResult = users
     }
 
-    fun givenUserProfile(matrixUser: MatrixUser?) {
+    fun givenUserProfile(matrixUser: PRISMUser?) {
         this.profile = matrixUser
     }
 }

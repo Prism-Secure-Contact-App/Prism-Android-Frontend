@@ -21,12 +21,12 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemTextBasedContent
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemTextContent
 import io.prism.android.features.messages.impl.utils.FakeMentionSpanFormatter
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID_2
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.ui.messages.RoomMemberProfilesCache
-import io.prism.android.libraries.prism.ui.messages.RoomNamesCache
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
+import io.prism.android.libraries.matrix.ui.messages.RoomNamesCache
 import io.prism.android.libraries.textcomposer.mentions.DefaultMentionSpanUpdater
 import io.prism.android.libraries.textcomposer.mentions.LocalMentionSpanUpdater
 import io.prism.android.libraries.textcomposer.mentions.MentionSpan
@@ -36,7 +36,7 @@ import io.prism.android.libraries.textcomposer.mentions.MentionType
 import io.prism.android.libraries.textcomposer.mentions.getMentionSpans
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
-import io.prism.android.wysiwyg.view.spans.CustomMentionSpan
+import io.element.android.wysiwyg.view.spans.CustomMentionSpan
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule

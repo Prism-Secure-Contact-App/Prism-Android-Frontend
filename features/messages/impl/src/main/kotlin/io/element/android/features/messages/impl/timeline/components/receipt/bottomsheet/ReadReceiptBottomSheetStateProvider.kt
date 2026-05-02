@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.messages.impl.timeline.aTimelineItemEvent
 import io.prism.android.features.messages.impl.timeline.components.receipt.ReadReceiptViewStateProvider
 import io.prism.android.features.messages.impl.timeline.model.TimelineItemReadReceipts
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
 import kotlinx.collections.immutable.toImmutableList
 
 class ReadReceiptBottomSheetStateProvider : PreviewParameterProvider<ReadReceiptBottomSheetState> {

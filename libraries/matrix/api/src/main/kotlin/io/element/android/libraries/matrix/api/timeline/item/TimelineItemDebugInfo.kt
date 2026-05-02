@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.timeline.item
+package io.prism.android.libraries.matrix.api.timeline.item
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

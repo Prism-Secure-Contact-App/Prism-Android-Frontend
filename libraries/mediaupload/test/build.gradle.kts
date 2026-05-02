@@ -7,11 +7,11 @@
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.mediaupload.test"
+    namespace = "io.prism.android.libraries.mediaupload.test"
 }
 
 dependencies {

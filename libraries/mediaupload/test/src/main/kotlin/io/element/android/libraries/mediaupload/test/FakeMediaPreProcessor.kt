@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.test
+package io.prism.android.libraries.mediaupload.test
 
 import android.net.Uri
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.media.AudioInfo
-import io.element.android.libraries.matrix.api.media.FileInfo
-import io.element.android.libraries.matrix.api.media.ImageInfo
-import io.element.android.libraries.matrix.api.media.VideoInfo
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaPreProcessor
-import io.element.android.libraries.mediaupload.api.MediaUploadInfo
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.media.AudioInfo
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.VideoInfo
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
+import io.prism.android.libraries.mediaupload.api.MediaUploadInfo
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.coroutines.CompletableDeferred
 import java.io.File
 import kotlin.time.Duration.Companion.seconds

@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room.preview
+package io.prism.android.libraries.matrix.impl.room.preview
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.CurrentUserMembership
-import io.element.android.libraries.matrix.api.room.RoomType
-import io.element.android.libraries.matrix.api.room.join.JoinRule
-import io.element.android.libraries.matrix.api.room.preview.RoomPreviewInfo
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomPreviewInfo
-import io.element.android.libraries.matrix.test.A_ROOM_ALIAS
-import io.element.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomType
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.preview.RoomPreviewInfo
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomPreviewInfo
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.Membership
 import org.matrix.rustcomponents.sdk.JoinRule as RustJoinRule

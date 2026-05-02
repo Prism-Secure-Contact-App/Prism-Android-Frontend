@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -36,19 +36,19 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.components.avatar.anAvatarData
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.text.toPx
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Surface
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.components.avatar.anAvatarData
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.text.toPx
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Surface
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 /**
  * Ref: https://www.figma.com/design/G1xy0HDZKJf5TCRFmKb5d5/Compound-Android-Components?node-id=3643-2678&m=dev
@@ -108,9 +108,9 @@ fun EditableOrgAvatar(
                 },
         )
         Surface(
-            color = ElementTheme.colors.bgCanvasDefault,
+            color = PRISMTheme.colors.bgCanvasDefault,
             shape = CircleShape,
-            border = BorderStroke(1.dp, color = ElementTheme.colors.borderInteractiveSecondary),
+            border = BorderStroke(1.dp, color = PRISMTheme.colors.borderInteractiveSecondary),
             modifier = Modifier
                 .clip(CircleShape)
                 .size(30.dp)
@@ -125,7 +125,7 @@ fun EditableOrgAvatar(
                 imageVector = CompoundIcons.Edit(),
                 // Note: keep the context description for the test
                 contentDescription = stringResource(id = CommonStrings.action_edit),
-                tint = ElementTheme.colors.iconPrimary,
+                tint = PRISMTheme.colors.iconPrimary,
                 modifier = Modifier.padding(6.dp)
             )
         }
@@ -134,7 +134,7 @@ fun EditableOrgAvatar(
 
 @PreviewsDayNight
 @Composable
-internal fun EditableOrgAvatarPreview() = ElementPreview {
+internal fun EditableOrgAvatarPreview() = PRISMPreview {
     EditableOrgAvatar(
         avatarData = anAvatarData(
             url = "anUrl",
@@ -149,7 +149,7 @@ internal fun EditableOrgAvatarPreview() = ElementPreview {
 internal fun EditableOrgAvatarRtlPreview() = CompositionLocalProvider(
     LocalLayoutDirection provides LayoutDirection.Rtl,
 ) {
-    ElementPreview {
+    PRISMPreview {
         EditableOrgAvatar(
             avatarData = anAvatarData(
                 url = "anUrl",

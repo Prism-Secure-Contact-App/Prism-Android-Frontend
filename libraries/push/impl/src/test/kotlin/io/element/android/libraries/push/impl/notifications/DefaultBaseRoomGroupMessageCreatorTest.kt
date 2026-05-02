@@ -6,31 +6,31 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.common.truth.Truth.assertThat
-import io.element.android.appconfig.NotificationConfig
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.features.enterprise.test.FakeEnterpriseService
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_TIMESTAMP
-import io.element.android.libraries.matrix.ui.components.aMatrixUser
-import io.element.android.libraries.matrix.ui.media.AVATAR_THUMBNAIL_SIZE_IN_PIXEL
-import io.element.android.libraries.matrix.ui.media.MediaRequestData
-import io.element.android.libraries.matrix.ui.media.test.FakeImageLoader
-import io.element.android.libraries.matrix.ui.media.test.FakeInitialsAvatarBitmapGenerator
-import io.element.android.libraries.push.impl.notifications.factories.MARK_AS_READ_ACTION_TITLE
-import io.element.android.libraries.push.impl.notifications.factories.QUICK_REPLY_ACTION_TITLE
-import io.element.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.factories.createNotificationCreator
-import io.element.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
-import io.element.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
-import io.element.android.services.toolbox.impl.strings.AndroidStringProvider
-import io.element.android.services.toolbox.test.sdk.FakeBuildVersionSdkIntProvider
+import io.prism.android.appconfig.NotificationConfig
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.features.enterprise.test.FakeEnterpriseService
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_TIMESTAMP
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.media.AVATAR_THUMBNAIL_SIZE_IN_PIXEL
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.matrix.ui.media.test.FakeImageLoader
+import io.prism.android.libraries.matrix.ui.media.test.FakeInitialsAvatarBitmapGenerator
+import io.prism.android.libraries.push.impl.notifications.factories.MARK_AS_READ_ACTION_TITLE
+import io.prism.android.libraries.push.impl.notifications.factories.QUICK_REPLY_ACTION_TITLE
+import io.prism.android.libraries.push.impl.notifications.factories.aNotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.factories.createNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
+import io.prism.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
+import io.prism.android.services.toolbox.impl.strings.AndroidStringProvider
+import io.prism.android.services.toolbox.test.sdk.FakeBuildVersionSdkIntProvider
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith

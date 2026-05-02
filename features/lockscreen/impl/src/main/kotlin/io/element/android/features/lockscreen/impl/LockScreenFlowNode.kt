@@ -36,7 +36,7 @@ class LockScreenFlowNode(
     @Assisted plugins: List<Plugin>,
 ) : BaseFlowNode<LockScreenFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = plugins.filterIsInstance<Inputs>().first().initialNavTarget,
+        initialElement = plugins.filterIsInstance<Inputs>().first().initialNavTarget,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

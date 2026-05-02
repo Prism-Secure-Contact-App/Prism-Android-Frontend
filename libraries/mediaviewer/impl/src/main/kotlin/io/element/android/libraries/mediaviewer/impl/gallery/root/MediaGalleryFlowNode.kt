@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.root
+package io.prism.android.libraries.mediaviewer.impl.gallery.root
 
 import android.os.Parcelable
 import androidx.compose.runtime.Composable
@@ -17,27 +17,27 @@ import com.bumble.appyx.core.plugin.Plugin
 import com.bumble.appyx.navmodel.backstack.BackStack
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.annotations.ContributesNode
-import io.element.android.libraries.architecture.BackstackWithOverlayBox
-import io.element.android.libraries.architecture.BaseFlowNode
-import io.element.android.libraries.architecture.callback
-import io.element.android.libraries.architecture.createNode
-import io.element.android.libraries.architecture.overlay.Overlay
-import io.element.android.libraries.architecture.overlay.operation.hide
-import io.element.android.libraries.architecture.overlay.operation.show
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.api.MediaGalleryEntryPoint
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.MediaViewerEntryPoint
-import io.element.android.libraries.mediaviewer.impl.gallery.MediaGalleryNode
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.eventId
-import io.element.android.libraries.mediaviewer.impl.model.mediaInfo
-import io.element.android.libraries.mediaviewer.impl.model.mediaSource
-import io.element.android.libraries.mediaviewer.impl.model.thumbnailSource
+import io.prism.android.annotations.ContributesNode
+import io.prism.android.libraries.architecture.BackstackWithOverlayBox
+import io.prism.android.libraries.architecture.BaseFlowNode
+import io.prism.android.libraries.architecture.callback
+import io.prism.android.libraries.architecture.createNode
+import io.prism.android.libraries.architecture.overlay.Overlay
+import io.prism.android.libraries.architecture.overlay.operation.hide
+import io.prism.android.libraries.architecture.overlay.operation.show
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.api.MediaGalleryEntryPoint
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint
+import io.prism.android.libraries.mediaviewer.impl.gallery.MediaGalleryNode
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.eventId
+import io.prism.android.libraries.mediaviewer.impl.model.mediaInfo
+import io.prism.android.libraries.mediaviewer.impl.model.mediaSource
+import io.prism.android.libraries.mediaviewer.impl.model.thumbnailSource
 import kotlinx.parcelize.Parcelize
 
 @ContributesNode(RoomScope::class)

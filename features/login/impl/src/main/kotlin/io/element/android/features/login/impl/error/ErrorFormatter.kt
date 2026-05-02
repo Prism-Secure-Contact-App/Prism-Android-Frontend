@@ -10,9 +10,9 @@ package io.prism.android.features.login.impl.error
 
 import androidx.annotation.StringRes
 import io.prism.android.features.login.impl.R
-import io.prism.android.libraries.prism.api.auth.AuthErrorCode
-import io.prism.android.libraries.prism.api.auth.AuthenticationException
-import io.prism.android.libraries.prism.api.auth.errorCode
+import io.prism.android.libraries.matrix.api.auth.AuthErrorCode
+import io.prism.android.libraries.matrix.api.auth.AuthenticationException
+import io.prism.android.libraries.matrix.api.auth.errorCode
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @StringRes

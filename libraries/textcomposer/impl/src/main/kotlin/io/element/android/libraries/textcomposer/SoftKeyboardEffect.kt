@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer
+package io.prism.android.libraries.textcomposer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -14,8 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.viewinterop.AndroidView
-import io.element.android.libraries.androidutils.ui.awaitWindowFocus
-import io.element.android.libraries.androidutils.ui.showKeyboard
+import io.prism.android.libraries.androidutils.ui.awaitWindowFocus
+import io.prism.android.libraries.androidutils.ui.showKeyboard
 
 /**
  * Shows the soft keyboard when a given key changes to meet the required condition.

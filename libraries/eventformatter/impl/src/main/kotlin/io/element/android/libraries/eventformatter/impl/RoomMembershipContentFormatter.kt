@@ -9,15 +9,15 @@
 package io.prism.android.libraries.eventformatter.impl
 
 import dev.zacsweers.metro.Inject
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.timeline.item.event.MembershipChange
-import io.prism.android.libraries.prism.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.timeline.item.event.MembershipChange
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
 import io.prism.android.services.toolbox.api.strings.StringProvider
 import timber.log.Timber
 
 @Inject
 class RoomMembershipContentFormatter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val sp: StringProvider,
 ) {
     fun format(
@@ -26,7 +26,7 @@ class RoomMembershipContentFormatter(
         senderIsYou: Boolean,
     ): CharSequence? {
         val userId = membershipContent.userId
-        val memberIsYou = prismClient.isMe(userId)
+        val memberIsYou = matrixClient.isMe(userId)
         val userDisplayNameOrId = membershipContent.userDisplayName ?: userId.value
         val reason = membershipContent.reason?.takeIf { it.isNotBlank() }
         return when (membershipContent.change) {

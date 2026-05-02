@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.ui.utils.time
+package io.prism.android.libraries.ui.utils.time
 
 import kotlin.time.Duration
 

@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.util
+package io.prism.android.libraries.matrix.impl.util
 
-import io.prism.android.libraries.prism.api.room.IntentionalMention
-import io.prism.android.libraries.prism.impl.room.map
-import org.prism.rustcomponents.sdk.RoomMessageEventContentWithoutRelation
-import org.prism.rustcomponents.sdk.messageEventContentFromHtml
-import org.prism.rustcomponents.sdk.messageEventContentFromMarkdown
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.impl.room.map
+import org.matrix.rustcomponents.sdk.RoomMessageEventContentWithoutRelation
+import org.matrix.rustcomponents.sdk.messageEventContentFromHtml
+import org.matrix.rustcomponents.sdk.messageEventContentFromMarkdown
 
 /**
  * Creates a [RoomMessageEventContentWithoutRelation] from a body, an html body and a list of mentions.

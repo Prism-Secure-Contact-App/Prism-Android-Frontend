@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.di
+package io.prism.android.libraries.matrix.impl.di
 
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import io.prism.android.libraries.di.RoomScope
 import io.prism.android.libraries.di.annotations.RoomCoroutineScope
-import io.prism.android.libraries.prism.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.BaseRoom
 import kotlinx.coroutines.CoroutineScope
 
 @BindingContainer

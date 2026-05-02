@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.wellknown.impl
+package io.prism.android.libraries.wellknown.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.androidutils.json.DefaultJsonProvider
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.wellknown.api.ElementWellKnown
-import io.element.android.libraries.wellknown.api.WellknownRetrieverResult
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.androidutils.json.DefaultJsonProvider
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.wellknown.api.ElementWellKnown
+import io.prism.android.libraries.wellknown.api.WellknownRetrieverResult
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.test.watchers
+package io.prism.android.services.analytics.test.watchers
 
-import io.element.android.services.analytics.api.watchers.AnalyticsSendMessageWatcher
+import io.prism.android.services.analytics.api.watchers.AnalyticsSendMessageWatcher
 
 class FakeAnalyticsSendMessageWatcher(
     private val startLambda: () -> Unit = {},

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.testtags
+package io.prism.android.libraries.testtags
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics

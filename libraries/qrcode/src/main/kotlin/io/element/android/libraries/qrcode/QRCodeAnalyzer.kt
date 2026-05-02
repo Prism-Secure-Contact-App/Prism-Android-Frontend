@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.qrcode
+package io.prism.android.libraries.qrcode
 
 import android.graphics.ImageFormat
 import androidx.camera.core.ImageAnalysis

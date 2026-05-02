@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,17 +28,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.media.WaveFormSamples
-import io.element.android.libraries.designsystem.components.media.WaveformPlaybackView
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.IconButton
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.libraries.ui.utils.time.formatShort
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.media.WaveFormSamples
+import io.prism.android.libraries.designsystem.components.media.WaveformPlaybackView
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.IconButton
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.ui.utils.time.formatShort
 import kotlinx.collections.immutable.ImmutableList
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -60,7 +60,7 @@ internal fun VoiceMessagePreview(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = ElementTheme.colors.bgSubtleSecondary,
+                color = PRISMTheme.colors.bgSubtleSecondary,
                 shape = MaterialTheme.shapes.medium,
             )
             .padding(start = 8.dp, end = 20.dp, top = 6.dp, bottom = 6.dp)
@@ -75,8 +75,8 @@ internal fun VoiceMessagePreview(
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             text = time.formatShort(),
-            color = ElementTheme.colors.textSecondary,
-            style = ElementTheme.typography.fontBodySmMedium,
+            color = PRISMTheme.colors.textSecondary,
+            style = PRISMTheme.typography.fontBodySmMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -108,12 +108,12 @@ private fun PlayerButton(
     IconButton(
         onClick = onClick,
         modifier = Modifier
-            .background(color = ElementTheme.colors.bgCanvasDefault, shape = CircleShape)
+            .background(color = PRISMTheme.colors.bgCanvasDefault, shape = CircleShape)
             .size(30.dp),
         enabled = enabled,
         colors = IconButtonDefaults.iconButtonColors(
-            contentColor = ElementTheme.colors.iconSecondary,
-            disabledContentColor = ElementTheme.colors.iconDisabled,
+            contentColor = PRISMTheme.colors.iconSecondary,
+            disabledContentColor = PRISMTheme.colors.iconDisabled,
         ),
     ) {
         when (type) {
@@ -143,7 +143,7 @@ private fun PlayIcon() = Icon(
 
 @PreviewsDayNight
 @Composable
-internal fun VoiceMessagePreviewPreview() = ElementPreview {
+internal fun VoiceMessagePreviewPreview() = PRISMPreview {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {

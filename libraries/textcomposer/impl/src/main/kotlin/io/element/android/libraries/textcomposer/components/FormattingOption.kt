@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,11 +26,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
 
 @Composable
 internal fun FormattingOption(
@@ -42,15 +42,15 @@ internal fun FormattingOption(
     modifier: Modifier = Modifier,
 ) {
     val backgroundColor = when (state) {
-        FormattingOptionState.Selected -> ElementTheme.colors.bgAccentSelected
+        FormattingOptionState.Selected -> PRISMTheme.colors.bgAccentSelected
         FormattingOptionState.Default,
         FormattingOptionState.Disabled -> Color.Transparent
     }
 
     val foregroundColor = when (state) {
-        FormattingOptionState.Selected -> ElementTheme.colors.iconAccentPrimary
-        FormattingOptionState.Default -> ElementTheme.colors.iconSecondary
-        FormattingOptionState.Disabled -> ElementTheme.colors.iconDisabled
+        FormattingOptionState.Selected -> PRISMTheme.colors.iconAccentPrimary
+        FormattingOptionState.Default -> PRISMTheme.colors.iconSecondary
+        FormattingOptionState.Disabled -> PRISMTheme.colors.iconDisabled
     }
     Box(
         modifier = modifier
@@ -99,7 +99,7 @@ internal fun FormattingOption(
 
 @PreviewsDayNight
 @Composable
-internal fun FormattingOptionPreview() = ElementPreview {
+internal fun FormattingOptionPreview() = PRISMPreview {
     Row {
         FormattingOption(
             state = FormattingOptionState.Default,

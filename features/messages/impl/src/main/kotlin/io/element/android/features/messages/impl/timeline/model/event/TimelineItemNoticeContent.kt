@@ -8,7 +8,7 @@
 
 package io.prism.android.features.messages.impl.timeline.model.event
 
-import io.prism.android.libraries.prism.ui.messages.toPlainText
+import io.prism.android.libraries.matrix.ui.messages.toPlainText
 import org.jsoup.nodes.Document
 
 data class TimelineItemNoticeContent(

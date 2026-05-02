@@ -13,7 +13,7 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.featureflag.api.Feature
 import io.prism.android.libraries.featureflag.test.FakeFeature
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

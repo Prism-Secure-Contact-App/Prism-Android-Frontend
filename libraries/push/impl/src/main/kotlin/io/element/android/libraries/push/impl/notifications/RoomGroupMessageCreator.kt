@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.app.Notification
 import android.graphics.Bitmap
 import coil3.ImageLoader
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.push.api.notifications.NotificationBitmapLoader
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.push.impl.notifications.factories.isSmartReplyError
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.push.api.notifications.NotificationBitmapLoader
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.push.impl.notifications.factories.isSmartReplyError
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.services.toolbox.api.strings.StringProvider
 
 interface RoomGroupMessageCreator {
     suspend fun createRoomMessage(

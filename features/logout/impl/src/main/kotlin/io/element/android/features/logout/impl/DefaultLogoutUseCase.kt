@@ -11,8 +11,8 @@ package io.prism.android.features.logout.impl
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.features.logout.api.LogoutUseCase
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import timber.log.Timber
 

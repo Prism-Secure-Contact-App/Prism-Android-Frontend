@@ -29,9 +29,9 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.ListItem
 import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.PRISMUserRow
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.MatrixUserRow
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.launch
 
@@ -92,9 +92,9 @@ private fun ReadReceiptBottomSheetContent(
             items = state.selectedEvent?.readReceiptState?.receipts.orEmpty()
         ) {
             val userId = UserId(it.avatarData.id)
-            PRISMUserRow(
+            MatrixUserRow(
                 modifier = Modifier.clickable { onUserDataClick(userId) },
-                prismUser = PRISMUser(
+                matrixUser = PRISMUser(
                     userId = userId,
                     displayName = it.avatarData.name,
                     avatarUrl = it.avatarData.url,

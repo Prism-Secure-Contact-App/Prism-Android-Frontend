@@ -9,7 +9,7 @@
 package io.prism.android.features.reportroom.impl.fakes
 
 import io.prism.android.features.reportroom.impl.ReportRoom
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.simulateLongTask
 

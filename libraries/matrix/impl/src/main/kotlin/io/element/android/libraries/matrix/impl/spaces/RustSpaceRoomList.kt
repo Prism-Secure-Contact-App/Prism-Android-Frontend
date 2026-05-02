@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.spaces
+package io.prism.android.libraries.matrix.impl.spaces
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
@@ -24,9 +24,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import uniffi.prism_sdk_ui.SpaceRoomListPaginationState
+import uniffi.matrix_sdk_ui.SpaceRoomListPaginationState
 import java.util.Optional
-import org.prism.rustcomponents.sdk.SpaceRoomList as InnerSpaceRoomList
+import org.matrix.rustcomponents.sdk.SpaceRoomList as InnerSpaceRoomList
 
 class RustSpaceRoomList(
     override val spaceId: RoomId,

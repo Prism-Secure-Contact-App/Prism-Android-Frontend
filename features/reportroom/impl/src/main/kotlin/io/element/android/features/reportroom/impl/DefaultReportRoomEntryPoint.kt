@@ -14,7 +14,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.features.reportroom.api.ReportRoomEntryPoint
 import io.prism.android.libraries.architecture.createNode
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 @ContributesBinding(AppScope::class)
 class DefaultReportRoomEntryPoint : ReportRoomEntryPoint {

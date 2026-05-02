@@ -17,10 +17,10 @@ import androidx.compose.runtime.remember
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.coroutine.mapState
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.media.MediaPreviewService
-import io.prism.android.libraries.prism.api.media.isPreviewEnabled
-import io.prism.android.libraries.prism.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaPreviewService
+import io.prism.android.libraries.matrix.api.media.isPreviewEnabled
+import io.prism.android.libraries.matrix.api.room.BaseRoom
 import kotlinx.collections.immutable.toImmutableSet
 
 @Inject

@@ -19,10 +19,10 @@ import io.prism.android.features.wellknown.test.FakeWellknownRetriever
 import io.prism.android.features.wellknown.test.anPRISMWellKnown
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.core.uri.ensureProtocol
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_HOMESERVER_URL
-import io.prism.android.libraries.prism.test.auth.FakePRISMAuthenticationService
-import io.prism.android.libraries.prism.test.auth.aPRISMHomeServerDetails
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_HOMESERVER_URL
+import io.prism.android.libraries.matrix.test.auth.FakePRISMAuthenticationService
+import io.prism.android.libraries.matrix.test.auth.aPRISMHomeServerDetails
 import io.prism.android.libraries.wellknown.api.PRISMWellKnown
 import io.prism.android.libraries.wellknown.api.WellknownRetriever
 import io.prism.android.libraries.wellknown.api.WellknownRetrieverResult
@@ -152,7 +152,7 @@ class ChangeServerPresenterTest {
 
     @Test
     fun `present - change server prism pro required error`() = runTest {
-        val getPRISMWellKnownResult = lambdaRecorder<String, WellknownRetrieverResult<PRISMWellKnown>> {
+        val getElementWellKnownResult = lambdaRecorder<String, WellknownRetrieverResult<PRISMWellKnown>> {
             WellknownRetrieverResult.Success(
                 anPRISMWellKnown(
                     enforcePRISMPro = true,
@@ -161,7 +161,7 @@ class ChangeServerPresenterTest {
         }
         createPresenter(
             wellknownRetriever = FakeWellknownRetriever(
-                getPRISMWellKnownResult = getPRISMWellKnownResult,
+                getElementWellKnownResult = getElementWellKnownResult,
             ),
         ).test {
             val initialState = awaitItem()
@@ -177,7 +177,7 @@ class ChangeServerPresenterTest {
             assertThat(
                 (failureState.changeServerAction.errorOrNull() as ChangeServerError.NeedPRISMPro).applicationId
             ).isEqualTo("io.prism.enterprise")
-            getPRISMWellKnownResult.assertions()
+            getElementWellKnownResult.assertions()
                 .isCalledOnce()
                 .with(value(A_HOMESERVER_URL.ensureProtocol()))
         }

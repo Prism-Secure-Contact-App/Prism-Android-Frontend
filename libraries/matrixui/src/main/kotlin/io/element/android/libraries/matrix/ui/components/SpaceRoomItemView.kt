@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -32,27 +32,27 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.atomic.atoms.UnreadIndicatorAtom
-import io.element.android.libraries.designsystem.atomic.molecules.InviteButtonsRowMolecule
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.unreadIndicator
-import io.element.android.libraries.matrix.api.room.CurrentUserMembership
-import io.element.android.libraries.matrix.api.spaces.SpaceRoom
-import io.element.android.libraries.matrix.api.spaces.SpaceRoomVisibility
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.matrix.ui.model.icon
-import io.element.android.libraries.matrix.ui.model.label
-import io.element.android.libraries.ui.strings.CommonPlurals
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.atomic.atoms.UnreadIndicatorAtom
+import io.prism.android.libraries.designsystem.atomic.molecules.InviteButtonsRowMolecule
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.unreadIndicator
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomVisibility
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.icon
+import io.prism.android.libraries.matrix.ui.model.label
+import io.prism.android.libraries.ui.strings.CommonPlurals
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -102,9 +102,9 @@ fun SpaceRoomItemView(
             Spacer(modifier = Modifier.height(1.dp))
             Text(
                 modifier = Modifier.weight(1f),
-                style = ElementTheme.typography.fontBodyMdRegular,
+                style = PRISMTheme.typography.fontBodyMdRegular,
                 text = pluralStringResource(CommonPlurals.common_member_count, spaceRoom.numJoinedMembers, spaceRoom.numJoinedMembers),
-                color = ElementTheme.colors.textSecondary,
+                color = PRISMTheme.colors.textSecondary,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -135,13 +135,13 @@ private fun VisibilityRow(
                 .padding(end = 4.dp),
             imageVector = visibility.icon,
             contentDescription = null,
-            tint = ElementTheme.colors.iconTertiary,
+            tint = PRISMTheme.colors.iconTertiary,
         )
         Text(
             modifier = Modifier.weight(1f),
-            style = ElementTheme.typography.fontBodyMdRegular,
+            style = PRISMTheme.typography.fontBodyMdRegular,
             text = visibility.label,
-            color = ElementTheme.colors.textSecondary,
+            color = PRISMTheme.colors.textSecondary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -161,15 +161,15 @@ private fun NameAndIndicatorRow(
     ) {
         Text(
             modifier = Modifier.weight(1f),
-            style = ElementTheme.typography.fontBodyLgMedium,
+            style = PRISMTheme.typography.fontBodyLgMedium,
             text = name,
-            color = ElementTheme.colors.textPrimary,
+            color = PRISMTheme.colors.textPrimary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
         if (showIndicator) {
             UnreadIndicatorAtom(
-                color = ElementTheme.colors.unreadIndicator
+                color = PRISMTheme.colors.unreadIndicator
             )
         }
     }
@@ -210,7 +210,7 @@ private fun SpaceRoomItemScaffold(
 
 @Composable
 @PreviewsDayNight
-internal fun SpaceRoomItemViewPreview(@PreviewParameter(SpaceRoomProvider::class) spaceRoom: SpaceRoom) = ElementPreview {
+internal fun SpaceRoomItemViewPreview(@PreviewParameter(SpaceRoomProvider::class) spaceRoom: SpaceRoom) = PRISMPreview {
     SpaceRoomItemView(
         spaceRoom = spaceRoom,
         showUnreadIndicator = spaceRoom.state == CurrentUserMembership.INVITED,

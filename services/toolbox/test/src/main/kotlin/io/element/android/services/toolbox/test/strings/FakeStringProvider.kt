@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.test.strings
+package io.prism.android.services.toolbox.test.strings
 
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.strings.StringProvider
 
 class FakeStringProvider(
     private val defaultResult: String = "A string"

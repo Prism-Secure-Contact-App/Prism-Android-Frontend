@@ -15,11 +15,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
 import io.prism.android.libraries.designsystem.preview.PRISMThemedPreview
 import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.prism.android.libraries.prism.ui.components.CheckableUserRow
-import io.prism.android.libraries.prism.ui.components.CheckableUserRowData
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
-import io.prism.android.libraries.prism.ui.model.getAvatarData
-import io.prism.android.libraries.prism.ui.model.getBestName
+import io.prism.android.libraries.matrix.ui.components.CheckableUserRow
+import io.prism.android.libraries.matrix.ui.components.CheckableUserRowData
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 import io.prism.android.libraries.usersearch.api.UserSearchResult
 
 @Composable
@@ -31,14 +31,14 @@ fun SearchMultipleUsersResultItem(
 ) {
     val data = if (searchResult.isUnresolved) {
         CheckableUserRowData.Unresolved(
-            avatarData = searchResult.prismUser.getAvatarData(AvatarSize.UserListItem),
-            id = searchResult.prismUser.userId.value,
+            avatarData = searchResult.matrixUser.getAvatarData(AvatarSize.UserListItem),
+            id = searchResult.matrixUser.userId.value,
         )
     } else {
         CheckableUserRowData.Resolved(
-            name = searchResult.prismUser.getBestName(),
-            subtext = if (searchResult.prismUser.displayName.isNullOrEmpty()) null else searchResult.prismUser.userId.value,
-            avatarData = searchResult.prismUser.getAvatarData(AvatarSize.UserListItem),
+            name = searchResult.matrixUser.getBestName(),
+            subtext = if (searchResult.matrixUser.displayName.isNullOrEmpty()) null else searchResult.matrixUser.userId.value,
+            avatarData = searchResult.matrixUser.getAvatarData(AvatarSize.UserListItem),
         )
     }
     CheckableUserRow(
@@ -55,7 +55,7 @@ internal fun SearchMultipleUsersResultItemPreview() = PRISMThemedPreview {
     Column {
         SearchMultipleUsersResultItem(
             searchResult = UserSearchResult(
-                aPRISMUser(),
+                aMatrixUser(),
                 isUnresolved = false
             ),
             isUserSelected = false,
@@ -64,7 +64,7 @@ internal fun SearchMultipleUsersResultItemPreview() = PRISMThemedPreview {
         HorizontalDivider()
         SearchMultipleUsersResultItem(
             searchResult = UserSearchResult(
-                aPRISMUser(),
+                aMatrixUser(),
                 isUnresolved = false
             ),
             isUserSelected = true,
@@ -73,7 +73,7 @@ internal fun SearchMultipleUsersResultItemPreview() = PRISMThemedPreview {
         HorizontalDivider()
         SearchMultipleUsersResultItem(
             searchResult = UserSearchResult(
-                aPRISMUser(),
+                aMatrixUser(),
                 isUnresolved = true
             ),
             isUserSelected = false,
@@ -82,7 +82,7 @@ internal fun SearchMultipleUsersResultItemPreview() = PRISMThemedPreview {
         HorizontalDivider()
         SearchMultipleUsersResultItem(
             searchResult = UserSearchResult(
-                aPRISMUser(),
+                aMatrixUser(),
                 isUnresolved = true
             ),
             isUserSelected = true,

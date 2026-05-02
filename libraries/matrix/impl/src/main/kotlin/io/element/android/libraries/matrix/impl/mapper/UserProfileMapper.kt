@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.mapper
+package io.prism.android.libraries.matrix.impl.mapper
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import org.prism.rustcomponents.sdk.UserProfile
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import org.matrix.rustcomponents.sdk.UserProfile
 
 fun UserProfile.map() = PRISMUser(
     userId = UserId(userId),

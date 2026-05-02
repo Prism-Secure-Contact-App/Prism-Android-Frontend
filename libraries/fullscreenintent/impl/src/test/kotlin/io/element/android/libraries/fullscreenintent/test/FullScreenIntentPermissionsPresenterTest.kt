@@ -18,7 +18,7 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.fullscreenintent.api.FullScreenIntentPermissionsEvents
 import io.prism.android.libraries.fullscreenintent.impl.FullScreenIntentPermissionsPresenter
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.libraries.preferences.test.FakePreferenceDataStoreFactory
 import io.prism.android.services.toolbox.api.intent.ExternalIntentLauncher
 import io.prism.android.services.toolbox.test.intent.FakeExternalIntentLauncher

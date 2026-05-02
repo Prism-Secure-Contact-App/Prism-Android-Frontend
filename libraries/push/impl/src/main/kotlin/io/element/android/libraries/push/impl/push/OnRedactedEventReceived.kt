@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
 import android.content.Context
 import android.graphics.Typeface
@@ -17,13 +17,13 @@ import androidx.core.text.buildSpannedString
 import androidx.core.text.inSpans
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.push.impl.notifications.ActiveNotificationsProvider
-import io.element.android.libraries.push.impl.notifications.NotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.factories.DefaultNotificationCreator
-import io.element.android.libraries.push.impl.notifications.model.ResolvedPushEvent
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.push.impl.notifications.ActiveNotificationsProvider
+import io.prism.android.libraries.push.impl.notifications.NotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.factories.DefaultNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import timber.log.Timber
 
 interface OnRedactedEventReceived {

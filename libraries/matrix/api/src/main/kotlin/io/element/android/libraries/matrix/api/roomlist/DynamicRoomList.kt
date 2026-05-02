@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.roomlist
+package io.prism.android.libraries.matrix.api.roomlist
 
 /**
  * RoomList with dynamic filtering and loading.

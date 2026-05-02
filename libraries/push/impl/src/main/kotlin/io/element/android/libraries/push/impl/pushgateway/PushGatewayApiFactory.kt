@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.pushgateway
+package io.prism.android.libraries.push.impl.pushgateway
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.network.RetrofitFactory
+import io.prism.android.libraries.network.RetrofitFactory
 
 interface PushGatewayApiFactory {
     fun create(baseUrl: String): PushGatewayAPI

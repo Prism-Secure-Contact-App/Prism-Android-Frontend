@@ -26,8 +26,8 @@ import io.prism.android.features.poll.impl.history.model.PollHistoryItems
 import io.prism.android.features.poll.impl.history.model.PollHistoryItemsFactory
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

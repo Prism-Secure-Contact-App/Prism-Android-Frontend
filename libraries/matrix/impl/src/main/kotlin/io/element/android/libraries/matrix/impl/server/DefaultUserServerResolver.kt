@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.server
+package io.prism.android.libraries.matrix.impl.server
 
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.server.UserServerResolver
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.server.UserServerResolver
 
 @ContributesBinding(SessionScope::class)
 class DefaultUserServerResolver(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : UserServerResolver {
     override fun resolve(): String {
-        return prismClient.userIdServerName()
+        return matrixClient.userIdServerName()
     }
 }

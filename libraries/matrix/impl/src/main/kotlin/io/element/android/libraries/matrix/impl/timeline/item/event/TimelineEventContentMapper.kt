@@ -6,45 +6,45 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.item.event
+package io.prism.android.libraries.matrix.impl.timeline.item.event
 
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.EmbeddedEventInfo
-import io.prism.android.libraries.prism.api.timeline.item.EventThreadInfo
-import io.prism.android.libraries.prism.api.timeline.item.ThreadSummary
-import io.prism.android.libraries.prism.api.timeline.item.event.CallNotifyContent
-import io.prism.android.libraries.prism.api.timeline.item.event.EventContent
-import io.prism.android.libraries.prism.api.timeline.item.event.FailedToParseMessageLikeContent
-import io.prism.android.libraries.prism.api.timeline.item.event.FailedToParseStateContent
-import io.prism.android.libraries.prism.api.timeline.item.event.LegacyCallInviteContent
-import io.prism.android.libraries.prism.api.timeline.item.event.MembershipChange
-import io.prism.android.libraries.prism.api.timeline.item.event.OtherState
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
-import io.prism.android.libraries.prism.api.timeline.item.event.ProfileChangeContent
-import io.prism.android.libraries.prism.api.timeline.item.event.RedactedContent
-import io.prism.android.libraries.prism.api.timeline.item.event.RoomMembershipContent
-import io.prism.android.libraries.prism.api.timeline.item.event.StateContent
-import io.prism.android.libraries.prism.api.timeline.item.event.StickerContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UnableToDecryptContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UnknownContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UtdCause
-import io.prism.android.libraries.prism.impl.media.map
-import io.prism.android.libraries.prism.impl.poll.map
-import io.prism.android.libraries.prism.impl.room.join.map
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.EmbeddedEventInfo
+import io.prism.android.libraries.matrix.api.timeline.item.EventThreadInfo
+import io.prism.android.libraries.matrix.api.timeline.item.ThreadSummary
+import io.prism.android.libraries.matrix.api.timeline.item.event.CallNotifyContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseMessageLikeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseStateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.LegacyCallInviteContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.MembershipChange
+import io.prism.android.libraries.matrix.api.timeline.item.event.OtherState
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileChangeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RedactedContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnknownContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UtdCause
+import io.prism.android.libraries.matrix.impl.media.map
+import io.prism.android.libraries.matrix.impl.poll.map
+import io.prism.android.libraries.matrix.impl.room.join.map
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
-import org.prism.rustcomponents.sdk.EmbeddedEventDetails
-import org.prism.rustcomponents.sdk.MsgLikeContent
-import org.prism.rustcomponents.sdk.MsgLikeKind
-import org.prism.rustcomponents.sdk.TimelineItemContent
-import org.prism.rustcomponents.sdk.use
-import uniffi.prism_sdk_ui.RoomPinnedEventsChange
-import org.prism.rustcomponents.sdk.EncryptedMessage as RustEncryptedMessage
-import org.prism.rustcomponents.sdk.MembershipChange as RustMembershipChange
-import org.prism.rustcomponents.sdk.OtherState as RustOtherState
-import uniffi.prism_sdk_crypto.UtdCause as RustUtdCause
+import org.matrix.rustcomponents.sdk.EmbeddedEventDetails
+import org.matrix.rustcomponents.sdk.MsgLikeContent
+import org.matrix.rustcomponents.sdk.MsgLikeKind
+import org.matrix.rustcomponents.sdk.TimelineItemContent
+import org.matrix.rustcomponents.sdk.use
+import uniffi.matrix_sdk_ui.RoomPinnedEventsChange
+import org.matrix.rustcomponents.sdk.EncryptedMessage as RustEncryptedMessage
+import org.matrix.rustcomponents.sdk.MembershipChange as RustMembershipChange
+import org.matrix.rustcomponents.sdk.OtherState as RustOtherState
+import uniffi.matrix_sdk_crypto.UtdCause as RustUtdCause
 
 class TimelineEventContentMapper(
     private val eventMessageMapper: EventMessageMapper = EventMessageMapper(),
@@ -152,7 +152,7 @@ class TimelineEventContentMapper(
         }
     }
 
-    private fun extractThreadSummary(threadSummary: org.prism.rustcomponents.sdk.ThreadSummary?): ThreadSummary? {
+    private fun extractThreadSummary(threadSummary: org.matrix.rustcomponents.sdk.ThreadSummary?): ThreadSummary? {
         return threadSummary?.use { summary ->
             val numberOfReplies = summary.numReplies().toLong()
             val latestEvent = summary.latestEvent()

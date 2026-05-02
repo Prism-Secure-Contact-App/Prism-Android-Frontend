@@ -15,26 +15,26 @@ import io.prism.android.features.invitepeople.api.InvitePeopleEvents
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.room.aRoomMember
-import io.prism.android.libraries.prism.test.room.aRoomMemberList
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.room.aRoomMemberList
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.libraries.usersearch.api.UserRepository
 import io.prism.android.libraries.usersearch.api.UserSearchResult
@@ -140,16 +140,16 @@ internal class DefaultInvitePeoplePresenterTest {
             skipItems(1)
 
             assertThat(repository.providedQuery).isEqualTo("some query")
-            repository.emitStateWithUsers(users = aPRISMUserList())
+            repository.emitStateWithUsers(users = aMatrixUserList())
             skipItems(1)
 
             val resultState = awaitItemAsDefault()
             assertThat(resultState.searchResults).isInstanceOf(SearchBarResultState.Results::class.java)
 
-            val expectedUsers = aPRISMUserList()
+            val expectedUsers = aMatrixUserList()
             val users = resultState.searchResults.users()
-            expectedUsers.forEachIndexed { index, prismUser ->
-                assertThat(users[index].prismUser).isEqualTo(prismUser)
+            expectedUsers.forEachIndexed { index, matrixUser ->
+                assertThat(users[index].matrixUser).isEqualTo(matrixUser)
                 // All users are joined or invited
                 if (users[index].isAlreadyInvited) {
                     assertThat(users[index].isAlreadyJoined).isFalse()
@@ -163,7 +163,7 @@ internal class DefaultInvitePeoplePresenterTest {
 
     @Test
     fun `present - performs search and handles membership state of existing users`() = runTest {
-        val userList = aPRISMUserList()
+        val userList = aMatrixUserList()
         val joinedUser = userList[0]
         val invitedUser = userList[1]
 
@@ -193,7 +193,7 @@ internal class DefaultInvitePeoplePresenterTest {
             skipItems(1)
 
             assertThat(repository.providedQuery).isEqualTo("some query")
-            repository.emitStateWithUsers(users = aPRISMUserList())
+            repository.emitStateWithUsers(users = aMatrixUserList())
             skipItems(1)
 
             val resultState = awaitItemAsDefault()
@@ -202,13 +202,13 @@ internal class DefaultInvitePeoplePresenterTest {
             val users = resultState.searchResults.users()
 
             // The result that matches a user with JOINED membership is marked as such
-            val userWhoShouldBeJoined = users.find { it.prismUser == joinedUser }
+            val userWhoShouldBeJoined = users.find { it.matrixUser == joinedUser }
             assertThat(userWhoShouldBeJoined).isNotNull()
             assertThat(userWhoShouldBeJoined?.isAlreadyJoined).isTrue()
             assertThat(userWhoShouldBeJoined?.isAlreadyInvited).isFalse()
 
             // The result that matches a user with INVITED membership is marked as such
-            val userWhoShouldBeInvited = users.find { it.prismUser == invitedUser }
+            val userWhoShouldBeInvited = users.find { it.matrixUser == invitedUser }
             assertThat(userWhoShouldBeInvited).isNotNull()
             assertThat(userWhoShouldBeInvited?.isAlreadyJoined).isFalse()
             assertThat(userWhoShouldBeInvited?.isAlreadyInvited).isTrue()
@@ -222,7 +222,7 @@ internal class DefaultInvitePeoplePresenterTest {
 
     @Test
     fun `present - performs search and handles unresolved results`() = runTest {
-        val userList = aPRISMUserList()
+        val userList = aMatrixUserList()
         val joinedUser = userList[0]
         val invitedUser = userList[1]
 
@@ -255,8 +255,8 @@ internal class DefaultInvitePeoplePresenterTest {
             assertThat(repository.providedQuery).isEqualTo("some query")
 
             val unresolvedUser =
-                UserSearchResult(aPRISMUser(id = A_USER_ID.value), isUnresolved = true)
-            repository.emitState(listOf(unresolvedUser) + aPRISMUserList().map {
+                UserSearchResult(aMatrixUser(id = A_USER_ID.value), isUnresolved = true)
+            repository.emitState(listOf(unresolvedUser) + aMatrixUserList().map {
                 UserSearchResult(
                     it
                 )
@@ -289,19 +289,19 @@ internal class DefaultInvitePeoplePresenterTest {
             skipItems(1)
 
             // When we toggle a user not in the list, they are added
-            initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(aPRISMUser()))
-            assertThat(awaitItemAsDefault().selectedUsers).containsExactly(aPRISMUser())
+            initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(aMatrixUser()))
+            assertThat(awaitItemAsDefault().selectedUsers).containsExactly(aMatrixUser())
 
             // Toggling a different user also adds them
-            initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(aPRISMUser(id = A_USER_ID_2.value)))
+            initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(aMatrixUser(id = A_USER_ID_2.value)))
             assertThat(awaitItemAsDefault().selectedUsers).containsExactly(
-                aPRISMUser(),
-                aPRISMUser(id = A_USER_ID_2.value)
+                aMatrixUser(),
+                aMatrixUser(id = A_USER_ID_2.value)
             )
 
             // Toggling the first user removes them
-            initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(aPRISMUser()))
-            assertThat(awaitItemAsDefault().selectedUsers).containsExactly(aPRISMUser(id = A_USER_ID_2.value))
+            initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(aMatrixUser()))
+            assertThat(awaitItemAsDefault().selectedUsers).containsExactly(aMatrixUser(id = A_USER_ID_2.value))
         }
     }
 
@@ -316,7 +316,7 @@ internal class DefaultInvitePeoplePresenterTest {
             val initialState = awaitItemAsDefault()
             skipItems(1)
 
-            val selectedUser = aPRISMUser()
+            val selectedUser = aMatrixUser()
 
             initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(selectedUser))
 
@@ -324,7 +324,7 @@ internal class DefaultInvitePeoplePresenterTest {
             skipItems(1)
 
             assertThat(repository.providedQuery).isEqualTo("some query")
-            repository.emitStateWithUsers(users = aPRISMUserList() + selectedUser)
+            repository.emitStateWithUsers(users = aMatrixUserList() + selectedUser)
             skipItems(2)
 
             val resultState = awaitItemAsDefault()
@@ -333,7 +333,7 @@ internal class DefaultInvitePeoplePresenterTest {
             val users = resultState.searchResults.users()
 
             // The one user we have previously toggled is marked as selected
-            val shouldBeSelectedUser = users.find { it.prismUser == selectedUser }
+            val shouldBeSelectedUser = users.find { it.matrixUser == selectedUser }
             assertThat(shouldBeSelectedUser).isNotNull()
             assertThat(shouldBeSelectedUser?.isSelected).isTrue()
 
@@ -354,20 +354,20 @@ internal class DefaultInvitePeoplePresenterTest {
             val initialState = awaitItemAsDefault()
             skipItems(1)
 
-            val selectedUser = aPRISMUser()
+            val selectedUser = aMatrixUser()
 
             // Given a query is made
             initialState.searchQuery.setTextAndPlaceCursorAtEnd("some query")
             skipItems(1)
 
             assertThat(repository.providedQuery).isEqualTo("some query")
-            repository.emitStateWithUsers(users = aPRISMUserList() + selectedUser)
+            repository.emitStateWithUsers(users = aMatrixUserList() + selectedUser)
             skipItems(1)
             awaitItemAsDefault().also { state ->
                 // selectedUser is not selected
                 assertThat(state.searchResults).isInstanceOf(SearchBarResultState.Results::class.java)
                 val users = state.searchResults.users()
-                val shouldNotBeSelectedUser = users.find { it.prismUser == selectedUser }
+                val shouldNotBeSelectedUser = users.find { it.matrixUser == selectedUser }
                 assertThat(shouldNotBeSelectedUser).isNotNull()
                 assertThat(shouldNotBeSelectedUser?.isSelected).isFalse()
             }
@@ -382,7 +382,7 @@ internal class DefaultInvitePeoplePresenterTest {
             val users = resultState.searchResults.users()
 
             // The one user we have now toggled is marked as selected
-            val shouldBeSelectedUser = users.find { it.prismUser == selectedUser }
+            val shouldBeSelectedUser = users.find { it.matrixUser == selectedUser }
             assertThat(shouldBeSelectedUser).isNotNull()
             assertThat(shouldBeSelectedUser?.isSelected).isTrue()
 
@@ -406,8 +406,8 @@ internal class DefaultInvitePeoplePresenterTest {
         presenter.test {
             val initialState = awaitItem()
             skipItems(1)
-            val selectedUser = aPRISMUser()
-            repository.emitStateWithUsers(users = aPRISMUserList() + selectedUser)
+            val selectedUser = aMatrixUser()
+            repository.emitStateWithUsers(users = aMatrixUserList() + selectedUser)
             skipItems(1)
             // And then a user is toggled
             initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(selectedUser))
@@ -455,8 +455,8 @@ internal class DefaultInvitePeoplePresenterTest {
         presenter.test {
             val initialState = awaitItem()
             skipItems(1)
-            val selectedUser = aPRISMUser()
-            repository.emitStateWithUsers(users = aPRISMUserList() + selectedUser)
+            val selectedUser = aMatrixUser()
+            repository.emitStateWithUsers(users = aMatrixUserList() + selectedUser)
             skipItems(1)
             // And then a user is toggled
             initialState.eventSink(DefaultInvitePeopleEvents.ToggleUser(selectedUser))
@@ -494,13 +494,13 @@ internal class DefaultInvitePeoplePresenterTest {
 
     @Test
     fun `present - when joinedRoom is not provided, it is retrieved on the PRISMClient`() = runTest {
-        val prismClient = FakePRISMClient().apply {
+        val matrixClient = FakePRISMClient().apply {
             givenGetRoomResult(A_ROOM_ID, FakeJoinedRoom())
         }
         val presenter = createDefaultInvitePeoplePresenter(
             joinedRoom = null,
             roomId = A_ROOM_ID,
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             val initialState = awaitItemAsDefault()
@@ -512,11 +512,11 @@ internal class DefaultInvitePeoplePresenterTest {
 
     @Test
     fun `present - when joinedRoom is not provided, it is retrieved on the PRISMClient - error case`() = runTest {
-        val prismClient = FakePRISMClient()
+        val matrixClient = FakePRISMClient()
         val presenter = createDefaultInvitePeoplePresenter(
             joinedRoom = null,
             roomId = A_ROOM_ID,
-            prismClient = prismClient,
+            matrixClient = matrixClient,
         )
         presenter.test {
             val initialState = awaitItemAsDefault()
@@ -530,7 +530,7 @@ internal class DefaultInvitePeoplePresenterTest {
     fun `present - suggestions are loaded from recent direct rooms`() = runTest {
         val dmRoomId = RoomId("!dm_room:server.org")
         val otherUserId = UserId("@frank:server.org")
-        val prismClient = FakePRISMClient(sessionId = A_USER_ID).apply {
+        val matrixClient = FakePRISMClient(sessionId = A_USER_ID).apply {
             // Track the DM room as recently visited
             trackRecentlyVisitedRoom(dmRoomId)
             // Set up a DM room with the other user
@@ -550,7 +550,7 @@ internal class DefaultInvitePeoplePresenterTest {
             )
         }
         val presenter = createDefaultInvitePeoplePresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             // Use empty room members so the suggestion doesn't get filtered
             roomMembersState = RoomMembersState.Ready(persistentListOf()),
             coroutineDispatchers = testCoroutineDispatchers(useUnconfinedTestDispatcher = true),
@@ -559,7 +559,7 @@ internal class DefaultInvitePeoplePresenterTest {
             skipItems(2)
             val state = awaitItemAsDefault()
             assertThat(state.suggestions).hasSize(1)
-            assertThat(state.suggestions.first().prismUser.userId).isEqualTo(otherUserId)
+            assertThat(state.suggestions.first().matrixUser.userId).isEqualTo(otherUserId)
             assertThat(state.suggestions.first().isSelected).isFalse()
             cancelAndIgnoreRemainingEvents()
         }
@@ -569,7 +569,7 @@ internal class DefaultInvitePeoplePresenterTest {
     fun `present - suggestions filters out existing room members`() = runTest {
         val dmRoomId = RoomId("!dm_room:server.org")
         val alreadyJoinedUserId = UserId("@frank:server.org")
-        val prismClient = FakePRISMClient(sessionId = A_USER_ID).apply {
+        val matrixClient = FakePRISMClient(sessionId = A_USER_ID).apply {
             trackRecentlyVisitedRoom(dmRoomId)
             givenGetRoomResult(
                 dmRoomId,
@@ -588,7 +588,7 @@ internal class DefaultInvitePeoplePresenterTest {
         }
         // The user in the suggestion is already a member of the target room
         val presenter = createDefaultInvitePeoplePresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             roomMembersState = RoomMembersState.Ready(
                 persistentListOf(
                     aRoomMember(userId = alreadyJoinedUserId, membership = RoomMembershipState.JOIN)
@@ -646,7 +646,7 @@ fun TestScope.createDefaultInvitePeoplePresenter(
     userRepository: UserRepository = FakeUserRepository(),
     coroutineDispatchers: CoroutineDispatchers = testCoroutineDispatchers(),
     appErrorStateService: AppErrorStateService = FakeAppErrorStateService(),
-    prismClient: PRISMClient = FakePRISMClient(),
+    matrixClient: PRISMClient = FakePRISMClient(),
 ): DefaultInvitePeoplePresenter {
     return DefaultInvitePeoplePresenter(
         joinedRoom = joinedRoom,
@@ -655,6 +655,6 @@ fun TestScope.createDefaultInvitePeoplePresenter(
         coroutineDispatchers = coroutineDispatchers,
         sessionCoroutineScope = backgroundScope,
         appErrorStateService = appErrorStateService,
-        prismClient = prismClient,
+        matrixClient = matrixClient,
     )
 }

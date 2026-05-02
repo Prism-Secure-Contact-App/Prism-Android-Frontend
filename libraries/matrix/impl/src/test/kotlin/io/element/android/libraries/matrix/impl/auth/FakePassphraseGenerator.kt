@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
-import io.element.android.libraries.matrix.impl.keys.PassphraseGenerator
-import io.element.android.libraries.matrix.test.A_PASSPHRASE
+import io.prism.android.libraries.matrix.impl.keys.PassphraseGenerator
+import io.prism.android.libraries.matrix.test.A_PASSPHRASE
 
 class FakePassphraseGenerator(
     private val passphrase: () -> String? = { A_PASSPHRASE }

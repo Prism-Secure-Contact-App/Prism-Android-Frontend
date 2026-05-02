@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.oidc.api
+package io.prism.android.libraries.oidc.api
 
 sealed interface OidcAction {
     data class GoBack(val toUnblock: Boolean = false) : OidcAction

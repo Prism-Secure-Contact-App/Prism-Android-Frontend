@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.notification
+package io.prism.android.libraries.matrix.impl.notification
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.notification.CallIntent
-import io.prism.android.libraries.prism.api.notification.NotificationContent
-import io.prism.android.libraries.prism.api.notification.RtcNotificationType
-import io.prism.android.libraries.prism.impl.room.member.RoomMemberMapper
-import io.prism.android.libraries.prism.impl.timeline.item.event.EventMessageMapper
-import org.prism.rustcomponents.sdk.MessageLikeEventContent
-import org.prism.rustcomponents.sdk.StateEventContent
-import org.prism.rustcomponents.sdk.TimelineEvent
-import org.prism.rustcomponents.sdk.TimelineEventContent
-import org.prism.rustcomponents.sdk.use
-import org.prism.rustcomponents.sdk.RtcCallIntent as SdkRtcCallIntent
-import org.prism.rustcomponents.sdk.RtcNotificationType as SdkRtcNotificationType
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.notification.NotificationContent
+import io.prism.android.libraries.matrix.api.notification.RtcNotificationType
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.event.EventMessageMapper
+import org.matrix.rustcomponents.sdk.MessageLikeEventContent
+import org.matrix.rustcomponents.sdk.StateEventContent
+import org.matrix.rustcomponents.sdk.TimelineEvent
+import org.matrix.rustcomponents.sdk.TimelineEventContent
+import org.matrix.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.RtcCallIntent as SdkRtcCallIntent
+import org.matrix.rustcomponents.sdk.RtcNotificationType as SdkRtcNotificationType
 
 class TimelineEventToNotificationContentMapper {
     fun map(timelineEvent: TimelineEvent): Result<NotificationContent> {

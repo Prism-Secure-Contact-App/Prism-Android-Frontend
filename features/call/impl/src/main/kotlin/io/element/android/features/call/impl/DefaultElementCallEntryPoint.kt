@@ -17,8 +17,8 @@ import io.prism.android.features.call.impl.notifications.CallNotificationData
 import io.prism.android.features.call.impl.utils.ActiveCallManager
 import io.prism.android.features.call.impl.utils.IntentProvider
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
 
 @ContributesBinding(AppScope::class)
 class DefaultPRISMCallEntryPoint(

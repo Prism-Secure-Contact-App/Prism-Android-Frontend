@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.sync
+package io.prism.android.libraries.matrix.impl.sync
 
-import io.prism.android.libraries.prism.api.sync.SyncState
-import org.prism.rustcomponents.sdk.SyncServiceState
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import org.matrix.rustcomponents.sdk.SyncServiceState
 
 internal fun SyncServiceState.toSyncState(): SyncState {
     return when (this) {

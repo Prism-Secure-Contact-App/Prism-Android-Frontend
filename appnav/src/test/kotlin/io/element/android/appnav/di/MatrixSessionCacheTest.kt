@@ -11,10 +11,10 @@ package io.prism.android.appnav.di
 import com.bumble.appyx.core.state.MutableSavedStateMapImpl
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.networkmonitor.test.FakeNetworkMonitor
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.auth.FakePRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.auth.FakePRISMAuthenticationService
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.services.appnavstate.test.FakeAppForegroundStateService
 import io.prism.android.tests.testutils.testCoroutineDispatchers

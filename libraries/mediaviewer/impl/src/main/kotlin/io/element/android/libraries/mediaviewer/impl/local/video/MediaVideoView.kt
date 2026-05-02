@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.video
+package io.prism.android.libraries.mediaviewer.impl.local.video
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -40,23 +40,23 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.audio.api.AudioFocus
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.text.toDp
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.utils.KeepScreenOn
-import io.element.android.libraries.designsystem.utils.OnLifecycleEvent
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.local.LocalMediaViewState
-import io.element.android.libraries.mediaviewer.impl.local.PlayableState
-import io.element.android.libraries.mediaviewer.impl.local.player.MediaPlayerControllerState
-import io.element.android.libraries.mediaviewer.impl.local.player.MediaPlayerControllerView
-import io.element.android.libraries.mediaviewer.impl.local.player.rememberExoPlayer
-import io.element.android.libraries.mediaviewer.impl.local.player.seekToEnsurePlaying
-import io.element.android.libraries.mediaviewer.impl.local.player.togglePlay
-import io.element.android.libraries.mediaviewer.impl.local.rememberLocalMediaViewState
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.audio.api.AudioFocus
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.text.toDp
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.utils.KeepScreenOn
+import io.prism.android.libraries.designsystem.utils.OnLifecycleEvent
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.local.LocalMediaViewState
+import io.prism.android.libraries.mediaviewer.impl.local.PlayableState
+import io.prism.android.libraries.mediaviewer.impl.local.player.MediaPlayerControllerState
+import io.prism.android.libraries.mediaviewer.impl.local.player.MediaPlayerControllerView
+import io.prism.android.libraries.mediaviewer.impl.local.player.rememberExoPlayer
+import io.prism.android.libraries.mediaviewer.impl.local.player.seekToEnsurePlaying
+import io.prism.android.libraries.mediaviewer.impl.local.player.togglePlay
+import io.prism.android.libraries.mediaviewer.impl.local.rememberLocalMediaViewState
 import kotlinx.coroutines.delay
 import me.saket.telephoto.zoomable.zoomable
 import timber.log.Timber
@@ -182,13 +182,13 @@ private fun ExoPlayerMediaVideoView(
     KeepScreenOn(mediaPlayerControllerState.isPlaying)
     Box(
         modifier = modifier
-            .background(ElementTheme.colors.bgSubtlePrimary),
+            .background(PRISMTheme.colors.bgSubtlePrimary),
     ) {
         val context = LocalContext.current
         if (LocalInspectionMode.current) {
             Text(
                 modifier = Modifier
-                    .background(ElementTheme.colors.bgSubtlePrimary)
+                    .background(PRISMTheme.colors.bgSubtlePrimary)
                     .align(Alignment.Center),
                 text = "A Video Player will render here",
             )
@@ -321,7 +321,7 @@ private fun ExoPlayerLifecycleHelper(
 
 @PreviewsDayNight
 @Composable
-internal fun MediaVideoViewPreview() = ElementPreview {
+internal fun MediaVideoViewPreview() = PRISMPreview {
     MediaVideoView(
         isDisplayed = true,
         modifier = Modifier.fillMaxSize(),

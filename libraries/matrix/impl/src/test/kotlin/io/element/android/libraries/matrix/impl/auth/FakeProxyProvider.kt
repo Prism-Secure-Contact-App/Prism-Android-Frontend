@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
-import io.element.android.libraries.matrix.impl.proxy.ProxyProvider
+import io.prism.android.libraries.matrix.impl.proxy.ProxyProvider
 
 class FakeProxyProvider : ProxyProvider {
     override fun provides(): String? {

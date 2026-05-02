@@ -13,9 +13,9 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import io.prism.android.features.networkmonitor.api.NetworkStatus
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.sync.SyncState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.combine
@@ -30,7 +30,7 @@ const val SEND_QUEUES_RETRY_DELAY_MILLIS = 500L
 @SingleIn(SessionScope::class)
 @Inject
 class SendQueues(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val syncService: SyncService,
 ) {
     /**
@@ -41,14 +41,14 @@ class SendQueues(
     fun launchIn(coroutineScope: CoroutineScope) {
         combine(
             syncService.syncState,
-            prismClient.sendQueueDisabledFlow(),
+            matrixClient.sendQueueDisabledFlow(),
         ) { syncState, _ -> syncState }
             .debounce(SEND_QUEUES_RETRY_DELAY_MILLIS)
             .onEach { syncState ->
                 Timber.tag("SendQueues").d("Sync state changed: $syncState")
                 if (syncState == SyncState.Running) {
                     Timber.tag("SendQueues").d("Enabling send queues again")
-                    prismClient.setAllSendQueuesEnabled(enabled = true)
+                    matrixClient.setAllSendQueuesEnabled(enabled = true)
                 }
             }
             .launchIn(coroutineScope)

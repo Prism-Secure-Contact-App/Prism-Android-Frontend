@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.knock
+package io.prism.android.libraries.matrix.impl.room.knock
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.knock.KnockRequest
-import org.prism.rustcomponents.sdk.KnockRequest as InnerKnockRequest
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.knock.KnockRequest
+import org.matrix.rustcomponents.sdk.KnockRequest as InnerKnockRequest
 
 class RustKnockRequest(
     private val inner: InnerKnockRequest,

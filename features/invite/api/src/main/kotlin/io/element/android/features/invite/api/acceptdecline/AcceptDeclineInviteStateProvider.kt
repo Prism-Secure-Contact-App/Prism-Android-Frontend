@@ -9,7 +9,7 @@
 package io.prism.android.features.invite.api.acceptdecline
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 fun anAcceptDeclineInviteState(
     acceptAction: AsyncAction<RoomId> = AsyncAction.Uninitialized,

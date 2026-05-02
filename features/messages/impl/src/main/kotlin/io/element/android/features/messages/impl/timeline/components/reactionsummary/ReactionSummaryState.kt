@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.timeline.components.reactionsummary
 
 import io.prism.android.features.messages.impl.timeline.model.AggregatedReaction
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import kotlinx.collections.immutable.ImmutableList
 
 data class ReactionSummaryState(

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.konsist
+package io.prism.android.tests.konsist
 
 import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.verify.assertFalse
@@ -32,7 +32,7 @@ class KonsistImportTest {
             .scopeFromProject()
             .imports
             .assertFalse(
-                additionalMessage = "Please use 'io.element.android.libraries.designsystem.theme.components.TextField' instead of " +
+                additionalMessage = "Please use 'io.prism.android.libraries.designsystem.theme.components.TextField' instead of " +
                     "'androidx.compose.material3.OutlinedTextField.",
             ) {
                 it.name == "androidx.compose.material3.OutlinedTextField"
@@ -45,7 +45,7 @@ class KonsistImportTest {
             .scopeFromProject()
             .imports
             .assertFalse(
-                additionalMessage = "Please use 'io.element.android.libraries.designsystem.theme.components.TopAppBar' instead of " +
+                additionalMessage = "Please use 'io.prism.android.libraries.designsystem.theme.components.TopAppBar' instead of " +
                     "'androidx.compose.material3.TopAppBar.",
             ) {
                 it.name == "androidx.compose.material3.TopAppBar"

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.analytics
+package io.prism.android.libraries.matrix.api.analytics
 
-import uk.fathertkt.prism.features.analytics.plan.ViewRoom
-import io.prism.android.libraries.prism.api.room.BaseRoom
+import im.vector.app.features.analytics.plan.ViewRoom
+import io.prism.android.libraries.matrix.api.room.BaseRoom
 
 fun BaseRoom.toAnalyticsViewRoom(
     trigger: ViewRoom.Trigger? = null,

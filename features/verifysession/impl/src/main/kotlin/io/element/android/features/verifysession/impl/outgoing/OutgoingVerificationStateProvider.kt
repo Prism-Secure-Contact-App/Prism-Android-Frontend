@@ -13,8 +13,8 @@ import io.prism.android.features.verifysession.impl.outgoing.OutgoingVerificatio
 import io.prism.android.features.verifysession.impl.ui.aDecimalsSessionVerificationData
 import io.prism.android.features.verifysession.impl.ui.aEmojisSessionVerificationData
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 
 open class OutgoingVerificationStateProvider : PreviewParameterProvider<OutgoingVerificationState> {
     override val values: Sequence<OutgoingVerificationState>

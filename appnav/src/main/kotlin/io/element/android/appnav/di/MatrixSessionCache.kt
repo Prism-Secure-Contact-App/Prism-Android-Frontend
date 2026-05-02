@@ -15,10 +15,10 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
 import io.prism.android.libraries.androidutils.hash.hash
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.auth.PRISMAuthenticationService
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.analyticsproviders.api.AnalyticsUserData
 import kotlinx.coroutines.sync.Mutex
@@ -44,8 +44,8 @@ class PRISMSessionCache(
     private val restoreMutex = Mutex()
 
     init {
-        authenticationService.listenToNewPRISMClients { prismClient ->
-            onNewPRISMClient(prismClient)
+        authenticationService.listenToNewPRISMClients { matrixClient ->
+            onNewPRISMClient(matrixClient)
         }
     }
 
@@ -58,7 +58,7 @@ class PRISMSessionCache(
     }
 
     override fun getOrNull(sessionId: SessionId): PRISMClient? {
-        return sessionIdsToPRISMSession[sessionId]?.prismClient
+        return sessionIdsToPRISMSession[sessionId]?.matrixClient
     }
 
     override suspend fun getOrRestore(sessionId: SessionId): Result<PRISMClient> {
@@ -100,26 +100,26 @@ class PRISMSessionCache(
     private suspend fun restore(sessionId: SessionId): Result<PRISMClient> {
         Timber.d("Restore prism session: $sessionId")
         return authenticationService.restoreSession(sessionId)
-            .onSuccess { prismClient ->
+            .onSuccess { matrixClient ->
                 // Add the current homeserver (hashed) to the extra info
                 // This may not play well with multiple sessions, but it should work for now
-                analyticsService.addIndexableData(AnalyticsUserData.HOMESERVER, prismClient.userIdServerName().hash())
+                analyticsService.addIndexableData(AnalyticsUserData.HOMESERVER, matrixClient.userIdServerName().hash())
 
                 // Add the new client to the in-memory cache
-                onNewPRISMClient(prismClient)
+                onNewPRISMClient(matrixClient)
             }
             .onFailure {
                 Timber.e(it, "Fail to restore session")
             }
     }
 
-    private fun onNewPRISMClient(prismClient: PRISMClient) {
+    private fun onNewPRISMClient(matrixClient: PRISMClient) {
         val syncOrchestrator = syncOrchestratorFactory.create(
-            syncService = prismClient.syncService,
-            sessionCoroutineScope = prismClient.sessionCoroutineScope,
+            syncService = matrixClient.syncService,
+            sessionCoroutineScope = matrixClient.sessionCoroutineScope,
         )
-        sessionIdsToPRISMSession[prismClient.sessionId] = InMemoryPRISMSession(
-            prismClient = prismClient,
+        sessionIdsToPRISMSession[matrixClient.sessionId] = InMemoryPRISMSession(
+            matrixClient = matrixClient,
             syncOrchestrator = syncOrchestrator,
         )
         syncOrchestrator.start()
@@ -127,6 +127,6 @@ class PRISMSessionCache(
 }
 
 private data class InMemoryPRISMSession(
-    val prismClient: PRISMClient,
+    val matrixClient: PRISMClient,
     val syncOrchestrator: SyncOrchestrator,
 )

@@ -18,7 +18,7 @@ import io.prism.android.tests.testutils.EnsureNeverCalledWithParam
 import io.prism.android.tests.testutils.EventsRecorder
 import io.prism.android.tests.testutils.clickOn
 import io.prism.android.tests.testutils.ensureCalledOnceWithParam
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule

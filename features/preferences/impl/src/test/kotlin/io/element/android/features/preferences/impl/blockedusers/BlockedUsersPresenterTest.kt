@@ -16,11 +16,11 @@ import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.FakePRISMClient
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.FakePRISMClient
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
@@ -42,10 +42,10 @@ class BlockedUsersPresenterTest {
 
     @Test
     fun `present - initial state with blocked users`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             ignoredUsersFlow = MutableStateFlow(persistentListOf(A_USER_ID))
         )
-        val presenter = aBlockedUsersPresenter(prismClient = prismClient)
+        val presenter = aBlockedUsersPresenter(matrixClient = matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -59,10 +59,10 @@ class BlockedUsersPresenterTest {
     @Test
     fun `present - blocked users list updates with new emissions`() = runTest {
         val ignoredUsersFlow = MutableStateFlow(persistentListOf(A_USER_ID))
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             ignoredUsersFlow = ignoredUsersFlow
         )
-        val presenter = aBlockedUsersPresenter(prismClient = prismClient)
+        val presenter = aBlockedUsersPresenter(matrixClient = matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -80,14 +80,14 @@ class BlockedUsersPresenterTest {
     @Test
     fun `present - blocked users list with data`() = runTest {
         val alice = PRISMUser(A_USER_ID, displayName = "Alice", avatarUrl = "aliceAvatar")
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             ignoredUsersFlow = MutableStateFlow(persistentListOf(A_USER_ID, A_USER_ID_2))
         ).apply {
             givenGetProfileResult(A_USER_ID, Result.success(alice))
             givenGetProfileResult(A_USER_ID_2, Result.failure(AN_EXCEPTION))
         }
         val presenter = aBlockedUsersPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             featureFlagService = FakeFeatureFlagService().apply {
                 setFeatureEnabled(FeatureFlags.ShowBlockedUsersDetails, true)
             }
@@ -107,10 +107,10 @@ class BlockedUsersPresenterTest {
 
     @Test
     fun `present - unblock user`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             ignoredUsersFlow = MutableStateFlow(persistentListOf(A_USER_ID))
         )
-        val presenter = aBlockedUsersPresenter(prismClient = prismClient)
+        val presenter = aBlockedUsersPresenter(matrixClient = matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -129,11 +129,11 @@ class BlockedUsersPresenterTest {
 
     @Test
     fun `present - unblock user handles failure`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             unIgnoreUserResult = { Result.failure(IllegalStateException("User not banned")) },
             ignoredUsersFlow = MutableStateFlow(persistentListOf(A_USER_ID))
         )
-        val presenter = aBlockedUsersPresenter(prismClient = prismClient)
+        val presenter = aBlockedUsersPresenter(matrixClient = matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -151,11 +151,11 @@ class BlockedUsersPresenterTest {
 
     @Test
     fun `present - unblock user then cancel`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             unIgnoreUserResult = { Result.failure(IllegalStateException("User not banned")) },
             ignoredUsersFlow = MutableStateFlow(persistentListOf(A_USER_ID))
         )
-        val presenter = aBlockedUsersPresenter(prismClient = prismClient)
+        val presenter = aBlockedUsersPresenter(matrixClient = matrixClient)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -181,10 +181,10 @@ class BlockedUsersPresenterTest {
     }
 
     private fun aBlockedUsersPresenter(
-        prismClient: FakePRISMClient = FakePRISMClient(),
+        matrixClient: FakePRISMClient = FakePRISMClient(),
         featureFlagService: FeatureFlagService = FakeFeatureFlagService(),
     ) = BlockedUsersPresenter(
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         featureFlagService = featureFlagService,
     )
 }

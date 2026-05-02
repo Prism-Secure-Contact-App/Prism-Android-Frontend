@@ -10,7 +10,7 @@ package io.prism.android.features.securityandprivacy.impl.editroomaddress
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
 
 open class EditRoomAddressStateProvider : PreviewParameterProvider<EditRoomAddressState> {
     override val values: Sequence<EditRoomAddressState>

@@ -13,11 +13,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import dev.zacsweers.metro.Inject
-import uk.fathertkt.prism.features.analytics.plan.SuperProperties
+import im.vector.app.features.analytics.plan.SuperProperties
 import io.prism.android.features.rageshake.api.crash.CrashDetectionState
 import io.prism.android.features.rageshake.api.detection.RageshakeDetectionState
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.SdkMetadata
+import io.prism.android.libraries.matrix.api.SdkMetadata
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.apperror.api.AppErrorStateService
 

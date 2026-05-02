@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.api.test
+package io.prism.android.libraries.troubleshoot.api.test
 
-import io.element.android.libraries.di.SessionScope
+import io.prism.android.libraries.di.SessionScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 

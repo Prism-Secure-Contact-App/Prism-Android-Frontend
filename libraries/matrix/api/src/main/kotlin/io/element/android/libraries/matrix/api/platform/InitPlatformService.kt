@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.platform
+package io.prism.android.libraries.matrix.api.platform
 
-import io.prism.android.libraries.prism.api.tracing.TracingConfiguration
+import io.prism.android.libraries.matrix.api.tracing.TracingConfiguration
 
 /**
  * This service is responsible for initializing the platform-related settings of the SDK.

@@ -49,7 +49,7 @@ import io.prism.android.libraries.designsystem.theme.components.SegmentedButton
 import io.prism.android.libraries.designsystem.theme.components.Surface
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 

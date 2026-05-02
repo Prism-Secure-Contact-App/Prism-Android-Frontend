@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.api
+package io.prism.android.libraries.voiceplayer.api
 
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
 import kotlin.time.Duration
 
 interface VoiceMessagePresenterFactory {

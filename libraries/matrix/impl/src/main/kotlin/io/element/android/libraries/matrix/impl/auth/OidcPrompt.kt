@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
-import io.prism.android.libraries.prism.api.auth.OidcPrompt
-import org.prism.rustcomponents.sdk.OidcPrompt as RustOidcPrompt
+import io.prism.android.libraries.matrix.api.auth.OidcPrompt
+import org.matrix.rustcomponents.sdk.OidcPrompt as RustOidcPrompt
 
 internal fun OidcPrompt.toRustPrompt(): RustOidcPrompt {
     return when (this) {

@@ -12,9 +12,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.home.api.HomeEntryPoint
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.test.FakePRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.test.FakePRISMClient
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode
@@ -31,7 +31,7 @@ class DefaultHomeEntryPointTest {
             HomeFlowNode(
                 buildContext = buildContext,
                 plugins = plugins,
-                prismClient = FakePRISMClient(),
+                matrixClient = FakePRISMClient(),
                 presenter = createHomePresenter(),
                 inviteFriendsUseCase = { lambdaError() },
                 analyticsService = FakeAnalyticsService(),

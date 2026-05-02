@@ -9,7 +9,7 @@
 package io.prism.android.features.securityandprivacy.impl.editroomaddress
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
 
 data class EditRoomAddressState(
     val homeserverName: String,

@@ -10,30 +10,30 @@ package io.prism.android.features.startchat.impl
 
 import androidx.compose.runtime.MutableState
 import dev.zacsweers.metro.ContributesBinding
-import uk.fathertkt.prism.features.analytics.plan.CreatedRoom
+import im.vector.app.features.analytics.plan.CreatedRoom
 import io.prism.android.features.startchat.api.ConfirmingStartDmWithPRISMUser
 import io.prism.android.features.startchat.api.StartDMAction
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.StartDMResult
-import io.prism.android.libraries.prism.api.room.startDM
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.StartDMResult
+import io.prism.android.libraries.matrix.api.room.startDM
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.services.analytics.api.AnalyticsService
 
 @ContributesBinding(SessionScope::class)
 class DefaultStartDMAction(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val analyticsService: AnalyticsService,
 ) : StartDMAction {
     override suspend fun execute(
-        prismUser: PRISMUser,
+        matrixUser: PRISMUser,
         createIfDmDoesNotExist: Boolean,
         actionState: MutableState<AsyncAction<RoomId>>,
     ) {
         actionState.value = AsyncAction.Loading
-        when (val result = prismClient.startDM(prismUser.userId, createIfDmDoesNotExist)) {
+        when (val result = matrixClient.startDM(matrixUser.userId, createIfDmDoesNotExist)) {
             is StartDMResult.Success -> {
                 if (result.isNew) {
                     analyticsService.capture(CreatedRoom(isDM = true))
@@ -44,7 +44,7 @@ class DefaultStartDMAction(
                 actionState.value = AsyncAction.Failure(result.throwable)
             }
             StartDMResult.DmDoesNotExist -> {
-                actionState.value = ConfirmingStartDmWithPRISMUser(prismUser = prismUser)
+                actionState.value = ConfirmingStartDmWithPRISMUser(matrixUser = matrixUser)
             }
         }
     }

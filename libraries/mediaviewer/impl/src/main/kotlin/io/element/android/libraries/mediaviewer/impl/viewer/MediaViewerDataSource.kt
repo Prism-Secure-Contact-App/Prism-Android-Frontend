@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
@@ -15,22 +15,22 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.core.extensions.mapCatchingExceptions
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.media.MediaFile
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.api.MediaViewerEntryPoint.MediaViewerMode
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.api.local.LocalMediaFactory
-import io.element.android.libraries.mediaviewer.impl.datasource.MediaGalleryDataSource
-import io.element.android.libraries.mediaviewer.impl.gallery.MediaGalleryMode
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.eventId
-import io.element.android.libraries.mediaviewer.impl.model.mediaInfo
-import io.element.android.libraries.mediaviewer.impl.model.mediaSource
-import io.element.android.libraries.mediaviewer.impl.model.thumbnailSource
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.core.extensions.mapCatchingExceptions
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaFile
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint.MediaViewerMode
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.api.local.LocalMediaFactory
+import io.prism.android.libraries.mediaviewer.impl.datasource.MediaGalleryDataSource
+import io.prism.android.libraries.mediaviewer.impl.gallery.MediaGalleryMode
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.eventId
+import io.prism.android.libraries.mediaviewer.impl.model.mediaInfo
+import io.prism.android.libraries.mediaviewer.impl.model.mediaSource
+import io.prism.android.libraries.mediaviewer.impl.model.thumbnailSource
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -44,7 +44,7 @@ class MediaViewerDataSource(
     mode: MediaViewerMode,
     private val dispatcher: CoroutineDispatcher,
     private val galleryDataSource: MediaGalleryDataSource,
-    private val mediaLoader: MatrixMediaLoader,
+    private val mediaLoader: PRISMMediaLoader,
     private val localMediaFactory: LocalMediaFactory,
     private val systemClock: SystemClock,
     private val pagerKeysHandler: PagerKeysHandler,

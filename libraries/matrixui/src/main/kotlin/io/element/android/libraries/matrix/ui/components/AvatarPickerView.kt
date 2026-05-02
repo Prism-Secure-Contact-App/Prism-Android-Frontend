@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
@@ -45,21 +45,21 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.icons.CompoundDrawables
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.testtags.TestTags
-import io.element.android.libraries.testtags.testTag
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.icons.CompoundDrawables
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.testtags.TestTags
+import io.prism.android.libraries.testtags.testTag
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 private val editIconContainerSize = 30.dp
 private val editIconContainerRadius = editIconContainerSize / 2
@@ -170,7 +170,7 @@ private fun PickButton(
         modifier = modifier
             .size(buttonSize)
             .clip(CircleShape)
-            .border(BorderStroke(1.dp, ElementTheme.colors.borderInteractiveSecondary), shape = CircleShape)
+            .border(BorderStroke(1.dp, PRISMTheme.colors.borderInteractiveSecondary), shape = CircleShape)
     ) {
         Icon(
             resourceId = iconId,
@@ -178,7 +178,7 @@ private fun PickButton(
             modifier = Modifier
                 .align(Alignment.Center)
                 .size(iconSize),
-            tint = ElementTheme.colors.iconPrimary,
+            tint = PRISMTheme.colors.iconPrimary,
         )
     }
 }
@@ -195,8 +195,8 @@ private fun BoxScope.OverlayEditButton(
             .offset(x = editIconOffset)
             .clip(CircleShape)
             .clickable(interactionSource = interactionSource, onClick = onClick, indication = null)
-            .background(ElementTheme.colors.bgCanvasDefault)
-            .border(BorderStroke(1.dp, ElementTheme.colors.borderInteractiveSecondary), shape = CircleShape),
+            .background(PRISMTheme.colors.bgCanvasDefault)
+            .border(BorderStroke(1.dp, PRISMTheme.colors.borderInteractiveSecondary), shape = CircleShape),
         contentAlignment = Alignment.Center,
     ) {
         Icon(
@@ -224,7 +224,7 @@ sealed interface AvatarPickerState {
 
 @PreviewsDayNight
 @Composable
-internal fun AvatarPickerViewPreview() = ElementPreview {
+internal fun AvatarPickerViewPreview() = PRISMPreview {
     PreviewContent()
 }
 
@@ -233,12 +233,12 @@ internal fun AvatarPickerViewPreview() = ElementPreview {
 internal fun AvatarPickerViewRtlPreview() = CompositionLocalProvider(
     LocalLayoutDirection provides LayoutDirection.Rtl,
 ) {
-    ElementPreview { PreviewContent() }
+    PRISMPreview { PreviewContent() }
 }
 
 @PreviewsDayNight
 @Composable
-internal fun AvatarPickerSizesPreview() = ElementPreview {
+internal fun AvatarPickerSizesPreview() = PRISMPreview {
     // Size used across the codebase
     val sizes = listOf(
         AvatarSize.EditRoomDetails,

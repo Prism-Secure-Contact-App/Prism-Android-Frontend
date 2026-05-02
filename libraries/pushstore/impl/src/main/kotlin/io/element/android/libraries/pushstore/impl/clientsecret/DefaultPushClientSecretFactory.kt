@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.impl.clientsecret
+package io.prism.android.libraries.pushstore.impl.clientsecret
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecretFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecretFactory
 import java.util.UUID
 
 @ContributesBinding(AppScope::class)

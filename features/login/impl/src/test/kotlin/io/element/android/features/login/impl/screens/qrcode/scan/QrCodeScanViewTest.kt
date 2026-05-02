@@ -15,8 +15,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.test.auth.qrlogin.FakePRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.test.auth.qrlogin.FakePRISMQrCodeLoginData
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam
 import io.prism.android.tests.testutils.ensureCalledOnce

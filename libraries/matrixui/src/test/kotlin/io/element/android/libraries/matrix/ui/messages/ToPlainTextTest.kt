@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages
+package io.prism.android.libraries.matrix.ui.messages
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.timeline.item.event.FormattedBody
-import io.element.android.libraries.matrix.api.timeline.item.event.MessageFormat
-import io.element.android.libraries.matrix.api.timeline.item.event.TextMessageType
-import io.element.android.libraries.matrix.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.matrix.api.timeline.item.event.FormattedBody
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageFormat
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
 import org.jsoup.Jsoup
 import org.junit.Test
 import org.junit.runner.RunWith

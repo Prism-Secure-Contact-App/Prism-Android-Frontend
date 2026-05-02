@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl
+package io.prism.android.libraries.matrix.impl
 
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
@@ -16,14 +16,14 @@ import io.prism.android.libraries.di.CacheDirectory
 import io.prism.android.libraries.di.annotations.AppCoroutineScope
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.impl.analytics.UtdTracker
-import io.prism.android.libraries.prism.impl.certificates.UserCertificatesProvider
-import io.prism.android.libraries.prism.impl.paths.SessionPaths
-import io.prism.android.libraries.prism.impl.paths.getSessionPaths
-import io.prism.android.libraries.prism.impl.proxy.ProxyProvider
-import io.prism.android.libraries.prism.impl.room.TimelineEventFilterFactory
-import io.prism.android.libraries.prism.impl.storage.SqliteStoreBuilderProvider
-import io.prism.android.libraries.prism.impl.util.anonymizedTokens
+import io.prism.android.libraries.matrix.impl.analytics.UtdTracker
+import io.prism.android.libraries.matrix.impl.certificates.UserCertificatesProvider
+import io.prism.android.libraries.matrix.impl.paths.SessionPaths
+import io.prism.android.libraries.matrix.impl.paths.getSessionPaths
+import io.prism.android.libraries.matrix.impl.proxy.ProxyProvider
+import io.prism.android.libraries.matrix.impl.room.TimelineEventFilterFactory
+import io.prism.android.libraries.matrix.impl.storage.SqliteStoreBuilderProvider
+import io.prism.android.libraries.matrix.impl.util.anonymizedTokens
 import io.prism.android.libraries.network.useragent.UserAgentProvider
 import io.prism.android.libraries.sessionstorage.api.SessionData
 import io.prism.android.libraries.sessionstorage.api.SessionStore
@@ -32,19 +32,19 @@ import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.ClientBuilder
-import org.prism.rustcomponents.sdk.CrossProcessLockConfig
-import org.prism.rustcomponents.sdk.RequestConfig
-import org.prism.rustcomponents.sdk.Session
-import org.prism.rustcomponents.sdk.SlidingSyncVersion
-import org.prism.rustcomponents.sdk.SlidingSyncVersionBuilder
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.ClientBuilder
+import org.matrix.rustcomponents.sdk.CrossProcessLockConfig
+import org.matrix.rustcomponents.sdk.RequestConfig
+import org.matrix.rustcomponents.sdk.Session
+import org.matrix.rustcomponents.sdk.SlidingSyncVersion
+import org.matrix.rustcomponents.sdk.SlidingSyncVersionBuilder
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
-import uniffi.prism_sdk_base.MediaRetentionPolicy
-import uniffi.prism_sdk_crypto.CollectStrategy
-import uniffi.prism_sdk_crypto.DecryptionSettings
-import uniffi.prism_sdk_crypto.TrustRequirement
+import uniffi.matrix_sdk_base.MediaRetentionPolicy
+import uniffi.matrix_sdk_crypto.CollectStrategy
+import uniffi.matrix_sdk_crypto.DecryptionSettings
+import uniffi.matrix_sdk_crypto.TrustRequirement
 import java.io.File
 import kotlin.time.Duration.Companion.days
 import kotlin.time.toJavaDuration

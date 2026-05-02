@@ -17,8 +17,8 @@ import io.prism.android.features.invite.api.SeenInvitesStore
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.ui.safety.rememberHideInvitesAvatar
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.ui.safety.rememberHideInvitesAvatar
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableList

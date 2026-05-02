@@ -28,7 +28,7 @@ import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import kotlinx.parcelize.Parcelize
 
 @ContributesNode(SessionScope::class)
@@ -38,7 +38,7 @@ class CreateRoomFlowNode(
     @Assisted plugins: List<Plugin>,
 ) : BaseFlowNode<CreateRoomFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = initialPRISMFromInputs(plugins.filterIsInstance<Inputs>().first()),
+        initialElement = initialElementFromInputs(plugins.filterIsInstance<Inputs>().first()),
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,
@@ -89,7 +89,7 @@ class CreateRoomFlowNode(
     }
 }
 
-private fun initialPRISMFromInputs(inputs: CreateRoomFlowNode.Inputs) = CreateRoomFlowNode.NavTarget.ConfigureRoom(
+private fun initialElementFromInputs(inputs: CreateRoomFlowNode.Inputs) = CreateRoomFlowNode.NavTarget.ConfigureRoom(
     isSpace = inputs.isSpace,
     parentSpaceId = inputs.parentSpaceId,
 )

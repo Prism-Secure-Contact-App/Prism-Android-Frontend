@@ -10,13 +10,13 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 setupDependencyInjection()
 
 android {
-    namespace = "io.element.android.services.apperror.impl"
+    namespace = "io.prism.android.services.apperror.impl"
 }
 
 dependencies {

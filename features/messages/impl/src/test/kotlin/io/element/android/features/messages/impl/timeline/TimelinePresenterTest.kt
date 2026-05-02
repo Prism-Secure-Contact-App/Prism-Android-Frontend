@@ -28,37 +28,37 @@ import io.prism.android.features.poll.test.actions.FakeEndPollAction
 import io.prism.android.features.poll.test.actions.FakeSendPollResponseAction
 import io.prism.android.features.roomcall.api.aStandByCallState
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.core.asEventId
-import io.prism.android.libraries.prism.api.room.MessageEventType
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.api.room.tombstone.PredecessorRoom
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.ReceiptType
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.timeline.item.event.EventReaction
-import io.prism.android.libraries.prism.api.timeline.item.event.ReactionSender
-import io.prism.android.libraries.prism.api.timeline.item.event.Receipt
-import io.prism.android.libraries.prism.api.timeline.item.virtual.VirtualTimelineItem
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.AN_EVENT_ID_2
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_THREAD_ID
-import io.prism.android.libraries.prism.test.A_THREAD_ID_2
-import io.prism.android.libraries.prism.test.A_UNIQUE_ID
-import io.prism.android.libraries.prism.test.A_UNIQUE_ID_2
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.room.aRoomMember
-import io.prism.android.libraries.prism.test.room.powerlevels.FakeRoomPermissions
-import io.prism.android.libraries.prism.test.timeline.FakeTimeline
-import io.prism.android.libraries.prism.test.timeline.aMessageContent
-import io.prism.android.libraries.prism.test.timeline.anEventTimelineItem
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.core.asEventId
+import io.prism.android.libraries.matrix.api.room.MessageEventType
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.tombstone.PredecessorRoom
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventReaction
+import io.prism.android.libraries.matrix.api.timeline.item.event.ReactionSender
+import io.prism.android.libraries.matrix.api.timeline.item.event.Receipt
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_THREAD_ID
+import io.prism.android.libraries.matrix.test.A_THREAD_ID_2
+import io.prism.android.libraries.matrix.test.A_UNIQUE_ID
+import io.prism.android.libraries.matrix.test.A_UNIQUE_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.room.powerlevels.FakeRoomPermissions
+import io.prism.android.libraries.matrix.test.timeline.FakeTimeline
+import io.prism.android.libraries.matrix.test.timeline.aMessageContent
+import io.prism.android.libraries.matrix.test.timeline.anEventTimelineItem
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import io.prism.android.libraries.preferences.test.InMemorySessionPreferencesStore
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.WarmUpRule
@@ -379,7 +379,7 @@ class TimelinePresenterTest {
             val now = Date().time
             val minuteInMillis = 60 * 1000
             // Use index as a convenient value for timestamp
-            val (alice, bob, charlie) = aPRISMUserList().take(3).mapIndexed { i, user ->
+            val (alice, bob, charlie) = aMatrixUserList().take(3).mapIndexed { i, user ->
                 ReactionSender(senderId = user.userId, timestamp = now + i * minuteInMillis)
             }
             val oneReaction = persistentListOf(

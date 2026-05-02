@@ -33,7 +33,7 @@ dependencies {
     implementation(projects.libraries.architecture)
     implementation(projects.libraries.featureflag.api)
     implementation(projects.libraries.matrix.api)
-    implementation(projects.libraries.prismui)
+    implementation(projects.libraries.matrixui)
     implementation(projects.libraries.designsystem)
     implementation(projects.libraries.mediaupload.api)
     implementation(projects.libraries.roomselect.api)

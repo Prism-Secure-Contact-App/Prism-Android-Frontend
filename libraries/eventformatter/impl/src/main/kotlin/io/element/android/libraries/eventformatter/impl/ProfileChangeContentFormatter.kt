@@ -9,8 +9,8 @@
 package io.prism.android.libraries.eventformatter.impl
 
 import dev.zacsweers.metro.Inject
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.event.ProfileChangeContent
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileChangeContent
 import io.prism.android.services.toolbox.api.strings.StringProvider
 
 @Inject

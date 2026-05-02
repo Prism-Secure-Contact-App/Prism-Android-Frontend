@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl
+package io.prism.android.libraries.matrix.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import org.prism.rustcomponents.sdk.ClientBuilder
+import org.matrix.rustcomponents.sdk.ClientBuilder
 
 interface ClientBuilderProvider {
     fun provide(): ClientBuilder

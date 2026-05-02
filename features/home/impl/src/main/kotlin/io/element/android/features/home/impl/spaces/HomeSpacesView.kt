@@ -36,12 +36,12 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Button
 import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
 import io.prism.android.libraries.designsystem.theme.components.TextButton
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.ui.components.SpaceHeaderRootView
-import io.prism.android.libraries.prism.ui.components.SpaceHeaderView
-import io.prism.android.libraries.prism.ui.components.SpaceRoomItemView
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.ui.components.SpaceHeaderRootView
+import io.prism.android.libraries.matrix.ui.components.SpaceHeaderView
+import io.prism.android.libraries.matrix.ui.components.SpaceRoomItemView
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.toImmutableList
 

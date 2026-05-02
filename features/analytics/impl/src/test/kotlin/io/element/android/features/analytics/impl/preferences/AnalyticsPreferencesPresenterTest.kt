@@ -14,7 +14,7 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.appconfig.AnalyticsConfig
 import io.prism.android.features.analytics.api.AnalyticsOptInEvents
-import io.prism.android.libraries.prism.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.test.runTest

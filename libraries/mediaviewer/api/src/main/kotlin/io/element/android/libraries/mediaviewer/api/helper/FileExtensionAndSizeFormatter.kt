@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.api.helper
+package io.prism.android.libraries.mediaviewer.api.helper
 
 fun formatFileExtensionAndSize(extension: String, size: String?): String {
     return buildString {

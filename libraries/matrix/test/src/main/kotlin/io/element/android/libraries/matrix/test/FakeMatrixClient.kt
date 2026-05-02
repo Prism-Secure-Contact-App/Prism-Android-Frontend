@@ -6,55 +6,55 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test
+package io.prism.android.libraries.matrix.test
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.analytics.SdkStoreSizes
-import io.element.android.libraries.matrix.api.core.DeviceId
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.RoomIdOrAlias
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.createroom.CreateRoomParameters
-import io.element.android.libraries.matrix.api.encryption.EncryptionService
-import io.element.android.libraries.matrix.api.linknewdevice.LinkDesktopHandler
-import io.element.android.libraries.matrix.api.linknewdevice.LinkMobileHandler
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.media.MediaPreviewService
-import io.element.android.libraries.matrix.api.notification.NotificationService
-import io.element.android.libraries.matrix.api.notificationsettings.NotificationSettingsService
-import io.element.android.libraries.matrix.api.oidc.AccountManagementAction
-import io.element.android.libraries.matrix.api.pusher.PushersService
-import io.element.android.libraries.matrix.api.room.BaseRoom
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.room.NotJoinedRoom
-import io.element.android.libraries.matrix.api.room.RoomInfo
-import io.element.android.libraries.matrix.api.room.RoomMembershipObserver
-import io.element.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
-import io.element.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
-import io.element.android.libraries.matrix.api.roomlist.RoomListService
-import io.element.android.libraries.matrix.api.spaces.SpaceService
-import io.element.android.libraries.matrix.api.sync.SlidingSyncVersion
-import io.element.android.libraries.matrix.api.sync.SyncService
-import io.element.android.libraries.matrix.api.user.MatrixSearchUserResults
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.api.verification.SessionVerificationService
-import io.element.android.libraries.matrix.test.encryption.FakeEncryptionService
-import io.element.android.libraries.matrix.test.media.FakeMatrixMediaLoader
-import io.element.android.libraries.matrix.test.media.FakeMediaPreviewService
-import io.element.android.libraries.matrix.test.notification.FakeNotificationService
-import io.element.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
-import io.element.android.libraries.matrix.test.pushers.FakePushersService
-import io.element.android.libraries.matrix.test.roomdirectory.FakeRoomDirectoryService
-import io.element.android.libraries.matrix.test.roomlist.FakeRoomListService
-import io.element.android.libraries.matrix.test.spaces.FakeSpaceService
-import io.element.android.libraries.matrix.test.sync.FakeSyncService
-import io.element.android.libraries.matrix.test.verification.FakeSessionVerificationService
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.analytics.SdkStoreSizes
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.createroom.CreateRoomParameters
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopHandler
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileHandler
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaPreviewService
+import io.prism.android.libraries.matrix.api.notification.NotificationService
+import io.prism.android.libraries.matrix.api.notificationsettings.NotificationSettingsService
+import io.prism.android.libraries.matrix.api.oidc.AccountManagementAction
+import io.prism.android.libraries.matrix.api.pusher.PushersService
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.NotJoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.spaces.SpaceService
+import io.prism.android.libraries.matrix.api.sync.SlidingSyncVersion
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.user.PRISMSearchUserResults
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.test.media.FakeMatrixMediaLoader
+import io.prism.android.libraries.matrix.test.media.FakeMediaPreviewService
+import io.prism.android.libraries.matrix.test.notification.FakeNotificationService
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.test.pushers.FakePushersService
+import io.prism.android.libraries.matrix.test.roomdirectory.FakeRoomDirectoryService
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.test.sync.FakeSyncService
+import io.prism.android.libraries.matrix.test.verification.FakeSessionVerificationService
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.simulateLongTask
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.CoroutineScope
@@ -74,7 +74,7 @@ class FakeMatrixClient(
     private val userAvatarUrl: String? = AN_AVATAR_URL,
     override val roomListService: RoomListService = FakeRoomListService(),
     override val spaceService: SpaceService = FakeSpaceService(),
-    override val matrixMediaLoader: MatrixMediaLoader = FakeMatrixMediaLoader(),
+    override val matrixMediaLoader: PRISMMediaLoader = FakeMatrixMediaLoader(),
     override val sessionVerificationService: SessionVerificationService = FakeSessionVerificationService(),
     override val pushersService: PushersService = FakePushersService(),
     override val notificationService: NotificationService = FakeNotificationService(),
@@ -113,7 +113,7 @@ class FakeMatrixClient(
     private val performDatabaseVacuumLambda: () -> Result<Unit> = { lambdaError() },
     private val getDatabaseSizesLambda: () -> Result<SdkStoreSizes> = { lambdaError() },
     private val resetWellKnownConfigLambda: () -> Result<Unit> = { lambdaError() },
-) : MatrixClient {
+) : PRISMClient {
     var setDisplayNameCalled: Boolean = false
         private set
     var uploadAvatarCalled: Boolean = false
@@ -121,15 +121,15 @@ class FakeMatrixClient(
     var removeAvatarCalled: Boolean = false
         private set
 
-    private val _userProfile: MutableStateFlow<MatrixUser> = MutableStateFlow(MatrixUser(sessionId, userDisplayName, userAvatarUrl))
-    override val userProfile: StateFlow<MatrixUser> = _userProfile
+    private val _userProfile: MutableStateFlow<PRISMUser> = MutableStateFlow(PRISMUser(sessionId, userDisplayName, userAvatarUrl))
+    override val userProfile: StateFlow<PRISMUser> = _userProfile
 
     private var createRoomResult: Result<RoomId> = Result.success(A_ROOM_ID)
     private var createDmResult: Result<RoomId> = Result.success(A_ROOM_ID)
     private var findDmResult: Result<RoomId?> = Result.success(A_ROOM_ID)
     private val getRoomResults = mutableMapOf<RoomId, BaseRoom>()
-    private val searchUserResults = mutableMapOf<String, Result<MatrixSearchUserResults>>()
-    private val getProfileResults = mutableMapOf<UserId, Result<MatrixUser>>()
+    private val searchUserResults = mutableMapOf<String, Result<PRISMSearchUserResults>>()
+    private val getProfileResults = mutableMapOf<UserId, Result<PRISMUser>>()
     private var uploadMediaResult: Result<String> = Result.success(AN_AVATAR_URL)
     private var setDisplayNameResult: Result<Unit> = Result.success(Unit)
     private var uploadAvatarResult: Result<Unit> = Result.success(Unit)
@@ -180,11 +180,11 @@ class FakeMatrixClient(
         return createDmResult
     }
 
-    override suspend fun getProfile(userId: UserId): Result<MatrixUser> {
+    override suspend fun getProfile(userId: UserId): Result<PRISMUser> {
         return getProfileResults[userId] ?: Result.failure(IllegalStateException("No profile found for $userId"))
     }
 
-    override suspend fun searchUsers(searchTerm: String, limit: Long): Result<MatrixSearchUserResults> {
+    override suspend fun searchUsers(searchTerm: String, limit: Long): Result<PRISMSearchUserResults> {
         return searchUserResults[searchTerm] ?: Result.failure(IllegalStateException("No response defined for $searchTerm"))
     }
 
@@ -210,8 +210,8 @@ class FakeMatrixClient(
         deactivateAccountResult(password, eraseData)
     }
 
-    override suspend fun getUserProfile(): Result<MatrixUser> = simulateLongTask {
-        val result = getProfileResults[sessionId]?.getOrNull() ?: MatrixUser(sessionId, userDisplayName, userAvatarUrl)
+    override suspend fun getUserProfile(): Result<PRISMUser> = simulateLongTask {
+        val result = getProfileResults[sessionId]?.getOrNull() ?: PRISMUser(sessionId, userDisplayName, userAvatarUrl)
         _userProfile.tryEmit(result)
         return Result.success(result)
     }
@@ -274,11 +274,11 @@ class FakeMatrixClient(
         }
     }
 
-    fun givenSearchUsersResult(searchTerm: String, result: Result<MatrixSearchUserResults>) {
+    fun givenSearchUsersResult(searchTerm: String, result: Result<PRISMSearchUserResults>) {
         searchUserResults[searchTerm] = result
     }
 
-    fun givenGetProfileResult(userId: UserId, result: Result<MatrixUser>) {
+    fun givenGetProfileResult(userId: UserId, result: Result<PRISMUser>) {
         getProfileResults[userId] = result
     }
 

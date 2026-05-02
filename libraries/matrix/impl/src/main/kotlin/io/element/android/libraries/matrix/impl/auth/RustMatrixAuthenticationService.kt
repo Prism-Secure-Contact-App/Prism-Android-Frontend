@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
@@ -14,44 +14,44 @@ import dev.zacsweers.metro.SingleIn
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.extensions.mapFailure
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.auth.AuthenticationException
-import io.prism.android.libraries.prism.api.auth.PRISMAuthenticationService
-import io.prism.android.libraries.prism.api.auth.PRISMHomeServerDetails
-import io.prism.android.libraries.prism.api.auth.OidcDetails
-import io.prism.android.libraries.prism.api.auth.OidcPrompt
-import io.prism.android.libraries.prism.api.auth.SessionRestorationException
-import io.prism.android.libraries.prism.api.auth.external.ExternalSession
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
-import io.prism.android.libraries.prism.impl.ClientBuilderSlidingSync
-import io.prism.android.libraries.prism.impl.RustPRISMClientFactory
-import io.prism.android.libraries.prism.impl.auth.qrlogin.QrErrorMapper
-import io.prism.android.libraries.prism.impl.auth.qrlogin.SdkQrCodeLoginData
-import io.prism.android.libraries.prism.impl.auth.qrlogin.toStep
-import io.prism.android.libraries.prism.impl.exception.mapClientException
-import io.prism.android.libraries.prism.impl.keys.PassphraseGenerator
-import io.prism.android.libraries.prism.impl.mapper.toSessionData
-import io.prism.android.libraries.prism.impl.paths.SessionPaths
-import io.prism.android.libraries.prism.impl.paths.SessionPathsFactory
-import io.prism.android.libraries.prism.impl.toSession
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.auth.AuthenticationException
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.auth.PRISMHomeServerDetails
+import io.prism.android.libraries.matrix.api.auth.OidcDetails
+import io.prism.android.libraries.matrix.api.auth.OidcPrompt
+import io.prism.android.libraries.matrix.api.auth.SessionRestorationException
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.impl.ClientBuilderSlidingSync
+import io.prism.android.libraries.matrix.impl.RustPRISMClientFactory
+import io.prism.android.libraries.matrix.impl.auth.qrlogin.QrErrorMapper
+import io.prism.android.libraries.matrix.impl.auth.qrlogin.SdkQrCodeLoginData
+import io.prism.android.libraries.matrix.impl.auth.qrlogin.toStep
+import io.prism.android.libraries.matrix.impl.exception.mapClientException
+import io.prism.android.libraries.matrix.impl.keys.PassphraseGenerator
+import io.prism.android.libraries.matrix.impl.mapper.toSessionData
+import io.prism.android.libraries.matrix.impl.paths.SessionPaths
+import io.prism.android.libraries.matrix.impl.paths.SessionPathsFactory
+import io.prism.android.libraries.matrix.impl.toSession
 import io.prism.android.libraries.sessionstorage.api.LoginType
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.ClientBuilder
-import org.prism.rustcomponents.sdk.HumanQrLoginException
-import org.prism.rustcomponents.sdk.QrCodeData
-import org.prism.rustcomponents.sdk.QrCodeDecodeException
-import org.prism.rustcomponents.sdk.QrLoginProgress
-import org.prism.rustcomponents.sdk.QrLoginProgressListener
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.ClientBuilder
+import org.matrix.rustcomponents.sdk.HumanQrLoginException
+import org.matrix.rustcomponents.sdk.QrCodeData
+import org.matrix.rustcomponents.sdk.QrCodeDecodeException
+import org.matrix.rustcomponents.sdk.QrLoginProgress
+import org.matrix.rustcomponents.sdk.QrLoginProgressListener
 import timber.log.Timber
-import uniffi.prism_sdk.OAuthAuthorizationData
+import uniffi.matrix_sdk.OAuthAuthorizationData
 import kotlin.time.Duration.Companion.seconds
 
 @ContributesBinding(AppScope::class)
@@ -148,8 +148,8 @@ class RustPRISMAuthenticationService(
                         passphrase = pendingPassphrase,
                         sessionPaths = currentSessionPaths,
                     )
-                val prismClient = rustPRISMClientFactory.create(client)
-                newPRISMClientObservers.forEach { it.invoke(prismClient) }
+                val matrixClient = rustPRISMClientFactory.create(client)
+                newPRISMClientObservers.forEach { it.invoke(matrixClient) }
                 sessionStore.addSession(sessionData)
 
                 // Clean up the strong reference held here since it's no longer necessary
@@ -176,13 +176,13 @@ class RustPRISMAuthenticationService(
 
                 // We restore the client using the just retrieved session data
                 client.restoreSession(sessionData.toSession())
-                val prismClient = rustPRISMClientFactory.create(client)
+                val matrixClient = rustPRISMClientFactory.create(client)
 
                 // We wait for the verification state to be known
-                prismClient.waitForKnownVerificationState()
+                matrixClient.waitForKnownVerificationState()
 
                 // And once it's ready we share it and save the actual session data
-                newPRISMClientObservers.forEach { it.invoke(prismClient) }
+                newPRISMClientObservers.forEach { it.invoke(matrixClient) }
                 sessionStore.addSession(sessionData)
 
                 // Clean up the strong reference held here since it's no longer necessary
@@ -255,10 +255,10 @@ class RustPRISMAuthenticationService(
                     passphrase = pendingPassphrase,
                     sessionPaths = currentSessionPaths,
                 )
-                val prismClient = rustPRISMClientFactory.create(client)
-                prismClient.waitForKnownVerificationState()
+                val matrixClient = rustPRISMClientFactory.create(client)
+                matrixClient.waitForKnownVerificationState()
 
-                newPRISMClientObservers.forEach { it.invoke(prismClient) }
+                newPRISMClientObservers.forEach { it.invoke(matrixClient) }
                 sessionStore.addSession(sessionData)
 
                 // Clean up the strong reference held here since it's no longer necessary
@@ -320,8 +320,8 @@ class RustPRISMAuthenticationService(
                         passphrase = pendingPassphrase,
                         sessionPaths = emptySessionPaths,
                     )
-                val prismClient = rustPRISMClientFactory.create(client)
-                newPRISMClientObservers.forEach { it.invoke(prismClient) }
+                val matrixClient = rustPRISMClientFactory.create(client)
+                newPRISMClientObservers.forEach { it.invoke(matrixClient) }
                 sessionStore.addSession(sessionData)
 
                 // Clean up the strong reference held here since it's no longer necessary

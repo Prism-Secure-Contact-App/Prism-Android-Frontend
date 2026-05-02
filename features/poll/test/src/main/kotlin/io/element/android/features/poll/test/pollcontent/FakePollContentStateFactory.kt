@@ -11,8 +11,8 @@ package io.prism.android.features.poll.test.pollcontent
 import io.prism.android.features.poll.api.pollcontent.PollAnswerItem
 import io.prism.android.features.poll.api.pollcontent.PollContentState
 import io.prism.android.features.poll.api.pollcontent.PollContentStateFactory
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
 import kotlinx.collections.immutable.toImmutableList
 
 class FakePollContentStateFactory : PollContentStateFactory {

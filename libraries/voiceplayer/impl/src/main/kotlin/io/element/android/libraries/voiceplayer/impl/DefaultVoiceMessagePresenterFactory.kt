@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.di.annotations.SessionCoroutineScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.voiceplayer.api.VoiceMessagePresenterFactory
-import io.element.android.libraries.voiceplayer.api.VoiceMessageState
-import io.element.android.services.analytics.api.AnalyticsService
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.di.annotations.SessionCoroutineScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.voiceplayer.api.VoiceMessagePresenterFactory
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageState
+import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.CoroutineScope
 import kotlin.time.Duration
 

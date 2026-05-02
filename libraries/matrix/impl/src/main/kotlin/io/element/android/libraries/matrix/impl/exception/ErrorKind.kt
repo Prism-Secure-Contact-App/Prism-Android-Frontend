@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.exception
-import io.prism.android.libraries.prism.api.exception.ErrorKind
-import org.prism.rustcomponents.sdk.ErrorKind as RustErrorKind
+package io.prism.android.libraries.matrix.impl.exception
+import io.prism.android.libraries.matrix.api.exception.ErrorKind
+import org.matrix.rustcomponents.sdk.ErrorKind as RustErrorKind
 
 fun RustErrorKind.map(): ErrorKind {
     return when (this) {

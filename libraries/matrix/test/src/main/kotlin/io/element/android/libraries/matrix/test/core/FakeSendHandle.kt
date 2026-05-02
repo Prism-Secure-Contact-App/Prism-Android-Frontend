@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.core
+package io.prism.android.libraries.matrix.test.core
 
-import io.element.android.libraries.matrix.api.core.SendHandle
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.core.SendHandle
+import io.prism.android.tests.testutils.simulateLongTask
 
 class FakeSendHandle(
     var retryLambda: () -> Result<Unit> = { Result.success(Unit) }

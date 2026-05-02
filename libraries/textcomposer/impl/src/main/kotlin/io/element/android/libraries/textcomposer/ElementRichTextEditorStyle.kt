@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer
+package io.prism.android.libraries.textcomposer
 
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -14,8 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.isSpecified
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.theme.bgSubtleTertiary
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.theme.bgSubtleTertiary
 import io.element.android.wysiwyg.compose.RichTextEditorDefaults
 import io.element.android.wysiwyg.compose.RichTextEditorStyle
 
@@ -28,11 +28,11 @@ object ElementRichTextEditorStyle {
         return baseStyle.copy(
             text = baseStyle.text.copy(
                 color = if (hasFocus) {
-                    ElementTheme.colors.textPrimary
+                    PRISMTheme.colors.textPrimary
                 } else {
-                    ElementTheme.colors.textSecondary
+                    PRISMTheme.colors.textSecondary
                 },
-                placeholderColor = ElementTheme.colors.textSecondary,
+                placeholderColor = PRISMTheme.colors.textSecondary,
                 lineHeight = TextUnit.Unspecified,
                 includeFontPadding = true,
             )
@@ -46,7 +46,7 @@ object ElementRichTextEditorStyle {
 
     @Composable
     private fun common(): RichTextEditorStyle {
-        val colors = ElementTheme.colors
+        val colors = PRISMTheme.colors
         val codeCornerRadius = 4.dp
         val codeBorderWidth = 1.dp
         return RichTextEditorDefaults.style(

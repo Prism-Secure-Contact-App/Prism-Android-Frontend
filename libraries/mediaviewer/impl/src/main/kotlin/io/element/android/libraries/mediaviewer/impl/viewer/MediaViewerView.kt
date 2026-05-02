@@ -8,7 +8,7 @@
 
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
@@ -51,39 +51,39 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.features.viewfolder.api.TextFileViewer
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.audio.api.AudioFocus
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.core.mimetype.MimeTypes.isMimeTypeVideo
-import io.element.android.libraries.designsystem.components.async.AsyncFailure
-import io.element.android.libraries.designsystem.components.async.AsyncLoading
-import io.element.android.libraries.designsystem.components.button.BackButton
-import io.element.android.libraries.designsystem.components.dialogs.RetryDialog
-import io.element.android.libraries.designsystem.preview.ElementPreviewDark
-import io.element.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.IconButton
-import io.element.android.libraries.designsystem.theme.components.Scaffold
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.components.TopAppBar
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarHost
-import io.element.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.ui.media.MediaRequestData
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.R
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.details.MediaDeleteConfirmationBottomSheet
-import io.element.android.libraries.mediaviewer.impl.details.MediaDetailsBottomSheet
-import io.element.android.libraries.mediaviewer.impl.local.LocalMediaView
-import io.element.android.libraries.mediaviewer.impl.local.PlayableState
-import io.element.android.libraries.mediaviewer.impl.local.rememberLocalMediaViewState
-import io.element.android.libraries.mediaviewer.impl.util.bgCanvasWithTransparency
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.features.viewfolder.api.TextFileViewer
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.audio.api.AudioFocus
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeVideo
+import io.prism.android.libraries.designsystem.components.async.AsyncFailure
+import io.prism.android.libraries.designsystem.components.async.AsyncLoading
+import io.prism.android.libraries.designsystem.components.button.BackButton
+import io.prism.android.libraries.designsystem.components.dialogs.RetryDialog
+import io.prism.android.libraries.designsystem.preview.PRISMPreviewDark
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.IconButton
+import io.prism.android.libraries.designsystem.theme.components.Scaffold
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.components.TopAppBar
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarHost
+import io.prism.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.R
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.details.MediaDeleteConfirmationBottomSheet
+import io.prism.android.libraries.mediaviewer.impl.details.MediaDetailsBottomSheet
+import io.prism.android.libraries.mediaviewer.impl.local.LocalMediaView
+import io.prism.android.libraries.mediaviewer.impl.local.PlayableState
+import io.prism.android.libraries.mediaviewer.impl.local.rememberLocalMediaViewState
+import io.prism.android.libraries.mediaviewer.impl.util.bgCanvasWithTransparency
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.delay
 import me.saket.telephoto.zoomable.OverzoomEffect
 import me.saket.telephoto.zoomable.ZoomSpec
@@ -219,8 +219,8 @@ fun MediaViewerView(
                                             heading()
                                         },
                                         text = stringResource(id = CommonStrings.common_loading_more),
-                                        style = ElementTheme.typography.fontBodyMdMedium,
-                                        color = ElementTheme.colors.textPrimary,
+                                        style = PRISMTheme.typography.fontBodyMdMedium,
+                                        color = PRISMTheme.colors.textPrimary,
                                     )
                                 }
                             },
@@ -467,15 +467,15 @@ private fun MediaViewerTopBar(
                             heading()
                         },
                         text = senderName,
-                        style = ElementTheme.typography.fontBodyMdMedium,
-                        color = ElementTheme.colors.textPrimary,
+                        style = PRISMTheme.typography.fontBodyMdMedium,
+                        color = PRISMTheme.colors.textPrimary,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
                     Text(
                         text = dateSent,
-                        style = ElementTheme.typography.fontBodySmRegular,
-                        color = ElementTheme.colors.textPrimary,
+                        style = PRISMTheme.typography.fontBodySmRegular,
+                        color = PRISMTheme.colors.textPrimary,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -545,7 +545,7 @@ private fun MediaViewerBottomBar(
                 text = caption,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
-                style = ElementTheme.typography.fontBodyLgRegular,
+                style = PRISMTheme.typography.fontBodyLgRegular,
             )
         }
     }
@@ -596,7 +596,7 @@ private fun ErrorView(
 // Only preview in dark, dark theme is forced on the Node.
 @Preview
 @Composable
-internal fun MediaViewerViewPreview(@PreviewParameter(MediaViewerStateProvider::class) state: MediaViewerState) = ElementPreviewDark {
+internal fun MediaViewerViewPreview(@PreviewParameter(MediaViewerStateProvider::class) state: MediaViewerState) = PRISMPreviewDark {
     MediaViewerView(
         state = state,
         audioFocus = null,

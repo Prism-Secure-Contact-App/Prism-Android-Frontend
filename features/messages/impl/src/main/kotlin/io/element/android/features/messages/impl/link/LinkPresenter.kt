@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 @Inject
 class LinkPresenter(

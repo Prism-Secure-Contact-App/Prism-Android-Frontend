@@ -10,7 +10,7 @@ package io.prism.android.libraries.designsystem.components
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.PRISM
+import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Rect
@@ -276,11 +276,11 @@ private object LocationPinRenderer {
             cubicTo(21.1667f, 47.8965f, 20.5833f, 48f, 20f, 48f)
             close()
         }
-        val prism = PRISM().apply {
+        val matrix = Matrix().apply {
             setScale(scaleX, scaleY)
             postTranslate(inset, inset)
         }
-        path.transform(prism)
+        path.transform(matrix)
         return path
     }
 

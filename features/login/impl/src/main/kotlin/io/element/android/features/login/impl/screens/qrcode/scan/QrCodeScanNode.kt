@@ -18,7 +18,7 @@ import dev.zacsweers.metro.AssistedInject
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.features.login.impl.di.QrCodeLoginScope
 import io.prism.android.libraries.architecture.callback
-import io.prism.android.libraries.prism.api.auth.qrlogin.PRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.PRISMQrCodeLoginData
 
 @ContributesNode(QrCodeLoginScope::class)
 @AssistedInject

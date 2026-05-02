@@ -21,7 +21,7 @@ import io.prism.android.features.login.impl.error.ChangeServerError
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
-import io.prism.android.libraries.prism.api.auth.PRISMAuthenticationService
+import io.prism.android.libraries.matrix.api.auth.PRISMAuthenticationService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

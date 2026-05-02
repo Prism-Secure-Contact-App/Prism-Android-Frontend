@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesIntoSet
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushproviders.api.Config
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
 import timber.log.Timber
 
 private val loggerTag = LoggerTag("FirebasePushProvider", LoggerTag.PushLoggerTag)
@@ -39,7 +39,7 @@ class FirebasePushProvider(
         )
     }
 
-    override suspend fun registerWith(matrixClient: MatrixClient, distributor: Distributor): Result<Unit> {
+    override suspend fun registerWith(matrixClient: PRISMClient, distributor: Distributor): Result<Unit> {
         val pushKey = firebaseStore.getFcmToken() ?: return Result.failure<Unit>(
             IllegalStateException(
                 "Unable to register pusher, Firebase token is not known."
@@ -58,7 +58,7 @@ class FirebasePushProvider(
 
     override suspend fun getCurrentDistributor(sessionId: SessionId) = firebaseDistributor
 
-    override suspend fun unregister(matrixClient: MatrixClient): Result<Unit> {
+    override suspend fun unregister(matrixClient: PRISMClient): Result<Unit> {
         val pushKey = firebaseStore.getFcmToken()
         return if (pushKey == null) {
             Timber.tag(loggerTag.value).w("Unable to unregister pusher, Firebase token is not known.")

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.model
+package io.prism.android.libraries.mediaviewer.impl.model
 
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.mediaviewer.impl.gallery.MediaGalleryMode
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.mediaviewer.impl.gallery.MediaGalleryMode
 import kotlinx.collections.immutable.ImmutableList
 
 data class GroupedMediaItems(

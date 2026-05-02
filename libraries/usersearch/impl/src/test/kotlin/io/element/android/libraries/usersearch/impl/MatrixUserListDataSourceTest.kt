@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.usersearch.impl
+package io.prism.android.libraries.usersearch.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixSearchUserResults
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.test.AN_AVATAR_URL
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_ID_2
-import io.element.android.libraries.matrix.test.A_USER_NAME
-import io.element.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMSearchUserResults
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -28,7 +28,7 @@ internal class MatrixUserListDataSourceTest {
         matrixClient.givenSearchUsersResult(
             searchTerm = "test",
             result = Result.success(
-                MatrixSearchUserResults(
+                PRISMSearchUserResults(
                     results = persistentListOf(
                         aMatrixUserProfile(),
                         aMatrixUserProfile(userId = A_USER_ID_2)
@@ -89,5 +89,5 @@ internal class MatrixUserListDataSourceTest {
         userId: UserId = A_USER_ID,
         displayName: String = A_USER_NAME,
         avatarUrl: String = AN_AVATAR_URL
-    ) = MatrixUser(userId, displayName, avatarUrl)
+    ) = PRISMUser(userId, displayName, avatarUrl)
 }

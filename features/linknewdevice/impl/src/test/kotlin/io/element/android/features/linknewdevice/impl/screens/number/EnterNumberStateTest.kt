@@ -10,7 +10,7 @@ package io.prism.android.features.linknewdevice.impl.screens.number
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.linknewdevice.impl.screens.number.model.Digit
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
 import org.junit.Test
 
 class EnterNumberStateTest {

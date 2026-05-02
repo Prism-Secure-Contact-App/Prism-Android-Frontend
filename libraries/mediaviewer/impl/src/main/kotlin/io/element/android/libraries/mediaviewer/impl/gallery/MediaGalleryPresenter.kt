@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery
+package io.prism.android.libraries.mediaviewer.impl.gallery
 
 import android.content.ActivityNotFoundException
 import androidx.compose.runtime.Composable
@@ -20,30 +20,30 @@ import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.libraries.androidutils.R
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.core.extensions.mapCatchingExceptions
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.element.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.room.BaseRoom
-import io.element.android.libraries.matrix.api.room.powerlevels.permissionsAsState
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.api.local.LocalMediaFactory
-import io.element.android.libraries.mediaviewer.impl.datasource.MediaGalleryDataSource
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.local.LocalMediaActions
-import io.element.android.libraries.mediaviewer.impl.model.GroupedMediaItems
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.MediaPermissions
-import io.element.android.libraries.mediaviewer.impl.model.eventId
-import io.element.android.libraries.mediaviewer.impl.model.mediaInfo
-import io.element.android.libraries.mediaviewer.impl.model.mediaPermissions
-import io.element.android.libraries.mediaviewer.impl.model.mediaSource
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.androidutils.R
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.core.extensions.mapCatchingExceptions
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
+import io.prism.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsAsState
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.api.local.LocalMediaFactory
+import io.prism.android.libraries.mediaviewer.impl.datasource.MediaGalleryDataSource
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.local.LocalMediaActions
+import io.prism.android.libraries.mediaviewer.impl.model.GroupedMediaItems
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.MediaPermissions
+import io.prism.android.libraries.mediaviewer.impl.model.eventId
+import io.prism.android.libraries.mediaviewer.impl.model.mediaInfo
+import io.prism.android.libraries.mediaviewer.impl.model.mediaPermissions
+import io.prism.android.libraries.mediaviewer.impl.model.mediaSource
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.launch
 
 @AssistedInject
@@ -52,7 +52,7 @@ class MediaGalleryPresenter(
     private val room: BaseRoom,
     private val mediaGalleryDataSource: MediaGalleryDataSource,
     private val localMediaFactory: LocalMediaFactory,
-    private val mediaLoader: MatrixMediaLoader,
+    private val mediaLoader: PRISMMediaLoader,
     private val localMediaActions: LocalMediaActions,
     private val snackbarDispatcher: SnackbarDispatcher,
 ) : Presenter<MediaGalleryState> {

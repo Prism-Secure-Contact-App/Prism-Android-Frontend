@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.api
+package io.prism.android.libraries.push.api
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.push.api.history.PushHistoryItem
-import io.element.android.libraries.pushproviders.api.Distributor
-import io.element.android.libraries.pushproviders.api.PushProvider
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.push.api.history.PushHistoryItem
+import io.prism.android.libraries.pushproviders.api.Distributor
+import io.prism.android.libraries.pushproviders.api.PushProvider
 import kotlinx.coroutines.flow.Flow
 
 interface PushService {
@@ -33,7 +33,7 @@ interface PushService {
      * The method has effect only if the [PushProvider] is different than the current one.
      */
     suspend fun registerWith(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         pushProvider: PushProvider,
         distributor: Distributor,
     ): Result<Unit>
@@ -44,7 +44,7 @@ interface PushService {
      * Error can be [PusherRegistrationFailure].
      */
     suspend fun ensurePusherIsRegistered(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
     ): Result<Unit>
 
     /**

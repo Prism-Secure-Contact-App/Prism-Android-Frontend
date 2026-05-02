@@ -31,9 +31,9 @@ import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.PRISMUserRow
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.MatrixUserRow
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,9 +57,9 @@ fun BlockedUsersView(
             LazyColumn(
                 modifier = Modifier.padding(padding)
             ) {
-                items(state.blockedUsers) { prismUser ->
+                items(state.blockedUsers) { matrixUser ->
                     BlockedUserItem(
-                        prismUser = prismUser,
+                        matrixUser = matrixUser,
                         onClick = { state.eventSink(BlockedUsersEvents.Unblock(it)) }
                     )
                 }
@@ -105,12 +105,12 @@ fun BlockedUsersView(
 
 @Composable
 private fun BlockedUserItem(
-    prismUser: PRISMUser,
+    matrixUser: PRISMUser,
     onClick: (UserId) -> Unit,
 ) {
-    PRISMUserRow(
-        modifier = Modifier.clickable { onClick(prismUser.userId) },
-        prismUser = prismUser,
+    MatrixUserRow(
+        modifier = Modifier.clickable { onClick(matrixUser.userId) },
+        matrixUser = matrixUser,
     )
 }
 

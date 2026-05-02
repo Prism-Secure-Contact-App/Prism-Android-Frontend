@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.mapCatchingExceptions
-import io.element.android.libraries.di.CacheDirectory
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.mxc.MxcTools
+import io.prism.android.libraries.core.extensions.mapCatchingExceptions
+import io.prism.android.libraries.di.CacheDirectory
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.mxc.MxcTools
 import java.io.File
 
 /**
@@ -37,7 +37,7 @@ interface NotificationMediaRepo {
          *
          */
         fun create(
-            client: MatrixClient
+            client: PRISMClient
         ): NotificationMediaRepo
     }
 
@@ -63,17 +63,17 @@ interface NotificationMediaRepo {
 class DefaultNotificationMediaRepo(
     @CacheDirectory private val cacheDir: File,
     private val mxcTools: MxcTools,
-    @Assisted private val client: MatrixClient,
+    @Assisted private val client: PRISMClient,
 ) : NotificationMediaRepo {
     @ContributesBinding(AppScope::class)
     @AssistedFactory
     fun interface Factory : NotificationMediaRepo.Factory {
         override fun create(
-            client: MatrixClient,
+            client: PRISMClient,
         ): DefaultNotificationMediaRepo
     }
 
-    private val matrixMediaLoader = client.matrixMediaLoader
+    private val matrixMediaLoader = client.prismMediaLoader
 
     override suspend fun getMediaFile(
         mediaSource: MediaSource,

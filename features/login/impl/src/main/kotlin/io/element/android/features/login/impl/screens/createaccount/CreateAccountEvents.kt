@@ -9,6 +9,10 @@
 package io.prism.android.features.login.impl.screens.createaccount
 
 sealed interface CreateAccountEvents {
+    data class SetUsername(val username: String) : CreateAccountEvents
+    data class SetPassword(val password: String) : CreateAccountEvents
+    data class SetPasswordConfirm(val passwordConfirm: String) : CreateAccountEvents
+    data object Submit : CreateAccountEvents
     data class SetPageProgress(val progress: Int) : CreateAccountEvents
     data class OnMessageReceived(val message: String) : CreateAccountEvents
 }

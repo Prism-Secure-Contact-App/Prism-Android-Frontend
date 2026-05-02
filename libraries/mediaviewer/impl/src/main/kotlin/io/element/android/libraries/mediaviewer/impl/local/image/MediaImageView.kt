@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.image
+package io.prism.android.libraries.mediaviewer.impl.local.image
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,13 +16,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.utils.CommonDrawables
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.local.LocalMediaViewState
-import io.element.android.libraries.mediaviewer.impl.local.rememberLocalMediaViewState
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.utils.CommonDrawables
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.local.LocalMediaViewState
+import io.prism.android.libraries.mediaviewer.impl.local.rememberLocalMediaViewState
+import io.prism.android.libraries.ui.strings.CommonStrings
 import me.saket.telephoto.zoomable.coil.ZoomableAsyncImage
 import me.saket.telephoto.zoomable.rememberZoomableImageState
 
@@ -55,7 +55,7 @@ fun MediaImageView(
 
 @PreviewsDayNight
 @Composable
-internal fun MediaImageViewPreview() = ElementPreview {
+internal fun MediaImageViewPreview() = PRISMPreview {
     MediaImageView(
         modifier = Modifier.fillMaxSize(),
         localMediaViewState = rememberLocalMediaViewState(),

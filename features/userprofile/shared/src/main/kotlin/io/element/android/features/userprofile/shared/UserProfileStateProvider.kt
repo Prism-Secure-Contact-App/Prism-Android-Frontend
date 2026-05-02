@@ -16,9 +16,9 @@ import io.prism.android.features.userprofile.api.UserProfileVerificationState
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
 
 open class UserProfileStateProvider : PreviewParameterProvider<UserProfileState> {
     override val values: Sequence<UserProfileState>
@@ -31,7 +31,7 @@ open class UserProfileStateProvider : PreviewParameterProvider<UserProfileState>
             aUserProfileState(isBlocked = AsyncData.Loading(true), verificationState = UserProfileVerificationState.UNKNOWN),
             aUserProfileState(startDmActionState = AsyncAction.Loading),
             aUserProfileState(canCall = true),
-            aUserProfileState(startDmActionState = ConfirmingStartDmWithPRISMUser(aPRISMUser())),
+            aUserProfileState(startDmActionState = ConfirmingStartDmWithPRISMUser(aMatrixUser())),
             aUserProfileState(verificationState = UserProfileVerificationState.VERIFICATION_VIOLATION),
         )
 }

@@ -14,7 +14,7 @@ import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.node.node
 import com.bumble.appyx.core.plugin.Plugin
-import com.bumble.appyx.navmodel.backstack.activePRISM
+import com.bumble.appyx.navmodel.backstack.activeElement
 import com.bumble.appyx.testing.junit4.util.MainDispatcherRule
 import com.bumble.appyx.testing.unit.common.helper.parentNodeTestHelper
 import com.google.common.truth.Truth.assertThat
@@ -31,14 +31,14 @@ import io.prism.android.features.messages.test.pinned.FakePinnedEventsTimelinePr
 import io.prism.android.features.roomdetails.api.RoomDetailsEntryPoint
 import io.prism.android.features.space.api.SpaceEntryPoint
 import io.prism.android.libraries.architecture.childNode
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.timeline.TimelineProvider
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.FakeBaseRoom
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.timeline.FakeTimelineProvider
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.TimelineProvider
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.timeline.FakeTimelineProvider
 import io.prism.android.services.analytics.api.watchers.AnalyticsSendMessageWatcher
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.services.analytics.test.watchers.FakeAnalyticsSendMessageWatcher
@@ -129,7 +129,7 @@ class JoinedRoomLoadedFlowNodeTest {
         spaceEntryPoint: SpaceEntryPoint = FakeSpaceEntryPoint(),
         forwardEntryPoint: ForwardEntryPoint = FakeForwardEntryPoint(),
         activeRoomsHolder: ActiveRoomsHolder = DefaultActiveRoomsHolder(),
-        prismClient: FakePRISMClient = FakePRISMClient(),
+        matrixClient: FakePRISMClient = FakePRISMClient(),
     ) = JoinedRoomLoadedFlowNode(
         buildContext = BuildContext.root(savedStateMap = null),
         plugins = plugins,
@@ -140,7 +140,7 @@ class JoinedRoomLoadedFlowNodeTest {
         appNavigationStateService = FakeAppNavigationStateService(),
         sessionCoroutineScope = backgroundScope,
         roomGraphFactory = FakeRoomGraphFactory(),
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         activeRoomsHolder = activeRoomsHolder,
         analyticsService = FakeAnalyticsService(),
     )
@@ -159,7 +159,7 @@ class JoinedRoomLoadedFlowNodeTest {
         val roomFlowNodeTestHelper = roomFlowNode.parentNodeTestHelper()
 
         // THEN
-        assertThat(roomFlowNode.backstack.activePRISM).isEqualTo(JoinedRoomLoadedFlowNode.NavTarget.Messages())
+        assertThat(roomFlowNode.backstack.activeElement).isEqualTo(JoinedRoomLoadedFlowNode.NavTarget.Messages())
         roomFlowNodeTestHelper.assertChildHasLifecycle(JoinedRoomLoadedFlowNode.NavTarget.Messages(), Lifecycle.State.CREATED)
         val messagesNode = roomFlowNode.childNode(JoinedRoomLoadedFlowNode.NavTarget.Messages())!!
         assertThat(messagesNode.id).isEqualTo(fakeMessagesEntryPoint.nodeId)
@@ -179,7 +179,7 @@ class JoinedRoomLoadedFlowNodeTest {
         val roomFlowNodeTestHelper = roomFlowNode.parentNodeTestHelper()
 
         // THEN
-        assertThat(roomFlowNode.backstack.activePRISM).isEqualTo(JoinedRoomLoadedFlowNode.NavTarget.Space)
+        assertThat(roomFlowNode.backstack.activeElement).isEqualTo(JoinedRoomLoadedFlowNode.NavTarget.Space)
         roomFlowNodeTestHelper.assertChildHasLifecycle(JoinedRoomLoadedFlowNode.NavTarget.Space, Lifecycle.State.CREATED)
         val spaceNode = roomFlowNode.childNode(JoinedRoomLoadedFlowNode.NavTarget.Space)!!
         assertThat(spaceNode.id).isEqualTo(spaceEntryPoint.nodeId)

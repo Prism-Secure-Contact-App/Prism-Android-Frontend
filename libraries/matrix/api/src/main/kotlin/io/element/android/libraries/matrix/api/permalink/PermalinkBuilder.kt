@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.permalink
+package io.prism.android.libraries.matrix.api.permalink
 
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.UserId
 
 interface PermalinkBuilder {
     fun permalinkForUser(userId: UserId): Result<String>

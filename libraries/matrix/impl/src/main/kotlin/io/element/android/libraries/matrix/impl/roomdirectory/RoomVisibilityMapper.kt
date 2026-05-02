@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomdirectory
+package io.prism.android.libraries.matrix.impl.roomdirectory
 
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import org.prism.rustcomponents.sdk.RoomVisibility as RustRoomVisibility
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import org.matrix.rustcomponents.sdk.RoomVisibility as RustRoomVisibility
 
 fun RoomVisibility.map(): RustRoomVisibility {
     return when (this) {

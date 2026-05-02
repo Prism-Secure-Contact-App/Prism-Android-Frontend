@@ -40,7 +40,7 @@ class ViewFolderFlowNode(
     @Assisted plugins: List<Plugin>,
 ) : BaseFlowNode<ViewFolderFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

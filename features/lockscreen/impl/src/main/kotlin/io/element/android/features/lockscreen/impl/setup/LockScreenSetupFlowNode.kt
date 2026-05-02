@@ -41,7 +41,7 @@ class LockScreenSetupFlowNode(
     val biometricAuthenticatorManager: BiometricAuthenticatorManager,
 ) : BaseFlowNode<LockScreenSetupFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Pin,
+        initialElement = NavTarget.Pin,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

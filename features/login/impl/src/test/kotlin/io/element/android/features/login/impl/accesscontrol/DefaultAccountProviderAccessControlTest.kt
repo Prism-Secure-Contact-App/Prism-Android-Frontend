@@ -13,9 +13,9 @@ import io.prism.android.features.enterprise.test.FakeEnterpriseService
 import io.prism.android.features.login.impl.changeserver.AccountProviderAccessException
 import io.prism.android.features.wellknown.test.FakeWellknownRetriever
 import io.prism.android.features.wellknown.test.anPRISMWellKnown
-import io.prism.android.libraries.prism.test.AN_ACCOUNT_PROVIDER
-import io.prism.android.libraries.prism.test.AN_ACCOUNT_PROVIDER_2
-import io.prism.android.libraries.prism.test.AN_ACCOUNT_PROVIDER_URL
+import io.prism.android.libraries.matrix.test.AN_ACCOUNT_PROVIDER
+import io.prism.android.libraries.matrix.test.AN_ACCOUNT_PROVIDER_2
+import io.prism.android.libraries.matrix.test.AN_ACCOUNT_PROVIDER_URL
 import io.prism.android.libraries.wellknown.api.PRISMWellKnown
 import io.prism.android.libraries.wellknown.api.WellknownRetrieverResult
 import kotlinx.coroutines.test.runTest
@@ -157,7 +157,7 @@ class DefaultAccountProviderAccessControlTest {
             defaultHomeserverListResult = { allowedAccountProviders },
         ),
         wellknownRetriever = FakeWellknownRetriever(
-            getPRISMWellKnownResult = {
+            getElementWellKnownResult = {
                 if (prismWellKnown == null) {
                     WellknownRetrieverResult.NotFound
                 } else {

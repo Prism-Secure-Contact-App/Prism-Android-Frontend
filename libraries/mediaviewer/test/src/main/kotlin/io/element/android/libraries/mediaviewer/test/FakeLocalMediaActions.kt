@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.test
+package io.prism.android.libraries.mediaviewer.test
 
 import androidx.compose.runtime.Composable
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.local.LocalMediaActions
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.local.LocalMediaActions
+import io.prism.android.tests.testutils.simulateLongTask
 
 class FakeLocalMediaActions : LocalMediaActions {
     var shouldFail = false

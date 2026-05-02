@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediapickers.impl
+package io.prism.android.libraries.mediapickers.impl
 
 import android.content.Context
 import android.net.Uri
@@ -18,12 +18,12 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.core.content.FileProvider
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.mediapickers.api.ComposePickerLauncher
-import io.element.android.libraries.mediapickers.api.NoOpPickerLauncher
-import io.element.android.libraries.mediapickers.api.PickerLauncher
-import io.element.android.libraries.mediapickers.api.PickerProvider
-import io.element.android.libraries.mediapickers.api.PickerType
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.mediapickers.api.ComposePickerLauncher
+import io.prism.android.libraries.mediapickers.api.NoOpPickerLauncher
+import io.prism.android.libraries.mediapickers.api.PickerLauncher
+import io.prism.android.libraries.mediapickers.api.PickerProvider
+import io.prism.android.libraries.mediapickers.api.PickerType
 import java.io.File
 
 @ContributesBinding(AppScope::class)

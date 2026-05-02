@@ -28,11 +28,11 @@ import io.prism.android.libraries.designsystem.utils.snackbar.collectSnackbarMes
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.indicator.api.IndicatorService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.oidc.AccountManagementAction
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.oidc.AccountManagementAction
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.collections.immutable.persistentListOf
@@ -45,7 +45,7 @@ import kotlinx.coroutines.launch
 
 @Inject
 class PreferencesRootPresenter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val sessionVerificationService: SessionVerificationService,
     private val analyticsService: AnalyticsService,
     private val versionFormatter: VersionFormatter,
@@ -60,10 +60,10 @@ class PreferencesRootPresenter(
     @Composable
     override fun present(): PreferencesRootState {
         val coroutineScope = rememberCoroutineScope()
-        val prismUser = prismClient.userProfile.collectAsState()
+        val matrixUser = matrixClient.userProfile.collectAsState()
         LaunchedEffect(Unit) {
             // Force a refresh of the profile
-            prismClient.getUserProfile()
+            matrixClient.getUserProfile()
         }
 
         val isMultiAccountEnabled by remember {
@@ -76,7 +76,7 @@ class PreferencesRootPresenter(
         val otherSessions by remember {
             sessionStore.sessionsFlow().map { list ->
                 list
-                    .filter { it.userId != prismClient.sessionId.value }
+                    .filter { it.userId != matrixClient.sessionId.value }
                     .map {
                         PRISMUser(
                             userId = UserId(it.userId),
@@ -107,11 +107,11 @@ class PreferencesRootPresenter(
         }
         val canReportBug by remember { rageshakeFeatureAvailability.isAvailable() }.collectAsState(false)
         LaunchedEffect(Unit) {
-            canDeactivateAccount = prismClient.canDeactivateAccount()
+            canDeactivateAccount = matrixClient.canDeactivateAccount()
         }
 
         val showBlockedUsersItem by produceState(initialValue = false) {
-            prismClient.ignoredUsersFlow
+            matrixClient.ignoredUsersFlow
                 .onEach { value = it.isNotEmpty() }
                 .launchIn(this)
         }
@@ -138,9 +138,9 @@ class PreferencesRootPresenter(
         }
 
         return PreferencesRootState(
-            myUser = prismUser.value,
+            myUser = matrixUser.value,
             version = remember { versionFormatter.get() },
-            deviceId = prismClient.deviceId,
+            deviceId = matrixClient.deviceId,
             isMultiAccountEnabled = isMultiAccountEnabled,
             otherSessions = otherSessions,
             showSecureBackup = !canVerifyUserSession,
@@ -164,7 +164,7 @@ class PreferencesRootPresenter(
         accountManagementUrl: MutableState<String?>,
         devicesManagementUrl: MutableState<String?>,
     ) = launch {
-        accountManagementUrl.value = prismClient.getAccountManagementUrl(AccountManagementAction.Profile).getOrNull()
-        devicesManagementUrl.value = prismClient.getAccountManagementUrl(AccountManagementAction.DevicesList).getOrNull()
+        accountManagementUrl.value = matrixClient.getAccountManagementUrl(AccountManagementAction.Profile).getOrNull()
+        devicesManagementUrl.value = matrixClient.getAccountManagementUrl(AccountManagementAction.DevicesList).getOrNull()
     }
 }

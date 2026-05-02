@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.media
+package io.prism.android.libraries.matrix.test.media
 
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.media.MediaFile
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaFile
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.tests.testutils.simulateLongTask
 
-class FakeMatrixMediaLoader : MatrixMediaLoader {
+class FakeMatrixMediaLoader : PRISMMediaLoader {
     var shouldFail = false
     var path: String = ""
 

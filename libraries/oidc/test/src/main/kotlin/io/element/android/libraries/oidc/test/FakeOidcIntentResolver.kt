@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.oidc.test
+package io.prism.android.libraries.oidc.test
 
 import android.content.Intent
-import io.element.android.libraries.oidc.api.OidcAction
-import io.element.android.libraries.oidc.api.OidcIntentResolver
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.oidc.api.OidcAction
+import io.prism.android.libraries.oidc.api.OidcIntentResolver
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeOidcIntentResolver(
     private val resolveResult: (Intent) -> OidcAction? = { lambdaError() }

@@ -39,7 +39,7 @@ class SpaceSettingsFlowNode(
     private val roomDetailsEditEntryPoint: RoomDetailsEditEntryPoint
 ) : BaseFlowNode<SpaceSettingsFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = initialPRISM(plugins),
+        initialElement = initialElement(plugins),
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,
@@ -140,6 +140,6 @@ class SpaceSettingsFlowNode(
     }
 }
 
-fun initialPRISM(plugins: List<Plugin>): SpaceSettingsFlowNode.NavTarget {
+fun initialElement(plugins: List<Plugin>): SpaceSettingsFlowNode.NavTarget {
     return plugins.callback<SpaceSettingsFlowNode.Callback>().initialTarget()
 }

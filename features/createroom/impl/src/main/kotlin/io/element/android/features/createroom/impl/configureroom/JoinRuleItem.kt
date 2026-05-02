@@ -8,9 +8,9 @@
 package io.prism.android.features.createroom.impl.configureroom
 
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.join.AllowRule
-import io.prism.android.libraries.prism.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.join.AllowRule
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
 import kotlinx.collections.immutable.persistentListOf
 
 /**

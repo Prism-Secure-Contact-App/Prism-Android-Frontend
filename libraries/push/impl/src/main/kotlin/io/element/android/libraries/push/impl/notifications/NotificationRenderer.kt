@@ -6,28 +6,28 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import androidx.compose.ui.graphics.toArgb
 import coil3.ImageLoader
 import dev.zacsweers.metro.Inject
-import io.element.android.appconfig.NotificationConfig
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.push.api.notifications.NotificationIdProvider
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
-import io.element.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
-import io.element.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.finishLongRunningTransaction
+import io.prism.android.appconfig.NotificationConfig
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
+import io.prism.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.finishLongRunningTransaction
 import kotlinx.coroutines.flow.first
 import timber.log.Timber
 
@@ -42,7 +42,7 @@ class NotificationRenderer(
     private val analyticsService: AnalyticsService,
 ) {
     suspend fun render(
-        currentUser: MatrixUser,
+        currentUser: PRISMUser,
         useCompleteNotificationFormat: Boolean,
         eventsToProcess: List<NotifiableEvent>,
         imageLoader: ImageLoader,

@@ -5,12 +5,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media.test
+package io.prism.android.libraries.matrix.ui.media.test
 
 import coil3.Bitmap
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.matrix.ui.media.InitialsAvatarBitmapGenerator
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.matrix.ui.media.InitialsAvatarBitmapGenerator
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeInitialsAvatarBitmapGenerator(
     private val generateBitmapResult: (Int, AvatarData, Boolean, Float) -> Bitmap? = { _, _, _, _ -> lambdaError() }

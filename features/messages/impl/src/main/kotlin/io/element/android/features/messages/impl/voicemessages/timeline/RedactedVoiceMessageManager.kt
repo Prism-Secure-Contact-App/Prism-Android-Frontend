@@ -11,8 +11,8 @@ package io.prism.android.features.messages.impl.voicemessages.timeline
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.RedactedContent
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.RedactedContent
 import io.prism.android.libraries.mediaplayer.api.MediaPlayer
 import kotlinx.coroutines.withContext
 

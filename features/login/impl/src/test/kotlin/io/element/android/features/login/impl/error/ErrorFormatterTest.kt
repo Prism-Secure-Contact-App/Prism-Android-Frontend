@@ -10,7 +10,7 @@ package io.prism.android.features.login.impl.error
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.login.impl.R
-import io.prism.android.libraries.prism.api.auth.AuthenticationException
+import io.prism.android.libraries.matrix.api.auth.AuthenticationException
 import io.prism.android.libraries.ui.strings.CommonStrings
 import org.junit.Test
 

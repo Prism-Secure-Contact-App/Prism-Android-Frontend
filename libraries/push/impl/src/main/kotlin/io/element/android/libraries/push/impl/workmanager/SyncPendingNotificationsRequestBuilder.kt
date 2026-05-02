@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.workmanager
+package io.prism.android.libraries.push.impl.workmanager
 
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
@@ -22,17 +22,17 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.features.networkmonitor.api.NetworkMonitor
-import io.element.android.libraries.featureflag.api.FeatureFlagService
-import io.element.android.libraries.featureflag.api.FeatureFlags
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.impl.workmanager.SyncPendingNotificationsRequestBuilder.Companion.SESSION_ID
-import io.element.android.libraries.workmanager.api.WorkManagerRequestBuilder
-import io.element.android.libraries.workmanager.api.WorkManagerRequestType
-import io.element.android.libraries.workmanager.api.WorkManagerRequestWrapper
-import io.element.android.libraries.workmanager.api.WorkManagerWorkerType
-import io.element.android.libraries.workmanager.api.workManagerTag
-import io.element.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
+import io.prism.android.features.networkmonitor.api.NetworkMonitor
+import io.prism.android.libraries.featureflag.api.FeatureFlagService
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.impl.workmanager.SyncPendingNotificationsRequestBuilder.Companion.SESSION_ID
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestBuilder
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestType
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestWrapper
+import io.prism.android.libraries.workmanager.api.WorkManagerWorkerType
+import io.prism.android.libraries.workmanager.api.workManagerTag
+import io.prism.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
 import kotlinx.coroutines.flow.first
 import timber.log.Timber
 

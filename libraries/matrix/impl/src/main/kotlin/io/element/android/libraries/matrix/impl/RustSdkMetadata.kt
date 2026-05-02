@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl
+package io.prism.android.libraries.matrix.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.prism.android.libraries.prism.api.SdkMetadata
-import org.prism.rustcomponents.sdk.sdkGitSha
+import io.prism.android.libraries.matrix.api.SdkMetadata
+import org.matrix.rustcomponents.sdk.sdkGitSha
 
 @ContributesBinding(AppScope::class)
 class RustSdkMetadata : SdkMetadata {

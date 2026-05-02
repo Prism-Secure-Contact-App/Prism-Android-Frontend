@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.qrcode
+package io.prism.android.libraries.qrcode
 
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.IntSize
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
-import io.element.android.libraries.designsystem.modifiers.squareSize
-import io.element.android.libraries.designsystem.utils.ForceMaxBrightness
+import io.prism.android.libraries.designsystem.modifiers.squareSize
+import io.prism.android.libraries.designsystem.utils.ForceMaxBrightness
 
 private fun String.toBitMatrix(size: Int): BitMatrix {
     return QRCodeWriter().encode(

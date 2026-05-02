@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.timeline.item.event
+package io.prism.android.libraries.matrix.test.timeline.item.event
 
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.timeline.item.event.MembershipChange
-import io.element.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
-import io.element.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.MembershipChange
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.test.A_USER_ID
 
 fun aRoomMembershipContent(
     userId: UserId = A_USER_ID,

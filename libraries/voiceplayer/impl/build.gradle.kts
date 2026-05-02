@@ -9,11 +9,11 @@ import extension.testCommonDependencies
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.voiceplayer.impl"
+    namespace = "io.prism.android.libraries.voiceplayer.impl"
 }
 
 setupDependencyInjection()

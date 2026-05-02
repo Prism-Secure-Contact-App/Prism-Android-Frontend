@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.history
+package io.prism.android.libraries.matrix.impl.room.history
 
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import org.prism.rustcomponents.sdk.RoomHistoryVisibility as RustRoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import org.matrix.rustcomponents.sdk.RoomHistoryVisibility as RustRoomHistoryVisibility
 
 fun RoomHistoryVisibility.map(): RustRoomHistoryVisibility {
     return when (this) {

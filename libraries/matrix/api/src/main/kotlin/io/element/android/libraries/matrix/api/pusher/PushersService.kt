@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.pusher
+package io.prism.android.libraries.matrix.api.pusher
 
 interface PushersService {
     suspend fun setHttpPusher(setHttpPusherData: SetHttpPusherData): Result<Unit>

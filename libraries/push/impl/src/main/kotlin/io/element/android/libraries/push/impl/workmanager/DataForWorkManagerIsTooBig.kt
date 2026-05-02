@@ -5,6 +5,6 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.workmanager
+package io.prism.android.libraries.push.impl.workmanager
 
 class DataForWorkManagerIsTooBig : Exception()

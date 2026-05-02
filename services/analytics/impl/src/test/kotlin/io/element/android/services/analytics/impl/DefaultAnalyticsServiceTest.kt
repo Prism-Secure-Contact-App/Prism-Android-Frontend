@@ -8,7 +8,7 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.services.analytics.impl
+package io.prism.android.services.analytics.impl
 
 import com.google.common.truth.Truth.assertThat
 import im.vector.app.features.analytics.itf.VectorAnalyticsEvent
@@ -17,15 +17,15 @@ import im.vector.app.features.analytics.plan.MobileScreen
 import im.vector.app.features.analytics.plan.PollEnd
 import im.vector.app.features.analytics.plan.SuperProperties
 import im.vector.app.features.analytics.plan.UserProperties
-import io.element.android.libraries.matrix.test.analytics.FakeAnalyticsSdkManager
-import io.element.android.libraries.sessionstorage.api.observer.SessionObserver
-import io.element.android.libraries.sessionstorage.test.observer.NoOpSessionObserver
-import io.element.android.services.analytics.impl.store.AnalyticsStore
-import io.element.android.services.analytics.impl.store.FakeAnalyticsStore
-import io.element.android.services.analyticsproviders.api.AnalyticsProvider
-import io.element.android.services.analyticsproviders.test.FakeAnalyticsProvider
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.test.analytics.FakeAnalyticsSdkManager
+import io.prism.android.libraries.sessionstorage.api.observer.SessionObserver
+import io.prism.android.libraries.sessionstorage.test.observer.NoOpSessionObserver
+import io.prism.android.services.analytics.impl.store.AnalyticsStore
+import io.prism.android.services.analytics.impl.store.FakeAnalyticsStore
+import io.prism.android.services.analyticsproviders.api.AnalyticsProvider
+import io.prism.android.services.analyticsproviders.test.FakeAnalyticsProvider
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi

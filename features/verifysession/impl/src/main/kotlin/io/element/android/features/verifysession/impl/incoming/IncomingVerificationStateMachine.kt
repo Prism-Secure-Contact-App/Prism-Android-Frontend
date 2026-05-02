@@ -14,8 +14,8 @@ import com.freeletics.flowredux.dsl.FlowReduxStateMachine
 import dev.zacsweers.metro.Inject
 import io.prism.android.features.verifysession.impl.util.andLogStateChange
 import io.prism.android.features.verifysession.impl.util.logReceivedEvents
-import io.prism.android.libraries.prism.api.verification.SessionVerificationData
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationData
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import com.freeletics.flowredux.dsl.State as MachineState
 

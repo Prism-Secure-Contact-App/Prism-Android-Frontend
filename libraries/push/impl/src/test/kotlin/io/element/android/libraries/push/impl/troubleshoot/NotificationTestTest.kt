@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.features.enterprise.test.FakeEnterpriseService
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.test.runAndTestState
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.features.enterprise.test.FakeEnterpriseService
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.test.runAndTestState
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

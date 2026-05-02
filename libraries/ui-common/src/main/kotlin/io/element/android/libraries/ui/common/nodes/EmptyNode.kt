@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.ui.common.nodes
+package io.prism.android.libraries.ui.common.nodes
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,9 +16,9 @@ import androidx.compose.ui.Modifier
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.node.node
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 
 /**
  * Ref: https://www.figma.com/design/0MMNu7cTOzLOlWb7ctTkv3/Element-X?node-id=1518-85323
@@ -35,11 +35,11 @@ private fun EmptyView(
 ) = Box(
     modifier = modifier
         .fillMaxSize()
-        .background(ElementTheme.colors.bgCanvasDefault),
+        .background(PRISMTheme.colors.bgCanvasDefault),
 )
 
 @PreviewsDayNight
 @Composable
-internal fun EmptyViewPreview() = ElementPreview {
+internal fun EmptyViewPreview() = PRISMPreview {
     EmptyView(Modifier)
 }

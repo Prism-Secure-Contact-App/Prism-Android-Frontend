@@ -26,21 +26,21 @@ import io.prism.android.features.messages.impl.timeline.model.event.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemUnknownContent
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemVideoContent
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemVoiceContent
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.CallNotifyContent
-import io.prism.android.libraries.prism.api.timeline.item.event.FailedToParseMessageLikeContent
-import io.prism.android.libraries.prism.api.timeline.item.event.FailedToParseStateContent
-import io.prism.android.libraries.prism.api.timeline.item.event.LegacyCallInviteContent
-import io.prism.android.libraries.prism.api.timeline.item.event.LiveLocationContent
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageContent
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
-import io.prism.android.libraries.prism.api.timeline.item.event.ProfileChangeContent
-import io.prism.android.libraries.prism.api.timeline.item.event.RedactedContent
-import io.prism.android.libraries.prism.api.timeline.item.event.RoomMembershipContent
-import io.prism.android.libraries.prism.api.timeline.item.event.StateContent
-import io.prism.android.libraries.prism.api.timeline.item.event.StickerContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UnableToDecryptContent
-import io.prism.android.libraries.prism.api.timeline.item.event.UnknownContent
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.CallNotifyContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseMessageLikeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.FailedToParseStateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.LegacyCallInviteContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.LiveLocationContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileChangeContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RedactedContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.RoomMembershipContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StateContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnableToDecryptContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.UnknownContent
 
 /**
  * Return true if the Event can be grouped in a collapse/expand block

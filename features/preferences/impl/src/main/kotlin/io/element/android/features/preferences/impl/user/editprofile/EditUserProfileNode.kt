@@ -20,7 +20,7 @@ import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 @ContributesNode(SessionScope::class)
 @AssistedInject
@@ -31,17 +31,17 @@ class EditUserProfileNode(
 ) : Node(buildContext, plugins = plugins),
     EditUserProfileNavigator {
     data class Inputs(
-        val prismUser: PRISMUser
+        val matrixUser: PRISMUser
     ) : NodeInputs
 
     interface Callback : Plugin {
         fun onDone()
     }
 
-    val prismUser = inputs<Inputs>().prismUser
+    val matrixUser = inputs<Inputs>().matrixUser
     val callback: Callback = callback()
     val presenter = presenterFactory.create(
-        prismUser = prismUser,
+        matrixUser = matrixUser,
         navigator = this,
     )
 

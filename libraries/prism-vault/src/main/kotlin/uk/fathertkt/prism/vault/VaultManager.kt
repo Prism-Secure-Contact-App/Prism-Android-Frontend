@@ -16,6 +16,10 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.FragmentActivity
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.SingleIn
+import io.prism.android.libraries.di.annotations.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -32,7 +36,9 @@ private val Context.vaultDataStore: DataStore<Preferences> by preferencesDataSto
  *   2. Ana liste ekranı [vaultRooms] Flow'unu collect eder ve bu room'ları filtreler.
  *   3. Kullanıcı kasayı açmak ister → [promptBiometric]; başarıda kasadaki room'lar gösterilir.
  */
-class VaultManager(private val context: Context) {
+@SingleIn(AppScope::class)
+@Inject
+class VaultManager(@ApplicationContext private val context: Context) {
 
     private val VAULT_ROOMS_KEY = stringSetPreferencesKey("vault_rooms")
 

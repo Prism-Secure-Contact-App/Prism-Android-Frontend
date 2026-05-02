@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.pushproviders.unifiedpush.network.DiscoveryResponse
-import io.element.android.libraries.pushproviders.unifiedpush.network.DiscoveryUnifiedPush
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.pushproviders.unifiedpush.network.DiscoveryResponse
+import io.prism.android.libraries.pushproviders.unifiedpush.network.DiscoveryUnifiedPush
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import okhttp3.ResponseBody.Companion.toResponseBody

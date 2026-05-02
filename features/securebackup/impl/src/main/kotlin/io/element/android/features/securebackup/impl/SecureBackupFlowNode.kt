@@ -41,7 +41,7 @@ class SecureBackupFlowNode(
     @Assisted plugins: List<Plugin>,
 ) : BaseFlowNode<SecureBackupFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = when (plugins.filterIsInstance<SecureBackupEntryPoint.Params>().first().initialPRISM) {
+        initialElement = when (plugins.filterIsInstance<SecureBackupEntryPoint.Params>().first().initialElement) {
             SecureBackupEntryPoint.InitialTarget.Root -> NavTarget.Root
             SecureBackupEntryPoint.InitialTarget.SetUpRecovery -> NavTarget.Setup
             SecureBackupEntryPoint.InitialTarget.EnterRecoveryKey -> NavTarget.EnterRecoveryKey

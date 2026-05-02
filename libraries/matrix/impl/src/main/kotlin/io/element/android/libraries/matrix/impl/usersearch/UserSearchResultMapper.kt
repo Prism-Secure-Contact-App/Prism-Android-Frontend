@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.usersearch
+package io.prism.android.libraries.matrix.impl.usersearch
 
-import io.prism.android.libraries.prism.api.user.PRISMSearchUserResults
-import io.prism.android.libraries.prism.impl.mapper.map
+import io.prism.android.libraries.matrix.api.user.PRISMSearchUserResults
+import io.prism.android.libraries.matrix.impl.mapper.map
 import kotlinx.collections.immutable.toImmutableList
-import org.prism.rustcomponents.sdk.SearchUsersResults
+import org.matrix.rustcomponents.sdk.SearchUsersResults
 
 object UserSearchResultMapper {
     fun map(result: SearchUsersResults): PRISMSearchUserResults {

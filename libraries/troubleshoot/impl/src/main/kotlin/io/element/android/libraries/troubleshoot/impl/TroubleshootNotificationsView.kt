@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.impl
+package io.prism.android.libraries.troubleshoot.impl
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,21 +18,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.architecture.AsyncAction
-import io.element.android.libraries.designsystem.components.list.ListItemContent
-import io.element.android.libraries.designsystem.components.preferences.PreferencePage
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Button
-import io.element.android.libraries.designsystem.theme.components.CircularProgressIndicator
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.ListItem
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.utils.OnLifecycleEvent
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState.Status
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.architecture.AsyncAction
+import io.prism.android.libraries.designsystem.components.list.ListItemContent
+import io.prism.android.libraries.designsystem.components.preferences.PreferencePage
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Button
+import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.ListItem
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.utils.OnLifecycleEvent
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState.Status
 
 @Composable
 fun TroubleshootNotificationsView(
@@ -85,7 +85,7 @@ private fun ColumnScope.TroubleshootTestView(
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
                     imageVector = CompoundIcons.Info(),
-                    tint = ElementTheme.colors.iconAccentTertiary
+                    tint = PRISMTheme.colors.iconAccentTertiary
                 )
             }
             Status.Success -> ListItemContent.Custom {
@@ -93,7 +93,7 @@ private fun ColumnScope.TroubleshootTestView(
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
                     imageVector = CompoundIcons.Check(),
-                    tint = ElementTheme.colors.iconAccentTertiary
+                    tint = PRISMTheme.colors.iconAccentTertiary
                 )
             }
             is Status.Failure -> ListItemContent.Custom {
@@ -101,7 +101,7 @@ private fun ColumnScope.TroubleshootTestView(
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
                     imageVector = if (status.isCritical) CompoundIcons.ErrorSolid() else CompoundIcons.Warning(),
-                    tint = ElementTheme.colors.iconCriticalPrimary,
+                    tint = PRISMTheme.colors.iconCriticalPrimary,
                 )
             }
         }
@@ -208,7 +208,7 @@ private fun ColumnScope.TestSuiteView(
 @Composable
 internal fun TroubleshootNotificationsViewPreview(
     @PreviewParameter(TroubleshootNotificationsStateProvider::class) state: TroubleshootNotificationsState,
-) = ElementPreview {
+) = PRISMPreview {
     TroubleshootNotificationsView(
         state = state,
         onBackClick = {},

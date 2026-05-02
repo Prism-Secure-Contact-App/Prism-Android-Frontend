@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.timeline
+package io.prism.android.libraries.matrix.api.timeline
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.TransactionId
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.timeline.item.event.EventTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.virtual.VirtualTimelineItem
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
 
 sealed interface PRISMTimelineItem {
     data class Event(val uniqueId: UniqueId, val event: EventTimelineItem) : PRISMTimelineItem {

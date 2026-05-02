@@ -6,27 +6,27 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.designsystem.components.media.WaveFormSamples
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.aPdfMediaInfo
-import io.element.android.libraries.mediaviewer.api.aTxtMediaInfo
-import io.element.android.libraries.mediaviewer.api.aVideoMediaInfo
-import io.element.android.libraries.mediaviewer.api.anApkMediaInfo
-import io.element.android.libraries.mediaviewer.api.anAudioMediaInfo
-import io.element.android.libraries.mediaviewer.api.anImageMediaInfo
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.details.aMediaDeleteConfirmationState
-import io.element.android.libraries.mediaviewer.impl.details.aMediaDetailsBottomSheetState
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.designsystem.components.media.WaveFormSamples
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.aPdfMediaInfo
+import io.prism.android.libraries.mediaviewer.api.aTxtMediaInfo
+import io.prism.android.libraries.mediaviewer.api.aVideoMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anApkMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anAudioMediaInfo
+import io.prism.android.libraries.mediaviewer.api.anImageMediaInfo
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.details.aMediaDeleteConfirmationState
+import io.prism.android.libraries.mediaviewer.impl.details.aMediaDetailsBottomSheetState
 import kotlinx.collections.immutable.toImmutableList
 
 open class MediaViewerStateProvider : PreviewParameterProvider<MediaViewerState> {

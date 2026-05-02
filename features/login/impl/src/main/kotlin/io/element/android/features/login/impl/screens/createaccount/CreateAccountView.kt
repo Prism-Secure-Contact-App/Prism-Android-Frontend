@@ -8,41 +8,24 @@
 
 package io.prism.android.features.login.impl.screens.createaccount
 
-import android.annotation.SuppressLint
-import android.view.ViewGroup
-import android.webkit.JsResult
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.features.login.impl.R
 import io.prism.android.libraries.designsystem.components.async.AsyncActionView
 import io.prism.android.libraries.designsystem.components.button.BackButton
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.designsystem.theme.components.LinearProgressIndicator
-import io.prism.android.libraries.designsystem.theme.components.Scaffold
-import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.designsystem.theme.progressIndicatorTrackColor
-import timber.log.Timber
+import io.prism.android.libraries.designsystem.theme.components.*
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,41 +46,83 @@ fun CreateAccountView(
             )
         }
     ) { contentPadding ->
-        Box(
+        Column(
             modifier = Modifier
                 .padding(contentPadding)
                 .consumeWindowInsets(contentPadding)
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 24.dp)
         ) {
-            CreateAccountWebView(
-                modifier = Modifier
-                    .fillMaxSize(),
-                state = state,
-                onWebViewCreate = { webView ->
-                    WebViewMessageInterceptor(
-                        webView,
-                        state.isDebugBuild,
-                        onOpenExternalUrl = onOpenExternalUrl,
-                        onMessage = {
-                            state.eventSink(CreateAccountEvents.OnMessageReceived(it))
-                        },
-                    )
-                }
+            Text(
+                text = "Create your PRISM account",
+                style = PRISMTheme.typography.fontHeadingMdBold,
+                color = PRISMTheme.colors.textPrimary
             )
-            AnimatedVisibility(
-                visible = state.pageProgress != 100,
-                // Disable enter animation
-                enter = fadeIn(initialAlpha = 1f),
-                exit = fadeOut(),
-            ) {
-                LinearProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(2.dp),
-                    progress = { state.pageProgress / 100f },
-                    trackColor = PRISMTheme.colors.progressIndicatorTrackColor,
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Choose a unique username and a strong password to get started.",
+                style = PRISMTheme.typography.fontBodyMdRegular,
+                color = PRISMTheme.colors.textSecondary
+            )
+            Spacer(modifier = Modifier.height(32.dp))
+
+            TextField(
+                value = state.username,
+                onValueChange = { state.eventSink(CreateAccountEvents.SetUsername(it)) },
+                label = "Username",
+                placeholder = "e.g. alice",
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = state.password,
+                onValueChange = { state.eventSink(CreateAccountEvents.SetPassword(it)) },
+                label = stringResource(CommonStrings.common_password),
+                visualTransformation = PasswordVisualTransformation(),
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = state.passwordConfirm,
+                onValueChange = { state.eventSink(CreateAccountEvents.SetPasswordConfirm(it)) },
+                label = "Confirm Password",
+                visualTransformation = PasswordVisualTransformation(),
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                validity = if (state.password.isNotEmpty() && state.passwordConfirm.isNotEmpty() && state.password != state.passwordConfirm) TextFieldValidity.Invalid else TextFieldValidity.None,
+            )
+            
+            if (state.password.isNotEmpty() && state.passwordConfirm.isNotEmpty() && state.password != state.passwordConfirm) {
+                Text(
+                    text = "Passwords do not match",
+                    color = PRISMTheme.colors.textCriticalPrimary,
+                    style = PRISMTheme.typography.fontBodySmRegular,
+                    modifier = Modifier.padding(start = 16.dp, top = 4.dp)
                 )
             }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Button(
+                text = stringResource(CommonStrings.action_continue),
+                onClick = { state.eventSink(CreateAccountEvents.Submit) },
+                modifier = Modifier.fillMaxWidth(),
+                enabled = state.isSubmitEnabled
+            )
+            
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            Text(
+                text = "By creating an account, you agree to the Terms of Service and Privacy Policy.",
+                style = PRISMTheme.typography.fontBodySmRegular,
+                color = PRISMTheme.colors.textSecondary,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 
@@ -107,62 +132,6 @@ fun CreateAccountView(
         onErrorDismiss = onBackClick,
         onRetry = null
     )
-}
-
-@Composable
-private fun CreateAccountWebView(
-    state: CreateAccountState,
-    onWebViewCreate: (WebView) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    if (LocalInspectionMode.current) {
-        Box(modifier = modifier, contentAlignment = Alignment.Center) {
-            Text("WebView - can't be previewed")
-        }
-    } else {
-        AndroidView(
-            modifier = modifier,
-            factory = { context ->
-                WebView(context).apply {
-                    onWebViewCreate(this)
-                    setup(state)
-                }
-            },
-            update = { webView ->
-                if (webView.url != state.url) {
-                    webView.loadUrl(state.url)
-                }
-            },
-            onRelease = { webView ->
-                webView.destroy()
-            }
-        )
-    }
-}
-
-@SuppressLint("SetJavaScriptEnabled")
-private fun WebView.setup(state: CreateAccountState) {
-    layoutParams = ViewGroup.LayoutParams(
-        ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT
-    )
-    with(settings) {
-        javaScriptEnabled = true
-        domStorageEnabled = true
-    }
-
-    webChromeClient = object : WebChromeClient() {
-        override fun onProgressChanged(view: WebView?, newProgress: Int) {
-            super.onProgressChanged(view, newProgress)
-            state.eventSink(CreateAccountEvents.SetPageProgress(newProgress))
-        }
-
-        override fun onJsBeforeUnload(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
-            Timber.w("onJsBeforeUnload, cancelling the dialog, we will open external links in a Custom Chrome Tab")
-            result?.confirm()
-            return true
-        }
-    }
 }
 
 @PreviewsDayNight

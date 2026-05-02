@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.auth
+package io.prism.android.libraries.matrix.api.auth
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.auth.aPRISMHomeServerDetails
+import io.prism.android.libraries.matrix.test.auth.aPRISMHomeServerDetails
 import org.junit.Test
 
 class PRISMHomeServerDetailsTest {

@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.sentry
+package io.prism.android.services.analyticsproviders.sentry
 
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
 import io.sentry.ISpan
 import io.sentry.ITransaction
 import io.sentry.Sentry

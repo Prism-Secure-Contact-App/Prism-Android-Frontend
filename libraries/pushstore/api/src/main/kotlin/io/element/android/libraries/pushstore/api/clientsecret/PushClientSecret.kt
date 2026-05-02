@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.api.clientsecret
+package io.prism.android.libraries.pushstore.api.clientsecret
 
-import io.element.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 interface PushClientSecret {
     /**

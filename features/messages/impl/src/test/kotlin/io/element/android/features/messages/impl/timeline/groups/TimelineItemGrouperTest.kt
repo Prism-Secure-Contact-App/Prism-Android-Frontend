@@ -18,12 +18,12 @@ import io.prism.android.features.messages.impl.timeline.model.TimelineItemReadRe
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemStateEventContent
 import io.prism.android.features.messages.impl.timeline.model.virtual.aTimelineItemDaySeparatorModel
 import io.prism.android.libraries.designsystem.components.avatar.anAvatarData
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.core.FakeSendHandle
-import io.prism.android.libraries.prism.ui.messages.reply.aProfileDetailsReady
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.core.FakeSendHandle
+import io.prism.android.libraries.matrix.ui.messages.reply.aProfileDetailsReady
 import kotlinx.collections.immutable.toImmutableList
 import org.junit.Test
 

@@ -31,9 +31,9 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.powerlevels.permissionsAsState
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsAsState
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 import io.prism.android.libraries.mediapickers.api.PickerProvider
 import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
 import io.prism.android.libraries.mediaupload.api.MediaPreProcessor

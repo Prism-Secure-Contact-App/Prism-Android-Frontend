@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.pdf
+package io.prism.android.libraries.mediaviewer.impl.local.pdf
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,15 +31,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.text.roundToPx
-import io.element.android.libraries.designsystem.text.toDp
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.mediaviewer.impl.viewer.topAppBarHeight
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.text.roundToPx
+import io.prism.android.libraries.designsystem.text.toDp
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.mediaviewer.impl.viewer.topAppBarHeight
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import me.saket.telephoto.zoomable.zoomable
 import java.io.IOException
@@ -110,7 +110,7 @@ private fun PdfPagesErrorView(
                 append(error.localizedMessage)
             },
             textAlign = TextAlign.Center,
-            style = ElementTheme.typography.fontBodyLgRegular,
+            style = PRISMTheme.typography.fontBodyLgRegular,
         )
     }
 }
@@ -170,7 +170,7 @@ private fun PdfPageView(
 
 @PreviewsDayNight
 @Composable
-internal fun PdfPagesErrorViewPreview() = ElementPreview {
+internal fun PdfPagesErrorViewPreview() = PRISMPreview {
     PdfPagesErrorView(
         error = IOException("file not in PDF format or corrupted"),
     )

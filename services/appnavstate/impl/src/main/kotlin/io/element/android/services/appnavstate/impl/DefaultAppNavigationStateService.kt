@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.impl
+package io.prism.android.services.appnavstate.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.services.appnavstate.api.AppForegroundStateService
-import io.element.android.services.appnavstate.api.AppNavigationState
-import io.element.android.services.appnavstate.api.AppNavigationStateService
-import io.element.android.services.appnavstate.api.NavigationState
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.services.appnavstate.api.AppForegroundStateService
+import io.prism.android.services.appnavstate.api.AppNavigationState
+import io.prism.android.services.appnavstate.api.AppNavigationStateService
+import io.prism.android.services.appnavstate.api.NavigationState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

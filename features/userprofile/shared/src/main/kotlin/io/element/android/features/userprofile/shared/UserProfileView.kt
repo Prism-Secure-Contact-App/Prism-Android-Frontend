@@ -41,10 +41,10 @@ import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarHost
 import io.prism.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.notification.CallIntent
-import io.prism.android.libraries.prism.ui.components.CreateDmConfirmationBottomSheet
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.ui.components.CreateDmConfirmationBottomSheet
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -113,7 +113,7 @@ fun UserProfileView(
                 confirmationDialog = { data ->
                     if (data is ConfirmingStartDmWithPRISMUser) {
                         CreateDmConfirmationBottomSheet(
-                            prismUser = data.prismUser,
+                            matrixUser = data.matrixUser,
                             onSendInvite = {
                                 state.eventSink(UserProfileEvents.StartDM)
                             },

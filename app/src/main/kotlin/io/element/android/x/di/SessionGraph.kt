@@ -12,7 +12,7 @@ import dev.zacsweers.metro.GraphExtension
 import dev.zacsweers.metro.Provides
 import io.prism.android.libraries.architecture.NodeFactoriesBindings
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 
 @GraphExtension(SessionScope::class)
 interface SessionGraph : NodeFactoriesBindings {
@@ -20,6 +20,6 @@ interface SessionGraph : NodeFactoriesBindings {
 
     @GraphExtension.Factory
     interface Factory {
-        fun create(@Provides prismClient: PRISMClient): SessionGraph
+        fun create(@Provides matrixClient: PRISMClient): SessionGraph
     }
 }

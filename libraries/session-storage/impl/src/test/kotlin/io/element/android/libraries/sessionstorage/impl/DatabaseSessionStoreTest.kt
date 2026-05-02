@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.sessionstorage.impl
+package io.prism.android.libraries.sessionstorage.impl
 
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.matrix.session.SessionData
-import io.element.android.libraries.sessionstorage.api.LoggedInState
-import io.element.android.libraries.sessionstorage.api.LoginType
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.matrix.session.SessionData
+import io.prism.android.libraries.sessionstorage.api.LoggedInState
+import io.prism.android.libraries.sessionstorage.api.LoginType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest

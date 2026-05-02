@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.impl.store
+package io.prism.android.libraries.preferences.impl.store
 
 import androidx.datastore.core.DataMigration
 import androidx.datastore.preferences.core.Preferences

@@ -40,9 +40,9 @@ import io.prism.android.libraries.designsystem.components.async.AsyncIndicator
 import io.prism.android.libraries.designsystem.components.async.AsyncIndicatorHost
 import io.prism.android.libraries.designsystem.components.async.AsyncIndicatorState
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.powerlevels.canEditRolesAndPermissions
-import io.prism.android.libraries.prism.api.room.powerlevels.permissionsFlow
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.powerlevels.canEditRolesAndPermissions
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsFlow
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
@@ -57,7 +57,7 @@ class RolesAndPermissionsFlowNode(
     private val room: JoinedRoom,
 ) : BaseFlowNode<RolesAndPermissionsFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

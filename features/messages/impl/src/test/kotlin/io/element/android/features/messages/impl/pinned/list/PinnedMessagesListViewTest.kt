@@ -22,7 +22,7 @@ import io.prism.android.features.messages.impl.actionlist.anActionListState
 import io.prism.android.features.messages.impl.timeline.aTimelineItemList
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.event.aTimelineItemFileContent
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam
 import io.prism.android.tests.testutils.EventsRecorder
@@ -30,7 +30,7 @@ import io.prism.android.tests.testutils.ensureCalledOnce
 import io.prism.android.tests.testutils.ensureCalledOnceWithParam
 import io.prism.android.tests.testutils.pressBack
 import io.prism.android.tests.testutils.setSafeContent
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule

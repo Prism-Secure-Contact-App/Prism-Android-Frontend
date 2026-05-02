@@ -11,7 +11,7 @@ package io.prism.android.features.messages.impl.timeline.components.customreacti
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.messages.impl.timeline.aTimelineItemEvent
 import io.prism.android.features.messages.impl.timeline.aTimelineItemReactions
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
 import io.prism.android.libraries.recentemojis.test.FakeEmojibaseProvider
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test

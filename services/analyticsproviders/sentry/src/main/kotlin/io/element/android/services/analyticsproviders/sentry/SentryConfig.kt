@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.sentry
+package io.prism.android.services.analyticsproviders.sentry
 
 object SentryConfig {
     const val NAME = "Sentry"

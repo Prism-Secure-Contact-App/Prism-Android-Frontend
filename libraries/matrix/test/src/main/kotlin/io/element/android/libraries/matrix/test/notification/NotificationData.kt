@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.notification
+package io.prism.android.libraries.matrix.test.notification
 
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.notification.NotificationContent
-import io.element.android.libraries.matrix.api.notification.NotificationData
-import io.element.android.libraries.matrix.api.room.join.JoinRule
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_ROOM_NAME
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.A_TIMESTAMP
-import io.element.android.libraries.matrix.test.A_USER_NAME_2
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.notification.NotificationContent
+import io.prism.android.libraries.matrix.api.notification.NotificationData
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_TIMESTAMP
+import io.prism.android.libraries.matrix.test.A_USER_NAME_2
 
 fun aNotificationData(
     content: NotificationContent = NotificationContent.MessageLike.RoomEncrypted,

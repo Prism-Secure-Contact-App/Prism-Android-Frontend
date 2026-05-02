@@ -10,7 +10,7 @@ package io.prism.android.features.space.impl.di
 
 import com.bumble.appyx.core.node.Node
 import io.prism.android.libraries.architecture.AssistedNodeFactory
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
 import kotlin.reflect.KClass
 
 class FakeSpaceFlowGraph : SpaceFlowGraph {

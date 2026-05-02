@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl
+package io.prism.android.libraries.push.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.api.GetCurrentPushProvider
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.api.GetCurrentPushProvider
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
 
 @ContributesBinding(AppScope::class)
 class DefaultGetCurrentPushProvider(

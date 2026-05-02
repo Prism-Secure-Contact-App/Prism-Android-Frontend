@@ -9,9 +9,9 @@
 package io.prism.android.features.invite.test
 
 import io.prism.android.features.invite.api.InviteData
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
 
 fun anInviteData(
     roomId: RoomId = A_ROOM_ID,

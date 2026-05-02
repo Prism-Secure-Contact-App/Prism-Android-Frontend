@@ -11,10 +11,10 @@ package io.prism.android.features.securebackup.impl.reset
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.api.encryption.IdentityResetHandle
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
-import io.prism.android.libraries.prism.test.encryption.FakeIdentityPasswordResetHandle
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.api.encryption.IdentityResetHandle
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.test.encryption.FakeIdentityPasswordResetHandle
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope

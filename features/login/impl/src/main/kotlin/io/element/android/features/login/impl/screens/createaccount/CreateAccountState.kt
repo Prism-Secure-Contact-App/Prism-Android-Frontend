@@ -9,10 +9,14 @@
 package io.prism.android.features.login.impl.screens.createaccount
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 data class CreateAccountState(
     val url: String,
+    val username: String = "",
+    val password: String = "",
+    val passwordConfirm: String = "",
+    val isSubmitEnabled: Boolean = false,
     val pageProgress: Int,
     val createAction: AsyncAction<SessionId>,
     val isDebugBuild: Boolean,

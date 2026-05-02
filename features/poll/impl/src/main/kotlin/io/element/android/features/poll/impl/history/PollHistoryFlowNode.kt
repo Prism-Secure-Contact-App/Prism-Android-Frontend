@@ -25,8 +25,8 @@ import io.prism.android.libraries.architecture.BackstackView
 import io.prism.android.libraries.architecture.BaseFlowNode
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import kotlinx.parcelize.Parcelize
 
 @ContributesNode(RoomScope::class)
@@ -37,7 +37,7 @@ class PollHistoryFlowNode(
     private val createPollEntryPoint: CreatePollEntryPoint,
 ) : BaseFlowNode<PollHistoryFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

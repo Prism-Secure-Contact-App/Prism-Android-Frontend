@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.encryption
+package io.prism.android.libraries.matrix.impl.encryption
 
-import io.prism.android.libraries.prism.api.encryption.SteadyStateException
-import org.prism.rustcomponents.sdk.SteadyStateException as RustSteadyStateException
+import io.prism.android.libraries.matrix.api.encryption.SteadyStateException
+import org.matrix.rustcomponents.sdk.SteadyStateException as RustSteadyStateException
 
 class SteadyStateExceptionMapper {
     fun map(data: RustSteadyStateException): SteadyStateException {

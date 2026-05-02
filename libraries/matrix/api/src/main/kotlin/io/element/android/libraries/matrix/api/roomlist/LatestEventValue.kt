@@ -5,11 +5,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.roomlist
+package io.prism.android.libraries.matrix.api.roomlist
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.event.EventContent
-import io.prism.android.libraries.prism.api.timeline.item.event.ProfileDetails
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
 
 sealed interface LatestEventValue {
     data object None : LatestEventValue

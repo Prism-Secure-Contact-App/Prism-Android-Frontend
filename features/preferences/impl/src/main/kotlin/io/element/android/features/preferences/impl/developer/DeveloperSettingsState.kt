@@ -13,7 +13,7 @@ import io.prism.android.features.rageshake.api.preferences.RageshakePreferencesS
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.featureflag.ui.model.FeatureUiModel
-import io.prism.android.libraries.prism.api.tracing.TraceLogPack
+import io.prism.android.libraries.matrix.api.tracing.TraceLogPack
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 

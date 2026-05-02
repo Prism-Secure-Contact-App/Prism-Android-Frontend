@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.permalink
+package io.prism.android.libraries.matrix.impl.permalink
 
 import android.net.Uri
 import androidx.core.net.toUri
@@ -14,7 +14,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.appconfig.PRISMConfiguration
 import io.prism.android.libraries.core.extensions.replacePrefix
-import io.prism.android.libraries.prism.api.permalink.PRISMToConverter
+import io.prism.android.libraries.matrix.api.permalink.PRISMToConverter
 
 /**
  * Mapping of an input URI to a prism.to compliant URI.

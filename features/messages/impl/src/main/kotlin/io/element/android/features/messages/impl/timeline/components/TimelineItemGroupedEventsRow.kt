@@ -31,11 +31,11 @@ import io.prism.android.features.messages.impl.timeline.protection.TimelineProte
 import io.prism.android.features.messages.impl.timeline.protection.aTimelineProtectionState
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.libraries.ui.utils.time.isTalkbackActive
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 @Composable
 fun TimelineItemGroupedEventsRow(

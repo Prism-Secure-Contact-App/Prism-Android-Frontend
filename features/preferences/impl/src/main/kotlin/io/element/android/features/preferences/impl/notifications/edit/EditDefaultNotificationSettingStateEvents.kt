@@ -8,7 +8,7 @@
 
 package io.prism.android.features.preferences.impl.notifications.edit
 
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 
 sealed interface EditDefaultNotificationSettingStateEvents {
     data class SetNotificationMode(val mode: RoomNotificationMode) : EditDefaultNotificationSettingStateEvents

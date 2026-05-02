@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only OR LicenseRef-PRISM-Commercial.
  * Please see LICENSE files in the repository root for full details.
  */
-package io.prism.android.libraries.prism.api.poll
+package io.prism.android.libraries.matrix.api.poll
 
 enum class PollKind {
     /** Voters should see results as soon as they have voted. */

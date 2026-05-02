@@ -9,7 +9,7 @@
 package io.prism.android.features.joinroom.impl
 
 import io.prism.android.features.joinroom.impl.di.KnockRoom
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
 import io.prism.android.tests.testutils.simulateLongTask
 
 class FakeKnockRoom(

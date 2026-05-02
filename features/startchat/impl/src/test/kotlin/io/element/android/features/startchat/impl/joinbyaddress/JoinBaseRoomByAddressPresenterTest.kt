@@ -11,11 +11,11 @@ package io.prism.android.features.startchat.impl.joinbyaddress
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.startchat.StartChatNavigator
 import io.prism.android.features.startchat.impl.FakeStartChatNavigator
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.room.alias.RoomAliasHelper
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.room.alias.FakeRoomAliasHelper
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.room.alias.FakeRoomAliasHelper
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.test
@@ -99,7 +99,7 @@ class JoinBaseRoomByAddressPresenterTest {
                     false
                 }
             ),
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 resolveRoomAliasResult = {
                     Result.success(Optional.empty())
                 }
@@ -135,7 +135,7 @@ class JoinBaseRoomByAddressPresenterTest {
                     false
                 }
             ),
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 resolveRoomAliasResult = { Result.failure(RuntimeException()) }
             )
         )
@@ -190,7 +190,7 @@ class JoinBaseRoomByAddressPresenterTest {
     @Test
     fun `present - room not found`() = runTest {
         val presenter = createJoinRoomByAddressPresenter(
-            prismClient = FakePRISMClient(
+            matrixClient = FakePRISMClient(
                 resolveRoomAliasResult = { Result.failure(RuntimeException()) }
             )
         )
@@ -231,12 +231,12 @@ class JoinBaseRoomByAddressPresenterTest {
 
     private fun createJoinRoomByAddressPresenter(
         navigator: StartChatNavigator = FakeStartChatNavigator(),
-        prismClient: PRISMClient = FakePRISMClient(),
+        matrixClient: PRISMClient = FakePRISMClient(),
         roomAliasHelper: RoomAliasHelper = FakeRoomAliasHelper(),
     ): JoinRoomByAddressPresenter {
         return JoinRoomByAddressPresenter(
             navigator = navigator,
-            client = prismClient,
+            client = matrixClient,
             roomAliasHelper = roomAliasHelper,
         )
     }

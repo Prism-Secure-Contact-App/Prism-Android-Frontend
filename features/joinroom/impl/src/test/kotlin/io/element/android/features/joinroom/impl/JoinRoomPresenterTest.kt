@@ -9,7 +9,7 @@
 package io.prism.android.features.joinroom.impl
 
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.features.invite.api.InviteData
 import io.prism.android.features.invite.api.SeenInvitesStore
 import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteEvents
@@ -26,35 +26,35 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.exception.ClientException
-import io.prism.android.libraries.prism.api.exception.ErrorKind
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.RoomMembershipDetails
-import io.prism.android.libraries.prism.api.room.join.JoinRoom
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_NAME
-import io.prism.android.libraries.prism.test.A_SERVER_LIST
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.core.aBuildMeta
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.room.aRoomMember
-import io.prism.android.libraries.prism.test.room.aRoomPreview
-import io.prism.android.libraries.prism.test.room.aRoomPreviewInfo
-import io.prism.android.libraries.prism.test.room.join.FakeJoinRoom
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceRoomList
-import io.prism.android.libraries.prism.test.spaces.FakeSpaceService
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
-import io.prism.android.libraries.prism.ui.model.InviteSender
-import io.prism.android.libraries.prism.ui.model.toInviteSender
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.exception.ErrorKind
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomMembershipDetails
+import io.prism.android.libraries.matrix.api.room.join.JoinRoom
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.test.A_SERVER_LIST
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.room.aRoomPreview
+import io.prism.android.libraries.matrix.test.room.aRoomPreviewInfo
+import io.prism.android.libraries.matrix.test.room.join.FakeJoinRoom
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceRoomList
+import io.prism.android.libraries.matrix.test.spaces.FakeSpaceService
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.model.InviteSender
+import io.prism.android.libraries.matrix.ui.model.toInviteSender
 import io.prism.android.libraries.previewutils.room.aSpaceRoom
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.any
@@ -92,7 +92,7 @@ class JoinRoomPresenterTest {
     @Test
     fun `present - when room is joined then content state is filled with his data`() = runTest {
         val roomInfo = aRoomInfo()
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
@@ -103,7 +103,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             skipItems(2)
@@ -123,7 +123,7 @@ class JoinRoomPresenterTest {
     @Test
     fun `present - when room is invited then join authorization is equal to invited`() = runTest {
         val roomInfo = aRoomInfo(currentUserMembership = CurrentUserMembership.INVITED)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
@@ -135,7 +135,7 @@ class JoinRoomPresenterTest {
         }
         val seenInvitesStore = InMemorySeenInvitesStore()
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             seenInvitesStore = seenInvitesStore,
         )
         val inviteData = roomInfo.toInviteData()
@@ -160,7 +160,7 @@ class JoinRoomPresenterTest {
             inviter = inviter,
         )
         val inviteData = roomInfo.toInviteData()
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ ->
                 Result.success(
                     aRoomPreview(
@@ -182,7 +182,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             skipItems(2)
@@ -197,7 +197,7 @@ class JoinRoomPresenterTest {
     fun `present - when space is invited then join authorization is equal to invited, an inviter is provided`() = runTest {
         val inviter = aRoomMember(userId = A_USER_ID_2, displayName = "Bob")
         val expectedInviteSender = inviter.toInviteSender()
-        val spaceHero = aPRISMUser()
+        val spaceHero = aMatrixUser()
         val roomInfo = aRoomInfo(
             isSpace = true,
             currentUserMembership = CurrentUserMembership.INVITED,
@@ -206,7 +206,7 @@ class JoinRoomPresenterTest {
             heroes = listOf(spaceHero),
         )
         val inviteData = roomInfo.toInviteData()
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ ->
                 Result.success(
                     aRoomPreview(
@@ -234,7 +234,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             skipItems(2)
@@ -254,12 +254,12 @@ class JoinRoomPresenterTest {
 
     @Test
     fun `present - space is invited - no room info`() = runTest {
-        val spaceHero = aPRISMUser()
+        val spaceHero = aMatrixUser()
         val spaceRoom = aSpaceRoom(
             childrenCount = 3,
             heroes = listOf(spaceHero),
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ ->
                 Result.failure(Exception("Error"))
             },
@@ -276,7 +276,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             skipItems(1)
@@ -297,7 +297,7 @@ class JoinRoomPresenterTest {
         val spaceRoom = aSpaceRoom(
             state = CurrentUserMembership.INVITED,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ ->
                 Result.failure(Exception("Error"))
             },
@@ -314,7 +314,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             awaitItem().also { state ->
@@ -331,7 +331,7 @@ class JoinRoomPresenterTest {
             // It seems that the SDK does not provide this value.
             joinedMembersCount = 0,
         )
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ ->
                 Result.success(
                     aRoomPreview(
@@ -353,7 +353,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             skipItems(2)
@@ -370,7 +370,7 @@ class JoinRoomPresenterTest {
             anAcceptDeclineInviteState(eventSink = eventSinkRecorder)
         }
         val roomInfo = aRoomInfo(currentUserMembership = CurrentUserMembership.INVITED)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
             ),
@@ -381,7 +381,7 @@ class JoinRoomPresenterTest {
         }
         val inviteData = roomInfo.toInviteData()
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             acceptDeclineInvitePresenter = acceptDeclinePresenter
         )
         presenter.test {
@@ -407,14 +407,14 @@ class JoinRoomPresenterTest {
         val joinRoomLambda = lambdaRecorder { _: RoomIdOrAlias, _: List<String>, _: JoinedRoom.Trigger ->
             Result.success(Unit)
         }
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             trigger = aTrigger,
             serverNames = A_SERVER_LIST,
             joinRoomLambda = joinRoomLambda,
@@ -438,14 +438,14 @@ class JoinRoomPresenterTest {
 
     @Test
     fun `present - when room is joined with error, it is possible to clear the error`() = runTest {
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             joinRoomLambda = { _, _, _ ->
                 Result.failure(AN_EXCEPTION)
             },
@@ -495,7 +495,7 @@ class JoinRoomPresenterTest {
     @Test
     fun `present - when room is banned, then join authorization is equal to IsBanned`() = runTest {
         val roomInfo = aRoomInfo(currentUserMembership = CurrentUserMembership.BANNED, joinRule = JoinRule.Public)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ ->
                 Result.success(
                     aRoomPreview(
@@ -519,7 +519,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             // Skip initial state
@@ -538,7 +538,7 @@ class JoinRoomPresenterTest {
     @Test
     fun `present - when room is left and public then join authorization is equal to canJoin`() = runTest {
         val roomInfo = aRoomInfo(currentUserMembership = CurrentUserMembership.LEFT, joinRule = JoinRule.Public)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
@@ -549,7 +549,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             skipItems(2)
@@ -562,7 +562,7 @@ class JoinRoomPresenterTest {
     @Test
     fun `present - when room is left and join rule null then join authorization is equal to Unknown`() = runTest {
         val roomInfo = aRoomInfo(currentUserMembership = CurrentUserMembership.LEFT, joinRule = null)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
@@ -573,7 +573,7 @@ class JoinRoomPresenterTest {
             }
         }
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient
+            matrixClient = matrixClient
         )
         presenter.test {
             skipItems(2)
@@ -670,14 +670,14 @@ class JoinRoomPresenterTest {
             Result.failure<Unit>(RuntimeException("Failed to knock room $roomIdOrAlias"))
         }
         val fakeKnockRoom = FakeKnockRoom(knockRoomSuccess)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             knockRoom = fakeKnockRoom,
         )
         presenter.test {
@@ -718,14 +718,14 @@ class JoinRoomPresenterTest {
             Result.failure<Unit>(RuntimeException("Failed to knock room $roomId"))
         }
         val cancelKnockRoom = FakeCancelKnockRoom(cancelKnockRoomSuccess)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             cancelKnockRoom = cancelKnockRoom,
         )
         presenter.test {
@@ -765,14 +765,14 @@ class JoinRoomPresenterTest {
             Result.failure<Unit>(RuntimeException("Failed to forget room"))
         }
         val fakeForgetRoom = FakeForgetRoom(forgetRoomSuccess)
-        val prismClient = FakePRISMClient(
+        val matrixClient = FakePRISMClient(
             getNotJoinedRoomResult = { _, _ -> Result.failure(AN_EXCEPTION) },
             spaceService = FakeSpaceService(
                 spaceRoomListResult = { FakeSpaceRoomList() },
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             forgetRoom = fakeForgetRoom,
         )
         presenter.test {
@@ -830,7 +830,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -881,7 +881,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -950,7 +950,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1013,7 +1013,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1053,7 +1053,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1081,7 +1081,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1111,7 +1111,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1139,7 +1139,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1160,7 +1160,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1183,7 +1183,7 @@ class JoinRoomPresenterTest {
             ),
         )
         val presenter = createJoinRoomPresenter(
-            prismClient = client
+            matrixClient = client
         )
         presenter.test {
             skipItems(1)
@@ -1219,7 +1219,7 @@ internal fun createJoinRoomPresenter(
     roomDescription: Optional<RoomDescription> = Optional.empty(),
     serverNames: List<String> = emptyList(),
     trigger: JoinedRoom.Trigger = JoinedRoom.Trigger.Invite,
-    prismClient: PRISMClient = FakePRISMClient(
+    matrixClient: PRISMClient = FakePRISMClient(
         spaceService = FakeSpaceService(
             spaceRoomListResult = { FakeSpaceRoomList() },
         ),
@@ -1240,7 +1240,7 @@ internal fun createJoinRoomPresenter(
         roomDescription = roomDescription,
         serverNames = serverNames,
         trigger = trigger,
-        prismClient = prismClient,
+        matrixClient = matrixClient,
         joinRoom = FakeJoinRoom(joinRoomLambda),
         knockRoom = knockRoom,
         cancelKnockRoom = cancelKnockRoom,

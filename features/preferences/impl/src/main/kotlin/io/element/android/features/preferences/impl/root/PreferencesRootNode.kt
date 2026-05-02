@@ -24,7 +24,7 @@ import io.prism.android.features.logout.api.direct.DirectLogoutView
 import io.prism.android.libraries.androidutils.browser.openUrlInChromeCustomTab
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 @ContributesNode(SessionScope::class)
 @AssistedInject
@@ -46,7 +46,7 @@ class PreferencesRootNode(
         fun navigateToAdvancedSettings()
         fun navigateToLabs()
         fun navigateToLinkNewDevice()
-        fun navigateToUserProfile(prismUser: PRISMUser)
+        fun navigateToUserProfile(matrixUser: PRISMUser)
         fun navigateToBlockedUsers()
         fun startSignOutFlow()
         fun startAccountDeactivationFlow()

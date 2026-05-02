@@ -9,7 +9,7 @@
 package io.prism.android.features.forward.impl
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 data class ForwardMessagesState(
     val forwardAction: AsyncAction<List<RoomId>>,

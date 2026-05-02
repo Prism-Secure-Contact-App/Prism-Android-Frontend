@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.api.watchers
+package io.prism.android.services.analytics.api.watchers
 
 /**
  * Adds a performance check transaction measuring the time between a cold start (or, after we read the user consent after a cold start)

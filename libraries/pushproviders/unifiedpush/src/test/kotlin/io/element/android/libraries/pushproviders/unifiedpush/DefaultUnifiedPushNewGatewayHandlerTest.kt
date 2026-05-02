@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.FakeMatrixClientProvider
-import io.element.android.libraries.push.test.FakePusherSubscriber
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
-import io.element.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
-import io.element.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.FakeMatrixClientProvider
+import io.prism.android.libraries.push.test.FakePusherSubscriber
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStore
+import io.prism.android.libraries.pushstore.test.userpushstore.FakeUserPushStoreFactory
+import io.prism.android.libraries.pushstore.test.userpushstore.clientsecret.FakePushClientSecret
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -93,7 +93,7 @@ class DefaultUnifiedPushNewGatewayHandlerTest {
     @Test
     fun `happy path`() = runTest {
         val aMatrixClient = FakeMatrixClient()
-        val lambda = lambdaRecorder { _: MatrixClient, _: String, _: String ->
+        val lambda = lambdaRecorder { _: PRISMClient, _: String, _: String ->
             Result.success(Unit)
         }
         val defaultUnifiedPushNewGatewayHandler = createDefaultUnifiedPushNewGatewayHandler(
@@ -123,7 +123,7 @@ class DefaultUnifiedPushNewGatewayHandlerTest {
         pusherSubscriber: PusherSubscriber = FakePusherSubscriber(),
         userPushStoreFactory: UserPushStoreFactory = FakeUserPushStoreFactory(),
         pushClientSecret: PushClientSecret = FakePushClientSecret(),
-        matrixClientProvider: MatrixClientProvider = FakeMatrixClientProvider()
+        matrixClientProvider: PRISMClientProvider = FakeMatrixClientProvider()
     ): DefaultUnifiedPushNewGatewayHandler {
         return DefaultUnifiedPushNewGatewayHandler(
             pusherSubscriber = pusherSubscriber,

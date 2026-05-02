@@ -6,30 +6,30 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.content.Intent
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.room.CreateTimelineParams
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.room.isDm
-import io.element.android.libraries.matrix.api.timeline.ReceiptType
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
-import io.element.android.libraries.push.api.notifications.NotificationCleaner
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.push.OnNotifiableEventReceived
-import io.element.android.services.appnavstate.api.ActiveRoomsHolder
-import io.element.android.services.toolbox.api.strings.StringProvider
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.room.CreateTimelineParams
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStoreFactory
+import io.prism.android.libraries.push.api.notifications.NotificationCleaner
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.push.OnNotifiableEventReceived
+import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
+import io.prism.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -42,7 +42,7 @@ private val loggerTag = LoggerTag("NotificationBroadcastReceiverHandler", Logger
 class NotificationBroadcastReceiverHandler(
     @AppCoroutineScope
     private val appCoroutineScope: CoroutineScope,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
     private val sessionPreferencesStore: SessionPreferencesStoreFactory,
     private val notificationCleaner: NotificationCleaner,
     private val actionIds: NotificationActionIds,

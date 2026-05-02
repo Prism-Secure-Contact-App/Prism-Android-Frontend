@@ -5,16 +5,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl.watchers
+package io.prism.android.services.analytics.impl.watchers
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.features.networkmonitor.test.FakeNetworkMonitor
-import io.element.android.libraries.matrix.api.roomlist.RoomListService
-import io.element.android.libraries.matrix.test.roomlist.FakeRoomListService
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction.CatchUp
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.services.appnavstate.test.FakeAppForegroundStateService
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.features.networkmonitor.test.FakeNetworkMonitor
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.CatchUp
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.services.appnavstate.test.FakeAppForegroundStateService
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runCurrent

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.history
+package io.prism.android.libraries.push.impl.history
 
 import android.content.Context
 import android.os.Build
@@ -14,15 +14,15 @@ import android.os.PowerManager
 import androidx.core.content.getSystemService
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.push.impl.PushDatabase
-import io.element.android.libraries.push.impl.db.PushHistory
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.push.impl.PushDatabase
+import io.prism.android.libraries.push.impl.db.PushHistory
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlin.time.Instant
 
 @ContributesBinding(AppScope::class)

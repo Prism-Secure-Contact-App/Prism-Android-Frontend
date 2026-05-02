@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.noop
+package io.prism.android.libraries.permissions.noop
 
 import androidx.compose.runtime.Composable
-import io.element.android.libraries.permissions.api.PermissionsPresenter
-import io.element.android.libraries.permissions.api.PermissionsState
+import io.prism.android.libraries.permissions.api.PermissionsPresenter
+import io.prism.android.libraries.permissions.api.PermissionsState
 
 class NoopPermissionsPresenter(
     private val isGranted: Boolean = false,

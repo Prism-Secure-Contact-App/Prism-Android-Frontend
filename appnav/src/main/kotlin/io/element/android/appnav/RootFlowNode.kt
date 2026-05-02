@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import com.bumble.appyx.core.modality.BuildContext
-import com.bumble.appyx.core.navigation.NavPRISMs
+import com.bumble.appyx.core.navigation.NavElements
 import com.bumble.appyx.core.navigation.NavKey
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
@@ -30,7 +30,7 @@ import com.bumble.appyx.navmodel.backstack.transitionhandler.rememberBackstackSl
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom
+import im.vector.app.features.analytics.plan.JoinedRoom
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.appnav.di.PRISMSessionCache
 import io.prism.android.appnav.intent.IntentResolver
@@ -57,12 +57,12 @@ import io.prism.android.libraries.deeplink.api.DeeplinkData
 import io.prism.android.libraries.di.annotations.AppCoroutineScope
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.asEventId
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.asEventId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
 import io.prism.android.libraries.oidc.api.OidcAction
 import io.prism.android.libraries.oidc.api.OidcActionFlow
 import io.prism.android.libraries.sessionstorage.api.LoggedInState
@@ -103,7 +103,7 @@ class RootFlowNode(
     @AppCoroutineScope private val appCoroutineScope: CoroutineScope,
 ) : BaseFlowNode<RootFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.SplashScreen,
+        initialElement = NavTarget.SplashScreen,
         savedStateMap = null,
     ),
     buildContext = buildContext,
@@ -172,9 +172,9 @@ class RootFlowNode(
         if (savedStateMap == null) return
 
         // 'NavModel' is the key used for storing the nav model state data in the map in Appyx
-        val savedPRISMs = buildContext.savedStateMap?.get("NavModel") as? NavPRISMs<NavTarget, BackStack.State>
-        if (savedPRISMs != null) {
-            backstack.accept(ReplaceAllOperation(savedPRISMs))
+        val savedElements = buildContext.savedStateMap?.get("NavModel") as? NavElements<NavTarget, BackStack.State>
+        if (savedElements != null) {
+            backstack.accept(ReplaceAllOperation(savedElements))
         }
     }
 
@@ -288,11 +288,11 @@ class RootFlowNode(
     override fun resolve(navTarget: NavTarget, buildContext: BuildContext): Node {
         return when (navTarget) {
             is NavTarget.LoggedInFlow -> {
-                val prismClient = prismSessionCache.getOrNull(navTarget.sessionId)
+                val matrixClient = prismSessionCache.getOrNull(navTarget.sessionId)
                     ?: return emptyNode(buildContext).also {
                         Timber.w("Couldn't find any session, go through SplashScreen")
                     }
-                val inputs = LoggedInAppScopeFlowNode.Inputs(prismClient)
+                val inputs = LoggedInAppScopeFlowNode.Inputs(matrixClient)
                 val callback = object : LoggedInAppScopeFlowNode.Callback {
                     override fun navigateToBugReport() {
                         backstack.push(NavTarget.BugReport)
@@ -496,7 +496,7 @@ class RootFlowNode(
                     roomIdOrAlias = permalinkData.roomIdOrAlias,
                     trigger = JoinedRoom.Trigger.MobilePermalink,
                     serverNames = permalinkData.viaParameters,
-                    initialPRISM = RoomNavigationTarget.Root(eventId = focusedEventId),
+                    initialElement = RoomNavigationTarget.Root(eventId = focusedEventId),
                     clearBackstack = true
                 ).maybeAttachThread(permalinkData.threadId, permalinkData.eventId)
             }
@@ -520,7 +520,7 @@ class RootFlowNode(
                 is DeeplinkData.Room -> {
                     loggedInFlowNode.attachRoom(
                         roomIdOrAlias = deeplinkData.roomId.toRoomIdOrAlias(),
-                        initialPRISM = RoomNavigationTarget.Root(eventId = deeplinkData.threadId?.asEventId() ?: deeplinkData.eventId),
+                        initialElement = RoomNavigationTarget.Root(eventId = deeplinkData.threadId?.asEventId() ?: deeplinkData.eventId),
                         clearBackstack = true,
                     ).maybeAttachThread(deeplinkData.threadId, deeplinkData.eventId)
                 }

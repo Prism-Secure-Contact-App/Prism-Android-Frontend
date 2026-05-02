@@ -8,7 +8,7 @@
 
 package io.prism.android.features.securityandprivacy.impl.editroomaddress
 
-import io.prism.android.libraries.prism.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomAlias
 
 /**
  * Returns the local part of the alias.

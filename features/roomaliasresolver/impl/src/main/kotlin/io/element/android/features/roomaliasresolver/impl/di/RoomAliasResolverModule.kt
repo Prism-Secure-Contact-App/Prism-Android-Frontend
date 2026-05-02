@@ -13,8 +13,8 @@ import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import io.prism.android.features.roomaliasresolver.impl.RoomAliasResolverPresenter
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
 
 @BindingContainer
 @ContributesTo(SessionScope::class)
@@ -27,7 +27,7 @@ object RoomAliasResolverModule {
             override fun create(roomAlias: RoomAlias): RoomAliasResolverPresenter {
                 return RoomAliasResolverPresenter(
                     roomAlias = roomAlias,
-                    prismClient = client,
+                    matrixClient = client,
                 )
             }
         }

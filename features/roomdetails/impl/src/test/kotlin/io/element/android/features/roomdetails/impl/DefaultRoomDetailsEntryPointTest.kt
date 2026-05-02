@@ -23,11 +23,11 @@ import io.prism.android.features.roomdetails.api.RoomDetailsEntryPoint
 import io.prism.android.features.roomdetailsedit.test.FakeRoomDetailsEditEntryPoint
 import io.prism.android.features.securityandprivacy.test.FakeSecurityAndPrivacyEntryPoint
 import io.prism.android.features.verifysession.test.FakeOutgoingVerificationEntryPoint
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
 import io.prism.android.libraries.mediaviewer.test.FakeMediaGalleryEntryPoint
 import io.prism.android.libraries.mediaviewer.test.FakeMediaViewerEntryPoint
 import io.prism.android.services.analytics.test.FakeAnalyticsService
@@ -74,7 +74,7 @@ class DefaultRoomDetailsEntryPointTest {
             override fun startForwardEventFlow(eventId: EventId, fromPinnedEvents: Boolean) = lambdaError()
         }
         val params = RoomDetailsEntryPoint.Params(
-            initialPRISM = RoomDetailsEntryPoint.InitialTarget.RoomDetails,
+            initialElement = RoomDetailsEntryPoint.InitialTarget.RoomDetails,
         )
         val result = entryPoint.createNode(
             parentNode = parentNode,

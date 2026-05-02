@@ -25,7 +25,7 @@ class DelegateTransitionHandler<NavTarget, State>(
 ) : ModifierTransitionHandler<NavTarget, State>() {
     @SuppressLint("ModifierFactoryExtensionFunction")
     override fun createModifier(modifier: Modifier, transition: Transition<State>, descriptor: TransitionDescriptor<NavTarget, State>): Modifier {
-        return handlerProvider(descriptor.prism).createModifier(modifier, transition, descriptor)
+        return handlerProvider(descriptor.element).createModifier(modifier, transition, descriptor)
     }
 }
 

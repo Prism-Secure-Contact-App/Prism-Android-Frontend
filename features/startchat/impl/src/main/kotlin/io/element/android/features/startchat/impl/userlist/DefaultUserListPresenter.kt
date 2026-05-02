@@ -23,9 +23,9 @@ import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.room.recent.RecentDirectRoom
-import io.prism.android.libraries.prism.api.room.recent.getRecentDirectRooms
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.room.recent.RecentDirectRoom
+import io.prism.android.libraries.matrix.api.room.recent.getRecentDirectRooms
 import io.prism.android.libraries.usersearch.api.UserRepository
 import io.prism.android.libraries.usersearch.api.UserSearchResult
 import kotlinx.collections.immutable.ImmutableList
@@ -42,7 +42,7 @@ class DefaultUserListPresenter(
     @Assisted val args: UserListPresenterArgs,
     @Assisted val userRepository: UserRepository,
     @Assisted val userListDataStore: UserListDataStore,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) : UserListPresenter {
     @AssistedFactory
     @ContributesBinding(SessionScope::class)
@@ -58,7 +58,7 @@ class DefaultUserListPresenter(
     override fun present(): UserListState {
         var recentDirectRooms by remember { mutableStateOf(emptyList<RecentDirectRoom>()) }
         LaunchedEffect(Unit) {
-            recentDirectRooms = prismClient
+            recentDirectRooms = matrixClient
                 .getRecentDirectRooms()
                 .take(MAX_SUGGESTIONS_COUNT)
                 .toList()
@@ -88,8 +88,8 @@ class DefaultUserListPresenter(
         fun handleEvent(event: UserListEvents) {
             when (event) {
                 is UserListEvents.OnSearchActiveChanged -> isSearchActive = event.active
-                is UserListEvents.AddToSelection -> userListDataStore.selectUser(event.prismUser)
-                is UserListEvents.RemoveFromSelection -> userListDataStore.removeUserFromSelection(event.prismUser)
+                is UserListEvents.AddToSelection -> userListDataStore.selectUser(event.matrixUser)
+                is UserListEvents.RemoveFromSelection -> userListDataStore.removeUserFromSelection(event.matrixUser)
             }
         }
 

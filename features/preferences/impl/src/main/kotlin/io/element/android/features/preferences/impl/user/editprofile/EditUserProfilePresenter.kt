@@ -29,9 +29,9 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.core.mimetype.MimeTypes
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 import io.prism.android.libraries.mediapickers.api.PickerProvider
 import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
 import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
@@ -44,9 +44,9 @@ import timber.log.Timber
 
 @AssistedInject
 class EditUserProfilePresenter(
-    @Assisted private val prismUser: PRISMUser,
+    @Assisted private val matrixUser: PRISMUser,
     @Assisted private val navigator: EditUserProfileNavigator,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val mediaPickerProvider: PickerProvider,
     private val mediaPreProcessor: MediaPreProcessor,
     private val temporaryUriDeleter: TemporaryUriDeleter,
@@ -59,7 +59,7 @@ class EditUserProfilePresenter(
     @AssistedFactory
     interface Factory {
         fun create(
-            prismUser: PRISMUser,
+            matrixUser: PRISMUser,
             navigator: EditUserProfileNavigator,
         ): EditUserProfilePresenter
     }
@@ -67,8 +67,8 @@ class EditUserProfilePresenter(
     @Composable
     override fun present(): EditUserProfileState {
         val cameraPermissionState = cameraPermissionPresenter.present()
-        var userAvatarUri by rememberSaveable { mutableStateOf(prismUser.avatarUrl) }
-        var userDisplayName by rememberSaveable { mutableStateOf(prismUser.displayName) }
+        var userAvatarUri by rememberSaveable { mutableStateOf(matrixUser.avatarUrl) }
+        var userDisplayName by rememberSaveable { mutableStateOf(matrixUser.displayName) }
         val cameraPhotoPicker = mediaPickerProvider.registerCameraPhotoPicker(
             onResult = { uri ->
                 if (uri != null) {
@@ -107,8 +107,8 @@ class EditUserProfilePresenter(
         val localCoroutineScope = rememberCoroutineScope()
 
         val canSave = remember(userDisplayName, userAvatarUri) {
-            val hasProfileChanged = hasDisplayNameChanged(userDisplayName, prismUser) ||
-                hasAvatarUrlChanged(userAvatarUri, prismUser)
+            val hasProfileChanged = hasDisplayNameChanged(userDisplayName, matrixUser) ||
+                hasAvatarUrlChanged(userAvatarUri, matrixUser)
             !userDisplayName.isNullOrBlank() && hasProfileChanged
         }
 
@@ -117,7 +117,7 @@ class EditUserProfilePresenter(
                 is EditUserProfileEvent.Save -> localCoroutineScope.saveChanges(
                     name = userDisplayName,
                     avatarUri = userAvatarUri?.toUri(),
-                    currentUser = prismUser,
+                    currentUser = matrixUser,
                     action = saveAction,
                 )
                 is EditUserProfileEvent.HandleAvatarAction -> {
@@ -162,7 +162,7 @@ class EditUserProfilePresenter(
         }
 
         return EditUserProfileState(
-            userId = prismUser.userId,
+            userId = matrixUser.userId,
             displayName = userDisplayName.orEmpty(),
             userAvatarUrl = userAvatarUri,
             avatarActions = avatarActions,
@@ -188,7 +188,7 @@ class EditUserProfilePresenter(
         val results = mutableListOf<Result<Unit>>()
         suspend {
             if (!name.isNullOrEmpty() && name.trim() != currentUser.displayName.orEmpty().trim()) {
-                results.add(prismClient.setDisplayName(name).onFailure {
+                results.add(matrixClient.setDisplayName(name).onFailure {
                     Timber.e(it, "Failed to set user's display name")
                 })
             }
@@ -210,9 +210,9 @@ class EditUserProfilePresenter(
                     deleteOriginal = false,
                     mediaOptimizationConfig = mediaOptimizationConfigProvider.get(),
                 ).getOrThrow()
-                prismClient.uploadAvatar(MimeTypes.Jpeg, preprocessed.file.readBytes()).getOrThrow()
+                matrixClient.uploadAvatar(MimeTypes.Jpeg, preprocessed.file.readBytes()).getOrThrow()
             } else {
-                prismClient.removeAvatar().getOrThrow()
+                matrixClient.removeAvatar().getOrThrow()
             }
         }.onFailure { Timber.e(it, "Unable to update avatar") }
     }

@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.tests.testutils.simulateLongTask
 
 class FakeFirebaseTroubleshooter(
     private val troubleShootResult: () -> Result<Unit> = { Result.success(Unit) }

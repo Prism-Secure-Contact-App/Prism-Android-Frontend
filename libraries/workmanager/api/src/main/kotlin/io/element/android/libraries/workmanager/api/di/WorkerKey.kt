@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.workmanager.api.di
+package io.prism.android.libraries.workmanager.api.di
 
 import androidx.work.ListenableWorker
 import dev.zacsweers.metro.MapKey

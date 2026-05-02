@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.messages.reply
+package io.prism.android.libraries.matrix.ui.messages.reply
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,21 +32,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.core.extensions.toSafeLength
-import io.element.android.libraries.designsystem.atomic.atoms.PlaceholderAtom
-import io.element.android.libraries.designsystem.icons.CompoundDrawables
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.timeline.item.event.ProfileDetails
-import io.element.android.libraries.matrix.api.timeline.item.event.getDisambiguatedDisplayName
-import io.element.android.libraries.matrix.ui.components.AttachmentThumbnail
-import io.element.android.libraries.matrix.ui.messages.sender.SenderName
-import io.element.android.libraries.matrix.ui.messages.sender.SenderNameMode
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.core.extensions.toSafeLength
+import io.prism.android.libraries.designsystem.atomic.atoms.PlaceholderAtom
+import io.prism.android.libraries.designsystem.icons.CompoundDrawables
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
+import io.prism.android.libraries.matrix.api.timeline.item.event.getDisambiguatedDisplayName
+import io.prism.android.libraries.matrix.ui.components.AttachmentThumbnail
+import io.prism.android.libraries.matrix.ui.messages.sender.SenderName
+import io.prism.android.libraries.matrix.ui.messages.sender.SenderNameMode
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 /**
  * https://www.figma.com/design/G1xy0HDZKJf5TCRFmKb5d5/Compound-Android-Components?node-id=2019-6286
@@ -87,13 +87,13 @@ private fun ReplyToReadyContent(
     }
     Row(
         modifier
-            .background(ElementTheme.colors.bgCanvasDefault)
+            .background(PRISMTheme.colors.bgCanvasDefault)
             .padding(paddings)
     ) {
         if (metadata is InReplyToMetadata.Thumbnail) {
             AttachmentThumbnail(
                 info = metadata.attachmentThumbnailInfo,
-                backgroundColor = ElementTheme.colors.bgSubtlePrimary,
+                backgroundColor = PRISMTheme.colors.bgSubtlePrimary,
                 modifier = Modifier
                     .size(36.dp)
                     .clip(RoundedCornerShape(4.dp))
@@ -127,7 +127,7 @@ private fun ReplyToLoadingContent(
     val paddings = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
     Row(
         modifier
-            .background(ElementTheme.colors.bgCanvasDefault)
+            .background(PRISMTheme.colors.bgCanvasDefault)
             .padding(paddings)
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -145,13 +145,13 @@ private fun ReplyToErrorContent(
     val paddings = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
     Row(
         modifier
-            .background(ElementTheme.colors.bgCanvasDefault)
+            .background(PRISMTheme.colors.bgCanvasDefault)
             .padding(paddings)
     ) {
         Text(
             text = data.message,
-            style = ElementTheme.typography.fontBodyMdRegular,
-            color = ElementTheme.colors.textCriticalPrimary,
+            style = PRISMTheme.typography.fontBodyMdRegular,
+            color = PRISMTheme.colors.textCriticalPrimary,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
         )
@@ -188,7 +188,7 @@ private fun ReplyToContentText(metadata: InReplyToMetadata?) {
         if (iconResourceId != null) {
             Icon(
                 resourceId = iconResourceId,
-                tint = ElementTheme.colors.iconSecondary,
+                tint = PRISMTheme.colors.iconSecondary,
                 contentDescription = null,
                 modifier = Modifier.size(16.dp)
             )
@@ -196,10 +196,10 @@ private fun ReplyToContentText(metadata: InReplyToMetadata?) {
         }
         Text(
             text = text,
-            style = ElementTheme.typography.fontBodyMdRegular,
+            style = PRISMTheme.typography.fontBodyMdRegular,
             fontStyle = fontStyle,
             textAlign = TextAlign.Start,
-            color = ElementTheme.colors.textSecondary,
+            color = PRISMTheme.colors.textSecondary,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
         )
@@ -208,7 +208,7 @@ private fun ReplyToContentText(metadata: InReplyToMetadata?) {
 
 @PreviewsDayNight
 @Composable
-internal fun InReplyToViewPreview(@PreviewParameter(provider = InReplyToDetailsProvider::class) inReplyTo: InReplyToDetails) = ElementPreview {
+internal fun InReplyToViewPreview(@PreviewParameter(provider = InReplyToDetailsProvider::class) inReplyTo: InReplyToDetails) = PRISMPreview {
     InReplyToView(
         inReplyTo = inReplyTo,
         hideImage = false,

@@ -9,11 +9,11 @@
 package io.prism.android.features.roomdirectory.impl.root
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDirectoryList
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDirectoryService
-import io.prism.android.libraries.prism.test.roomdirectory.FakeRoomDirectoryList
-import io.prism.android.libraries.prism.test.roomdirectory.FakeRoomDirectoryService
-import io.prism.android.libraries.prism.test.roomdirectory.aRoomDescription
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryList
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
+import io.prism.android.libraries.matrix.test.roomdirectory.FakeRoomDirectoryList
+import io.prism.android.libraries.matrix.test.roomdirectory.FakeRoomDirectoryService
+import io.prism.android.libraries.matrix.test.roomdirectory.aRoomDescription
 import io.prism.android.tests.testutils.lambda.any
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

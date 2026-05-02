@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.content.Context
 import android.graphics.ImageDecoder
@@ -17,46 +17,46 @@ import androidx.core.content.FileProvider
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.core.extensions.flatMap
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.featureflag.api.FeatureFlagService
-import io.element.android.libraries.featureflag.api.FeatureFlags
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.exception.NotificationResolverException
-import io.element.android.libraries.matrix.api.media.getMediaPreviewValue
-import io.element.android.libraries.matrix.api.media.isPreviewEnabled
-import io.element.android.libraries.matrix.api.notification.NotificationContent
-import io.element.android.libraries.matrix.api.notification.NotificationData
-import io.element.android.libraries.matrix.api.permalink.PermalinkParser
-import io.element.android.libraries.matrix.api.room.join.JoinRule
-import io.element.android.libraries.matrix.api.timeline.item.event.AudioMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.EmoteMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.EventType
-import io.element.android.libraries.matrix.api.timeline.item.event.FileMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.ImageMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.LocationMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.NoticeMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.OtherMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.StickerMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.TextMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.VideoMessageType
-import io.element.android.libraries.matrix.api.timeline.item.event.VoiceMessageType
-import io.element.android.libraries.matrix.ui.messages.toPlainText
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.model.ResolvedPushEvent
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.libraries.core.extensions.flatMap
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.featureflag.api.FeatureFlagService
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.exception.NotificationResolverException
+import io.prism.android.libraries.matrix.api.media.getMediaPreviewValue
+import io.prism.android.libraries.matrix.api.media.isPreviewEnabled
+import io.prism.android.libraries.matrix.api.notification.NotificationContent
+import io.prism.android.libraries.matrix.api.notification.NotificationData
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.timeline.item.event.AudioMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.EmoteMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventType
+import io.prism.android.libraries.matrix.api.timeline.item.event.FileMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.ImageMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocationMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.NoticeMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.OtherMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.StickerMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.VideoMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.VoiceMessageType
+import io.prism.android.libraries.matrix.ui.messages.toPlainText
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import timber.log.Timber
 
 private val loggerTag = LoggerTag("DefaultNotifiableEventResolver", LoggerTag.NotificationLoggerTag)
@@ -86,7 +86,7 @@ interface NotifiableEventResolver {
 @SingleIn(AppScope::class)
 class DefaultNotifiableEventResolver(
     private val stringProvider: StringProvider,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
     private val notificationMediaRepoFactory: NotificationMediaRepo.Factory,
     @ApplicationContext private val context: Context,
     private val permalinkParser: PermalinkParser,
@@ -136,7 +136,7 @@ class DefaultNotifiableEventResolver(
     }
 
     private suspend fun NotificationData.asNotifiableEvent(
-        client: MatrixClient,
+        client: PRISMClient,
         userId: SessionId,
     ): Result<ResolvedPushEvent> = runCatchingExceptions {
         when (val content = this.content) {
@@ -373,7 +373,7 @@ class DefaultNotifiableEventResolver(
      * Then convert to a [Uri] accessible to the Notification Service.
      */
     private suspend fun NotificationContent.MessageLike.RoomMessage.fetchImageIfPresent(
-        client: MatrixClient,
+        client: PRISMClient,
         mimeType: String,
     ): Uri? {
         val fileResult = when (val messageType = messageType) {

@@ -8,20 +8,20 @@
 
 @file:OptIn(ExperimentalPermissionsApi::class)
 
-package io.element.android.libraries.permissions.impl
+package io.prism.android.libraries.permissions.impl
 
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.permissions.api.PermissionsEvent
-import io.element.android.libraries.permissions.api.PermissionsStore
-import io.element.android.libraries.permissions.impl.action.FakePermissionActions
-import io.element.android.libraries.permissions.impl.action.PermissionActions
-import io.element.android.libraries.permissions.test.InMemoryPermissionsStore
-import io.element.android.tests.testutils.WarmUpRule
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
-import io.element.android.tests.testutils.test
+import io.prism.android.libraries.permissions.api.PermissionsEvent
+import io.prism.android.libraries.permissions.api.PermissionsStore
+import io.prism.android.libraries.permissions.impl.action.FakePermissionActions
+import io.prism.android.libraries.permissions.impl.action.PermissionActions
+import io.prism.android.libraries.permissions.test.InMemoryPermissionsStore
+import io.prism.android.tests.testutils.WarmUpRule
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
+import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test

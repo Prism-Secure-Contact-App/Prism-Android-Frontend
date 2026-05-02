@@ -5,14 +5,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.test
+package io.prism.android.libraries.mediaupload.test
 
 import android.net.Uri
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaSender
-import io.element.android.libraries.mediaupload.api.MediaUploadInfo
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaSender
+import io.prism.android.libraries.mediaupload.api.MediaUploadInfo
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeMediaSender(
     private val preProcessMediaResult: () -> Result<MediaUploadInfo> = { lambdaError() },

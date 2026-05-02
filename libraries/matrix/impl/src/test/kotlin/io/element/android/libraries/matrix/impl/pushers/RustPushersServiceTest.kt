@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.pushers
+package io.prism.android.libraries.matrix.impl.pushers
 
-import io.element.android.libraries.matrix.api.pusher.SetHttpPusherData
-import io.element.android.libraries.matrix.api.pusher.UnsetHttpPusherData
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.api.pusher.SetHttpPusherData
+import io.prism.android.libraries.matrix.api.pusher.UnsetHttpPusherData
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

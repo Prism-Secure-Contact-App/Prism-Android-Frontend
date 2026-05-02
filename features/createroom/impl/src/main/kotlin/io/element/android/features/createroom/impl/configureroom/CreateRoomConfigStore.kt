@@ -11,8 +11,8 @@ package io.prism.android.features.createroom.impl.configureroom
 import android.net.Uri
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.androidutils.file.safeDelete
-import io.prism.android.libraries.prism.api.room.alias.RoomAliasHelper
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.getAndUpdate

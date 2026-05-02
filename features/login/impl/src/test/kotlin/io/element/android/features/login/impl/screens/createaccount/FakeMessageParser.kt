@@ -8,7 +8,7 @@
 
 package io.prism.android.features.login.impl.screens.createaccount
 
-import io.prism.android.libraries.prism.api.auth.external.ExternalSession
+import io.prism.android.libraries.matrix.api.auth.external.ExternalSession
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeMessageParser(

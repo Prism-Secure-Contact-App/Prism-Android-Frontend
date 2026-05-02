@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.workmanager
+package io.prism.android.libraries.matrix.impl.workmanager
 
 import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.PeriodicWorkRequest
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.impl.workmanager.VacuumDatabaseWorker.Companion.SESSION_ID_PARAM
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.impl.workmanager.VacuumDatabaseWorker.Companion.SESSION_ID_PARAM
 import io.prism.android.libraries.workmanager.api.WorkManagerRequestBuilder
 import io.prism.android.libraries.workmanager.api.WorkManagerRequestType
 import io.prism.android.libraries.workmanager.api.WorkManagerRequestWrapper

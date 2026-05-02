@@ -9,8 +9,8 @@
 package io.prism.android.features.roomaliasresolver.impl
 
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
 
 data class RoomAliasResolverState(
     val roomAlias: RoomAlias,

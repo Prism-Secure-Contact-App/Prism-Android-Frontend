@@ -33,7 +33,7 @@ import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.designsystem.utils.ForceOrientationInMobileDevices
 import io.prism.android.libraries.designsystem.utils.ScreenOrientation
-import io.prism.android.libraries.prism.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
 import io.prism.android.services.analytics.api.watchers.AnalyticsColdStartWatcher
 import kotlinx.parcelize.Parcelize
 
@@ -47,7 +47,7 @@ class NotLoggedInFlowNode(
     private val analyticsColdStartWatcher: AnalyticsColdStartWatcher,
 ) : BaseFlowNode<NotLoggedInFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap
     ),
     buildContext = buildContext,

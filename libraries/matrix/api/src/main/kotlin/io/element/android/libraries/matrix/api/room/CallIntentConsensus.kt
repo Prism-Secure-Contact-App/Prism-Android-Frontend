@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room
+package io.prism.android.libraries.matrix.api.room
 
-import io.prism.android.libraries.prism.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.notification.CallIntent
 
 /**
  * Represents the consensus state of [CallIntent] among room members.

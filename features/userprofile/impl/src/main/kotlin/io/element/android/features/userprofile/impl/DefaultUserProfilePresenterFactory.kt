@@ -14,7 +14,7 @@ import io.prism.android.features.userprofile.api.UserProfileState
 import io.prism.android.features.userprofile.impl.root.UserProfilePresenter
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 
 @ContributesBinding(SessionScope::class)
 class DefaultUserProfilePresenterFactory(

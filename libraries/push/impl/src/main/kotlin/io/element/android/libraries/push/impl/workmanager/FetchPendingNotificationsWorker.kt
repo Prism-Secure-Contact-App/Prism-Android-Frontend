@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.workmanager
+package io.prism.android.libraries.push.impl.workmanager
 
 import android.content.Context
 import androidx.work.CoroutineWorker
@@ -17,29 +17,29 @@ import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesIntoMap
 import dev.zacsweers.metro.binding
-import io.element.android.features.networkmonitor.api.NetworkMonitor
-import io.element.android.features.networkmonitor.api.NetworkStatus
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.auth.SessionRestorationException
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.exception.ClientException
-import io.element.android.libraries.matrix.api.exception.isNetworkError
-import io.element.android.libraries.push.api.push.PushHandlingWakeLock
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.libraries.push.impl.history.PushHistoryService
-import io.element.android.libraries.push.impl.notifications.NotifiableEventResolver
-import io.element.android.libraries.push.impl.notifications.NotificationResultProcessor
-import io.element.android.libraries.push.impl.push.PushRequestStatus
-import io.element.android.libraries.push.impl.push.SyncOnNotifiableEvent
-import io.element.android.libraries.workmanager.api.di.MetroWorkerFactory
-import io.element.android.libraries.workmanager.api.di.WorkerKey
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.finishLongRunningTransaction
-import io.element.android.services.analytics.api.recordTransaction
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
-import io.element.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.features.networkmonitor.api.NetworkMonitor
+import io.prism.android.features.networkmonitor.api.NetworkStatus
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.auth.SessionRestorationException
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.exception.isNetworkError
+import io.prism.android.libraries.push.api.push.PushHandlingWakeLock
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.push.impl.history.PushHistoryService
+import io.prism.android.libraries.push.impl.notifications.NotifiableEventResolver
+import io.prism.android.libraries.push.impl.notifications.NotificationResultProcessor
+import io.prism.android.libraries.push.impl.push.PushRequestStatus
+import io.prism.android.libraries.push.impl.push.SyncOnNotifiableEvent
+import io.prism.android.libraries.workmanager.api.di.MetroWorkerFactory
+import io.prism.android.libraries.workmanager.api.di.WorkerKey
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.finishLongRunningTransaction
+import io.prism.android.services.analytics.api.recordTransaction
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
 import timber.log.Timber

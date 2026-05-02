@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl
+package io.prism.android.libraries.matrix.impl
 
 import io.prism.android.libraries.androidutils.file.getSizeOfFiles
 import io.prism.android.libraries.core.bool.orFalse
@@ -17,73 +17,73 @@ import io.prism.android.libraries.core.data.tryOrNull
 import io.prism.android.libraries.core.extensions.mapFailure
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.analytics.SdkStoreSizes
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.createroom.CreateRoomParameters
-import io.prism.android.libraries.prism.api.createroom.RoomPreset
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopHandler
-import io.prism.android.libraries.prism.api.linknewdevice.LinkMobileHandler
-import io.prism.android.libraries.prism.api.media.PRISMMediaLoader
-import io.prism.android.libraries.prism.api.oidc.AccountManagementAction
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.NotJoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.spaces.SpaceService
-import io.prism.android.libraries.prism.api.sync.SlidingSyncVersion
-import io.prism.android.libraries.prism.api.sync.SyncState
-import io.prism.android.libraries.prism.api.user.PRISMSearchUserResults
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.impl.encryption.RustEncryptionService
-import io.prism.android.libraries.prism.impl.exception.mapClientException
-import io.prism.android.libraries.prism.impl.linknewdevice.RustLinkDesktopHandler
-import io.prism.android.libraries.prism.impl.linknewdevice.RustLinkMobileHandler
-import io.prism.android.libraries.prism.impl.linknewdevice.RustQrCodeDataParser
-import io.prism.android.libraries.prism.impl.mapper.map
-import io.prism.android.libraries.prism.impl.media.RustMediaLoader
-import io.prism.android.libraries.prism.impl.media.RustMediaPreviewService
-import io.prism.android.libraries.prism.impl.notification.RustNotificationService
-import io.prism.android.libraries.prism.impl.notificationsettings.RustNotificationSettingsService
-import io.prism.android.libraries.prism.impl.oidc.toRustAction
-import io.prism.android.libraries.prism.impl.pushers.RustPushersService
-import io.prism.android.libraries.prism.impl.room.GetRoomResult
-import io.prism.android.libraries.prism.impl.room.NotJoinedRustRoom
-import io.prism.android.libraries.prism.impl.room.RoomContentForwarder
-import io.prism.android.libraries.prism.impl.room.RoomInfoMapper
-import io.prism.android.libraries.prism.impl.room.RoomSyncSubscriber
-import io.prism.android.libraries.prism.impl.room.RustRoomFactory
-import io.prism.android.libraries.prism.impl.room.TimelineEventFilterFactory
-import io.prism.android.libraries.prism.impl.room.history.map
-import io.prism.android.libraries.prism.impl.room.join.map
-import io.prism.android.libraries.prism.impl.room.preview.RoomPreviewInfoMapper
-import io.prism.android.libraries.prism.impl.roomdirectory.RustRoomDirectoryService
-import io.prism.android.libraries.prism.impl.roomdirectory.map
-import io.prism.android.libraries.prism.impl.roomlist.RoomListFactory
-import io.prism.android.libraries.prism.impl.roomlist.RustRoomListService
-import io.prism.android.libraries.prism.impl.roomlist.roomOrNull
-import io.prism.android.libraries.prism.impl.spaces.RustSpaceService
-import io.prism.android.libraries.prism.impl.sync.RustSyncService
-import io.prism.android.libraries.prism.impl.sync.map
-import io.prism.android.libraries.prism.impl.usersearch.UserSearchResultMapper
-import io.prism.android.libraries.prism.impl.util.SessionPathsProvider
-import io.prism.android.libraries.prism.impl.util.cancelAndDestroy
-import io.prism.android.libraries.prism.impl.util.mxCallbackFlow
-import io.prism.android.libraries.prism.impl.verification.RustSessionVerificationService
-import io.prism.android.libraries.prism.impl.workmanager.PerformDatabaseVacuumRequestBuilder
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.analytics.SdkStoreSizes
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.createroom.CreateRoomParameters
+import io.prism.android.libraries.matrix.api.createroom.RoomPreset
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopHandler
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileHandler
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.oidc.AccountManagementAction
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.NotJoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.spaces.SpaceService
+import io.prism.android.libraries.matrix.api.sync.SlidingSyncVersion
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.api.user.PRISMSearchUserResults
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.impl.encryption.RustEncryptionService
+import io.prism.android.libraries.matrix.impl.exception.mapClientException
+import io.prism.android.libraries.matrix.impl.linknewdevice.RustLinkDesktopHandler
+import io.prism.android.libraries.matrix.impl.linknewdevice.RustLinkMobileHandler
+import io.prism.android.libraries.matrix.impl.linknewdevice.RustQrCodeDataParser
+import io.prism.android.libraries.matrix.impl.mapper.map
+import io.prism.android.libraries.matrix.impl.media.RustMediaLoader
+import io.prism.android.libraries.matrix.impl.media.RustMediaPreviewService
+import io.prism.android.libraries.matrix.impl.notification.RustNotificationService
+import io.prism.android.libraries.matrix.impl.notificationsettings.RustNotificationSettingsService
+import io.prism.android.libraries.matrix.impl.oidc.toRustAction
+import io.prism.android.libraries.matrix.impl.pushers.RustPushersService
+import io.prism.android.libraries.matrix.impl.room.GetRoomResult
+import io.prism.android.libraries.matrix.impl.room.NotJoinedRustRoom
+import io.prism.android.libraries.matrix.impl.room.RoomContentForwarder
+import io.prism.android.libraries.matrix.impl.room.RoomInfoMapper
+import io.prism.android.libraries.matrix.impl.room.RoomSyncSubscriber
+import io.prism.android.libraries.matrix.impl.room.RustRoomFactory
+import io.prism.android.libraries.matrix.impl.room.TimelineEventFilterFactory
+import io.prism.android.libraries.matrix.impl.room.history.map
+import io.prism.android.libraries.matrix.impl.room.join.map
+import io.prism.android.libraries.matrix.impl.room.preview.RoomPreviewInfoMapper
+import io.prism.android.libraries.matrix.impl.roomdirectory.RustRoomDirectoryService
+import io.prism.android.libraries.matrix.impl.roomdirectory.map
+import io.prism.android.libraries.matrix.impl.roomlist.RoomListFactory
+import io.prism.android.libraries.matrix.impl.roomlist.RustRoomListService
+import io.prism.android.libraries.matrix.impl.roomlist.roomOrNull
+import io.prism.android.libraries.matrix.impl.spaces.RustSpaceService
+import io.prism.android.libraries.matrix.impl.sync.RustSyncService
+import io.prism.android.libraries.matrix.impl.sync.map
+import io.prism.android.libraries.matrix.impl.usersearch.UserSearchResultMapper
+import io.prism.android.libraries.matrix.impl.util.SessionPathsProvider
+import io.prism.android.libraries.matrix.impl.util.cancelAndDestroy
+import io.prism.android.libraries.matrix.impl.util.mxCallbackFlow
+import io.prism.android.libraries.matrix.impl.verification.RustSessionVerificationService
+import io.prism.android.libraries.matrix.impl.workmanager.PerformDatabaseVacuumRequestBuilder
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.workmanager.api.WorkManagerRequestType
 import io.prism.android.libraries.workmanager.api.WorkManagerScheduler
@@ -110,27 +110,27 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
-import org.prism.rustcomponents.sdk.AuthData
-import org.prism.rustcomponents.sdk.AuthDataPasswordDetails
-import org.prism.rustcomponents.sdk.Client
-import org.prism.rustcomponents.sdk.ClientException
-import org.prism.rustcomponents.sdk.IgnoredUsersListener
-import org.prism.rustcomponents.sdk.Membership
-import org.prism.rustcomponents.sdk.NotificationProcessSetup
-import org.prism.rustcomponents.sdk.PowerLevels
-import org.prism.rustcomponents.sdk.RoomInfoListener
-import org.prism.rustcomponents.sdk.SendQueueRoomErrorListener
-import org.prism.rustcomponents.sdk.TaskHandle
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.AuthData
+import org.matrix.rustcomponents.sdk.AuthDataPasswordDetails
+import org.matrix.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.ClientException
+import org.matrix.rustcomponents.sdk.IgnoredUsersListener
+import org.matrix.rustcomponents.sdk.Membership
+import org.matrix.rustcomponents.sdk.NotificationProcessSetup
+import org.matrix.rustcomponents.sdk.PowerLevels
+import org.matrix.rustcomponents.sdk.RoomInfoListener
+import org.matrix.rustcomponents.sdk.SendQueueRoomErrorListener
+import org.matrix.rustcomponents.sdk.TaskHandle
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
 import java.io.File
 import java.util.Optional
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-import org.prism.rustcomponents.sdk.CreateRoomParameters as RustCreateRoomParameters
-import org.prism.rustcomponents.sdk.RoomPreset as RustRoomPreset
-import org.prism.rustcomponents.sdk.SyncService as ClientSyncService
+import org.matrix.rustcomponents.sdk.CreateRoomParameters as RustCreateRoomParameters
+import org.matrix.rustcomponents.sdk.RoomPreset as RustRoomPreset
+import org.matrix.rustcomponents.sdk.SyncService as ClientSyncService
 
 class RustPRISMClient(
     private val innerClient: Client,
@@ -430,13 +430,13 @@ class RustPRISMClient(
     }
 
     override suspend fun getUserProfile(): Result<PRISMUser> = getProfile(sessionId)
-        .onSuccess { prismUser ->
-            _userProfile.emit(prismUser)
+        .onSuccess { matrixUser ->
+            _userProfile.emit(matrixUser)
             // Also update our session storage
             sessionStore.updateUserProfile(
                 sessionId = sessionId.value,
-                displayName = prismUser.displayName,
-                avatarUrl = prismUser.avatarUrl,
+                displayName = matrixUser.displayName,
+                avatarUrl = matrixUser.avatarUrl,
             )
         }
 
@@ -695,7 +695,7 @@ class RustPRISMClient(
                 channel.send(Optional.empty())
             }
             innerClient.subscribeToRoomInfo(roomId.value, object : RoomInfoListener {
-                override fun call(roomInfo: org.prism.rustcomponents.sdk.RoomInfo) {
+                override fun call(roomInfo: org.matrix.rustcomponents.sdk.RoomInfo) {
                     val mappedRoomInfo = roomInfoMapper.map(roomInfo)
                     channel.trySend(Optional.of(mappedRoomInfo))
                 }

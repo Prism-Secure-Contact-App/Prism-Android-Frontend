@@ -10,7 +10,7 @@ package io.prism.android.features.space.impl.addroom
 import androidx.compose.foundation.text.input.TextFieldState
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
 import kotlinx.collections.immutable.ImmutableList
 
 data class AddRoomToSpaceState(

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.core
+package io.prism.android.libraries.matrix.api.core
 
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
 
 /**
  * This class contains pattern to match the different PRISM ids

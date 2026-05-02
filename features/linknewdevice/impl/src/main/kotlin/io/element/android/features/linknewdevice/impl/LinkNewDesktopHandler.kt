@@ -11,10 +11,10 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import io.prism.android.libraries.core.log.logger.LoggerTag
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopHandler
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopStep
-import io.prism.android.libraries.prism.api.logs.LoggerTags
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopHandler
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopStep
+import io.prism.android.libraries.matrix.api.logs.LoggerTags
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,9 +29,9 @@ private val loggerTag = LoggerTag("LinkNewDesktopHandler", LoggerTags.linkNewDev
 @Inject
 @SingleIn(SessionScope::class)
 class LinkNewDesktopHandler(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
 ) {
-    private val sessionScope = prismClient.sessionCoroutineScope
+    private val sessionScope = matrixClient.sessionCoroutineScope
     private val linkDesktopStepFlow = MutableStateFlow<LinkDesktopStep>(
         LinkDesktopStep.Uninitialized
     )
@@ -45,7 +45,7 @@ class LinkNewDesktopHandler(
     fun createNewHandler() {
         currentJob?.cancel()
         currentJob = null
-        handler = prismClient.createLinkDesktopHandler().getOrNull()
+        handler = matrixClient.createLinkDesktopHandler().getOrNull()
     }
 
     fun reset() {
@@ -63,7 +63,7 @@ class LinkNewDesktopHandler(
         if (currentHandler == null) {
             Timber.tag(loggerTag.value).e("onScannedCode: Handler is not initialized. Call createNewHandler() first.")
         } else {
-            currentJob = prismClient.sessionCoroutineScope.launch {
+            currentJob = matrixClient.sessionCoroutineScope.launch {
                 currentHandler.linkDesktopStep.onEach {
                     linkDesktopStepFlow.emit(it)
                 }.launchIn(this)

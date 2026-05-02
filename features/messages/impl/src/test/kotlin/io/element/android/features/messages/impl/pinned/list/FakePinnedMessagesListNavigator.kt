@@ -8,8 +8,8 @@
 
 package io.prism.android.features.messages.impl.pinned.list
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.item.TimelineItemDebugInfo
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.item.TimelineItemDebugInfo
 
 class FakePinnedMessagesListNavigator : PinnedMessagesListNavigator {
     var onViewInTimelineClickLambda: ((EventId) -> Unit)? = null

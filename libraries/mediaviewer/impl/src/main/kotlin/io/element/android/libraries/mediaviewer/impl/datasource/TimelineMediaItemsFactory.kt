@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.datasource
+package io.prism.android.libraries.mediaviewer.impl.datasource
 
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.androidutils.diff.DefaultDiffCacheInvalidator
-import io.element.android.libraries.androidutils.diff.DiffCacheUpdater
-import io.element.android.libraries.androidutils.diff.MutableListDiffCache
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.matrix.api.timeline.MatrixTimelineItem
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.androidutils.diff.DefaultDiffCacheInvalidator
+import io.prism.android.libraries.androidutils.diff.DiffCacheUpdater
+import io.prism.android.libraries.androidutils.diff.MutableListDiffCache
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
@@ -33,12 +33,12 @@ class TimelineMediaItemsFactory(
     private val _timelineItems = MutableSharedFlow<ImmutableList<MediaItem>>(replay = 1)
     private val lock = Mutex()
     private val diffCache = MutableListDiffCache<MediaItem>()
-    private val diffCacheUpdater = DiffCacheUpdater<MatrixTimelineItem, MediaItem>(
+    private val diffCacheUpdater = DiffCacheUpdater<PRISMTimelineItem, MediaItem>(
         diffCache = diffCache,
         detectMoves = false,
         cacheInvalidator = DefaultDiffCacheInvalidator()
     ) { old, new ->
-        if (old is MatrixTimelineItem.Event && new is MatrixTimelineItem.Event) {
+        if (old is PRISMTimelineItem.Event && new is PRISMTimelineItem.Event) {
             old.uniqueId == new.uniqueId
         } else {
             false
@@ -48,7 +48,7 @@ class TimelineMediaItemsFactory(
     val timelineItems: Flow<ImmutableList<MediaItem>> = _timelineItems.distinctUntilChanged()
 
     suspend fun replaceWith(
-        timelineItems: List<MatrixTimelineItem>,
+        timelineItems: List<PRISMTimelineItem>,
     ) = withContext(dispatchers.computation) {
         lock.withLock {
             diffCacheUpdater.updateWith(timelineItems)
@@ -57,7 +57,7 @@ class TimelineMediaItemsFactory(
     }
 
     private suspend fun buildAndEmitTimelineItemStates(
-        timelineItems: List<MatrixTimelineItem>,
+        timelineItems: List<PRISMTimelineItem>,
     ) {
         val newTimelineItemStates = ArrayList<MediaItem>()
         for (index in diffCache.indices().reversed()) {
@@ -74,14 +74,14 @@ class TimelineMediaItemsFactory(
     }
 
     private fun buildAndCacheItem(
-        timelineItems: List<MatrixTimelineItem>,
+        timelineItems: List<PRISMTimelineItem>,
         index: Int,
     ): MediaItem? {
         val timelineItem =
             when (val currentTimelineItem = timelineItems[index]) {
-                is MatrixTimelineItem.Event -> eventItemFactory.create(currentTimelineItem)
-                is MatrixTimelineItem.Virtual -> virtualItemFactory.create(currentTimelineItem)
-                MatrixTimelineItem.Other -> null
+                is PRISMTimelineItem.Event -> eventItemFactory.create(currentTimelineItem)
+                is PRISMTimelineItem.Virtual -> virtualItemFactory.create(currentTimelineItem)
+                PRISMTimelineItem.Other -> null
             }
         diffCache[index] = timelineItem
         return timelineItem

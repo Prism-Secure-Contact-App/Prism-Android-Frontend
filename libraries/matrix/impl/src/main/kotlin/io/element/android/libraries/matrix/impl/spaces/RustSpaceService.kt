@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.spaces
+package io.prism.android.libraries.matrix.impl.spaces
 
 import io.prism.android.libraries.core.coroutine.childScope
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
-import io.prism.android.libraries.prism.api.spaces.LeaveSpaceHandle
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomList
-import io.prism.android.libraries.prism.api.spaces.SpaceService
-import io.prism.android.libraries.prism.api.spaces.SpaceServiceFilter
-import io.prism.android.libraries.prism.impl.util.cancelAndDestroy
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.spaces.LeaveSpaceHandle
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.api.spaces.SpaceService
+import io.prism.android.libraries.matrix.api.spaces.SpaceServiceFilter
+import io.prism.android.libraries.matrix.impl.util.cancelAndDestroy
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -32,13 +32,13 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.SpaceFilterUpdate
-import org.prism.rustcomponents.sdk.SpaceListUpdate
-import org.prism.rustcomponents.sdk.SpaceServiceInterface
-import org.prism.rustcomponents.sdk.SpaceServiceJoinedSpacesListener
-import org.prism.rustcomponents.sdk.SpaceServiceSpaceFiltersListener
+import org.matrix.rustcomponents.sdk.SpaceFilterUpdate
+import org.matrix.rustcomponents.sdk.SpaceListUpdate
+import org.matrix.rustcomponents.sdk.SpaceServiceInterface
+import org.matrix.rustcomponents.sdk.SpaceServiceJoinedSpacesListener
+import org.matrix.rustcomponents.sdk.SpaceServiceSpaceFiltersListener
 import timber.log.Timber
-import org.prism.rustcomponents.sdk.SpaceService as ClientSpaceService
+import org.matrix.rustcomponents.sdk.SpaceService as ClientSpaceService
 
 class RustSpaceService(
     private val innerSpaceService: ClientSpaceService,

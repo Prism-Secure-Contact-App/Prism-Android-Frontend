@@ -15,9 +15,9 @@ import io.prism.android.features.roomdetails.impl.members.details.RoomMemberDeta
 import io.prism.android.features.userprofile.api.UserProfilePresenterFactory
 import io.prism.android.libraries.androidutils.clipboard.ClipboardHelper
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 @BindingContainer
 @ContributesTo(RoomScope::class)

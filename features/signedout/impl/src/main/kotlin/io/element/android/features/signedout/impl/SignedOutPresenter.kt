@@ -18,7 +18,7 @@ import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

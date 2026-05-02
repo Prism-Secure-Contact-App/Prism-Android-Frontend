@@ -52,11 +52,11 @@ import io.prism.android.libraries.designsystem.components.blurhash.blurHashBackg
 import io.prism.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.textcomposer.PRISMRichTextEditorStyle
+import io.prism.android.libraries.textcomposer.ElementRichTextEditorStyle
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.libraries.ui.utils.time.isTalkbackActive
-import io.prism.android.wysiwyg.compose.EditorStyledText
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.compose.EditorStyledText
+import io.element.android.wysiwyg.link.Link
 
 @Composable
 fun TimelineItemImageView(
@@ -129,7 +129,7 @@ fun TimelineItemImageView(
                         .padding(horizontal = 4.dp) // This is (12.dp - 8.dp) contentPadding from CommonLayout
                         .widthIn(min = MIN_HEIGHT_IN_DP.dp * aspectRatio, max = MAX_HEIGHT_IN_DP.dp * aspectRatio),
                     text = caption,
-                    style = PRISMRichTextEditorStyle.textStyle(),
+                    style = ElementRichTextEditorStyle.textStyle(),
                     onLinkClickedListener = onLinkClick,
                     onLinkLongClickedListener = onLinkLongClick,
                     releaseOnDetach = false,

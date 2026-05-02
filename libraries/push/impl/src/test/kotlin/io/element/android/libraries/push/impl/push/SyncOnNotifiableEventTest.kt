@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.push
+package io.prism.android.libraries.push.impl.push
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.featureflag.api.FeatureFlags
-import io.element.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.sync.SyncState
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.test.FakeMatrixClientProvider
-import io.element.android.libraries.matrix.test.room.FakeBaseRoom
-import io.element.android.libraries.matrix.test.room.FakeJoinedRoom
-import io.element.android.libraries.matrix.test.sync.FakeSyncService
-import io.element.android.libraries.push.impl.notifications.fixtures.aPushRequest
-import io.element.android.services.appnavstate.test.FakeAppForegroundStateService
-import io.element.android.tests.testutils.lambda.assert
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.test.FakeMatrixClientProvider
+import io.prism.android.libraries.matrix.test.room.FakeBaseRoom
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.sync.FakeSyncService
+import io.prism.android.libraries.push.impl.notifications.fixtures.aPushRequest
+import io.prism.android.services.appnavstate.test.FakeAppForegroundStateService
+import io.prism.android.tests.testutils.lambda.assert
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
@@ -110,7 +110,7 @@ class SyncOnNotifiableEventTest {
     }
 
     private fun TestScope.createSyncOnNotifiableEvent(
-        client: MatrixClient = FakeMatrixClient(),
+        client: PRISMClient = FakeMatrixClient(),
         isSyncOnPushEnabled: Boolean = true,
         appForegroundStateService: FakeAppForegroundStateService = FakeAppForegroundStateService(
             initialForegroundValue = true,

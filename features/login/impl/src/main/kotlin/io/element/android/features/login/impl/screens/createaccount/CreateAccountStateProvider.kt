@@ -10,7 +10,7 @@ package io.prism.android.features.login.impl.screens.createaccount
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 open class CreateAccountStateProvider : PreviewParameterProvider<CreateAccountState> {
     override val values: Sequence<CreateAccountState>

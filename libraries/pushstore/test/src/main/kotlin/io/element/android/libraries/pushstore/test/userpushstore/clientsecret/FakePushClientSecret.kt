@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.test.userpushstore.clientsecret
+package io.prism.android.libraries.pushstore.test.userpushstore.clientsecret
 
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePushClientSecret(
     private val getSecretForUserResult: (SessionId) -> String = { lambdaError() },

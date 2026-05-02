@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
-import io.element.android.libraries.designsystem.icons.CompoundDrawables
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.designsystem.icons.CompoundDrawables
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Immutable
 sealed class AvatarAction(

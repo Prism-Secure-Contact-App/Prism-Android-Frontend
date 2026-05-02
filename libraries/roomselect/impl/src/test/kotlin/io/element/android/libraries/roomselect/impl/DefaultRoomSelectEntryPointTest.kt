@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.impl
+package io.prism.android.libraries.roomselect.impl
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.roomselect.api.RoomSelectEntryPoint
-import io.element.android.libraries.roomselect.api.RoomSelectMode
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.node.TestParentNode
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.roomselect.api.RoomSelectEntryPoint
+import io.prism.android.libraries.roomselect.api.RoomSelectMode
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.node.TestParentNode
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule

@@ -9,11 +9,11 @@ import extension.setupDependencyInjection
  */
 
 plugins {
-    id("io.element.android-library")
+    id("io.prism.android-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.preferences.impl"
+    namespace = "io.prism.android.libraries.preferences.impl"
 }
 
 setupDependencyInjection()

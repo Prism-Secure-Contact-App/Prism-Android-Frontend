@@ -12,11 +12,11 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.messages.impl.messagecomposer.suggestions.DefaultRoomAliasSuggestionsDataSource
 import io.prism.android.features.messages.impl.messagecomposer.suggestions.RoomAliasSuggestion
-import io.prism.android.libraries.prism.test.A_ROOM_ALIAS
-import io.prism.android.libraries.prism.test.A_ROOM_ID_2
-import io.prism.android.libraries.prism.test.room.aRoomSummary
-import io.prism.android.libraries.prism.test.roomlist.FakeDynamicRoomList
-import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media.test
+package io.prism.android.libraries.matrix.ui.media.test
 
 import coil3.ComponentRegistry
 import coil3.ImageLoader

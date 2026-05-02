@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.roomdirectory
+package io.prism.android.libraries.matrix.test.roomdirectory
 
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.roomdirectory.RoomDescription
-import io.element.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDescription
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 
 fun aRoomDescription(
     roomId: RoomId = A_ROOM_ID,

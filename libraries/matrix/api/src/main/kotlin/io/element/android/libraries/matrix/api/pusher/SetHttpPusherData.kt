@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.pusher
+package io.prism.android.libraries.matrix.api.pusher
 
 data class SetHttpPusherData(
     val pushKey: String,

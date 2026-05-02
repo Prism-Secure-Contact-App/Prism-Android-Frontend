@@ -30,10 +30,10 @@ import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.core.mimetype.MimeTypes
 import io.prism.android.libraries.di.annotations.AppCoroutineScope
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.SdkMetadata
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.tracing.TracingService
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.SdkMetadata
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.tracing.TracingService
 import io.prism.android.libraries.network.useragent.UserAgentProvider
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.sessionstorage.api.sessionIdFlow

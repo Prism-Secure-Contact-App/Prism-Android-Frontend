@@ -6,38 +6,38 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.coroutine.childScope
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraft
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
-import io.prism.android.libraries.prism.api.room.tombstone.PredecessorRoom
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.api.timeline.ReceiptType
-import io.prism.android.libraries.prism.impl.room.draft.into
-import io.prism.android.libraries.prism.impl.room.member.RoomMemberListFetcher
-import io.prism.android.libraries.prism.impl.room.member.RoomMemberMapper
-import io.prism.android.libraries.prism.impl.room.powerlevels.RoomPowerLevelsValuesMapper
-import io.prism.android.libraries.prism.impl.room.powerlevels.RustRoomPermissions
-import io.prism.android.libraries.prism.impl.room.tombstone.map
-import io.prism.android.libraries.prism.impl.roomdirectory.map
-import io.prism.android.libraries.prism.impl.timeline.toRustReceiptType
-import io.prism.android.libraries.prism.impl.util.mxCallbackFlow
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraft
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.tombstone.PredecessorRoom
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.impl.room.draft.into
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberListFetcher
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberMapper
+import io.prism.android.libraries.matrix.impl.room.powerlevels.RoomPowerLevelsValuesMapper
+import io.prism.android.libraries.matrix.impl.room.powerlevels.RustRoomPermissions
+import io.prism.android.libraries.matrix.impl.room.tombstone.map
+import io.prism.android.libraries.matrix.impl.roomdirectory.map
+import io.prism.android.libraries.matrix.impl.timeline.toRustReceiptType
+import io.prism.android.libraries.matrix.impl.util.mxCallbackFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
@@ -45,12 +45,12 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.CallDeclineListener
-import org.prism.rustcomponents.sdk.RoomInfoListener
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.CallDeclineListener
+import org.matrix.rustcomponents.sdk.RoomInfoListener
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
-import uniffi.prism_sdk_base.EncryptionState
-import org.prism.rustcomponents.sdk.Room as InnerRoom
+import uniffi.matrix_sdk_base.EncryptionState
+import org.matrix.rustcomponents.sdk.Room as InnerRoom
 
 class RustBaseRoom(
     override val sessionId: SessionId,
@@ -79,7 +79,7 @@ class RustBaseRoom(
 
     override val roomInfoFlow: StateFlow<RoomInfo> = mxCallbackFlow {
         innerRoom.subscribeToRoomInfoUpdates(object : RoomInfoListener {
-            override fun call(roomInfo: org.prism.rustcomponents.sdk.RoomInfo) {
+            override fun call(roomInfo: org.matrix.rustcomponents.sdk.RoomInfo) {
                 channel.trySend(roomInfoMapper.map(roomInfo))
             }
         })
@@ -227,13 +227,13 @@ class RustBaseRoom(
 
     override suspend fun getPermalink(): Result<String> = withContext(roomDispatcher) {
         runCatchingExceptions {
-            innerRoom.prismToPermalink()
+            innerRoom.matrixToPermalink()
         }
     }
 
     override suspend fun getPermalinkFor(eventId: EventId): Result<String> = withContext(roomDispatcher) {
         runCatchingExceptions {
-            innerRoom.prismToEventPermalink(eventId.value)
+            innerRoom.matrixToEventPermalink(eventId.value)
         }
     }
 

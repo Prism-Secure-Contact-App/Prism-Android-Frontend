@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
-import io.prism.android.libraries.prism.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.Room
-import org.prism.rustcomponents.sdk.RoomListEntriesUpdate
-import org.prism.rustcomponents.sdk.RoomListServiceInterface
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.Room
+import org.matrix.rustcomponents.sdk.RoomListEntriesUpdate
+import org.matrix.rustcomponents.sdk.RoomListServiceInterface
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
 import kotlin.collections.groupingBy
 import kotlin.coroutines.CoroutineContext

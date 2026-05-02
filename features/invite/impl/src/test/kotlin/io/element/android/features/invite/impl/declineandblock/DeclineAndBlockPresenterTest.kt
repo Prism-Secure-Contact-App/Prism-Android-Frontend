@@ -15,8 +15,8 @@ import io.prism.android.features.invite.impl.fake.FakeDeclineInvite
 import io.prism.android.features.invite.test.anInviteData
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

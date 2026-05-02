@@ -24,7 +24,7 @@ import io.prism.android.compound.colors.SemanticColorsLightDark
  * It will automatically change the system ui colors back to normal when leaving the composition.
  */
 @Composable
-fun ForcedDarkPRISMTheme(
+fun ForcedDarkElementTheme(
     colors: SemanticColorsLightDark,
     lightStatusBar: Boolean = false,
     content: @Composable () -> Unit,

@@ -15,7 +15,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
 import io.prism.android.libraries.testtags.TestTags
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled

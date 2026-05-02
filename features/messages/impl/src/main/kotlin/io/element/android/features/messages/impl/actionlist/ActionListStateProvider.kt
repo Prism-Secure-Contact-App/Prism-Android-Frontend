@@ -22,7 +22,7 @@ import io.prism.android.features.messages.impl.timeline.model.event.aTimelineIte
 import io.prism.android.features.messages.impl.timeline.model.event.aTimelineItemPollContent
 import io.prism.android.features.messages.impl.timeline.model.event.aTimelineItemVideoContent
 import io.prism.android.features.messages.impl.timeline.model.event.aTimelineItemVoiceContent
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageShield
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageShield
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.api
+package io.prism.android.services.appnavstate.api
 
 import kotlinx.coroutines.flow.StateFlow
 

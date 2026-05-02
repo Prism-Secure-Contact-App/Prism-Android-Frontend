@@ -19,7 +19,7 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.features.linknewdevice.impl.LinkNewDesktopHandler
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.linknewdevice.LinkDesktopStep
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkDesktopStep
 import kotlinx.coroutines.launch
 
 @Inject

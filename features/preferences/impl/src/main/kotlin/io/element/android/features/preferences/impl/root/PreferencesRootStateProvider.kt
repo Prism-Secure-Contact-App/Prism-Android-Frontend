@@ -10,14 +10,14 @@ package io.prism.android.features.preferences.impl.root
 
 import io.prism.android.features.logout.api.direct.aDirectLogoutState
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.toImmutableList
 
 fun aPreferencesRootState(
-    myUser: PRISMUser = aPRISMUser(),
+    myUser: PRISMUser = aMatrixUser(),
     otherSessions: List<PRISMUser> = emptyList(),
     eventSink: (PreferencesRootEvents) -> Unit = { _ -> },
 ) = PreferencesRootState(

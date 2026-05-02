@@ -27,9 +27,9 @@ import io.prism.android.features.call.impl.notifications.RingingCallNotification
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.di.annotations.AppCoroutineScope
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
 import io.prism.android.libraries.push.api.notifications.ForegroundServiceType
 import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
 import io.prism.android.libraries.push.api.notifications.OnMissedCallNotificationHandler
@@ -170,9 +170,9 @@ class DefaultActiveCallManager(
 
     @OptIn(DelicateCoilApi::class)
     private suspend fun setUpCoil(sessionId: SessionId) {
-        val prismClient = prismClientProvider.getOrRestore(sessionId).getOrNull() ?: return
+        val matrixClient = prismClientProvider.getOrRestore(sessionId).getOrNull() ?: return
         // Ensure that the image loader is set, else the IncomingCallActivity will not be able to render the caller avatar
-        SingletonImageLoader.setUnsafe(imageLoaderHolder.get(prismClient))
+        SingletonImageLoader.setUnsafe(imageLoaderHolder.get(matrixClient))
     }
 
     /**

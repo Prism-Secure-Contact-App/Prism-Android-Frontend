@@ -11,8 +11,8 @@ package io.prism.android.features.rolesandpermissions.api
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import io.prism.android.libraries.architecture.FeatureEntryPoint
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 fun interface ChangeRoomMemberRolesEntryPoint : FeatureEntryPoint {
     fun createNode(

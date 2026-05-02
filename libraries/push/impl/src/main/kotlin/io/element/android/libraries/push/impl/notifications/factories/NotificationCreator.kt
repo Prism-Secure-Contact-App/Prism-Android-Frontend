@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.factories
+package io.prism.android.libraries.push.impl.notifications.factories
 
 import android.app.Notification
 import android.content.Context
@@ -19,34 +19,34 @@ import androidx.core.app.Person
 import coil3.ImageLoader
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.utils.CommonDrawables
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.matrix.api.timeline.item.event.EventType
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.matrix.ui.model.getBestName
-import io.element.android.libraries.push.api.notifications.NotificationBitmapLoader
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.push.impl.notifications.RoomEventGroupInfo
-import io.element.android.libraries.push.impl.notifications.channels.NotificationChannels
-import io.element.android.libraries.push.impl.notifications.debug.annotateForDebug
-import io.element.android.libraries.push.impl.notifications.factories.action.AcceptInvitationActionFactory
-import io.element.android.libraries.push.impl.notifications.factories.action.MarkAsReadActionFactory
-import io.element.android.libraries.push.impl.notifications.factories.action.QuickReplyActionFactory
-import io.element.android.libraries.push.impl.notifications.factories.action.RejectInvitationActionFactory
-import io.element.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.shortcut.createShortcutId
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.services.appnavstate.api.ROOM_OPENED_FROM_NOTIFICATION
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.utils.CommonDrawables
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventType
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
+import io.prism.android.libraries.push.api.notifications.NotificationBitmapLoader
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.push.impl.notifications.RoomEventGroupInfo
+import io.prism.android.libraries.push.impl.notifications.channels.NotificationChannels
+import io.prism.android.libraries.push.impl.notifications.debug.annotateForDebug
+import io.prism.android.libraries.push.impl.notifications.factories.action.AcceptInvitationActionFactory
+import io.prism.android.libraries.push.impl.notifications.factories.action.MarkAsReadActionFactory
+import io.prism.android.libraries.push.impl.notifications.factories.action.QuickReplyActionFactory
+import io.prism.android.libraries.push.impl.notifications.factories.action.RejectInvitationActionFactory
+import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.model.SimpleNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.shortcut.createShortcutId
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.services.appnavstate.api.ROOM_OPENED_FROM_NOTIFICATION
+import io.prism.android.services.toolbox.api.strings.StringProvider
 
 interface NotificationCreator {
     /**
@@ -497,7 +497,7 @@ class DefaultNotificationCreator(
     }
 
     private suspend fun createMessagingStyleFromCurrentUser(
-        user: MatrixUser,
+        user: PRISMUser,
         imageLoader: ImageLoader,
         roomName: String,
         isThread: Boolean,

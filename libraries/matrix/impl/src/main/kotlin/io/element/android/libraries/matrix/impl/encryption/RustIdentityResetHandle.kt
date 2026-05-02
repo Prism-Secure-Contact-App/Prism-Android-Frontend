@@ -6,21 +6,21 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.encryption
+package io.prism.android.libraries.matrix.impl.encryption
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.encryption.IdentityOidcResetHandle
-import io.prism.android.libraries.prism.api.encryption.IdentityPasswordResetHandle
-import io.prism.android.libraries.prism.api.encryption.IdentityResetHandle
-import org.prism.rustcomponents.sdk.AuthData
-import org.prism.rustcomponents.sdk.AuthDataPasswordDetails
-import org.prism.rustcomponents.sdk.CrossSigningResetAuthType
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.encryption.IdentityOidcResetHandle
+import io.prism.android.libraries.matrix.api.encryption.IdentityPasswordResetHandle
+import io.prism.android.libraries.matrix.api.encryption.IdentityResetHandle
+import org.matrix.rustcomponents.sdk.AuthData
+import org.matrix.rustcomponents.sdk.AuthDataPasswordDetails
+import org.matrix.rustcomponents.sdk.CrossSigningResetAuthType
 
 object RustIdentityResetHandleFactory {
     fun create(
         userId: UserId,
-        identityResetHandle: org.prism.rustcomponents.sdk.IdentityResetHandle?
+        identityResetHandle: org.matrix.rustcomponents.sdk.IdentityResetHandle?
     ): Result<IdentityResetHandle?> {
         return runCatchingExceptions {
             identityResetHandle?.let {
@@ -36,7 +36,7 @@ object RustIdentityResetHandleFactory {
 
 class RustPasswordIdentityResetHandle(
     private val userId: UserId,
-    private val identityResetHandle: org.prism.rustcomponents.sdk.IdentityResetHandle,
+    private val identityResetHandle: org.matrix.rustcomponents.sdk.IdentityResetHandle,
 ) : IdentityPasswordResetHandle {
     override suspend fun resetPassword(password: String): Result<Unit> {
         return runCatchingExceptions { identityResetHandle.reset(AuthData.Password(AuthDataPasswordDetails(userId.value, password))) }
@@ -48,7 +48,7 @@ class RustPasswordIdentityResetHandle(
 }
 
 class RustOidcIdentityResetHandle(
-    private val identityResetHandle: org.prism.rustcomponents.sdk.IdentityResetHandle,
+    private val identityResetHandle: org.matrix.rustcomponents.sdk.IdentityResetHandle,
     override val url: String,
 ) : IdentityOidcResetHandle {
     override suspend fun resetOidc(): Result<Unit> {
@@ -60,7 +60,7 @@ class RustOidcIdentityResetHandle(
     }
 }
 
-private suspend fun org.prism.rustcomponents.sdk.IdentityResetHandle.cancelAndDestroy() {
+private suspend fun org.matrix.rustcomponents.sdk.IdentityResetHandle.cancelAndDestroy() {
     cancel()
     destroy()
 }

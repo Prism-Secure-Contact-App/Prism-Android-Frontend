@@ -47,9 +47,9 @@ import io.prism.android.libraries.designsystem.theme.components.HorizontalDivide
 import io.prism.android.libraries.designsystem.theme.components.Icon
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -202,7 +202,7 @@ internal fun MessagesViewTopBarPreview() = PRISMPreview {
         AMessagesViewTopBar()
         HorizontalDivider()
         AMessagesViewTopBar(
-            heroes = aPRISMUserList().map { it.getAvatarData(AvatarSize.TimelineRoom) }.toImmutableList(),
+            heroes = aMatrixUserList().map { it.getAvatarData(AvatarSize.TimelineRoom) }.toImmutableList(),
             roomCallState = anOngoingCallState(),
         )
         HorizontalDivider()

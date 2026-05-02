@@ -10,13 +10,13 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
     alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "io.element.android.libraries.oidc.impl"
+    namespace = "io.prism.android.libraries.oidc.impl"
 
     testOptions {
         unitTests {

@@ -28,8 +28,8 @@ import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.DependencyInjectionGraphOwner
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 import kotlinx.parcelize.Parcelize
 
 @ContributesNode(SessionScope::class)

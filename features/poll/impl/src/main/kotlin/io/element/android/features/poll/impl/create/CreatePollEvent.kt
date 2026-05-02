@@ -8,7 +8,7 @@
 
 package io.prism.android.features.poll.impl.create
 
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.poll.PollKind
 
 sealed interface CreatePollEvent {
     data object Save : CreatePollEvent

@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.features.wellknown.test
+package io.prism.android.features.wellknown.test
 
-import io.element.android.libraries.wellknown.api.ElementWellKnown
+import io.prism.android.libraries.wellknown.api.ElementWellKnown
 
 fun anElementWellKnown(
     registrationHelperUrl: String? = null,

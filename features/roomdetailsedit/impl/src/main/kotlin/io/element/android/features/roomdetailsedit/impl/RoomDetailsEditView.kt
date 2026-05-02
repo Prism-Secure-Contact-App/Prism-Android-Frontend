@@ -45,9 +45,9 @@ import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TextField
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.ui.components.AvatarActionBottomSheet
-import io.prism.android.libraries.prism.ui.components.AvatarPickerState
-import io.prism.android.libraries.prism.ui.components.AvatarPickerView
+import io.prism.android.libraries.matrix.ui.components.AvatarActionBottomSheet
+import io.prism.android.libraries.matrix.ui.components.AvatarPickerState
+import io.prism.android.libraries.matrix.ui.components.AvatarPickerView
 import io.prism.android.libraries.permissions.api.PermissionsView
 import io.prism.android.libraries.ui.strings.CommonStrings
 

@@ -8,25 +8,25 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import android.content.Intent
 import androidx.test.platform.app.InstrumentationRegistry
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SECRET
-import io.element.android.libraries.push.test.push.FakePushHandlingWakeLock
-import io.element.android.libraries.push.test.test.FakePushHandler
-import io.element.android.libraries.pushproviders.api.PushData
-import io.element.android.libraries.pushproviders.api.PushHandler
-import io.element.android.libraries.pushproviders.unifiedpush.registration.EndpointRegistrationHandler
-import io.element.android.libraries.pushproviders.unifiedpush.registration.RegistrationResult
-import io.element.android.tests.testutils.lambda.lambdaError
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SECRET
+import io.prism.android.libraries.push.test.push.FakePushHandlingWakeLock
+import io.prism.android.libraries.push.test.test.FakePushHandler
+import io.prism.android.libraries.pushproviders.api.PushData
+import io.prism.android.libraries.pushproviders.api.PushHandler
+import io.prism.android.libraries.pushproviders.unifiedpush.registration.EndpointRegistrationHandler
+import io.prism.android.libraries.pushproviders.unifiedpush.registration.RegistrationResult
+import io.prism.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle

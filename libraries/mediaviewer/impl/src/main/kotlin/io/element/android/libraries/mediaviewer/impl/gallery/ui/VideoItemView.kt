@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.ui
+package io.prism.android.libraries.mediaviewer.impl.gallery.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -32,15 +32,15 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 fun VideoItemView(
@@ -88,8 +88,8 @@ private fun VideoInfoRow(
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        ElementTheme.colors.bgCanvasDefault.copy(alpha = 0f),
-                        ElementTheme.colors.bgCanvasDefault,
+                        PRISMTheme.colors.bgCanvasDefault.copy(alpha = 0f),
+                        PRISMTheme.colors.bgCanvasDefault,
                     )
                 )
             )
@@ -105,8 +105,8 @@ private fun VideoInfoRow(
             Spacer(Modifier.weight(1f))
             Text(
                 text = duration,
-                style = ElementTheme.typography.fontBodySmMedium,
-                color = ElementTheme.colors.textPrimary,
+                style = PRISMTheme.typography.fontBodySmMedium,
+                color = PRISMTheme.colors.textPrimary,
             )
         }
     }
@@ -116,7 +116,7 @@ private fun VideoInfoRow(
 @Composable
 internal fun VideoItemViewPreview(
     @PreviewParameter(MediaItemVideoProvider::class) video: MediaItem.Video,
-) = ElementPreview {
+) = PRISMPreview {
     VideoItemView(
         video = video,
         onClick = {},

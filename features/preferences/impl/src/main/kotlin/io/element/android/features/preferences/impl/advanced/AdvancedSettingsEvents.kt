@@ -8,7 +8,7 @@
 
 package io.prism.android.features.preferences.impl.advanced
 
-import io.prism.android.libraries.prism.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
 import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 
 sealed interface AdvancedSettingsEvents {

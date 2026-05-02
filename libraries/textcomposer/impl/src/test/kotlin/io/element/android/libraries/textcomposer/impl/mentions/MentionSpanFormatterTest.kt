@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.impl.mentions
+package io.prism.android.libraries.textcomposer.impl.mentions
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.toRoomIdOrAlias
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ALIAS
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.room.aRoomMember
-import io.element.android.libraries.matrix.test.room.aRoomSummary
-import io.element.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
-import io.element.android.libraries.matrix.ui.messages.RoomNamesCache
-import io.element.android.libraries.textcomposer.mentions.DefaultMentionSpanFormatter
-import io.element.android.libraries.textcomposer.mentions.MentionType
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
+import io.prism.android.libraries.matrix.ui.messages.RoomNamesCache
+import io.prism.android.libraries.textcomposer.mentions.DefaultMentionSpanFormatter
+import io.prism.android.libraries.textcomposer.mentions.MentionType
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.ui
+package io.prism.android.libraries.mediaviewer.impl.gallery.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -37,25 +37,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.atomic.atoms.PlaybackSpeedButton
-import io.element.android.libraries.designsystem.components.media.WaveformPlaybackView
-import io.element.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.CircularProgressIndicator
-import io.element.android.libraries.designsystem.theme.components.HorizontalDivider
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.IconButton
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemVoice
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.libraries.voiceplayer.api.VoiceMessageEvent
-import io.element.android.libraries.voiceplayer.api.VoiceMessageState
-import io.element.android.libraries.voiceplayer.api.VoiceMessageStateProvider
-import io.element.android.libraries.voiceplayer.api.aVoiceMessageState
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.atomic.atoms.PlaybackSpeedButton
+import io.prism.android.libraries.designsystem.components.media.WaveformPlaybackView
+import io.prism.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
+import io.prism.android.libraries.designsystem.theme.components.HorizontalDivider
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.IconButton
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemVoice
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageEvent
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageState
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageStateProvider
+import io.prism.android.libraries.voiceplayer.api.aVoiceMessageState
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 
@@ -101,7 +101,7 @@ private fun VoiceInfoRow(
         modifier = Modifier
             .clip(RoundedCornerShape(12.dp))
             .background(
-                color = ElementTheme.colors.bgSubtleSecondary,
+                color = PRISMTheme.colors.bgSubtleSecondary,
                 shape = RoundedCornerShape(12.dp),
             )
             .combinedClickable(
@@ -132,8 +132,8 @@ private fun VoiceInfoRow(
             )
             Text(
                 text = if (state.progress > 0f) state.time else voice.mediaInfo.duration ?: state.time,
-                color = ElementTheme.colors.textSecondary,
-                style = ElementTheme.typography.fontBodyMdMedium,
+                color = PRISMTheme.colors.textSecondary,
+                style = PRISMTheme.typography.fontBodyMdMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
@@ -179,7 +179,7 @@ private fun ProgressButton(
                 modifier = Modifier
                     .padding(2.dp)
                     .size(16.dp),
-                color = ElementTheme.colors.iconSecondary,
+                color = PRISMTheme.colors.iconSecondary,
                 strokeWidth = 2.dp,
             )
         } else {
@@ -256,17 +256,17 @@ private fun CustomIconButton(
     IconButton(
         onClick = onClick,
         modifier = Modifier
-            .background(color = ElementTheme.colors.bgCanvasDefault, shape = CircleShape)
+            .background(color = PRISMTheme.colors.bgCanvasDefault, shape = CircleShape)
             .border(
                 width = 1.dp,
-                color = ElementTheme.colors.borderInteractiveSecondary,
+                color = PRISMTheme.colors.borderInteractiveSecondary,
                 shape = CircleShape,
             )
             .size(36.dp),
         enabled = enabled,
         colors = IconButtonDefaults.iconButtonColors(
-            contentColor = ElementTheme.colors.iconSecondary,
-            disabledContentColor = ElementTheme.colors.iconDisabled,
+            contentColor = PRISMTheme.colors.iconSecondary,
+            disabledContentColor = PRISMTheme.colors.iconDisabled,
         ),
         content = content,
     )
@@ -276,7 +276,7 @@ private fun CustomIconButton(
 @Composable
 internal fun VoiceItemViewPreview(
     @PreviewParameter(MediaItemVoiceProvider::class) voice: MediaItem.Voice,
-) = ElementPreview {
+) = PRISMPreview {
     VoiceItemView(
         state = aVoiceMessageState(),
         voice = voice,
@@ -288,7 +288,7 @@ internal fun VoiceItemViewPreview(
 @Composable
 internal fun VoiceItemViewPlayPreview(
     @PreviewParameter(VoiceMessageStateProvider::class) state: VoiceMessageState,
-) = ElementPreview {
+) = PRISMPreview {
     VoiceItemView(
         state = state,
         voice = aMediaItemVoice(),

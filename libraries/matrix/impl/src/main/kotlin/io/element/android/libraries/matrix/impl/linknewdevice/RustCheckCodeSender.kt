@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.linknewdevice
+package io.prism.android.libraries.matrix.impl.linknewdevice
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.linknewdevice.CheckCodeSender
+import io.prism.android.libraries.matrix.api.linknewdevice.CheckCodeSender
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.CheckCodeSender as FfiCheckCodeSender
+import org.matrix.rustcomponents.sdk.CheckCodeSender as FfiCheckCodeSender
 
 class RustCheckCodeSender(
     private val inner: FfiCheckCodeSender,

@@ -25,9 +25,9 @@ import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.map
 import io.prism.android.libraries.architecture.runUpdatingState
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.LeaveSpaceHandle
-import io.prism.android.libraries.prism.api.spaces.LeaveSpaceRoom
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.LeaveSpaceHandle
+import io.prism.android.libraries.matrix.api.spaces.LeaveSpaceRoom
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableList

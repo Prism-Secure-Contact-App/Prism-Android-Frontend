@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.auth.OidcConfig
-import io.prism.android.libraries.prism.api.auth.OidcRedirectUrlProvider
-import org.prism.rustcomponents.sdk.OidcConfiguration
+import io.prism.android.libraries.matrix.api.auth.OidcConfig
+import io.prism.android.libraries.matrix.api.auth.OidcRedirectUrlProvider
+import org.matrix.rustcomponents.sdk.OidcConfiguration
 
 @Inject
 class OidcConfigurationProvider(

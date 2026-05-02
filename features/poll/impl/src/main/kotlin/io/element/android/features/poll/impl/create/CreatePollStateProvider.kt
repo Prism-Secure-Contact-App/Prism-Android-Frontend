@@ -9,7 +9,7 @@
 package io.prism.android.features.poll.impl.create
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.poll.PollKind
 import kotlinx.collections.immutable.toImmutableList
 
 class CreatePollStateProvider : PreviewParameterProvider<CreatePollState> {

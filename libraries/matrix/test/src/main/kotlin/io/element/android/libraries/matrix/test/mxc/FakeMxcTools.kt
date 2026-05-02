@@ -5,10 +5,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.mxc
+package io.prism.android.libraries.matrix.test.mxc
 
-import io.element.android.libraries.matrix.api.mxc.MxcTools
-import io.element.android.libraries.matrix.impl.mxc.DefaultMxcTools
+import io.prism.android.libraries.matrix.api.mxc.MxcTools
+import io.prism.android.libraries.matrix.impl.mxc.DefaultMxcTools
 
 class FakeMxcTools(
     private val delegate: MxcTools = DefaultMxcTools()

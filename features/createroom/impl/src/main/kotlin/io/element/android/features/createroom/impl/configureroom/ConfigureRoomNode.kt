@@ -17,13 +17,13 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.MobileScreen
+import im.vector.app.features.analytics.plan.MobileScreen
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.libraries.architecture.NodeInputs
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.parcelize.Parcelize
 

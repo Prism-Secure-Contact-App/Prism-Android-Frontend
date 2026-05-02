@@ -9,7 +9,7 @@
 package io.prism.android.libraries.architecture.overlay
 
 import com.bumble.appyx.core.navigation.BaseNavModel
-import com.bumble.appyx.core.navigation.NavPRISMs
+import com.bumble.appyx.core.navigation.NavElements
 import com.bumble.appyx.core.navigation.backpresshandlerstrategies.BackPressHandlerStrategy
 import com.bumble.appyx.core.navigation.onscreen.OnScreenStateResolver
 import com.bumble.appyx.core.navigation.operationstrategies.ExecuteImmediately
@@ -32,6 +32,6 @@ class Overlay<NavTarget : Any>(
     savedStateMap = savedStateMap,
     key = key,
 ) {
-    override val initialPRISMs: NavPRISMs<NavTarget, BackStack.State>
+    override val initialElements: NavElements<NavTarget, BackStack.State>
         get() = emptyList()
 }

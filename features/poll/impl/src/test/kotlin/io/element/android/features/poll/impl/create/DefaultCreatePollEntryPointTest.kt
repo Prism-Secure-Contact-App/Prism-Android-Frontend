@@ -15,9 +15,9 @@ import io.prism.android.features.messages.test.FakeMessageComposerContext
 import io.prism.android.features.poll.api.create.CreatePollEntryPoint
 import io.prism.android.features.poll.api.create.CreatePollMode
 import io.prism.android.features.poll.impl.data.PollRepository
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.test.room.FakeJoinedRoom
-import io.prism.android.libraries.prism.test.timeline.LiveTimelineProvider
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.test.room.FakeJoinedRoom
+import io.prism.android.libraries.matrix.test.timeline.LiveTimelineProvider
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule

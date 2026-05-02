@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl.store
+package io.prism.android.services.analytics.impl.store
 
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.tests.testutils.lambda.lambdaError
 import kotlinx.coroutines.flow.MutableStateFlow
 
 internal class FakeAnalyticsStore(

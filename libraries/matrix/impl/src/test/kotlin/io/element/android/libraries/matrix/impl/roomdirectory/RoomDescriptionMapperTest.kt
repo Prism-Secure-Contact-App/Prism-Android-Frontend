@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.roomdirectory
+package io.prism.android.libraries.matrix.impl.roomdirectory
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.roomdirectory.RoomDescription
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomDescription
-import io.element.android.libraries.matrix.test.A_ROOM_ALIAS
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.roomdirectory.aRoomDescription
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDescription
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomDescription
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.roomdirectory.aRoomDescription
 import org.junit.Test
 import org.matrix.rustcomponents.sdk.PublicRoomJoinRule
 

@@ -23,7 +23,7 @@ import io.prism.android.features.home.impl.aHomeState
 import io.prism.android.features.home.impl.components.RoomListMenuAction
 import io.prism.android.features.home.impl.model.RoomListRoomSummary
 import io.prism.android.features.home.impl.model.RoomSummaryDisplayType
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EnsureNeverCalledWithParam

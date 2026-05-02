@@ -15,18 +15,18 @@ import io.prism.android.features.rageshake.impl.crash.CrashDataStore
 import io.prism.android.features.rageshake.impl.crash.FakeCrashDataStore
 import io.prism.android.features.rageshake.impl.screenshot.FakeScreenshotHolder
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.tracing.TracingService
-import io.prism.android.libraries.prism.api.tracing.WriteToFilesConfiguration
-import io.prism.android.libraries.prism.test.A_DEVICE_ID
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.FakePRISMClientProvider
-import io.prism.android.libraries.prism.test.FakeSdkMetadata
-import io.prism.android.libraries.prism.test.core.aBuildMeta
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
-import io.prism.android.libraries.prism.test.notificationsettings.FakeNotificationSettingsService
-import io.prism.android.libraries.prism.test.tracing.FakeTracingService
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.tracing.TracingService
+import io.prism.android.libraries.matrix.api.tracing.WriteToFilesConfiguration
+import io.prism.android.libraries.matrix.test.A_DEVICE_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.FakePRISMClientProvider
+import io.prism.android.libraries.matrix.test.FakeSdkMetadata
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.test.tracing.FakeTracingService
 import io.prism.android.libraries.network.useragent.DefaultUserAgentProvider
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
@@ -119,14 +119,14 @@ class DefaultBugReporterTest {
         val fakeNotificationSettingsService = FakeNotificationSettingsService(
             getRawPushRulesResult = { Result.success(fakePushRules) }
         )
-        val prismClient = FakePRISMClient(encryptionService = fakeEncryptionService, notificationSettingsService = fakeNotificationSettingsService)
+        val matrixClient = FakePRISMClient(encryptionService = fakeEncryptionService, notificationSettingsService = fakeNotificationSettingsService)
 
         fakeEncryptionService.givenDeviceKeys("CURVECURVECURVE", "EDKEYEDKEYEDKY")
         val sut = createDefaultBugReporter(
             server = server,
             crashDataStore = FakeCrashDataStore(),
             sessionStore = mockSessionStore,
-            prismClientProvider = FakePRISMClientProvider(getClient = { Result.success(prismClient) })
+            prismClientProvider = FakePRISMClientProvider(getClient = { Result.success(matrixClient) })
         )
 
         val progressValues = mutableListOf<Int>()
@@ -187,14 +187,14 @@ class DefaultBugReporterTest {
         )
 
         val fakeEncryptionService = FakeEncryptionService()
-        val prismClient = FakePRISMClient(encryptionService = fakeEncryptionService)
+        val matrixClient = FakePRISMClient(encryptionService = fakeEncryptionService)
 
         fakeEncryptionService.givenDeviceKeys("CURVECURVECURVE", "EDKEYEDKEYEDKY")
         val sut = createDefaultBugReporter(
             server = server,
             crashDataStore = FakeCrashDataStore(),
             sessionStore = mockSessionStore,
-            prismClientProvider = FakePRISMClientProvider(getClient = { Result.success(prismClient) })
+            prismClientProvider = FakePRISMClientProvider(getClient = { Result.success(matrixClient) })
         )
 
         val progressValues = mutableListOf<Int>()
@@ -249,13 +249,13 @@ class DefaultBugReporterTest {
         )
 
         val fakeEncryptionService = FakeEncryptionService()
-        val prismClient = FakePRISMClient(encryptionService = fakeEncryptionService)
+        val matrixClient = FakePRISMClient(encryptionService = fakeEncryptionService)
 
         fakeEncryptionService.givenDeviceKeys(null, null)
         val sut = createDefaultBugReporter(
             server = server,
             sessionStore = mockSessionStore,
-            prismClientProvider = FakePRISMClientProvider(getClient = { Result.success(prismClient) })
+            prismClientProvider = FakePRISMClientProvider(getClient = { Result.success(matrixClient) })
         )
 
         sut.sendBugReport(

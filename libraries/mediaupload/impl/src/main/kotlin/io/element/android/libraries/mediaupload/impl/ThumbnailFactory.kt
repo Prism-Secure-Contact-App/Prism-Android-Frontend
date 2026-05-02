@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,13 +21,13 @@ import android.util.Size
 import androidx.core.net.toUri
 import com.vanniktech.blurhash.BlurHash
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.androidutils.bitmap.resizeToMax
-import io.element.android.libraries.androidutils.file.createTmpFile
-import io.element.android.libraries.androidutils.media.runAndRelease
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.media.ThumbnailInfo
-import io.element.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
+import io.prism.android.libraries.androidutils.bitmap.resizeToMax
+import io.prism.android.libraries.androidutils.file.createTmpFile
+import io.prism.android.libraries.androidutils.media.runAndRelease
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.media.ThumbnailInfo
+import io.prism.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
 import kotlinx.coroutines.suspendCancellableCoroutine
 import timber.log.Timber
 import java.io.File

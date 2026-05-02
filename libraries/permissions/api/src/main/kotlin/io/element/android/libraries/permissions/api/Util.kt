@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.api
+package io.prism.android.libraries.permissions.api
 
 fun createDummyPostNotificationPermissionsState() = PermissionsState(
     permission = "Manifest.permission.POST_NOTIFICATIONS",

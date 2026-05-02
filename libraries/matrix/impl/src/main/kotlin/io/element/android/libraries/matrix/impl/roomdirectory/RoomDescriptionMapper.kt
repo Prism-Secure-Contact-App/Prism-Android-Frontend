@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomdirectory
+package io.prism.android.libraries.matrix.impl.roomdirectory
 
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDescription
-import org.prism.rustcomponents.sdk.PublicRoomJoinRule
-import org.prism.rustcomponents.sdk.RoomDescription as RustRoomDescription
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDescription
+import org.matrix.rustcomponents.sdk.PublicRoomJoinRule
+import org.matrix.rustcomponents.sdk.RoomDescription as RustRoomDescription
 
 class RoomDescriptionMapper {
     fun map(roomDescription: RustRoomDescription): RoomDescription {

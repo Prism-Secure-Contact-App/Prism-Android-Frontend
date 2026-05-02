@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl
+package io.prism.android.libraries.push.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.appconfig.PushConfig
-import io.element.android.libraries.core.extensions.mapFailure
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.exception.ClientException
-import io.element.android.libraries.matrix.api.pusher.SetHttpPusherData
-import io.element.android.libraries.matrix.api.pusher.UnsetHttpPusherData
-import io.element.android.libraries.pushproviders.api.PusherSubscriber
-import io.element.android.libraries.pushproviders.api.RegistrationFailure
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.appconfig.PushConfig
+import io.prism.android.libraries.core.extensions.mapFailure
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.matrix.api.pusher.SetHttpPusherData
+import io.prism.android.libraries.matrix.api.pusher.UnsetHttpPusherData
+import io.prism.android.libraries.pushproviders.api.PusherSubscriber
+import io.prism.android.libraries.pushproviders.api.RegistrationFailure
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
 import timber.log.Timber
 
 internal const val DEFAULT_PUSHER_FILE_TAG = "mobile"
@@ -39,7 +39,7 @@ class DefaultPusherSubscriber(
      * Register a pusher to the server if not done yet.
      */
     override suspend fun registerPusher(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         pushKey: String,
         gateway: String,
     ): Result<Unit> {
@@ -94,7 +94,7 @@ class DefaultPusherSubscriber(
     }
 
     override suspend fun unregisterPusher(
-        matrixClient: MatrixClient,
+        matrixClient: PRISMClient,
         pushKey: String,
         gateway: String,
     ): Result<Unit> {

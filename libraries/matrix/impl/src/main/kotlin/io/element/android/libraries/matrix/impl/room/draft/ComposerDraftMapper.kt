@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.draft
+package io.prism.android.libraries.matrix.impl.room.draft
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraft
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraftType
-import org.prism.rustcomponents.sdk.ComposerDraft as RustComposerDraft
-import org.prism.rustcomponents.sdk.ComposerDraftType as RustComposerDraftType
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraft
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraftType
+import org.matrix.rustcomponents.sdk.ComposerDraft as RustComposerDraft
+import org.matrix.rustcomponents.sdk.ComposerDraftType as RustComposerDraftType
 
 internal fun ComposerDraft.into(): RustComposerDraft {
     return RustComposerDraft(

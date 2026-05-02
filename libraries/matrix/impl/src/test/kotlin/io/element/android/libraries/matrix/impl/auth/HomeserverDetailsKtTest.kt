@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.auth.MatrixHomeServerDetails
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiHomeserverLoginDetails
+import io.prism.android.libraries.matrix.api.auth.PRISMHomeServerDetails
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiHomeserverLoginDetails
 import org.junit.Test
 
 class HomeserverDetailsKtTest {
@@ -28,7 +28,7 @@ class HomeserverDetailsKtTest {
 
         // Then
         assertThat(result).isEqualTo(
-            MatrixHomeServerDetails(
+            PRISMHomeServerDetails(
                 url = "https://example.org",
                 supportsPasswordLogin = true,
                 supportsOidcLogin = false

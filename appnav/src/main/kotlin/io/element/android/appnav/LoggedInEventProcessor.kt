@@ -11,8 +11,8 @@ package io.prism.android.appnav
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
-import io.prism.android.libraries.prism.api.timeline.item.event.MembershipChange
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.timeline.item.event.MembershipChange
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

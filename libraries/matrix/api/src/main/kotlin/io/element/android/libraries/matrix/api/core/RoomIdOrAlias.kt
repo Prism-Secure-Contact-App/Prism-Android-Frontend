@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.core
+package io.prism.android.libraries.matrix.api.core
 
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable

@@ -35,16 +35,16 @@ import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.architecture.runUpdatingState
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomInfo
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import io.prism.android.libraries.prism.api.room.join.AllowRule
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.powerlevels.permissionsAsState
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomInfo
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.AllowRule
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.powerlevels.permissionsAsState
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableList
@@ -60,7 +60,7 @@ import kotlinx.coroutines.launch
 class SecurityAndPrivacyPresenter(
     @Assisted private val navigator: SecurityAndPrivacyNavigator,
     private val spaceSelectionStateHolder: SpaceSelectionStateHolder,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val room: JoinedRoom,
     private val featureFlagService: FeatureFlagService,
 ) : Presenter<SecurityAndPrivacyState> {
@@ -83,7 +83,7 @@ class SecurityAndPrivacyPresenter(
         }.collectAsState(false)
 
         val saveAction = remember { mutableStateOf<AsyncAction<Unit>>(AsyncAction.Uninitialized) }
-        val homeserverName = remember { prismClient.userIdServerName() }
+        val homeserverName = remember { matrixClient.userIdServerName() }
         val roomInfo by room.roomInfoFlow.collectAsState()
 
         val savedIsVisibleInRoomDirectory = remember { mutableStateOf<AsyncData<Boolean>>(AsyncData.Uninitialized) }
@@ -124,14 +124,14 @@ class SecurityAndPrivacyPresenter(
         )
 
         val selectableJoinedSpaces by produceState(initialValue = persistentSetOf(), key1 = savedSettings.roomAccess.spaceIds()) {
-            val joinedParentSpaces = prismClient
+            val joinedParentSpaces = matrixClient
                 .spaceService
                 .joinedParents(room.roomId)
                 .getOrDefault(emptyList())
 
             val nonParentJoinedSpaces = savedSettings.roomAccess
                 .spaceIds()
-                .mapNotNull { spaceId -> prismClient.spaceService.getSpaceRoom(spaceId) }
+                .mapNotNull { spaceId -> matrixClient.spaceService.getSpaceRoom(spaceId) }
 
             value = (joinedParentSpaces + nonParentJoinedSpaces).toImmutableSet()
         }

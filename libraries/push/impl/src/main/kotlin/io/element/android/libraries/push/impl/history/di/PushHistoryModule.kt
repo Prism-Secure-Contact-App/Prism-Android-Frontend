@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.history.di
+package io.prism.android.libraries.push.impl.history.di
 
 import android.content.Context
 import dev.zacsweers.metro.AppScope
@@ -14,10 +14,10 @@ import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.push.impl.PushDatabase
-import io.element.encrypteddb.SqlCipherDriverFactory
-import io.element.encrypteddb.passphrase.RandomSecretPassphraseProvider
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.push.impl.PushDatabase
+import io.prism.encrypteddb.SqlCipherDriverFactory
+import io.prism.encrypteddb.passphrase.RandomSecretPassphraseProvider
 
 @BindingContainer
 @ContributesTo(AppScope::class)

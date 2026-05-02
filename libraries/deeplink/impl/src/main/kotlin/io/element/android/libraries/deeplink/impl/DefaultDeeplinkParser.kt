@@ -15,10 +15,10 @@ import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.androidutils.text.urlDecoded
 import io.prism.android.libraries.deeplink.api.DeeplinkData
 import io.prism.android.libraries.deeplink.api.DeeplinkParser
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
 
 @ContributesBinding(AppScope::class)
 class DefaultDeeplinkParser : DeeplinkParser {
@@ -33,14 +33,14 @@ class DefaultDeeplinkParser : DeeplinkParser {
         if (scheme != SCHEME) return null
         if (host != HOST) return null
         val pathBits = encodedPath.orEmpty().split("/").drop(1).map { it.urlDecoded() }
-        val sessionId = pathBits.prismAtOrNull(0)?.let(::SessionId) ?: return null
+        val sessionId = pathBits.getOrNull(0)?.let(::SessionId) ?: return null
 
-        return when (val screenPathComponent = pathBits.prismAtOrNull(1)) {
+        return when (val screenPathComponent = pathBits.getOrNull(1)) {
             null -> DeeplinkData.Root(sessionId)
             else -> {
                 val roomId = screenPathComponent.let(::RoomId)
-                val threadId = pathBits.prismAtOrNull(2)?.takeIf { it.isNotBlank() }?.let(::ThreadId)
-                val eventId = pathBits.prismAtOrNull(3)?.takeIf { it.isNotBlank() }?.let(::EventId)
+                val threadId = pathBits.getOrNull(2)?.takeIf { it.isNotBlank() }?.let(::ThreadId)
+                val eventId = pathBits.getOrNull(3)?.takeIf { it.isNotBlank() }?.let(::EventId)
                 DeeplinkData.Room(sessionId, roomId, threadId, eventId)
             }
         }

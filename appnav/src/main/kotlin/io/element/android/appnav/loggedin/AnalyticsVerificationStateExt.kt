@@ -8,10 +8,10 @@
 
 package io.prism.android.appnav.loggedin
 
-import uk.fathertkt.prism.features.analytics.plan.CryptoSessionStateChange
-import uk.fathertkt.prism.features.analytics.plan.UserProperties
-import io.prism.android.libraries.prism.api.encryption.RecoveryState
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
+import im.vector.app.features.analytics.plan.CryptoSessionStateChange
+import im.vector.app.features.analytics.plan.UserProperties
+import io.prism.android.libraries.matrix.api.encryption.RecoveryState
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
 
 fun SessionVerifiedStatus.toAnalyticsUserPropertyValue(): UserProperties.VerificationState? {
     return when (this) {

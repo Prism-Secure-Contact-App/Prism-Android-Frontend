@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.noop
+package io.prism.android.services.analytics.noop
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat

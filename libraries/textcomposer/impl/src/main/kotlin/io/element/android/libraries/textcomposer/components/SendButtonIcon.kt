@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,12 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.IconButton
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.IconButton
 
 /**
  * Send button for the message composer.
@@ -46,7 +46,7 @@ internal fun SendButtonIcon(
         else -> 2.dp
     }
     val backgroundColor = if (canSendMessage) {
-        ElementTheme.colors.bgAccentRest
+        PRISMTheme.colors.bgAccentRest
     } else {
         Color.Transparent
     }
@@ -64,9 +64,9 @@ internal fun SendButtonIcon(
             // Note: accessibility is managed in TextComposer.
             contentDescription = null,
             tint = if (canSendMessage) {
-                ElementTheme.colors.iconOnSolidPrimary
+                PRISMTheme.colors.iconOnSolidPrimary
             } else {
-                ElementTheme.colors.iconQuaternary
+                PRISMTheme.colors.iconQuaternary
             }
         )
     }
@@ -74,7 +74,7 @@ internal fun SendButtonIcon(
 
 @PreviewsDayNight
 @Composable
-internal fun SendButtonIconPreview() = ElementPreview {
+internal fun SendButtonIconPreview() = PRISMPreview {
     Row {
         IconButton(onClick = {}) {
             SendButtonIcon(canSendMessage = true, isEditing = false)

@@ -7,7 +7,7 @@
 
 package io.prism.android.features.securityandprivacy.impl.manageauthorizedspaces
 
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 sealed interface ManageAuthorizedSpacesEvent {
     data object Cancel : ManageAuthorizedSpacesEvent

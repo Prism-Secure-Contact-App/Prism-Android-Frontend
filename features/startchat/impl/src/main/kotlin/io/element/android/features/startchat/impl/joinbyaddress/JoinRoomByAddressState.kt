@@ -9,7 +9,7 @@
 package io.prism.android.features.startchat.impl.joinbyaddress
 
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
 
 data class JoinRoomByAddressState(
     val address: String,

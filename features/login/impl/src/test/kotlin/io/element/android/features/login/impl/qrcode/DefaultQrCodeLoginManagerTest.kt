@@ -10,10 +10,10 @@ package io.prism.android.features.login.impl.qrcode
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.auth.qrlogin.QrCodeLoginStep
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.auth.FakePRISMAuthenticationService
-import io.prism.android.libraries.prism.test.auth.qrlogin.FakePRISMQrCodeLoginData
+import io.prism.android.libraries.matrix.api.auth.qrlogin.QrCodeLoginStep
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.auth.FakePRISMAuthenticationService
+import io.prism.android.libraries.matrix.test.auth.qrlogin.FakePRISMQrCodeLoginData
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl
+package io.prism.android.libraries.matrix.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.impl.core.SdkBackgroundTaskError
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustSession
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.libraries.sessionstorage.test.aSessionData
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.impl.core.SdkBackgroundTaskError
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustSession
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.libraries.sessionstorage.test.aSessionData
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runCurrent

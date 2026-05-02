@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.linknewdevice
+package io.prism.android.libraries.matrix.impl.linknewdevice
 
-import org.prism.rustcomponents.sdk.QrCodeData
+import org.matrix.rustcomponents.sdk.QrCodeData
 
 interface QrCodeDataParser {
     fun parse(data: ByteArray): QrCodeData

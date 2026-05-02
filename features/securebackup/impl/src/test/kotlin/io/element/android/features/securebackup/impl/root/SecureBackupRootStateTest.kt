@@ -10,8 +10,8 @@ package io.prism.android.features.securebackup.impl.root
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncData
-import io.prism.android.libraries.prism.api.encryption.BackupState
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.api.encryption.BackupState
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
 import org.junit.Test
 
 class SecureBackupRootStateTest {

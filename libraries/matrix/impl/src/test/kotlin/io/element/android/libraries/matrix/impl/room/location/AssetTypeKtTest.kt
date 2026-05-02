@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.room.location
+package io.prism.android.libraries.matrix.impl.room.location
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.room.location.AssetType
 import org.junit.Test
 
 class AssetTypeKtTest {

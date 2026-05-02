@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery
+package io.prism.android.libraries.mediaviewer.impl.gallery
 
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.element.android.libraries.mediaviewer.impl.R
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.model.GroupedMediaItems
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
+import io.prism.android.libraries.mediaviewer.impl.R
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.model.GroupedMediaItems
 
 data class MediaGalleryState(
     val roomName: String,

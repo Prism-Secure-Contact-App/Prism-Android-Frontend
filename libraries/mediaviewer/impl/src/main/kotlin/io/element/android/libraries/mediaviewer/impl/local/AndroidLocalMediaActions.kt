@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local
+package io.prism.android.libraries.mediaviewer.impl.local
 
 import android.Manifest
 import android.app.Activity
@@ -32,13 +32,13 @@ import androidx.core.content.PermissionChecker
 import androidx.core.net.toFile
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.androidutils.system.startInstallFromSourceIntent
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.androidutils.system.startInstallFromSourceIntent
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber

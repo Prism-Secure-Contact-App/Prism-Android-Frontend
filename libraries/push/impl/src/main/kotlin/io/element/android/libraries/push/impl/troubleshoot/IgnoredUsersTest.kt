@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import dev.zacsweers.metro.ContributesIntoSet
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 
 @ContributesIntoSet(SessionScope::class)
 class IgnoredUsersTest(
-    private val matrixClient: MatrixClient,
+    private val matrixClient: PRISMClient,
     private val stringProvider: StringProvider,
 ) : NotificationTroubleshootTest {
     override val order = 80

@@ -16,7 +16,7 @@ import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.prism.android.features.preferences.impl.R
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.tests.testutils.EnsureNeverCalled
 import io.prism.android.tests.testutils.EventsRecorder
@@ -50,7 +50,7 @@ class BlockedUserViewTest {
     @Test
     fun `clicking on a user emits the expected Event`() {
         val eventsRecorder = EventsRecorder<BlockedUsersEvents>()
-        val userList = aPRISMUserList()
+        val userList = aMatrixUserList()
         rule.setBlockedUsersView(
             aBlockedUsersState(
                 blockedUsers = userList,

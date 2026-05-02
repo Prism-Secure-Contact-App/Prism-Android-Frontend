@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.impl.store
+package io.prism.android.libraries.preferences.impl.store
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -15,9 +15,9 @@ import androidx.datastore.preferences.preferencesDataStore
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.androidutils.preferences.DefaultPreferencesCorruptionHandlerFactory
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.preferences.api.store.PreferenceDataStoreFactory
+import io.prism.android.libraries.androidutils.preferences.DefaultPreferencesCorruptionHandlerFactory
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.preferences.api.store.PreferenceDataStoreFactory
 import java.util.concurrent.ConcurrentHashMap
 
 @SingleIn(AppScope::class)

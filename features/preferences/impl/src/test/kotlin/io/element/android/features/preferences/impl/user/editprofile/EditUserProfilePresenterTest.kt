@@ -12,13 +12,13 @@ import android.net.Uri
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.androidutils.file.TemporaryUriDeleter
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.test.AN_AVATAR_URL
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 import io.prism.android.libraries.mediapickers.test.FakePickerProvider
 import io.prism.android.libraries.mediaupload.api.MediaUploadInfo
 import io.prism.android.libraries.mediaupload.test.FakeMediaOptimizationConfigProvider
@@ -74,17 +74,17 @@ class EditUserProfilePresenterTest {
     }
 
     private fun createEditUserProfilePresenter(
-        prismClient: PRISMClient = FakePRISMClient(),
+        matrixClient: PRISMClient = FakePRISMClient(),
         navigator: EditUserProfileNavigator = FakeEditUserProfileNavigator(),
-        prismUser: PRISMUser = aPRISMUser(),
+        matrixUser: PRISMUser = aMatrixUser(),
         permissionsPresenter: PermissionsPresenter = FakePermissionsPresenter(),
         temporaryUriDeleter: TemporaryUriDeleter = FakeTemporaryUriDeleter(),
         mediaOptimizationConfigProvider: FakeMediaOptimizationConfigProvider = FakeMediaOptimizationConfigProvider(),
     ): EditUserProfilePresenter {
         return EditUserProfilePresenter(
-            prismClient = prismClient,
+            matrixClient = matrixClient,
             navigator = navigator,
-            prismUser = prismUser,
+            matrixUser = matrixUser,
             mediaPickerProvider = fakePickerProvider,
             mediaPreProcessor = fakeMediaPreProcessor,
             temporaryUriDeleter = temporaryUriDeleter,
@@ -95,8 +95,8 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - initial state is created from user info`() = runTest {
-        val user = aPRISMUser(avatarUrl = AN_AVATAR_URL)
-        val presenter = createEditUserProfilePresenter(prismUser = user)
+        val user = aMatrixUser(avatarUrl = AN_AVATAR_URL)
+        val presenter = createEditUserProfilePresenter(matrixUser = user)
         presenter.test {
             val initialState = awaitItem()
             assertThat(initialState.userId).isEqualTo(user.userId)
@@ -114,10 +114,10 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - exit invokes the expected callback`() = runTest {
-        val user = aPRISMUser(avatarUrl = AN_AVATAR_URL)
+        val user = aMatrixUser(avatarUrl = AN_AVATAR_URL)
         val closeLambda = lambdaRecorder<Unit> {}
         val presenter = createEditUserProfilePresenter(
-            prismUser = user,
+            matrixUser = user,
             navigator = FakeEditUserProfileNavigator(closeLambda),
         )
         presenter.test {
@@ -129,10 +129,10 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - exit without unsaved changes`() = runTest {
-        val user = aPRISMUser(avatarUrl = AN_AVATAR_URL)
+        val user = aMatrixUser(avatarUrl = AN_AVATAR_URL)
         val closeLambda = lambdaRecorder<Unit> {}
         val presenter = createEditUserProfilePresenter(
-            prismUser = user,
+            matrixUser = user,
             navigator = FakeEditUserProfileNavigator(closeLambda),
         )
         presenter.test {
@@ -161,9 +161,9 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - updates state in response to changes`() = runTest {
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         val presenter = createEditUserProfilePresenter(
-            prismUser = user,
+            matrixUser = user,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = { assertThat(it).isEqualTo(userAvatarUri) }
             ),
@@ -192,10 +192,10 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - obtains avatar uris from gallery`() = runTest {
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         fakePickerProvider.givenResult(anotherAvatarUri)
         val presenter = createEditUserProfilePresenter(
-            prismUser = user,
+            matrixUser = user,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = { assertThat(it).isEqualTo(userAvatarUri) }
             ),
@@ -212,12 +212,12 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - obtains avatar uris from camera`() = runTest {
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         fakePickerProvider.givenResult(anotherAvatarUri)
         val fakePermissionsPresenter = FakePermissionsPresenter()
         val deleteCallback = lambdaRecorder<Uri?, Unit> {}
         val presenter = createEditUserProfilePresenter(
-            prismUser = user,
+            matrixUser = user,
             permissionsPresenter = fakePermissionsPresenter,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = deleteCallback,
@@ -249,11 +249,11 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - updates save button state`() = runTest {
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         fakePickerProvider.givenResult(userAvatarUri)
         val deleteCallback = lambdaRecorder<Uri?, Unit> {}
         val presenter = createEditUserProfilePresenter(
-            prismUser = user,
+            matrixUser = user,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = deleteCallback
             ),
@@ -290,11 +290,11 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - updates save button state when initial values are null`() = runTest {
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = null)
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = null)
         fakePickerProvider.givenResult(userAvatarUri)
         val deleteCallback = lambdaRecorder<Uri?, Unit> {}
         val presenter = createEditUserProfilePresenter(
-            prismUser = user,
+            matrixUser = user,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = deleteCallback
             ),
@@ -331,11 +331,11 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - save changes room details if different`() = runTest {
-        val prismClient = FakePRISMClient()
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient()
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         val presenter = createEditUserProfilePresenter(
-            prismClient = prismClient,
-            prismUser = user,
+            matrixClient = matrixClient,
+            matrixUser = user,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = { assertThat(it).isEqualTo(userAvatarUri) }
             ),
@@ -345,60 +345,60 @@ class EditUserProfilePresenterTest {
             initialState.eventSink(EditUserProfileEvent.UpdateDisplayName("New name"))
             initialState.eventSink(EditUserProfileEvent.HandleAvatarAction(AvatarAction.Remove))
             initialState.eventSink(EditUserProfileEvent.Save)
-            consumeItemsUntilPredicate { prismClient.setDisplayNameCalled && prismClient.removeAvatarCalled && !prismClient.uploadAvatarCalled }
-            assertThat(prismClient.setDisplayNameCalled).isTrue()
-            assertThat(prismClient.removeAvatarCalled).isTrue()
-            assertThat(prismClient.uploadAvatarCalled).isFalse()
+            consumeItemsUntilPredicate { matrixClient.setDisplayNameCalled && matrixClient.removeAvatarCalled && !matrixClient.uploadAvatarCalled }
+            assertThat(matrixClient.setDisplayNameCalled).isTrue()
+            assertThat(matrixClient.removeAvatarCalled).isTrue()
+            assertThat(matrixClient.uploadAvatarCalled).isFalse()
             cancelAndIgnoreRemainingEvents()
         }
     }
 
     @Test
     fun `present - save does not change room details if they're the same trimmed`() = runTest {
-        val prismClient = FakePRISMClient()
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient()
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         val presenter = createEditUserProfilePresenter(
-            prismClient = prismClient,
-            prismUser = user
+            matrixClient = matrixClient,
+            matrixUser = user
         )
         presenter.test {
             val initialState = awaitItem()
             initialState.eventSink(EditUserProfileEvent.UpdateDisplayName("   Name   "))
             initialState.eventSink(EditUserProfileEvent.Save)
             consumeItemsUntilTimeout()
-            assertThat(prismClient.setDisplayNameCalled).isFalse()
-            assertThat(prismClient.uploadAvatarCalled).isFalse()
-            assertThat(prismClient.removeAvatarCalled).isFalse()
+            assertThat(matrixClient.setDisplayNameCalled).isFalse()
+            assertThat(matrixClient.uploadAvatarCalled).isFalse()
+            assertThat(matrixClient.removeAvatarCalled).isFalse()
         }
     }
 
     @Test
     fun `present - save does not change name if it's now empty`() = runTest {
-        val prismClient = FakePRISMClient()
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient()
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         val presenter = createEditUserProfilePresenter(
-            prismClient = prismClient,
-            prismUser = user
+            matrixClient = matrixClient,
+            matrixUser = user
         )
         presenter.test {
             val initialState = awaitItem()
             initialState.eventSink(EditUserProfileEvent.UpdateDisplayName(""))
             initialState.eventSink(EditUserProfileEvent.Save)
-            assertThat(prismClient.setDisplayNameCalled).isFalse()
-            assertThat(prismClient.uploadAvatarCalled).isFalse()
-            assertThat(prismClient.removeAvatarCalled).isFalse()
+            assertThat(matrixClient.setDisplayNameCalled).isFalse()
+            assertThat(matrixClient.uploadAvatarCalled).isFalse()
+            assertThat(matrixClient.removeAvatarCalled).isFalse()
             cancelAndIgnoreRemainingEvents()
         }
     }
 
     @Test
     fun `present - save processes and sets avatar when processor returns successfully`() = runTest {
-        val prismClient = FakePRISMClient()
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient()
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         val tmpFile = givenPickerReturnsFile()
         val presenter = createEditUserProfilePresenter(
-            prismClient = prismClient,
-            prismUser = user,
+            matrixClient = matrixClient,
+            matrixUser = user,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = { assertThat(it).isEqualTo(userAvatarUri) }
             ),
@@ -408,8 +408,8 @@ class EditUserProfilePresenterTest {
                 val initialState = awaitItem()
                 initialState.eventSink(EditUserProfileEvent.HandleAvatarAction(AvatarAction.ChoosePhoto))
                 initialState.eventSink(EditUserProfileEvent.Save)
-                consumeItemsUntilPredicate { prismClient.uploadAvatarCalled }
-                assertThat(prismClient.uploadAvatarCalled).isTrue()
+                consumeItemsUntilPredicate { matrixClient.uploadAvatarCalled }
+                assertThat(matrixClient.uploadAvatarCalled).isTrue()
             }
         } finally {
             tmpFile.delete()
@@ -418,11 +418,11 @@ class EditUserProfilePresenterTest {
 
     @Test
     fun `present - save does not set avatar data if processor fails`() = runTest {
-        val prismClient = FakePRISMClient()
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient()
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
         val presenter = createEditUserProfilePresenter(
-            prismClient = prismClient,
-            prismUser = user,
+            matrixClient = matrixClient,
+            matrixUser = user,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = { assertThat(it).isEqualTo(userAvatarUri) }
             ),
@@ -434,38 +434,38 @@ class EditUserProfilePresenterTest {
             initialState.eventSink(EditUserProfileEvent.HandleAvatarAction(AvatarAction.ChoosePhoto))
             initialState.eventSink(EditUserProfileEvent.Save)
             skipItems(2)
-            assertThat(prismClient.uploadAvatarCalled).isFalse()
+            assertThat(matrixClient.uploadAvatarCalled).isFalse()
             assertThat(awaitItem().saveAction).isInstanceOf(AsyncAction.Failure::class.java)
         }
     }
 
     @Test
     fun `present - sets save action to failure if name update fails`() = runTest {
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
-        val prismClient = FakePRISMClient().apply {
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient().apply {
             givenSetDisplayNameResult(Result.failure(RuntimeException("!")))
         }
-        saveAndAssertFailure(user, prismClient, EditUserProfileEvent.UpdateDisplayName("New name"))
+        saveAndAssertFailure(user, matrixClient, EditUserProfileEvent.UpdateDisplayName("New name"))
     }
 
     @Test
     fun `present - sets save action to failure if removing avatar fails`() = runTest {
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
-        val prismClient = FakePRISMClient().apply {
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient().apply {
             givenRemoveAvatarResult(Result.failure(RuntimeException("!")))
         }
-        saveAndAssertFailure(user, prismClient, EditUserProfileEvent.HandleAvatarAction(AvatarAction.Remove))
+        saveAndAssertFailure(user, matrixClient, EditUserProfileEvent.HandleAvatarAction(AvatarAction.Remove))
     }
 
     @Test
     fun `present - sets save action to failure if setting avatar fails`() = runTest {
         val tmpFile = givenPickerReturnsFile()
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
-        val prismClient = FakePRISMClient().apply {
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient().apply {
             givenUploadAvatarResult(Result.failure(RuntimeException("!")))
         }
         try {
-            saveAndAssertFailure(user, prismClient, EditUserProfileEvent.HandleAvatarAction(AvatarAction.ChoosePhoto))
+            saveAndAssertFailure(user, matrixClient, EditUserProfileEvent.HandleAvatarAction(AvatarAction.ChoosePhoto))
         } finally {
             tmpFile.delete()
         }
@@ -474,11 +474,11 @@ class EditUserProfilePresenterTest {
     @Test
     fun `present - CloseDialog resets save action state`() = runTest {
         val tmpFile = givenPickerReturnsFile()
-        val user = aPRISMUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
-        val prismClient = FakePRISMClient().apply {
+        val user = aMatrixUser(id = A_USER_ID.value, displayName = "Name", avatarUrl = AN_AVATAR_URL)
+        val matrixClient = FakePRISMClient().apply {
             givenSetDisplayNameResult(Result.failure(RuntimeException("!")))
         }
-        val presenter = createEditUserProfilePresenter(prismUser = user, prismClient = prismClient)
+        val presenter = createEditUserProfilePresenter(matrixUser = user, matrixClient = matrixClient)
         try {
             presenter.test {
                 val initialState = awaitItem()
@@ -494,10 +494,10 @@ class EditUserProfilePresenterTest {
         }
     }
 
-    private suspend fun saveAndAssertFailure(prismUser: PRISMUser, prismClient: PRISMClient, event: EditUserProfileEvent) {
+    private suspend fun saveAndAssertFailure(matrixUser: PRISMUser, matrixClient: PRISMClient, event: EditUserProfileEvent) {
         val presenter = createEditUserProfilePresenter(
-            prismUser = prismUser,
-            prismClient = prismClient,
+            matrixUser = matrixUser,
+            matrixClient = matrixClient,
             temporaryUriDeleter = FakeTemporaryUriDeleter(
                 deleteLambda = { assertThat(it).isEqualTo(userAvatarUri) }
             ),

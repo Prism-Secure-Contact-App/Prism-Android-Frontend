@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.test.viewer
+package io.prism.android.libraries.mediaviewer.test.viewer
 
 import android.net.Uri
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.anImageMediaInfo
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.anImageMediaInfo
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
 
 fun aLocalMedia(
     uri: Uri,

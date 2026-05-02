@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.service.notification.StatusBarNotification
 import androidx.core.app.NotificationManagerCompat
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.push.api.notifications.NotificationIdProvider
-import io.element.android.libraries.push.impl.notifications.factories.NotificationCreator
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationCreator
 import timber.log.Timber
 
 interface ActiveNotificationsProvider {

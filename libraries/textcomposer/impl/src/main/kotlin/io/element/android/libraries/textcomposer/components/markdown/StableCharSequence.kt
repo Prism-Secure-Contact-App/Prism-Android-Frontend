@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components.markdown
+package io.prism.android.libraries.textcomposer.components.markdown
 
 import android.text.SpannableString
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import io.element.android.libraries.core.extensions.orEmpty
+import io.prism.android.libraries.core.extensions.orEmpty
 
 @Stable
 class StableCharSequence(initialText: CharSequence = "") {

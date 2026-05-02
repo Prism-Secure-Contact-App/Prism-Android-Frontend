@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.room.draft
+package io.prism.android.libraries.matrix.api.room.draft
 
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 
 sealed interface ComposerDraftType {
     data object NewMessage : ComposerDraftType

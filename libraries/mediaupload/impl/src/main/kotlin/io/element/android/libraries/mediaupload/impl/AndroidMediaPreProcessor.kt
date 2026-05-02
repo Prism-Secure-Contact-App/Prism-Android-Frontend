@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -15,29 +15,29 @@ import android.net.Uri
 import androidx.exifinterface.media.ExifInterface
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.androidutils.file.TemporaryUriDeleter
-import io.element.android.libraries.androidutils.file.createTmpFile
-import io.element.android.libraries.androidutils.file.getFileName
-import io.element.android.libraries.androidutils.file.safeRenameTo
-import io.element.android.libraries.androidutils.hash.hash
-import io.element.android.libraries.androidutils.media.runAndRelease
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
-import io.element.android.libraries.core.data.tryOrNull
-import io.element.android.libraries.core.extensions.mapFailure
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.core.mimetype.MimeTypes.isMimeTypeAudio
-import io.element.android.libraries.core.mimetype.MimeTypes.isMimeTypeImage
-import io.element.android.libraries.core.mimetype.MimeTypes.isMimeTypeVideo
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.media.AudioInfo
-import io.element.android.libraries.matrix.api.media.FileInfo
-import io.element.android.libraries.matrix.api.media.ImageInfo
-import io.element.android.libraries.matrix.api.media.VideoInfo
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaPreProcessor
-import io.element.android.libraries.mediaupload.api.MediaUploadInfo
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.libraries.androidutils.file.TemporaryUriDeleter
+import io.prism.android.libraries.androidutils.file.createTmpFile
+import io.prism.android.libraries.androidutils.file.getFileName
+import io.prism.android.libraries.androidutils.file.safeRenameTo
+import io.prism.android.libraries.androidutils.hash.hash
+import io.prism.android.libraries.androidutils.media.runAndRelease
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.data.tryOrNull
+import io.prism.android.libraries.core.extensions.mapFailure
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeAudio
+import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeImage
+import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeVideo
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.media.AudioInfo
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.VideoInfo
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
+import io.prism.android.libraries.mediaupload.api.MediaUploadInfo
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.onEach

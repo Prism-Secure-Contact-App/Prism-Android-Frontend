@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer
+package io.prism.android.libraries.textcomposer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -28,16 +28,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToDetails
-import io.element.android.libraries.matrix.ui.messages.reply.InReplyToView
-import io.element.android.libraries.textcomposer.model.MessageComposerMode
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetails
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToView
+import io.prism.android.libraries.textcomposer.model.MessageComposerMode
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 internal fun ComposerModeView(
@@ -89,16 +89,16 @@ private fun EditingModeView(
         Icon(
             imageVector = CompoundIcons.Edit(),
             contentDescription = null,
-            tint = ElementTheme.colors.iconSecondary,
+            tint = PRISMTheme.colors.iconSecondary,
             modifier = Modifier
                 .padding(vertical = 8.dp)
                 .size(16.dp),
         )
         Text(
             text = text,
-            style = ElementTheme.typography.fontBodySmRegular,
+            style = PRISMTheme.typography.fontBodySmRegular,
             textAlign = TextAlign.Start,
-            color = ElementTheme.colors.textSecondary,
+            color = PRISMTheme.colors.textSecondary,
             modifier = Modifier
                 .padding(vertical = 8.dp)
                 .weight(1f)
@@ -106,7 +106,7 @@ private fun EditingModeView(
         Icon(
             imageVector = CompoundIcons.Close(),
             contentDescription = stringResource(CommonStrings.action_close),
-            tint = ElementTheme.colors.iconSecondary,
+            tint = PRISMTheme.colors.iconSecondary,
             modifier = Modifier
                 .padding(top = 8.dp, bottom = 8.dp, start = 16.dp, end = 12.dp)
                 .size(16.dp)
@@ -133,8 +133,8 @@ private fun ReplyToModeView(
     Row(
         modifier
             .clip(RoundedCornerShape(6.dp))
-            .background(ElementTheme.colors.bgCanvasDefault)
-            .border(1.dp, ElementTheme.colors.borderInteractiveSecondary, RoundedCornerShape(6.dp))
+            .background(PRISMTheme.colors.bgCanvasDefault)
+            .border(1.dp, PRISMTheme.colors.borderInteractiveSecondary, RoundedCornerShape(6.dp))
             .padding(4.dp)
     ) {
         InReplyToView(
@@ -145,7 +145,7 @@ private fun ReplyToModeView(
         Icon(
             imageVector = CompoundIcons.Close(),
             contentDescription = stringResource(CommonStrings.action_close),
-            tint = ElementTheme.colors.iconSecondary,
+            tint = PRISMTheme.colors.iconSecondary,
             modifier = Modifier
                 .padding(end = 4.dp, top = 4.dp, start = 8.dp, bottom = 16.dp)
                 .size(16.dp)
@@ -163,10 +163,10 @@ private fun ReplyToModeView(
 @Composable
 internal fun ComposerModeViewPreview(
     @PreviewParameter(MessageComposerModeSpecialProvider::class) mode: MessageComposerMode.Special
-) = ElementPreview {
+) = PRISMPreview {
     ComposerModeView(
         composerMode = mode,
         onResetComposerMode = {},
-        modifier = Modifier.background(ElementTheme.colors.bgSubtleSecondary)
+        modifier = Modifier.background(PRISMTheme.colors.bgSubtleSecondary)
     )
 }

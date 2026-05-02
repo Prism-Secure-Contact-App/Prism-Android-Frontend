@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.encryption
+package io.prism.android.libraries.matrix.test.encryption
 
-import io.element.android.libraries.matrix.api.encryption.IdentityOidcResetHandle
-import io.element.android.libraries.matrix.api.encryption.IdentityPasswordResetHandle
+import io.prism.android.libraries.matrix.api.encryption.IdentityOidcResetHandle
+import io.prism.android.libraries.matrix.api.encryption.IdentityPasswordResetHandle
 
 class FakeIdentityOidcResetHandle(
     override val url: String = "",

@@ -9,8 +9,8 @@
 package io.prism.android.features.messages.impl.timeline.protection
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.AN_EVENT_ID_2
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID_2
 import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Test
 

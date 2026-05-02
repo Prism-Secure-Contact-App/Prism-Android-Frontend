@@ -8,7 +8,7 @@
 
 package io.prism.android.appnav.di
 
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 
 interface SessionGraphFactory {
     fun create(client: PRISMClient): Any

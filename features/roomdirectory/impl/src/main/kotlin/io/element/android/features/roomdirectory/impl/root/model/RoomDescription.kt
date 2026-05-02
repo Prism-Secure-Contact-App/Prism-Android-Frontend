@@ -9,7 +9,7 @@
 package io.prism.android.features.roomdirectory.impl.root.model
 
 import io.prism.android.features.roomdirectory.api.RoomDescription
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDescription as PRISMRoomDescription
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDescription as PRISMRoomDescription
 
 fun PRISMRoomDescription.toFeatureModel(): RoomDescription {
     return RoomDescription(

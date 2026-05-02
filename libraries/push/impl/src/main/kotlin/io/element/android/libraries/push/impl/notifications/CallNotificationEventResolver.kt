@@ -6,24 +6,24 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.exception.NotificationResolverException
-import io.element.android.libraries.matrix.api.notification.CallIntent
-import io.element.android.libraries.matrix.api.notification.NotificationContent
-import io.element.android.libraries.matrix.api.notification.NotificationData
-import io.element.android.libraries.matrix.api.notification.RtcNotificationType
-import io.element.android.libraries.matrix.api.timeline.item.event.EventType
-import io.element.android.libraries.push.impl.R
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
-import io.element.android.services.appnavstate.api.AppForegroundStateService
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.exception.NotificationResolverException
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.notification.NotificationContent
+import io.prism.android.libraries.matrix.api.notification.NotificationData
+import io.prism.android.libraries.matrix.api.notification.RtcNotificationType
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventType
+import io.prism.android.libraries.push.impl.R
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
+import io.prism.android.services.appnavstate.api.AppForegroundStateService
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withTimeoutOrNull
 import timber.log.Timber
@@ -51,7 +51,7 @@ interface CallNotificationEventResolver {
 class DefaultCallNotificationEventResolver(
     private val stringProvider: StringProvider,
     private val appForegroundStateService: AppForegroundStateService,
-    private val clientProvider: MatrixClientProvider,
+    private val clientProvider: PRISMClientProvider,
 ) : CallNotificationEventResolver {
     override suspend fun resolveEvent(
         sessionId: SessionId,

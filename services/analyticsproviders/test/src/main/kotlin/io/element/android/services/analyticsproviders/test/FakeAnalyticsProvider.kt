@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analyticsproviders.test
+package io.prism.android.services.analyticsproviders.test
 
 import im.vector.app.features.analytics.itf.VectorAnalyticsEvent
 import im.vector.app.features.analytics.itf.VectorAnalyticsScreen
 import im.vector.app.features.analytics.plan.SuperProperties
 import im.vector.app.features.analytics.plan.UserProperties
-import io.element.android.services.analyticsproviders.api.AnalyticsProvider
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.services.analyticsproviders.api.AnalyticsProvider
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeAnalyticsProvider(
     override val name: String = "FakeAnalyticsProvider",

@@ -8,7 +8,7 @@
 
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
@@ -23,17 +23,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.list.ListItemContent
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.IconSource
-import io.element.android.libraries.designsystem.theme.components.ListItem
-import io.element.android.libraries.designsystem.theme.components.ListItemStyle
-import io.element.android.libraries.designsystem.theme.components.ModalBottomSheet
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.components.hide
-import io.element.android.libraries.matrix.ui.media.AvatarAction
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.list.ListItemContent
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.IconSource
+import io.prism.android.libraries.designsystem.theme.components.ListItem
+import io.prism.android.libraries.designsystem.theme.components.ListItemStyle
+import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.components.hide
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -96,8 +96,8 @@ private fun AvatarActionBottomSheetContent(
                 headlineContent = {
                     Text(
                         text = stringResource(action.titleResId),
-                        style = ElementTheme.typography.fontBodyLgRegular,
-                        color = if (action.destructive) ElementTheme.colors.textCriticalPrimary else ElementTheme.colors.textPrimary,
+                        style = PRISMTheme.typography.fontBodyLgRegular,
+                        color = if (action.destructive) PRISMTheme.colors.textCriticalPrimary else PRISMTheme.colors.textPrimary,
                     )
                 },
                 leadingContent = ListItemContent.Icon(IconSource.Resource(action.iconResourceId)),
@@ -112,7 +112,7 @@ private fun AvatarActionBottomSheetContent(
 
 @PreviewsDayNight
 @Composable
-internal fun AvatarActionBottomSheetPreview() = ElementPreview {
+internal fun AvatarActionBottomSheetPreview() = PRISMPreview {
     AvatarActionBottomSheet(
         actions = persistentListOf(AvatarAction.TakePhoto, AvatarAction.ChoosePhoto, AvatarAction.Remove),
         isVisible = true,

@@ -12,11 +12,11 @@ import io.prism.android.features.location.api.Location
 import io.prism.android.libraries.designsystem.components.PinVariant
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.location.AssetType
-import io.prism.android.libraries.prism.api.timeline.item.event.ProfileDetails
-import io.prism.android.libraries.prism.api.timeline.item.event.getAvatarUrl
-import io.prism.android.libraries.prism.api.timeline.item.event.getDisplayName
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
+import io.prism.android.libraries.matrix.api.timeline.item.event.getAvatarUrl
+import io.prism.android.libraries.matrix.api.timeline.item.event.getDisplayName
 
 data class TimelineItemLocationContent(
     val body: String,

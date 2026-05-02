@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.test
+package io.prism.android.libraries.mediaviewer.test
 
 import android.net.Uri
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.media.MediaFile
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.local.LocalMedia
-import io.element.android.libraries.mediaviewer.api.local.LocalMediaFactory
-import io.element.android.libraries.mediaviewer.api.util.FileExtensionExtractor
-import io.element.android.libraries.mediaviewer.test.util.FileExtensionExtractorWithoutValidation
-import io.element.android.libraries.mediaviewer.test.viewer.aLocalMedia
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.media.MediaFile
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.local.LocalMedia
+import io.prism.android.libraries.mediaviewer.api.local.LocalMediaFactory
+import io.prism.android.libraries.mediaviewer.api.util.FileExtensionExtractor
+import io.prism.android.libraries.mediaviewer.test.util.FileExtensionExtractorWithoutValidation
+import io.prism.android.libraries.mediaviewer.test.viewer.aLocalMedia
 
 class FakeLocalMediaFactory(
     private val localMediaUri: Uri,

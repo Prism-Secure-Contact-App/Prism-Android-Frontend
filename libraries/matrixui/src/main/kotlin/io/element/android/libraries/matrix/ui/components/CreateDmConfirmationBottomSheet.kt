@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,22 +23,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Button
-import io.element.android.libraries.designsystem.theme.components.IconSource
-import io.element.android.libraries.designsystem.theme.components.ModalBottomSheet
-import io.element.android.libraries.designsystem.theme.components.TextButton
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.R
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.matrix.ui.model.getFullName
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Button
+import io.prism.android.libraries.designsystem.theme.components.IconSource
+import io.prism.android.libraries.designsystem.theme.components.ModalBottomSheet
+import io.prism.android.libraries.designsystem.theme.components.TextButton
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.R
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getFullName
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 /**
  * Figma:
@@ -47,7 +47,7 @@ import io.element.android.libraries.ui.strings.CommonStrings
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateDmConfirmationBottomSheet(
-    matrixUser: MatrixUser,
+    matrixUser: PRISMUser,
     onSendInvite: () -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
@@ -70,15 +70,15 @@ fun CreateDmConfirmationBottomSheet(
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = stringResource(R.string.screen_bottom_sheet_create_dm_title),
-                style = ElementTheme.typography.fontHeadingMdBold,
-                color = ElementTheme.colors.textPrimary,
+                style = PRISMTheme.typography.fontHeadingMdBold,
+                color = PRISMTheme.colors.textPrimary,
                 textAlign = TextAlign.Center,
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = stringResource(R.string.screen_bottom_sheet_create_dm_message, matrixUser.getFullName()),
-                style = ElementTheme.typography.fontBodyMdRegular,
-                color = ElementTheme.colors.textSecondary,
+                style = PRISMTheme.typography.fontBodyMdRegular,
+                color = PRISMTheme.colors.textSecondary,
                 textAlign = TextAlign.Center,
             )
             Spacer(modifier = Modifier.height(40.dp))
@@ -100,7 +100,7 @@ fun CreateDmConfirmationBottomSheet(
 
 @PreviewsDayNight
 @Composable
-internal fun CreateDmConfirmationBottomSheetPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: MatrixUser) = ElementPreview {
+internal fun CreateDmConfirmationBottomSheetPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: PRISMUser) = PRISMPreview {
     CreateDmConfirmationBottomSheet(
         matrixUser = matrixUser,
         onSendInvite = {},

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.ui.utils.version
+package io.prism.android.libraries.ui.utils.version
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import io.element.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
-import io.element.android.services.toolbox.impl.sdk.DefaultBuildVersionSdkIntProvider
+import io.prism.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
+import io.prism.android.services.toolbox.impl.sdk.DefaultBuildVersionSdkIntProvider
 
 val LocalSdkIntVersionProvider = staticCompositionLocalOf<BuildVersionSdkIntProvider> { DefaultBuildVersionSdkIntProvider() }

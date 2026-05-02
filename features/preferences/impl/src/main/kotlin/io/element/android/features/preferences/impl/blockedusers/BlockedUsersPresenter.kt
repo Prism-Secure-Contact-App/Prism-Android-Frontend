@@ -23,16 +23,16 @@ import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runUpdatingState
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Inject
 class BlockedUsersPresenter(
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val featureFlagService: FeatureFlagService,
 ) : Presenter<BlockedUsersState> {
     @Composable
@@ -49,7 +49,7 @@ class BlockedUsersPresenter(
         val renderBlockedUsersDetail by remember {
             featureFlagService.isFeatureEnabledFlow(FeatureFlags.ShowBlockedUsersDetails)
         }.collectAsState(initial = false)
-        val ignoredUserIds by prismClient.ignoredUsersFlow.collectAsState()
+        val ignoredUserIds by matrixClient.ignoredUsersFlow.collectAsState()
         val ignoredPRISMUser by produceState(
             initialValue = ignoredUserIds.map { PRISMUser(userId = it) },
             key1 = renderBlockedUsersDetail,
@@ -57,7 +57,7 @@ class BlockedUsersPresenter(
         ) {
             value = ignoredUserIds.map {
                 if (renderBlockedUsersDetail) {
-                    prismClient.getProfile(it).getOrNull()
+                    matrixClient.getProfile(it).getOrNull()
                 } else {
                     null
                 }
@@ -92,7 +92,7 @@ class BlockedUsersPresenter(
 
     private fun CoroutineScope.unblockUser(userId: UserId, asyncAction: MutableState<AsyncAction<Unit>>) = launch {
         runUpdatingState(asyncAction) {
-            prismClient.unignoreUser(userId)
+            matrixClient.unignoreUser(userId)
         }
     }
 }

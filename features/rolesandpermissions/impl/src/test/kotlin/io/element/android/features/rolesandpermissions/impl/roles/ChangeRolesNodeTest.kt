@@ -10,7 +10,7 @@ package io.prism.android.features.rolesandpermissions.impl.roles
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.rolesandpermissions.api.ChangeRoomMemberRolesListType
-import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMember
 import org.junit.Test
 
 class ChangeRolesNodeTest {

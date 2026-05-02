@@ -6,17 +6,17 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.spaces
+package io.prism.android.libraries.matrix.impl.spaces
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.spaces.SpaceRoom
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustSpaceRoom
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID_2
-import io.element.android.libraries.matrix.test.A_ROOM_ID_3
-import io.element.android.libraries.matrix.test.A_ROOM_ID_4
-import io.element.android.libraries.previewutils.room.aSpaceRoom
-import io.element.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustSpaceRoom
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_3
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_4
+import io.prism.android.libraries.previewutils.room.aSpaceRoom
+import io.prism.android.services.analytics.test.FakeAnalyticsService
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest

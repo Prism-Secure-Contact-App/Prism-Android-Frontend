@@ -9,10 +9,10 @@
 package io.prism.android.features.createroom.impl.configureroom
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.ui.media.AvatarAction
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
 import io.prism.android.libraries.permissions.api.PermissionsState
 import kotlinx.collections.immutable.ImmutableList
 

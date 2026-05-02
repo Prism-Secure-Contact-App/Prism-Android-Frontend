@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
 import android.net.Uri
 import androidx.activity.ComponentActivity
@@ -18,16 +18,16 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeDown
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.mediaviewer.impl.details.aMediaDetailsBottomSheetState
-import io.element.android.libraries.mediaviewer.test.viewer.aLocalMedia
-import io.element.android.libraries.ui.strings.CommonStrings
-import io.element.android.tests.testutils.EnsureNeverCalled
-import io.element.android.tests.testutils.EventsRecorder
-import io.element.android.tests.testutils.clickOn
-import io.element.android.tests.testutils.ensureCalledOnce
-import io.element.android.tests.testutils.pressBack
-import io.element.android.tests.testutils.setSafeContent
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.mediaviewer.impl.details.aMediaDetailsBottomSheetState
+import io.prism.android.libraries.mediaviewer.test.viewer.aLocalMedia
+import io.prism.android.libraries.ui.strings.CommonStrings
+import io.prism.android.tests.testutils.EnsureNeverCalled
+import io.prism.android.tests.testutils.EventsRecorder
+import io.prism.android.tests.testutils.clickOn
+import io.prism.android.tests.testutils.ensureCalledOnce
+import io.prism.android.tests.testutils.pressBack
+import io.prism.android.tests.testutils.setSafeContent
 import io.mockk.mockk
 import org.junit.Rule
 import org.junit.Test

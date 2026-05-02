@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.media
+package io.prism.android.libraries.matrix.ui.media
 
 import coil3.decode.DataSource
 import coil3.decode.ImageSource
 import coil3.fetch.FetchResult
 import coil3.fetch.Fetcher
 import coil3.fetch.SourceFetchResult
-import io.element.android.libraries.matrix.api.media.MatrixMediaLoader
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.api.media.toFile
+import io.prism.android.libraries.matrix.api.media.PRISMMediaLoader
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.media.toFile
 import okio.Buffer
 import okio.FileSystem
 import okio.Path.Companion.toOkioPath
@@ -23,7 +23,7 @@ import timber.log.Timber
 import java.nio.ByteBuffer
 
 internal class CoilMediaFetcher(
-    private val mediaLoader: MatrixMediaLoader,
+    private val mediaLoader: PRISMMediaLoader,
     private val mediaData: MediaRequestData,
 ) : Fetcher {
     override suspend fun fetch(): FetchResult? {
@@ -40,7 +40,7 @@ internal class CoilMediaFetcher(
     }
 
     /**
-     * This method is here to avoid using [MatrixMediaLoader.loadMediaContent] as too many ByteArray allocations will flood the memory and cause lots of GC.
+     * This method is here to avoid using [PRISMMediaLoader.loadMediaContent] as too many ByteArray allocations will flood the memory and cause lots of GC.
      * The MediaFile will be closed (and so destroyed from disk) when the image source is closed.
      *
      */

@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.test
+package io.prism.android.services.analytics.test
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import im.vector.app.features.analytics.plan.MobileScreen
-import io.element.android.services.analytics.api.ScreenTracker
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.services.analytics.api.ScreenTracker
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeScreenTracker(
     private val trackScreenLambda: (MobileScreen.ScreenName) -> Unit = { lambdaError() }

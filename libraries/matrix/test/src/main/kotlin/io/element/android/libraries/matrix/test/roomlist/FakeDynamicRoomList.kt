@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.roomlist
+package io.prism.android.libraries.matrix.test.roomlist
 
-import io.element.android.libraries.matrix.api.roomlist.DynamicRoomList
-import io.element.android.libraries.matrix.api.roomlist.RoomList
-import io.element.android.libraries.matrix.api.roomlist.RoomListFilter
-import io.element.android.libraries.matrix.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.api.roomlist.DynamicRoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomList
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class FakeDynamicRoomList(

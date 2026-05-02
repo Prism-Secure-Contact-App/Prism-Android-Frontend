@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.konsist
+package io.prism.android.tests.konsist
 
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.google.common.truth.Truth.assertThat
@@ -17,7 +17,7 @@ import com.lemonappdev.konsist.api.ext.list.withNameEndingWith
 import com.lemonappdev.konsist.api.ext.list.withoutName
 import com.lemonappdev.konsist.api.verify.assertEmpty
 import com.lemonappdev.konsist.api.verify.assertTrue
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import org.junit.Test
 
 class KonsistPreviewTest {
@@ -42,26 +42,26 @@ class KonsistPreviewTest {
             .withNameEndingWith("A11yPreview")
             .assertTrue(
                 additionalMessage = "Functions with 'A11yPreview' suffix should have '@Preview' annotation and not '@PreviewsDayNight'," +
-                    " should contain 'ElementPreview' composable," +
+                    " should contain 'PRISMPreview' composable," +
                     " should contain the tested view" +
                     " and should be internal."
             ) {
                 val testedView = it.name.removeSuffix("A11yPreview")
                 (it.text.contains("$testedView(") || it.text.contains("ContentToPreview(")) &&
                     it.hasAllAnnotationsOf(PreviewsDayNight::class).not() &&
-                    it.text.contains("ElementPreview") &&
+                    it.text.contains("PRISMPreview") &&
                     it.hasInternalModifier
             }
     }
 
     @Test
-    fun `Functions with '@PreviewsDayNight' annotation should contain 'ElementPreview' composable`() {
+    fun `Functions with '@PreviewsDayNight' annotation should contain 'PRISMPreview' composable`() {
         Konsist
             .scopeFromProject()
             .functions()
             .withAllAnnotationsOf(PreviewsDayNight::class)
             .assertTrue {
-                it.text.contains("ElementPreview") ||
+                it.text.contains("PRISMPreview") ||
                     it.text.contains("ElementTimelineItemPreview")
             }
     }

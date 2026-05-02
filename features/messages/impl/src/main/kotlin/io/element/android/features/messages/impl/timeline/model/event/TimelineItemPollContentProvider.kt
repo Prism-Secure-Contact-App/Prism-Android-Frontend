@@ -12,8 +12,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.poll.api.pollcontent.PollAnswerItem
 import io.prism.android.features.poll.api.pollcontent.aPollAnswerItemList
 import io.prism.android.features.poll.api.pollcontent.aPollQuestion
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.poll.PollKind
 
 open class TimelineItemPollContentProvider : PreviewParameterProvider<TimelineItemPollContent> {
     override val values: Sequence<TimelineItemPollContent>

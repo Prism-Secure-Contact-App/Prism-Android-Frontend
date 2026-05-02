@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.verification
+package io.prism.android.libraries.matrix.api.verification
 
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 import kotlinx.parcelize.Parcelize
 
 @Immutable

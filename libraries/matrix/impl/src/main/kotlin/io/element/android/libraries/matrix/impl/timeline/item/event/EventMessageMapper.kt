@@ -6,33 +6,33 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.item.event
+package io.prism.android.libraries.matrix.impl.timeline.item.event
 
-import io.prism.android.libraries.prism.api.timeline.item.EventThreadInfo
-import io.prism.android.libraries.prism.api.timeline.item.event.AudioMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.EmoteMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.FileMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.FormattedBody
-import io.prism.android.libraries.prism.api.timeline.item.event.ImageMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.InReplyTo
-import io.prism.android.libraries.prism.api.timeline.item.event.LocationMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageContent
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageFormat
-import io.prism.android.libraries.prism.api.timeline.item.event.NoticeMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.OtherMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.TextMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.VideoMessageType
-import io.prism.android.libraries.prism.api.timeline.item.event.VoiceMessageType
-import io.prism.android.libraries.prism.impl.media.map
-import io.prism.android.libraries.prism.impl.room.location.into
-import io.prism.android.libraries.prism.impl.timeline.reply.InReplyToMapper
-import org.prism.rustcomponents.sdk.InReplyToDetails
-import org.prism.rustcomponents.sdk.MessageType
-import org.prism.rustcomponents.sdk.MsgLikeKind
-import org.prism.rustcomponents.sdk.use
-import org.prism.rustcomponents.sdk.FormattedBody as RustFormattedBody
-import org.prism.rustcomponents.sdk.MessageFormat as RustMessageFormat
-import org.prism.rustcomponents.sdk.MessageType as RustMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.EventThreadInfo
+import io.prism.android.libraries.matrix.api.timeline.item.event.AudioMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.EmoteMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.FileMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.FormattedBody
+import io.prism.android.libraries.matrix.api.timeline.item.event.ImageMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.InReplyTo
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocationMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageContent
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageFormat
+import io.prism.android.libraries.matrix.api.timeline.item.event.NoticeMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.OtherMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.TextMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.VideoMessageType
+import io.prism.android.libraries.matrix.api.timeline.item.event.VoiceMessageType
+import io.prism.android.libraries.matrix.impl.media.map
+import io.prism.android.libraries.matrix.impl.room.location.into
+import io.prism.android.libraries.matrix.impl.timeline.reply.InReplyToMapper
+import org.matrix.rustcomponents.sdk.InReplyToDetails
+import org.matrix.rustcomponents.sdk.MessageType
+import org.matrix.rustcomponents.sdk.MsgLikeKind
+import org.matrix.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.FormattedBody as RustFormattedBody
+import org.matrix.rustcomponents.sdk.MessageFormat as RustMessageFormat
+import org.matrix.rustcomponents.sdk.MessageType as RustMessageType
 
 // https://github.com/Johennes/prism-spec-proposals/blob/johannes/msgtype-galleries/proposals/4274-inline-media-galleries.md#unstable-prefix
 private const val MSG_TYPE_GALLERY_UNSTABLE = "dm.filament.gallery"

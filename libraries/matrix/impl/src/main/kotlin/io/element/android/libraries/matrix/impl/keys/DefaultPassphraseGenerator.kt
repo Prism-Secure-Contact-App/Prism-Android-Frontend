@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.keys
+package io.prism.android.libraries.matrix.impl.keys
 
 import android.util.Base64
 import dev.zacsweers.metro.AppScope

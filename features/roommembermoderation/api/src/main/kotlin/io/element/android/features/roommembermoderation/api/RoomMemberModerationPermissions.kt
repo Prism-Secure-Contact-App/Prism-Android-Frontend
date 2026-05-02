@@ -7,7 +7,7 @@
 
 package io.prism.android.features.roommembermoderation.api
 
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
 
 data class RoomMemberModerationPermissions(
     val canKick: Boolean,

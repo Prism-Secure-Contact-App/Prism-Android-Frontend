@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.konsist
+package io.prism.android.tests.konsist
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.bumble.appyx.core.node.Node
@@ -21,8 +21,8 @@ import com.lemonappdev.konsist.api.ext.list.withoutName
 import com.lemonappdev.konsist.api.ext.list.withoutNameStartingWith
 import com.lemonappdev.konsist.api.verify.assertEmpty
 import com.lemonappdev.konsist.api.verify.assertTrue
-import io.element.android.libraries.architecture.BaseFlowNode
-import io.element.android.libraries.architecture.Presenter
+import io.prism.android.libraries.architecture.BaseFlowNode
+import io.prism.android.libraries.architecture.Presenter
 import org.junit.Test
 
 class KonsistClassNameTest {
@@ -128,7 +128,7 @@ class KonsistClassNameTest {
     fun `All Classes that override a class from the Ffi layer must have 'FakeFfi' prefix`() {
         Konsist.scopeFromTest()
             .classes()
-            .withPackage("io.element.android.libraries.matrix.impl.fixtures.fakes")
+            .withPackage("io.prism.android.libraries.matrix.impl.fixtures.fakes")
             .assertTrue { klass ->
                 val parentName = klass.parents().firstOrNull()?.name.orEmpty()
                 klass.name == "FakeFfi$parentName"

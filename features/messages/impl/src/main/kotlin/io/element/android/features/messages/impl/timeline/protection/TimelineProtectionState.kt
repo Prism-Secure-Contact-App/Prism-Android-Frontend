@@ -9,7 +9,7 @@
 package io.prism.android.features.messages.impl.timeline.protection
 
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 import kotlinx.collections.immutable.ImmutableSet
 
 data class TimelineProtectionState(

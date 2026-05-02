@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -14,19 +14,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.LayoutDirection
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.matrix.ui.model.getBestName
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 
 @Composable
 fun SelectedUser(
-    matrixUser: MatrixUser,
+    matrixUser: PRISMUser,
     canRemove: Boolean,
-    onUserRemove: (MatrixUser) -> Unit,
+    onUserRemove: (PRISMUser) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     SelectedItem(
@@ -43,7 +43,7 @@ fun SelectedUser(
 
 @PreviewsDayNight
 @Composable
-internal fun SelectedUserPreview(@PreviewParameter(MatrixUserWithAvatarProvider::class) user: MatrixUser) = ElementPreview {
+internal fun SelectedUserPreview(@PreviewParameter(MatrixUserWithAvatarProvider::class) user: PRISMUser) = PRISMPreview {
     SelectedUser(
         matrixUser = user,
         canRemove = true,
@@ -56,7 +56,7 @@ internal fun SelectedUserPreview(@PreviewParameter(MatrixUserWithAvatarProvider:
 internal fun SelectedUserRtlPreview() = CompositionLocalProvider(
     LocalLayoutDirection provides LayoutDirection.Rtl,
 ) {
-    ElementPreview {
+    PRISMPreview {
         SelectedUser(
             matrixUser = aMatrixUser(displayName = "John Doe"),
             canRemove = true,
@@ -67,7 +67,7 @@ internal fun SelectedUserRtlPreview() = CompositionLocalProvider(
 
 @PreviewsDayNight
 @Composable
-internal fun SelectedUserCannotRemovePreview() = ElementPreview {
+internal fun SelectedUserCannotRemovePreview() = PRISMPreview {
     SelectedUser(
         matrixUser = aMatrixUser(),
         canRemove = false,

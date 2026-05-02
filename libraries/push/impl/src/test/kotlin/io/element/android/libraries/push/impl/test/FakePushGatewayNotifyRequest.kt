@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.test
+package io.prism.android.libraries.push.impl.test
 
-import io.element.android.libraries.push.impl.pushgateway.PushGatewayNotifyRequest
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.push.impl.pushgateway.PushGatewayNotifyRequest
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePushGatewayNotifyRequest(
     private val executeResult: (PushGatewayNotifyRequest.Params) -> Unit = { lambdaError() }

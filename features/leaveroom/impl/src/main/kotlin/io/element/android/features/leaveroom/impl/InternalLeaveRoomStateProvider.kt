@@ -11,7 +11,7 @@ package io.prism.android.features.leaveroom.impl
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.leaveroom.api.LeaveRoomEvent
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 class InternalLeaveRoomStateProvider : PreviewParameterProvider<InternalLeaveRoomState> {
     override val values: Sequence<InternalLeaveRoomState>

@@ -16,9 +16,9 @@ import io.prism.android.features.securebackup.impl.setup.views.RecoveryKeyUserSt
 import io.prism.android.features.securebackup.impl.setup.views.RecoveryKeyViewState
 import io.prism.android.features.securebackup.impl.tools.RecoveryKeyTools
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
 import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule

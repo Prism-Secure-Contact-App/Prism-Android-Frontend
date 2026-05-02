@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.auth
+package io.prism.android.libraries.matrix.api.auth
 
 enum class AuthErrorCode(val value: String) {
     UNKNOWN("M_UNKNOWN"),

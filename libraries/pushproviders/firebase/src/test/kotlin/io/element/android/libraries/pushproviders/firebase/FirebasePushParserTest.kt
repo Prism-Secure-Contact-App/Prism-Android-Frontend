@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase
+package io.prism.android.libraries.pushproviders.firebase
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.pushproviders.api.PushData
-import io.element.android.tests.testutils.assertThrowsInDebug
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.pushproviders.api.PushData
+import io.prism.android.tests.testutils.assertThrowsInDebug
 import org.junit.Test
 
 class FirebasePushParserTest {

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
-import io.element.android.libraries.pushproviders.unifiedpush.network.DiscoveryResponse
-import io.element.android.libraries.pushproviders.unifiedpush.network.UnifiedPushApi
+import io.prism.android.libraries.pushproviders.unifiedpush.network.DiscoveryResponse
+import io.prism.android.libraries.pushproviders.unifiedpush.network.UnifiedPushApi
 
 class FakeUnifiedPushApiFactory(
     private val discoveryResponse: () -> DiscoveryResponse

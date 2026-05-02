@@ -9,8 +9,8 @@
 package io.prism.android.features.messages.impl.timeline
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeMarkAsFullyRead(

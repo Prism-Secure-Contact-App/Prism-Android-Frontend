@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.impl.components.markdown
+package io.prism.android.libraries.textcomposer.impl.components.markdown
 
 import android.widget.EditText
 import androidx.activity.ComponentActivity
@@ -15,23 +15,23 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.core.text.getSpans
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.matrix.api.permalink.PermalinkData
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.test.permalink.FakePermalinkParser
-import io.element.android.libraries.matrix.test.room.aRoomMember
-import io.element.android.libraries.testtags.TestTags
-import io.element.android.libraries.textcomposer.ElementRichTextEditorStyle
-import io.element.android.libraries.textcomposer.components.markdown.MarkdownTextInput
-import io.element.android.libraries.textcomposer.impl.mentions.aMentionSpanProvider
-import io.element.android.libraries.textcomposer.mentions.MentionSpan
-import io.element.android.libraries.textcomposer.mentions.ResolvedSuggestion
-import io.element.android.libraries.textcomposer.model.MarkdownTextEditorState
-import io.element.android.libraries.textcomposer.model.Suggestion
-import io.element.android.libraries.textcomposer.model.SuggestionType
-import io.element.android.libraries.textcomposer.model.aMarkdownTextEditorState
-import io.element.android.tests.testutils.EnsureCalledOnceWithParam
-import io.element.android.tests.testutils.EventsRecorder
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.testtags.TestTags
+import io.prism.android.libraries.textcomposer.ElementRichTextEditorStyle
+import io.prism.android.libraries.textcomposer.components.markdown.MarkdownTextInput
+import io.prism.android.libraries.textcomposer.impl.mentions.aMentionSpanProvider
+import io.prism.android.libraries.textcomposer.mentions.MentionSpan
+import io.prism.android.libraries.textcomposer.mentions.ResolvedSuggestion
+import io.prism.android.libraries.textcomposer.model.MarkdownTextEditorState
+import io.prism.android.libraries.textcomposer.model.Suggestion
+import io.prism.android.libraries.textcomposer.model.SuggestionType
+import io.prism.android.libraries.textcomposer.model.aMarkdownTextEditorState
+import io.prism.android.tests.testutils.EnsureCalledOnceWithParam
+import io.prism.android.tests.testutils.EventsRecorder
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -177,7 +177,7 @@ class MarkdownTextInputTest {
             MarkdownTextInput(
                 state = state,
                 placeholder = "Placeholder",
-                placeholderColor = ElementTheme.colors.textSecondary,
+                placeholderColor = PRISMTheme.colors.textSecondary,
                 onTyping = onTyping,
                 onReceiveSuggestion = onSuggestionReceived,
                 richTextEditorStyle = style,

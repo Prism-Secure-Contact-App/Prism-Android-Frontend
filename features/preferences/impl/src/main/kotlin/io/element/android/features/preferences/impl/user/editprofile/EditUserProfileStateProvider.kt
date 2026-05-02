@@ -10,8 +10,8 @@ package io.prism.android.features.preferences.impl.user.editprofile
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
 import io.prism.android.libraries.permissions.api.PermissionsState
 import io.prism.android.libraries.permissions.api.aPermissionsState
 import kotlinx.collections.immutable.toImmutableList

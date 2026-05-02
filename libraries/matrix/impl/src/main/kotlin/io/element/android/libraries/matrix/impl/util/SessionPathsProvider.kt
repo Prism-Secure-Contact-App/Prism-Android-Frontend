@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.util
+package io.prism.android.libraries.matrix.impl.util
 
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.impl.paths.SessionPaths
-import io.prism.android.libraries.prism.impl.paths.getSessionPaths
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.impl.paths.SessionPaths
+import io.prism.android.libraries.matrix.impl.paths.getSessionPaths
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 
 class SessionPathsProvider(

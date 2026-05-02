@@ -14,7 +14,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.features.location.api.ShareLocationEntryPoint
 import io.prism.android.libraries.architecture.createNode
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 @ContributesBinding(AppScope::class)
 class DefaultShareLocationEntryPoint : ShareLocationEntryPoint {

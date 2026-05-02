@@ -5,22 +5,22 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.workmanager
+package io.prism.android.libraries.push.impl.workmanager
 
 import android.net.NetworkCapabilities
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.work.OneTimeWorkRequest
 import androidx.work.hasKeyWithValueOfType
 import com.google.common.truth.Truth.assertThat
-import io.element.android.features.networkmonitor.test.FakeNetworkMonitor
-import io.element.android.libraries.featureflag.api.FeatureFlags
-import io.element.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.workmanager.api.WorkManagerRequestType
-import io.element.android.libraries.workmanager.api.WorkManagerWorkerType
-import io.element.android.libraries.workmanager.api.workManagerTag
-import io.element.android.services.toolbox.test.sdk.FakeBuildVersionSdkIntProvider
+import io.prism.android.features.networkmonitor.test.FakeNetworkMonitor
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.workmanager.api.WorkManagerRequestType
+import io.prism.android.libraries.workmanager.api.WorkManagerWorkerType
+import io.prism.android.libraries.workmanager.api.workManagerTag
+import io.prism.android.services.toolbox.test.sdk.FakeBuildVersionSdkIntProvider
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith

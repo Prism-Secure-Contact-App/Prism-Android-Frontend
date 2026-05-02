@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.oidc
+package io.prism.android.libraries.matrix.api.oidc
 
-import io.prism.android.libraries.prism.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.DeviceId
 
 sealed interface AccountManagementAction {
     data object Profile : AccountManagementAction

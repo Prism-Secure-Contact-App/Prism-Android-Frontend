@@ -10,15 +10,15 @@ package io.prism.android.features.preferences.impl.blockedusers
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
 import kotlinx.collections.immutable.toImmutableList
 
 class BlockedUsersStateProvider : PreviewParameterProvider<BlockedUsersState> {
     override val values: Sequence<BlockedUsersState>
         get() = sequenceOf(
             aBlockedUsersState(),
-            aBlockedUsersState(blockedUsers = aPRISMUserList().map { it.copy(displayName = null, avatarUrl = null) }),
+            aBlockedUsersState(blockedUsers = aMatrixUserList().map { it.copy(displayName = null, avatarUrl = null) }),
             aBlockedUsersState(blockedUsers = emptyList()),
             aBlockedUsersState(unblockUserAction = AsyncAction.ConfirmingNoParams),
             aBlockedUsersState(unblockUserAction = AsyncAction.Loading),
@@ -28,7 +28,7 @@ class BlockedUsersStateProvider : PreviewParameterProvider<BlockedUsersState> {
 }
 
 internal fun aBlockedUsersState(
-    blockedUsers: List<PRISMUser> = aPRISMUserList(),
+    blockedUsers: List<PRISMUser> = aMatrixUserList(),
     unblockUserAction: AsyncAction<Unit> = AsyncAction.Uninitialized,
     eventSink: (BlockedUsersEvents) -> Unit = {},
 ): BlockedUsersState {

@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.viewer
+package io.prism.android.libraries.mediaviewer.impl.viewer
 
-import io.element.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 
 interface MediaViewerNavigator {
     fun onViewInTimelineClick(eventId: EventId)

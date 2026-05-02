@@ -10,7 +10,7 @@ package io.prism.android.features.messages.impl.link
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 open class LinkStateProvider : PreviewParameterProvider<LinkState> {
     override val values: Sequence<LinkState>

@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.notification
+package io.prism.android.libraries.matrix.impl.notification
 
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.exception.NotificationResolverException
-import io.prism.android.libraries.prism.api.notification.GetNotificationDataResult
-import io.prism.android.libraries.prism.api.notification.NotificationService
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.exception.NotificationResolverException
+import io.prism.android.libraries.matrix.api.notification.GetNotificationDataResult
+import io.prism.android.libraries.matrix.api.notification.NotificationService
 import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.BatchNotificationResult
-import org.prism.rustcomponents.sdk.NotificationClient
-import org.prism.rustcomponents.sdk.NotificationItemsRequest
-import org.prism.rustcomponents.sdk.NotificationStatus
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.BatchNotificationResult
+import org.matrix.rustcomponents.sdk.NotificationClient
+import org.matrix.rustcomponents.sdk.NotificationItemsRequest
+import org.matrix.rustcomponents.sdk.NotificationStatus
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
 
 class RustNotificationService(

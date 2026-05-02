@@ -13,7 +13,7 @@ import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.core.coroutine.parallelMap
 import io.prism.android.libraries.core.uri.ensureProtocol
 import io.prism.android.libraries.core.uri.isValidUrl
-import io.prism.android.libraries.prism.api.auth.HomeServerLoginCompatibilityChecker
+import io.prism.android.libraries.matrix.api.auth.HomeServerLoginCompatibilityChecker
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

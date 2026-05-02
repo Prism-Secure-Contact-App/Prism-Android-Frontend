@@ -15,8 +15,8 @@ import io.prism.android.features.startchat.impl.userlist.aRecentDirectRoomList
 import io.prism.android.features.startchat.impl.userlist.aUserListState
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
 import io.prism.android.libraries.usersearch.api.UserSearchResult
 import kotlinx.collections.immutable.persistentListOf
 
@@ -26,7 +26,7 @@ open class StartChatStateProvider : PreviewParameterProvider<StartChatState> {
             aCreateRoomRootState(),
             aCreateRoomRootState(
                 startDmAction = AsyncAction.Loading,
-                userListState = aPRISMUser().let {
+                userListState = aMatrixUser().let {
                     aUserListState(
                         searchQuery = it.userId.value,
                         searchResults = SearchBarResultState.Results(persistentListOf(UserSearchResult(it, false))),
@@ -37,7 +37,7 @@ open class StartChatStateProvider : PreviewParameterProvider<StartChatState> {
             ),
             aCreateRoomRootState(
                 startDmAction = AsyncAction.Failure(RuntimeException("error")),
-                userListState = aPRISMUser().let {
+                userListState = aMatrixUser().let {
                     aUserListState(
                         searchQuery = it.userId.value,
                         searchResults = SearchBarResultState.Results(persistentListOf(UserSearchResult(it, false))),
@@ -52,7 +52,7 @@ open class StartChatStateProvider : PreviewParameterProvider<StartChatState> {
                 )
             ),
             aCreateRoomRootState(
-                startDmAction = ConfirmingStartDmWithPRISMUser(aPRISMUser()),
+                startDmAction = ConfirmingStartDmWithPRISMUser(aMatrixUser()),
             ),
             aCreateRoomRootState(
                 isRoomDirectorySearchEnabled = true,

@@ -38,10 +38,10 @@ class DefaultAccountProviderAccessControl(
     ) {
         if (enterpriseService.isEnterpriseBuild.not()) {
             // Ensure that PRISM Pro is not required for this account provider
-            val wellKnown = wellknownRetriever.getPRISMWellKnown(
+            val wellKnown = wellknownRetriever.getElementWellKnown(
                 baseUrl = accountProviderUrl.ensureProtocol(),
             ).dataOrNull()
-            if (wellKnown?.enforcePRISMPro == true) {
+            if (wellKnown?.enforceElementPro == true) {
                 throw AccountProviderAccessException.NeedPRISMProException(
                     unauthorisedAccountProviderTitle = title,
                     applicationId = PRISM_PRO_APPLICATION_ID,

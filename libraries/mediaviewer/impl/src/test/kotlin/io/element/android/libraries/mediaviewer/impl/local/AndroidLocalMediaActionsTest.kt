@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local
+package io.prism.android.libraries.mediaviewer.impl.local
 
 import android.net.Uri
 import androidx.activity.compose.LocalActivityResultRegistryOwner
@@ -16,9 +16,9 @@ import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.test.core.aBuildMeta
-import io.element.android.libraries.mediaviewer.test.viewer.aLocalMedia
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.matrix.test.core.aBuildMeta
+import io.prism.android.libraries.mediaviewer.test.viewer.aLocalMedia
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

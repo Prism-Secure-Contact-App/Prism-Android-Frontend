@@ -33,7 +33,7 @@ class LoggedInFlowTransitionHandler(
         transition: Transition<BackStack.State>,
         descriptor: TransitionDescriptor<LoggedInFlowNode.NavTarget, BackStack.State>
     ): Modifier {
-        val isPlaceholderBeingRemoved = backstack.prisms.value.any { prism ->
+        val isPlaceholderBeingRemoved = backstack.elements.value.any { prism ->
             prism.key.navTarget == LoggedInFlowNode.NavTarget.Placeholder &&
                 prism.targetState != BackStack.State.ACTIVE
         }

@@ -6,27 +6,27 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import android.net.Uri
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.androidutils.hash.hash
-import io.element.android.libraries.core.extensions.flatMap
-import io.element.android.libraries.core.extensions.flatMapCatching
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaUploadHandler
-import io.element.android.libraries.matrix.api.room.CreateTimelineParams
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
-import io.element.android.libraries.mediaupload.api.MediaPreProcessor
-import io.element.android.libraries.mediaupload.api.MediaSender
-import io.element.android.libraries.mediaupload.api.MediaSenderFactory
-import io.element.android.libraries.mediaupload.api.MediaSenderRoomFactory
-import io.element.android.libraries.mediaupload.api.MediaUploadInfo
+import io.prism.android.libraries.androidutils.hash.hash
+import io.prism.android.libraries.core.extensions.flatMap
+import io.prism.android.libraries.core.extensions.flatMapCatching
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaUploadHandler
+import io.prism.android.libraries.matrix.api.room.CreateTimelineParams
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
+import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
+import io.prism.android.libraries.mediaupload.api.MediaSender
+import io.prism.android.libraries.mediaupload.api.MediaSenderFactory
+import io.prism.android.libraries.mediaupload.api.MediaSenderRoomFactory
+import io.prism.android.libraries.mediaupload.api.MediaUploadInfo
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import timber.log.Timber

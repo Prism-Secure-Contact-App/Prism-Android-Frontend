@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components
+package io.prism.android.libraries.textcomposer.components
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import io.element.android.libraries.textcomposer.model.MessageComposerMode
+import io.prism.android.libraries.textcomposer.model.MessageComposerMode
 
 @Composable
 internal fun textInputRoundedCornerShape(

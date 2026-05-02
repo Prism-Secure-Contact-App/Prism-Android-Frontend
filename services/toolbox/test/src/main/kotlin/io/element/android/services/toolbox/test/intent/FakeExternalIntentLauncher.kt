@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.toolbox.test.intent
+package io.prism.android.services.toolbox.test.intent
 
 import android.content.Intent
-import io.element.android.services.toolbox.api.intent.ExternalIntentLauncher
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.services.toolbox.api.intent.ExternalIntentLauncher
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeExternalIntentLauncher(
     var launchLambda: (Intent) -> Unit = { lambdaError() },

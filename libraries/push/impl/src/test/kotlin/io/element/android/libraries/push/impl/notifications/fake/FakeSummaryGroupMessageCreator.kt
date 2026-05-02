@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.fake
+package io.prism.android.libraries.push.impl.notifications.fake
 
 import android.app.Notification
-import io.element.android.libraries.push.impl.notifications.OneShotNotification
-import io.element.android.libraries.push.impl.notifications.RoomNotification
-import io.element.android.libraries.push.impl.notifications.SummaryGroupMessageCreator
-import io.element.android.libraries.push.impl.notifications.factories.NotificationAccountParams
-import io.element.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
-import io.element.android.tests.testutils.lambda.LambdaFourParamsRecorder
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.push.impl.notifications.OneShotNotification
+import io.prism.android.libraries.push.impl.notifications.RoomNotification
+import io.prism.android.libraries.push.impl.notifications.SummaryGroupMessageCreator
+import io.prism.android.libraries.push.impl.notifications.factories.NotificationAccountParams
+import io.prism.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
+import io.prism.android.tests.testutils.lambda.LambdaFourParamsRecorder
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 
 class FakeSummaryGroupMessageCreator(
     var createSummaryNotificationResult: LambdaFourParamsRecorder<

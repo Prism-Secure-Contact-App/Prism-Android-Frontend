@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.matrix.api.core.RoomAlias
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -30,7 +30,7 @@ fun aSelectRoomInfo(
     name: String? = null,
     canonicalAlias: RoomAlias? = null,
     avatarUrl: String? = null,
-    heroes: ImmutableList<MatrixUser> = persistentListOf(),
+    heroes: ImmutableList<PRISMUser> = persistentListOf(),
     isTombstoned: Boolean = false,
 ) = SelectRoomInfo(
     roomId = roomId,

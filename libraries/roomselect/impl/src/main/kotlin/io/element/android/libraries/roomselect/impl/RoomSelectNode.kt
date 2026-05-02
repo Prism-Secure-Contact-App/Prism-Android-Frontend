@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.impl
+package io.prism.android.libraries.roomselect.impl
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -17,14 +17,14 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.annotations.ContributesNode
-import io.element.android.libraries.architecture.NodeInputs
-import io.element.android.libraries.architecture.appyx.launchMolecule
-import io.element.android.libraries.architecture.callback
-import io.element.android.libraries.architecture.inputs
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.roomselect.api.RoomSelectEntryPoint
-import io.element.android.libraries.roomselect.api.RoomSelectMode
+import io.prism.android.annotations.ContributesNode
+import io.prism.android.libraries.architecture.NodeInputs
+import io.prism.android.libraries.architecture.appyx.launchMolecule
+import io.prism.android.libraries.architecture.callback
+import io.prism.android.libraries.architecture.inputs
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.roomselect.api.RoomSelectEntryPoint
+import io.prism.android.libraries.roomselect.api.RoomSelectMode
 
 @ContributesNode(SessionScope::class)
 @AssistedInject

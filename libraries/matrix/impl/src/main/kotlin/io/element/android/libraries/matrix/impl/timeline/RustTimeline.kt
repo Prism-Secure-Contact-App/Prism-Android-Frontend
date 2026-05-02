@@ -6,42 +6,42 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
 import io.prism.android.libraries.androidutils.hash.hash
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.media.AudioInfo
-import io.prism.android.libraries.prism.api.media.FileInfo
-import io.prism.android.libraries.prism.api.media.ImageInfo
-import io.prism.android.libraries.prism.api.media.MediaUploadHandler
-import io.prism.android.libraries.prism.api.media.VideoInfo
-import io.prism.android.libraries.prism.api.poll.PollKind
-import io.prism.android.libraries.prism.api.room.IntentionalMention
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.isDm
-import io.prism.android.libraries.prism.api.room.location.AssetType
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.api.timeline.ReceiptType
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.timeline.TimelineException
-import io.prism.android.libraries.prism.api.timeline.item.event.EventOrTransactionId
-import io.prism.android.libraries.prism.api.timeline.item.event.InReplyTo
-import io.prism.android.libraries.prism.impl.media.MediaUploadHandlerImpl
-import io.prism.android.libraries.prism.impl.media.map
-import io.prism.android.libraries.prism.impl.poll.toInner
-import io.prism.android.libraries.prism.impl.room.RoomContentForwarder
-import io.prism.android.libraries.prism.impl.room.location.into
-import io.prism.android.libraries.prism.impl.timeline.item.event.EventTimelineItemMapper
-import io.prism.android.libraries.prism.impl.timeline.item.event.TimelineEventContentMapper
-import io.prism.android.libraries.prism.impl.timeline.item.virtual.VirtualTimelineItemMapper
-import io.prism.android.libraries.prism.impl.timeline.postprocessor.LastForwardIndicatorsPostProcessor
-import io.prism.android.libraries.prism.impl.timeline.postprocessor.LoadingIndicatorsPostProcessor
-import io.prism.android.libraries.prism.impl.timeline.postprocessor.RoomBeginningPostProcessor
-import io.prism.android.libraries.prism.impl.timeline.postprocessor.TypingNotificationPostProcessor
-import io.prism.android.libraries.prism.impl.timeline.reply.InReplyToMapper
-import io.prism.android.libraries.prism.impl.util.MessageEventContent
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.media.AudioInfo
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.MediaUploadHandler
+import io.prism.android.libraries.matrix.api.media.VideoInfo
+import io.prism.android.libraries.matrix.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.isDm
+import io.prism.android.libraries.matrix.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.ReceiptType
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.TimelineException
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventOrTransactionId
+import io.prism.android.libraries.matrix.api.timeline.item.event.InReplyTo
+import io.prism.android.libraries.matrix.impl.media.MediaUploadHandlerImpl
+import io.prism.android.libraries.matrix.impl.media.map
+import io.prism.android.libraries.matrix.impl.poll.toInner
+import io.prism.android.libraries.matrix.impl.room.RoomContentForwarder
+import io.prism.android.libraries.matrix.impl.room.location.into
+import io.prism.android.libraries.matrix.impl.timeline.item.event.EventTimelineItemMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.event.TimelineEventContentMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.virtual.VirtualTimelineItemMapper
+import io.prism.android.libraries.matrix.impl.timeline.postprocessor.LastForwardIndicatorsPostProcessor
+import io.prism.android.libraries.matrix.impl.timeline.postprocessor.LoadingIndicatorsPostProcessor
+import io.prism.android.libraries.matrix.impl.timeline.postprocessor.RoomBeginningPostProcessor
+import io.prism.android.libraries.matrix.impl.timeline.postprocessor.TypingNotificationPostProcessor
+import io.prism.android.libraries.matrix.impl.timeline.reply.InReplyToMapper
+import io.prism.android.libraries.matrix.impl.util.MessageEventContent
 import io.prism.android.services.toolbox.api.systemclock.SystemClock
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -62,19 +62,19 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.EditedContent
-import org.prism.rustcomponents.sdk.FormattedBody
-import org.prism.rustcomponents.sdk.MessageFormat
-import org.prism.rustcomponents.sdk.PollData
-import org.prism.rustcomponents.sdk.SendAttachmentJoinHandle
-import org.prism.rustcomponents.sdk.UploadParameters
-import org.prism.rustcomponents.sdk.UploadSource
-import org.prism.rustcomponents.sdk.use
+import org.matrix.rustcomponents.sdk.EditedContent
+import org.matrix.rustcomponents.sdk.FormattedBody
+import org.matrix.rustcomponents.sdk.MessageFormat
+import org.matrix.rustcomponents.sdk.PollData
+import org.matrix.rustcomponents.sdk.SendAttachmentJoinHandle
+import org.matrix.rustcomponents.sdk.UploadParameters
+import org.matrix.rustcomponents.sdk.UploadSource
+import org.matrix.rustcomponents.sdk.use
 import timber.log.Timber
-import uniffi.prism_sdk.PaginationStatus
+import uniffi.matrix_sdk.PaginationStatus
 import java.io.File
-import org.prism.rustcomponents.sdk.EventOrTransactionId as RustEventOrTransactionId
-import org.prism.rustcomponents.sdk.Timeline as InnerTimeline
+import org.matrix.rustcomponents.sdk.EventOrTransactionId as RustEventOrTransactionId
+import org.matrix.rustcomponents.sdk.Timeline as InnerTimeline
 
 private const val PAGINATION_SIZE = 50
 

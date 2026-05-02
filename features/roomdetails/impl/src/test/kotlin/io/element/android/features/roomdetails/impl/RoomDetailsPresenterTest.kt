@@ -10,7 +10,7 @@ package io.prism.android.features.roomdetails.impl
 
 import androidx.lifecycle.Lifecycle
 import com.google.common.truth.Truth.assertThat
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.features.leaveroom.api.LeaveRoomEvent
 import io.prism.android.features.leaveroom.api.LeaveRoomState
 import io.prism.android.features.roomcall.api.aStandByCallState
@@ -24,25 +24,25 @@ import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.api.room.StateEventType
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
-import io.prism.android.libraries.prism.test.AN_AVATAR_URL
-import io.prism.android.libraries.prism.test.AN_EVENT_ID
-import io.prism.android.libraries.prism.test.A_ROOM_NAME
-import io.prism.android.libraries.prism.test.A_ROOM_TOPIC
-import io.prism.android.libraries.prism.test.A_SESSION_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.A_USER_NAME
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
-import io.prism.android.libraries.prism.test.notificationsettings.FakeNotificationSettingsService
-import io.prism.android.libraries.prism.test.room.aRoomInfo
-import io.prism.android.libraries.prism.test.room.powerlevels.FakeRoomPermissions
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_NAME
+import io.prism.android.libraries.matrix.test.A_ROOM_TOPIC
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.test.room.aRoomInfo
+import io.prism.android.libraries.matrix.test.room.powerlevels.FakeRoomPermissions
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.libraries.preferences.test.InMemoryAppPreferencesStore
 import io.prism.android.services.analytics.api.AnalyticsService
@@ -89,7 +89,7 @@ class RoomDetailsPresenterTest {
         clipboardHelper: ClipboardHelper = FakeClipboardHelper(),
         appPreferencesStore: AppPreferencesStore = InMemoryAppPreferencesStore()
     ): RoomDetailsPresenter {
-        val prismClient = FakePRISMClient(notificationSettingsService = notificationSettingsService)
+        val matrixClient = FakePRISMClient(notificationSettingsService = notificationSettingsService)
         val roomMemberDetailsPresenterFactory = object : RoomMemberDetailsPresenter.Factory {
             override fun create(roomMemberId: UserId): RoomMemberDetailsPresenter {
                 return RoomMemberDetailsPresenter(
@@ -104,10 +104,10 @@ class RoomDetailsPresenterTest {
             }
         }
         return RoomDetailsPresenter(
-            client = prismClient,
+            client = matrixClient,
             room = room,
             featureFlagService = featureFlagService,
-            notificationSettingsService = prismClient.notificationSettingsService,
+            notificationSettingsService = matrixClient.notificationSettingsService,
             roomMembersDetailsPresenterFactory = roomMemberDetailsPresenterFactory,
             leaveRoomPresenter = { leaveRoomState },
             roomCallStatePresenter = { aStandByCallState() },

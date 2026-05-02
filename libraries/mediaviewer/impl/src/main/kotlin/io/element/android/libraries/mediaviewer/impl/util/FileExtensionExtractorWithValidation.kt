@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.util
+package io.prism.android.libraries.mediaviewer.impl.util
 
 import android.webkit.MimeTypeMap
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.mediaviewer.api.util.FileExtensionExtractor
+import io.prism.android.libraries.mediaviewer.api.util.FileExtensionExtractor
 
 @ContributesBinding(AppScope::class)
 class FileExtensionExtractorWithValidation : FileExtensionExtractor {

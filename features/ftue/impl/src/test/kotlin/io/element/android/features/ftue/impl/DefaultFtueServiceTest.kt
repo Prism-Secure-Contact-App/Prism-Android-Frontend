@@ -17,9 +17,9 @@ import io.prism.android.features.ftue.impl.state.FtueStep
 import io.prism.android.features.ftue.impl.state.InternalFtueState
 import io.prism.android.features.lockscreen.api.LockScreenService
 import io.prism.android.features.lockscreen.test.FakeLockScreenService
-import io.prism.android.libraries.prism.api.verification.SessionVerificationService
-import io.prism.android.libraries.prism.api.verification.SessionVerifiedStatus
-import io.prism.android.libraries.prism.test.verification.FakeSessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationService
+import io.prism.android.libraries.matrix.api.verification.SessionVerifiedStatus
+import io.prism.android.libraries.matrix.test.verification.FakeSessionVerificationService
 import io.prism.android.libraries.permissions.api.PermissionStateProvider
 import io.prism.android.libraries.permissions.test.FakePermissionStateProvider
 import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore

@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.verification
+package io.prism.android.libraries.matrix.impl.verification
 
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.FlowId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.verification.SessionVerificationRequestDetails
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
-import io.prism.android.libraries.prism.impl.mapper.map
-import org.prism.rustcomponents.sdk.SessionVerificationRequestDetails as RustSessionVerificationRequestDetails
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.FlowId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationRequestDetails
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.impl.mapper.map
+import org.matrix.rustcomponents.sdk.SessionVerificationRequestDetails as RustSessionVerificationRequestDetails
 
 fun RustSessionVerificationRequestDetails.map() = SessionVerificationRequestDetails(
     senderProfile = senderProfile.map(),

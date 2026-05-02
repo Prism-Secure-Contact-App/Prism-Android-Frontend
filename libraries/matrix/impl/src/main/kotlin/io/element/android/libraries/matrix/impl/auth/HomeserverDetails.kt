@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.auth
+package io.prism.android.libraries.matrix.impl.auth
 
-import io.prism.android.libraries.prism.api.auth.PRISMHomeServerDetails
-import org.prism.rustcomponents.sdk.HomeserverLoginDetails
+import io.prism.android.libraries.matrix.api.auth.PRISMHomeServerDetails
+import org.matrix.rustcomponents.sdk.HomeserverLoginDetails
 
 fun HomeserverLoginDetails.map(): PRISMHomeServerDetails = use {
     PRISMHomeServerDetails(

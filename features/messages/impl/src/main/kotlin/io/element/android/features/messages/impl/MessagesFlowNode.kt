@@ -22,7 +22,7 @@ import com.bumble.appyx.navmodel.backstack.operation.pop
 import com.bumble.appyx.navmodel.backstack.operation.push
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.features.call.api.CallType
 import io.prism.android.features.call.api.PRISMCallEntryPoint
@@ -64,22 +64,22 @@ import io.prism.android.libraries.dateformatter.api.DateFormatter
 import io.prism.android.libraries.dateformatter.api.DateFormatterMode
 import io.prism.android.libraries.dateformatter.api.toHumanReadableDuration
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.media.MediaSource
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.alias.matches
-import io.prism.android.libraries.prism.api.room.joinedRoomMembers
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.timeline.item.TimelineItemDebugInfo
-import io.prism.android.libraries.prism.ui.messages.RoomMemberProfilesCache
-import io.prism.android.libraries.prism.ui.messages.RoomNamesCache
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.alias.matches
+import io.prism.android.libraries.matrix.api.room.joinedRoomMembers
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.TimelineItemDebugInfo
+import io.prism.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
+import io.prism.android.libraries.matrix.ui.messages.RoomNamesCache
 import io.prism.android.libraries.mediaviewer.api.MediaInfo
 import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint
 import io.prism.android.libraries.textcomposer.mentions.LocalMentionSpanUpdater
@@ -122,7 +122,7 @@ class MessagesFlowNode(
     private val coroutineDispatchers: CoroutineDispatchers,
 ) : BaseFlowNode<MessagesFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = plugins.filterIsInstance<MessagesEntryPoint.Params>().first().initialTarget.toNavTarget(),
+        initialElement = plugins.filterIsInstance<MessagesEntryPoint.Params>().first().initialTarget.toNavTarget(),
         savedStateMap = buildContext.savedStateMap,
     ),
     overlay = Overlay(

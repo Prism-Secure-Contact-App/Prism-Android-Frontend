@@ -12,13 +12,13 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
-import io.prism.android.libraries.prism.ui.room.PowerLevelRoomMemberComparator
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
+import io.prism.android.libraries.matrix.ui.room.PowerLevelRoomMemberComparator
 import io.prism.android.libraries.previewutils.room.aRoomMember
 import io.prism.android.libraries.previewutils.room.aRoomMemberList
 import kotlinx.collections.immutable.ImmutableList
@@ -33,7 +33,7 @@ class ChangeRolesStateProvider : PreviewParameterProvider<ChangeRolesState> {
             aChangeRolesStateWithSelectedUsers().copy(hasPendingChanges = false),
             aChangeRolesStateWithSelectedUsers(),
             aChangeRolesStateWithSelectedUsers().copy(
-                selectedUsers = aPRISMUserList().take(2).toImmutableList(),
+                selectedUsers = aMatrixUserList().take(2).toImmutableList(),
             ),
             aChangeRolesState(
                 searchQuery = "Alice",
@@ -44,7 +44,7 @@ class ChangeRolesStateProvider : PreviewParameterProvider<ChangeRolesState> {
                         comparator = PowerLevelRoomMemberComparator(),
                     )
                 ),
-                selectedUsers = aPRISMUserList().take(1).toImmutableList(),
+                selectedUsers = aMatrixUserList().take(1).toImmutableList(),
                 hasPendingChanges = true,
                 canRemoveMember = { it != UserId("@alice:server.org") },
             ),
@@ -83,7 +83,7 @@ internal fun aChangeRolesState(
 )
 
 internal fun aChangeRolesStateWithSelectedUsers() = aChangeRolesState(
-    selectedUsers = aPRISMUserList().toImmutableList(),
+    selectedUsers = aMatrixUserList().toImmutableList(),
     searchResults = SearchBarResultState.Results(
         MembersByRole(
             members = aRoomMemberList().mapIndexed { index, roomMember ->
@@ -103,9 +103,9 @@ internal fun aChangeRolesStateWithSelectedUsers() = aChangeRolesState(
 internal fun aChangeRolesStateWithOwners(
     role: RoomMember.Role = RoomMember.Role.Admin,
     selectedUsers: List<PRISMUser> = listOf(
-        aPRISMUser(id = "@alice:server.org", displayName = "Alice"),
-        aPRISMUser(id = "@bob:server.org", displayName = "Bob"),
-        aPRISMUser(id = "@carol:server.org", displayName = "Carol"),
+        aMatrixUser(id = "@alice:server.org", displayName = "Alice"),
+        aMatrixUser(id = "@bob:server.org", displayName = "Bob"),
+        aMatrixUser(id = "@carol:server.org", displayName = "Carol"),
     ),
 ) = aChangeRolesState(
     role = role,

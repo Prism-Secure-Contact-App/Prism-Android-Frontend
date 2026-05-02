@@ -6,23 +6,23 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import io.prism.android.appconfig.TimelineConfig
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.notificationsettings.NotificationSettingsService
-import io.prism.android.libraries.prism.api.room.BaseRoom
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.api.roomlist.awaitLoaded
-import io.prism.android.libraries.prism.impl.room.preview.RoomPreviewInfoMapper
-import io.prism.android.libraries.prism.impl.roomlist.roomOrNull
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.notificationsettings.NotificationSettingsService
+import io.prism.android.libraries.matrix.api.room.BaseRoom
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.roomlist.awaitLoaded
+import io.prism.android.libraries.matrix.impl.room.preview.RoomPreviewInfoMapper
+import io.prism.android.libraries.matrix.impl.roomlist.roomOrNull
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
 import io.prism.android.services.analytics.api.AnalyticsService
 import io.prism.android.services.analytics.api.inBridgeSdkSpan
@@ -34,17 +34,17 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.prism.rustcomponents.sdk.DateDividerMode
-import org.prism.rustcomponents.sdk.Membership
-import org.prism.rustcomponents.sdk.Room
-import org.prism.rustcomponents.sdk.RoomInfo
-import org.prism.rustcomponents.sdk.TimelineConfiguration
-import org.prism.rustcomponents.sdk.TimelineFilter
-import org.prism.rustcomponents.sdk.TimelineFocus
+import org.matrix.rustcomponents.sdk.DateDividerMode
+import org.matrix.rustcomponents.sdk.Membership
+import org.matrix.rustcomponents.sdk.Room
+import org.matrix.rustcomponents.sdk.RoomInfo
+import org.matrix.rustcomponents.sdk.TimelineConfiguration
+import org.matrix.rustcomponents.sdk.TimelineFilter
+import org.matrix.rustcomponents.sdk.TimelineFocus
 import timber.log.Timber
-import uniffi.prism_sdk_ui.TimelineReadReceiptTracking
+import uniffi.matrix_sdk_ui.TimelineReadReceiptTracking
 import java.util.concurrent.atomic.AtomicBoolean
-import org.prism.rustcomponents.sdk.RoomListService as InnerRoomListService
+import org.matrix.rustcomponents.sdk.RoomListService as InnerRoomListService
 
 class RustRoomFactory(
     private val sessionId: SessionId,

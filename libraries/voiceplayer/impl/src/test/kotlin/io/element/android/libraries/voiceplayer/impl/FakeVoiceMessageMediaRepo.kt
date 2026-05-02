@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
-import io.element.android.tests.testutils.simulateLongTask
+import io.prism.android.tests.testutils.simulateLongTask
 import java.io.File
 
 /**

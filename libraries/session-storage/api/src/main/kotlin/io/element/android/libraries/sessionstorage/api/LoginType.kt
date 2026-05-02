@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.sessionstorage.api
+package io.prism.android.libraries.sessionstorage.api
 
 // Imported from Element Android, to be able to migrate from EA to EXA.
 enum class LoginType {

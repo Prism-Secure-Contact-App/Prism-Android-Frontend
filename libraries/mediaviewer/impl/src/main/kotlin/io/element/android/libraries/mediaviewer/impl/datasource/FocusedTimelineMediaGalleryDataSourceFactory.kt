@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.datasource
+package io.prism.android.libraries.mediaviewer.impl.datasource
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
 
 fun interface FocusedTimelineMediaGalleryDataSourceFactory {
     fun createFor(

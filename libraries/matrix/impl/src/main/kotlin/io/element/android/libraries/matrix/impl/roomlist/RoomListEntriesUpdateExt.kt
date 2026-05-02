@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
 import io.prism.android.libraries.architecture.coverage.ExcludeFromCoverage
-import org.prism.rustcomponents.sdk.RoomListEntriesUpdate
+import org.matrix.rustcomponents.sdk.RoomListEntriesUpdate
 
 @Suppress("unused")
 @ExcludeFromCoverage

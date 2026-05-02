@@ -27,9 +27,9 @@ import io.prism.android.libraries.architecture.runUpdatingStateNoSuccess
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
 import io.prism.android.libraries.fullscreenintent.api.FullScreenIntentPermissionsState
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.notificationsettings.NotificationSettingsService
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.notificationsettings.NotificationSettingsService
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 import io.prism.android.libraries.push.api.PushService
 import io.prism.android.libraries.pushproviders.api.Distributor
 import io.prism.android.libraries.pushproviders.api.PushProvider
@@ -48,7 +48,7 @@ import kotlin.time.Duration.Companion.seconds
 class NotificationSettingsPresenter(
     private val notificationSettingsService: NotificationSettingsService,
     private val userPushStoreFactory: UserPushStoreFactory,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val pushService: PushService,
     private val systemNotificationsEnabledProvider: SystemNotificationsEnabledProvider,
     private val fullScreenIntentPermissionsPresenter: Presenter<FullScreenIntentPermissionsState>,
@@ -57,7 +57,7 @@ class NotificationSettingsPresenter(
 ) : Presenter<NotificationSettingsState> {
     @Composable
     override fun present(): NotificationSettingsState {
-        val userPushStore = remember { userPushStoreFactory.getOrCreate(prismClient.sessionId) }
+        val userPushStore = remember { userPushStoreFactory.getOrCreate(matrixClient.sessionId) }
         val systemNotificationsEnabled: MutableState<Boolean> = remember {
             mutableStateOf(systemNotificationsEnabledProvider.notificationsEnabled())
         }
@@ -98,8 +98,8 @@ class NotificationSettingsPresenter(
         var refreshPushProvider by remember { mutableIntStateOf(0) }
 
         LaunchedEffect(refreshPushProvider) {
-            val p = pushService.getCurrentPushProvider(prismClient.sessionId)
-            val distributor = p?.getCurrentDistributor(prismClient.sessionId)
+            val p = pushService.getCurrentPushProvider(matrixClient.sessionId)
+            val distributor = p?.getCurrentDistributor(matrixClient.sessionId)
             currentDistributor = if (distributor != null) {
                 AsyncData.Success(distributor)
             } else {
@@ -119,7 +119,7 @@ class NotificationSettingsPresenter(
             if (distributor == currentDistributor.dataOrNull()) return@launch
             currentDistributor = AsyncData.Loading(currentDistributor.dataOrNull())
             pushService.registerWith(
-                prismClient = prismClient,
+                matrixClient = matrixClient,
                 pushProvider = pushProvider,
                 distributor = distributor
             )
@@ -266,9 +266,9 @@ class NotificationSettingsPresenter(
     private fun CoroutineScope.setNotificationsEnabled(userPushStore: UserPushStore, enabled: Boolean) = launch {
         userPushStore.setNotificationEnabledForDevice(enabled)
         if (enabled) {
-            pushService.ensurePusherIsRegistered(prismClient)
+            pushService.ensurePusherIsRegistered(matrixClient)
         } else {
-            pushService.getCurrentPushProvider(prismClient.sessionId)?.unregister(prismClient)
+            pushService.getCurrentPushProvider(matrixClient.sessionId)?.unregister(matrixClient)
         }
     }
 }

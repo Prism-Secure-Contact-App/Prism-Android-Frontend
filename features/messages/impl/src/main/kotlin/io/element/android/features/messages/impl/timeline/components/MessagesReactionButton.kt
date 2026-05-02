@@ -51,8 +51,8 @@ import io.prism.android.libraries.designsystem.text.toDp
 import io.prism.android.libraries.designsystem.theme.components.Icon
 import io.prism.android.libraries.designsystem.theme.components.Surface
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.api.media.MediaSource
-import io.prism.android.libraries.prism.ui.media.MediaRequestData
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

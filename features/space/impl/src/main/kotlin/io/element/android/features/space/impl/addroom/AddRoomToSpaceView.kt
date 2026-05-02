@@ -45,9 +45,9 @@ import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
 import io.prism.android.libraries.designsystem.utils.OnVisibleRangeChangeEffect
-import io.prism.android.libraries.prism.ui.components.SelectedRoom
-import io.prism.android.libraries.prism.ui.model.SelectRoomInfo
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.components.SelectedRoom
+import io.prism.android.libraries.matrix.ui.model.SelectRoomInfo
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList

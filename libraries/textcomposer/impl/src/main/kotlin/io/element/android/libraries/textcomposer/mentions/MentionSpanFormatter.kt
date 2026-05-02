@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.mentions
+package io.prism.android.libraries.textcomposer.mentions
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.RoomIdOrAlias
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
-import io.element.android.libraries.matrix.ui.messages.RoomNamesCache
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.ui.messages.RoomMemberProfilesCache
+import io.prism.android.libraries.matrix.ui.messages.RoomNamesCache
 
 private const val EVERYONE_DISPLAY_TEXT = "@room"
 private const val BUBBLE_ICON = "\uD83D\uDCAC" // 💬

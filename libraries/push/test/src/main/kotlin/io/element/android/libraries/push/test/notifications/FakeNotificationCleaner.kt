@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.test.notifications
+package io.prism.android.libraries.push.test.notifications
 
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.ThreadId
-import io.element.android.libraries.push.api.notifications.NotificationCleaner
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.push.api.notifications.NotificationCleaner
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeNotificationCleaner(
     private val clearAllMessagesEventsLambda: (SessionId) -> Unit = { lambdaError() },

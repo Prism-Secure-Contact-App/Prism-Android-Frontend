@@ -14,10 +14,10 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.securebackup.impl.setup.views.RecoveryKeyUserStory
 import io.prism.android.features.securebackup.impl.setup.views.RecoveryKeyViewState
-import io.prism.android.libraries.prism.api.encryption.EnableRecoveryProgress
-import io.prism.android.libraries.prism.api.encryption.EncryptionService
-import io.prism.android.libraries.prism.test.A_RECOVERY_KEY
-import io.prism.android.libraries.prism.test.encryption.FakeEncryptionService
+import io.prism.android.libraries.matrix.api.encryption.EnableRecoveryProgress
+import io.prism.android.libraries.matrix.api.encryption.EncryptionService
+import io.prism.android.libraries.matrix.test.A_RECOVERY_KEY
+import io.prism.android.libraries.matrix.test.encryption.FakeEncryptionService
 import io.prism.android.tests.testutils.WarmUpRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule

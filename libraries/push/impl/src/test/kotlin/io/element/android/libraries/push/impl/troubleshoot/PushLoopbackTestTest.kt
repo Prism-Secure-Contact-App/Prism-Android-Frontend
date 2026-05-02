@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.troubleshoot
+package io.prism.android.libraries.push.impl.troubleshoot
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.test.AN_EXCEPTION
-import io.element.android.libraries.matrix.test.A_FAILURE_REASON
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.push.api.PushService
-import io.element.android.libraries.push.api.gateway.PushGatewayFailure
-import io.element.android.libraries.push.test.FakePushService
-import io.element.android.libraries.pushproviders.test.FakePushProvider
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.test.FakeNotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.test.runAndTestState
-import io.element.android.services.toolbox.api.strings.StringProvider
-import io.element.android.services.toolbox.api.systemclock.SystemClock
-import io.element.android.services.toolbox.test.strings.FakeStringProvider
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_FAILURE_REASON
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.push.api.PushService
+import io.prism.android.libraries.push.api.gateway.PushGatewayFailure
+import io.prism.android.libraries.push.test.FakePushService
+import io.prism.android.libraries.pushproviders.test.FakePushProvider
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.test.FakeNotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.test.runAndTestState
+import io.prism.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.toolbox.api.systemclock.SystemClock
+import io.prism.android.services.toolbox.test.strings.FakeStringProvider
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

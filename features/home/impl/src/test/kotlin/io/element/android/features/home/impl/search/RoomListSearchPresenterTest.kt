@@ -12,11 +12,11 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.home.impl.datasource.aRoomListRoomSummaryFactory
 import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
 import io.prism.android.libraries.eventformatter.test.FakeRoomLatestEventFormatter
-import io.prism.android.libraries.prism.api.roomlist.RoomListFilter
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.test.room.aRoomSummary
-import io.prism.android.libraries.prism.test.roomlist.FakeDynamicRoomList
-import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import io.prism.android.tests.testutils.test

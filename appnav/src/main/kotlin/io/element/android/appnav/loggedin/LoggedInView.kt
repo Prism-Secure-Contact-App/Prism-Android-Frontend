@@ -24,7 +24,7 @@ import io.prism.android.libraries.designsystem.components.dialogs.ErrorDialogWit
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.utils.OnLifecycleEvent
-import io.prism.android.libraries.prism.api.exception.isNetworkError
+import io.prism.android.libraries.matrix.api.exception.isNetworkError
 import io.prism.android.libraries.push.api.PusherRegistrationFailure
 import io.prism.android.libraries.ui.strings.CommonStrings
 

@@ -19,8 +19,8 @@ import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import io.prism.android.libraries.androidutils.diff.DiffCacheUpdater
 import io.prism.android.libraries.androidutils.diff.MutableListDiffCache
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow

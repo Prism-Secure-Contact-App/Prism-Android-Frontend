@@ -36,8 +36,8 @@ import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.designsystem.components.ProgressDialog
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.encryption.IdentityOidcResetHandle
-import io.prism.android.libraries.prism.api.encryption.IdentityPasswordResetHandle
+import io.prism.android.libraries.matrix.api.encryption.IdentityOidcResetHandle
+import io.prism.android.libraries.matrix.api.encryption.IdentityPasswordResetHandle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.first
@@ -54,7 +54,7 @@ class ResetIdentityFlowNode(
     @SessionCoroutineScope
     private val sessionCoroutineScope: CoroutineScope,
 ) : BaseFlowNode<ResetIdentityFlowNode.NavTarget>(
-    backstack = BackStack(initialPRISM = NavTarget.Root, savedStateMap = buildContext.savedStateMap),
+    backstack = BackStack(initialElement = NavTarget.Root, savedStateMap = buildContext.savedStateMap),
     buildContext = buildContext,
     plugins = plugins,
 ) {

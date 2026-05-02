@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.test
+package io.prism.android.libraries.pushproviders.test
 
-import io.element.android.libraries.pushproviders.api.Config
+import io.prism.android.libraries.pushproviders.api.Config
 
 fun aSessionPushConfig(
     url: String = "aUrl",

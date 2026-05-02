@@ -7,7 +7,7 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import io.element.android.annotations.ContributesNode
+import io.prism.android.annotations.ContributesNode
 import dev.zacsweers.metro.AppScope
 
 // CHANGE THE SCOPE

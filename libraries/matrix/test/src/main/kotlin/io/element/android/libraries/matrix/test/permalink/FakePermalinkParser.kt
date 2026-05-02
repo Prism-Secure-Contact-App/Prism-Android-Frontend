@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.permalink
+package io.prism.android.libraries.matrix.test.permalink
 
-import io.element.android.libraries.matrix.api.permalink.PermalinkData
-import io.element.android.libraries.matrix.api.permalink.PermalinkParser
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePermalinkParser(
     private var result: (String) -> PermalinkData = { lambdaError() }

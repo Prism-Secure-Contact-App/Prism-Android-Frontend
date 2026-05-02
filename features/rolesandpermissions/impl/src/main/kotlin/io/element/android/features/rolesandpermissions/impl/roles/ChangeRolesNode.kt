@@ -24,7 +24,7 @@ import io.prism.android.libraries.architecture.appyx.launchMolecule
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.core.bool.orFalse
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMember
 import kotlinx.coroutines.flow.first
 
 @ContributesNode(RoomScope::class)

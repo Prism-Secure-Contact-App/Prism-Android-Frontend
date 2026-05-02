@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.room.NotJoinedRoom
-import io.prism.android.libraries.prism.api.room.RoomMembershipDetails
-import io.prism.android.libraries.prism.api.room.preview.RoomPreviewInfo
-import io.prism.android.libraries.prism.impl.room.member.RoomMemberMapper
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.room.NotJoinedRoom
+import io.prism.android.libraries.matrix.api.room.RoomMembershipDetails
+import io.prism.android.libraries.matrix.api.room.preview.RoomPreviewInfo
+import io.prism.android.libraries.matrix.impl.room.member.RoomMemberMapper
 
 class NotJoinedRustRoom(
     private val sessionId: SessionId,

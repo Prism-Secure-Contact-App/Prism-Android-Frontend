@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.compose
+package io.prism.android.services.analytics.compose
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.noop.NoopAnalyticsService
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.noop.NoopAnalyticsService
 
 /**
  * Global key to access the [AnalyticsService] in the composition tree.

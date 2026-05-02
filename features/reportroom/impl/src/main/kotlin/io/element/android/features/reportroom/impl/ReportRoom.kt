@@ -10,8 +10,8 @@ package io.prism.android.features.reportroom.impl
 
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 interface ReportRoom {
     suspend operator fun invoke(

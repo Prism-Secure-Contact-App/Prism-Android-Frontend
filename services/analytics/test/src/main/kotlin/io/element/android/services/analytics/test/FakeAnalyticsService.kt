@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.test
+package io.prism.android.services.analytics.test
 
 import im.vector.app.features.analytics.itf.VectorAnalyticsEvent
 import im.vector.app.features.analytics.itf.VectorAnalyticsScreen
 import im.vector.app.features.analytics.plan.SuperProperties
 import im.vector.app.features.analytics.plan.UserProperties
-import io.element.android.services.analytics.api.AnalyticsLongRunningTransaction
-import io.element.android.services.analytics.api.AnalyticsSdkSpan
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.NoopAnalyticsSdkSpan
-import io.element.android.services.analytics.api.NoopAnalyticsTransaction
-import io.element.android.services.analyticsproviders.api.AnalyticsProvider
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction
+import io.prism.android.services.analytics.api.AnalyticsSdkSpan
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.NoopAnalyticsSdkSpan
+import io.prism.android.services.analytics.api.NoopAnalyticsTransaction
+import io.prism.android.services.analyticsproviders.api.AnalyticsProvider
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

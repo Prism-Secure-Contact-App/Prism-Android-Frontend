@@ -8,10 +8,10 @@
 
 package io.prism.android.features.invitepeople.impl
 
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 data class InvitableUser(
-    val prismUser: PRISMUser,
+    val matrixUser: PRISMUser,
     val isSelected: Boolean,
     val isAlreadyJoined: Boolean,
     val isAlreadyInvited: Boolean,

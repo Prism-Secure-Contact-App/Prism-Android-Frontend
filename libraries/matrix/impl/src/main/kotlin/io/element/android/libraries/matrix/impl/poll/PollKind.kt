@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.poll
+package io.prism.android.libraries.matrix.impl.poll
 
-import io.prism.android.libraries.prism.api.poll.PollKind
-import org.prism.rustcomponents.sdk.PollKind as RustPollKind
+import io.prism.android.libraries.matrix.api.poll.PollKind
+import org.matrix.rustcomponents.sdk.PollKind as RustPollKind
 
 fun RustPollKind.map(): PollKind = when (this) {
     RustPollKind.DISCLOSED -> PollKind.Disclosed

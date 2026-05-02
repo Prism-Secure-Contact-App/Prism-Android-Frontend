@@ -10,11 +10,11 @@ package io.prism.android.features.space.impl.root
 
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.room.RoomType
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_ROOM_ID_2
-import io.prism.android.libraries.prism.test.A_ROOM_ID_3
+import io.prism.android.libraries.matrix.api.room.RoomType
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_3
 import io.prism.android.libraries.previewutils.room.aSpaceRoom
 import org.junit.Test
 

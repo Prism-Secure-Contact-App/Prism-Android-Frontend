@@ -8,7 +8,7 @@
 
 package io.prism.android.features.roomdetails.impl.members
 
-import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.RoomMember
 
 sealed interface RoomMemberListEvent {
     data class ChangeSelectedSection(val section: SelectedSection) : RoomMemberListEvent

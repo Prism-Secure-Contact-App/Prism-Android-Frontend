@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.impl
+package io.prism.android.libraries.permissions.impl
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
@@ -27,12 +27,12 @@ import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.permissions.api.PermissionsEvent
-import io.element.android.libraries.permissions.api.PermissionsPresenter
-import io.element.android.libraries.permissions.api.PermissionsState
-import io.element.android.libraries.permissions.api.PermissionsStore
-import io.element.android.libraries.permissions.impl.action.PermissionActions
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.permissions.api.PermissionsEvent
+import io.prism.android.libraries.permissions.api.PermissionsPresenter
+import io.prism.android.libraries.permissions.api.PermissionsState
+import io.prism.android.libraries.permissions.api.PermissionsStore
+import io.prism.android.libraries.permissions.impl.action.PermissionActions
 import kotlinx.coroutines.launch
 import timber.log.Timber
 

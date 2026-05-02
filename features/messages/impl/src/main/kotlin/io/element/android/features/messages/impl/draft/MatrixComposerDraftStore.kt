@@ -9,10 +9,10 @@
 package io.prism.android.features.messages.impl.draft
 
 import dev.zacsweers.metro.Inject
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraft
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraft
 import timber.log.Timber
 
 /**

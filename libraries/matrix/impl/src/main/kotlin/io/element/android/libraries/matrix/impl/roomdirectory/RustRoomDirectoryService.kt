@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomdirectory
+package io.prism.android.libraries.matrix.impl.roomdirectory
 
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDirectoryList
-import io.prism.android.libraries.prism.api.roomdirectory.RoomDirectoryService
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryList
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import org.prism.rustcomponents.sdk.Client
+import org.matrix.rustcomponents.sdk.Client
 
 class RustRoomDirectoryService(
     private val client: Client,

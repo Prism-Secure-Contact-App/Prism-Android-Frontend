@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.room.errors.FocusEventException
-import org.prism.rustcomponents.sdk.FocusEventException as RustFocusEventException
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.room.errors.FocusEventException
+import org.matrix.rustcomponents.sdk.FocusEventException as RustFocusEventException
 
 fun Throwable.toFocusEventException(): Throwable {
     return when (this) {

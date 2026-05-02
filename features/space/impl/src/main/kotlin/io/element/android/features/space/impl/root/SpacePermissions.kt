@@ -9,8 +9,8 @@ package io.prism.android.features.space.impl.root
 
 import io.prism.android.features.space.impl.settings.SpaceSettingsPermissions
 import io.prism.android.features.space.impl.settings.spaceSettingsPermissions
-import io.prism.android.libraries.prism.api.room.StateEventType
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPermissions
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPermissions
 
 /**
  * Permissions needed for different actions in the Space screen.

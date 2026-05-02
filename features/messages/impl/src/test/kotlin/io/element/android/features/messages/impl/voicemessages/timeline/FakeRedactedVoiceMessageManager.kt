@@ -8,7 +8,7 @@
 
 package io.prism.android.features.messages.impl.voicemessages.timeline
 
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
 
 class FakeRedactedVoiceMessageManager : RedactedVoiceMessageManager {
     private val _invocations: MutableList<List<PRISMTimelineItem>> = mutableListOf()

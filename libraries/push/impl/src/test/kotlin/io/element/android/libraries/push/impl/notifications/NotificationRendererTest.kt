@@ -6,32 +6,32 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
-import io.element.android.features.enterprise.api.EnterpriseService
-import io.element.android.features.enterprise.test.FakeEnterpriseService
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.test.AN_EVENT_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_SESSION_ID
-import io.element.android.libraries.matrix.ui.media.test.FakeImageLoader
-import io.element.android.libraries.push.api.notifications.NotificationIdProvider
-import io.element.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationDataFactory
-import io.element.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
-import io.element.android.libraries.push.impl.notifications.fake.FakeRoomGroupMessageCreator
-import io.element.android.libraries.push.impl.notifications.fake.FakeSummaryGroupMessageCreator
-import io.element.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
-import io.element.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.aSimpleNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.fixtures.anInviteNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.features.enterprise.test.FakeEnterpriseService
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.AN_EVENT_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_SESSION_ID
+import io.prism.android.libraries.matrix.ui.media.test.FakeImageLoader
+import io.prism.android.libraries.push.api.notifications.NotificationIdProvider
+import io.prism.android.libraries.push.impl.notifications.fake.FakeActiveNotificationsProvider
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationDataFactory
+import io.prism.android.libraries.push.impl.notifications.fake.FakeNotificationDisplayer
+import io.prism.android.libraries.push.impl.notifications.fake.FakeRoomGroupMessageCreator
+import io.prism.android.libraries.push.impl.notifications.fake.FakeSummaryGroupMessageCreator
+import io.prism.android.libraries.push.impl.notifications.fixtures.A_NOTIFICATION
+import io.prism.android.libraries.push.impl.notifications.fixtures.aNotifiableMessageEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.aSimpleNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.fixtures.anInviteNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -110,7 +110,7 @@ class NotificationRendererTest {
 
     private suspend fun renderEventsAsNotifications(events: List<NotifiableEvent>) {
         notificationRenderer.render(
-            MatrixUser(A_SESSION_ID, MY_USER_DISPLAY_NAME, MY_USER_AVATAR_URL),
+            PRISMUser(A_SESSION_ID, MY_USER_DISPLAY_NAME, MY_USER_AVATAR_URL),
             useCompleteNotificationFormat = USE_COMPLETE_NOTIFICATION_FORMAT,
             eventsToProcess = events,
             imageLoader = FakeImageLoader(),

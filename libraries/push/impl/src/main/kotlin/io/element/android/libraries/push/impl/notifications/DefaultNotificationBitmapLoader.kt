@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import android.content.Context
 import android.content.res.Configuration
@@ -20,14 +20,14 @@ import coil3.toBitmap
 import coil3.transform.CircleCropTransformation
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.designsystem.components.avatar.AvatarData
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.matrix.ui.media.AVATAR_THUMBNAIL_SIZE_IN_PIXEL
-import io.element.android.libraries.matrix.ui.media.InitialsAvatarBitmapGenerator
-import io.element.android.libraries.matrix.ui.media.MediaRequestData
-import io.element.android.libraries.push.api.notifications.NotificationBitmapLoader
-import io.element.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
+import io.prism.android.libraries.designsystem.components.avatar.AvatarData
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.ui.media.AVATAR_THUMBNAIL_SIZE_IN_PIXEL
+import io.prism.android.libraries.matrix.ui.media.InitialsAvatarBitmapGenerator
+import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.push.api.notifications.NotificationBitmapLoader
+import io.prism.android.services.toolbox.api.sdk.BuildVersionSdkIntProvider
 import timber.log.Timber
 
 @ContributesBinding(AppScope::class)

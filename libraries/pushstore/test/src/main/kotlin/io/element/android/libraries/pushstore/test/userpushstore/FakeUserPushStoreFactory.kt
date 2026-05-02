@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushstore.test.userpushstore
+package io.prism.android.libraries.pushstore.test.userpushstore
 
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.pushstore.api.UserPushStore
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.pushstore.api.UserPushStore
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
 
 class FakeUserPushStoreFactory(
     val userPushStore: (SessionId) -> UserPushStore = { FakeUserPushStore() }

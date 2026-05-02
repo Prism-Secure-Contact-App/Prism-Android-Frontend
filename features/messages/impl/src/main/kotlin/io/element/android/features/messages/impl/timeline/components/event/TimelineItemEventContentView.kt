@@ -32,7 +32,7 @@ import io.prism.android.features.messages.impl.timeline.model.event.TimelineItem
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemVoiceContent
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.voiceplayer.api.VoiceMessageState
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 
 @Composable
 fun TimelineItemEventContentView(

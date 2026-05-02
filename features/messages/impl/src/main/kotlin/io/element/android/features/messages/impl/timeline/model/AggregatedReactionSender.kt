@@ -8,8 +8,8 @@
 
 package io.prism.android.features.messages.impl.timeline.model
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 data class AggregatedReactionSender(
     val senderId: UserId,

@@ -10,8 +10,8 @@ package io.prism.android.features.call.api
 
 import android.os.Parcelable
 import io.prism.android.libraries.architecture.NodeInputs
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
 import kotlinx.parcelize.Parcelize
 
 sealed interface CallType : NodeInputs, Parcelable {

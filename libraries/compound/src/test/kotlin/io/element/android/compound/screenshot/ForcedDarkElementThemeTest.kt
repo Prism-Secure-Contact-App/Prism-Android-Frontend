@@ -23,7 +23,7 @@ import com.github.takahirom.roborazzi.captureRoboImage
 import io.prism.android.compound.colors.SemanticColorsLightDark
 import io.prism.android.compound.screenshot.utils.screenshotFile
 import io.prism.android.compound.theme.PRISMTheme
-import io.prism.android.compound.theme.ForcedDarkPRISMTheme
+import io.prism.android.compound.theme.ForcedDarkElementTheme
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
@@ -31,11 +31,11 @@ import org.robolectric.annotation.GraphicsMode
 
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-class ForcedDarkPRISMThemeTest {
+class ForcedDarkElementThemeTest {
     @Test
     @Config(sdk = [35], qualifiers = "xxhdpi")
     fun screenshots() {
-        captureRoboImage(file = screenshotFile("ForcedDarkPRISMTheme.png")) {
+        captureRoboImage(file = screenshotFile("ForcedDarkElementTheme.png")) {
             PRISMTheme {
                 Surface {
                     Column(
@@ -44,12 +44,12 @@ class ForcedDarkPRISMThemeTest {
                         verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         Text(text = "Outside")
-                        ForcedDarkPRISMTheme(
+                        ForcedDarkElementTheme(
                             colors = SemanticColorsLightDark.default,
                         ) {
                             Surface {
                                 Box(modifier = Modifier.fillMaxSize()) {
-                                    Text(text = "Inside ForcedDarkPRISMTheme", modifier = Modifier.align(Alignment.Center))
+                                    Text(text = "Inside ForcedDarkElementTheme", modifier = Modifier.align(Alignment.Center))
                                 }
                             }
                         }

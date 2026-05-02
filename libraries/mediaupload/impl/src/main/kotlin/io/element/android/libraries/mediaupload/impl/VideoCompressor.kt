@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import android.content.Context
 import android.media.MediaCodecInfo
@@ -30,11 +30,11 @@ import androidx.media3.transformer.TransformationRequest
 import androidx.media3.transformer.Transformer
 import androidx.media3.transformer.VideoEncoderSettings
 import dev.zacsweers.metro.Inject
-import io.element.android.libraries.androidutils.file.createTmpFile
-import io.element.android.libraries.androidutils.file.safeDelete
-import io.element.android.libraries.core.extensions.runCatchingExceptions
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.libraries.androidutils.file.createTmpFile
+import io.prism.android.libraries.androidutils.file.safeDelete
+import io.prism.android.libraries.core.extensions.runCatchingExceptions
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay

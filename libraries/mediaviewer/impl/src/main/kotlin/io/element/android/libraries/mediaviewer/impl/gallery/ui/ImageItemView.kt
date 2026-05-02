@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery.ui
+package io.prism.android.libraries.mediaviewer.impl.gallery.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -25,12 +25,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
-import io.element.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.aMediaItemImage
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.libraries.designsystem.modifiers.onKeyboardContextMenuAction
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.aMediaItemImage
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 fun ImageItemView(
@@ -65,7 +65,7 @@ fun ImageItemView(
 
 @PreviewsDayNight
 @Composable
-internal fun ImageItemViewPreview() = ElementPreview {
+internal fun ImageItemViewPreview() = PRISMPreview {
     ImageItemView(
         image = aMediaItemImage(),
         onClick = {},

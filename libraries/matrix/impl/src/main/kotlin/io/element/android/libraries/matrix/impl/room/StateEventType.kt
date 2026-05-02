@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.room.StateEventType
-import org.prism.rustcomponents.sdk.StateEventType as RustStateEventType
+import io.prism.android.libraries.matrix.api.room.StateEventType
+import org.matrix.rustcomponents.sdk.StateEventType as RustStateEventType
 
 fun StateEventType.map(): RustStateEventType = when (this) {
     StateEventType.PolicyRuleRoom -> RustStateEventType.PolicyRuleRoom

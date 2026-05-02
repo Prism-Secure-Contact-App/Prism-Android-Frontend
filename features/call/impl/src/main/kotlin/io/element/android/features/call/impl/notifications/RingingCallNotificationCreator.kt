@@ -26,12 +26,12 @@ import io.prism.android.libraries.designsystem.components.avatar.AvatarData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
 import io.prism.android.libraries.designsystem.utils.CommonDrawables
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.PRISMClientProvider
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.ui.media.ImageLoaderHolder
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.ui.media.ImageLoaderHolder
 import io.prism.android.libraries.push.api.notifications.NotificationBitmapLoader
 import kotlin.time.Duration.Companion.seconds
 
@@ -71,8 +71,8 @@ class RingingCallNotificationCreator(
         textContent: String?,
         audioOnly: Boolean,
     ): Notification? {
-        val prismClient = prismClientProvider.getOrRestore(sessionId).getOrNull() ?: return null
-        val imageLoader = imageLoaderHolder.get(prismClient)
+        val matrixClient = prismClientProvider.getOrRestore(sessionId).getOrNull() ?: return null
+        val imageLoader = imageLoaderHolder.get(matrixClient)
         val userIcon = notificationBitmapLoader.getUserIcon(
             avatarData = AvatarData(
                 id = roomId.value,

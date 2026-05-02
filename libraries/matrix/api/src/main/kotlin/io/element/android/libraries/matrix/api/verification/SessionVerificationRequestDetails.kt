@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.verification
+package io.prism.android.libraries.matrix.api.verification
 
 import android.os.Parcelable
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.FlowId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.FlowId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

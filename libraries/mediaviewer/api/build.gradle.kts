@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
 }
 
 android {
-    namespace = "io.element.android.libraries.mediaviewer.api"
+    namespace = "io.prism.android.libraries.mediaviewer.api"
 }
 
 dependencies {

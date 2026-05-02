@@ -11,7 +11,7 @@ package io.prism.android.x.di
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.appnav.di.RoomGraphFactory
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 @ContributesBinding(SessionScope::class)
 class DefaultRoomGraphFactory(

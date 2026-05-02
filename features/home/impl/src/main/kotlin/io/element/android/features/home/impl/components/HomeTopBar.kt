@@ -64,11 +64,11 @@ import io.prism.android.libraries.designsystem.theme.components.Icon
 import io.prism.android.libraries.designsystem.theme.components.IconButton
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.api.core.SessionId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
-import io.prism.android.libraries.prism.ui.components.aPRISMUserList
-import io.prism.android.libraries.prism.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
 import io.prism.android.libraries.testtags.TestTags
 import io.prism.android.libraries.testtags.testTag
 import io.prism.android.libraries.ui.strings.CommonStrings
@@ -265,7 +265,7 @@ private fun NavigationIcon(
 ) {
     if (currentUserAndNeighbors.size == 1) {
         AccountIcon(
-            prismUser = currentUserAndNeighbors.single(),
+            matrixUser = currentUserAndNeighbors.single(),
             isCurrentAccount = true,
             showAvatarIndicator = showAvatarIndicator,
             onClick = onClick,
@@ -285,7 +285,7 @@ private fun NavigationIcon(
             modifier = Modifier.height(48.dp),
         ) { page ->
             AccountIcon(
-                prismUser = currentUserAndNeighbors[page],
+                matrixUser = currentUserAndNeighbors[page],
                 isCurrentAccount = page == 1,
                 showAvatarIndicator = page == 1 && showAvatarIndicator,
                 onClick = if (page == 1) {
@@ -300,7 +300,7 @@ private fun NavigationIcon(
 
 @Composable
 private fun AccountIcon(
-    prismUser: PRISMUser,
+    matrixUser: PRISMUser,
     isCurrentAccount: Boolean,
     showAvatarIndicator: Boolean,
     onClick: () -> Unit,
@@ -312,9 +312,9 @@ private fun AccountIcon(
         onClick = onClick,
     ) {
         Box {
-            val avatarData by remember(prismUser) {
+            val avatarData by remember(matrixUser) {
                 derivedStateOf {
-                    prismUser.getAvatarData(size = AvatarSize.CurrentUserTopBar)
+                    matrixUser.getAvatarData(size = AvatarSize.CurrentUserTopBar)
                 }
             }
             Avatar(
@@ -421,7 +421,7 @@ internal fun HomeTopBarWithIndicatorPreview() = PRISMPreview {
 internal fun HomeTopBarMultiAccountPreview() = PRISMPreview {
     HomeTopBar(
         selectedNavigationItem = HomeNavigationBarItem.Chats,
-        currentUserAndNeighbors = aPRISMUserList().take(3).toImmutableList(),
+        currentUserAndNeighbors = aMatrixUserList().take(3).toImmutableList(),
         showAvatarIndicator = false,
         areSearchResultsDisplayed = false,
         scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState()),

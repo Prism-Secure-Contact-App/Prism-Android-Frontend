@@ -19,9 +19,9 @@ import io.prism.android.features.messages.impl.timeline.model.event.aTimelineIte
 import io.prism.android.features.messages.impl.timeline.model.event.aTimelineItemTextContent
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.ui.messages.reply.InReplyToDetails
-import io.prism.android.libraries.prism.ui.messages.reply.InReplyToDetailsProvider
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetails
+import io.prism.android.libraries.matrix.ui.messages.reply.InReplyToDetailsProvider
 
 @PreviewsDayNight
 @Composable

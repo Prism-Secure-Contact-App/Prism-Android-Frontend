@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.model
+package io.prism.android.libraries.textcomposer.model
 
 import android.os.Parcelable
 import android.text.Spannable
@@ -21,15 +21,15 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.SaverScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import io.element.android.libraries.matrix.api.core.RoomIdOrAlias
-import io.element.android.libraries.matrix.api.core.toRoomIdOrAlias
-import io.element.android.libraries.matrix.api.permalink.PermalinkBuilder
-import io.element.android.libraries.matrix.api.room.IntentionalMention
-import io.element.android.libraries.textcomposer.components.markdown.StableCharSequence
-import io.element.android.libraries.textcomposer.mentions.MentionSpanProvider
-import io.element.android.libraries.textcomposer.mentions.MentionType
-import io.element.android.libraries.textcomposer.mentions.ResolvedSuggestion
-import io.element.android.libraries.textcomposer.mentions.getMentionSpans
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilder
+import io.prism.android.libraries.matrix.api.room.IntentionalMention
+import io.prism.android.libraries.textcomposer.components.markdown.StableCharSequence
+import io.prism.android.libraries.textcomposer.mentions.MentionSpanProvider
+import io.prism.android.libraries.textcomposer.mentions.MentionType
+import io.prism.android.libraries.textcomposer.mentions.ResolvedSuggestion
+import io.prism.android.libraries.textcomposer.mentions.getMentionSpans
 import kotlinx.parcelize.Parcelize
 
 @Stable

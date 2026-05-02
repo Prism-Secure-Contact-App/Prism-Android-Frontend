@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.usersearch.impl
+package io.prism.android.libraries.usersearch.impl
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.core.UserId
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_NAME
-import io.element.android.libraries.matrix.test.FakeMatrixClient
-import io.element.android.libraries.matrix.ui.components.aMatrixUserList
-import io.element.android.libraries.usersearch.api.UserSearchResult
-import io.element.android.libraries.usersearch.test.FakeUserListDataSource
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.matrix.test.FakeMatrixClient
+import io.prism.android.libraries.matrix.ui.components.aMatrixUserList
+import io.prism.android.libraries.usersearch.api.UserSearchResult
+import io.prism.android.libraries.usersearch.test.FakeUserListDataSource
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -112,7 +112,7 @@ internal class MatrixUserRepositoryTest {
 
     @Test
     fun `search - filters out results with the local user's mxid`() = runTest {
-        val searchResults = aMatrixUserList() + MatrixUser(userId = SESSION_ID, displayName = A_USER_NAME)
+        val searchResults = aMatrixUserList() + PRISMUser(userId = SESSION_ID, displayName = A_USER_NAME)
         val dataSource = FakeUserListDataSource()
         dataSource.givenSearchResult(searchResults)
         val repository = MatrixUserRepository(FakeMatrixClient(SESSION_ID), dataSource)
@@ -128,7 +128,7 @@ internal class MatrixUserRepositoryTest {
 
     @Test
     fun `search - does not change results if they contain searched mxid`() = runTest {
-        val searchResults = aMatrixUserListWithoutUserId(A_USER_ID) + MatrixUser(userId = A_USER_ID, displayName = A_USER_NAME)
+        val searchResults = aMatrixUserListWithoutUserId(A_USER_ID) + PRISMUser(userId = A_USER_ID, displayName = A_USER_NAME)
         val dataSource = FakeUserListDataSource()
         dataSource.givenSearchResult(searchResults)
         val repository = MatrixUserRepository(FakeMatrixClient(SESSION_ID), dataSource)
@@ -144,7 +144,7 @@ internal class MatrixUserRepositoryTest {
 
     @Test
     fun `search - gets profile results if searched mxid not in results`() = runTest {
-        val userProfile = MatrixUser(userId = A_USER_ID, displayName = A_USER_NAME)
+        val userProfile = PRISMUser(userId = A_USER_ID, displayName = A_USER_NAME)
         val searchResults = aMatrixUserListWithoutUserId(A_USER_ID)
 
         val dataSource = FakeUserListDataSource()
@@ -163,7 +163,7 @@ internal class MatrixUserRepositoryTest {
 
     @Test
     fun `search - doesn't add profile results if searched mxid is local user and not in results`() = runTest {
-        val userProfile = MatrixUser(userId = A_USER_ID, displayName = A_USER_NAME)
+        val userProfile = PRISMUser(userId = A_USER_ID, displayName = A_USER_NAME)
         val searchResults = aMatrixUserListWithoutUserId(SESSION_ID)
 
         val dataSource = FakeUserListDataSource()
@@ -200,7 +200,7 @@ internal class MatrixUserRepositoryTest {
 
     private fun aMatrixUserListWithoutUserId(userId: UserId) = aMatrixUserList().filterNot { it.userId == userId }
 
-    private fun List<MatrixUser>.toUserSearchResults() = map { UserSearchResult(it) }
+    private fun List<PRISMUser>.toUserSearchResults() = map { UserSearchResult(it) }
 
-    private fun placeholderResult(id: UserId = A_USER_ID, isUnresolved: Boolean = false) = UserSearchResult(MatrixUser(id), isUnresolved = isUnresolved)
+    private fun placeholderResult(id: UserId = A_USER_ID, isUnresolved: Boolean = false) = UserSearchResult(PRISMUser(id), isUnresolved = isUnresolved)
 }

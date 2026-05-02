@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.api.util
+package io.prism.android.libraries.mediaviewer.api.util
 
 interface FileExtensionExtractor {
     fun extractFromName(name: String): String

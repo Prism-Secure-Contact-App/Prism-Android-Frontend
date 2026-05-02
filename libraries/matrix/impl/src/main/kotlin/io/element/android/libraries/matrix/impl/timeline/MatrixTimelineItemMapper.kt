@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline
+package io.prism.android.libraries.matrix.impl.timeline
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UniqueId
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
-import io.prism.android.libraries.prism.impl.timeline.item.event.EventTimelineItemMapper
-import io.prism.android.libraries.prism.impl.timeline.item.virtual.VirtualTimelineItemMapper
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UniqueId
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.impl.timeline.item.event.EventTimelineItemMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.virtual.VirtualTimelineItemMapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.prism.rustcomponents.sdk.TimelineItem
+import org.matrix.rustcomponents.sdk.TimelineItem
 
 class PRISMTimelineItemMapper(
     private val fetchDetailsForEvent: suspend (EventId) -> Result<Unit>,

@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.tests.testutils.node
+package io.prism.android.tests.testutils.node
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.EmptyNodeView
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
-import io.element.android.libraries.architecture.AssistedNodeFactory
-import io.element.android.libraries.architecture.NodeFactoriesBindings
-import io.element.android.libraries.di.DependencyInjectionGraphOwner
+import io.prism.android.libraries.architecture.AssistedNodeFactory
+import io.prism.android.libraries.architecture.NodeFactoriesBindings
+import io.prism.android.libraries.di.DependencyInjectionGraphOwner
 import kotlin.reflect.KClass
 
 /**

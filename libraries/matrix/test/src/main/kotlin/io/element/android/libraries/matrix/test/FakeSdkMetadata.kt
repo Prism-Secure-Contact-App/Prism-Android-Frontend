@@ -6,8 +6,8 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test
+package io.prism.android.libraries.matrix.test
 
-import io.element.android.libraries.matrix.api.SdkMetadata
+import io.prism.android.libraries.matrix.api.SdkMetadata
 
 class FakeSdkMetadata(override val sdkGitSha: String) : SdkMetadata

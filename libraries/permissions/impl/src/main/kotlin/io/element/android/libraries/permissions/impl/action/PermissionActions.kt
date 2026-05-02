@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.permissions.impl.action
+package io.prism.android.libraries.permissions.impl.action
 
 interface PermissionActions {
     fun openSettings(permission: String)

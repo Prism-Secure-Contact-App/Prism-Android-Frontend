@@ -9,10 +9,10 @@
 package io.prism.android.features.messages.impl.draft
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraft
-import io.prism.android.libraries.prism.api.room.draft.ComposerDraftType
-import io.prism.android.libraries.prism.test.A_ROOM_ID
-import io.prism.android.libraries.prism.test.A_THREAD_ID
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraft
+import io.prism.android.libraries.matrix.api.room.draft.ComposerDraftType
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_THREAD_ID
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

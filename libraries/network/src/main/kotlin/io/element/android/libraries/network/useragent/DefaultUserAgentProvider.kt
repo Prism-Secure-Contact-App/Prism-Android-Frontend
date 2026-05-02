@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.network.useragent
+package io.prism.android.libraries.network.useragent
 
 import android.os.Build
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.matrix.api.SdkMetadata
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.matrix.api.SdkMetadata
 
 @SingleIn(AppScope::class)
 @ContributesBinding(AppScope::class)

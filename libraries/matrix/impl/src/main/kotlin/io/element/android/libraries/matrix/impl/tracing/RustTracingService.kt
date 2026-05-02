@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.tracing
+package io.prism.android.libraries.matrix.impl.tracing
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.data.ByteUnit
 import io.prism.android.libraries.core.data.megaBytes
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.prism.api.tracing.LogLevel
-import io.prism.android.libraries.prism.api.tracing.TracingConfiguration
-import io.prism.android.libraries.prism.api.tracing.TracingService
-import io.prism.android.libraries.prism.api.tracing.WriteToFilesConfiguration
-import org.prism.rustcomponents.sdk.SentryConfig
-import org.prism.rustcomponents.sdk.TracingFileConfiguration
-import org.prism.rustcomponents.sdk.reloadTracingFileWriter
+import io.prism.android.libraries.matrix.api.tracing.LogLevel
+import io.prism.android.libraries.matrix.api.tracing.TracingConfiguration
+import io.prism.android.libraries.matrix.api.tracing.TracingService
+import io.prism.android.libraries.matrix.api.tracing.WriteToFilesConfiguration
+import org.matrix.rustcomponents.sdk.SentryConfig
+import org.matrix.rustcomponents.sdk.TracingFileConfiguration
+import org.matrix.rustcomponents.sdk.reloadTracingFileWriter
 import timber.log.Timber
 
 @ContributesBinding(AppScope::class)
@@ -35,13 +35,13 @@ class RustTracingService(private val buildMeta: BuildMeta) : TracingService {
     }
 }
 
-private fun LogLevel.toRustLogLevel(): org.prism.rustcomponents.sdk.LogLevel {
+private fun LogLevel.toRustLogLevel(): org.matrix.rustcomponents.sdk.LogLevel {
     return when (this) {
-        LogLevel.ERROR -> org.prism.rustcomponents.sdk.LogLevel.ERROR
-        LogLevel.WARN -> org.prism.rustcomponents.sdk.LogLevel.WARN
-        LogLevel.INFO -> org.prism.rustcomponents.sdk.LogLevel.INFO
-        LogLevel.DEBUG -> org.prism.rustcomponents.sdk.LogLevel.DEBUG
-        LogLevel.TRACE -> org.prism.rustcomponents.sdk.LogLevel.TRACE
+        LogLevel.ERROR -> org.matrix.rustcomponents.sdk.LogLevel.ERROR
+        LogLevel.WARN -> org.matrix.rustcomponents.sdk.LogLevel.WARN
+        LogLevel.INFO -> org.matrix.rustcomponents.sdk.LogLevel.INFO
+        LogLevel.DEBUG -> org.matrix.rustcomponents.sdk.LogLevel.DEBUG
+        LogLevel.TRACE -> org.matrix.rustcomponents.sdk.LogLevel.TRACE
     }
 }
 
@@ -60,7 +60,7 @@ private fun WriteToFilesConfiguration.toTracingFileConfiguration(): TracingFileC
     }
 }
 
-fun TracingConfiguration.map(buildMeta: BuildMeta): org.prism.rustcomponents.sdk.TracingConfiguration = org.prism.rustcomponents.sdk.TracingConfiguration(
+fun TracingConfiguration.map(buildMeta: BuildMeta): org.matrix.rustcomponents.sdk.TracingConfiguration = org.matrix.rustcomponents.sdk.TracingConfiguration(
     writeToStdoutOrSystem = writesToLogcat,
     logLevel = logLevel.toRustLogLevel(),
     extraTargets = extraTargets,

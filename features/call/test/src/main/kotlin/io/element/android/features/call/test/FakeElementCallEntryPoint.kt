@@ -10,8 +10,8 @@ package io.prism.android.features.call.test
 
 import io.prism.android.features.call.api.CallType
 import io.prism.android.features.call.api.PRISMCallEntryPoint
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePRISMCallEntryPoint(

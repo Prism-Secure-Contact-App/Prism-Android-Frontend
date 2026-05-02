@@ -8,18 +8,18 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.libraries.matrix.impl.spaces
+package io.prism.android.libraries.matrix.impl.spaces
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.spaces.SpaceRoomList
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustSpaceRoom
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiSpaceRoomList
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID_2
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomList
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustSpaceRoom
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiSpaceRoomList
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runCurrent

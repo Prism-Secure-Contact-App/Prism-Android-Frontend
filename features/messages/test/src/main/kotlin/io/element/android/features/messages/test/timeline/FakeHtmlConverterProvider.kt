@@ -10,7 +10,7 @@ package io.prism.android.features.messages.test.timeline
 
 import androidx.compose.runtime.Composable
 import io.prism.android.features.messages.api.timeline.HtmlConverterProvider
-import io.prism.android.wysiwyg.utils.HtmlConverter
+import io.element.android.wysiwyg.utils.HtmlConverter
 import org.jsoup.nodes.Document
 
 class FakeHtmlConverterProvider(

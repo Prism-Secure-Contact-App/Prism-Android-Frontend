@@ -17,7 +17,7 @@ import io.prism.android.features.preferences.impl.DefaultCacheService
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.prism.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClient
 import io.prism.android.libraries.push.api.PushService
 import io.prism.android.services.appnavstate.api.ActiveRoomsHolder
 import kotlinx.coroutines.withContext
@@ -30,7 +30,7 @@ interface ClearCacheUseCase {
 @ContributesBinding(SessionScope::class)
 class DefaultClearCacheUseCase(
     @ApplicationContext private val context: Context,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val coroutineDispatchers: CoroutineDispatchers,
     private val defaultCacheService: DefaultCacheService,
     private val okHttpClient: Provider<OkHttpClient>,
@@ -40,9 +40,9 @@ class DefaultClearCacheUseCase(
 ) : ClearCacheUseCase {
     override suspend fun invoke() = withContext(coroutineDispatchers.io) {
         // Active rooms should be disposed of before clearing the cache
-        activeRoomsHolder.clear(prismClient.sessionId)
+        activeRoomsHolder.clear(matrixClient.sessionId)
         // Clear PRISM cache
-        prismClient.clearCache()
+        matrixClient.clearCache()
         // Clear Coil cache
         SingletonImageLoader.get(context).let {
             it.diskCache?.clear()
@@ -55,9 +55,9 @@ class DefaultClearCacheUseCase(
         // Clear some settings
         seenInvitesStore.clear()
         // Ensure any error will be displayed again
-        pushService.setIgnoreRegistrationError(prismClient.sessionId, false)
+        pushService.setIgnoreRegistrationError(matrixClient.sessionId, false)
         pushService.resetBatteryOptimizationState()
         // Ensure the app is restarted
-        defaultCacheService.onClearedCache(prismClient.sessionId)
+        defaultCacheService.onClearedCache(matrixClient.sessionId)
     }
 }

@@ -19,7 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumble.appyx.core.composable.PermanentChild
 import com.bumble.appyx.core.lifecycle.subscribe
 import com.bumble.appyx.core.modality.BuildContext
-import com.bumble.appyx.core.navigation.NavPRISMs
+import com.bumble.appyx.core.navigation.NavElements
 import com.bumble.appyx.core.navigation.NavKey
 import com.bumble.appyx.core.navigation.model.permanent.PermanentNavModel
 import com.bumble.appyx.core.node.Node
@@ -28,8 +28,8 @@ import com.bumble.appyx.navmodel.backstack.BackStack
 import com.bumble.appyx.navmodel.backstack.BackStack.State.ACTIVE
 import com.bumble.appyx.navmodel.backstack.BackStack.State.CREATED
 import com.bumble.appyx.navmodel.backstack.BackStack.State.STASHED
-import com.bumble.appyx.navmodel.backstack.BackStackPRISM
-import com.bumble.appyx.navmodel.backstack.BackStackPRISMs
+import com.bumble.appyx.navmodel.backstack.BackStackElement
+import com.bumble.appyx.navmodel.backstack.BackStackElements
 import com.bumble.appyx.navmodel.backstack.operation.BackStackOperation
 import com.bumble.appyx.navmodel.backstack.operation.Push
 import com.bumble.appyx.navmodel.backstack.operation.pop
@@ -77,17 +77,17 @@ import io.prism.android.libraries.designsystem.theme.PRISMThemeApp
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.sync.SyncService
-import io.prism.android.libraries.prism.api.verification.SessionVerificationServiceListener
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.sync.SyncService
+import io.prism.android.libraries.matrix.api.verification.SessionVerificationServiceListener
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.libraries.push.api.notifications.conversations.NotificationConversationService
 import io.prism.android.libraries.ui.common.nodes.emptyNode
@@ -110,7 +110,7 @@ import java.util.UUID
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.toKotlinDuration
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom as JoinedRoomAnalyticsEvent
+import im.vector.app.features.analytics.plan.JoinedRoom as JoinedRoomAnalyticsEvent
 
 // The maximum number of room nodes that should be kept in the backstack at the same time.
 // Having 5 rooms in the backstack seems reasonable and shouldn't grow the saved state size too much.
@@ -134,7 +134,7 @@ class LoggedInFlowNode(
     private val ftueService: FtueService,
     private val roomDirectoryEntryPoint: RoomDirectoryEntryPoint,
     private val shareEntryPoint: ShareEntryPoint,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val sendingQueue: SendQueues,
     private val incomingVerificationEntryPoint: IncomingVerificationEntryPoint,
     private val mediaPreviewConfigMigration: MediaPreviewConfigMigration,
@@ -151,7 +151,7 @@ class LoggedInFlowNode(
     private val createRoomEntryPoint: CreateRoomEntryPoint,
 ) : BaseFlowNode<LoggedInFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Placeholder,
+        initialElement = NavTarget.Placeholder,
         savedStateMap = buildContext.savedStateMap,
     ),
     permanentNavModel = PermanentNavModel(
@@ -169,7 +169,7 @@ class LoggedInFlowNode(
     private val callback: Callback = callback()
     private val loggedInFlowProcessor = LoggedInEventProcessor(
         snackbarDispatcher = snackbarDispatcher,
-        roomMembershipObserver = prismClient.roomMembershipObserver,
+        roomMembershipObserver = matrixClient.roomMembershipObserver,
     )
 
     private val verificationListener = object : SessionVerificationServiceListener {
@@ -195,7 +195,7 @@ class LoggedInFlowNode(
                 // Wait for the RoomList UI to be ready so the incoming verification screen can be displayed on top of it
                 // Otherwise, the RoomList UI may be incorrectly displayed on top
                 withTimeout(5.seconds) {
-                    backstack.prisms.first { prisms ->
+                    backstack.elements.first { prisms ->
                         prisms.any { it.key.navTarget == NavTarget.Home }
                     }
                 }
@@ -213,15 +213,15 @@ class LoggedInFlowNode(
         lifecycle.subscribe(
             onCreate = {
                 analyticsRoomListStateWatcher.start()
-                appNavigationStateService.onNavigateToSession(id, prismClient.sessionId)
+                appNavigationStateService.onNavigateToSession(id, matrixClient.sessionId)
                 loggedInFlowProcessor.observeEvents(sessionCoroutineScope)
-                prismClient.sessionVerificationService.setListener(verificationListener)
+                matrixClient.sessionVerificationService.setListener(verificationListener)
                 mediaPreviewConfigMigration()
 
                 sessionCoroutineScope.launch {
                     // Wait for the network to be connected before pre-fetching the max file upload size
                     networkMonitor.connectivity.first { networkStatus -> networkStatus == NetworkStatus.Connected }
-                    prismClient.getMaxFileUploadSize()
+                    matrixClient.getMaxFileUploadSize()
                 }
 
                 analyticsService.startLongRunningTransaction(AnalyticsLongRunningTransaction.FirstRoomsDisplayed)
@@ -238,14 +238,14 @@ class LoggedInFlowNode(
             },
             onResume = {
                 lifecycleScope.launch {
-                    val availableRoomIds = prismClient.getJoinedRoomIds().getOrNull() ?: return@launch
-                    notificationConversationService.onAvailableRoomsChanged(sessionId = prismClient.sessionId, roomIds = availableRoomIds)
+                    val availableRoomIds = matrixClient.getJoinedRoomIds().getOrNull() ?: return@launch
+                    notificationConversationService.onAvailableRoomsChanged(sessionId = matrixClient.sessionId, roomIds = availableRoomIds)
                 }
             },
             onDestroy = {
                 appNavigationStateService.onLeavingSession(id)
                 loggedInFlowProcessor.stopObserving()
-                prismClient.sessionVerificationService.setListener(null)
+                matrixClient.sessionVerificationService.setListener(null)
                 analyticsRoomListStateWatcher.stop()
             }
         )
@@ -272,7 +272,7 @@ class LoggedInFlowNode(
             val serverNames: List<String> = emptyList(),
             val trigger: JoinedRoomAnalyticsEvent.Trigger? = null,
             val roomDescription: RoomDescription? = null,
-            val initialPRISM: RoomNavigationTarget = RoomNavigationTarget.Root(),
+            val initialElement: RoomNavigationTarget = RoomNavigationTarget.Root(),
             val targetId: UUID = UUID.randomUUID(),
         ) : NavTarget
 
@@ -283,7 +283,7 @@ class LoggedInFlowNode(
 
         @Parcelize
         data class Settings(
-            val initialPRISM: PreferencesEntryPoint.InitialTarget = PreferencesEntryPoint.InitialTarget.Root
+            val initialElement: PreferencesEntryPoint.InitialTarget = PreferencesEntryPoint.InitialTarget.Root
         ) : NavTarget
 
         @Parcelize
@@ -294,7 +294,7 @@ class LoggedInFlowNode(
 
         @Parcelize
         data class SecureBackup(
-            val initialPRISM: SecureBackupEntryPoint.InitialTarget = SecureBackupEntryPoint.InitialTarget.Root
+            val initialElement: SecureBackupEntryPoint.InitialTarget = SecureBackupEntryPoint.InitialTarget.Root
         ) : NavTarget
 
         @Parcelize
@@ -330,7 +330,7 @@ class LoggedInFlowNode(
                         lifecycleScope.launch {
                             attachRoom(
                                 roomIdOrAlias = roomId.toRoomIdOrAlias(),
-                                initialPRISM = RoomNavigationTarget.Root(joinedRoom = joinedRoom),
+                                initialElement = RoomNavigationTarget.Root(joinedRoom = joinedRoom),
                                 clearBackstack = false,
                             )
                         }
@@ -349,18 +349,18 @@ class LoggedInFlowNode(
                     }
 
                     override fun navigateToSetUpRecovery() {
-                        backstack.push(NavTarget.SecureBackup(initialPRISM = SecureBackupEntryPoint.InitialTarget.Root))
+                        backstack.push(NavTarget.SecureBackup(initialElement = SecureBackupEntryPoint.InitialTarget.Root))
                     }
 
                     override fun navigateToEnterRecoveryKey() {
-                        backstack.push(NavTarget.SecureBackup(initialPRISM = SecureBackupEntryPoint.InitialTarget.EnterRecoveryKey))
+                        backstack.push(NavTarget.SecureBackup(initialElement = SecureBackupEntryPoint.InitialTarget.EnterRecoveryKey))
                     }
 
                     override fun navigateToRoomSettings(roomId: RoomId) {
                         lifecycleScope.launch {
                             attachRoom(
                                 roomIdOrAlias = roomId.toRoomIdOrAlias(),
-                                initialPRISM = RoomNavigationTarget.Details,
+                                initialElement = RoomNavigationTarget.Details,
                                 clearBackstack = false
                             )
                         }
@@ -397,7 +397,7 @@ class LoggedInFlowNode(
                                             roomIdOrAlias = data.roomIdOrAlias,
                                             serverNames = data.viaParameters,
                                             trigger = JoinedRoomAnalyticsEvent.Trigger.Timeline,
-                                            initialPRISM = RoomNavigationTarget.Root(data.eventId),
+                                            initialElement = RoomNavigationTarget.Root(data.eventId),
                                             clearBackstack = false
                                         )
                                     }
@@ -407,7 +407,7 @@ class LoggedInFlowNode(
                                             roomIdOrAlias = data.roomIdOrAlias,
                                             serverNames = data.viaParameters,
                                             trigger = JoinedRoomAnalyticsEvent.Trigger.Timeline,
-                                            initialPRISM = RoomNavigationTarget.Root(data.eventId),
+                                            initialElement = RoomNavigationTarget.Root(data.eventId),
                                         )
                                     )
                                 }
@@ -428,7 +428,7 @@ class LoggedInFlowNode(
                     roomDescription = Optional.ofNullable(navTarget.roomDescription),
                     serverNames = navTarget.serverNames,
                     trigger = Optional.ofNullable(navTarget.trigger),
-                    initialPRISM = navTarget.initialPRISM
+                    initialElement = navTarget.initialElement
                 )
                 createNode<RoomFlowNode>(buildContext, plugins = listOf(inputs, joinedRoomCallback))
             }
@@ -469,7 +469,7 @@ class LoggedInFlowNode(
                         lifecycleScope.launch {
                             attachRoom(
                                 roomIdOrAlias = roomId.toRoomIdOrAlias(),
-                                initialPRISM = RoomNavigationTarget.NotificationSettings,
+                                initialElement = RoomNavigationTarget.NotificationSettings,
                             )
                         }
                     }
@@ -478,13 +478,13 @@ class LoggedInFlowNode(
                         lifecycleScope.launch {
                             attachRoom(
                                 roomIdOrAlias = roomId.toRoomIdOrAlias(),
-                                initialPRISM = RoomNavigationTarget.Root(eventId),
+                                initialElement = RoomNavigationTarget.Root(eventId),
                                 clearBackstack = false
                             )
                         }
                     }
                 }
-                val inputs = PreferencesEntryPoint.Params(navTarget.initialPRISM)
+                val inputs = PreferencesEntryPoint.Params(navTarget.initialElement)
                 preferencesEntryPoint.createNode(
                     parentNode = this,
                     buildContext = buildContext,
@@ -530,7 +530,7 @@ class LoggedInFlowNode(
                 secureBackupEntryPoint.createNode(
                     parentNode = this,
                     buildContext = buildContext,
-                    params = SecureBackupEntryPoint.Params(initialPRISM = navTarget.initialPRISM),
+                    params = SecureBackupEntryPoint.Params(initialElement = navTarget.initialElement),
                     callback = object : SecureBackupEntryPoint.Callback {
                         override fun onDone() {
                             backstack.pop()
@@ -580,7 +580,7 @@ class LoggedInFlowNode(
                             roomIds.singleOrNull()?.let { roomId ->
                                 lifecycleScope.launch {
                                     // Wait until the incoming share screen is removed
-                                    backstack.prisms.first { it.lastOrNull()?.key?.navTarget !is NavTarget.IncomingShare }
+                                    backstack.elements.first { it.lastOrNull()?.key?.navTarget !is NavTarget.IncomingShare }
 
                                     // Then attach the room
                                     attachRoom(roomId.toRoomIdOrAlias(), clearBackstack = false)
@@ -610,7 +610,7 @@ class LoggedInFlowNode(
         serverNames: List<String> = emptyList(),
         trigger: JoinedRoomAnalyticsEvent.Trigger? = null,
         roomDescription: RoomDescription? = null,
-        initialPRISM: RoomNavigationTarget = RoomNavigationTarget.Root(),
+        initialElement: RoomNavigationTarget = RoomNavigationTarget.Root(),
         clearBackstack: Boolean = false,
     ): RoomFlowNode {
         waitForNavTargetAttached { navTarget ->
@@ -622,7 +622,7 @@ class LoggedInFlowNode(
                 serverNames = serverNames,
                 roomDescription = roomDescription,
                 trigger = trigger,
-                initialPRISM = initialPRISM,
+                initialElement = initialElement,
             )
             backstack.accept(AttachRoomOperation(roomNavTarget, clearBackstack))
         }
@@ -632,7 +632,7 @@ class LoggedInFlowNode(
         return waitForChildAttached<RoomFlowNode, NavTarget> {
             it is NavTarget.Room &&
                 it.roomIdOrAlias == roomIdOrAlias &&
-                it.initialPRISM == initialPRISM
+                it.initialElement == initialElement
         }
     }
 
@@ -663,7 +663,7 @@ class LoggedInFlowNode(
     @Composable
     override fun View(modifier: Modifier) {
         val colors by remember {
-            enterpriseService.semanticColorsFlow(sessionId = prismClient.sessionId)
+            enterpriseService.semanticColorsFlow(sessionId = matrixClient.sessionId)
         }.collectAsState(SemanticColorsLightDark.default)
         PRISMThemeApp(
             appPreferencesStore = appPreferencesStore,
@@ -702,9 +702,9 @@ private class AttachRoomOperation(
         return filterIndexed { index, _ -> index !in indicesToRemove }
     }
 
-    override fun isApplicable(prisms: NavPRISMs<LoggedInFlowNode.NavTarget, BackStack.State>) = true
+    override fun isApplicable(prisms: NavElements<LoggedInFlowNode.NavTarget, BackStack.State>) = true
 
-    override fun invoke(prisms: BackStackPRISMs<LoggedInFlowNode.NavTarget>): BackStackPRISMs<LoggedInFlowNode.NavTarget> {
+    override fun invoke(prisms: BackStackElements<LoggedInFlowNode.NavTarget>): BackStackElements<LoggedInFlowNode.NavTarget> {
         return if (clearBackstack) {
             // Makes sure the room list target is alone in the backstack and stashed
             prisms.mapNotNull { prism ->
@@ -713,7 +713,7 @@ private class AttachRoomOperation(
                 } else {
                     null
                 }
-            } + BackStackPRISM(
+            } + BackStackElement(
                 key = NavKey(roomTarget),
                 fromState = CREATED,
                 targetState = ACTIVE,
@@ -743,7 +743,7 @@ private class AttachRoomOperation(
                         prism.transitionTo(STASHED, this)
                     }
                 } + // Always create a new prism, otherwise we wouldn't be navigating to the target event id or child node
-                    BackStackPRISM(
+                    BackStackElement(
                     key = NavKey(roomTarget),
                     fromState = CREATED,
                     targetState = ACTIVE,

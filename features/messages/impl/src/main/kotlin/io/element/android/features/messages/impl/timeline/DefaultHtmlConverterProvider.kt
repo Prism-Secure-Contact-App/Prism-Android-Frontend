@@ -19,12 +19,12 @@ import dev.zacsweers.metro.SingleIn
 import io.prism.android.features.messages.api.timeline.HtmlConverterProvider
 import io.prism.android.libraries.core.bool.orFalse
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.textcomposer.PRISMRichTextEditorStyle
+import io.prism.android.libraries.textcomposer.ElementRichTextEditorStyle
 import io.prism.android.libraries.textcomposer.mentions.MentionSpanProvider
-import io.prism.android.wysiwyg.compose.StyledHtmlConverter
-import io.prism.android.wysiwyg.display.MentionDisplayHandler
-import io.prism.android.wysiwyg.display.TextDisplay
-import io.prism.android.wysiwyg.utils.HtmlConverter
+import io.element.android.wysiwyg.compose.StyledHtmlConverter
+import io.element.android.wysiwyg.display.MentionDisplayHandler
+import io.element.android.wysiwyg.display.TextDisplay
+import io.element.android.wysiwyg.utils.HtmlConverter
 import uniffi.wysiwyg_composer.newMentionDetector
 
 @ContributesBinding(RoomScope::class)
@@ -41,7 +41,7 @@ class DefaultHtmlConverterProvider(
             if (isInEditMode) null else newMentionDetector()
         }
 
-        val editorStyle = PRISMRichTextEditorStyle.textStyle()
+        val editorStyle = ElementRichTextEditorStyle.textStyle()
         val context = LocalContext.current
 
         htmlConverter.value = remember(editorStyle) {

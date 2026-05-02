@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.extensions.mapCatchingExceptions
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.mediaplayer.api.MediaPlayer
+import io.prism.android.libraries.core.extensions.mapCatchingExceptions
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.mediaplayer.api.MediaPlayer
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine

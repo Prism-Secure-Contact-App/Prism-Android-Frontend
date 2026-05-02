@@ -6,22 +6,22 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.wellknown.impl
+package io.prism.android.libraries.wellknown.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.androidutils.json.JsonProvider
-import io.element.android.libraries.core.extensions.mapCatchingExceptions
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.exception.ClientException
-import io.element.android.libraries.wellknown.api.ElementWellKnown
-import io.element.android.libraries.wellknown.api.SessionWellknownRetriever
-import io.element.android.libraries.wellknown.api.WellknownRetrieverResult
+import io.prism.android.libraries.androidutils.json.JsonProvider
+import io.prism.android.libraries.core.extensions.mapCatchingExceptions
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.exception.ClientException
+import io.prism.android.libraries.wellknown.api.ElementWellKnown
+import io.prism.android.libraries.wellknown.api.SessionWellknownRetriever
+import io.prism.android.libraries.wellknown.api.WellknownRetrieverResult
 import timber.log.Timber
 
 @ContributesBinding(SessionScope::class)
 class DefaultSessionWellknownRetriever(
-    private val matrixClient: MatrixClient,
+    private val matrixClient: PRISMClient,
     private val json: JsonProvider,
 ) : SessionWellknownRetriever {
     private val domain by lazy { matrixClient.userIdServerName() }

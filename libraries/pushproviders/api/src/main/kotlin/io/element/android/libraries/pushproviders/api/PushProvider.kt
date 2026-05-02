@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.api
+package io.prism.android.libraries.pushproviders.api
 
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 /**
  * This is the main API for this module.
@@ -38,7 +38,7 @@ interface PushProvider {
     /**
      * Register the pusher to the homeserver.
      */
-    suspend fun registerWith(matrixClient: MatrixClient, distributor: Distributor): Result<Unit>
+    suspend fun registerWith(matrixClient: PRISMClient, distributor: Distributor): Result<Unit>
 
     /**
      * Return the current distributor, or null if none.
@@ -53,7 +53,7 @@ interface PushProvider {
     /**
      * Unregister the pusher.
      */
-    suspend fun unregister(matrixClient: MatrixClient): Result<Unit>
+    suspend fun unregister(matrixClient: PRISMClient): Result<Unit>
 
     /**
      * To invoke when the session is deleted.

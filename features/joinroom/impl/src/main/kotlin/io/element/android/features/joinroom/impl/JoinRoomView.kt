@@ -74,11 +74,11 @@ import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TextField
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
 import io.prism.android.libraries.designsystem.theme.placeholderBackground
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.spaces.SpaceRoomVisibility
-import io.prism.android.libraries.prism.ui.components.SpaceInfoRow
-import io.prism.android.libraries.prism.ui.components.SpaceMembersView
-import io.prism.android.libraries.prism.ui.model.InviteSender
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomVisibility
+import io.prism.android.libraries.matrix.ui.components.SpaceInfoRow
+import io.prism.android.libraries.matrix.ui.components.SpaceMembersView
+import io.prism.android.libraries.matrix.ui.model.InviteSender
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.persistentListOf
 

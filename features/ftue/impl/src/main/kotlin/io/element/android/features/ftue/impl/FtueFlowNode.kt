@@ -17,6 +17,7 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import com.bumble.appyx.navmodel.backstack.BackStack
 import com.bumble.appyx.navmodel.backstack.operation.newRoot
+import com.bumble.appyx.navmodel.backstack.operation.pop
 import com.bumble.appyx.navmodel.backstack.operation.replace
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
@@ -27,6 +28,9 @@ import io.prism.android.features.ftue.impl.sessionverification.FtueSessionVerifi
 import io.prism.android.features.ftue.impl.state.DefaultFtueService
 import io.prism.android.features.ftue.impl.state.FtueStep
 import io.prism.android.features.ftue.impl.state.InternalFtueState
+import io.prism.android.features.ftue.impl.wizard.MetaBridgeNode
+import io.prism.android.features.ftue.impl.wizard.MoneroWalletNode
+import io.prism.android.features.ftue.impl.wizard.WhatsAppBridgeNode
 import io.prism.android.features.lockscreen.api.LockScreenEntryPoint
 import io.prism.android.libraries.architecture.BackstackView
 import io.prism.android.libraries.architecture.BaseFlowNode
@@ -48,7 +52,7 @@ class FtueFlowNode(
     private val lockScreenEntryPoint: LockScreenEntryPoint,
 ) : BaseFlowNode<FtueFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Placeholder,
+        initialElement = NavTarget.Placeholder,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,
@@ -69,6 +73,15 @@ class FtueFlowNode(
 
         @Parcelize
         data object LockScreenSetup : NavTarget
+
+        @Parcelize
+        data object WhatsAppBridgeSetup : NavTarget
+
+        @Parcelize
+        data object MetaBridgeSetup : NavTarget
+
+        @Parcelize
+        data object MoneroWalletSetup : NavTarget
     }
 
     override fun onBuilt() {
@@ -118,6 +131,27 @@ class FtueFlowNode(
                     callback = callback,
                 )
             }
+            NavTarget.WhatsAppBridgeSetup -> {
+                WhatsAppBridgeNode(
+                    buildContext = buildContext,
+                    ftueService = defaultFtueService,
+                    onBack = { backstack.pop() }
+                )
+            }
+            NavTarget.MetaBridgeSetup -> {
+                MetaBridgeNode(
+                    buildContext = buildContext,
+                    ftueService = defaultFtueService,
+                    onBack = { backstack.pop() }
+                )
+            }
+            NavTarget.MoneroWalletSetup -> {
+                MoneroWalletNode(
+                    buildContext = buildContext,
+                    ftueService = defaultFtueService,
+                    onBack = { backstack.pop() }
+                )
+            }
         }
     }
 
@@ -137,6 +171,15 @@ class FtueFlowNode(
             }
             FtueStep.LockscreenSetup -> {
                 backstack.newRoot(NavTarget.LockScreenSetup)
+            }
+            FtueStep.WhatsAppBridgeSetup -> {
+                backstack.newRoot(NavTarget.WhatsAppBridgeSetup)
+            }
+            FtueStep.MetaBridgeSetup -> {
+                backstack.newRoot(NavTarget.MetaBridgeSetup)
+            }
+            FtueStep.MoneroWalletSetup -> {
+                backstack.newRoot(NavTarget.MoneroWalletSetup)
             }
         }
     }

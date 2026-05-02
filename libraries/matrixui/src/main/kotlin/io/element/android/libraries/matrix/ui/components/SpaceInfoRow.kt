@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
@@ -23,16 +23,16 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Icon
-import io.element.android.libraries.matrix.api.spaces.SpaceRoomVisibility
-import io.element.android.libraries.matrix.ui.model.icon
-import io.element.android.libraries.matrix.ui.model.label
-import io.element.android.libraries.ui.strings.CommonPlurals
-import io.element.android.libraries.ui.strings.CommonStrings
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Icon
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoomVisibility
+import io.prism.android.libraries.matrix.ui.model.icon
+import io.prism.android.libraries.matrix.ui.model.label
+import io.prism.android.libraries.ui.strings.CommonPlurals
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable
 fun SpaceInfoRow(
@@ -51,7 +51,7 @@ fun SpaceInfoRow(
                 modifier = Modifier.size(16.dp),
                 imageVector = iconVector,
                 contentDescription = null,
-                tint = ElementTheme.colors.iconTertiary,
+                tint = PRISMTheme.colors.iconTertiary,
             )
         }
         val text = if (rightText != null) {
@@ -61,8 +61,8 @@ fun SpaceInfoRow(
         }
         Text(
             text = text,
-            style = ElementTheme.typography.fontBodyMdRegular,
-            color = ElementTheme.colors.textSecondary,
+            style = PRISMTheme.typography.fontBodyMdRegular,
+            color = PRISMTheme.colors.textSecondary,
             textAlign = TextAlign.Center,
         )
     }
@@ -95,7 +95,7 @@ fun numberOfSpaces(numberOfSpaces: Int): String {
 
 @PreviewsDayNight
 @Composable
-internal fun SpaceInfoRowPreview() = ElementPreview {
+internal fun SpaceInfoRowPreview() = PRISMPreview {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = spacedBy(4.dp),

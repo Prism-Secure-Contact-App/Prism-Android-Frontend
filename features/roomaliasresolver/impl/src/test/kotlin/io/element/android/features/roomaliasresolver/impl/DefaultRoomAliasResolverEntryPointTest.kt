@@ -12,8 +12,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.roomaliasesolver.api.RoomAliasResolverEntryPoint
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
-import io.prism.android.libraries.prism.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
 import io.prism.android.tests.testutils.lambda.lambdaError
 import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule

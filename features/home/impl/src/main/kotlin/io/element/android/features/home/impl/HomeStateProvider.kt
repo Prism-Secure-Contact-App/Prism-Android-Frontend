@@ -19,8 +19,8 @@ import io.prism.android.features.home.impl.spaces.aHomeSpacesState
 import io.prism.android.features.logout.api.direct.DirectLogoutState
 import io.prism.android.features.logout.api.direct.aDirectLogoutState
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarMessage
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.toImmutableList
 
@@ -54,8 +54,8 @@ open class HomeStateProvider : PreviewParameterProvider<HomeState> {
 }
 
 internal fun aHomeState(
-    prismUser: PRISMUser = PRISMUser(userId = UserId("@id:domain"), displayName = "User#1"),
-    currentUserAndNeighbors: List<PRISMUser> = listOf(prismUser),
+    matrixUser: PRISMUser = PRISMUser(userId = UserId("@id:domain"), displayName = "User#1"),
+    currentUserAndNeighbors: List<PRISMUser> = listOf(matrixUser),
     showAvatarIndicator: Boolean = false,
     hasNetworkConnection: Boolean = true,
     snackbarMessage: SnackbarMessage? = null,

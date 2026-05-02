@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.voiceplayer.impl
+package io.prism.android.libraries.voiceplayer.impl
 
 object VoicePlayerConfig {
     // Available playback speeds for voice messages, the first one is the default speed, and

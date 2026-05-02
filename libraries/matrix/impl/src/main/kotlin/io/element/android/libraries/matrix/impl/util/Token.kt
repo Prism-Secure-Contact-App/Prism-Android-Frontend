@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.util
+package io.prism.android.libraries.matrix.impl.util
 
 import io.prism.android.libraries.sessionstorage.api.SessionData
-import org.prism.rustcomponents.sdk.Session
+import org.matrix.rustcomponents.sdk.Session
 import java.security.MessageDigest
 
 private val sha256 by lazy { MessageDigest.getInstance("SHA-256") }

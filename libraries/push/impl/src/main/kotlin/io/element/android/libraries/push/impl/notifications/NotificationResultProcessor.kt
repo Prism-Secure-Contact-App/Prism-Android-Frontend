@@ -5,35 +5,35 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications
+package io.prism.android.libraries.push.impl.notifications
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.features.call.api.CallType
-import io.element.android.features.call.api.ElementCallEntryPoint
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.featureflag.api.FeatureFlagService
-import io.element.android.libraries.featureflag.api.FeatureFlags
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.matrix.api.core.SessionId
-import io.element.android.libraries.matrix.api.exception.NotificationResolverException
-import io.element.android.libraries.matrix.api.notification.CallIntent
-import io.element.android.libraries.push.impl.db.PushRequest
-import io.element.android.libraries.push.impl.history.PushHistoryService
-import io.element.android.libraries.push.impl.history.onSuccess
-import io.element.android.libraries.push.impl.history.onUnableToResolveEvent
-import io.element.android.libraries.push.impl.notifications.channels.NotificationChannels
-import io.element.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableEvent
-import io.element.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
-import io.element.android.libraries.push.impl.notifications.model.ResolvedPushEvent
-import io.element.android.libraries.push.impl.push.MutableBatteryOptimizationStore
-import io.element.android.libraries.push.impl.push.OnNotifiableEventReceived
-import io.element.android.libraries.push.impl.push.OnRedactedEventReceived
-import io.element.android.libraries.push.impl.push.SyncOnNotifiableEvent
-import io.element.android.libraries.pushstore.api.UserPushStoreFactory
+import io.prism.android.features.call.api.CallType
+import io.prism.android.features.call.api.PRISMCallEntryPoint
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.featureflag.api.FeatureFlagService
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.SessionId
+import io.prism.android.libraries.matrix.api.exception.NotificationResolverException
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.push.impl.history.PushHistoryService
+import io.prism.android.libraries.push.impl.history.onSuccess
+import io.prism.android.libraries.push.impl.history.onUnableToResolveEvent
+import io.prism.android.libraries.push.impl.notifications.channels.NotificationChannels
+import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableEvent
+import io.prism.android.libraries.push.impl.notifications.model.NotifiableRingingCallEvent
+import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
+import io.prism.android.libraries.push.impl.push.MutableBatteryOptimizationStore
+import io.prism.android.libraries.push.impl.push.OnNotifiableEventReceived
+import io.prism.android.libraries.push.impl.push.OnRedactedEventReceived
+import io.prism.android.libraries.push.impl.push.SyncOnNotifiableEvent
+import io.prism.android.libraries.pushstore.api.UserPushStoreFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -62,7 +62,7 @@ class DefaultNotificationResultProcessor(
     private val onNotifiableEventReceived: OnNotifiableEventReceived,
     private val featureFlagService: FeatureFlagService,
     private val syncOnNotifiableEvent: SyncOnNotifiableEvent,
-    private val elementCallEntryPoint: ElementCallEntryPoint,
+    private val elementCallEntryPoint: PRISMCallEntryPoint,
     private val notificationChannels: NotificationChannels,
     @AppCoroutineScope private val coroutineScope: CoroutineScope,
 ) : NotificationResultProcessor {

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.appnavstate.impl.di
+package io.prism.android.services.appnavstate.impl.di
 
 import android.content.Context
 import androidx.startup.AppInitializer
@@ -14,9 +14,9 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
-import io.element.android.libraries.di.annotations.ApplicationContext
-import io.element.android.services.appnavstate.api.AppForegroundStateService
-import io.element.android.services.appnavstate.impl.initializer.AppForegroundStateServiceInitializer
+import io.prism.android.libraries.di.annotations.ApplicationContext
+import io.prism.android.services.appnavstate.api.AppForegroundStateService
+import io.prism.android.services.appnavstate.impl.initializer.AppForegroundStateServiceInitializer
 
 @BindingContainer
 @ContributesTo(AppScope::class)

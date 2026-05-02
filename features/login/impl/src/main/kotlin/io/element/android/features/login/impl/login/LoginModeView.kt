@@ -23,8 +23,8 @@ import io.prism.android.libraries.designsystem.components.dialogs.ErrorDialog
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.LocalBuildMeta
-import io.prism.android.libraries.prism.api.auth.AuthenticationException
-import io.prism.android.libraries.prism.api.auth.OidcDetails
+import io.prism.android.libraries.matrix.api.auth.AuthenticationException
+import io.prism.android.libraries.matrix.api.auth.OidcDetails
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

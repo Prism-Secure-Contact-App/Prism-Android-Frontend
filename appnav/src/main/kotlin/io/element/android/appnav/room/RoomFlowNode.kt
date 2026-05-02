@@ -38,16 +38,16 @@ import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.architecture.inputs
 import io.prism.android.libraries.core.coroutine.withPreviousValue
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.RoomIdOrAlias
-import io.prism.android.libraries.prism.api.core.ThreadId
-import io.prism.android.libraries.prism.api.room.CurrentUserMembership
-import io.prism.android.libraries.prism.api.room.RoomMembershipObserver
-import io.prism.android.libraries.prism.api.room.alias.ResolvedRoomAlias
-import io.prism.android.libraries.prism.ui.room.LoadingRoomState
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.ThreadId
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
+import io.prism.android.libraries.matrix.api.room.RoomMembershipObserver
+import io.prism.android.libraries.matrix.api.room.alias.ResolvedRoomAlias
+import io.prism.android.libraries.matrix.ui.room.LoadingRoomState
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.LoadJoinedRoomFlow
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.NotificationToMessage
 import io.prism.android.services.analytics.api.AnalyticsLongRunningTransaction.OpenRoom
@@ -65,8 +65,8 @@ import kotlinx.parcelize.Parcelize
 import timber.log.Timber
 import java.util.Optional
 import kotlin.jvm.optionals.getOrNull
-import uk.fathertkt.prism.features.analytics.plan.JoinedRoom as JoinedRoomAnalyticsEvent
-import io.prism.android.libraries.prism.api.room.JoinedRoom as JoinedRoomInstance
+import im.vector.app.features.analytics.plan.JoinedRoom as JoinedRoomAnalyticsEvent
+import io.prism.android.libraries.matrix.api.room.JoinedRoom as JoinedRoomInstance
 
 @ContributesNode(SessionScope::class)
 @AssistedInject
@@ -80,8 +80,8 @@ class RoomFlowNode(
     private val analyticsService: AnalyticsService,
 ) : BaseFlowNode<RoomFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = run {
-            val joinedRoom = (plugins.filterIsInstance<Inputs>().first().initialPRISM as? RoomNavigationTarget.Root)?.joinedRoom
+        initialElement = run {
+            val joinedRoom = (plugins.filterIsInstance<Inputs>().first().initialElement as? RoomNavigationTarget.Root)?.joinedRoom
             if (joinedRoom != null) {
                 NavTarget.JoinedRoom(joinedRoom)
             } else {
@@ -98,7 +98,7 @@ class RoomFlowNode(
         val roomDescription: Optional<RoomDescription>,
         val serverNames: List<String>,
         val trigger: Optional<JoinedRoomAnalyticsEvent.Trigger>,
-        val initialPRISM: RoomNavigationTarget,
+        val initialElement: RoomNavigationTarget,
     ) : NodeInputs
 
     private val inputs: Inputs = inputs()
@@ -148,7 +148,7 @@ class RoomFlowNode(
     }
 
     private fun subscribeToRoomInfoFlow(roomId: RoomId, serverNames: List<String>) {
-        val joinedRoom = (inputs.initialPRISM as? RoomNavigationTarget.Root)?.joinedRoom
+        val joinedRoom = (inputs.initialElement as? RoomNavigationTarget.Root)?.joinedRoom
         val roomInfoFlow = joinedRoom?.roomInfoFlow?.map { Optional.of(it) }
             ?: client.getRoomInfoFlow(roomId)
 
@@ -235,7 +235,7 @@ class RoomFlowNode(
                 val roomFlowNodeCallback = plugins<JoinedRoomLoadedFlowNode.Callback>()
                 val inputs = JoinedRoomFlowNode.Inputs(
                     roomId = navTarget.roomId,
-                    initialPRISM = inputs.initialPRISM,
+                    initialElement = inputs.initialElement,
                     joinedRoom = navTarget.joinedRoom,
                 )
                 createNode<JoinedRoomFlowNode>(buildContext, plugins = listOf(inputs) + roomFlowNodeCallback)

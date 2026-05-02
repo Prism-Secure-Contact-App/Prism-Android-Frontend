@@ -11,8 +11,8 @@ package io.prism.android.features.reportroom.impl
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.reportroom.impl.fakes.FakeReportRoom
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
 import io.prism.android.tests.testutils.lambda.any
 import io.prism.android.tests.testutils.lambda.assert
 import io.prism.android.tests.testutils.lambda.lambdaRecorder

@@ -30,7 +30,7 @@ import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.TextButton
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressField
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressField
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

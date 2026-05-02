@@ -5,13 +5,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room
+package io.prism.android.libraries.matrix.impl.room
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.TransactionId
-import io.prism.android.libraries.prism.api.room.SendQueueUpdate
-import io.prism.android.libraries.prism.impl.media.map
-import org.prism.rustcomponents.sdk.RoomSendQueueUpdate
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.room.SendQueueUpdate
+import io.prism.android.libraries.matrix.impl.media.map
+import org.matrix.rustcomponents.sdk.RoomSendQueueUpdate
 
 fun RoomSendQueueUpdate.map(): SendQueueUpdate = when (this) {
     is RoomSendQueueUpdate.NewLocalEvent -> SendQueueUpdate.NewLocalEvent(TransactionId(transactionId))

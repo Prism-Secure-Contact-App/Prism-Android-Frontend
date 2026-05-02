@@ -24,9 +24,9 @@ import io.prism.android.libraries.designsystem.atomic.molecules.ComposerAlertLev
 import io.prism.android.libraries.designsystem.atomic.molecules.ComposerAlertMolecule
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.api.encryption.identity.isAViolation
-import io.prism.android.libraries.prism.ui.room.RoomMemberIdentityStateChange
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.encryption.identity.isAViolation
+import io.prism.android.libraries.matrix.ui.room.RoomMemberIdentityStateChange
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @Composable

@@ -8,7 +8,7 @@
 
 package io.prism.android.features.preferences.impl.blockedusers
 
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 
 sealed interface BlockedUsersEvents {
     data class Unblock(val userId: UserId) : BlockedUsersEvents

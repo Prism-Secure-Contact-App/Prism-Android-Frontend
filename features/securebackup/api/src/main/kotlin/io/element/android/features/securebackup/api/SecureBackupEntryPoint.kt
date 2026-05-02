@@ -31,7 +31,7 @@ interface SecureBackupEntryPoint : FeatureEntryPoint {
         data object ResetIdentity : InitialTarget
     }
 
-    data class Params(val initialPRISM: InitialTarget) : NodeInputs
+    data class Params(val initialElement: InitialTarget) : NodeInputs
 
     fun createNode(
         parentNode: Node,

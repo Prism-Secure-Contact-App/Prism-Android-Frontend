@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.media
+package io.prism.android.libraries.matrix.test.media
 
-import io.element.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.media.MediaSource
 
 fun aMediaSource(url: String = "") = MediaSource(
     url = url,

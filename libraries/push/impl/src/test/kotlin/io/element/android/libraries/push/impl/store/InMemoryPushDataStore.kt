@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.store
+package io.prism.android.libraries.push.impl.store
 
-import io.element.android.libraries.push.api.history.PushHistoryItem
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.push.api.history.PushHistoryItem
+import io.prism.android.tests.testutils.lambda.lambdaError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -11,7 +11,7 @@ package io.prism.android.libraries.featureflag.impl.di
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
-import dev.zacsweers.metro.PRISMsIntoSet
+import dev.zacsweers.metro.ElementsIntoSet
 import dev.zacsweers.metro.Provides
 import io.prism.android.libraries.featureflag.impl.FeatureFlagProvider
 import io.prism.android.libraries.featureflag.impl.PreferencesFeatureFlagProvider
@@ -21,7 +21,7 @@ import io.prism.android.libraries.featureflag.impl.PreferencesFeatureFlagProvide
 object FeatureFlagModule {
     @JvmStatic
     @Provides
-    @PRISMsIntoSet
+    @ElementsIntoSet
     fun providesFeatureFlagProvider(
         mutableFeatureFlagProvider: PreferencesFeatureFlagProvider,
     ): Set<FeatureFlagProvider> {

@@ -23,9 +23,9 @@ import io.prism.android.features.linknewdevice.impl.LinkNewMobileHandler
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.log.logger.LoggerTag
-import io.prism.android.libraries.prism.api.linknewdevice.CheckCodeSender
-import io.prism.android.libraries.prism.api.linknewdevice.LinkMobileStep
-import io.prism.android.libraries.prism.api.logs.LoggerTags
+import io.prism.android.libraries.matrix.api.linknewdevice.CheckCodeSender
+import io.prism.android.libraries.matrix.api.linknewdevice.LinkMobileStep
+import io.prism.android.libraries.matrix.api.logs.LoggerTags
 import kotlinx.coroutines.launch
 import timber.log.Timber
 

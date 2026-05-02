@@ -10,7 +10,7 @@ package io.prism.android.features.login.impl.login
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.login.impl.error.ChangeServerErrorProvider
-import io.prism.android.libraries.prism.api.auth.AuthenticationException
+import io.prism.android.libraries.matrix.api.auth.AuthenticationException
 
 class LoginModeViewErrorProvider : PreviewParameterProvider<Exception> {
     override val values: Sequence<Exception>

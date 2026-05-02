@@ -20,9 +20,9 @@ import app.cash.molecule.moleculeFlow
 import app.cash.turbine.TurbineTestContext
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.emojibasebindings.Emoji
-import io.prism.android.emojibasebindings.EmojibaseCategory
-import io.prism.android.emojibasebindings.EmojibaseStore
+import io.element.android.emojibasebindings.Emoji
+import io.element.android.emojibasebindings.EmojibaseCategory
+import io.element.android.emojibasebindings.EmojibaseStore
 import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.testCoroutineDispatchers

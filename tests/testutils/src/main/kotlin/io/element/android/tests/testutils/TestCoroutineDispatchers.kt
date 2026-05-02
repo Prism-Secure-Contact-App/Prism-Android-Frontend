@@ -8,9 +8,9 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.tests.testutils
+package io.prism.android.tests.testutils
 
-import io.element.android.libraries.core.coroutine.CoroutineDispatchers
+import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope

@@ -31,7 +31,7 @@ import io.prism.android.libraries.designsystem.components.blurhash.blurHashBackg
 import io.prism.android.libraries.designsystem.preview.PRISMPreview
 import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
 import io.prism.android.libraries.designsystem.theme.components.Text
-import io.prism.android.libraries.prism.ui.components.A_BLUR_HASH
+import io.prism.android.libraries.matrix.ui.components.A_BLUR_HASH
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @SuppressWarnings("ModifierClickableOrder")

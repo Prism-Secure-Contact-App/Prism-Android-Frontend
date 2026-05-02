@@ -12,7 +12,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.core.data.tryOrNull
 import io.prism.android.libraries.core.extensions.containsRtLOverride
-import io.prism.android.wysiwyg.link.Link
+import io.element.android.wysiwyg.link.Link
 import java.net.URI
 
 interface LinkChecker {

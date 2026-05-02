@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.gallery
+package io.prism.android.libraries.mediaviewer.impl.gallery
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -41,44 +41,44 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.compound.tokens.generated.CompoundIcons
-import io.element.android.libraries.architecture.AsyncData
-import io.element.android.libraries.architecture.Presenter
-import io.element.android.libraries.designsystem.atomic.molecules.IconTitleSubtitleMolecule
-import io.element.android.libraries.designsystem.background.OnboardingBackground
-import io.element.android.libraries.designsystem.components.BigIcon
-import io.element.android.libraries.designsystem.components.async.AsyncFailure
-import io.element.android.libraries.designsystem.components.button.BackButton
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.aliasScreenTitle
-import io.element.android.libraries.designsystem.theme.components.CircularProgressIndicator
-import io.element.android.libraries.designsystem.theme.components.LinearProgressIndicator
-import io.element.android.libraries.designsystem.theme.components.Scaffold
-import io.element.android.libraries.designsystem.theme.components.SegmentedButton
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.designsystem.theme.components.TopAppBar
-import io.element.android.libraries.designsystem.utils.snackbar.SnackbarHost
-import io.element.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
-import io.element.android.libraries.matrix.api.timeline.Timeline
-import io.element.android.libraries.mediaviewer.impl.R
-import io.element.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
-import io.element.android.libraries.mediaviewer.impl.details.MediaDeleteConfirmationBottomSheet
-import io.element.android.libraries.mediaviewer.impl.details.MediaDetailsBottomSheet
-import io.element.android.libraries.mediaviewer.impl.gallery.di.LocalMediaItemPresenterFactories
-import io.element.android.libraries.mediaviewer.impl.gallery.di.aFakeMediaItemPresenterFactories
-import io.element.android.libraries.mediaviewer.impl.gallery.di.rememberPresenter
-import io.element.android.libraries.mediaviewer.impl.gallery.ui.AudioItemView
-import io.element.android.libraries.mediaviewer.impl.gallery.ui.DateItemView
-import io.element.android.libraries.mediaviewer.impl.gallery.ui.FileItemView
-import io.element.android.libraries.mediaviewer.impl.gallery.ui.ImageItemView
-import io.element.android.libraries.mediaviewer.impl.gallery.ui.VideoItemView
-import io.element.android.libraries.mediaviewer.impl.gallery.ui.VoiceItemView
-import io.element.android.libraries.mediaviewer.impl.model.GroupedMediaItems
-import io.element.android.libraries.mediaviewer.impl.model.MediaItem
-import io.element.android.libraries.mediaviewer.impl.model.id
-import io.element.android.libraries.voiceplayer.api.VoiceMessageState
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.designsystem.atomic.molecules.IconTitleSubtitleMolecule
+import io.prism.android.libraries.designsystem.background.OnboardingBackground
+import io.prism.android.libraries.designsystem.components.BigIcon
+import io.prism.android.libraries.designsystem.components.async.AsyncFailure
+import io.prism.android.libraries.designsystem.components.button.BackButton
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.aliasScreenTitle
+import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
+import io.prism.android.libraries.designsystem.theme.components.LinearProgressIndicator
+import io.prism.android.libraries.designsystem.theme.components.Scaffold
+import io.prism.android.libraries.designsystem.theme.components.SegmentedButton
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.designsystem.theme.components.TopAppBar
+import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarHost
+import io.prism.android.libraries.designsystem.utils.snackbar.rememberSnackbarHostState
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.mediaviewer.impl.R
+import io.prism.android.libraries.mediaviewer.impl.details.MediaBottomSheetState
+import io.prism.android.libraries.mediaviewer.impl.details.MediaDeleteConfirmationBottomSheet
+import io.prism.android.libraries.mediaviewer.impl.details.MediaDetailsBottomSheet
+import io.prism.android.libraries.mediaviewer.impl.gallery.di.LocalMediaItemPresenterFactories
+import io.prism.android.libraries.mediaviewer.impl.gallery.di.aFakeMediaItemPresenterFactories
+import io.prism.android.libraries.mediaviewer.impl.gallery.di.rememberPresenter
+import io.prism.android.libraries.mediaviewer.impl.gallery.ui.AudioItemView
+import io.prism.android.libraries.mediaviewer.impl.gallery.ui.DateItemView
+import io.prism.android.libraries.mediaviewer.impl.gallery.ui.FileItemView
+import io.prism.android.libraries.mediaviewer.impl.gallery.ui.ImageItemView
+import io.prism.android.libraries.mediaviewer.impl.gallery.ui.VideoItemView
+import io.prism.android.libraries.mediaviewer.impl.gallery.ui.VoiceItemView
+import io.prism.android.libraries.mediaviewer.impl.model.GroupedMediaItems
+import io.prism.android.libraries.mediaviewer.impl.model.MediaItem
+import io.prism.android.libraries.mediaviewer.impl.model.id
+import io.prism.android.libraries.voiceplayer.api.VoiceMessageState
 import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -102,7 +102,7 @@ fun MediaGalleryView(
                             heading()
                         },
                         text = state.roomName,
-                        style = ElementTheme.typography.aliasScreenTitle,
+                        style = PRISMTheme.typography.aliasScreenTitle,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -521,7 +521,7 @@ private fun LoadingContent(
 @Composable
 internal fun MediaGalleryViewPreview(
     @PreviewParameter(MediaGalleryStateProvider::class) state: MediaGalleryState
-) = ElementPreview {
+) = PRISMPreview {
     CompositionLocalProvider(
         LocalMediaItemPresenterFactories provides aFakeMediaItemPresenterFactories(),
     ) {

@@ -5,12 +5,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.linknewdevice
+package io.prism.android.libraries.matrix.impl.linknewdevice
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiCheckCodeSender
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiCheckCodeSender
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

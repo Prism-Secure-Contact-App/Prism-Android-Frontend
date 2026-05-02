@@ -41,9 +41,9 @@ import io.prism.android.libraries.architecture.appyx.canPop
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.libraries.troubleshoot.api.NotificationTroubleShootEntryPoint
 import io.prism.android.libraries.troubleshoot.api.PushHistoryEntryPoint
 import kotlinx.parcelize.Parcelize
@@ -61,7 +61,7 @@ class PreferencesFlowNode(
     private val accountDeactivationEntryPoint: AccountDeactivationEntryPoint,
 ) : BaseFlowNode<PreferencesFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = plugins.filterIsInstance<PreferencesEntryPoint.Params>().first().initialPRISM.toNavTarget(),
+        initialElement = plugins.filterIsInstance<PreferencesEntryPoint.Params>().first().initialElement.toNavTarget(),
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,
@@ -102,7 +102,7 @@ class PreferencesFlowNode(
         data class EditDefaultNotificationSetting(val isOneToOne: Boolean) : NavTarget
 
         @Parcelize
-        data class UserProfile(val prismUser: PRISMUser) : NavTarget
+        data class UserProfile(val matrixUser: PRISMUser) : NavTarget
 
         @Parcelize
         data object BlockedUsers : NavTarget
@@ -167,8 +167,8 @@ class PreferencesFlowNode(
                         callback.navigateToLinkNewDevice()
                     }
 
-                    override fun navigateToUserProfile(prismUser: PRISMUser) {
-                        backstack.push(NavTarget.UserProfile(prismUser))
+                    override fun navigateToUserProfile(matrixUser: PRISMUser) {
+                        backstack.push(NavTarget.UserProfile(matrixUser))
                     }
 
                     override fun navigateToBlockedUsers() {
@@ -279,7 +279,7 @@ class PreferencesFlowNode(
                 createNode<AdvancedSettingsNode>(buildContext)
             }
             is NavTarget.UserProfile -> {
-                val inputs = EditUserProfileNode.Inputs(navTarget.prismUser)
+                val inputs = EditUserProfileNode.Inputs(navTarget.matrixUser)
                 val callback = object : EditUserProfileNode.Callback {
                     override fun onDone() {
                         backstack.pop()

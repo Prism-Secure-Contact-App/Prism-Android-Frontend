@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.room.powerlevels
+package io.prism.android.libraries.matrix.impl.room.powerlevels
 
-import io.prism.android.libraries.prism.api.room.RoomMember
-import io.prism.android.libraries.prism.api.room.powerlevels.RoomPowerLevelsValues
-import org.prism.rustcomponents.sdk.PowerLevel
-import org.prism.rustcomponents.sdk.RoomPowerLevelsValues as RustRoomPowerLevelsValues
+import io.prism.android.libraries.matrix.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.room.powerlevels.RoomPowerLevelsValues
+import org.matrix.rustcomponents.sdk.PowerLevel
+import org.matrix.rustcomponents.sdk.RoomPowerLevelsValues as RustRoomPowerLevelsValues
 
 object RoomPowerLevelsValuesMapper {
     fun map(values: RustRoomPowerLevelsValues): RoomPowerLevelsValues {

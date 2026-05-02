@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.detektrules
+package io.prism.android.detektrules
 
 import io.github.detekt.psi.fileName
 import io.gitlab.arturbosch.detekt.api.CodeSmell

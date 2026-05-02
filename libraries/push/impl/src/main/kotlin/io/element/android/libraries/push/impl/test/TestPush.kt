@@ -6,15 +6,15 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.test
+package io.prism.android.libraries.push.impl.test
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.appconfig.PushConfig
-import io.element.android.libraries.matrix.api.core.EventId
-import io.element.android.libraries.matrix.api.core.RoomId
-import io.element.android.libraries.push.impl.pushgateway.PushGatewayNotifyRequest
-import io.element.android.libraries.pushproviders.api.Config
+import io.prism.android.appconfig.PushConfig
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.push.impl.pushgateway.PushGatewayNotifyRequest
+import io.prism.android.libraries.pushproviders.api.Config
 
 interface TestPush {
     suspend fun execute(config: Config)

@@ -9,8 +9,8 @@
 package io.prism.android.features.startchat.api
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 data class ConfirmingStartDmWithPRISMUser(
-    val prismUser: PRISMUser,
+    val matrixUser: PRISMUser,
 ) : AsyncAction.Confirming

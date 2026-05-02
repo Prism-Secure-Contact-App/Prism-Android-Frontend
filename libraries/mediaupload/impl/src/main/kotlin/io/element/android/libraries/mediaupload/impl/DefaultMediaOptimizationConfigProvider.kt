@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.featureflag.api.FeatureFlagService
-import io.element.android.libraries.featureflag.api.FeatureFlags
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
-import io.element.android.libraries.preferences.api.store.SessionPreferencesStore
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.featureflag.api.FeatureFlagService
+import io.prism.android.libraries.featureflag.api.FeatureFlags
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
 import kotlinx.coroutines.flow.first
 
 @ContributesBinding(SessionScope::class)

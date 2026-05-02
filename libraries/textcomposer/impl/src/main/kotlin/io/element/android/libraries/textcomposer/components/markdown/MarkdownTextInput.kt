@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.textcomposer.components.markdown
+package io.prism.android.libraries.textcomposer.components.markdown
 
 import android.content.ClipData
 import android.content.res.ColorStateList
@@ -29,17 +29,17 @@ import androidx.core.view.OnReceiveContentListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.setPadding
 import androidx.core.widget.addTextChangedListener
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.testtags.TestTags
-import io.element.android.libraries.textcomposer.ElementRichTextEditorStyle
-import io.element.android.libraries.textcomposer.mentions.LocalMentionSpanUpdater
-import io.element.android.libraries.textcomposer.mentions.MentionSpan
-import io.element.android.libraries.textcomposer.model.MarkdownTextEditorState
-import io.element.android.libraries.textcomposer.model.Suggestion
-import io.element.android.libraries.textcomposer.model.SuggestionType
-import io.element.android.libraries.textcomposer.model.aMarkdownTextEditorState
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.testtags.TestTags
+import io.prism.android.libraries.textcomposer.ElementRichTextEditorStyle
+import io.prism.android.libraries.textcomposer.mentions.LocalMentionSpanUpdater
+import io.prism.android.libraries.textcomposer.mentions.MentionSpan
+import io.prism.android.libraries.textcomposer.model.MarkdownTextEditorState
+import io.prism.android.libraries.textcomposer.model.Suggestion
+import io.prism.android.libraries.textcomposer.model.SuggestionType
+import io.prism.android.libraries.textcomposer.model.aMarkdownTextEditorState
 import io.element.android.wysiwyg.compose.RichTextEditorStyle
 import io.element.android.wysiwyg.compose.internal.applyStyleInCompose
 import timber.log.Timber
@@ -201,12 +201,12 @@ private fun Editable.checkSuggestionNeeded(): Suggestion? {
 @PreviewsDayNight
 @Composable
 internal fun MarkdownTextInputPreview() {
-    ElementPreview {
+    PRISMPreview {
         val style = ElementRichTextEditorStyle.composerStyle(hasFocus = true)
         MarkdownTextInput(
             state = aMarkdownTextEditorState(initialText = "Hello, World!"),
             placeholder = "Placeholder",
-            placeholderColor = ElementTheme.colors.textSecondary,
+            placeholderColor = PRISMTheme.colors.textSecondary,
             onTyping = {},
             onReceiveSuggestion = {},
             richTextEditorStyle = style,

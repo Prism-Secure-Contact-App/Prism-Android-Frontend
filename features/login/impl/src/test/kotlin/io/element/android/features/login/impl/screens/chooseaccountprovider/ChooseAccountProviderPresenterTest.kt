@@ -16,10 +16,10 @@ import io.prism.android.features.login.impl.login.LoginHelper
 import io.prism.android.features.login.impl.screens.onboarding.createLoginHelper
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.core.uri.ensureProtocol
-import io.prism.android.libraries.prism.test.AN_ACCOUNT_PROVIDER_2
-import io.prism.android.libraries.prism.test.AN_ACCOUNT_PROVIDER_3
-import io.prism.android.libraries.prism.test.AN_EXCEPTION
-import io.prism.android.libraries.prism.test.auth.FakePRISMAuthenticationService
+import io.prism.android.libraries.matrix.test.AN_ACCOUNT_PROVIDER_2
+import io.prism.android.libraries.matrix.test.AN_ACCOUNT_PROVIDER_3
+import io.prism.android.libraries.matrix.test.AN_EXCEPTION
+import io.prism.android.libraries.matrix.test.auth.FakePRISMAuthenticationService
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.runTest

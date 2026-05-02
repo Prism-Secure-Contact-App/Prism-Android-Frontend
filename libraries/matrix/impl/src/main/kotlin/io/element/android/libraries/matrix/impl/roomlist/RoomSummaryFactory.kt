@@ -6,18 +6,18 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.roomlist
+package io.prism.android.libraries.matrix.impl.roomlist
 
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.roomlist.LatestEventValue
-import io.prism.android.libraries.prism.api.roomlist.RoomSummary
-import io.prism.android.libraries.prism.impl.room.RoomInfoMapper
-import io.prism.android.libraries.prism.impl.timeline.item.event.TimelineEventContentMapper
-import io.prism.android.libraries.prism.impl.timeline.item.event.map
-import org.prism.rustcomponents.sdk.Room
-import org.prism.rustcomponents.sdk.use
-import uniffi.prism_sdk_ui.LatestEventValueLocalState
-import org.prism.rustcomponents.sdk.LatestEventValue as RustLatestEventValue
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.roomlist.LatestEventValue
+import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
+import io.prism.android.libraries.matrix.impl.room.RoomInfoMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.event.TimelineEventContentMapper
+import io.prism.android.libraries.matrix.impl.timeline.item.event.map
+import org.matrix.rustcomponents.sdk.Room
+import org.matrix.rustcomponents.sdk.use
+import uniffi.matrix_sdk_ui.LatestEventValueLocalState
+import org.matrix.rustcomponents.sdk.LatestEventValue as RustLatestEventValue
 
 class RoomSummaryFactory(
     private val contentMapper: TimelineEventContentMapper = TimelineEventContentMapper(),

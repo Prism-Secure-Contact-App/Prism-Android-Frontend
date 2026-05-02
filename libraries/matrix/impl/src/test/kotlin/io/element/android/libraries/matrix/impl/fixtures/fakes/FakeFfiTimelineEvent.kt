@@ -6,11 +6,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.fixtures.fakes
+package io.prism.android.libraries.matrix.impl.fixtures.fakes
 
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustTimelineEventContentMessageLike
-import io.element.android.libraries.matrix.test.A_USER_ID_2
-import io.element.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustTimelineEventContentMessageLike
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
 import org.matrix.rustcomponents.sdk.NoHandle
 import org.matrix.rustcomponents.sdk.TimelineEvent
 import org.matrix.rustcomponents.sdk.TimelineEventContent

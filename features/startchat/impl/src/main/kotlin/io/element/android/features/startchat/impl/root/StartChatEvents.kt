@@ -8,9 +8,9 @@
 
 package io.prism.android.features.startchat.impl.root
 
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 sealed interface StartChatEvents {
-    data class StartDM(val prismUser: PRISMUser) : StartChatEvents
+    data class StartDM(val matrixUser: PRISMUser) : StartChatEvents
     data object CancelStartDM : StartChatEvents
 }

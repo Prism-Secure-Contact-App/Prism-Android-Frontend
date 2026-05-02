@@ -8,9 +8,9 @@
 
 package io.prism.android.features.poll.api.pollcontent
 
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.poll.PollAnswer
-import io.prism.android.libraries.prism.api.poll.PollKind
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.poll.PollAnswer
+import io.prism.android.libraries.matrix.api.poll.PollKind
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

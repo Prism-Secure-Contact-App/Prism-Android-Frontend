@@ -12,7 +12,7 @@ import androidx.compose.ui.text.AnnotatedString
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.eventformatter.api.PinnedMessagesBannerFormatter
-import io.prism.android.libraries.prism.api.timeline.PRISMTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.PRISMTimelineItem
 import kotlinx.coroutines.withContext
 
 @Inject

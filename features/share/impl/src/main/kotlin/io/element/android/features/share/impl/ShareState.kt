@@ -9,7 +9,7 @@
 package io.prism.android.features.share.impl
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 data class ShareState(
     val shareAction: AsyncAction<List<RoomId>>,

@@ -13,11 +13,11 @@ import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.home.impl.FakeDateTimeObserver
 import io.prism.android.libraries.androidutils.system.DateTimeObserver
 import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
-import io.prism.android.libraries.prism.api.roomlist.RoomListService
-import io.prism.android.libraries.prism.test.notificationsettings.FakeNotificationSettingsService
-import io.prism.android.libraries.prism.test.room.aRoomSummary
-import io.prism.android.libraries.prism.test.roomlist.FakeDynamicRoomList
-import io.prism.android.libraries.prism.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.test.notificationsettings.FakeNotificationSettingsService
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.fake
+package io.prism.android.libraries.push.impl.notifications.fake
 
-import io.element.android.libraries.matrix.api.media.MediaSource
-import io.element.android.libraries.push.impl.notifications.NotificationMediaRepo
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.push.impl.notifications.NotificationMediaRepo
 import java.io.File
 
 class FakeNotificationMediaRepo : NotificationMediaRepo {

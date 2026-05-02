@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.audio
+package io.prism.android.libraries.mediaviewer.impl.local.audio
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import io.element.android.libraries.designsystem.components.media.WaveFormSamples
-import io.element.android.libraries.mediaviewer.api.MediaInfo
-import io.element.android.libraries.mediaviewer.api.anAudioMediaInfo
+import io.prism.android.libraries.designsystem.components.media.WaveFormSamples
+import io.prism.android.libraries.mediaviewer.api.MediaInfo
+import io.prism.android.libraries.mediaviewer.api.anAudioMediaInfo
 
 open class MediaInfoAudioProvider : PreviewParameterProvider<MediaInfo> {
     override val values: Sequence<MediaInfo>

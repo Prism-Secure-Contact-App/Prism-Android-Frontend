@@ -9,14 +9,14 @@
 package io.prism.android.features.messages.impl.messagecomposer.suggestions
 
 import com.google.common.truth.Truth.assertThat
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.room.RoomMembersState
-import io.prism.android.libraries.prism.api.room.RoomMembershipState
-import io.prism.android.libraries.prism.test.A_ROOM_ALIAS
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.A_USER_ID_2
-import io.prism.android.libraries.prism.test.room.aRoomMember
-import io.prism.android.libraries.prism.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.room.RoomMembersState
+import io.prism.android.libraries.matrix.api.room.RoomMembershipState
+import io.prism.android.libraries.matrix.test.A_ROOM_ALIAS
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID_2
+import io.prism.android.libraries.matrix.test.room.aRoomMember
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
 import io.prism.android.libraries.textcomposer.mentions.ResolvedSuggestion
 import io.prism.android.libraries.textcomposer.model.Suggestion
 import io.prism.android.libraries.textcomposer.model.SuggestionType

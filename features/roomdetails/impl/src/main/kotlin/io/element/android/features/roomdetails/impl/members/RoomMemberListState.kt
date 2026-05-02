@@ -12,8 +12,8 @@ import androidx.compose.foundation.text.input.TextFieldState
 import io.prism.android.features.roommembermoderation.api.RoomMemberModerationState
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.core.bool.orFalse
-import io.prism.android.libraries.prism.api.encryption.identity.IdentityState
-import io.prism.android.libraries.prism.api.room.RoomMember
+import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.matrix.api.room.RoomMember
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

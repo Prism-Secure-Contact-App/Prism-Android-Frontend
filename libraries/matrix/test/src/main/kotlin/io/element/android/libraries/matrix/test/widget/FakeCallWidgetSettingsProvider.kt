@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.widget
+package io.prism.android.libraries.matrix.test.widget
 
-import io.element.android.libraries.matrix.api.widget.CallWidgetSettingsProvider
-import io.element.android.libraries.matrix.api.widget.MatrixWidgetSettings
+import io.prism.android.libraries.matrix.api.widget.CallWidgetSettingsProvider
+import io.prism.android.libraries.matrix.api.widget.PRISMWidgetSettings
 
 class FakeCallWidgetSettingsProvider(
     private val provideFn: (
@@ -19,7 +19,7 @@ class FakeCallWidgetSettingsProvider(
         Boolean,
         Boolean,
         Boolean
-    ) -> MatrixWidgetSettings = { _, _, _, _, _, _ -> MatrixWidgetSettings("id", true, "url") }
+    ) -> PRISMWidgetSettings = { _, _, _, _, _, _ -> PRISMWidgetSettings("id", true, "url") }
 ) : CallWidgetSettingsProvider {
     val providedBaseUrls = mutableListOf<String>()
 
@@ -30,7 +30,7 @@ class FakeCallWidgetSettingsProvider(
         direct: Boolean,
         isAudioCall: Boolean,
         hasActiveCall: Boolean
-    ): MatrixWidgetSettings {
+    ): PRISMWidgetSettings {
         providedBaseUrls += baseUrl
         return provideFn(baseUrl, widgetId, encrypted, direct, isAudioCall, hasActiveCall)
     }

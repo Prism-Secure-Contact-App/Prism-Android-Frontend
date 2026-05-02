@@ -13,7 +13,7 @@ import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.AsyncData
 import io.prism.android.libraries.fullscreenintent.api.FullScreenIntentPermissionsState
 import io.prism.android.libraries.fullscreenintent.api.aFullScreenIntentPermissionsState
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 import io.prism.android.libraries.pushproviders.api.Distributor
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import android.content.Context
 import android.net.Uri
@@ -14,21 +14,21 @@ import android.os.Build
 import androidx.core.net.toUri
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.androidutils.file.TemporaryUriDeleter
-import io.element.android.libraries.core.mimetype.MimeTypes
-import io.element.android.libraries.matrix.api.media.AudioInfo
-import io.element.android.libraries.matrix.api.media.FileInfo
-import io.element.android.libraries.matrix.api.media.ImageInfo
-import io.element.android.libraries.matrix.api.media.ThumbnailInfo
-import io.element.android.libraries.matrix.api.media.VideoInfo
-import io.element.android.libraries.mediaupload.api.MediaOptimizationConfig
-import io.element.android.libraries.mediaupload.api.MediaPreProcessor
-import io.element.android.libraries.mediaupload.api.MediaUploadInfo
-import io.element.android.libraries.preferences.api.store.VideoCompressionPreset
-import io.element.android.services.toolbox.test.sdk.FakeBuildVersionSdkIntProvider
-import io.element.android.tests.testutils.fake.FakeTemporaryUriDeleter
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.androidutils.file.TemporaryUriDeleter
+import io.prism.android.libraries.core.mimetype.MimeTypes
+import io.prism.android.libraries.matrix.api.media.AudioInfo
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.ThumbnailInfo
+import io.prism.android.libraries.matrix.api.media.VideoInfo
+import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
+import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
+import io.prism.android.libraries.mediaupload.api.MediaUploadInfo
+import io.prism.android.libraries.preferences.api.store.VideoCompressionPreset
+import io.prism.android.services.toolbox.test.sdk.FakeBuildVersionSdkIntProvider
+import io.prism.android.tests.testutils.fake.FakeTemporaryUriDeleter
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Ignore

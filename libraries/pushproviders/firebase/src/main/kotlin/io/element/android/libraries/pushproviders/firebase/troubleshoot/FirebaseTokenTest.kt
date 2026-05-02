@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.firebase.troubleshoot
+package io.prism.android.libraries.pushproviders.firebase.troubleshoot
 
 import dev.zacsweers.metro.ContributesIntoSet
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.pushproviders.firebase.FirebaseConfig
-import io.element.android.libraries.pushproviders.firebase.FirebaseStore
-import io.element.android.libraries.pushproviders.firebase.FirebaseTroubleshooter
-import io.element.android.libraries.pushproviders.firebase.R
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
-import io.element.android.libraries.troubleshoot.api.test.TestFilterData
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.pushproviders.firebase.FirebaseConfig
+import io.prism.android.libraries.pushproviders.firebase.FirebaseStore
+import io.prism.android.libraries.pushproviders.firebase.FirebaseTroubleshooter
+import io.prism.android.libraries.pushproviders.firebase.R
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTest
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestDelegate
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootTestState
+import io.prism.android.libraries.troubleshoot.api.test.TestFilterData
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.StateFlow

@@ -9,11 +9,11 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
 }
 
 android {
-    namespace = "io.element.android.libraries.mediaviewer.test"
+    namespace = "io.prism.android.libraries.mediaviewer.test"
 }
 
 dependencies {

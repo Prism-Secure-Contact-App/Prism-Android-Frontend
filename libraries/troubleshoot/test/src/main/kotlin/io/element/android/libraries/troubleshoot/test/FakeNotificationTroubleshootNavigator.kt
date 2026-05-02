@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.troubleshoot.test
+package io.prism.android.libraries.troubleshoot.test
 
-import io.element.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.troubleshoot.api.test.NotificationTroubleshootNavigator
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeNotificationTroubleshootNavigator(
     private val openIgnoredUsersResult: () -> Unit = { lambdaError() },

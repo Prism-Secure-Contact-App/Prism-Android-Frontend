@@ -9,7 +9,7 @@
 package io.prism.android.features.userprofile.api
 
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.prism.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.UserId
 
 fun interface UserProfilePresenterFactory {
     fun create(userId: UserId): Presenter<UserProfileState>

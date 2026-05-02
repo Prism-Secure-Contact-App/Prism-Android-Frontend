@@ -11,8 +11,8 @@ package io.prism.android.appnav
 import io.prism.android.appnav.di.SyncOrchestrator
 import io.prism.android.features.networkmonitor.api.NetworkStatus
 import io.prism.android.features.networkmonitor.test.FakeNetworkMonitor
-import io.prism.android.libraries.prism.api.sync.SyncState
-import io.prism.android.libraries.prism.test.sync.FakeSyncService
+import io.prism.android.libraries.matrix.api.sync.SyncState
+import io.prism.android.libraries.matrix.test.sync.FakeSyncService
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.services.appnavstate.test.FakeAppForegroundStateService
 import io.prism.android.tests.testutils.WarmUpRule

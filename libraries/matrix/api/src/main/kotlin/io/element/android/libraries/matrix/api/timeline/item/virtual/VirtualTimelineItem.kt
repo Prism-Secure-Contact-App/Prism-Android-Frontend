@@ -6,9 +6,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.timeline.item.virtual
+package io.prism.android.libraries.matrix.api.timeline.item.virtual
 
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 sealed interface VirtualTimelineItem {
     data class DayDivider(

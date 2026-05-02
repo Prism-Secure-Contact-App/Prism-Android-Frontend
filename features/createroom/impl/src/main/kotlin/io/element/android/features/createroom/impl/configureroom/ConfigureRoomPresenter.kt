@@ -23,25 +23,25 @@ import androidx.core.net.toUri
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.CreatedRoom
+import im.vector.app.features.analytics.plan.CreatedRoom
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.architecture.runCatchingUpdatingState
 import io.prism.android.libraries.core.mimetype.MimeTypes
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.createroom.CreateRoomParameters
-import io.prism.android.libraries.prism.api.createroom.RoomPreset
-import io.prism.android.libraries.prism.api.room.alias.RoomAliasHelper
-import io.prism.android.libraries.prism.api.room.history.RoomHistoryVisibility
-import io.prism.android.libraries.prism.api.room.join.JoinRule
-import io.prism.android.libraries.prism.api.roomdirectory.RoomVisibility
-import io.prism.android.libraries.prism.api.spaces.SpaceRoom
-import io.prism.android.libraries.prism.ui.media.AvatarAction
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidity
-import io.prism.android.libraries.prism.ui.room.address.RoomAddressValidityEffect
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.createroom.CreateRoomParameters
+import io.prism.android.libraries.matrix.api.createroom.RoomPreset
+import io.prism.android.libraries.matrix.api.room.alias.RoomAliasHelper
+import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
+import io.prism.android.libraries.matrix.api.room.join.JoinRule
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.matrix.ui.media.AvatarAction
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
+import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidityEffect
 import io.prism.android.libraries.mediapickers.api.PickerProvider
 import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
 import io.prism.android.libraries.mediaupload.api.MediaPreProcessor
@@ -65,7 +65,7 @@ class ConfigureRoomPresenter(
     @Assisted private val isSpace: Boolean,
     @Assisted private val initialParentSpaceId: RoomId?,
     private val dataStore: CreateRoomConfigStore,
-    private val prismClient: PRISMClient,
+    private val matrixClient: PRISMClient,
     private val mediaPickerProvider: PickerProvider,
     private val mediaPreProcessor: MediaPreProcessor,
     private val analyticsService: AnalyticsService,
@@ -87,7 +87,7 @@ class ConfigureRoomPresenter(
         val canAddRoomToSpace by featureFlagService.isFeatureEnabledFlow(FeatureFlags.CreateSpaces).collectAsState(false)
         val cameraPermissionState = cameraPermissionPresenter.present()
         val createRoomConfig by dataStore.getCreateRoomConfigFlow().collectAsState()
-        val homeserverName = remember { prismClient.userIdServerName() }
+        val homeserverName = remember { matrixClient.userIdServerName() }
         val isKnockFeatureEnabled by remember {
             featureFlagService.isFeatureEnabledFlow(FeatureFlags.Knock)
         }.collectAsState(initial = false)
@@ -115,7 +115,7 @@ class ConfigureRoomPresenter(
         var spaces by remember { mutableStateOf<ImmutableList<SpaceRoom>>(persistentListOf()) }
         LaunchedEffect(canAddRoomToSpace) {
             spaces = if (canAddRoomToSpace) {
-                prismClient.spaceService.editableSpaces().getOrElse { emptyList() }.toImmutableList()
+                matrixClient.spaceService.editableSpaces().getOrElse { emptyList() }.toImmutableList()
             } else {
                 persistentListOf()
             }
@@ -133,7 +133,7 @@ class ConfigureRoomPresenter(
         }
 
         RoomAddressValidityEffect(
-            client = prismClient,
+            client = matrixClient,
             roomAliasHelper = roomAliasHelper,
             newRoomAddress = createRoomConfig.visibilityState.roomAddress().getOrDefault(""),
             knownRoomAddress = null,
@@ -275,7 +275,7 @@ class ConfigureRoomPresenter(
                     )
                 }
             }
-            val roomId = prismClient.createRoom(params)
+            val roomId = matrixClient.createRoom(params)
                 .onFailure { failure ->
                     Timber.e(failure, "Failed to create room")
                 }
@@ -291,10 +291,10 @@ class ConfigureRoomPresenter(
                 // Wait until we receive the power level info for the room, as it's needed to check if it can be added to a space
                 // TODO create some SDK function that does this instead?
                 withTimeoutOrNull(30.seconds) {
-                    prismClient.getRoomInfoFlow(roomId).first { it.getOrNull()?.roomPowerLevels != null }
+                    matrixClient.getRoomInfoFlow(roomId).first { it.getOrNull()?.roomPowerLevels != null }
                 } ?: error("Did not receive created room power levels for room $roomId, needed for adding it to a space")
 
-                prismClient.spaceService.addChildToSpace(spaceId = config.parentSpace.roomId, childId = roomId).getOrThrow()
+                matrixClient.spaceService.addChildToSpace(spaceId = config.parentSpace.roomId, childId = roomId).getOrThrow()
             }
 
             roomId
@@ -310,6 +310,6 @@ class ConfigureRoomPresenter(
             mediaOptimizationConfig = mediaOptimizationConfigProvider.get(),
         ).getOrThrow()
         val byteArray = preprocessed.file.readBytes()
-        return prismClient.uploadMedia(MimeTypes.Jpeg, byteArray).getOrThrow()
+        return matrixClient.uploadMedia(MimeTypes.Jpeg, byteArray).getOrThrow()
     }
 }

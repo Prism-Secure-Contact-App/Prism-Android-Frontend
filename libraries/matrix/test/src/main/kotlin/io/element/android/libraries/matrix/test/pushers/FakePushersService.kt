@@ -6,12 +6,12 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.test.pushers
+package io.prism.android.libraries.matrix.test.pushers
 
-import io.element.android.libraries.matrix.api.pusher.PushersService
-import io.element.android.libraries.matrix.api.pusher.SetHttpPusherData
-import io.element.android.libraries.matrix.api.pusher.UnsetHttpPusherData
-import io.element.android.tests.testutils.lambda.lambdaError
+import io.prism.android.libraries.matrix.api.pusher.PushersService
+import io.prism.android.libraries.matrix.api.pusher.SetHttpPusherData
+import io.prism.android.libraries.matrix.api.pusher.UnsetHttpPusherData
+import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakePushersService(
     private val setHttpPusherResult: (SetHttpPusherData) -> Result<Unit> = { lambdaError() },

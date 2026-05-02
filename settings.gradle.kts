@@ -21,6 +21,7 @@ dependencyResolutionManagement {
             url = uri("https://www.jitpack.io")
             content {
                 includeModule("com.github.prism-org", "prism-analytics-events")
+                includeModule("com.github.matrix-org", "matrix-analytics-events")
             }
         }
         google()

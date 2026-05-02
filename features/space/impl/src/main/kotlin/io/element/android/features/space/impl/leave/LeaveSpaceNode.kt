@@ -19,15 +19,15 @@ import dev.zacsweers.metro.AssistedInject
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.features.space.impl.di.SpaceFlowScope
 import io.prism.android.libraries.architecture.callback
-import io.prism.android.libraries.prism.api.PRISMClient
-import io.prism.android.libraries.prism.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
 
 @ContributesNode(SpaceFlowScope::class)
 @AssistedInject
 class LeaveSpaceNode(
     @Assisted buildContext: BuildContext,
     @Assisted plugins: List<Plugin>,
-    prismClient: PRISMClient,
+    matrixClient: PRISMClient,
     room: JoinedRoom,
     presenterFactory: LeaveSpacePresenter.Factory,
 ) : Node(buildContext, plugins = plugins) {
@@ -37,7 +37,7 @@ class LeaveSpaceNode(
         fun navigateToChooseOwners()
     }
 
-    private val leaveSpaceHandle = prismClient.spaceService.getLeaveSpaceHandle(room.roomId)
+    private val leaveSpaceHandle = matrixClient.spaceService.getLeaveSpaceHandle(room.roomId)
     private val presenter: LeaveSpacePresenter = presenterFactory.create(leaveSpaceHandle)
 
     private val callback: Callback = callback()

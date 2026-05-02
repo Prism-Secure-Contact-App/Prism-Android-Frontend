@@ -14,8 +14,8 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.messages.impl.utils.FakeMentionSpanFormatter
 import io.prism.android.libraries.core.extensions.runCatchingExceptions
-import io.prism.android.libraries.prism.test.A_USER_ID
-import io.prism.android.libraries.prism.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
 import io.prism.android.libraries.textcomposer.mentions.MentionSpanProvider
 import io.prism.android.libraries.textcomposer.mentions.MentionSpanTheme
 import org.junit.Rule

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaviewer.impl.local.pdf
+package io.prism.android.libraries.mediaviewer.impl.local.pdf
 
 import android.content.Context
 import androidx.compose.foundation.lazy.LazyListState
@@ -20,7 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import io.element.android.libraries.architecture.AsyncData
+import io.prism.android.libraries.architecture.AsyncData
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.CoroutineScope
 import me.saket.telephoto.zoomable.ZoomableState

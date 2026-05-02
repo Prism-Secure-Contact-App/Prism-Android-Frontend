@@ -5,19 +5,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.analytics.impl.watchers
+package io.prism.android.services.analytics.impl.watchers
 
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.di.RoomScope
-import io.element.android.libraries.di.annotations.RoomCoroutineScope
-import io.element.android.libraries.matrix.api.core.TransactionId
-import io.element.android.libraries.matrix.api.room.JoinedRoom
-import io.element.android.libraries.matrix.api.room.SendQueueUpdate
-import io.element.android.services.analytics.api.AnalyticsService
-import io.element.android.services.analytics.api.watchers.AnalyticsSendMessageWatcher
-import io.element.android.services.analyticsproviders.api.AnalyticsTransaction
-import io.element.android.services.analyticsproviders.api.AnalyticsTransactions
+import io.prism.android.libraries.di.RoomScope
+import io.prism.android.libraries.di.annotations.RoomCoroutineScope
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.room.SendQueueUpdate
+import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.services.analytics.api.watchers.AnalyticsSendMessageWatcher
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransaction
+import io.prism.android.services.analyticsproviders.api.AnalyticsTransactions
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job

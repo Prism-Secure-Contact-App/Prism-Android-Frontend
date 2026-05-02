@@ -5,20 +5,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.pushproviders.unifiedpush
+package io.prism.android.libraries.pushproviders.unifiedpush
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
-import io.element.android.libraries.androidutils.throttler.FirstThrottler
-import io.element.android.libraries.core.extensions.flatMap
-import io.element.android.libraries.core.log.logger.LoggerTag
-import io.element.android.libraries.di.annotations.AppCoroutineScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.matrix.api.MatrixClientProvider
-import io.element.android.libraries.push.api.PushService
-import io.element.android.libraries.pushstore.api.clientsecret.PushClientSecret
+import io.prism.android.libraries.androidutils.throttler.FirstThrottler
+import io.prism.android.libraries.core.extensions.flatMap
+import io.prism.android.libraries.core.log.logger.LoggerTag
+import io.prism.android.libraries.di.annotations.AppCoroutineScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.PRISMClientProvider
+import io.prism.android.libraries.push.api.PushService
+import io.prism.android.libraries.pushstore.api.clientsecret.PushClientSecret
 import kotlinx.coroutines.CoroutineScope
 import timber.log.Timber
 
@@ -51,7 +51,7 @@ class UnifiedPushRemovedGatewayThrottler(
 class DefaultUnifiedPushRemovedGatewayHandler(
     private val unregisterUnifiedPushUseCase: UnregisterUnifiedPushUseCase,
     private val pushClientSecret: PushClientSecret,
-    private val matrixClientProvider: MatrixClientProvider,
+    private val matrixClientProvider: PRISMClientProvider,
     private val pushService: PushService,
     private val unifiedPushRemovedGatewayThrottler: UnifiedPushRemovedGatewayThrottler,
 ) : UnifiedPushRemovedGatewayHandler {
@@ -86,7 +86,7 @@ class DefaultUnifiedPushRemovedGatewayHandler(
     /**
      * Unregister the pusher for the session. Then register again if possible.
      */
-    private suspend fun MatrixClient.rotateRegistration(clientSecret: String): Result<Unit> {
+    private suspend fun PRISMClient.rotateRegistration(clientSecret: String): Result<Unit> {
         val unregisterResult = unregisterUnifiedPushUseCase.unregister(
             matrixClient = this,
             clientSecret = clientSecret,
@@ -103,7 +103,7 @@ class DefaultUnifiedPushRemovedGatewayHandler(
      * Attempt to register again, if possible i.e. the current configuration is known and the
      * deletion of data in the UnifiedPush application has not already occurred in the last minute.
      */
-    private suspend fun MatrixClient.registerAgain(): Result<Unit> {
+    private suspend fun PRISMClient.registerAgain(): Result<Unit> {
         return if (unifiedPushRemovedGatewayThrottler.canRegisterAgain()) {
             val pushProvider = pushService.getCurrentPushProvider(sessionId)
             val distributor = pushProvider?.getCurrentDistributor(sessionId)

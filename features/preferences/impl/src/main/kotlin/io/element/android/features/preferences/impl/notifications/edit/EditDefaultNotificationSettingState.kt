@@ -9,7 +9,7 @@
 package io.prism.android.features.preferences.impl.notifications.edit
 
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
 import kotlinx.collections.immutable.ImmutableList
 
 data class EditDefaultNotificationSettingState(

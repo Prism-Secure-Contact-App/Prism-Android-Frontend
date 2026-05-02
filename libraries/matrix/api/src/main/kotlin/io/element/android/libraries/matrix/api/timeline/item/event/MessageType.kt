@@ -6,16 +6,16 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.timeline.item.event
+package io.prism.android.libraries.matrix.api.timeline.item.event
 
 import androidx.compose.runtime.Immutable
-import io.prism.android.libraries.prism.api.media.AudioDetails
-import io.prism.android.libraries.prism.api.media.AudioInfo
-import io.prism.android.libraries.prism.api.media.FileInfo
-import io.prism.android.libraries.prism.api.media.ImageInfo
-import io.prism.android.libraries.prism.api.media.MediaSource
-import io.prism.android.libraries.prism.api.media.VideoInfo
-import io.prism.android.libraries.prism.api.room.location.AssetType
+import io.prism.android.libraries.matrix.api.media.AudioDetails
+import io.prism.android.libraries.matrix.api.media.AudioInfo
+import io.prism.android.libraries.matrix.api.media.FileInfo
+import io.prism.android.libraries.matrix.api.media.ImageInfo
+import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.matrix.api.media.VideoInfo
+import io.prism.android.libraries.matrix.api.room.location.AssetType
 
 @Immutable
 sealed interface MessageType

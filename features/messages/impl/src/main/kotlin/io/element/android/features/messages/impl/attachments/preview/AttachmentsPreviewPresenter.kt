@@ -33,9 +33,9 @@ import io.prism.android.libraries.core.extensions.runCatchingExceptions
 import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeImage
 import io.prism.android.libraries.core.mimetype.MimeTypes.isMimeTypeVideo
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.permalink.PermalinkBuilder
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilder
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfig
 import io.prism.android.libraries.mediaupload.api.MediaOptimizationConfigProvider
 import io.prism.android.libraries.mediaupload.api.MediaSenderFactory

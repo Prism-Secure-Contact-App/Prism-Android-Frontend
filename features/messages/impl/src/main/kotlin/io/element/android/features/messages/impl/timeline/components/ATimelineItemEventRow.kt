@@ -14,7 +14,7 @@ import io.prism.android.features.messages.impl.timeline.aTimelineRoomInfo
 import io.prism.android.features.messages.impl.timeline.model.TimelineItem
 import io.prism.android.features.messages.impl.timeline.protection.TimelineProtectionState
 import io.prism.android.features.messages.impl.timeline.protection.aTimelineProtectionState
-import io.prism.android.libraries.prism.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.Timeline
 
 // For previews
 @Composable

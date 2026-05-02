@@ -6,20 +6,20 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.preferences.impl.store
+package io.prism.android.libraries.preferences.impl.store
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.core.meta.BuildMeta
-import io.element.android.libraries.core.meta.BuildType
-import io.element.android.libraries.matrix.api.media.MediaPreviewValue
-import io.element.android.libraries.matrix.api.tracing.LogLevel
-import io.element.android.libraries.matrix.api.tracing.TraceLogPack
-import io.element.android.libraries.preferences.api.store.AppPreferencesStore
-import io.element.android.libraries.preferences.api.store.PreferenceDataStoreFactory
+import io.prism.android.libraries.core.meta.BuildMeta
+import io.prism.android.libraries.core.meta.BuildType
+import io.prism.android.libraries.matrix.api.media.MediaPreviewValue
+import io.prism.android.libraries.matrix.api.tracing.LogLevel
+import io.prism.android.libraries.matrix.api.tracing.TraceLogPack
+import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
+import io.prism.android.libraries.preferences.api.store.PreferenceDataStoreFactory
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

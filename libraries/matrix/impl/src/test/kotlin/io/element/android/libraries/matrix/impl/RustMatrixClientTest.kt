@@ -8,28 +8,28 @@
 
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package io.element.android.libraries.matrix.impl
+package io.prism.android.libraries.matrix.impl
 
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.core.data.bytes
-import io.element.android.libraries.featureflag.test.FakeFeatureFlagService
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiSyncService
-import io.element.android.libraries.matrix.impl.room.FakeTimelineEventFilterFactory
-import io.element.android.libraries.matrix.test.AN_AVATAR_URL
-import io.element.android.libraries.matrix.test.A_DEVICE_ID
-import io.element.android.libraries.matrix.test.A_ROOM_ID
-import io.element.android.libraries.matrix.test.A_USER_ID
-import io.element.android.libraries.matrix.test.A_USER_NAME
-import io.element.android.libraries.sessionstorage.api.SessionStore
-import io.element.android.libraries.sessionstorage.test.InMemorySessionStore
-import io.element.android.libraries.sessionstorage.test.aSessionData
-import io.element.android.libraries.workmanager.test.FakeWorkManagerScheduler
-import io.element.android.services.analytics.test.FakeAnalyticsService
-import io.element.android.services.toolbox.test.systemclock.FakeSystemClock
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.lambda.value
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.core.data.bytes
+import io.prism.android.libraries.featureflag.test.FakeFeatureFlagService
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiClient
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiSyncService
+import io.prism.android.libraries.matrix.impl.room.FakeTimelineEventFilterFactory
+import io.prism.android.libraries.matrix.test.AN_AVATAR_URL
+import io.prism.android.libraries.matrix.test.A_DEVICE_ID
+import io.prism.android.libraries.matrix.test.A_ROOM_ID
+import io.prism.android.libraries.matrix.test.A_USER_ID
+import io.prism.android.libraries.matrix.test.A_USER_NAME
+import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
+import io.prism.android.libraries.sessionstorage.test.aSessionData
+import io.prism.android.libraries.workmanager.test.FakeWorkManagerScheduler
+import io.prism.android.services.analytics.test.FakeAnalyticsService
+import io.prism.android.services.toolbox.test.systemclock.FakeSystemClock
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.lambda.value
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle

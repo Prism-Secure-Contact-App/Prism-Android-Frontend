@@ -10,12 +10,12 @@ import extension.testCommonDependencies
  */
 
 plugins {
-    id("io.element.android-compose-library")
+    id("io.prism.android-compose-library")
     id("kotlin-parcelize")
 }
 
 android {
-    namespace = "io.element.android.libraries.matrix.ui"
+    namespace = "io.prism.android.libraries.matrix.ui"
     testOptions {
         unitTests {
             isIncludeAndroidResources = true

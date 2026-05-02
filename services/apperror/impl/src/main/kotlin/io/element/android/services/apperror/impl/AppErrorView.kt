@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.apperror.impl
+package io.prism.android.services.apperror.impl
 
 import androidx.compose.runtime.Composable
-import io.element.android.libraries.designsystem.components.dialogs.ErrorDialog
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.services.apperror.api.AppErrorState
-import io.element.android.services.apperror.api.aAppErrorState
+import io.prism.android.libraries.designsystem.components.dialogs.ErrorDialog
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.services.apperror.api.AppErrorState
+import io.prism.android.services.apperror.api.aAppErrorState
 
 @Composable
 fun AppErrorView(
@@ -43,7 +43,7 @@ private fun AppErrorViewContent(
 
 @PreviewsDayNight
 @Composable
-internal fun AppErrorViewPreview() = ElementPreview {
+internal fun AppErrorViewPreview() = PRISMPreview {
     AppErrorView(
         state = aAppErrorState()
     )

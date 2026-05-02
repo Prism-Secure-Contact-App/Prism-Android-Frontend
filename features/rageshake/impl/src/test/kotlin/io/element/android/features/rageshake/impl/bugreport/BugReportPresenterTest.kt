@@ -17,7 +17,7 @@ import io.prism.android.features.rageshake.impl.screenshot.A_SCREENSHOT_URI
 import io.prism.android.features.rageshake.impl.screenshot.FakeScreenshotHolder
 import io.prism.android.features.rageshake.impl.screenshot.ScreenshotHolder
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.test.A_FAILURE_REASON
+import io.prism.android.libraries.matrix.test.A_FAILURE_REASON
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.test
 import kotlinx.coroutines.test.TestScope

@@ -6,19 +6,19 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.mediaupload.impl
+package io.prism.android.libraries.mediaupload.impl
 
 import dev.zacsweers.metro.ContributesBinding
-import io.element.android.libraries.di.SessionScope
-import io.element.android.libraries.matrix.api.MatrixClient
-import io.element.android.libraries.mediaupload.api.MaxUploadSizeProvider
+import io.prism.android.libraries.di.SessionScope
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.mediaupload.api.MaxUploadSizeProvider
 
 /**
  * Provides the maximum upload size allowed by the Matrix server.
  */
 @ContributesBinding(SessionScope::class)
 class DefaultMaxUploadSizeProvider(
-    private val matrixClient: MatrixClient,
+    private val matrixClient: PRISMClient,
 ) : MaxUploadSizeProvider {
     override suspend fun getMaxUploadSize(): Result<Long> {
         return matrixClient.getMaxFileUploadSize()

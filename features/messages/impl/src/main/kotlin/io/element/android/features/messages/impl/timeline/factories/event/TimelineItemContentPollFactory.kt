@@ -12,8 +12,8 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemEventContent
 import io.prism.android.features.messages.impl.timeline.model.event.TimelineItemPollContent
 import io.prism.android.features.poll.api.pollcontent.PollContentStateFactory
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.timeline.item.event.PollContent
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.timeline.item.event.PollContent
 
 @Inject
 class TimelineItemContentPollFactory(

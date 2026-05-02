@@ -32,8 +32,8 @@ import io.prism.android.libraries.architecture.OverlayView
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.architecture.createNode
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
 import kotlinx.parcelize.Parcelize
 
 @ContributesNode(SessionScope::class)
@@ -44,7 +44,7 @@ class StartChatFlowNode(
     private val createRoomEntryPoint: CreateRoomEntryPoint,
 ) : BaseFlowNode<StartChatFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = NavTarget.Root,
+        initialElement = NavTarget.Root,
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

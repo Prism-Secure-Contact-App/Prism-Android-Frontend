@@ -5,9 +5,9 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.api.analytics
+package io.prism.android.libraries.matrix.api.analytics
 
-import io.prism.android.libraries.prism.api.core.SessionId
+import io.prism.android.libraries.matrix.api.core.SessionId
 
 fun interface GetDatabaseSizesUseCase {
     suspend operator fun invoke(sessionId: SessionId): Result<SdkStoreSizes>

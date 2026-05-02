@@ -30,12 +30,12 @@ import io.prism.android.libraries.androidutils.system.copyToClipboard
 import io.prism.android.libraries.androidutils.system.openUrlInExternalApp
 import io.prism.android.libraries.architecture.callback
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.api.permalink.PermalinkParser
-import io.prism.android.libraries.prism.api.timeline.Timeline
-import io.prism.android.libraries.prism.api.timeline.item.TimelineItemDebugInfo
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.timeline.Timeline
+import io.prism.android.libraries.matrix.api.timeline.item.TimelineItemDebugInfo
 import io.prism.android.libraries.ui.strings.CommonStrings
 
 @ContributesNode(RoomScope::class)

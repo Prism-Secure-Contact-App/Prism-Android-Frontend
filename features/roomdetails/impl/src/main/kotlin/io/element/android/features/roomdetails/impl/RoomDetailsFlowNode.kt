@@ -22,7 +22,7 @@ import com.bumble.appyx.navmodel.backstack.operation.pop
 import com.bumble.appyx.navmodel.backstack.operation.push
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
-import uk.fathertkt.prism.features.analytics.plan.Interaction
+import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.annotations.ContributesNode
 import io.prism.android.appconfig.LearnMoreConfig
 import io.prism.android.features.call.api.CallType
@@ -51,14 +51,14 @@ import io.prism.android.libraries.architecture.overlay.operation.hide
 import io.prism.android.libraries.architecture.overlay.operation.show
 import io.prism.android.libraries.designsystem.utils.OpenUrlInTabView
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.notification.CallIntent
-import io.prism.android.libraries.prism.api.permalink.PermalinkData
-import io.prism.android.libraries.prism.api.room.JoinedRoom
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.notification.CallIntent
+import io.prism.android.libraries.matrix.api.permalink.PermalinkData
+import io.prism.android.libraries.matrix.api.room.JoinedRoom
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 import io.prism.android.libraries.mediaviewer.api.MediaGalleryEntryPoint
 import io.prism.android.libraries.mediaviewer.api.MediaViewerEntryPoint
 import io.prism.android.services.analytics.api.AnalyticsService
@@ -89,7 +89,7 @@ class RoomDetailsFlowNode(
     private val roomDetailsEditEntryPoint: RoomDetailsEditEntryPoint,
 ) : BaseFlowNode<RoomDetailsFlowNode.NavTarget>(
     backstack = BackStack(
-        initialPRISM = plugins.filterIsInstance<RoomDetailsEntryPoint.Params>().first().initialPRISM.toNavTarget(),
+        initialElement = plugins.filterIsInstance<RoomDetailsEntryPoint.Params>().first().initialElement.toNavTarget(),
         savedStateMap = buildContext.savedStateMap,
     ),
     buildContext = buildContext,

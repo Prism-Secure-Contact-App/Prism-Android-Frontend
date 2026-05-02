@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.ui.components
+package io.prism.android.libraries.matrix.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,20 +21,20 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import io.element.android.compound.theme.ElementTheme
-import io.element.android.libraries.designsystem.components.avatar.Avatar
-import io.element.android.libraries.designsystem.components.avatar.AvatarSize
-import io.element.android.libraries.designsystem.components.avatar.AvatarType
-import io.element.android.libraries.designsystem.preview.ElementPreview
-import io.element.android.libraries.designsystem.preview.PreviewsDayNight
-import io.element.android.libraries.designsystem.theme.components.Text
-import io.element.android.libraries.matrix.api.user.MatrixUser
-import io.element.android.libraries.matrix.ui.model.getAvatarData
-import io.element.android.libraries.matrix.ui.model.getBestName
+import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.libraries.designsystem.components.avatar.Avatar
+import io.prism.android.libraries.designsystem.components.avatar.AvatarSize
+import io.prism.android.libraries.designsystem.components.avatar.AvatarType
+import io.prism.android.libraries.designsystem.preview.PRISMPreview
+import io.prism.android.libraries.designsystem.preview.PreviewsDayNight
+import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.matrix.api.user.PRISMUser
+import io.prism.android.libraries.matrix.ui.model.getAvatarData
+import io.prism.android.libraries.matrix.ui.model.getBestName
 
 @Composable
 fun MatrixUserHeader(
-    matrixUser: MatrixUser?,
+    matrixUser: PRISMUser?,
     modifier: Modifier = Modifier,
     // TODO handle click on this item, to let the user be able to update their profile.
     // onClick: () -> Unit,
@@ -52,7 +52,7 @@ fun MatrixUserHeader(
 
 @Composable
 private fun MatrixUserHeaderContent(
-    matrixUser: MatrixUser,
+    matrixUser: PRISMUser,
     modifier: Modifier = Modifier,
     // onClick: () -> Unit,
 ) {
@@ -78,16 +78,16 @@ private fun MatrixUserHeaderContent(
                 modifier = Modifier.clipToBounds(),
                 text = matrixUser.getBestName(),
                 maxLines = 1,
-                style = ElementTheme.typography.fontHeadingSmMedium,
+                style = PRISMTheme.typography.fontHeadingSmMedium,
                 overflow = TextOverflow.Ellipsis,
-                color = ElementTheme.colors.textPrimary,
+                color = PRISMTheme.colors.textPrimary,
             )
             // Id
             if (matrixUser.displayName.isNullOrEmpty().not()) {
                 Text(
                     text = matrixUser.userId.value,
-                    style = ElementTheme.typography.fontBodyMdRegular,
-                    color = ElementTheme.colors.textSecondary,
+                    style = PRISMTheme.typography.fontBodyMdRegular,
+                    color = PRISMTheme.colors.textSecondary,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -98,6 +98,6 @@ private fun MatrixUserHeaderContent(
 
 @PreviewsDayNight
 @Composable
-internal fun MatrixUserHeaderPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: MatrixUser) = ElementPreview {
+internal fun MatrixUserHeaderPreview(@PreviewParameter(MatrixUserProvider::class) matrixUser: PRISMUser) = PRISMPreview {
     MatrixUserHeader(matrixUser)
 }

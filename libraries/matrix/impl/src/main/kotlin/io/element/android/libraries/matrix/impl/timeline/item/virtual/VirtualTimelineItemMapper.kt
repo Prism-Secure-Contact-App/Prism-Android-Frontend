@@ -6,10 +6,10 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.item.virtual
+package io.prism.android.libraries.matrix.impl.timeline.item.virtual
 
-import io.prism.android.libraries.prism.api.timeline.item.virtual.VirtualTimelineItem
-import org.prism.rustcomponents.sdk.VirtualTimelineItem as RustVirtualTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.virtual.VirtualTimelineItem
+import org.matrix.rustcomponents.sdk.VirtualTimelineItem as RustVirtualTimelineItem
 
 class VirtualTimelineItemMapper {
     fun map(virtualTimelineItem: RustVirtualTimelineItem): VirtualTimelineItem {

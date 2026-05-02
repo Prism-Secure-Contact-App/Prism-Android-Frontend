@@ -10,7 +10,7 @@ package io.prism.android.features.messages.impl.timeline.components.reactionsumm
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.prism.android.features.messages.impl.timeline.aTimelineItemReactions
-import io.prism.android.libraries.prism.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.EventId
 
 open class ReactionSummaryStateProvider : PreviewParameterProvider<ReactionSummaryState> {
     override val values = sequenceOf(aReactionSummaryState())

@@ -11,10 +11,10 @@ package io.prism.android.features.home.impl.model
 import androidx.compose.runtime.Immutable
 import io.prism.android.features.invite.api.InviteData
 import io.prism.android.libraries.designsystem.components.avatar.AvatarData
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.room.RoomNotificationMode
-import io.prism.android.libraries.prism.ui.model.InviteSender
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.room.RoomNotificationMode
+import io.prism.android.libraries.matrix.ui.model.InviteSender
 import kotlinx.collections.immutable.ImmutableList
 
 @Immutable

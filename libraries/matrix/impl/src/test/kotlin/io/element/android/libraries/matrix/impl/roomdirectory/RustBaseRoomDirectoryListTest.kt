@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.matrix.impl.roomdirectory
+package io.prism.android.libraries.matrix.impl.roomdirectory
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.matrix.api.roomdirectory.RoomDirectoryList
-import io.element.android.libraries.matrix.impl.fixtures.factories.aRustRoomDescription
-import io.element.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomDirectorySearch
-import io.element.android.libraries.matrix.test.A_ROOM_ID_2
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomDirectoryList
+import io.prism.android.libraries.matrix.impl.fixtures.factories.aRustRoomDescription
+import io.prism.android.libraries.matrix.impl.fixtures.fakes.FakeFfiRoomDirectorySearch
+import io.prism.android.libraries.matrix.test.A_ROOM_ID_2
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope

@@ -6,13 +6,13 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.push.impl.notifications.factories
+package io.prism.android.libraries.push.impl.notifications.factories
 
 import androidx.annotation.ColorInt
-import io.element.android.libraries.matrix.api.user.MatrixUser
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 
 data class NotificationAccountParams(
-    val user: MatrixUser,
+    val user: PRISMUser,
     @ColorInt val color: Int,
     val showSessionId: Boolean,
 )

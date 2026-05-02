@@ -32,10 +32,10 @@ import io.prism.android.features.poll.test.pollcontent.FakePollContentStateFacto
 import io.prism.android.libraries.androidutils.filesize.FakeFileSizeFormatter
 import io.prism.android.libraries.dateformatter.test.FakeDateFormatter
 import io.prism.android.libraries.eventformatter.api.TimelineEventFormatter
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.event.EventContent
-import io.prism.android.libraries.prism.test.FakePRISMClient
-import io.prism.android.libraries.prism.test.permalink.FakePermalinkParser
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventContent
+import io.prism.android.libraries.matrix.test.FakePRISMClient
+import io.prism.android.libraries.matrix.test.permalink.FakePermalinkParser
 import io.prism.android.libraries.mediaviewer.test.util.FileExtensionExtractorWithoutValidation
 import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.coroutines.test.TestScope
@@ -52,7 +52,7 @@ internal fun TestScope.aTimelineItemsFactory(
     config: TimelineItemsFactoryConfig,
 ): TimelineItemsFactory {
     val timelineEventFormatter = aTimelineEventFormatter()
-    val prismClient = FakePRISMClient()
+    val matrixClient = FakePRISMClient()
     return TimelineItemsFactory(
         dispatchers = testCoroutineDispatchers(),
         eventItemFactoryCreator = object : TimelineItemEventFactory.Creator {
@@ -78,9 +78,9 @@ internal fun TestScope.aTimelineItemsFactory(
                         stateFactory = TimelineItemContentStateFactory(timelineEventFormatter),
                         failedToParseMessageFactory = TimelineItemContentFailedToParseMessageFactory(),
                         failedToParseStateFactory = TimelineItemContentFailedToParseStateFactory(),
-                        sessionId = prismClient.sessionId,
+                        sessionId = matrixClient.sessionId,
                     ),
-                    prismClient = prismClient,
+                    matrixClient = matrixClient,
                     dateFormatter = FakeDateFormatter(),
                     permalinkParser = FakePermalinkParser(),
                     config = config,

@@ -6,7 +6,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.detektrules
+package io.prism.android.detektrules
 
 import com.google.common.truth.Truth.assertThat
 import io.gitlab.arturbosch.detekt.api.Config

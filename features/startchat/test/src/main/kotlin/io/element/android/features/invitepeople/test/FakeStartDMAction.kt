@@ -11,8 +11,8 @@ package io.prism.android.features.invitepeople.test
 import androidx.compose.runtime.MutableState
 import io.prism.android.features.startchat.api.StartDMAction
 import io.prism.android.libraries.architecture.AsyncAction
-import io.prism.android.libraries.prism.api.core.RoomId
-import io.prism.android.libraries.prism.api.user.PRISMUser
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.user.PRISMUser
 import io.prism.android.tests.testutils.lambda.lambdaError
 
 class FakeStartDMAction(
@@ -21,10 +21,10 @@ class FakeStartDMAction(
     }
 ) : StartDMAction {
     override suspend fun execute(
-        prismUser: PRISMUser,
+        matrixUser: PRISMUser,
         createIfDmDoesNotExist: Boolean,
         actionState: MutableState<AsyncAction<RoomId>>,
     ) {
-        executeResult(prismUser, createIfDmDoesNotExist, actionState)
+        executeResult(matrixUser, createIfDmDoesNotExist, actionState)
     }
 }

@@ -12,7 +12,7 @@
     "DEPRECATION",
 )
 
-package io.element.android.libraries.mediaviewer.impl.local.player
+package io.prism.android.libraries.mediaviewer.impl.local.player
 
 import android.annotation.SuppressLint
 import android.media.AudioDeviceInfo
@@ -57,7 +57,7 @@ import androidx.media3.exoplayer.trackselection.TrackSelectionArray
 import androidx.media3.exoplayer.trackselection.TrackSelector
 import androidx.media3.exoplayer.video.VideoFrameMetadataListener
 import androidx.media3.exoplayer.video.spherical.CameraMotionListener
-import io.element.android.libraries.architecture.coverage.ExcludeFromCoverage
+import io.prism.android.libraries.architecture.coverage.ExcludeFromCoverage
 
 @SuppressLint("UnsafeOptInUsageError")
 @ExcludeFromCoverage

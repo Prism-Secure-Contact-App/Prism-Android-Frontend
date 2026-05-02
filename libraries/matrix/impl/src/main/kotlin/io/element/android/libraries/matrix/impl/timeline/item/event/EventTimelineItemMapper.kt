@@ -6,37 +6,37 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.timeline.item.event
+package io.prism.android.libraries.matrix.impl.timeline.item.event
 
-import io.prism.android.libraries.prism.api.core.DeviceId
-import io.prism.android.libraries.prism.api.core.EventId
-import io.prism.android.libraries.prism.api.core.TransactionId
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.timeline.item.TimelineItemDebugInfo
-import io.prism.android.libraries.prism.api.timeline.item.event.EventReaction
-import io.prism.android.libraries.prism.api.timeline.item.event.EventTimelineItem
-import io.prism.android.libraries.prism.api.timeline.item.event.LocalEventSendState
-import io.prism.android.libraries.prism.api.timeline.item.event.MessageShield
-import io.prism.android.libraries.prism.api.timeline.item.event.ProfileDetails
-import io.prism.android.libraries.prism.api.timeline.item.event.ReactionSender
-import io.prism.android.libraries.prism.api.timeline.item.event.Receipt
-import io.prism.android.libraries.prism.api.timeline.item.event.TimelineItemEventOrigin
-import io.prism.android.libraries.prism.impl.core.RustSendHandle
+import io.prism.android.libraries.matrix.api.core.DeviceId
+import io.prism.android.libraries.matrix.api.core.EventId
+import io.prism.android.libraries.matrix.api.core.TransactionId
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.timeline.item.TimelineItemDebugInfo
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventReaction
+import io.prism.android.libraries.matrix.api.timeline.item.event.EventTimelineItem
+import io.prism.android.libraries.matrix.api.timeline.item.event.LocalEventSendState
+import io.prism.android.libraries.matrix.api.timeline.item.event.MessageShield
+import io.prism.android.libraries.matrix.api.timeline.item.event.ProfileDetails
+import io.prism.android.libraries.matrix.api.timeline.item.event.ReactionSender
+import io.prism.android.libraries.matrix.api.timeline.item.event.Receipt
+import io.prism.android.libraries.matrix.api.timeline.item.event.TimelineItemEventOrigin
+import io.prism.android.libraries.matrix.impl.core.RustSendHandle
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
-import org.prism.rustcomponents.sdk.EventOrTransactionId
-import org.prism.rustcomponents.sdk.QueueWedgeError
-import org.prism.rustcomponents.sdk.Reaction
-import org.prism.rustcomponents.sdk.ShieldState
-import org.prism.rustcomponents.sdk.TimelineItemContent
-import uniffi.prism_sdk_ui.TimelineEventShieldStateCode
-import org.prism.rustcomponents.sdk.EventSendState as RustEventSendState
-import org.prism.rustcomponents.sdk.EventTimelineItem as RustEventTimelineItem
-import org.prism.rustcomponents.sdk.EventTimelineItemDebugInfo as RustEventTimelineItemDebugInfo
-import org.prism.rustcomponents.sdk.ProfileDetails as RustProfileDetails
-import org.prism.rustcomponents.sdk.Receipt as RustReceipt
-import uniffi.prism_sdk_ui.EventItemOrigin as RustEventItemOrigin
+import org.matrix.rustcomponents.sdk.EventOrTransactionId
+import org.matrix.rustcomponents.sdk.QueueWedgeError
+import org.matrix.rustcomponents.sdk.Reaction
+import org.matrix.rustcomponents.sdk.ShieldState
+import org.matrix.rustcomponents.sdk.TimelineItemContent
+import uniffi.matrix_sdk_ui.TimelineEventShieldStateCode
+import org.matrix.rustcomponents.sdk.EventSendState as RustEventSendState
+import org.matrix.rustcomponents.sdk.EventTimelineItem as RustEventTimelineItem
+import org.matrix.rustcomponents.sdk.EventTimelineItemDebugInfo as RustEventTimelineItemDebugInfo
+import org.matrix.rustcomponents.sdk.ProfileDetails as RustProfileDetails
+import org.matrix.rustcomponents.sdk.Receipt as RustReceipt
+import uniffi.matrix_sdk_ui.EventItemOrigin as RustEventItemOrigin
 
 class EventTimelineItemMapper(
     private val contentMapper: TimelineEventContentMapper = TimelineEventContentMapper(),

@@ -16,17 +16,17 @@ import android.util.Patterns
 import androidx.core.text.getSpans
 import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.libraries.di.RoomScope
-import io.prism.android.libraries.prism.api.core.PRISMPatternType
-import io.prism.android.libraries.prism.api.core.PRISMPatterns
-import io.prism.android.libraries.prism.api.core.RoomAlias
-import io.prism.android.libraries.prism.api.core.UserId
-import io.prism.android.libraries.prism.api.core.toRoomIdOrAlias
-import io.prism.android.libraries.prism.api.permalink.PermalinkBuilder
-import io.prism.android.libraries.prism.api.permalink.PermalinkParser
+import io.prism.android.libraries.matrix.api.core.PRISMPatternType
+import io.prism.android.libraries.matrix.api.core.PRISMPatterns
+import io.prism.android.libraries.matrix.api.core.RoomAlias
+import io.prism.android.libraries.matrix.api.core.UserId
+import io.prism.android.libraries.matrix.api.core.toRoomIdOrAlias
+import io.prism.android.libraries.matrix.api.permalink.PermalinkBuilder
+import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
 import io.prism.android.libraries.textcomposer.mentions.MentionSpanProvider
 import io.prism.android.libraries.textcomposer.mentions.getMentionSpans
-import io.prism.android.wysiwyg.view.spans.CodeBlockSpan
-import io.prism.android.wysiwyg.view.spans.InlineCodeSpan
+import io.element.android.wysiwyg.view.spans.CodeBlockSpan
+import io.element.android.wysiwyg.view.spans.InlineCodeSpan
 
 interface TextPillificationHelper {
     fun pillify(text: CharSequence, pillifyPermalinks: Boolean = true): CharSequence

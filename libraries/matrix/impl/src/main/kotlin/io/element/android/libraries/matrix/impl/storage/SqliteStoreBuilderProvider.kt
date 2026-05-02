@@ -5,11 +5,11 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.libraries.prism.impl.storage
+package io.prism.android.libraries.matrix.impl.storage
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
-import io.prism.android.libraries.prism.impl.paths.SessionPaths
+import io.prism.android.libraries.matrix.impl.paths.SessionPaths
 
 interface SqliteStoreBuilderProvider {
     fun provide(sessionPaths: SessionPaths): SqliteStoreBuilder

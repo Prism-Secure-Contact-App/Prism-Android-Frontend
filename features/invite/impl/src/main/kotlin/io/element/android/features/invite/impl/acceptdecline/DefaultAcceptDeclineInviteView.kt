@@ -14,7 +14,7 @@ import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteState
 import io.prism.android.features.invite.api.acceptdecline.AcceptDeclineInviteView
 import io.prism.android.libraries.di.SessionScope
-import io.prism.android.libraries.prism.api.core.RoomId
+import io.prism.android.libraries.matrix.api.core.RoomId
 
 @ContributesBinding(SessionScope::class)
 class DefaultAcceptDeclineInviteView : AcceptDeclineInviteView {

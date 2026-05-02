@@ -6,14 +6,14 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.services.apperror.impl
+package io.prism.android.services.apperror.impl
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.SingleIn
-import io.element.android.services.apperror.api.AppErrorState
-import io.element.android.services.apperror.api.AppErrorStateService
-import io.element.android.services.toolbox.api.strings.StringProvider
+import io.prism.android.services.apperror.api.AppErrorState
+import io.prism.android.services.apperror.api.AppErrorStateService
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

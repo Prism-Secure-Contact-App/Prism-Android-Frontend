@@ -13,7 +13,7 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.plugin.Plugin
 import io.prism.android.libraries.architecture.FeatureEntryPoint
 import io.prism.android.libraries.architecture.NodeInputs
-import io.prism.android.libraries.prism.api.verification.VerificationRequest
+import io.prism.android.libraries.matrix.api.verification.VerificationRequest
 
 interface IncomingVerificationEntryPoint : FeatureEntryPoint {
     data class Params(

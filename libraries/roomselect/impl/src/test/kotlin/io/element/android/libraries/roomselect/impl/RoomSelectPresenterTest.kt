@@ -6,25 +6,25 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.element.android.libraries.roomselect.impl
+package io.prism.android.libraries.roomselect.impl
 
 import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import io.element.android.libraries.designsystem.theme.components.SearchBarResultState
-import io.element.android.libraries.matrix.api.roomlist.RoomListFilter
-import io.element.android.libraries.matrix.api.roomlist.RoomListService
-import io.element.android.libraries.matrix.test.room.aRoomSummary
-import io.element.android.libraries.matrix.test.roomlist.FakeDynamicRoomList
-import io.element.android.libraries.matrix.test.roomlist.FakeRoomListService
-import io.element.android.libraries.matrix.ui.model.toSelectRoomInfo
-import io.element.android.libraries.roomselect.api.RoomSelectMode
-import io.element.android.tests.testutils.WarmUpRule
-import io.element.android.tests.testutils.lambda.assert
-import io.element.android.tests.testutils.lambda.lambdaRecorder
-import io.element.android.tests.testutils.testCoroutineDispatchers
+import io.prism.android.libraries.designsystem.theme.components.SearchBarResultState
+import io.prism.android.libraries.matrix.api.roomlist.RoomListFilter
+import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.test.room.aRoomSummary
+import io.prism.android.libraries.matrix.test.roomlist.FakeDynamicRoomList
+import io.prism.android.libraries.matrix.test.roomlist.FakeRoomListService
+import io.prism.android.libraries.matrix.ui.model.toSelectRoomInfo
+import io.prism.android.libraries.roomselect.api.RoomSelectMode
+import io.prism.android.tests.testutils.WarmUpRule
+import io.prism.android.tests.testutils.lambda.assert
+import io.prism.android.tests.testutils.lambda.lambdaRecorder
+import io.prism.android.tests.testutils.testCoroutineDispatchers
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
