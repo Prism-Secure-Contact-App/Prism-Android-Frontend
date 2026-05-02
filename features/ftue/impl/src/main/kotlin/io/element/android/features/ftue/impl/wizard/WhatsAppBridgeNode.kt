@@ -14,8 +14,8 @@ class WhatsAppBridgeNode(
 
     private val presenter = BridgePresenter(
         bridgeName = "WhatsApp",
-        onConnected = { ftueService.updateFtueStep() },
-        onSkip = { ftueService.updateFtueStep() },
+        onConnected = { ftueService.completeCurrentStepAndAdvance() },
+        onSkip = { ftueService.completeCurrentStepAndAdvance() },
         onBack = onBack
     )
 

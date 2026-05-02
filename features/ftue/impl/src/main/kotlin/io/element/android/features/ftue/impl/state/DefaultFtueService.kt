@@ -45,6 +45,7 @@ class DefaultFtueService(
     private val sessionPreferencesStore: SessionPreferencesStore,
 ) : FtueService {
     private val userNeedsToConfirmSessionVerificationSuccess = MutableStateFlow(false)
+    private val completedWizardSteps = mutableSetOf<FtueStep>()
 
     val ftueStepStateFlow = MutableStateFlow<InternalFtueState>(InternalFtueState.Unknown)
 
@@ -81,6 +82,14 @@ class DefaultFtueService(
         }
     }
 
+    fun completeCurrentStepAndAdvance() {
+        val currentState = ftueStepStateFlow.value
+        if (currentState is InternalFtueState.Incomplete) {
+            completedWizardSteps.add(currentState.nextStep)
+        }
+        updateFtueStep()
+    }
+
     private suspend fun getNextStep(completedStep: FtueStep? = null): FtueStep? =
         when (completedStep) {
             null -> if (!isSessionVerificationStateReady()) {
@@ -103,9 +112,21 @@ class DefaultFtueService(
             } else {
                 getNextStep(FtueStep.LockscreenSetup)
             }
-            FtueStep.LockscreenSetup -> FtueStep.WhatsAppBridgeSetup
-            FtueStep.WhatsAppBridgeSetup -> FtueStep.MetaBridgeSetup
-            FtueStep.MetaBridgeSetup -> FtueStep.MoneroWalletSetup
+            FtueStep.LockscreenSetup -> if (FtueStep.WhatsAppBridgeSetup !in completedWizardSteps) {
+                FtueStep.WhatsAppBridgeSetup
+            } else {
+                getNextStep(FtueStep.WhatsAppBridgeSetup)
+            }
+            FtueStep.WhatsAppBridgeSetup -> if (FtueStep.MetaBridgeSetup !in completedWizardSteps) {
+                FtueStep.MetaBridgeSetup
+            } else {
+                getNextStep(FtueStep.MetaBridgeSetup)
+            }
+            FtueStep.MetaBridgeSetup -> if (FtueStep.MoneroWalletSetup !in completedWizardSteps) {
+                FtueStep.MoneroWalletSetup
+            } else {
+                getNextStep(FtueStep.MoneroWalletSetup)
+            }
             FtueStep.MoneroWalletSetup -> if (needsAnalyticsOptIn()) {
                 FtueStep.AnalyticsOptIn
             } else {

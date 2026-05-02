@@ -13,8 +13,8 @@ class MoneroWalletNode(
 ) : Node(buildContext) {
 
     private val presenter = MoneroWalletPresenter(
-        onWalletCreated = { ftueService.updateFtueStep() },
-        onSkip = { ftueService.updateFtueStep() },
+        onWalletCreated = { ftueService.completeCurrentStepAndAdvance() },
+        onSkip = { ftueService.completeCurrentStepAndAdvance() },
         onBack = onBack
     )
 

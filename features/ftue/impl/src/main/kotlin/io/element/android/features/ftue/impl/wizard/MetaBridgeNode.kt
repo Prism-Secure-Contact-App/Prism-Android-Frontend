@@ -14,8 +14,8 @@ class MetaBridgeNode(
 
     private val presenter = BridgePresenter(
         bridgeName = "Meta",
-        onConnected = { ftueService.updateFtueStep() },
-        onSkip = { ftueService.updateFtueStep() },
+        onConnected = { ftueService.completeCurrentStepAndAdvance() },
+        onSkip = { ftueService.completeCurrentStepAndAdvance() },
         onBack = onBack
     )
 
