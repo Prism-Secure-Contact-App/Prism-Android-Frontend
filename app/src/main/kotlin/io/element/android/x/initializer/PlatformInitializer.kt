@@ -11,6 +11,7 @@ package io.prism.android.x.initializer
 import android.content.Context
 import android.system.Os
 import androidx.startup.Initializer
+import io.prism.android.x.BuildConfig
 import io.prism.android.features.rageshake.api.logs.createWriteToFilesConfiguration
 import io.prism.android.libraries.architecture.bindings
 import io.prism.android.libraries.featureflag.api.FeatureFlags
@@ -33,7 +34,7 @@ class PlatformInitializer : Initializer<Unit> {
         val featureFlagService = appBindings.featureFlagService()
         val logLevel = runBlocking { preferencesStore.getTracingLogLevelFlow().first() }
         val tracingConfiguration = TracingConfiguration(
-            writesToLogcat = runBlocking { featureFlagService.isFeatureEnabled(FeatureFlags.PrintLogsToLogcat) },
+            writesToLogcat = BuildConfig.DEBUG || runBlocking { featureFlagService.isFeatureEnabled(FeatureFlags.PrintLogsToLogcat) },
             writesToFilesConfiguration = bugReporter.createWriteToFilesConfiguration(),
             logLevel = logLevel,
             extraTargets = listOf(PRISM_X_TARGET),

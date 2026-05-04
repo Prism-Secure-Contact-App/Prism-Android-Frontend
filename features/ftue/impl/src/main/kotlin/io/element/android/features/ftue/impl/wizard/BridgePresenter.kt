@@ -78,6 +78,13 @@ internal class BridgePresenter(
             }
         }
 
+        fun handleWebViewError(message: String) {
+            loginJob?.cancel()
+            val error = IllegalStateException(message)
+            connectAction.value = AsyncAction.Failure(error)
+            phase = UiPhase.Error(message)
+        }
+
         fun handleEvent(event: BridgeEvents) {
             when (event) {
                 BridgeEvents.Connect -> start()
@@ -91,6 +98,7 @@ internal class BridgePresenter(
                 }
                 is BridgeEvents.SubmitPrompt -> start(promptText = event.value)
                 BridgeEvents.UpdatePrompt -> Unit
+                is BridgeEvents.WebViewError -> handleWebViewError(event.message)
             }
         }
 
@@ -113,7 +121,12 @@ internal class BridgePresenter(
     ) {
         try {
             val botUserId = UserId(flow.botUserId)
-            val roomId = interactor.openBotRoom(botUserId).getOrThrow()
+            
+            // 30 second timeout for the initial room lookup/creation. If this hangs,
+            // the user stays on "Connecting" indefinitely.
+            val roomId = withTimeoutOrNull(30_000L) {
+                interactor.openBotRoom(botUserId).getOrThrow()
+            } ?: throw IllegalStateException("Sunucuya bağlanılamadı. Lütfen internetinizi kontrol edin.")
 
             // Some flows (e.g. WhatsApp pairing-code) need the user's input BEFORE
             // any bot interaction. We detect this by an empty initialCommand + a
@@ -288,4 +301,5 @@ internal sealed interface BridgeEvents {
     data object Back : BridgeEvents
     data class SubmitPrompt(val value: String) : BridgeEvents
     data object UpdatePrompt : BridgeEvents
+    data class WebViewError(val message: String) : BridgeEvents
 }

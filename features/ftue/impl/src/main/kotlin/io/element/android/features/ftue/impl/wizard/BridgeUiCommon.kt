@@ -68,9 +68,11 @@ import io.prism.android.libraries.matrix.ui.media.MediaRequestData
 internal fun BridgePhaseContent(
     phase: UiPhase,
     bridgeName: String,
-    onSubmitPrompt: ((String) -> Unit)? = null,
+    eventSink: ((BridgeEvents) -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
+    val onSubmitPrompt = { value: String -> eventSink?.invoke(BridgeEvents.SubmitPrompt(value)) }
+    val onWebViewError = { message: String -> eventSink?.invoke(BridgeEvents.WebViewError(message)) }
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -116,7 +118,8 @@ internal fun BridgePhaseContent(
 
             is UiPhase.AwaitingWebView -> CookieWebView(
                 phase = phase,
-                onCookiesCollected = { json -> onSubmitPrompt?.invoke(json) },
+                onCookiesCollected = onSubmitPrompt,
+                onWebViewError = onWebViewError,
             )
 
             is UiPhase.Error -> Text(
@@ -178,6 +181,7 @@ private fun InputPrompt(prompt: String) {
 private fun CookieWebView(
     phase: UiPhase.AwaitingWebView,
     onCookiesCollected: (String) -> Unit,
+    onWebViewError: (String) -> Unit,
 ) {
     var emitted by remember { mutableStateOf(false) }
 
@@ -274,11 +278,8 @@ private fun CookieWebView(
                             request: WebResourceRequest?,
                             error: WebResourceError?,
                         ) {
-                            timber.log.Timber.w(
-                                "Bridge WebView error: url=%s code=%s desc=%s",
-                                request?.url,
-                                error?.errorCode,
-                                error?.description,
+                            onWebViewError(
+                                "Giriş sayfası yüklenemedi: ${error?.description ?: "Bilinmeyen hata"} (${error?.errorCode})"
                             )
                         }
                     }

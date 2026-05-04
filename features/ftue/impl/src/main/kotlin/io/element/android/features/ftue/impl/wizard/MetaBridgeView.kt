@@ -65,10 +65,7 @@ internal fun MetaBridgeView(
             BridgePhaseContent(
                 phase = state.phase,
                 bridgeName = "Instagram",
-                onSubmitPrompt = { json ->
-                    // WebView collected the cookies → forward as the bot's next command.
-                    state.eventSink(BridgeEvents.SubmitPrompt(json))
-                },
+                eventSink = state.eventSink,
             )
 
             Spacer(Modifier.height(24.dp))

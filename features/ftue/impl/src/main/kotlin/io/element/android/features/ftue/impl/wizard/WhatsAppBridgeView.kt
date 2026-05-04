@@ -69,6 +69,7 @@ internal fun WhatsAppBridgeView(
             BridgePhaseContent(
                 phase = state.phase,
                 bridgeName = "WhatsApp",
+                eventSink = state.eventSink,
             )
 
             Spacer(Modifier.height(24.dp))
