@@ -95,9 +95,16 @@ private fun Throwable.getReason(): String? {
             }
         }
         is PusherRegistrationFailure.AccountNotVerified -> null
-        is PusherRegistrationFailure.NoDistributorsAvailable -> "No distributors available"
+        is PusherRegistrationFailure.NoDistributorsAvailable -> null
         is PusherRegistrationFailure.NoProvidersAvailable -> "No providers available"
-        else -> "Other error: $message"
+        else -> {
+            val message = this.message ?: ""
+            if (message.contains("No distributors available", ignoreCase = true)) {
+                null
+            } else {
+                "Other error: $message"
+            }
+        }
     }
 }
 

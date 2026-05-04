@@ -50,6 +50,7 @@ class FtueFlowNode(
     private val defaultFtueService: DefaultFtueService,
     private val analyticsEntryPoint: AnalyticsEntryPoint,
     private val lockScreenEntryPoint: LockScreenEntryPoint,
+    private val matrixClient: io.prism.android.libraries.matrix.api.PRISMClient,
 ) : BaseFlowNode<FtueFlowNode.NavTarget>(
     backstack = BackStack(
         initialElement = NavTarget.Placeholder,
@@ -135,6 +136,7 @@ class FtueFlowNode(
                 WhatsAppBridgeNode(
                     buildContext = buildContext,
                     ftueService = defaultFtueService,
+                    matrixClient = matrixClient,
                     onBack = { backstack.pop() }
                 )
             }
@@ -142,6 +144,7 @@ class FtueFlowNode(
                 MetaBridgeNode(
                     buildContext = buildContext,
                     ftueService = defaultFtueService,
+                    matrixClient = matrixClient,
                     onBack = { backstack.pop() }
                 )
             }

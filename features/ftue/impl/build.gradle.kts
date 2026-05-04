@@ -33,6 +33,8 @@ dependencies {
     implementation(projects.libraries.architecture)
     implementation(projects.libraries.matrix.api)
     implementation(projects.libraries.matrixui)
+    implementation(projects.libraries.matrixmedia.api)
+    implementation(libs.coil.compose)
     implementation(projects.libraries.designsystem)
     implementation(projects.libraries.preferences.api)
     implementation(projects.libraries.uiCommon)
