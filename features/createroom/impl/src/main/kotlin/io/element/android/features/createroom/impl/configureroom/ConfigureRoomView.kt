@@ -151,6 +151,55 @@ fun ConfigureRoomView(
                     supportingText = stringResource(R.string.screen_create_room_room_address_section_footer),
                 )
             }
+
+            // Session Room (Gizli Sohbet) settings
+            ListSectionHeader(title = "Gizlilik")
+            ListItem(
+                headlineContent = { Text("Session Room (Gizli Sohbet)") },
+                supportingContent = { Text("Mesajlar otomatik silinir, sunucuda tutulmaz") },
+                trailingContent = ListItemContent.Custom {
+                    androidx.compose.material3.Switch(
+                        checked = state.config.isSessionRoom,
+                        onCheckedChange = { state.eventSink(ConfigureRoomEvents.SessionRoomChanged(it)) },
+                    )
+                },
+            )
+            if (state.config.isSessionRoom) {
+                ListItem(
+                    headlineContent = { Text("Auto-Delete Timer") },
+                    supportingContent = {
+                        val label = when (state.config.autoDeleteTimerMs) {
+                            3_600_000L -> "1 Hour"
+                            43_200_000L -> "12 Hours"
+                            86_400_000L -> "24 Hours"
+                            -1L -> "Delete after read"
+                            else -> "Not selected"
+                        }
+                        Text(label)
+                    },
+                    onClick = {
+                        // Cycle through options
+                        val next = when (state.config.autoDeleteTimerMs) {
+                            0L -> 3_600_000L
+                            3_600_000L -> 43_200_000L
+                            43_200_000L -> 86_400_000L
+                            86_400_000L -> -1L
+                            else -> 3_600_000L
+                        }
+                        state.eventSink(ConfigureRoomEvents.AutoDeleteTimerChanged(next))
+                    },
+                )
+                ListItem(
+                    headlineContent = { Text("Screenshot Protection") },
+                    supportingContent = { Text("Prevent screenshots with FLAG_SECURE") },
+                    trailingContent = ListItemContent.Custom {
+                        androidx.compose.material3.Switch(
+                            checked = state.config.isScreenshotProtected,
+                            onCheckedChange = { state.eventSink(ConfigureRoomEvents.ScreenshotProtectionChanged(it)) },
+                        )
+                    },
+                )
+            }
         }
     }
 

@@ -55,9 +55,9 @@ internal fun MetaBridgeView(
         ) {
             IconTitleSubtitleMolecule(
                 iconStyle = BigIcon.Style.Default(CompoundIcons.Public()),
-                title = "Instagram'ı bağla",
-                subTitle = "Instagram DM'lerini PRISM içinden okuyup yanıtla. " +
-                    "Mesajların 'Instagram' Space'inde toplanır; ana ekran sade kalır.",
+                title = "Connect Instagram",
+                subTitle = "Read and reply to Instagram DMs from within PRISM. " +
+                    "Messages are grouped in an 'Instagram' space; your main screen stays clean.",
             )
 
             Spacer(Modifier.height(24.dp))
@@ -72,7 +72,7 @@ internal fun MetaBridgeView(
 
             BridgeActionRow(
                 state = state,
-                primaryLabel = if (state.phase is UiPhase.Error) "Tekrar dene" else "Instagram'ı bağla",
+                primaryLabel = if (state.phase is UiPhase.Error) "Try again" else "Instagram'ı bağla",
             )
 
             Spacer(Modifier.height(8.dp))

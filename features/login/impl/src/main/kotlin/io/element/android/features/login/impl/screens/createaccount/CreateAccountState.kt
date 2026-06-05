@@ -11,6 +11,11 @@ package io.prism.android.features.login.impl.screens.createaccount
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.matrix.api.core.SessionId
 
+data class PasswordRequirement(
+    val label: String,
+    val satisfied: Boolean,
+)
+
 data class CreateAccountState(
     val url: String,
     val username: String = "",
@@ -20,5 +25,6 @@ data class CreateAccountState(
     val pageProgress: Int,
     val createAction: AsyncAction<SessionId>,
     val isDebugBuild: Boolean,
+    val passwordRequirements: List<PasswordRequirement> = emptyList(),
     val eventSink: (CreateAccountEvents) -> Unit
 )

@@ -41,6 +41,10 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
+import android.app.Activity
+import android.content.ContextWrapper
+import android.view.WindowManager
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.role
@@ -150,6 +154,27 @@ fun MessagesView(
 
     // This is needed because the composer is inside an AndroidView that can't be affected by the FocusManager in Compose
     val localView = LocalView.current
+
+    val activity = localView.context.let { ctx ->
+        var context = ctx
+        while (context is ContextWrapper) {
+            if (context is Activity) return@let context
+            context = context.baseContext
+        }
+        null
+    }
+
+    DisposableEffect(state.isSessionRoom) {
+        val window = activity?.window
+        if (state.isSessionRoom) {
+            window?.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        } else {
+            window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        }
+        onDispose {
+            window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        }
+    }
 
     fun hidingKeyboard(block: () -> Unit) {
         localView.hideKeyboard()

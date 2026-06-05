@@ -13,12 +13,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import io.prism.android.compound.theme.PRISMTheme
+import io.prism.android.compound.tokens.generated.CompoundIcons
 import io.prism.android.features.login.impl.R
 import io.prism.android.libraries.designsystem.components.async.AsyncActionView
 import io.prism.android.libraries.designsystem.components.button.BackButton
@@ -35,6 +41,9 @@ fun CreateAccountView(
     onOpenExternalUrl: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var passwordVisible by remember { mutableStateOf(false) }
+    var confirmPasswordVisible by remember { mutableStateOf(false) }
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -55,7 +64,7 @@ fun CreateAccountView(
                 .padding(horizontal = 16.dp, vertical = 24.dp)
         ) {
             Text(
-                text = "Create your PRISM account",
+                text = "Create your Prisma account",
                 style = PRISMTheme.typography.fontHeadingMdBold,
                 color = PRISMTheme.colors.textPrimary
             )
@@ -81,17 +90,42 @@ fun CreateAccountView(
                 value = state.password,
                 onValueChange = { state.eventSink(CreateAccountEvents.SetPassword(it)) },
                 label = stringResource(CommonStrings.common_password),
-                visualTransformation = PasswordVisualTransformation(),
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val image = if (passwordVisible) CompoundIcons.VisibilityOn() else CompoundIcons.VisibilityOff()
+                    val description = if (passwordVisible) stringResource(CommonStrings.a11y_hide_password) else stringResource(CommonStrings.a11y_show_password)
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(imageVector = image, contentDescription = description)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
             )
+            if (state.password.isNotEmpty()) {
+                Column(modifier = Modifier.padding(start = 16.dp, top = 4.dp)) {
+                    state.passwordRequirements.forEach { req ->
+                        Text(
+                            text = "• ${req.label}",
+                            style = PRISMTheme.typography.fontBodySmRegular,
+                            color = if (req.satisfied) PRISMTheme.colors.textSuccessPrimary else PRISMTheme.colors.textSecondary,
+                        )
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(16.dp))
 
             TextField(
                 value = state.passwordConfirm,
                 onValueChange = { state.eventSink(CreateAccountEvents.SetPasswordConfirm(it)) },
                 label = "Confirm Password",
-                visualTransformation = PasswordVisualTransformation(),
+                visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val image = if (confirmPasswordVisible) CompoundIcons.VisibilityOn() else CompoundIcons.VisibilityOff()
+                    val description = if (confirmPasswordVisible) stringResource(CommonStrings.a11y_hide_password) else stringResource(CommonStrings.a11y_show_password)
+                    IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
+                        Icon(imageVector = image, contentDescription = description)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 validity = if (state.password.isNotEmpty() && state.passwordConfirm.isNotEmpty() && state.password != state.passwordConfirm) TextFieldValidity.Invalid else TextFieldValidity.None,

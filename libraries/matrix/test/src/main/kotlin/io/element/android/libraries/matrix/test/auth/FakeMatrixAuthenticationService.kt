@@ -89,7 +89,7 @@ class FakeMatrixAuthenticationService(
         loginWithQrCodeResult(qrCodeData, progress)
     }
 
-    override fun listenToNewMatrixClients(lambda: (PRISMClient) -> Unit) {
+    override fun listenToNewPRISMClients(lambda: (PRISMClient) -> Unit) {
         onAuthenticationListener = lambda
     }
 

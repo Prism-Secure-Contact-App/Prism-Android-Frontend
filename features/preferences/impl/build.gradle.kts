@@ -70,6 +70,7 @@ dependencies {
     implementation(projects.libraries.pushproviders.api)
     implementation(projects.libraries.uiUtils)
     implementation(projects.libraries.fullscreenintent.api)
+    implementation(libs.monero.wallet.sdk)
     implementation(projects.features.rageshake.api)
     implementation(projects.features.lockscreen.api)
     implementation(projects.features.analytics.api)

@@ -70,6 +70,7 @@ import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.matrix.api.core.toThreadId
 import io.prism.android.libraries.matrix.api.encryption.EncryptionService
 import io.prism.android.libraries.matrix.api.encryption.identity.IdentityState
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
 import io.prism.android.libraries.matrix.api.permalink.PermalinkParser
 import io.prism.android.libraries.matrix.api.room.JoinedRoom
 import io.prism.android.libraries.matrix.api.room.RoomInfo
@@ -121,6 +122,7 @@ class MessagesPresenter(
     private val featureFlagService: FeatureFlagService,
     private val addRecentEmoji: AddRecentEmoji,
     private val markAsFullyRead: MarkAsFullyRead,
+    private val sessionPreferencesStore: SessionPreferencesStore,
     @SessionCoroutineScope private val sessionCoroutineScope: CoroutineScope,
 ) : Presenter<MessagesState> {
     @AssistedFactory
@@ -160,6 +162,11 @@ class MessagesPresenter(
         val pinnedMessagesBannerState = pinnedMessagesBannerPresenter.present()
         val roomCallState = roomCallStatePresenter.present()
         val roomMemberModerationState = roomMemberModerationPresenter.present()
+
+        val isSessionRoom by remember {
+            sessionPreferencesStore.getSessionRoomConfig(room.roomId.value)
+        }.collectAsState(initial = "")
+        val isSessionRoomBoolean = isSessionRoom.isNotBlank()
 
         val userEventPermissions by room.permissionsAsState(UserEventPermissions.DEFAULT) { perms ->
             perms.userEventPermissions()
@@ -296,6 +303,7 @@ class MessagesPresenter(
             roomMemberModerationState = roomMemberModerationState,
             topBarSharedHistoryIcon = topBarSharedHistoryIcon,
             successorRoom = roomInfo.successorRoom,
+            isSessionRoom = isSessionRoomBoolean,
             eventSink = ::handleEvent,
         )
     }

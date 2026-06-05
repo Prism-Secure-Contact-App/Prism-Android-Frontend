@@ -172,7 +172,11 @@ internal class BridgeBotInteractor(
             val stepId = ns.optString("step_id")
             val type = ns.optString("type")
             val data = when (type) {
-                "display_and_wait" -> ns.optJSONObject("display_and_wait")?.optString("data")
+                "display_and_wait" -> {
+                    ns.optJSONObject("display_and_wait")?.optString("data")
+                        ?: ns.optString("data").takeIf { it.isNotBlank() }
+                        ?: ns.optJSONObject("data")?.optString("data")
+                }
                 else -> null
             }
             BridgeNextStep(stepId = stepId, type = type, data = data, raw = ns)

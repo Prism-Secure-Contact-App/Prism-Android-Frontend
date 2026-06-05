@@ -47,6 +47,7 @@ class AccountProviderDataSource(
     private fun createAccountProvider(url: String): AccountProvider {
         return AccountProvider(
             url = url,
+            title = "Prisma",
             subtitle = null,
             isPublic = url == AuthenticationConfig.PRISM_ORG_URL,
             isPRISMOrg = url == AuthenticationConfig.PRISM_ORG_URL,

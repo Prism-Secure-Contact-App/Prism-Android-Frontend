@@ -32,6 +32,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @ContributesBinding(SessionScope::class)
 @SingleIn(SessionScope::class)
@@ -49,6 +50,17 @@ class DefaultFtueService(
 
     val ftueStepStateFlow = MutableStateFlow<InternalFtueState>(InternalFtueState.Unknown)
 
+    private suspend fun loadPersistedCompletions() {
+        try {
+            if (sessionPreferencesStore.isFtueBridgeSetupCompleted("whatsapp").first()) {
+                completedWizardSteps.add(FtueStep.WhatsAppBridgeSetup)
+            }
+
+        } catch (t: Throwable) {
+            Timber.w(t, "DefaultFtueService: failed to load persisted completions")
+        }
+    }
+
     override val state = ftueStepStateFlow
         .mapState {
             when (it) {
@@ -59,6 +71,10 @@ class DefaultFtueService(
         }
 
     init {
+        sessionCoroutineScope.launch {
+            loadPersistedCompletions()
+            updateFtueStep()
+        }
         combine(
             sessionVerificationService.sessionVerifiedStatus.onEach { sessionVerifiedStatus ->
                 if (sessionVerifiedStatus == SessionVerifiedStatus.NotVerified) {
@@ -85,7 +101,19 @@ class DefaultFtueService(
     fun completeCurrentStepAndAdvance() {
         val currentState = ftueStepStateFlow.value
         if (currentState is InternalFtueState.Incomplete) {
-            completedWizardSteps.add(currentState.nextStep)
+            val step = currentState.nextStep
+            completedWizardSteps.add(step)
+            sessionCoroutineScope.launch {
+                try {
+                    when (step) {
+                        is FtueStep.WhatsAppBridgeSetup ->
+                            sessionPreferencesStore.setFtueBridgeSetupCompleted("whatsapp", true)
+                        else -> {}
+                    }
+                } catch (t: Throwable) {
+                    Timber.w(t, "DefaultFtueService: failed to persist step completion")
+                }
+            }
         }
         updateFtueStep()
     }
@@ -117,17 +145,20 @@ class DefaultFtueService(
             } else {
                 getNextStep(FtueStep.WhatsAppBridgeSetup)
             }
-            FtueStep.WhatsAppBridgeSetup -> if (FtueStep.MetaBridgeSetup !in completedWizardSteps) {
-                FtueStep.MetaBridgeSetup
-            } else {
-                getNextStep(FtueStep.MetaBridgeSetup)
-            }
-            FtueStep.MetaBridgeSetup -> if (FtueStep.MoneroWalletSetup !in completedWizardSteps) {
+            FtueStep.WhatsAppBridgeSetup -> if (FtueStep.MoneroWalletSetup !in completedWizardSteps) {
                 FtueStep.MoneroWalletSetup
             } else {
                 getNextStep(FtueStep.MoneroWalletSetup)
             }
-            FtueStep.MoneroWalletSetup -> if (needsAnalyticsOptIn()) {
+            FtueStep.MoneroWalletSetup -> {
+                val hasPrismAI = sessionPreferencesStore.getPrismAISpaceId().first()?.isNotBlank() == true
+                if (hasPrismAI || FtueStep.PrismAIOnboarding in completedWizardSteps) {
+                    getNextStep(FtueStep.PrismAIOnboarding)
+                } else {
+                    FtueStep.PrismAIOnboarding
+                }
+            }
+            FtueStep.PrismAIOnboarding -> if (needsAnalyticsOptIn()) {
                 FtueStep.AnalyticsOptIn
             } else {
                 getNextStep(FtueStep.AnalyticsOptIn)
@@ -178,6 +209,6 @@ sealed interface FtueStep {
     data object AnalyticsOptIn : FtueStep
     data object LockscreenSetup : FtueStep
     data object WhatsAppBridgeSetup : FtueStep
-    data object MetaBridgeSetup : FtueStep
     data object MoneroWalletSetup : FtueStep
+    data object PrismAIOnboarding : FtueStep
 }

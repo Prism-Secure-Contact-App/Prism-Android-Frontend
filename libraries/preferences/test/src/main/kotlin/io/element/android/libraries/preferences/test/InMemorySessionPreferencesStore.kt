@@ -31,6 +31,8 @@ class InMemorySessionPreferencesStore(
     private val isSessionVerificationSkipped = MutableStateFlow(isSessionVerificationSkipped)
     private val doesCompressMedia = MutableStateFlow(doesCompressMedia)
     private val videoCompressionPreset = MutableStateFlow(videoCompressionPreset)
+    private val ftueBridgeSetupMap = mutableMapOf<String, MutableStateFlow<Boolean>>()
+    private val sessionRoomConfigMap = mutableMapOf<String, MutableStateFlow<String>>()
     var clearCallCount = 0
         private set
 
@@ -82,6 +84,22 @@ class InMemorySessionPreferencesStore(
 
     override fun getVideoCompressionPreset(): Flow<VideoCompressionPreset> {
         return videoCompressionPreset
+    }
+
+    override suspend fun setFtueBridgeSetupCompleted(bridge: String, completed: Boolean) {
+        ftueBridgeSetupMap.getOrPut(bridge) { MutableStateFlow(false) }.tryEmit(completed)
+    }
+
+    override fun isFtueBridgeSetupCompleted(bridge: String): Flow<Boolean> {
+        return ftueBridgeSetupMap.getOrPut(bridge) { MutableStateFlow(false) }
+    }
+
+    override suspend fun setSessionRoomConfig(roomId: String, config: String) {
+        sessionRoomConfigMap.getOrPut(roomId) { MutableStateFlow("") }.tryEmit(config)
+    }
+
+    override fun getSessionRoomConfig(roomId: String): Flow<String> {
+        return sessionRoomConfigMap.getOrPut(roomId) { MutableStateFlow("") }
     }
 
     override suspend fun clear() {

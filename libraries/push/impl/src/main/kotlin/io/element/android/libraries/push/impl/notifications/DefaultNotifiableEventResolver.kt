@@ -52,11 +52,13 @@ import io.prism.android.libraries.matrix.api.timeline.item.event.VoiceMessageTyp
 import io.prism.android.libraries.matrix.ui.messages.toPlainText
 import io.prism.android.libraries.push.impl.R
 import io.prism.android.libraries.push.impl.db.PushRequest
+import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
 import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
 import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
 import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
 import io.prism.android.libraries.ui.strings.CommonStrings
 import io.prism.android.services.toolbox.api.strings.StringProvider
+import kotlinx.coroutines.flow.first
 import timber.log.Timber
 
 private val loggerTag = LoggerTag("DefaultNotifiableEventResolver", LoggerTag.NotificationLoggerTag)
@@ -93,6 +95,7 @@ class DefaultNotifiableEventResolver(
     private val callNotificationEventResolver: CallNotificationEventResolver,
     private val fallbackNotificationFactory: FallbackNotificationFactory,
     private val featureFlagService: FeatureFlagService,
+    private val appPreferencesStore: AppPreferencesStore,
 ) : NotifiableEventResolver {
     override suspend fun resolveEvents(
         sessionId: SessionId,
@@ -117,9 +120,16 @@ class DefaultNotifiableEventResolver(
         }
 
         // The null check is done above
+        val isDeepWork = appPreferencesStore.isDeepWorkModeEnabled().first()
+
         val notificationDataMap = notificationsResult.getOrNull()!!.mapValues { (_, notificationData) ->
             notificationData.flatMap { data ->
-                data.asNotifiableEvent(client, sessionId)
+                if (isDeepWork && data.content.isWhatsAppBridgeMessage()) {
+                    Timber.tag(loggerTag.value).d("Deep Work: suppressing WhatsApp bridge notification")
+                    Result.failure(NotificationResolverException.EventFilteredOut)
+                } else {
+                    data.asNotifiableEvent(client, sessionId)
+                }
             }
         }
 
@@ -475,3 +485,12 @@ internal fun buildNotifiableMessageEvent(
     type = type,
     hasMentionOrReply = hasMentionOrReply,
 )
+
+private fun NotificationContent.isWhatsAppBridgeMessage(): Boolean {
+    return when (this) {
+        is NotificationContent.MessageLike.RoomMessage -> {
+            senderId.value.contains("@whatsapp") || senderId.value.contains(":whatsapp")
+        }
+        else -> false
+    }
+}

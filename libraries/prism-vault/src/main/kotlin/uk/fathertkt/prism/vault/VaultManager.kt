@@ -95,14 +95,14 @@ class VaultManager(@ApplicationContext private val context: Context) {
             }
 
             override fun onAuthenticationFailed() {
-                onFailure("Kimlik doğrulama başarısız")
+                onFailure("Authentication failed")
             }
         }
 
         val prompt = BiometricPrompt(activity, executor, callback)
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("PRISM Kasa")
-            .setSubtitle("Gizli sohbetlere erişmek için doğrulayın")
+            .setTitle("PRISM Vault")
+            .setSubtitle("Authenticate to access secret chats")
             .setAllowedAuthenticators(
                 BiometricManager.Authenticators.BIOMETRIC_STRONG or
                     BiometricManager.Authenticators.DEVICE_CREDENTIAL

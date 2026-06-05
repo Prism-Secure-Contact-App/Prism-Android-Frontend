@@ -250,6 +250,7 @@ test_roborazzi_junit = { module = "io.github.takahirom.roborazzi:roborazzi-junit
 
 # PRISM custom
 breez_sdk = { module = "technology.breez:breez-sdk-android", version.ref = "breez_sdk" }
+monero_wallet_sdk = "im.molly:monero-wallet-sdk:1.0.0"
 
 [bundles]
 

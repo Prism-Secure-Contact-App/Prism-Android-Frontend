@@ -43,6 +43,10 @@ dependencies {
     implementation(projects.services.analytics.api)
     implementation(libs.coil.compose)
     implementation(projects.libraries.featureflag.api)
+    implementation(projects.libraries.sessionStorage.api)
+    implementation(projects.libraries.network)
+    implementation(platform(libs.network.okhttp.bom))
+    implementation(libs.network.okhttp)
     implementation(projects.features.invitepeople.api)
     api(projects.features.createroom.api)
 

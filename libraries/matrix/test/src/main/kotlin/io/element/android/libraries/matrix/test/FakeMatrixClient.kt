@@ -74,7 +74,7 @@ class FakeMatrixClient(
     private val userAvatarUrl: String? = AN_AVATAR_URL,
     override val roomListService: RoomListService = FakeRoomListService(),
     override val spaceService: SpaceService = FakeSpaceService(),
-    override val matrixMediaLoader: PRISMMediaLoader = FakeMatrixMediaLoader(),
+    override val prismMediaLoader: PRISMMediaLoader = FakeMatrixMediaLoader(),
     override val sessionVerificationService: SessionVerificationService = FakeSessionVerificationService(),
     override val pushersService: PushersService = FakePushersService(),
     override val notificationService: NotificationService = FakeNotificationService(),

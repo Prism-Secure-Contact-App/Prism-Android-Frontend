@@ -17,10 +17,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
@@ -69,11 +71,35 @@ class MainActivity : NodeActivity() {
         val colors by remember {
             appBindings.enterpriseService().semanticColorsFlow(sessionId = null)
         }.collectAsState(SemanticColorsLightDark.default)
+        val isDeepWorkMode by remember {
+            appBindings.preferencesStore().isDeepWorkModeEnabled()
+        }.collectAsState(initial = false)
+
+        LaunchedEffect(isDeepWorkMode) {
+            if (isDeepWorkMode) {
+                Timber.tag(loggerTag.value).i("Deep Work mode enabled — forcing dark zen theme")
+            }
+        }
+
+        val compoundDark = remember(colors.dark, isDeepWorkMode) {
+            if (isDeepWorkMode) {
+                colors.dark.copy(
+                    bgAccentRest = Color(0xFF00FF41),
+                    bgAccentHovered = Color(0xFF00D936),
+                    bgAccentPressed = Color(0xFF00B82E),
+                    iconAccentTertiary = Color(0xFF00FF41),
+                )
+            } else {
+                colors.dark
+            }
+        }
+
         PRISMThemeApp(
             appPreferencesStore = appBindings.preferencesStore(),
             compoundLight = colors.light,
-            compoundDark = colors.dark,
-            buildMeta = appBindings.buildMeta()
+            compoundDark = compoundDark,
+            buildMeta = appBindings.buildMeta(),
+            forceDarkTheme = isDeepWorkMode,
         ) {
             CompositionLocalProvider(
                 LocalSnackbarDispatcher provides appBindings.snackbarDispatcher(),

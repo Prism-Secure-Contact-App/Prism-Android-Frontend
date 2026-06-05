@@ -31,6 +31,7 @@ class InMemoryAppPreferencesStore(
     private val tracingLogPacks = MutableStateFlow(traceLockPacks)
     private val hideInviteAvatars = MutableStateFlow(hideInviteAvatars)
     private val timelineMediaPreviewValue = MutableStateFlow(timelineMediaPreviewValue)
+    private val deepWorkMode = MutableStateFlow(false)
 
     override suspend fun setDeveloperModeEnabled(enabled: Boolean) {
         isDeveloperModeEnabled.value = enabled
@@ -90,6 +91,14 @@ class InMemoryAppPreferencesStore(
 
     override fun getTracingLogPacksFlow(): Flow<Set<TraceLogPack>> {
         return tracingLogPacks
+    }
+
+    override suspend fun setDeepWorkMode(enabled: Boolean) {
+        deepWorkMode.value = enabled
+    }
+
+    override fun isDeepWorkModeEnabled(): Flow<Boolean> {
+        return deepWorkMode
     }
 
     override suspend fun reset() {

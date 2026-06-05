@@ -30,6 +30,7 @@ private val hideInviteAvatarsKey = booleanPreferencesKey("hideInviteAvatars")
 private val timelineMediaPreviewValueKey = stringPreferencesKey("timelineMediaPreviewValue")
 private val logLevelKey = stringPreferencesKey("logLevel")
 private val traceLogPacksKey = stringPreferencesKey("traceLogPacks")
+private val deepWorkModeKey = booleanPreferencesKey("deepWorkMode")
 
 @ContributesBinding(AppScope::class)
 class DefaultAppPreferencesStore(
@@ -141,6 +142,18 @@ class DefaultAppPreferencesStore(
                 ?.mapNotNull { value -> TraceLogPack.entries.find { it.key == value } }
                 ?.toSet()
                 ?: emptySet()
+        }
+    }
+
+    override suspend fun setDeepWorkMode(enabled: Boolean) {
+        store.edit { prefs ->
+            prefs[deepWorkModeKey] = enabled
+        }
+    }
+
+    override fun isDeepWorkModeEnabled(): Flow<Boolean> {
+        return store.data.map { prefs ->
+            prefs[deepWorkModeKey] ?: false
         }
     }
 

@@ -53,6 +53,7 @@ import io.prism.android.libraries.permissions.test.FakePermissionsPresenter
 import io.prism.android.libraries.permissions.test.FakePermissionsPresenterFactory
 import io.prism.android.libraries.previewutils.room.aSpaceRoom
 import io.prism.android.services.analytics.api.AnalyticsService
+import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
 import io.prism.android.services.analytics.test.FakeAnalyticsService
 import io.prism.android.tests.testutils.WarmUpRule
 import io.prism.android.tests.testutils.lambda.lambdaRecorder
@@ -566,5 +567,7 @@ class ConfigureRoomPresenterTest {
             mapOf(FeatureFlags.Knock.key to isKnockFeatureEnabled)
         ),
         mediaOptimizationConfigProvider = mediaOptimizationConfigProvider,
+        sessionStore = InMemorySessionStore(),
+        okHttpClient = okhttp3.OkHttpClient(),
     )
 }

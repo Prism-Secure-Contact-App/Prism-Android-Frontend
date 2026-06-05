@@ -45,7 +45,7 @@ private const val versionMonth = 3
  * Release number in the month. Value must be in [0,99].
  * Do not update this value. it is updated by the release script.
  */
-private const val versionReleaseNumber = 4
+private const val versionReleaseNumber = 5
 
 object Versions {
     /**
@@ -55,7 +55,7 @@ object Versions {
      * See comment above for the calculation method.
      */
     const val VERSION_CODE = (2000 + versionYear) * 10_000 + versionMonth * 100 + versionReleaseNumber
-    val VERSION_NAME = "$versionYear.${versionMonth.toString().padStart(2, '0')}.$versionReleaseNumber"
+    val VERSION_NAME = "1.0.0"
 
     /**
      * Compile SDK version. Must be updated when a new Android version is released.
@@ -77,8 +77,9 @@ object Versions {
 
     /**
      * Minimum SDK version for FOSS builds.
+     * Raised to 26 because monero-wallet-sdk requires API 26+ (Android 8.0).
      */
-    private const val MIN_SDK_FOSS = 24
+    private const val MIN_SDK_FOSS = 26
 
     /**
      * Minimum SDK version for Enterprise builds.

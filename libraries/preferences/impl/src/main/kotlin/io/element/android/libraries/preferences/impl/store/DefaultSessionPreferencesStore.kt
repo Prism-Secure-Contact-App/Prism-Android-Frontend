@@ -48,6 +48,8 @@ class DefaultSessionPreferencesStore(
     private val compressImages = booleanPreferencesKey("compressMedia")
     private val compressMediaPreset = stringPreferencesKey("compressMediaPreset")
 
+    private fun ftueBridgeSetupKey(bridge: String) = booleanPreferencesKey("ftueBridgeSetup_$bridge")
+
     private val dataStoreFile = storeFile(context, sessionId)
     private val store = PreferenceDataStoreFactory.create(
         scope = sessionCoroutineScope,
@@ -93,6 +95,25 @@ class DefaultSessionPreferencesStore(
     override suspend fun setVideoCompressionPreset(preset: VideoCompressionPreset) = update(compressMediaPreset, preset.name)
     override fun getVideoCompressionPreset(): Flow<VideoCompressionPreset> = get(compressMediaPreset) { VideoCompressionPreset.STANDARD.name }
         .map { tryOrNull { VideoCompressionPreset.valueOf(it) } ?: VideoCompressionPreset.STANDARD }
+
+    override suspend fun setFtueBridgeSetupCompleted(bridge: String, completed: Boolean) = update(ftueBridgeSetupKey(bridge), completed)
+    override fun isFtueBridgeSetupCompleted(bridge: String): Flow<Boolean> = get(ftueBridgeSetupKey(bridge)) { false }
+
+    private fun sessionRoomConfigKey(roomId: String) = stringPreferencesKey("sessionRoomConfig_$roomId")
+
+    override suspend fun setSessionRoomConfig(roomId: String, config: String) = update(sessionRoomConfigKey(roomId), config)
+    override fun getSessionRoomConfig(roomId: String): Flow<String> = get(sessionRoomConfigKey(roomId)) { "" }
+
+    private val prismAISpaceIdKey = stringPreferencesKey("prismAiSpaceId")
+
+    override suspend fun setPrismAISpaceId(spaceId: String?) {
+        if (spaceId != null) {
+            update(prismAISpaceIdKey, spaceId)
+        } else {
+            store.edit { prefs -> prefs.remove(prismAISpaceIdKey) }
+        }
+    }
+    override fun getPrismAISpaceId(): Flow<String?> = store.data.map { prefs -> prefs[prismAISpaceIdKey] }
 
     override suspend fun clear() {
         dataStoreFile.safeDelete()

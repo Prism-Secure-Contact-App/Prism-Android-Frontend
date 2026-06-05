@@ -39,7 +39,10 @@ import io.prism.android.libraries.matrix.api.room.history.RoomHistoryVisibility
 import io.prism.android.libraries.matrix.api.room.join.JoinRule
 import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
 import io.prism.android.libraries.matrix.api.spaces.SpaceRoom
+import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.matrix.ui.media.AvatarAction
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidity
 import io.prism.android.libraries.matrix.ui.room.address.RoomAddressValidityEffect
 import io.prism.android.libraries.mediapickers.api.PickerProvider
@@ -73,6 +76,8 @@ class ConfigureRoomPresenter(
     private val featureFlagService: FeatureFlagService,
     private val roomAliasHelper: RoomAliasHelper,
     private val mediaOptimizationConfigProvider: MediaOptimizationConfigProvider,
+    private val sessionStore: SessionStore,
+    private val okHttpClient: okhttp3.OkHttpClient,
 ) : Presenter<ConfigureRoomState> {
     @AssistedFactory
     interface Factory {
@@ -213,6 +218,15 @@ class ConfigureRoomPresenter(
                 is ConfigureRoomEvents.SetParentSpace -> {
                     dataStore.setParentSpace(event.space, false)
                 }
+                is ConfigureRoomEvents.SessionRoomChanged -> {
+                    dataStore.setIsSessionRoom(event.isSessionRoom)
+                }
+                is ConfigureRoomEvents.AutoDeleteTimerChanged -> {
+                    dataStore.setAutoDeleteTimerMs(event.timerMs)
+                }
+                is ConfigureRoomEvents.ScreenshotProtectionChanged -> {
+                    dataStore.setIsScreenshotProtected(event.isProtected)
+                }
                 ConfigureRoomEvents.CancelCreateRoom -> {
                     createRoomAction.value = AsyncAction.Uninitialized
                 }
@@ -285,6 +299,11 @@ class ConfigureRoomPresenter(
                 }
                 .getOrThrow()
 
+            // Send m.room.retention state event for Session Rooms
+            if (config.isSessionRoom && config.autoDeleteTimerMs > 0) {
+                sendRetentionStateEvent(roomId, config.autoDeleteTimerMs)
+            }
+
             // Add the newly created room to the parent space too
             if (config.parentSpace != null) {
                 Timber.d("Adding room $roomId to parent space ${config.parentSpace.roomId}")
@@ -311,5 +330,32 @@ class ConfigureRoomPresenter(
         ).getOrThrow()
         val byteArray = preprocessed.file.readBytes()
         return matrixClient.uploadMedia(MimeTypes.Jpeg, byteArray).getOrThrow()
+    }
+
+    private suspend fun sendRetentionStateEvent(roomId: RoomId, maxLifetimeMs: Long) {
+        val sessionData = sessionStore.getSession(matrixClient.sessionId.value) ?: run {
+            Timber.w("Cannot send retention event: no session data")
+            return
+        }
+        val encodedRoomId = java.net.URLEncoder.encode(roomId.value, "UTF-8")
+        val url = "${sessionData.homeserverUrl}/_matrix/client/v3/rooms/$encodedRoomId/state/m.room.retention"
+        val body = """{"max_lifetime": $maxLifetimeMs}"""
+        val requestBody = body.toRequestBody("application/json".toMediaType())
+        val request = okhttp3.Request.Builder()
+            .url(url)
+            .put(requestBody)
+            .header("Authorization", "Bearer ${sessionData.accessToken}")
+            .build()
+        try {
+            okHttpClient.newCall(request).execute().use { response ->
+                if (response.isSuccessful) {
+                    Timber.i("m.room.retention sent for $roomId (max_lifetime=$maxLifetimeMs)")
+                } else {
+                    Timber.w("Failed to send m.room.retention: ${response.code} ${response.body?.string()}")
+                }
+            }
+        } catch (e: Exception) {
+            Timber.e(e, "Exception sending m.room.retention")
+        }
     }
 }

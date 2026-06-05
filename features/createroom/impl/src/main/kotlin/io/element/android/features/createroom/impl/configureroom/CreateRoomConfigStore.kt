@@ -115,6 +115,24 @@ class CreateRoomConfigStore(
         }
     }
 
+    fun setIsSessionRoom(isSessionRoom: Boolean) {
+        createRoomConfigFlow.getAndUpdate { config ->
+            config.copy(isSessionRoom = isSessionRoom)
+        }
+    }
+
+    fun setAutoDeleteTimerMs(timerMs: Long) {
+        createRoomConfigFlow.getAndUpdate { config ->
+            config.copy(autoDeleteTimerMs = timerMs)
+        }
+    }
+
+    fun setIsScreenshotProtected(isProtected: Boolean) {
+        createRoomConfigFlow.getAndUpdate { config ->
+            config.copy(isScreenshotProtected = isProtected)
+        }
+    }
+
     fun clearCachedData() {
         cachedAvatarUri = null
     }

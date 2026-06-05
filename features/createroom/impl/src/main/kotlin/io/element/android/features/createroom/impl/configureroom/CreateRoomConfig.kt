@@ -20,4 +20,7 @@ data class CreateRoomConfig(
     val invites: ImmutableList<PRISMUser> = persistentListOf(),
     val visibilityState: RoomVisibilityState = RoomVisibilityState.Private(JoinRuleItem.PrivateVisibility.Private),
     val parentSpace: SpaceRoom? = null,
+    val isSessionRoom: Boolean = false,
+    val autoDeleteTimerMs: Long = 0L,
+    val isScreenshotProtected: Boolean = false,
 )

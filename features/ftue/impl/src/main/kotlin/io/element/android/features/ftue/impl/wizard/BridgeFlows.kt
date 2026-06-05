@@ -7,6 +7,13 @@
 package io.prism.android.features.ftue.impl.wizard
 
 import androidx.compose.ui.text.input.KeyboardType
+import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
+import io.prism.android.libraries.matrix.api.createroom.CreateRoomParameters
+import io.prism.android.libraries.matrix.api.createroom.RoomPreset
+import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import kotlinx.coroutines.flow.first
+import timber.log.Timber
 
 /**
  * Bridge command vocabularies — concrete [BridgeFlow] implementations.
@@ -31,13 +38,13 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
     // followUpCommand() after the user submits the number.
     override val initialCommand = ""
     override val promptDescription =
-        "Telefon numaranı uluslararası formatta, ülke kodu ile birlikte gir " +
+        "Enter your phone number in international format with country code " +
             "(örn. +1 555 123 4567 ABD için, +44 20 7946 0958 İngiltere için, +90 555 111 22 33 Türkiye için). " +
             "WhatsApp uygulamasında Ayarlar → Bağlı cihazlar → Cihaz bağla → Telefon numarası ile bağla " +
             "menüsünde gireceğin 8 haneli pairing kodunu üreteceğiz."
     override val initialPrompt = FlowDecision.AskForInput(
         prompt = promptDescription,
-        inputLabel = "Telefon numarası",
+        inputLabel = "Phone number",
         inputPlaceholder = "+15551234567",
         // Pre-fill the leading "+" so the user can type only digits on a phone keypad
         // (most Android numeric keyboards don't expose "+" without long-press / symbol toggle).
@@ -99,9 +106,10 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
     /** Pairing codes are A–Z + 0–9, never mixed-case English words. Reject prose. */
     private fun looksLikePairingCode(s: String): Boolean {
         if (s.length !in 6..8) return false
-        val hasDigit = s.any { it.isDigit() }
-        val allUpperOrDigit = s.all { it.isDigit() || it.isUpperCase() }
-        return hasDigit || allUpperOrDigit
+        val upper = s.uppercase()
+        val hasDigit = upper.any { it.isDigit() }
+        val allAlnum = upper.all { it.isDigit() || it.isUpperCase() }
+        return hasDigit || allAlnum
     }
 
     private fun formatPairingCode(s: String): String {
@@ -125,8 +133,8 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
                     if (ns.stepId == "fi.mau.whatsapp.login.code" && !ns.data.isNullOrEmpty()) {
                         return FlowDecision.ShowPairingCode(
                             code = ns.data.uppercase(),
-                            caption = "WhatsApp uygulamanı aç: Ayarlar → Bağlı cihazlar → " +
-                                "Cihaz bağla → Telefon numarası ile bağla. Yukarıdaki kodu gir.",
+                            caption = "Open WhatsApp: Settings → Linked Devices → " +
+                                "Link a Device → Link with phone number. Enter the code above.",
                         )
                     }
                 }
@@ -137,37 +145,74 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
                     extractPairingCode(body)?.let { code ->
                         return FlowDecision.ShowPairingCode(
                             code = code,
-                            caption = "WhatsApp uygulamanı aç: Ayarlar → Bağlı cihazlar → " +
-                                "Cihaz bağla → Telefon numarası ile bağla. Yukarıdaki kodu gir.",
+                            caption = "Open WhatsApp: Settings → Linked Devices → " +
+                                "Link a Device → Link with phone number. Enter the code above.",
                         )
                     }
+                }
+
+                // Standalone pairing code (2nd message without "code" keyword)
+                extractPairingCode(body)?.let { code ->
+                    return FlowDecision.ShowPairingCode(
+                        code = code,
+                        caption = "Open WhatsApp: Settings → Linked Devices → " +
+                            "Link a Device → Link with phone number. Enter the code above.",
+                    )
                 }
 
                 when {
                     bodyLc.contains("successfully logged in") ||
                         bodyLc.contains("login successful") ||
+                        bodyLc.contains("you are now logged in") ||
+                        bodyLc.contains("connected to whatsapp") ||
+                        bodyLc.contains("sync complete") ||
                         bodyLc.startsWith("logged in as") -> FlowDecision.Success
 
                     bodyLc.contains("invalid phone") ||
                         bodyLc.contains("not a valid phone number") ||
                         bodyLc.contains("phone number is not registered") -> FlowDecision.Failure(
-                        "Telefon numarası geçerli değil. Uluslararası formatta tekrar dene (örn: +905551112233).",
+                        "Phone number is invalid. Please try again in international format (e.g. +15551234567).",
                     )
 
                     bodyLc.contains("login timed out") ||
                         bodyLc.contains("pairing code expired") ||
                         bodyLc.contains("login cancelled") -> FlowDecision.Failure(
-                        "Pairing kodunun süresi doldu. Tekrar dene.",
+                        "Pairing code expired. Please try again.",
                     )
 
                     bodyLc.contains("connecting to whatsapp") ||
                         bodyLc.contains("syncing") -> FlowDecision.Progress(
-                        "WhatsApp ile bağlantı kuruluyor...",
+                        "Connecting to WhatsApp...",
                     )
 
                     else -> FlowDecision.Ignore
                 }
             }
+        }
+    }
+
+    override suspend fun onSetupComplete(matrixClient: PRISMClient, botRoomId: RoomId) {
+        try {
+            val spaceName = "WhatsApp"
+            val spaces = matrixClient.spaceService.topLevelSpacesFlow.first()
+            val existingSpace = spaces.find { it.displayName == spaceName }
+            val spaceId = if (existingSpace != null) {
+                existingSpace.roomId
+            } else {
+                val params = CreateRoomParameters(
+                    name = spaceName,
+                    isEncrypted = true,
+                    isDirect = false,
+                    visibility = RoomVisibility.Private,
+                    preset = RoomPreset.PRIVATE_CHAT,
+                    isSpace = true,
+                )
+                matrixClient.createRoom(params).getOrThrow()
+            }
+            matrixClient.spaceService.addChildToSpace(spaceId, botRoomId).getOrThrow()
+            Timber.d("WhatsAppBridgeFlow: created/added bot room to %s space", spaceName)
+        } catch (t: Throwable) {
+            Timber.w(t, "WhatsAppBridgeFlow: onSetupComplete failed")
         }
     }
 }
@@ -186,17 +231,17 @@ internal class MetaBridgeFlow : BridgeFlow {
     override val botUserId = "@pmb-bot:matrix.fathertkt.uk"
     override val initialCommand = "login"
     override val promptDescription =
-        "Instagram hesabına bağlanmak için bir sonraki adımda gömülü tarayıcıyı açacağız. " +
-            "Giriş yaptıktan sonra çerezler otomatik alınacak — manuel kopyalama gerekmiyor."
+        "We will open an embedded browser in the next step to connect your Instagram account. " +
+            "After logging in, cookies will be captured automatically — no manual copying needed."
 
     // Cookie shape required by mautrix-meta's instagram login. Pulled from the bridge's
     // own login spec (see prism-meta logs at startup: step_id=fi.mau.meta.cookies).
     private val instagramCookieNames = listOf("sessionid", "csrftoken", "ds_user_id", "mid", "ig_did")
     private val instagramSuccessUrlPattern =
-        """^https://www\.instagram\.com/(?:direct/(?:inbox/|t/[0-9]+/)?)?(?:\?.*)?$"""
+        """^https://www\.instagram\.com/(?:accounts/login/)?(?:direct/(?:inbox/|t/[0-9]+/)?)?(?:\?.*)?$"""
     private val instagramUserAgent =
-        "Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) " +
-            "Chrome/138.0.0.0 Mobile Safari/537.36"
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+            "Chrome/138.0.0.0 Safari/537.36"
 
     /**
      * mautrix-meta's `login` command in interactive mode expects the next message
@@ -215,19 +260,12 @@ internal class MetaBridgeFlow : BridgeFlow {
 
             is BotEvent.Text -> {
                 // PRIMARY: structured next_step from mautrix-meta. The cookie-collection step
-                // is identified by step_id, which is more reliable than parsing the bridge's
-                // English instructions out of the message body.
+                // is identified by step_id. WebView cookie scraping is unreliable on many
+                // Android devices (white screen, cookie read failures), so we use manual
+                // cookie input which always works.
                 event.nextStep?.let { ns ->
                     if (ns.stepId == "fi.mau.meta.cookies") {
-                        return FlowDecision.OpenWebView(
-                            url = "https://www.instagram.com/",
-                            userAgent = instagramUserAgent,
-                            cookieDomain = "instagram.com",
-                            cookieNames = instagramCookieNames,
-                            successUrlPattern = instagramSuccessUrlPattern,
-                            caption = "Instagram'a giriş yap. Giriş başarılı olduğunda " +
-                                "çerezler otomatik alınıp bot'a gönderilecek.",
-                        )
+                        return manualCookiePrompt()
                     }
                 }
 
@@ -237,47 +275,74 @@ internal class MetaBridgeFlow : BridgeFlow {
                         body.contains("login successful") ||
                         body.contains("you are now logged in") -> FlowDecision.Success
 
-                    // Instagram challenge / 2FA paths — surface them so the user can
-                    // intervene rather than spinning forever.
+                    // Instagram challenge / 2FA paths
                     body.contains("checkpoint required") ||
                         body.contains("two-factor") ||
                         body.contains("login challenge") -> FlowDecision.Failure(
-                        "Instagram ek doğrulama (2FA / checkpoint) istiyor. Lütfen önce " +
-                            "tarayıcıda hesabını doğrula, sonra çerezleri tekrar al.",
+                        "Instagram requires additional verification (2FA / checkpoint). Please " +
+                            "verify your account in the browser first, then re-enter the cookies.",
                     )
 
                     body.contains("invalid credentials") ||
                         body.contains("login failed") ||
                         body.contains("invalid cookie") -> FlowDecision.Failure(
-                        "Çerezler kabul edilmedi. Lütfen güncel çerezleri kopyalayıp tekrar dene.",
+                        "Cookies were not accepted. Please copy the latest cookies and try again.",
                     )
 
-                    // Bridge's actual prompt (seen in logs): "Enter a JSON object with your
-                    // cookies, or a cURL command copied from browser devtools." We catch all
-                    // common phrasings the bridge has used over the years.
+                    // Fallback: bridge asks for cookies in plain text
                     body.contains("enter a json object") ||
                         body.contains("send the cookie") ||
                         body.contains("paste your cookies") ||
                         body.contains("send your login json") ||
-                        body.contains("waiting for cookies") -> FlowDecision.OpenWebView(
-                        url = "https://www.instagram.com/",
-                        userAgent = instagramUserAgent,
-                        cookieDomain = "instagram.com",
-                        cookieNames = instagramCookieNames,
-                        successUrlPattern = instagramSuccessUrlPattern,
-                        caption = "Instagram'a giriş yap. Giriş başarılı olduğunda " +
-                            "çerezler otomatik alınıp bot'a gönderilecek.",
-                    )
+                        body.contains("waiting for cookies") -> manualCookiePrompt()
 
                     body.contains("connecting") ||
                         body.contains("syncing") ||
                         body.contains("logging in") -> FlowDecision.Progress(
-                        "Instagram ile bağlantı kuruluyor...",
+                        "Connecting to Instagram...",
                     )
 
                     else -> FlowDecision.Ignore
                 }
             }
+        }
+    }
+
+    private fun manualCookiePrompt(): FlowDecision.AskForInput {
+        return FlowDecision.AskForInput(
+            prompt = "You need to enter Instagram cookies manually.\n\n" +
+                "1. Log in to instagram.com in Chrome\n" +
+                "2. F12 → Application → Cookies → instagram.com\n" +
+                "3. Şu çerezleri kopyala: sessionid, csrftoken, ds_user_id, mid, ig_did\n" +
+                "4. Aşağıdaki JSON formatında yapıştır:\n" +
+                "{\"sessionid\":\"...\",\"csrftoken\":\"...\",\"ds_user_id\":\"...\",\"mid\":\"...\",\"ig_did\":\"...\"}",
+            inputLabel = "Cookies (JSON)",
+            inputPlaceholder = "{\"sessionid\":\"...\",\"csrftoken\":\"...\",\"ds_user_id\":\"...\",\"mid\":\"...\",\"ig_did\":\"...\"}",
+        )
+    }
+
+    override suspend fun onSetupComplete(matrixClient: PRISMClient, botRoomId: RoomId) {
+        try {
+            val spaceName = "Instagram"
+            val spaces = matrixClient.spaceService.topLevelSpacesFlow.first()
+            val existingSpace = spaces.find { it.displayName == spaceName }
+            val spaceId = if (existingSpace != null) {
+                existingSpace.roomId
+            } else {
+                val params = CreateRoomParameters(
+                    name = spaceName,
+                    isEncrypted = true,
+                    isDirect = false,
+                    visibility = RoomVisibility.Private,
+                    preset = RoomPreset.PRIVATE_CHAT,
+                    isSpace = true,
+                )
+                matrixClient.createRoom(params).getOrThrow()
+            }
+            matrixClient.spaceService.addChildToSpace(spaceId, botRoomId).getOrThrow()
+            Timber.d("MetaBridgeFlow: created/added bot room to %s space", spaceName)
+        } catch (t: Throwable) {
+            Timber.w(t, "MetaBridgeFlow: onSetupComplete failed")
         }
     }
 }

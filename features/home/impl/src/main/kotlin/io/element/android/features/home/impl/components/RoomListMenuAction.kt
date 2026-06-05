@@ -12,4 +12,5 @@ enum class RoomListMenuAction {
     InviteFriends,
     ReportBug,
     OpenVault,
+    OpenPrismAISpace,
 }

@@ -35,5 +35,14 @@ interface SessionPreferencesStore {
     suspend fun setVideoCompressionPreset(preset: VideoCompressionPreset)
     fun getVideoCompressionPreset(): Flow<VideoCompressionPreset>
 
+    suspend fun setFtueBridgeSetupCompleted(bridge: String, completed: Boolean)
+    fun isFtueBridgeSetupCompleted(bridge: String): Flow<Boolean>
+
+    suspend fun setSessionRoomConfig(roomId: String, config: String)
+    fun getSessionRoomConfig(roomId: String): Flow<String>
+
+    suspend fun setPrismAISpaceId(spaceId: String?)
+    fun getPrismAISpaceId(): Flow<String?>
+
     suspend fun clear()
 }

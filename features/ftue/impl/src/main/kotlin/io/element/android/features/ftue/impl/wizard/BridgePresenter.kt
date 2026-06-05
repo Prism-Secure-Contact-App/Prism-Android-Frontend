@@ -17,12 +17,16 @@ import androidx.compose.ui.text.input.KeyboardType
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.matrix.api.PRISMClient
+import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.matrix.api.core.UserId
 import io.prism.android.libraries.matrix.api.media.MediaSource
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import java.util.concurrent.atomic.AtomicReference
 import timber.log.Timber
 
 /**
@@ -72,7 +76,7 @@ internal class BridgePresenter(
                     },
                     onFailure = { error ->
                         connectAction.value = AsyncAction.Failure(error)
-                        phase = UiPhase.Error(error.message ?: "Bilinmeyen hata")
+                        phase = UiPhase.Error(error.message ?: "Unknown error")
                     },
                 )
             }
@@ -126,7 +130,7 @@ internal class BridgePresenter(
             // the user stays on "Connecting" indefinitely.
             val roomId = withTimeoutOrNull(30_000L) {
                 interactor.openBotRoom(botUserId).getOrThrow()
-            } ?: throw IllegalStateException("Sunucuya bağlanılamadı. Lütfen internetinizi kontrol edin.")
+            } ?: throw IllegalStateException("Could not connect to the server. Please check your internet connection.")
 
             // Some flows (e.g. WhatsApp pairing-code) need the user's input BEFORE
             // any bot interaction. We detect this by an empty initialCommand + a
@@ -141,52 +145,96 @@ internal class BridgePresenter(
             val command = if (promptText != null) flow.followUpCommand(promptText) else flow.initialCommand
             interactor.sendCommand(roomId, command).getOrThrow()
 
-            // 90 seconds is generous enough for a human to scan a QR or paste cookies,
-            // and short enough that a totally unresponsive bridge eventually surfaces an error.
-            val outcome = withTimeoutOrNull(90_000L) {
-                var finalOutcome: Outcome = Outcome.Pending
-                interactor.observeBotEvents(
-                    roomId = roomId,
-                    botUserId = botUserId,
-                    stopWhen = { event ->
-                        val decision = flow.classify(event)
-                        when (decision) {
-                            is FlowDecision.ShowQr -> {
-                                onPhase(UiPhase.AwaitingScan(decision.source, decision.caption))
-                                false
-                            }
-                            is FlowDecision.AskForInput -> {
-                                onPhase(UiPhase.AwaitingInput(decision.prompt, decision.inputLabel, decision.inputPlaceholder, decision.initialValue, decision.keyboardType))
-                                false
-                            }
-                            is FlowDecision.ShowPairingCode -> {
-                                onPhase(UiPhase.AwaitingPairingCode(decision.code, decision.caption))
-                                false
-                            }
-                            is FlowDecision.OpenWebView -> {
-                                onPhase(UiPhase.AwaitingWebView(decision.url, decision.userAgent, decision.cookieDomain, decision.cookieNames, decision.successUrlPattern, decision.caption))
-                                false
-                            }
-                            is FlowDecision.Progress -> {
-                                onPhase(UiPhase.Working(decision.message))
-                                false
-                            }
-                            FlowDecision.Success -> { finalOutcome = Outcome.Success; true }
-                            is FlowDecision.Failure -> { finalOutcome = Outcome.Failure(decision.message); true }
-                            FlowDecision.Ignore -> false
-                        }
-                    },
-                ).collect { /* terminal in stopWhen */ }
-                finalOutcome
-            } ?: Outcome.Failure("İstek zaman aşımına uğradı. Lütfen tekrar deneyin.")
+            // 120-second total window. We show a live countdown progress bar so the user
+            // knows the app is still working rather than silently freezing.
+            val totalMillis = 120_000L
+            var finalOutcome: Outcome = Outcome.Pending
+            val currentPhaseRef = AtomicReference<UiPhase>(UiPhase.Connecting)
+            val wrappedOnPhase: (UiPhase) -> Unit = { newPhase ->
+                currentPhaseRef.set(newPhase)
+                onPhase(newPhase)
+            }
 
-            when (outcome) {
-                Outcome.Success -> onSuccess()
-                is Outcome.Failure -> onFailure(IllegalStateException(outcome.reason))
+            coroutineScope {
+                val observeJob = launch {
+                    interactor.observeBotEvents(
+                        roomId = roomId,
+                        botUserId = botUserId,
+                        stopWhen = { event ->
+                            val decision = flow.classify(event)
+                            when (decision) {
+                                is FlowDecision.ShowQr -> {
+                                    wrappedOnPhase(UiPhase.AwaitingScan(decision.source, decision.caption))
+                                    false
+                                }
+                                is FlowDecision.AskForInput -> {
+                                    wrappedOnPhase(UiPhase.AwaitingInput(decision.prompt, decision.inputLabel, decision.inputPlaceholder, decision.initialValue, decision.keyboardType))
+                                    false
+                                }
+                                is FlowDecision.ShowPairingCode -> {
+                                    wrappedOnPhase(UiPhase.AwaitingPairingCode(decision.code, decision.caption))
+                                    false
+                                }
+                                is FlowDecision.OpenWebView -> {
+                                    wrappedOnPhase(UiPhase.AwaitingWebView(decision.url, decision.userAgent, decision.cookieDomain, decision.cookieNames, decision.successUrlPattern, decision.caption))
+                                    false
+                                }
+                                is FlowDecision.Progress -> {
+                                    wrappedOnPhase(UiPhase.Working(decision.message))
+                                    false
+                                }
+                                FlowDecision.Success -> { finalOutcome = Outcome.Success; true }
+                                is FlowDecision.Failure -> { finalOutcome = Outcome.Failure(decision.message); true }
+                                FlowDecision.Ignore -> false
+                            }
+                        },
+                    ).collect { /* terminal in stopWhen */ }
+                }
+
+                val timerJob = launch {
+                    val startTime = System.currentTimeMillis()
+                    while (isActive) {
+                        delay(1_000L)
+                        val elapsed = System.currentTimeMillis() - startTime
+                        if (elapsed >= totalMillis) {
+                            observeJob.cancel()
+                            finalOutcome = Outcome.Failure("Request timed out. Please try again.")
+                            break
+                        }
+                        val remainingSec = ((totalMillis - elapsed) / 1_000).toInt()
+                        val progress = elapsed.toFloat() / totalMillis
+                        val phase = currentPhaseRef.get()
+                        when (phase) {
+                            is UiPhase.Connecting, is UiPhase.Working -> {
+                                wrappedOnPhase(UiPhase.Working("Connecting... Time remaining: ${remainingSec}s", progress))
+                            }
+                            is UiPhase.AwaitingPairingCode -> {
+                                wrappedOnPhase(phase.copy(remainingSeconds = remainingSec))
+                            }
+                            else -> {}
+                        }
+                    }
+                }
+
+                observeJob.join()
+                timerJob.cancel()
+            }
+
+            val terminalOutcome = finalOutcome
+            when (terminalOutcome) {
+                Outcome.Success -> {
+                    try {
+                        flow.onSetupComplete(matrixClient, roomId)
+                    } catch (t: Throwable) {
+                        Timber.w(t, "BridgePresenter: onSetupComplete failed for ${flow.displayName}")
+                    }
+                    onSuccess()
+                }
+                is Outcome.Failure -> onFailure(IllegalStateException(terminalOutcome.reason))
                 Outcome.Pending -> {
                     // Cooperative timeout fell through without a terminal classification;
                     // treat as failure rather than leaving the user staring at a blank screen.
-                    onFailure(IllegalStateException("Bridge yanıt vermedi. Tekrar deneyebilirsin."))
+                    onFailure(IllegalStateException("Bridge did not respond. You can try again."))
                 }
             }
         } catch (t: Throwable) {
@@ -225,13 +273,19 @@ internal interface BridgeFlow {
 
     /** Decide what the UI should do for an incoming bot event. */
     fun classify(event: BotEvent): FlowDecision
+
+    /**
+     * Called when the bridge setup completes successfully so the flow can create
+     * a dedicated space and move the bot room into it.
+     */
+    suspend fun onSetupComplete(matrixClient: PRISMClient, botRoomId: RoomId) {}
 }
 
 internal sealed interface FlowDecision {
     data class ShowQr(val source: MediaSource, val caption: String) : FlowDecision
     data class AskForInput(
         val prompt: String,
-        val inputLabel: String = "Yanıt",
+        val inputLabel: String = "Response",
         val inputPlaceholder: String = "",
         val initialValue: String = "",
         val keyboardType: KeyboardType = KeyboardType.Text,
@@ -265,7 +319,7 @@ internal sealed interface FlowDecision {
 internal sealed interface UiPhase {
     data object Idle : UiPhase
     data object Connecting : UiPhase
-    data class Working(val message: String) : UiPhase
+    data class Working(val message: String, val progress: Float = -1f) : UiPhase
     data class AwaitingScan(val qrSource: MediaSource, val caption: String) : UiPhase
     data class AwaitingInput(
         val prompt: String,
@@ -274,7 +328,7 @@ internal sealed interface UiPhase {
         val initialValue: String = "",
         val keyboardType: KeyboardType = KeyboardType.Text,
     ) : UiPhase
-    data class AwaitingPairingCode(val code: String, val caption: String) : UiPhase
+    data class AwaitingPairingCode(val code: String, val caption: String, val remainingSeconds: Int = -1) : UiPhase
     data class AwaitingWebView(
         val url: String,
         val userAgent: String,

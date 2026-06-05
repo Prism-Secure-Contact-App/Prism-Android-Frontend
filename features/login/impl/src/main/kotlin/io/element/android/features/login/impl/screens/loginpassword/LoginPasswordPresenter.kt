@@ -51,7 +51,7 @@ class LoginPasswordPresenter(
                     copy(password = event.password)
                 }
                 LoginPasswordEvents.Submit -> {
-                    localCoroutineScope.submit(formState.value, loginAction)
+                    localCoroutineScope.submit(formState.value, loginAction, accountProvider.url)
                 }
                 LoginPasswordEvents.ClearError -> loginAction.value = AsyncData.Uninitialized
             }
@@ -65,9 +65,16 @@ class LoginPasswordPresenter(
         )
     }
 
-    private fun CoroutineScope.submit(formState: LoginFormState, loggedInState: MutableState<AsyncData<SessionId>>) = launch {
+    private fun CoroutineScope.submit(
+        formState: LoginFormState,
+        loggedInState: MutableState<AsyncData<SessionId>>,
+        homeserverUrl: String,
+    ) = launch {
         loggedInState.value = AsyncData.Loading()
-        authenticationService.login(formState.login.trim(), formState.password)
+        authenticationService.setHomeserver(homeserverUrl)
+            .map {
+                authenticationService.login(formState.login.trim(), formState.password).getOrThrow()
+            }
             .onSuccess { sessionId ->
                 loggedInState.value = AsyncData.Success(sessionId)
             }

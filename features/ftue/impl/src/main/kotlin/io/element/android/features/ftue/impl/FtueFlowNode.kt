@@ -28,8 +28,8 @@ import io.prism.android.features.ftue.impl.sessionverification.FtueSessionVerifi
 import io.prism.android.features.ftue.impl.state.DefaultFtueService
 import io.prism.android.features.ftue.impl.state.FtueStep
 import io.prism.android.features.ftue.impl.state.InternalFtueState
-import io.prism.android.features.ftue.impl.wizard.MetaBridgeNode
 import io.prism.android.features.ftue.impl.wizard.MoneroWalletNode
+import io.prism.android.features.ftue.impl.wizard.PrismAIPromotionNode
 import io.prism.android.features.ftue.impl.wizard.WhatsAppBridgeNode
 import io.prism.android.features.lockscreen.api.LockScreenEntryPoint
 import io.prism.android.libraries.architecture.BackstackView
@@ -79,10 +79,10 @@ class FtueFlowNode(
         data object WhatsAppBridgeSetup : NavTarget
 
         @Parcelize
-        data object MetaBridgeSetup : NavTarget
+        data object MoneroWalletSetup : NavTarget
 
         @Parcelize
-        data object MoneroWalletSetup : NavTarget
+        data object PrismAIOnboarding : NavTarget
     }
 
     override fun onBuilt() {
@@ -140,16 +140,15 @@ class FtueFlowNode(
                     onBack = { backstack.pop() }
                 )
             }
-            NavTarget.MetaBridgeSetup -> {
-                MetaBridgeNode(
+            NavTarget.MoneroWalletSetup -> {
+                MoneroWalletNode(
                     buildContext = buildContext,
                     ftueService = defaultFtueService,
-                    matrixClient = matrixClient,
                     onBack = { backstack.pop() }
                 )
             }
-            NavTarget.MoneroWalletSetup -> {
-                MoneroWalletNode(
+            NavTarget.PrismAIOnboarding -> {
+                PrismAIPromotionNode(
                     buildContext = buildContext,
                     ftueService = defaultFtueService,
                     onBack = { backstack.pop() }
@@ -178,11 +177,11 @@ class FtueFlowNode(
             FtueStep.WhatsAppBridgeSetup -> {
                 backstack.newRoot(NavTarget.WhatsAppBridgeSetup)
             }
-            FtueStep.MetaBridgeSetup -> {
-                backstack.newRoot(NavTarget.MetaBridgeSetup)
-            }
             FtueStep.MoneroWalletSetup -> {
                 backstack.newRoot(NavTarget.MoneroWalletSetup)
+            }
+            FtueStep.PrismAIOnboarding -> {
+                backstack.newRoot(NavTarget.PrismAIOnboarding)
             }
         }
     }

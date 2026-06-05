@@ -73,7 +73,15 @@ internal class SynapseRegisterClient(
                 throw mapError(finalResponse)
             }
 
-            val payload = json.parseToJsonElement(finalResponse.body) as JsonObject
+            val payload = runCatching {
+                json.parseToJsonElement(finalResponse.body) as JsonObject
+            }.getOrElse {
+                throw RegisterException(
+                    "The server returned an unexpected response. Please try again later.",
+                    null,
+                    finalResponse.code
+                )
+            }
             val userId = payload["user_id"]?.jsonString() ?: error("user_id missing in register response")
             val accessToken = payload["access_token"]?.jsonString() ?: error("access_token missing in register response")
             val deviceId = payload["device_id"]?.jsonString() ?: error("device_id missing in register response")
@@ -122,17 +130,27 @@ internal class SynapseRegisterClient(
     }
 
     private fun mapError(resp: HttpResult): Throwable {
+        val bodyTrimmed = resp.body.trim()
+        // Cloudflare / proxy returns HTML pages for 502/503/530 instead of JSON
+        if (bodyTrimmed.startsWith("<!DOCTYPE") || bodyTrimmed.startsWith("<html") || !bodyTrimmed.startsWith("{")) {
+            val friendly = when (resp.code) {
+                502, 503, 530 -> "The server is currently unreachable. Please check your internet connection or try again later."
+                else -> "The server returned an unexpected response (HTTP ${resp.code}). Please try again later."
+            }
+            return RegisterException(friendly, null, resp.code)
+        }
+
         // Try to surface Synapse's standard error envelope: { "errcode": "...", "error": "..." }
         val parsed = runCatching { json.parseToJsonElement(resp.body) as? JsonObject }.getOrNull()
         val errcode = parsed?.get("errcode")?.jsonString()
         val error = parsed?.get("error")?.jsonString()
         val friendly = when (errcode) {
-            "M_USER_IN_USE" -> "Bu kullanıcı adı zaten alınmış."
-            "M_INVALID_USERNAME" -> "Geçersiz kullanıcı adı."
-            "M_WEAK_PASSWORD" -> "Parola çok zayıf."
-            "M_FORBIDDEN" -> "Bu sunucuda kayıt kapalı."
-            "M_EXCLUSIVE" -> "Bu kullanıcı adı bir bridge tarafından rezerve edilmiş."
-            else -> error ?: "Kayıt başarısız (HTTP ${resp.code})."
+            "M_USER_IN_USE" -> "This username is already taken."
+            "M_INVALID_USERNAME" -> "Invalid username."
+            "M_WEAK_PASSWORD" -> "Password is too weak."
+            "M_FORBIDDEN" -> "Registration is closed on this server."
+            "M_EXCLUSIVE" -> "This username is reserved by a bridge."
+            else -> error ?: "Registration failed (HTTP ${resp.code})."
         }
         return RegisterException(friendly, errcode, resp.code)
     }

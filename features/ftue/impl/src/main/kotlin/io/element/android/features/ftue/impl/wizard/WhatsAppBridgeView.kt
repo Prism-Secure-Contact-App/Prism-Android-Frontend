@@ -59,9 +59,9 @@ internal fun WhatsAppBridgeView(
         ) {
             IconTitleSubtitleMolecule(
                 iconStyle = BigIcon.Style.Default(CompoundIcons.ShareAndroid()),
-                title = "WhatsApp'ı bağla",
-                subTitle = "WhatsApp sohbetlerini PRISM'in içinden gör ve yanıtla. " +
-                    "Mesajların ayrı bir 'WhatsApp' Space'inde toplanır, ana ekran sade kalır.",
+                title = "Connect WhatsApp",
+                subTitle = "View and reply to WhatsApp chats from within PRISM. " +
+                    "Messages are grouped in a separate 'WhatsApp' space; your main screen stays clean.",
             )
 
             Spacer(Modifier.height(24.dp))
@@ -76,7 +76,7 @@ internal fun WhatsAppBridgeView(
 
             BridgeActionRow(
                 state = state,
-                primaryLabel = if (state.phase is UiPhase.Error) "Tekrar dene" else "WhatsApp'ı bağla",
+                primaryLabel = if (state.phase is UiPhase.Error) "Try again" else "WhatsApp'ı bağla",
             )
 
             Spacer(Modifier.height(8.dp))

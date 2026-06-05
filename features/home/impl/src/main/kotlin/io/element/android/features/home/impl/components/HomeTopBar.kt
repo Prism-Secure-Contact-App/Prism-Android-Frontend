@@ -220,6 +220,20 @@ private fun RoomListMenuItems(
                     }
                 )
             }
+            DropdownMenuItem(
+                onClick = {
+                    showMenu = false
+                    onMenuActionClick(RoomListMenuAction.OpenPrismAISpace)
+                },
+                text = { Text("Open PrismAI") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = CompoundIcons.Labs(),
+                        tint = PRISMTheme.colors.iconSecondary,
+                        contentDescription = null,
+                    )
+                }
+            )
         }
     }
 }

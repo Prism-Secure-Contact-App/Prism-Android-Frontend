@@ -13,7 +13,6 @@ package io.prism.android.features.preferences.impl.root
 import app.cash.turbine.ReceiveTurbine
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.logout.api.direct.aDirectLogoutState
-import io.prism.android.features.preferences.impl.utils.ShowDeveloperSettingsProvider
 import io.prism.android.features.rageshake.api.RageshakeFeatureAvailability
 import io.prism.android.libraries.core.meta.BuildType
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
@@ -33,6 +32,8 @@ import io.prism.android.libraries.matrix.test.FakePRISMClient
 import io.prism.android.libraries.matrix.test.core.aBuildMeta
 import io.prism.android.libraries.matrix.test.verification.FakeSessionVerificationService
 import io.prism.android.libraries.sessionstorage.api.SessionStore
+import io.prism.android.libraries.preferences.test.InMemoryAppPreferencesStore
+import io.prism.android.libraries.preferences.test.InMemorySessionPreferencesStore
 import io.prism.android.libraries.sessionstorage.test.InMemorySessionStore
 import io.prism.android.libraries.sessionstorage.test.aSessionData
 import io.prism.android.services.analytics.test.FakeAnalyticsService
@@ -88,7 +89,6 @@ class PreferencesRootPresenterTest {
             assertThat(loadedState.devicesManagementUrl).isNull()
             assertThat(loadedState.showAnalyticsSettings).isFalse()
             assertThat(loadedState.showLinkNewDevice).isFalse()
-            assertThat(loadedState.showDeveloperSettings).isTrue()
             assertThat(loadedState.canDeactivateAccount).isTrue()
             assertThat(loadedState.canReportBug).isTrue()
             assertThat(loadedState.directLogoutState).isEqualTo(aDirectLogoutState())
@@ -152,38 +152,6 @@ class PreferencesRootPresenterTest {
         ).test {
             val loadedState = awaitFirstItem()
             assertThat(loadedState.canDeactivateAccount).isFalse()
-        }
-    }
-
-    @Test
-    fun `present - developer settings is hidden by default in release builds`() = runTest {
-        createPresenter(
-            matrixClient = FakePRISMClient(
-                canDeactivateAccountResult = { true },
-                accountManagementUrlResult = { Result.success(null) },
-            ),
-            showDeveloperSettingsProvider = ShowDeveloperSettingsProvider(aBuildMeta(BuildType.RELEASE))
-        ).test {
-            val loadedState = awaitFirstItem()
-            assertThat(loadedState.showDeveloperSettings).isFalse()
-        }
-    }
-
-    @Test
-    fun `present - developer settings can be enabled in release builds`() = runTest {
-        createPresenter(
-            matrixClient = FakePRISMClient(
-                canDeactivateAccountResult = { true },
-                accountManagementUrlResult = { Result.success(null) },
-            ),
-            showDeveloperSettingsProvider = ShowDeveloperSettingsProvider(aBuildMeta(BuildType.RELEASE))
-        ).test {
-            val loadedState = awaitFirstItem()
-            repeat(times = ShowDeveloperSettingsProvider.DEVELOPER_SETTINGS_COUNTER) {
-                assertThat(loadedState.showDeveloperSettings).isFalse()
-                loadedState.eventSink(PreferencesRootEvents.OnVersionInfoClick)
-            }
-            assertThat(awaitItem().showDeveloperSettings).isTrue()
         }
     }
 
@@ -283,7 +251,6 @@ class PreferencesRootPresenterTest {
     private fun createPresenter(
         matrixClient: FakePRISMClient = FakePRISMClient(),
         sessionVerificationService: FakeSessionVerificationService = FakeSessionVerificationService(),
-        showDeveloperSettingsProvider: ShowDeveloperSettingsProvider = ShowDeveloperSettingsProvider(aBuildMeta(BuildType.DEBUG)),
         rageshakeFeatureAvailability: RageshakeFeatureAvailability = RageshakeFeatureAvailability { flowOf(true) },
         indicatorService: IndicatorService = FakeIndicatorService(),
         featureFlagService: FeatureFlagService = FakeFeatureFlagService(),
@@ -296,9 +263,10 @@ class PreferencesRootPresenterTest {
         snackbarDispatcher = SnackbarDispatcher(),
         indicatorService = indicatorService,
         directLogoutPresenter = { aDirectLogoutState() },
-        showDeveloperSettingsProvider = showDeveloperSettingsProvider,
         rageshakeFeatureAvailability = rageshakeFeatureAvailability,
         featureFlagService = featureFlagService,
         sessionStore = sessionStore,
+        sessionPreferencesStore = InMemorySessionPreferencesStore(),
+        appPreferencesStore = InMemoryAppPreferencesStore(),
     )
 }

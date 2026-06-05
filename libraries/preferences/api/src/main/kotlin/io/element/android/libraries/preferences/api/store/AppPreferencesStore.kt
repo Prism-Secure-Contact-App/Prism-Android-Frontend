@@ -38,5 +38,8 @@ interface AppPreferencesStore {
     suspend fun setTracingLogPacks(targets: Set<TraceLogPack>)
     fun getTracingLogPacksFlow(): Flow<Set<TraceLogPack>>
 
+    suspend fun setDeepWorkMode(enabled: Boolean)
+    fun isDeepWorkModeEnabled(): Flow<Boolean>
+
     suspend fun reset()
 }

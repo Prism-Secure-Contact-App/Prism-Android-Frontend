@@ -79,4 +79,9 @@ If you proceed, some of your settings may change."</string>
   <string name="troubleshoot_notifications_entry_point_push_history_title">"Push history"</string>
   <string name="troubleshoot_notifications_entry_point_section">"Troubleshoot"</string>
   <string name="troubleshoot_notifications_entry_point_title">"Troubleshoot notifications"</string>
+  <string name="screen_bridge_settings_title">"Bridges"</string>
+  <string name="screen_bridge_settings_action_add">"Connect"</string>
+  <string name="screen_bridge_settings_action_remove">"Disconnect"</string>
+  <string name="screen_bridge_settings_status_connected">"Connected"</string>
+  <string name="screen_bridge_settings_status_disconnected">"Disconnected"</string>
 </resources>

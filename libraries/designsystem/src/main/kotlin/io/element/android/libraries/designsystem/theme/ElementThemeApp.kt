@@ -57,26 +57,27 @@ fun PRISMThemeApp(
     compoundLight: SemanticColors,
     compoundDark: SemanticColors,
     buildMeta: BuildMeta,
+    forceDarkTheme: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     val theme by remember {
         appPreferencesStore.getThemeFlow().mapToTheme()
     }
         .collectAsState(initial = Theme.System)
-    LaunchedEffect(theme) {
-        AppCompatDelegate.setDefaultNightMode(
-            when (theme) {
-                Theme.System -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                Theme.Light -> AppCompatDelegate.MODE_NIGHT_NO
-                Theme.Dark -> AppCompatDelegate.MODE_NIGHT_YES
-            }
-        )
+    LaunchedEffect(theme, forceDarkTheme) {
+        val nightMode = when {
+            forceDarkTheme -> AppCompatDelegate.MODE_NIGHT_YES
+            theme == Theme.System -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            theme == Theme.Light -> AppCompatDelegate.MODE_NIGHT_NO
+            else -> AppCompatDelegate.MODE_NIGHT_YES
+        }
+        AppCompatDelegate.setDefaultNightMode(nightMode)
     }
     CompositionLocalProvider(
         LocalBuildMeta provides buildMeta,
     ) {
         PRISMTheme(
-            darkTheme = theme.isDark(),
+            darkTheme = forceDarkTheme || theme.isDark(),
             content = content,
             compoundLight = compoundLight,
             compoundDark = compoundDark,

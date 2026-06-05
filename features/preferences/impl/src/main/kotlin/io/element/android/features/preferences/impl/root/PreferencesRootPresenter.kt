@@ -20,9 +20,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Inject
 import io.prism.android.features.logout.api.direct.DirectLogoutState
-import io.prism.android.features.preferences.impl.utils.ShowDeveloperSettingsProvider
 import io.prism.android.features.rageshake.api.RageshakeFeatureAvailability
 import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.libraries.preferences.api.store.AppPreferencesStore
+import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
 import io.prism.android.libraries.designsystem.utils.snackbar.SnackbarDispatcher
 import io.prism.android.libraries.designsystem.utils.snackbar.collectSnackbarMessageAsState
 import io.prism.android.libraries.featureflag.api.FeatureFlagService
@@ -52,10 +53,11 @@ class PreferencesRootPresenter(
     private val snackbarDispatcher: SnackbarDispatcher,
     private val indicatorService: IndicatorService,
     private val directLogoutPresenter: Presenter<DirectLogoutState>,
-    private val showDeveloperSettingsProvider: ShowDeveloperSettingsProvider,
     private val rageshakeFeatureAvailability: RageshakeFeatureAvailability,
     private val featureFlagService: FeatureFlagService,
     private val sessionStore: SessionStore,
+    private val sessionPreferencesStore: SessionPreferencesStore,
+    private val appPreferencesStore: AppPreferencesStore,
 ) : Presenter<PreferencesRootState> {
     @Composable
     override fun present(): PreferencesRootState {
@@ -118,21 +120,23 @@ class PreferencesRootPresenter(
 
         val showLabsItem = remember { featureFlagService.getAvailableFeatures(isInLabs = true).isNotEmpty() }
 
+        val isDeepWorkModeEnabled by remember {
+            appPreferencesStore.isDeepWorkModeEnabled()
+        }.collectAsState(initial = false)
+
         val directLogoutState = directLogoutPresenter.present()
 
         LaunchedEffect(Unit) {
             initAccountManagementUrl(accountManagementUrl, devicesManagementUrl)
         }
 
-        val showDeveloperSettings by showDeveloperSettingsProvider.showDeveloperSettings.collectAsState()
-
         fun handleEvent(event: PreferencesRootEvents) {
             when (event) {
-                is PreferencesRootEvents.OnVersionInfoClick -> {
-                    showDeveloperSettingsProvider.unlockDeveloperSettings(coroutineScope)
-                }
                 is PreferencesRootEvents.SwitchToSession -> coroutineScope.launch {
                     sessionStore.setLatestSession(event.sessionId.value)
+                }
+                is PreferencesRootEvents.ToggleDeepWorkMode -> coroutineScope.launch {
+                    appPreferencesStore.setDeepWorkMode(!isDeepWorkModeEnabled)
                 }
             }
         }
@@ -150,10 +154,10 @@ class PreferencesRootPresenter(
             showAnalyticsSettings = hasAnalyticsProviders,
             canReportBug = canReportBug,
             showLinkNewDevice = showLinkNewDevice,
-            showDeveloperSettings = showDeveloperSettings,
             canDeactivateAccount = canDeactivateAccount,
             showBlockedUsersItem = showBlockedUsersItem,
             showLabsItem = showLabsItem,
+            isDeepWorkModeEnabled = isDeepWorkModeEnabled,
             directLogoutState = directLogoutState,
             snackbarMessage = snackbarMessage,
             eventSink = ::handleEvent,

@@ -34,6 +34,8 @@ import io.prism.android.annotations.ContributesNode
 import io.prism.android.features.home.api.HomeEntryPoint
 import io.prism.android.features.vault.api.VaultEntryPoint
 import io.prism.android.features.home.impl.components.RoomListMenuAction
+import io.prism.android.features.home.impl.prismai.PrismAISpaceNode
+import io.prism.android.libraries.architecture.createNode
 import io.prism.android.features.home.impl.model.RoomListRoomSummary
 import io.prism.android.features.home.impl.roomlist.RoomListEvent
 import io.prism.android.features.invite.api.InviteData
@@ -138,6 +140,9 @@ class HomeFlowNode(
 
         @Parcelize
         data object Vault : NavTarget
+
+        @Parcelize
+        data object PrismAISpace : NavTarget
     }
 
     private fun navigateToReportRoom(roomId: RoomId) {
@@ -153,6 +158,7 @@ class HomeFlowNode(
             RoomListMenuAction.InviteFriends -> inviteFriendsUseCase.execute(activity)
             RoomListMenuAction.ReportBug -> callback.navigateToBugReport()
             RoomListMenuAction.OpenVault -> backstack.push(NavTarget.Vault)
+            RoomListMenuAction.OpenPrismAISpace -> backstack.push(NavTarget.PrismAISpace)
         }
     }
 
@@ -285,6 +291,15 @@ class HomeFlowNode(
                 buildContext = buildContext,
                 onBack = { backstack.pop() },
             )
+            NavTarget.PrismAISpace -> {
+                val prismAiCallback = object : PrismAISpaceNode.Callback {
+                    override fun onNavigateToRoom(roomId: RoomId) {
+                        backstack.pop()
+                        callback.navigateToRoom(roomId, null)
+                    }
+                }
+                createNode<PrismAISpaceNode>(buildContext, plugins = listOf(prismAiCallback))
+            }
         }
     }
 }

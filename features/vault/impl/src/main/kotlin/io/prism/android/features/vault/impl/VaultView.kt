@@ -48,16 +48,16 @@ fun VaultView(
         modifier = modifier,
         topBar = {
             TopAppBar(
-                title = { Text("PRISM Kasa") },
+                title = { Text("PRISM Vault") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.LockOpen, contentDescription = "Geri")
+                        Icon(Icons.Default.LockOpen, contentDescription = "Back")
                     }
                 },
                 actions = {
                     if (!state.isLocked) {
                         IconButton(onClick = { state.eventSink(VaultEvent.LockVault) }) {
-                            Icon(Icons.Default.Lock, contentDescription = "Kilitle")
+                            Icon(Icons.Default.Lock, contentDescription = "Lock")
                         }
                     }
                 }
@@ -87,11 +87,11 @@ fun VaultView(
     state.biometricError?.let { error ->
         AlertDialog(
             onDismissRequest = { state.eventSink(VaultEvent.DismissBiometricError) },
-            title = { Text("Doğrulama Hatası") },
+            title = { Text("Authentication Failed") },
             text = { Text(error) },
             confirmButton = {
                 TextButton(
-                    text = "Tamam",
+                    text = "OK",
                     onClick = { state.eventSink(VaultEvent.DismissBiometricError) },
                 )
             }
@@ -114,15 +114,15 @@ private fun LockedContent(
             contentDescription = null,
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Gizli sohbetleriniz kilitli")
+        Text("Your secret chats are locked")
         Spacer(modifier = Modifier.height(24.dp))
         if (isBiometricAvailable) {
             Button(
-                text = "Parmak izi / Yüz ile Aç",
+                text = "Unlock with Biometrics",
                 onClick = onUnlock,
             )
         } else {
-            Text("Bu cihazda biyometrik doğrulama mevcut değil.")
+            Text("Biometric authentication is not available on this device.")
         }
     }
 }
@@ -135,7 +135,7 @@ private fun UnlockedContent(
 ) {
     if (roomIds.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Kasanız boş.\nBir sohbeti uzun basarak kasaya ekleyebilirsiniz.")
+            Text("Your vault is empty.\nLong-press a chat to add it to the vault.")
         }
         return
     }
@@ -145,7 +145,7 @@ private fun UnlockedContent(
                 headlineContent = { Text(roomId) },
                 trailingContent = ListItemContent.Custom { _ ->
                     TextButton(
-                        text = "Çıkar",
+                        text = "Remove",
                         onClick = { onRemove(roomId) },
                     )
                 },

@@ -49,9 +49,12 @@ class CreateAccountPresenter(
         val passwordConfirm = remember { mutableStateOf("") }
         val createAction = remember { mutableStateOf<AsyncAction<SessionId>>(AsyncAction.Uninitialized) }
 
+        val passwordRequirements = validatePassword(password.value)
+        val isPasswordValid = passwordRequirements.all { it.satisfied }
         val isSubmitEnabled = username.value.isNotBlank() && 
                              password.value.isNotBlank() && 
-                             password.value == passwordConfirm.value
+                             password.value == passwordConfirm.value &&
+                             isPasswordValid
 
         fun handleEvent(event: CreateAccountEvents) {
             when (event) {
@@ -84,7 +87,18 @@ class CreateAccountPresenter(
             pageProgress = pageProgress.intValue,
             isDebugBuild = buildMeta.isDebuggable,
             createAction = createAction.value,
+            passwordRequirements = passwordRequirements,
             eventSink = ::handleEvent,
+        )
+    }
+
+    private fun validatePassword(password: String): List<PasswordRequirement> {
+        return listOf(
+            PasswordRequirement("En az 8 karakter", password.length >= 8),
+            PasswordRequirement("At least one uppercase letter (A-Z)", password.any { it.isUpperCase() }),
+            PasswordRequirement("At least one lowercase letter (a-z)", password.any { it.isLowerCase() }),
+            PasswordRequirement("At least one digit (0-9)", password.any { it.isDigit() }),
+            PasswordRequirement("En az bir özel karakter (!@#\$% vb.)", password.any { !it.isLetterOrDigit() }),
         )
     }
 

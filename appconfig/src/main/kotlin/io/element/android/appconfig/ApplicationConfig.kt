@@ -24,12 +24,12 @@ object ApplicationConfig {
      * Cannot be empty.
      * For PRISM, the value is "PRISM".
      */
-    const val PRODUCTION_APPLICATION_NAME: String = "PRISM"
+    const val PRODUCTION_APPLICATION_NAME: String = "Prisma"
 
     /**
      * Used in the strings to reference the PRISM Desktop client, for instance PRISM Web.
      * Cannot be empty.
      * For PRISM, the value is "PRISM". We use the same name for desktop and mobile for now.
      */
-    const val DESKTOP_APPLICATION_NAME: String = "PRISM"
+    const val DESKTOP_APPLICATION_NAME: String = "Prisma"
 }

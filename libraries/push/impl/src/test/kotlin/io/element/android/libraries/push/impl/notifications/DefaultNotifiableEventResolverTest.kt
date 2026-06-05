@@ -56,6 +56,7 @@ import io.prism.android.libraries.push.impl.notifications.model.FallbackNotifiab
 import io.prism.android.libraries.push.impl.notifications.model.InviteNotifiableEvent
 import io.prism.android.libraries.push.impl.notifications.model.NotifiableMessageEvent
 import io.prism.android.libraries.push.impl.notifications.model.ResolvedPushEvent
+import io.prism.android.libraries.preferences.test.InMemoryAppPreferencesStore
 import io.prism.android.libraries.push.test.notifications.FakeCallNotificationEventResolver
 import io.prism.android.services.toolbox.impl.strings.AndroidStringProvider
 import io.prism.android.services.toolbox.test.systemclock.A_FAKE_TIMESTAMP
@@ -899,6 +900,7 @@ class DefaultNotifiableEventResolverTest {
                 clock = FakeSystemClock(),
             ),
             featureFlagService = FakeFeatureFlagService(),
+            appPreferencesStore = InMemoryAppPreferencesStore(),
         )
     }
 }

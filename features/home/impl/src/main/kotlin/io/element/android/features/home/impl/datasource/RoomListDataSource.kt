@@ -147,9 +147,79 @@ class RoomListDataSource(
 
     private suspend fun replaceWith(roomSummaries: List<RoomSummary>) = withContext(coroutineDispatchers.computation) {
         lock.withLock {
-            diffCacheUpdater.updateWith(roomSummaries)
-            buildAndEmitAllRooms(roomSummaries)
+            val filtered = roomSummaries.filter { !isHiddenBridgeRoom(it) }
+            diffCacheUpdater.updateWith(filtered)
+            buildAndEmitAllRooms(filtered)
         }
+    }
+
+    /**
+     * Hide bot DMs and bridge ghost rooms from the main room list.
+     * These rooms are automatically moved into their respective spaces
+     * (WhatsApp / Instagram) during bridge onboarding.
+     *
+     * Detection is three-dimensional:
+     * 1. Hero-based — the other member in a DM is the bridge bot or a ghost user.
+     * 2. Alias-based — the room alias contains bridge-specific prefixes.
+     * 3. Creator-based — the room was created by a bridge bot.
+     */
+    private fun isHiddenBridgeRoom(summary: RoomSummary): Boolean {
+        val info = summary.info
+        val botUserIds = setOf(
+            "@pwb-bot:matrix.fathertkt.uk",
+            "@pmb-bot:matrix.fathertkt.uk",
+        )
+        val bridgePatterns = listOf(
+            Regex("^@whatsapp_.+", RegexOption.IGNORE_CASE),
+            Regex("^@meta_.+", RegexOption.IGNORE_CASE),
+        )
+        val metaAiPattern = Regex("meta\\s*ai|ai\\s*assistant", RegexOption.IGNORE_CASE)
+
+        // Never hide PrismAI / Meta AI rooms — they are special and should appear in the main list
+        if (info.name?.let { metaAiPattern.matches(it) } == true) return false
+        if (info.heroes.any { it.displayName?.let { dn -> metaAiPattern.matches(dn) } == true }) return false
+
+        val heroes = info.heroes.map { it.userId.value }
+        val aliases = info.aliases.map { it.value }
+        val creators = info.creators.map { it.value }
+        val altAliases = info.alternativeAliases.map { it.value }
+        val canonicalAlias = info.canonicalAlias?.value
+
+        // DEBUG: Log every room so we can see what the bridge creates
+        timber.log.Timber.d(
+            "RoomListDataSource: room=%s isDirect=%s isOneToOne=%s heroes=%s aliases=%s creators=%s",
+            summary.roomId.value, info.isDirect, summary.isOneToOne, heroes, aliases, creators
+        )
+
+        // 1. Hide bot DMs (1-to-1 with bridge bot)
+        if (summary.isOneToOne && info.heroes.any { it.userId.value in botUserIds }) {
+            timber.log.Timber.d("RoomListDataSource: HIDING room=%s (bot DM)", summary.roomId.value)
+            return true
+        }
+
+        // 2. Hide bridge chat rooms — they live inside their Space (WhatsApp / Instagram)
+        if (info.heroes.any { hero -> bridgePatterns.any { it.matches(hero.userId.value) } }) {
+            timber.log.Timber.d("RoomListDataSource: HIDING room=%s (bridge ghost)", summary.roomId.value)
+            return true
+        }
+        if (info.aliases.any { alias -> bridgePatterns.any { it.matches(alias.value) } }) {
+            timber.log.Timber.d("RoomListDataSource: HIDING room=%s (bridge alias)", summary.roomId.value)
+            return true
+        }
+        if (info.creators.any { it.value in botUserIds }) {
+            timber.log.Timber.d("RoomListDataSource: HIDING room=%s (bridge creator)", summary.roomId.value)
+            return true
+        }
+        if (canonicalAlias != null && bridgePatterns.any { it.matches(canonicalAlias) }) {
+            timber.log.Timber.d("RoomListDataSource: HIDING room=%s (bridge canonicalAlias)", summary.roomId.value)
+            return true
+        }
+        if (info.alternativeAliases.any { alias -> bridgePatterns.any { it.matches(alias.value) } }) {
+            timber.log.Timber.d("RoomListDataSource: HIDING room=%s (bridge altAlias)", summary.roomId.value)
+            return true
+        }
+
+        return false
     }
 
     private suspend fun buildAndEmitAllRooms(roomSummaries: List<RoomSummary>, useCache: Boolean = true) {
@@ -212,7 +282,8 @@ class RoomListDataSource(
     private suspend fun rebuildAllRoomSummaries() {
         lock.withLock {
             roomList.summaries.replayCache.firstOrNull()?.let { roomSummaries ->
-                buildAndEmitAllRooms(roomSummaries, useCache = false)
+                val filtered = roomSummaries.filter { !isHiddenBridgeRoom(it) }
+                buildAndEmitAllRooms(filtered, useCache = false)
             }
         }
     }

@@ -50,6 +50,8 @@ dependencies {
     implementation(projects.libraries.permissions.noop)
     implementation(projects.services.toolbox.api)
     implementation(projects.appconfig)
+    implementation(projects.libraries.network)
+    implementation(libs.monero.wallet.sdk)
 
     testCommonDependencies(libs, true)
     testImplementation(projects.libraries.matrix.test)

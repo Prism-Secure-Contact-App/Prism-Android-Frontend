@@ -59,12 +59,14 @@ fun PreferencesRootView(
     onOpenRageShake: () -> Unit,
     onOpenLockScreenSettings: () -> Unit,
     onOpenAbout: () -> Unit,
-    onOpenDeveloperSettings: () -> Unit,
     onOpenAdvancedSettings: () -> Unit,
     onOpenLabs: () -> Unit,
     onOpenNotificationSettings: () -> Unit,
     onOpenUserProfile: (PRISMUser) -> Unit,
     onOpenBlockedUsers: () -> Unit,
+    onOpenBridgeSettings: () -> Unit,
+    onOpenMoneroWalletSettings: () -> Unit,
+    onOpenLlmApiSettings: () -> Unit,
     onSignOutClick: () -> Unit,
     onDeactivateClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -103,7 +105,8 @@ fun PreferencesRootView(
             state = state,
             onManageAccountClick = onManageAccountClick,
             onLinkNewDeviceClick = onLinkNewDeviceClick,
-            onOpenBlockedUsers = onOpenBlockedUsers
+            onOpenBlockedUsers = onOpenBlockedUsers,
+            onOpenBridgeSettings = onOpenBridgeSettings,
         )
 
         // General section
@@ -113,8 +116,9 @@ fun PreferencesRootView(
             onOpenAnalytics = onOpenAnalytics,
             onOpenRageShake = onOpenRageShake,
             onOpenAdvancedSettings = onOpenAdvancedSettings,
-            onOpenDeveloperSettings = onOpenDeveloperSettings,
             onOpenLabs = onOpenLabs,
+            onOpenMoneroWalletSettings = onOpenMoneroWalletSettings,
+            onOpenLlmApiSettings = onOpenLlmApiSettings,
             onSignOutClick = onSignOutClick,
             onDeactivateClick = onDeactivateClick,
         )
@@ -122,11 +126,6 @@ fun PreferencesRootView(
         Footer(
             version = state.version,
             deviceId = state.deviceId,
-            onClick = if (!state.showDeveloperSettings) {
-                { state.eventSink(PreferencesRootEvents.OnVersionInfoClick) }
-            } else {
-                null
-            }
         )
     }
 }
@@ -197,6 +196,7 @@ private fun ColumnScope.ManageAccountSection(
     onManageAccountClick: (url: String) -> Unit,
     onLinkNewDeviceClick: () -> Unit,
     onOpenBlockedUsers: () -> Unit,
+    onOpenBridgeSettings: () -> Unit,
 ) {
     if (state.showLinkNewDevice) {
         ListItem(
@@ -231,7 +231,13 @@ private fun ColumnScope.ManageAccountSection(
         )
     }
 
-    if (state.accountManagementUrl != null || state.devicesManagementUrl != null || state.showBlockedUsersItem) {
+    ListItem(
+        headlineContent = { Text(stringResource(id = R.string.screen_bridge_settings_title)) },
+        leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Link())),
+        onClick = onOpenBridgeSettings,
+    )
+
+    if (state.accountManagementUrl != null || state.devicesManagementUrl != null || state.showBlockedUsersItem || true) {
         HorizontalDivider()
     }
 }
@@ -244,7 +250,8 @@ private fun ColumnScope.GeneralSection(
     onOpenRageShake: () -> Unit,
     onOpenAdvancedSettings: () -> Unit,
     onOpenLabs: () -> Unit,
-    onOpenDeveloperSettings: () -> Unit,
+    onOpenMoneroWalletSettings: () -> Unit,
+    onOpenLlmApiSettings: () -> Unit,
     onSignOutClick: () -> Unit,
     onDeactivateClick: () -> Unit,
 ) {
@@ -273,6 +280,30 @@ private fun ColumnScope.GeneralSection(
         onClick = onOpenAdvancedSettings,
     )
 
+    ListItem(
+        headlineContent = { Text("Wallet Security") },
+        leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Key())),
+        onClick = onOpenMoneroWalletSettings,
+    )
+
+    ListItem(
+        headlineContent = { Text("PrismAI API Keys") },
+        leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Labs())),
+        onClick = onOpenLlmApiSettings,
+    )
+
+    ListItem(
+        headlineContent = { Text("Deep Work Mode") },
+        supportingContent = { Text(if (state.isDeepWorkModeEnabled) "Active · Zen theme" else "Inactive") },
+        leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Computer())),
+        trailingContent = ListItemContent.Custom {
+            androidx.compose.material3.Switch(
+                checked = state.isDeepWorkModeEnabled,
+                onCheckedChange = { state.eventSink(PreferencesRootEvents.ToggleDeepWorkMode) },
+            )
+        },
+    )
+
     if (state.showLabsItem) {
         ListItem(
             headlineContent = { Text(stringResource(id = R.string.screen_labs_title)) },
@@ -295,17 +326,13 @@ private fun ColumnScope.GeneralSection(
             onClick = onDeactivateClick,
         )
     }
-    // Put developer settings at the end, so nothing bad happens if the user clicks 8 times to enable the entry
-    if (state.showDeveloperSettings) {
-        DeveloperPreferencesView(onOpenDeveloperSettings)
-    }
+
 }
 
 @Composable
 private fun ColumnScope.Footer(
     version: String,
     deviceId: DeviceId?,
-    onClick: (() -> Unit)?,
 ) {
     val text = remember(version, deviceId) {
         buildString {
@@ -320,21 +347,11 @@ private fun ColumnScope.Footer(
         modifier = Modifier
             .align(Alignment.CenterHorizontally)
             .padding(top = 16.dp)
-            .clickable(enabled = onClick != null, onClick = onClick ?: {})
             .padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 24.dp),
         textAlign = TextAlign.Center,
         text = text,
         style = PRISMTheme.typography.fontBodySmRegular,
         color = PRISMTheme.colors.textSecondary,
-    )
-}
-
-@Composable
-private fun DeveloperPreferencesView(onOpenDeveloperSettings: () -> Unit) {
-    ListItem(
-        headlineContent = { Text(stringResource(id = CommonStrings.common_developer_options)) },
-        leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Code())),
-        onClick = onOpenDeveloperSettings
     )
 }
 
@@ -357,7 +374,6 @@ private fun ContentToPreview(matrixUser: PRISMUser) {
         onAddAccountClick = {},
         onOpenAnalytics = {},
         onOpenRageShake = {},
-        onOpenDeveloperSettings = {},
         onOpenAdvancedSettings = {},
         onOpenLabs = {},
         onOpenAbout = {},
@@ -368,6 +384,9 @@ private fun ContentToPreview(matrixUser: PRISMUser) {
         onOpenLockScreenSettings = {},
         onOpenUserProfile = {},
         onOpenBlockedUsers = {},
+        onOpenBridgeSettings = {},
+        onOpenMoneroWalletSettings = {},
+        onOpenLlmApiSettings = {},
         onSignOutClick = {},
         onDeactivateClick = {},
     )

@@ -235,7 +235,7 @@ private fun OnBoardingContent(state: OnBoardingState) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = stringResource(id = R.string.screen_onboarding_welcome_message, state.productionApplicationName),
+                    text = stringResource(id = R.string.screen_onboarding_welcome_message),
                     color = PRISMTheme.colors.textSecondary,
                     style = PRISMTheme.typography.fontBodyLgRegular.copy(fontSize = 17.sp),
                     textAlign = TextAlign.Center
@@ -282,7 +282,7 @@ private fun OnBoardingButtons(
         // the "Sign in to <provider>" leak, and the manual provider selection are removed
         // intentionally; the user must never see or pick a homeserver in the welcome screen.
         Button(
-            text = "Giriş Yap",
+            text = "Sign In",
             showProgress = isLoading,
             onClick = {
                 onSignIn(false)
@@ -293,7 +293,7 @@ private fun OnBoardingButtons(
                 .testTag(TestTags.onBoardingSignIn)
         )
         TextButton(
-            text = "Hesap Oluştur",
+            text = "Create Account",
             onClick = onCreateAccount,
             modifier = Modifier
                 .fillMaxWidth()

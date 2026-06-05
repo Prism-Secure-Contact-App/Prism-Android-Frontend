@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import android.graphics.Color as AndroidColor
 import android.os.Message
+import android.view.View
 import android.webkit.ConsoleMessage
 import android.webkit.CookieManager
 import android.webkit.WebChromeClient
@@ -54,6 +55,7 @@ import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.theme.components.Button
 import io.prism.android.libraries.designsystem.theme.components.CircularProgressIndicator
+import io.prism.android.libraries.designsystem.theme.components.LinearProgressIndicator
 import io.prism.android.libraries.designsystem.theme.components.OutlinedButton
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextField
@@ -71,8 +73,8 @@ internal fun BridgePhaseContent(
     eventSink: ((BridgeEvents) -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
-    val onSubmitPrompt = { value: String -> eventSink?.invoke(BridgeEvents.SubmitPrompt(value)) }
-    val onWebViewError = { message: String -> eventSink?.invoke(BridgeEvents.WebViewError(message)) }
+    val onSubmitPrompt: (String) -> Unit = { value -> eventSink?.invoke(BridgeEvents.SubmitPrompt(value)); Unit }
+    val onWebViewError: (String) -> Unit = { message -> eventSink?.invoke(BridgeEvents.WebViewError(message)); Unit }
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -82,10 +84,10 @@ internal fun BridgePhaseContent(
 
             UiPhase.Connecting -> CenteredProgress(label = "$bridgeName ile bağlantı kuruluyor...")
 
-            is UiPhase.Working -> CenteredProgress(label = phase.message)
+            is UiPhase.Working -> CenteredProgress(label = phase.message, progress = phase.progress)
 
             is UiPhase.AwaitingScan -> {
-                // QR code from the bot's MXC URL. Element X's matrixui module exposes
+                // QR code from the bot's MXC URL. Prisma's matrixui module exposes
                 // `requestData()` to build a Coil request for an MXC source; we use it
                 // as Painter inside a square box so the QR scales with the viewport.
                 Box(
@@ -114,7 +116,7 @@ internal fun BridgePhaseContent(
 
             is UiPhase.AwaitingInput -> InputPrompt(prompt = phase.prompt)
 
-            is UiPhase.AwaitingPairingCode -> PairingCodeContent(code = phase.code, caption = phase.caption)
+            is UiPhase.AwaitingPairingCode -> PairingCodeContent(code = phase.code, caption = phase.caption, remainingSeconds = phase.remainingSeconds)
 
             is UiPhase.AwaitingWebView -> CookieWebView(
                 phase = phase,
@@ -133,9 +135,17 @@ internal fun BridgePhaseContent(
 }
 
 @Composable
-private fun CenteredProgress(label: String) {
-    CircularProgressIndicator()
-    Spacer(Modifier.height(12.dp))
+private fun CenteredProgress(label: String, progress: Float = -1f) {
+    if (progress in 0f..1f) {
+        LinearProgressIndicator(
+            progress = { progress },
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Spacer(Modifier.height(8.dp))
+    } else {
+        CircularProgressIndicator()
+        Spacer(Modifier.height(12.dp))
+    }
     Text(
         text = label,
         style = PRISMTheme.typography.fontBodyMdRegular,
@@ -151,7 +161,7 @@ private fun QrImage(source: io.prism.android.libraries.matrix.api.media.MediaSou
     val data = MediaRequestData(source = source, kind = MediaRequestData.Kind.Content)
     coil3.compose.AsyncImage(
         model = data,
-        contentDescription = "Bağlantı QR kodu",
+        contentDescription = "Connection QR Code",
         modifier = Modifier.fillMaxWidth(),
     )
 }
@@ -184,26 +194,48 @@ private fun CookieWebView(
     onWebViewError: (String) -> Unit,
 ) {
     var emitted by remember { mutableStateOf(false) }
+    var currentUrl by remember { mutableStateOf(phase.url) }
 
     // Poll the cookie store every second instead of relying on onPageFinished — Instagram is
     // a single-page app: after submitting the login form it navigates client-side without
     // firing a full page load. The success signal is "all required cookies are now set",
     // which we can read from CookieManager regardless of what the WebView is rendering.
+    //
+    // CRITICAL FIX: we check multiple URLs because after login Instagram redirects away
+    // from /accounts/login/ and cookies may be scoped to the root domain or www.instagram.com
+    // rather than the original load URL.
     LaunchedEffect(phase.url) {
         while (!emitted && coroutineContext.isActive) {
             delay(1000L)
-            val cookieHeader = CookieManager.getInstance().getCookie(phase.url) ?: continue
-            val parsed = parseCookieHeader(cookieHeader)
-            val collected = LinkedHashMap<String, String>(phase.cookieNames.size)
-            var missing = false
-            for (name in phase.cookieNames) {
-                val v = parsed[name]
-                if (v.isNullOrBlank()) { missing = true; break }
-                collected[name] = v
+
+            val urlsToCheck = listOf(
+                currentUrl,
+                "https://www.instagram.com/",
+                "https://instagram.com/",
+                phase.url,
+            ).distinct().filter { it.isNotBlank() }
+
+            for (cookieUrl in urlsToCheck) {
+                val rawCookieHeader = CookieManager.getInstance().getCookie(cookieUrl)
+                if (rawCookieHeader.isNullOrBlank()) {
+                    timber.log.Timber.d("Bridge WebView no cookies yet for %s", cookieUrl)
+                    continue
+                }
+                val cookieHeader = rawCookieHeader
+                val parsed = parseCookieHeader(cookieHeader)
+                val collected = LinkedHashMap<String, String>(phase.cookieNames.size)
+                var missing = false
+                for (name in phase.cookieNames) {
+                    val v = parsed[name]
+                    if (v.isNullOrBlank()) { missing = true; break }
+                    collected[name] = v
+                }
+                if (missing) continue
+                emitted = true
+                timber.log.Timber.d("Bridge WebView cookies collected from %s: %s", cookieUrl, collected.keys)
+                onCookiesCollected(buildCookieJson(collected))
+                break
             }
-            if (missing) continue
-            emitted = true
-            onCookiesCollected(buildCookieJson(collected))
         }
     }
 
@@ -238,6 +270,9 @@ private fun CookieWebView(
                     // until first paint, which the user perceives as "black screen on login click".
                     setBackgroundColor(AndroidColor.WHITE)
 
+                    // FIX: Instagram login page flickers with software rendering.
+                    // Keep hardware acceleration (default) and rely on white background
+                    // to avoid the brief black flash on load.
                     settings.apply {
                         javaScriptEnabled = true
                         domStorageEnabled = true
@@ -260,7 +295,7 @@ private fun CookieWebView(
 
                     webViewClient = object : WebViewClient() {
                         // Instagram pages link to deep-links / "Open in app" (instagram://, intent://, fb://, mailto:).
-                        // Default WebView would try to load them and show "web sayfası mevcut değil" error.
+                        // Default WebView would try to load them and show "web page not available" error.
                         // We simply ignore non-http URLs so the user stays on the login flow.
                         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                             val url = request?.url?.toString() ?: return false
@@ -272,14 +307,37 @@ private fun CookieWebView(
                             }
                         }
 
+                        override fun onPageStarted(view: WebView?, url: String?, favicon: android.graphics.Bitmap?) {
+                            super.onPageStarted(view, url, favicon)
+                            timber.log.Timber.d("Bridge WebView page started: %s", url)
+                        }
+
+                        override fun onPageFinished(view: WebView?, url: String?) {
+                            super.onPageFinished(view, url)
+                            currentUrl = url ?: phase.url
+                            // Force cookie sync so CookieManager sees them immediately
+                            CookieManager.getInstance().flush()
+                            timber.log.Timber.d("Bridge WebView page finished: %s", url)
+                        }
+
                         // Loud logging on resource errors so we can diagnose login failures from logcat.
+                        // Only treat main-frame errors as fatal; ignore sub-resource failures (CSS/JS)
+                        // so a single missing asset does not kill the whole login flow.
                         override fun onReceivedError(
                             view: WebView?,
                             request: WebResourceRequest?,
                             error: WebResourceError?,
                         ) {
+                            if (request?.isForMainFrame != true) {
+                                timber.log.Timber.d(
+                                    "Bridge WebView sub-resource error (%d): %s",
+                                    error?.errorCode ?: -1,
+                                    error?.description ?: "unknown"
+                                )
+                                return
+                            }
                             onWebViewError(
-                                "Giriş sayfası yüklenemedi: ${error?.description ?: "Bilinmeyen hata"} (${error?.errorCode})"
+                                "Login page failed to load: ${error?.description ?: "Unknown error"} (${error?.errorCode})"
                             )
                         }
                     }
@@ -297,6 +355,14 @@ private fun CookieWebView(
                             transport.webView = view
                             resultMsg.sendToTarget()
                             return true
+                        }
+
+                        override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                            super.onProgressChanged(view, newProgress)
+                            if (newProgress == 100) {
+                                CookieManager.getInstance().flush()
+                            }
+                            timber.log.Timber.d("Bridge WebView loading progress: %d%%", newProgress)
                         }
 
                         // Forward JS console output to logcat so we can debug black-screen pages.
@@ -344,7 +410,7 @@ private fun String.escapeJson(): String = buildString(length + 2) {
 }
 
 @Composable
-private fun PairingCodeContent(code: String, caption: String) {
+private fun PairingCodeContent(code: String, caption: String, remainingSeconds: Int = -1) {
     val clipboard = LocalClipboardManager.current
     Box(
         modifier = Modifier
@@ -373,10 +439,20 @@ private fun PairingCodeContent(code: String, caption: String) {
     }
     Spacer(Modifier.height(12.dp))
     OutlinedButton(
-        text = "Kodu kopyala",
+        text = "Copy code",
         onClick = { clipboard.setText(AnnotatedString(code)) },
         modifier = Modifier.fillMaxWidth(),
     )
+    Spacer(Modifier.height(12.dp))
+    if (remainingSeconds >= 0) {
+        Spacer(Modifier.height(8.dp))
+        Text(
+            text = "Time remaining: ${remainingSeconds}s",
+            style = PRISMTheme.typography.fontBodySmMedium,
+            color = PRISMTheme.colors.textSecondary,
+            textAlign = TextAlign.Center,
+        )
+    }
     Spacer(Modifier.height(12.dp))
     Text(
         text = caption,
@@ -419,7 +495,7 @@ internal fun BridgeActionRow(
                 )
                 Spacer(Modifier.height(12.dp))
                 Button(
-                    text = "Gönder",
+                    text = "Send",
                     onClick = { state.eventSink(BridgeEvents.SubmitPrompt(input)) },
                     enabled = input.isNotBlank(),
                     modifier = Modifier.fillMaxWidth(),
@@ -430,7 +506,7 @@ internal fun BridgeActionRow(
                 // Code is shown in BridgePhaseContent above; here we just give the user
                 // a way to bail if they entered the wrong number / WhatsApp rejected it.
                 OutlinedButton(
-                    text = "İptal et",
+                    text = "Cancel",
                     onClick = { state.eventSink(BridgeEvents.Skip) },
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -465,7 +541,7 @@ internal fun BridgeActionRow(
                 )
                 Spacer(Modifier.height(8.dp))
                 OutlinedButton(
-                    text = "Şimdilik atla",
+                    text = "Skip for now",
                     onClick = { state.eventSink(BridgeEvents.Skip) },
                     modifier = Modifier.fillMaxWidth(),
                 )

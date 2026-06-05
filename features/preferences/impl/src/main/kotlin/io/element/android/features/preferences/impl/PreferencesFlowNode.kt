@@ -29,8 +29,10 @@ import io.prism.android.features.preferences.impl.about.AboutNode
 import io.prism.android.features.preferences.impl.advanced.AdvancedSettingsNode
 import io.prism.android.features.preferences.impl.analytics.AnalyticsSettingsNode
 import io.prism.android.features.preferences.impl.blockedusers.BlockedUsersNode
-import io.prism.android.features.preferences.impl.developer.DeveloperSettingsNode
+import io.prism.android.features.preferences.impl.bridgesettings.BridgeSettingsNode
 import io.prism.android.features.preferences.impl.labs.LabsNode
+import io.prism.android.features.preferences.impl.llmapi.LlmApiSettingsNode
+import io.prism.android.features.preferences.impl.monerowalletsettings.MoneroWalletSettingsNode
 import io.prism.android.features.preferences.impl.notifications.NotificationSettingsNode
 import io.prism.android.features.preferences.impl.notifications.edit.EditDefaultNotificationSettingNode
 import io.prism.android.features.preferences.impl.root.PreferencesRootNode
@@ -72,9 +74,6 @@ class PreferencesFlowNode(
         data object Root : NavTarget
 
         @Parcelize
-        data object DeveloperSettings : NavTarget
-
-        @Parcelize
         data object AdvancedSettings : NavTarget
 
         @Parcelize
@@ -106,6 +105,15 @@ class PreferencesFlowNode(
 
         @Parcelize
         data object BlockedUsers : NavTarget
+
+        @Parcelize
+        data object BridgeSettings : NavTarget
+
+        @Parcelize
+        data object MoneroWalletSettings : NavTarget
+
+        @Parcelize
+        data object LlmApiSettings : NavTarget
 
         @Parcelize
         data object SignOut : NavTarget
@@ -143,10 +151,6 @@ class PreferencesFlowNode(
                         backstack.push(NavTarget.About)
                     }
 
-                    override fun navigateToDeveloperSettings() {
-                        backstack.push(NavTarget.DeveloperSettings)
-                    }
-
                     override fun navigateToNotificationSettings() {
                         backstack.push(NavTarget.NotificationSettings)
                     }
@@ -175,6 +179,18 @@ class PreferencesFlowNode(
                         backstack.push(NavTarget.BlockedUsers)
                     }
 
+                    override fun navigateToBridgeSettings() {
+                        backstack.push(NavTarget.BridgeSettings)
+                    }
+
+                    override fun navigateToMoneroWalletSettings() {
+                        backstack.push(NavTarget.MoneroWalletSettings)
+                    }
+
+                    override fun navigateToLlmApiSettings() {
+                        backstack.push(NavTarget.LlmApiSettings)
+                    }
+
                     override fun startSignOutFlow() {
                         backstack.push(NavTarget.SignOut)
                     }
@@ -184,18 +200,6 @@ class PreferencesFlowNode(
                     }
                 }
                 createNode<PreferencesRootNode>(buildContext, plugins = listOf(callback))
-            }
-            NavTarget.DeveloperSettings -> {
-                val developerSettingsCallback = object : DeveloperSettingsNode.Callback {
-                    override fun navigateToPushHistory() {
-                        backstack.push(NavTarget.PushHistory)
-                    }
-
-                    override fun onDone() {
-                        backstack.pop()
-                    }
-                }
-                createNode<DeveloperSettingsNode>(buildContext, listOf(developerSettingsCallback))
             }
             NavTarget.Labs -> {
                 val callback = object : LabsNode.Callback {
@@ -301,6 +305,15 @@ class PreferencesFlowNode(
             }
             NavTarget.BlockedUsers -> {
                 createNode<BlockedUsersNode>(buildContext)
+            }
+            NavTarget.BridgeSettings -> {
+                createNode<BridgeSettingsNode>(buildContext)
+            }
+            NavTarget.MoneroWalletSettings -> {
+                createNode<MoneroWalletSettingsNode>(buildContext)
+            }
+            NavTarget.LlmApiSettings -> {
+                createNode<LlmApiSettingsNode>(buildContext)
             }
             NavTarget.SignOut -> {
                 val callBack: LogoutEntryPoint.Callback = object : LogoutEntryPoint.Callback {

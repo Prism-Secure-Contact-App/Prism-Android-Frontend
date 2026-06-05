@@ -40,7 +40,6 @@ class PreferencesRootNode(
         fun navigateToSecureBackup()
         fun navigateToAnalyticsSettings()
         fun navigateToAbout()
-        fun navigateToDeveloperSettings()
         fun navigateToNotificationSettings()
         fun navigateToLockScreenSettings()
         fun navigateToAdvancedSettings()
@@ -48,6 +47,9 @@ class PreferencesRootNode(
         fun navigateToLinkNewDevice()
         fun navigateToUserProfile(matrixUser: PRISMUser)
         fun navigateToBlockedUsers()
+        fun navigateToBridgeSettings()
+        fun navigateToMoneroWalletSettings()
+        fun navigateToLlmApiSettings()
         fun startSignOutFlow()
         fun startAccountDeactivationFlow()
     }
@@ -82,7 +84,6 @@ class PreferencesRootNode(
             onOpenAnalytics = callback::navigateToAnalyticsSettings,
             onOpenAbout = callback::navigateToAbout,
             onSecureBackupClick = callback::navigateToSecureBackup,
-            onOpenDeveloperSettings = callback::navigateToDeveloperSettings,
             onOpenAdvancedSettings = callback::navigateToAdvancedSettings,
             onOpenLabs = callback::navigateToLabs,
             onLinkNewDeviceClick = callback::navigateToLinkNewDevice,
@@ -91,6 +92,9 @@ class PreferencesRootNode(
             onOpenLockScreenSettings = callback::navigateToLockScreenSettings,
             onOpenUserProfile = callback::navigateToUserProfile,
             onOpenBlockedUsers = callback::navigateToBlockedUsers,
+            onOpenBridgeSettings = callback::navigateToBridgeSettings,
+            onOpenMoneroWalletSettings = callback::navigateToMoneroWalletSettings,
+            onOpenLlmApiSettings = callback::navigateToLlmApiSettings,
             onSignOutClick = {
                 if (state.directLogoutState.canDoDirectSignOut) {
                     state.directLogoutState.eventSink(DirectLogoutEvents.Logout(ignoreSdkError = false))

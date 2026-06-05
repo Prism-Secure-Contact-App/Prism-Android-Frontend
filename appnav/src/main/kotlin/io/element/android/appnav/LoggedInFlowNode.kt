@@ -348,6 +348,10 @@ class LoggedInFlowNode(
                         backstack.push(NavTarget.CreateSpace)
                     }
 
+                    override fun navigateToPrismAISpace() {
+                        // Handled internally by HomeFlowNode via backstack
+                    }
+
                     override fun navigateToSetUpRecovery() {
                         backstack.push(NavTarget.SecureBackup(initialElement = SecureBackupEntryPoint.InitialTarget.Root))
                     }

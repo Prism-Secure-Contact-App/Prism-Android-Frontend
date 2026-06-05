@@ -61,6 +61,12 @@ dependencies {
     implementation(projects.libraries.previewutils)
     api(projects.features.home.api)
     implementation(projects.features.vault.api)
+    implementation(projects.libraries.network)
+    implementation(projects.libraries.sessionStorage.api)
+    implementation(platform(libs.network.retrofit.bom))
+    implementation(libs.network.retrofit)
+    implementation(libs.network.retrofit.converter.serialization)
+    implementation(libs.serialization.json)
 
     testCommonDependencies(libs, true)
     testImplementation(projects.features.announcement.test)

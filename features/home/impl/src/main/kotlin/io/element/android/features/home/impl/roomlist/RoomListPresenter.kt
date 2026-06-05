@@ -27,6 +27,7 @@ import dev.zacsweers.metro.Inject
 import im.vector.app.features.analytics.plan.Interaction
 import io.prism.android.features.announcement.api.Announcement
 import io.prism.android.features.announcement.api.AnnouncementService
+import io.prism.android.features.home.impl.datasource.BridgeSpaceOrganizer
 import io.prism.android.features.home.impl.datasource.RoomListDataSource
 import io.prism.android.features.home.impl.filters.RoomListFilter.Rooms
 import io.prism.android.features.home.impl.filters.RoomListFiltersState
@@ -90,6 +91,7 @@ class RoomListPresenter(
     private val announcementService: AnnouncementService,
     private val coldStartWatcher: AnalyticsColdStartWatcher,
     private val spaceFiltersPresenter: Presenter<SpaceFiltersState>,
+    private val bridgeSpaceOrganizer: BridgeSpaceOrganizer,
 ) : Presenter<RoomListState> {
     private val encryptionService = client.encryptionService
 
@@ -104,6 +106,7 @@ class RoomListPresenter(
 
         LaunchedEffect(Unit) {
             roomListDataSource.launchIn(this)
+            bridgeSpaceOrganizer.start()
         }
 
         var securityBannerDismissed by rememberSaveable { mutableStateOf(false) }

@@ -114,7 +114,7 @@ android {
     buildTypes {
         val oidcRedirectSchemeBase = BuildTimeConfig.METADATA_HOST_REVERSED ?: "io.prism.android"
         getByName("debug") {
-            resValue("string", "app_name", "$baseAppName dbg")
+            resValue("string", "app_name", baseAppName)
             resValue(
                 "string",
                 "login_redirect_scheme",
@@ -296,6 +296,7 @@ dependencies {
     implementation(libs.serialization.json)
 
     implementation(libs.matrix.emojibase.bindings)
+    implementation(libs.monero.wallet.sdk)
 
     testCommonDependencies(libs)
     testImplementation(projects.libraries.matrix.test)
@@ -316,9 +317,11 @@ licensee {
     allow("BSD-2-Clause")
     allow("BSD-3-Clause")
     allow("EPL-1.0")
+    allow("GPL-3.0")
     allowUrl("https://opensource.org/license/bsd-3-clause")
     allowUrl("https://opensource.org/licenses/MIT")
     allowUrl("https://developer.android.com/studio/terms.html")
+    allowUrl("https://www.gnu.org/licenses/gpl-3.0.txt")
     allowUrl("https://www.zetetic.net/sqlcipher/license/")
     allowUrl("https://jsoup.org/license")
     allowUrl("https://asm.ow2.io/license.html")
