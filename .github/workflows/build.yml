@@ -5,7 +5,7 @@ on:
   pull_request:
   merge_group:
   push:
-    branches: [ develop ]
+    branches: [ fix/ai-wizard-navigation ]
 
 permissions: {}
 
