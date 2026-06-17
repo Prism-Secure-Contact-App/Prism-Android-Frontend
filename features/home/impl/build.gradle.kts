@@ -1,4 +1,6 @@
-﻿import extension.setupDependencyInjection
+﻿import config.BuildTimeConfig
+import extension.buildConfigFieldStr
+import extension.setupDependencyInjection
 import extension.testCommonDependencies
 
 /*
@@ -16,6 +18,21 @@ plugins {
 
 android {
     namespace = "io.prism.android.features.home.impl"
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        buildConfigFieldStr(
+            name = "LLM_API_HOST",
+            value = BuildTimeConfig.SERVICES_LLM_API_HOST ?: "matrix.fathertkt.uk",
+        )
+        buildConfigFieldStr(
+            name = "LLM_API_PORT",
+            value = BuildTimeConfig.SERVICES_LLM_API_PORT ?: "8080",
+        )
+    }
 
     testOptions {
         unitTests {

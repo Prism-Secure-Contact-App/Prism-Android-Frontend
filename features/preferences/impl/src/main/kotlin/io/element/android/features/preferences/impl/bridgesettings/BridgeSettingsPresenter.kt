@@ -48,7 +48,7 @@ class BridgeSettingsPresenter(
 
         val summaries by matrixClient.roomListService.allRooms.summaries.collectAsState(initial = emptyList())
         val bridges = remember(summaries, forcedStatuses, bridgeIdentifiers) {
-            val whatsappBot = "@pwb-bot:matrix.fathertkt.uk"
+            val whatsappBot = BuildConfig.WHATSAPP_BRIDGE_BOT
 
             val whatsappDm = summaries.find {
                 it.isOneToOne && it.info.heroes.any { h -> h.userId.value == whatsappBot }
@@ -253,7 +253,7 @@ class BridgeSettingsPresenter(
                         try {
                             val botUserId = UserId(
                                 when (event.platform) {
-                                    "whatsapp" -> "@pwb-bot:matrix.fathertkt.uk"
+                                    "whatsapp" -> BuildConfig.WHATSAPP_BRIDGE_BOT
                                     else -> return@launch
                                 }
                             )
@@ -378,7 +378,7 @@ class BridgeSettingsPresenter(
                         try {
                             val botUserId = UserId(
                                 when (event.platform) {
-                                    "whatsapp" -> "@pwb-bot:matrix.fathertkt.uk"
+                                    "whatsapp" -> BuildConfig.WHATSAPP_BRIDGE_BOT
                                     else -> return@launch
                                 }
                             )

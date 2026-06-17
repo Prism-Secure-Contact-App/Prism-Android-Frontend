@@ -16,7 +16,7 @@ jobs:
   nightly:
     name: Build and publish nightly bundle to Firebase
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'element-hq/element-x-android' }}
+    if: ${{ github.repository == 'Prism-Secure-Contact-App/Prism-Android-Frontend' }}
     steps:
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be

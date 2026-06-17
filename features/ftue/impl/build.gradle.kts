@@ -17,6 +17,15 @@ plugins {
 android {
     namespace = "io.prism.android.features.ftue.impl"
 
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        buildConfigField("String", "MONERO_REMOTE_NODE", "\"https://node.community.rino.io:18081\"")
+        buildConfigField("String", "MONERO_NETWORK", "\"MAINNET\"")
+    }
+
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
@@ -52,6 +61,7 @@ dependencies {
     implementation(projects.appconfig)
     implementation(projects.libraries.network)
     implementation(libs.monero.wallet.sdk)
+    implementation(libs.androidx.security)
 
     testCommonDependencies(libs, true)
     testImplementation(projects.libraries.matrix.test)

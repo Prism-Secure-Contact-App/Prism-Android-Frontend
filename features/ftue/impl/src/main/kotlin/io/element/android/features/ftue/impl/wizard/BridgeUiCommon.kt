@@ -29,6 +29,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.LaunchedEffect
+import io.prism.android.features.ftue.impl.BuildConfig
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlin.coroutines.coroutineContext
@@ -260,9 +261,8 @@ private fun CookieWebView(
     ) {
         AndroidView(
             factory = { ctx ->
-                // Enable Chrome-DevTools inspection (chrome://inspect) so we can diagnose
-                // login pages that don't render. No-op in release builds.
-                WebView.setWebContentsDebuggingEnabled(true)
+                // Enable Chrome-DevTools inspection only in debug builds.
+                WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG)
 
                 WebView(ctx).apply {
                     // Explicit white background — without this, Compose AndroidView wraps the
@@ -285,13 +285,13 @@ private fun CookieWebView(
                         // multi-window support the click silently leaves a blank view.
                         javaScriptCanOpenWindowsAutomatically = true
                         setSupportMultipleWindows(true)
-                        mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
+                        mixedContentMode = WebSettings.MIXED_CONTENT_NEVER_ALLOW
                         mediaPlaybackRequiresUserGesture = false
                         cacheMode = WebSettings.LOAD_DEFAULT
                     }
 
                     CookieManager.getInstance().setAcceptCookie(true)
-                    CookieManager.getInstance().setAcceptThirdPartyCookies(this, true)
+                    CookieManager.getInstance().setAcceptThirdPartyCookies(this, false)
 
                     webViewClient = object : WebViewClient() {
                         // Instagram pages link to deep-links / "Open in app" (instagram://, intent://, fb://, mailto:).

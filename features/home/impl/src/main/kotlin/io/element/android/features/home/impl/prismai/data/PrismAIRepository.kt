@@ -14,6 +14,7 @@ import io.prism.android.features.home.impl.prismai.api.PrismAIChatHistoryRespons
 import io.prism.android.features.home.impl.prismai.api.PrismAIChatRequest
 import io.prism.android.features.home.impl.prismai.api.PrismAIChatResponse
 import io.prism.android.features.home.impl.prismai.api.PrismAILiveMessagesResponse
+import io.prism.android.features.home.impl.BuildConfig
 import io.prism.android.features.home.impl.prismai.api.PrismAIRoomsResponse
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.matrix.api.PRISMClient
@@ -48,14 +49,14 @@ class PrismAIRepository(
         val sessions = sessionStore.sessionsFlow().first()
         val sessionId = matrixClient.sessionId.value
         val homeserverUrl = sessions.firstOrNull { it.userId == sessionId }?.homeserverUrl
-            ?: "https://matrix.fathertkt.uk"
+            ?: "https://${BuildConfig.LLM_API_HOST}"
         return try {
             val url = URL(homeserverUrl)
-            // Use the same host but port 8080 for the LLM API service
-            "${url.protocol}://${url.host}:8080/"
+            // Use the same host but configured LLM API port
+            "${url.protocol}://${url.host}:${BuildConfig.LLM_API_PORT}/"
         } catch (t: Throwable) {
             Timber.w(t, "PrismAIRepository: failed to parse homeserver URL, using fallback")
-            "https://matrix.fathertkt.uk:8080/"
+            "https://${BuildConfig.LLM_API_HOST}:${BuildConfig.LLM_API_PORT}/"
         }
     }
 

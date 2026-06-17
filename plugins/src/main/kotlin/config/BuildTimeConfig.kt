@@ -31,6 +31,9 @@ object BuildTimeConfig {
     val SERVICES_SENTRY_DSN_RUST: String? = null
     val BUG_REPORT_URL: String? = null
     val BUG_REPORT_APP_NAME: String? = null
+    val SERVICES_LLM_API_HOST: String? = null
+    val SERVICES_LLM_API_PORT: String? = null
+    val BRIDGE_BOT_WHATSAPP: String? = null
 
     const val PUSH_CONFIG_INCLUDE_FIREBASE = true
     const val PUSH_CONFIG_INCLUDE_UNIFIED_PUSH = true

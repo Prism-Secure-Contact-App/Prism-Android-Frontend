@@ -19,14 +19,14 @@ import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class Show<T : Any>(
-    private val prism: @RawValue T
+    private val element: @RawValue T
 ) : OverlayOperation<T> {
-    override fun isApplicable(prisms: BackStackElements<T>): Boolean =
-        prism != prisms.activeElement
+    override fun isApplicable(elements: BackStackElements<T>): Boolean =
+        element != elements.activeElement
 
-    override fun invoke(prisms: BackStackElements<T>): BackStackElements<T> = listOf(
+    override fun invoke(elements: BackStackElements<T>): BackStackElements<T> = listOf(
         BackStackElement(
-            key = NavKey(prism),
+            key = NavKey(element),
             fromState = BackStack.State.CREATED,
             targetState = BackStack.State.ACTIVE,
             operation = this
@@ -34,6 +34,6 @@ data class Show<T : Any>(
     )
 }
 
-fun <T : Any> Overlay<T>.show(prism: T) {
-    accept(Show(prism))
+fun <T : Any> Overlay<T>.show(element: T) {
+    accept(Show(element))
 }

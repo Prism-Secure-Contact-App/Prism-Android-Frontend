@@ -16,21 +16,21 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class Hide<T : Any> : OverlayOperation<T> {
-    override fun isApplicable(prisms: BackStackElements<T>): Boolean =
-        prisms.any { it.targetState == BackStack.State.ACTIVE }
+    override fun isApplicable(elements: BackStackElements<T>): Boolean =
+        elements.any { it.targetState == BackStack.State.ACTIVE }
 
     override fun invoke(
-        prisms: BackStackElements<T>
+        elements: BackStackElements<T>
     ): BackStackElements<T> {
-        val hideIndex = prisms.activeIndex
-        require(hideIndex != -1) { "Nothing to hide, state=$prisms" }
-        return prisms.mapIndexed { index, prism ->
+        val hideIndex = elements.activeIndex
+        require(hideIndex != -1) { "Nothing to hide, state=$elements" }
+        return elements.mapIndexed { index, element ->
             when (index) {
-                hideIndex -> prism.transitionTo(
+                hideIndex -> element.transitionTo(
                     newTargetState = BackStack.State.DESTROYED,
                     operation = this
                 )
-                else -> prism
+                else -> element
             }
         }
     }

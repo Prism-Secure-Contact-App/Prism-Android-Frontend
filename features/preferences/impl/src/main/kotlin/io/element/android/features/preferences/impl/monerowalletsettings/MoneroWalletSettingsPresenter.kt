@@ -11,6 +11,7 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,23 +27,28 @@ import im.molly.monero.sdk.PaymentDetail
 import im.molly.monero.sdk.PaymentRequest
 import im.molly.monero.sdk.PublicAddress
 import im.molly.monero.sdk.RemoteNode
+import im.molly.monero.sdk.WalletProvider
 import im.molly.monero.sdk.service.SandboxedWalletService
 import im.molly.monero.sdk.singleNodeClient
+import io.prism.android.features.preferences.impl.BuildConfig
+import io.prism.android.features.preferences.impl.monerowalletsettings.MoneroWalletDataStore
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.di.annotations.ApplicationContext
-import io.prism.android.libraries.matrix.api.PRISMClient
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import timber.log.Timber
 import java.io.File
 import java.math.BigDecimal
 
+private const val MONERO_ATOMIC_UNIT_SCALE = 12
+
 @Inject
 class MoneroWalletSettingsPresenter(
     @ApplicationContext private val context: Context,
-    private val matrixClient: PRISMClient,
 ) : Presenter<MoneroWalletSettingsState> {
 
     @Composable
@@ -52,54 +58,27 @@ class MoneroWalletSettingsPresenter(
         var snackbarMessage by remember { mutableStateOf<String?>(null) }
         val address = remember { mutableStateOf<String?>(null) }
         val balance = remember { mutableStateOf("Loading...") }
-        val feeRate = remember { mutableStateOf("Yükleniyor...") }
+        var balanceAtomicUnits by remember { mutableStateOf(0L) }
+        val feeRate = remember { mutableStateOf("Loading...") }
         var showWithdrawDialog by remember { mutableStateOf(false) }
         var withdrawAddress by remember { mutableStateOf("") }
         var withdrawAmount by remember { mutableStateOf("") }
         var withdrawAction by remember { mutableStateOf<AsyncAction<Unit>>(AsyncAction.Uninitialized) }
 
         var wallet by remember { mutableStateOf<MoneroWallet?>(null) }
-        var walletProvider by remember { mutableStateOf<im.molly.monero.sdk.WalletProvider?>(null) }
+        var walletProvider by remember { mutableStateOf<WalletProvider?>(null) }
 
         LaunchedEffect(Unit) {
-            try {
-                val walletFile = File(context.filesDir, "prism_wallet/monero_wallet.bin")
-                if (!walletFile.exists()) {
-                    balance.value = "Wallet not found"
-                    feeRate.value = "—"
-                    return@LaunchedEffect
-                }
-                val dataStore = MoneroWalletDataStore(walletFile)
-                val provider = SandboxedWalletService.Companion.connect(context)
-                walletProvider = provider
-                val remoteNode = RemoteNode(
-                    "https://node.community.rino.io:18081",
-                    MoneroNetwork.Mainnet
-                )
-                val nodeClient: MoneroNodeClient = remoteNode.singleNodeClient(OkHttpClient())
-                val w = provider.openWallet(
-                    MoneroNetwork.Mainnet,
-                    dataStore,
-                    nodeClient
-                )
-                wallet = w
-                address.value = w.publicAddress.address
-
-                w.awaitRefresh()
-                val ledger = w.ledger().first()
-                val bal = ledger.getBalance()
-                balance.value = BigDecimal.valueOf(bal.totalAmount.atomicUnits, MoneroAmount.ATOMIC_UNIT_SCALE).toPlainString() + " XMR"
-
-                val fee = w.dynamicFeeRate().first()
-                val mediumFeeAtomic = fee.feePerByte[FeePriority.Medium]?.atomicUnits ?: 0
-                val mediumFee = BigDecimal.valueOf(mediumFeeAtomic, MoneroAmount.ATOMIC_UNIT_SCALE).toPlainString()
-                feeRate.value = "$mediumFee XMR/byte"
-            } catch (e: Exception) {
-                Timber.e(e, "Monero wallet load failed")
-                balance.value = "Error"
-                feeRate.value = "Hata"
-                snackbarMessage = e.message ?: "Unknown error"
-            }
+            loadWallet(
+                context = context,
+                address = address,
+                balance = balance,
+                feeRate = feeRate,
+                onBalanceAtomicUnits = { balanceAtomicUnits = it },
+                onWallet = { wallet = it },
+                onProvider = { walletProvider = it },
+                onError = { snackbarMessage = it },
+            )
         }
 
         DisposableEffect(Unit) {
@@ -115,16 +94,16 @@ class MoneroWalletSettingsPresenter(
                     isRevealed = true
                 }
                 is MoneroWalletSettingsEvents.CopySeedPhrase -> {
-                    snackbarMessage = "Recovery phrase is hidden by the SDK"
+                    snackbarMessage = "Recovery phrase is managed securely by the Monero SDK"
                 }
                 is MoneroWalletSettingsEvents.CopyAddress -> {
                     snackbarMessage = "Wallet address copied to clipboard"
                 }
                 is MoneroWalletSettingsEvents.CopyViewKey -> {
-                    snackbarMessage = "View key is hidden by the SDK"
+                    snackbarMessage = "View key is managed securely by the Monero SDK"
                 }
                 is MoneroWalletSettingsEvents.CopySpendKey -> {
-                    snackbarMessage = "Spend key is hidden by the SDK"
+                    snackbarMessage = "Spend key is managed securely by the Monero SDK"
                 }
                 is MoneroWalletSettingsEvents.DismissSnackbar -> {
                     snackbarMessage = null
@@ -145,30 +124,41 @@ class MoneroWalletSettingsPresenter(
                     coroutineScope.launch {
                         withdrawAction = AsyncAction.Loading
                         try {
-                            val w = wallet ?: throw IllegalStateException("Wallet not loaded")
-                            val recipient = PublicAddress.parse(withdrawAddress.trim())
-                            val atomicUnits = BigDecimal(withdrawAmount.trim())
-                                .times(BigDecimal.TEN.pow(MoneroAmount.ATOMIC_UNIT_SCALE))
-                                .toLong()
-                            val amount = MoneroAmount(atomicUnits)
-                            val transfer = w.createTransfer(
-                                PaymentRequest(
-                                    paymentDetails = listOf(PaymentDetail(amount, recipient)),
-                                    spendingAccountIndex = 0,
-                                    feePriority = FeePriority.Medium,
-                                )
+                            val error = validateWithdraw(
+                                address = withdrawAddress.trim(),
+                                amount = withdrawAmount.trim(),
+                                balanceAtomicUnits = balanceAtomicUnits,
                             )
-                            transfer.commit()
-                            transfer.close()
+                            if (error != null) {
+                                withdrawAction = AsyncAction.Failure(IllegalArgumentException(error))
+                                snackbarMessage = error
+                                return@launch
+                            }
+
+                            withContext(Dispatchers.IO) {
+                                val w = wallet ?: throw IllegalStateException("Wallet not loaded")
+                                val recipient = PublicAddress.parse(withdrawAddress.trim())
+                                val atomicUnits = BigDecimal(withdrawAmount.trim())
+                                    .times(BigDecimal.TEN.pow(MONERO_ATOMIC_UNIT_SCALE))
+                                    .toLong()
+                                val amount = MoneroAmount(atomicUnits)
+                                val transfer = w.createTransfer(
+                                    PaymentRequest(
+                                        paymentDetails = listOf(PaymentDetail(amount, recipient)),
+                                        spendingAccountIndex = 0,
+                                        feePriority = FeePriority.Medium,
+                                    )
+                                )
+                                transfer.commit()
+                                transfer.close()
+                            }
                             withdrawAction = AsyncAction.Success(Unit)
                             snackbarMessage = "Transfer sent"
                             showWithdrawDialog = false
                             withdrawAddress = ""
                             withdrawAmount = ""
                             // Refresh balance
-                            w.awaitRefresh()
-                            val ledger = w.ledger().first()
-                            balance.value = BigDecimal.valueOf(ledger.getBalance().totalAmount.atomicUnits, MoneroAmount.ATOMIC_UNIT_SCALE).toPlainString() + " XMR"
+                            refreshBalance(wallet, balance) { balanceAtomicUnits = it }
                         } catch (e: Exception) {
                             Timber.e(e, "Withdraw failed")
                             withdrawAction = AsyncAction.Failure(e)
@@ -181,9 +171,9 @@ class MoneroWalletSettingsPresenter(
 
         return MoneroWalletSettingsState(
             address = address.value,
-            mnemonic = "Hidden by the SDK",
-            viewKey = "SDK tarafından gizli tutulmaktadır",
-            spendKey = "SDK tarafından gizli tutulmaktadır",
+            mnemonic = "Managed by the Monero SDK",
+            viewKey = "Managed by the Monero SDK",
+            spendKey = "Managed by the Monero SDK",
             balance = balance.value,
             feeRate = feeRate.value,
             isRevealed = isRevealed,
@@ -194,5 +184,112 @@ class MoneroWalletSettingsPresenter(
             withdrawAction = withdrawAction,
             eventSink = ::handleEvent,
         )
+    }
+
+    private suspend fun loadWallet(
+        context: Context,
+        address: MutableState<String?>,
+        balance: MutableState<String>,
+        feeRate: MutableState<String>,
+        onBalanceAtomicUnits: (Long) -> Unit,
+        onWallet: (MoneroWallet) -> Unit,
+        onProvider: (WalletProvider) -> Unit,
+        onError: (String) -> Unit,
+    ) = withContext(Dispatchers.IO) {
+        try {
+            val walletFile = File(context.filesDir, "prism_wallet/monero_wallet.bin")
+            if (!walletFile.exists()) {
+                balance.value = "Wallet not found"
+                feeRate.value = "—"
+                return@withContext
+            }
+            val dataStore = MoneroWalletDataStore(context, walletFile)
+            val provider = SandboxedWalletService.connect(context)
+            onProvider(provider)
+            val remoteNode = RemoteNode(
+                BuildConfig.MONERO_REMOTE_NODE,
+                resolveNetwork(BuildConfig.MONERO_NETWORK),
+            )
+            val nodeClient: MoneroNodeClient = remoteNode.singleNodeClient(OkHttpClient())
+            val w = provider.openWallet(
+                resolveNetwork(BuildConfig.MONERO_NETWORK),
+                dataStore,
+                nodeClient,
+            )
+            onWallet(w)
+            address.value = w.publicAddress.address
+
+            w.awaitRefresh()
+            val ledger = w.ledger().first()
+            val bal = ledger.getBalance()
+            onBalanceAtomicUnits(bal.totalAmount.atomicUnits)
+            balance.value = formatXmr(bal.totalAmount.atomicUnits)
+
+            val fee = w.dynamicFeeRate().first()
+            val mediumFeeAtomic = fee.feePerByte[FeePriority.Medium]?.atomicUnits ?: 0
+            feeRate.value = formatXmr(mediumFeeAtomic) + "/byte"
+        } catch (e: Exception) {
+            Timber.e(e, "Monero wallet load failed")
+            balance.value = "Error"
+            feeRate.value = "Error"
+            onError(e.message ?: "Unknown error")
+        }
+    }
+
+    private suspend fun refreshBalance(
+        wallet: MoneroWallet?,
+        balance: MutableState<String>,
+        onBalanceAtomicUnits: (Long) -> Unit,
+    ) = withContext(Dispatchers.IO) {
+        try {
+            val w = wallet ?: return@withContext
+            w.awaitRefresh()
+            val ledger = w.ledger().first()
+            val bal = ledger.getBalance()
+            onBalanceAtomicUnits(bal.totalAmount.atomicUnits)
+            balance.value = formatXmr(bal.totalAmount.atomicUnits)
+        } catch (e: Exception) {
+            Timber.e(e, "Balance refresh failed")
+        }
+    }
+
+    private fun validateWithdraw(
+        address: String,
+        amount: String,
+        balanceAtomicUnits: Long,
+    ): String? {
+        if (address.isBlank()) return "Withdraw address is required"
+        if (amount.isBlank()) return "Withdraw amount is required"
+
+        val parsedAmount = try {
+            BigDecimal(amount)
+        } catch (e: NumberFormatException) {
+            return "Invalid amount"
+        }
+        if (parsedAmount <= BigDecimal.ZERO) return "Amount must be positive"
+
+        val atomicUnits = try {
+            parsedAmount.times(BigDecimal.TEN.pow(MONERO_ATOMIC_UNIT_SCALE)).toLong()
+        } catch (e: ArithmeticException) {
+            return "Amount is too large"
+        }
+        if (atomicUnits > balanceAtomicUnits) return "Insufficient balance"
+
+        return try {
+            PublicAddress.parse(address)
+            null
+        } catch (e: Exception) {
+            "Invalid Monero address"
+        }
+    }
+
+    private fun formatXmr(atomicUnits: Long): String {
+        return BigDecimal.valueOf(atomicUnits, MONERO_ATOMIC_UNIT_SCALE).toPlainString() + " XMR"
+    }
+
+    private fun resolveNetwork(value: String): MoneroNetwork = when (value.uppercase()) {
+        "TESTNET" -> MoneroNetwork.Testnet
+        "STAGENET" -> MoneroNetwork.Stagenet
+        else -> MoneroNetwork.Mainnet
     }
 }

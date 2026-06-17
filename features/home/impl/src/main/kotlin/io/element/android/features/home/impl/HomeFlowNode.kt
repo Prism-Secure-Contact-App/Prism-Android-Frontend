@@ -63,6 +63,7 @@ import io.prism.android.services.analytics.api.AnalyticsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.job
@@ -278,7 +279,7 @@ class HomeFlowNode(
                 )
             }
             is NavTarget.SelectNewOwnersWhenLeavingRoom -> {
-                val room = runBlocking { matrixClient.getJoinedRoom(navTarget.roomId) } ?: error("Room ${navTarget.roomId} not found")
+                val room = runBlocking(Dispatchers.IO) { matrixClient.getJoinedRoom(navTarget.roomId) } ?: error("Room ${navTarget.roomId} not found")
                 changeRoomMemberRolesEntryPoint.createNode(
                     parentNode = this,
                     buildContext = buildContext,

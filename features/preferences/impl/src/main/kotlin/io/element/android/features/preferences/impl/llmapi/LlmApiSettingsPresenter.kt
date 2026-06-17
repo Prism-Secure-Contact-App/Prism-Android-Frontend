@@ -14,24 +14,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Inject
 import io.prism.android.libraries.architecture.Presenter
-import io.prism.android.libraries.matrix.api.PRISMClient
+import java.security.SecureRandom
 
 @Inject
-class LlmApiSettingsPresenter(
-    private val matrixClient: PRISMClient,
-) : Presenter<LlmApiSettingsState> {
+class LlmApiSettingsPresenter : Presenter<LlmApiSettingsState> {
 
     @Composable
     override fun present(): LlmApiSettingsState {
         var apiKey by remember { mutableStateOf<String?>(null) }
         var isRevealed by remember { mutableStateOf(false) }
         var snackbarMessage by remember { mutableStateOf<String?>(null) }
+        val secureRandom = remember { SecureRandom() }
 
         // TODO(v1.1): Persist keys in encrypted KeyStore and sync with backend.
-        // For v1.0.0 we generate client-side and store only in memory.
+        // For v1.0.0 we generate client-side using SecureRandom and store only in memory.
         fun generateKey(): String {
             val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-            return "prism_sk_" + (1..32).map { chars.random() }.joinToString("")
+            return "prism_sk_" + CharArray(32) { chars[secureRandom.nextInt(chars.length)] }.concatToString()
         }
 
         fun handleEvent(event: LlmApiSettingsEvents) {

@@ -17,6 +17,7 @@ import io.prism.android.libraries.architecture.bindings
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.matrix.api.tracing.TracingConfiguration
 import io.prism.android.x.di.AppBindings
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
@@ -32,13 +33,13 @@ class PlatformInitializer : Initializer<Unit> {
         Timber.plant(tracingService.createTimberTree(PRISM_X_TARGET))
         val preferencesStore = appBindings.preferencesStore()
         val featureFlagService = appBindings.featureFlagService()
-        val logLevel = runBlocking { preferencesStore.getTracingLogLevelFlow().first() }
+        val logLevel = runBlocking(Dispatchers.IO) { preferencesStore.getTracingLogLevelFlow().first() }
         val tracingConfiguration = TracingConfiguration(
-            writesToLogcat = BuildConfig.DEBUG || runBlocking { featureFlagService.isFeatureEnabled(FeatureFlags.PrintLogsToLogcat) },
+            writesToLogcat = BuildConfig.DEBUG || runBlocking(Dispatchers.IO) { featureFlagService.isFeatureEnabled(FeatureFlags.PrintLogsToLogcat) },
             writesToFilesConfiguration = bugReporter.createWriteToFilesConfiguration(),
             logLevel = logLevel,
             extraTargets = listOf(PRISM_X_TARGET),
-            traceLogPacks = runBlocking { preferencesStore.getTracingLogPacksFlow().first() },
+            traceLogPacks = runBlocking(Dispatchers.IO) { preferencesStore.getTracingLogPacksFlow().first() },
             sdkSentryDsn = appBindings.sentrySdkDsn()?.value?.takeIf { it.isNotBlank() },
         )
         bugReporter.setCurrentTracingLogLevel(logLevel.name)

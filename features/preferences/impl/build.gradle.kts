@@ -30,6 +30,18 @@ android {
 
     defaultConfig {
         buildConfigFieldStr(
+            name = "MONERO_REMOTE_NODE",
+            value = "https://node.community.rino.io:18081",
+        )
+        buildConfigFieldStr(
+            name = "MONERO_NETWORK",
+            value = "Mainnet",
+        )
+        buildConfigFieldStr(
+            name = "WHATSAPP_BRIDGE_BOT",
+            value = BuildTimeConfig.BRIDGE_BOT_WHATSAPP ?: "@pwb-bot:matrix.fathertkt.uk",
+        )
+        buildConfigFieldStr(
             name = "URL_COPYRIGHT",
             value = BuildTimeConfig.URL_COPYRIGHT ?: "https://prism.io/copyright",
         )
@@ -71,6 +83,7 @@ dependencies {
     implementation(projects.libraries.uiUtils)
     implementation(projects.libraries.fullscreenintent.api)
     implementation(libs.monero.wallet.sdk)
+    implementation(libs.androidx.security)
     implementation(projects.features.rageshake.api)
     implementation(projects.features.lockscreen.api)
     implementation(projects.features.analytics.api)
