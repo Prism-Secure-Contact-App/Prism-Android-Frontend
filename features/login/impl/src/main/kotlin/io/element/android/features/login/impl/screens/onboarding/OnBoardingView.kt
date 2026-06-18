@@ -136,9 +136,11 @@ private fun LoginWithPRISMClassicView(
                 is ConfirmingLoginWithPRISMClassic -> {
                     // TODO i18n
                     ConfirmationDialog(
-                        title = "Sign in with PRISM Classic",
-                        content = "You are signing in as ${confirming.userId} on PRISM Classic." +
-                            " Your existing session on PRISM Classic will not be signed out. Do you want to continue?",
+                        title = stringResource(R.string.screen_onboarding_sign_in_with_classic),
+                        content = stringResource(
+                            R.string.screen_onboarding_sign_in_with_classic_content,
+                            confirming.userId.value,
+                        ),
                         submitText = stringResource(CommonStrings.action_continue),
                         onSubmitClick = { state.eventSink(LoginWithClassicEvent.DoLoginWithClassic) },
                         onDismiss = { state.eventSink(LoginWithClassicEvent.CloseDialog) },
@@ -282,7 +284,7 @@ private fun OnBoardingButtons(
         // the "Sign in to <provider>" leak, and the manual provider selection are removed
         // intentionally; the user must never see or pick a homeserver in the welcome screen.
         Button(
-            text = "Sign In",
+            text = stringResource(R.string.screen_onboarding_sign_in),
             showProgress = isLoading,
             onClick = {
                 onSignIn(false)
@@ -293,7 +295,7 @@ private fun OnBoardingButtons(
                 .testTag(TestTags.onBoardingSignIn)
         )
         TextButton(
-            text = "Create Account",
+            text = stringResource(R.string.screen_onboarding_sign_up),
             onClick = onCreateAccount,
             modifier = Modifier
                 .fillMaxWidth()

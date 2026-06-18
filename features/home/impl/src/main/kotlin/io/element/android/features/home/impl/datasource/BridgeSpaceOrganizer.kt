@@ -8,6 +8,7 @@ package io.prism.android.features.home.impl.datasource
 
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
+import io.prism.android.appconfig.AuthenticationConfig
 import io.prism.android.libraries.core.coroutine.CoroutineDispatchers
 import io.prism.android.libraries.di.SessionScope
 import io.prism.android.libraries.di.annotations.SessionCoroutineScope
@@ -132,8 +133,8 @@ class BridgeSpaceOrganizer(
     internal fun detectBridgePlatform(summary: RoomSummary): String? {
         val info = summary.info
         val botUserIds = setOf(
-            "@pwb-bot:matrix.fathertkt.uk",
-            "@pmb-bot:matrix.fathertkt.uk",
+            AuthenticationConfig.WHATSAPP_BRIDGE_BOT,
+            AuthenticationConfig.META_BRIDGE_BOT,
         )
         val whatsappPattern = Regex("^@whatsapp_.+", RegexOption.IGNORE_CASE)
         val metaPattern = Regex("^@meta_.+", RegexOption.IGNORE_CASE)

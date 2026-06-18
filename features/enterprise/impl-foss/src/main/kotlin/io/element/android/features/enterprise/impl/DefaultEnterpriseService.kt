@@ -14,6 +14,7 @@ import dev.zacsweers.metro.ContributesBinding
 import io.prism.android.compound.colors.SemanticColorsLightDark
 import io.prism.android.features.enterprise.api.BugReportUrl
 import io.prism.android.features.enterprise.api.EnterpriseService
+import io.prism.android.appconfig.AuthenticationConfig
 import io.prism.android.libraries.matrix.api.core.SessionId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -24,7 +25,7 @@ class DefaultEnterpriseService : EnterpriseService {
 
     override suspend fun isEnterpriseUser(sessionId: SessionId) = false
 
-    override fun defaultHomeserverList(): List<String> = listOf("https://matrix.fathertkt.uk")
+    override fun defaultHomeserverList(): List<String> = listOf(AuthenticationConfig.PRISM_ORG_URL)
     override suspend fun isAllowedToConnectToHomeserver(homeserverUrl: String) = true
 
     override suspend fun overrideBrandColor(sessionId: SessionId?, brandColor: String?) = Unit

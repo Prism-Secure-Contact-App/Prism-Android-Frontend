@@ -10,6 +10,9 @@ package io.prism.android.appconfig
 
 object AuthenticationConfig {
     const val PRISM_ORG_URL = "https://matrix.fathertkt.uk"
+    const val PRISM_HOMESERVER = "matrix.fathertkt.uk"
+    const val WHATSAPP_BRIDGE_BOT = "@pwb-bot:matrix.fathertkt.uk"
+    const val META_BRIDGE_BOT = "@pmb-bot:matrix.fathertkt.uk"
 
     /**
      * URL with some docs that explain what's sliding sync and how to add it to your home server.

@@ -7,29 +7,31 @@
 package uk.fathertkt.prism.vault
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringSetPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.FragmentActivity
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import io.prism.android.libraries.di.annotations.ApplicationContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.withContext
 
-private val Context.vaultDataStore: DataStore<Preferences> by preferencesDataStore(name = "prism_vault")
+private const val VAULT_PREFS_FILE = "prism_vault_encrypted"
+private const val VAULT_ROOMS_KEY = "vault_rooms"
 
 /**
  * PRISM Vault Manager
  *
  * Seçili sohbetleri ana listeden gizleyip biyometrik doğrulama arkasına kilitler.
- * Room ID'leri DataStore'a kalıcı olarak yazılır; her uygulama açılışında korunurlar.
+ * Room ID'leri Android Keystore ile şifrelenmiş [EncryptedSharedPreferences]'ta saklanır.
  *
  * Kullanım akışı:
  *   1. Kullanıcı bir sohbeti kasaya eklemek ister → [addToVault]
@@ -40,23 +42,49 @@ private val Context.vaultDataStore: DataStore<Preferences> by preferencesDataSto
 @Inject
 class VaultManager(@ApplicationContext private val context: Context) {
 
-    private val VAULT_ROOMS_KEY = stringSetPreferencesKey("vault_rooms")
+    private val masterKey: MasterKey by lazy {
+        MasterKey.Builder(context)
+            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+            .build()
+    }
+
+    private val encryptedPrefs: SharedPreferences by lazy {
+        EncryptedSharedPreferences.create(
+            context,
+            VAULT_PREFS_FILE,
+            masterKey,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM,
+        )
+    }
 
     /** Kasadaki room ID'lerinin canlı akışı. */
-    val vaultRooms: Flow<Set<String>> = context.vaultDataStore.data
-        .map { prefs -> prefs[VAULT_ROOMS_KEY] ?: emptySet() }
+    val vaultRooms: Flow<Set<String>> = callbackFlow {
+        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == VAULT_ROOMS_KEY) {
+                trySend(getVaultRooms())
+            }
+        }
+        encryptedPrefs.registerOnSharedPreferenceChangeListener(listener)
+        trySend(getVaultRooms())
+        awaitClose { encryptedPrefs.unregisterOnSharedPreferenceChangeListener(listener) }
+    }
+
+    private fun getVaultRooms(): Set<String> {
+        return encryptedPrefs.getStringSet(VAULT_ROOMS_KEY, emptySet()) ?: emptySet()
+    }
 
     suspend fun addToVault(roomId: String) {
-        context.vaultDataStore.edit { prefs ->
-            val current = prefs[VAULT_ROOMS_KEY] ?: emptySet()
-            prefs[VAULT_ROOMS_KEY] = current + roomId
+        withContext(Dispatchers.IO) {
+            val updated = getVaultRooms().toMutableSet().apply { add(roomId) }
+            encryptedPrefs.edit().putStringSet(VAULT_ROOMS_KEY, updated).apply()
         }
     }
 
     suspend fun removeFromVault(roomId: String) {
-        context.vaultDataStore.edit { prefs ->
-            val current = prefs[VAULT_ROOMS_KEY] ?: emptySet()
-            prefs[VAULT_ROOMS_KEY] = current - roomId
+        withContext(Dispatchers.IO) {
+            val updated = getVaultRooms().toMutableSet().apply { remove(roomId) }
+            encryptedPrefs.edit().putStringSet(VAULT_ROOMS_KEY, updated).apply()
         }
     }
 

@@ -10,6 +10,7 @@ package io.prism.android.features.home.impl.datasource
 
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
+import io.prism.android.appconfig.AuthenticationConfig
 import io.prism.android.features.home.impl.model.RoomListRoomSummary
 import io.prism.android.libraries.androidutils.diff.DiffCacheUpdater
 import io.prism.android.libraries.androidutils.diff.MutableListDiffCache
@@ -166,8 +167,8 @@ class RoomListDataSource(
     private fun isHiddenBridgeRoom(summary: RoomSummary): Boolean {
         val info = summary.info
         val botUserIds = setOf(
-            "@pwb-bot:matrix.fathertkt.uk",
-            "@pmb-bot:matrix.fathertkt.uk",
+            AuthenticationConfig.WHATSAPP_BRIDGE_BOT,
+            AuthenticationConfig.META_BRIDGE_BOT,
         )
         val bridgePatterns = listOf(
             Regex("^@whatsapp_.+", RegexOption.IGNORE_CASE),

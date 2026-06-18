@@ -22,7 +22,6 @@ import io.prism.android.libraries.featureflag.api.FeatureFlagService
 import io.prism.android.libraries.featureflag.api.FeatureFlags
 import io.prism.android.libraries.sessionstorage.api.SessionStore
 import io.prism.android.libraries.sessionstorage.api.toUserListFlow
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Inject
@@ -83,10 +82,12 @@ class LoginWithClassicPresenter(
                     }
                 }
                 LoginWithClassicEvent.DoLoginWithClassic -> coroutineScope.launch {
-                    // TODO Implement real login logic here
-                    loginWithClassicAction.value = AsyncAction.Loading
-                    delay(1000)
-                    loginWithClassicAction.value = AsyncAction.Success(Unit)
+                    // PRISM Classic migration is not yet fully implemented.
+                    // The previous flow only simulated success without creating a valid session,
+                    // which would leave the app in a broken logged-in state.
+                    loginWithClassicAction.value = AsyncAction.Failure(
+                        IllegalStateException("PRISM Classic migration is not available yet.")
+                    )
                 }
                 LoginWithClassicEvent.CloseDialog -> {
                     loginWithClassicAction.value = AsyncAction.Uninitialized

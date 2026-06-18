@@ -27,7 +27,7 @@ import timber.log.Timber
  * Reusable helper that drives the post-registration bridge wizard.
  *
  * The mautrix bridges (`mautrix-whatsapp`, `mautrix-meta`) expose a chat-bot
- * interface: a user starts a Matrix DM with the bot (e.g. `@whatsappbot:matrix.fathertkt.uk`)
+ * interface: a user starts a Matrix DM with the bot (e.g. `@pwb-bot:matrix.fathertkt.uk`)
  * and types commands like `login qr`, `login facebook`, etc. The bot replies with
  * QR-code images, status text, or further prompts. PRISM v1.0.0 wraps that flow
  * inside our own onboarding screens so the user never has to know the bot exists.

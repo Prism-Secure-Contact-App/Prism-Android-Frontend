@@ -7,6 +7,7 @@
 package io.prism.android.features.ftue.impl.wizard
 
 import androidx.compose.ui.text.input.KeyboardType
+import io.prism.android.appconfig.AuthenticationConfig
 import io.prism.android.libraries.matrix.api.PRISMClient
 import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.matrix.api.createroom.CreateRoomParameters
@@ -30,7 +31,7 @@ import timber.log.Timber
 
 internal class WhatsAppBridgeFlow : BridgeFlow {
     override val displayName = "WhatsApp"
-    override val botUserId = "@pwb-bot:matrix.fathertkt.uk"
+    override val botUserId = AuthenticationConfig.WHATSAPP_BRIDGE_BOT
 
     // Empty initialCommand + non-null initialPrompt = collect phone number FIRST
     // (so users with only one phone don't have to scan a QR they're displaying on
@@ -38,10 +39,10 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
     // followUpCommand() after the user submits the number.
     override val initialCommand = ""
     override val promptDescription =
-        "Enter your phone number in international format with country code " +
-            "(örn. +1 555 123 4567 ABD için, +44 20 7946 0958 İngiltere için, +90 555 111 22 33 Türkiye için). " +
-            "WhatsApp uygulamasında Ayarlar → Bağlı cihazlar → Cihaz bağla → Telefon numarası ile bağla " +
-            "menüsünde gireceğin 8 haneli pairing kodunu üreteceğiz."
+        "Telefon numaranızı ülke koduyla birlikte uluslararası formatta girin " +
+            "(örneğin +90 555 111 22 33). WhatsApp uygulamasında " +
+            "Ayarlar → Bağlı Cihazlar → Cihaz Bağla → Telefon Numarası ile Bağla menüsünde " +
+            "gireceğiniz 8 haneli eşleştirme kodunu oluşturacağız."
     override val initialPrompt = FlowDecision.AskForInput(
         prompt = promptDescription,
         inputLabel = "Phone number",
@@ -228,7 +229,7 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
  */
 internal class MetaBridgeFlow : BridgeFlow {
     override val displayName = "Instagram (Meta)"
-    override val botUserId = "@pmb-bot:matrix.fathertkt.uk"
+    override val botUserId = AuthenticationConfig.META_BRIDGE_BOT
     override val initialCommand = "login"
     override val promptDescription =
         "We will open an embedded browser in the next step to connect your Instagram account. " +

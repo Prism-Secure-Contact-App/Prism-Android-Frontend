@@ -55,6 +55,9 @@ object RoomMemberMapper {
             RustMembershipState.Join -> RoomMembershipState.JOIN
             RustMembershipState.Knock -> RoomMembershipState.KNOCK
             RustMembershipState.Leave -> RoomMembershipState.LEAVE
-            is RustMembershipState.Custom -> TODO()
+            is RustMembershipState.Custom -> {
+                // Fallback for unknown/custom membership states to avoid crashes.
+                RoomMembershipState.LEAVE
+            }
         }
 }

@@ -35,6 +35,9 @@ class MoneroWalletPresenter(
         val context = LocalContext.current
         val coroutineScope = rememberCoroutineScope()
         var address by rememberSaveable { mutableStateOf("") }
+        var mnemonic by rememberSaveable { mutableStateOf("") }
+        var viewKey by rememberSaveable { mutableStateOf("") }
+        var spendKey by rememberSaveable { mutableStateOf("") }
         var createAction by remember { mutableStateOf<AsyncAction<Unit>>(AsyncAction.Uninitialized) }
         var walletProvider by remember { mutableStateOf<WalletProvider?>(null) }
         var wallet by remember { mutableStateOf<MoneroWallet?>(null) }
@@ -71,11 +74,21 @@ class MoneroWalletPresenter(
                                     nodeClient,
                                 )
                                 createdWallet.save()
-                                Triple(createdWallet, provider, createdWallet.publicAddress.address)
+                                CreatedWalletResult(
+                                    wallet = createdWallet,
+                                    provider = provider,
+                                    address = createdWallet.publicAddress.address,
+                                    mnemonic = createdWallet.mnemonic,
+                                    viewKey = createdWallet.viewKey,
+                                    spendKey = createdWallet.spendKey,
+                                )
                             }
-                            wallet = result.first
-                            walletProvider = result.second
-                            address = result.third
+                            wallet = result.wallet
+                            walletProvider = result.provider
+                            address = result.address
+                            mnemonic = result.mnemonic
+                            viewKey = result.viewKey
+                            spendKey = result.spendKey
                             createAction = AsyncAction.Success(Unit)
                         } catch (e: Exception) {
                             createAction = AsyncAction.Failure(e)
@@ -90,9 +103,9 @@ class MoneroWalletPresenter(
 
         return MoneroWalletState(
             address = address,
-            mnemonic = "",
-            viewKey = "",
-            spendKey = "",
+            mnemonic = mnemonic,
+            viewKey = viewKey,
+            spendKey = spendKey,
             createAction = createAction,
             eventSink = ::handleEvent,
         )
@@ -103,4 +116,13 @@ class MoneroWalletPresenter(
         "STAGENET" -> MoneroNetwork.Stagenet
         else -> MoneroNetwork.Mainnet
     }
+
+    private data class CreatedWalletResult(
+        val wallet: MoneroWallet,
+        val provider: WalletProvider,
+        val address: String,
+        val mnemonic: String,
+        val viewKey: String,
+        val spendKey: String,
+    )
 }

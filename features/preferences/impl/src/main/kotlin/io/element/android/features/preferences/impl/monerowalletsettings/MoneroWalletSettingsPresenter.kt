@@ -57,6 +57,9 @@ class MoneroWalletSettingsPresenter(
         var isRevealed by remember { mutableStateOf(false) }
         var snackbarMessage by remember { mutableStateOf<String?>(null) }
         val address = remember { mutableStateOf<String?>(null) }
+        val mnemonic = remember { mutableStateOf<String?>(null) }
+        val viewKey = remember { mutableStateOf<String?>(null) }
+        val spendKey = remember { mutableStateOf<String?>(null) }
         val balance = remember { mutableStateOf("Loading...") }
         var balanceAtomicUnits by remember { mutableStateOf(0L) }
         val feeRate = remember { mutableStateOf("Loading...") }
@@ -72,6 +75,9 @@ class MoneroWalletSettingsPresenter(
             loadWallet(
                 context = context,
                 address = address,
+                mnemonic = mnemonic,
+                viewKey = viewKey,
+                spendKey = spendKey,
                 balance = balance,
                 feeRate = feeRate,
                 onBalanceAtomicUnits = { balanceAtomicUnits = it },
@@ -94,16 +100,16 @@ class MoneroWalletSettingsPresenter(
                     isRevealed = true
                 }
                 is MoneroWalletSettingsEvents.CopySeedPhrase -> {
-                    snackbarMessage = "Recovery phrase is managed securely by the Monero SDK"
+                    snackbarMessage = "Recovery phrase copied to clipboard"
                 }
                 is MoneroWalletSettingsEvents.CopyAddress -> {
                     snackbarMessage = "Wallet address copied to clipboard"
                 }
                 is MoneroWalletSettingsEvents.CopyViewKey -> {
-                    snackbarMessage = "View key is managed securely by the Monero SDK"
+                    snackbarMessage = "View key copied to clipboard"
                 }
                 is MoneroWalletSettingsEvents.CopySpendKey -> {
-                    snackbarMessage = "Spend key is managed securely by the Monero SDK"
+                    snackbarMessage = "Spend key copied to clipboard"
                 }
                 is MoneroWalletSettingsEvents.DismissSnackbar -> {
                     snackbarMessage = null
@@ -171,9 +177,9 @@ class MoneroWalletSettingsPresenter(
 
         return MoneroWalletSettingsState(
             address = address.value,
-            mnemonic = "Managed by the Monero SDK",
-            viewKey = "Managed by the Monero SDK",
-            spendKey = "Managed by the Monero SDK",
+            mnemonic = mnemonic.value,
+            viewKey = viewKey.value,
+            spendKey = spendKey.value,
             balance = balance.value,
             feeRate = feeRate.value,
             isRevealed = isRevealed,
@@ -189,6 +195,9 @@ class MoneroWalletSettingsPresenter(
     private suspend fun loadWallet(
         context: Context,
         address: MutableState<String?>,
+        mnemonic: MutableState<String?>,
+        viewKey: MutableState<String?>,
+        spendKey: MutableState<String?>,
         balance: MutableState<String>,
         feeRate: MutableState<String>,
         onBalanceAtomicUnits: (Long) -> Unit,
@@ -218,6 +227,9 @@ class MoneroWalletSettingsPresenter(
             )
             onWallet(w)
             address.value = w.publicAddress.address
+            mnemonic.value = runCatching { w.mnemonic }.getOrNull()
+            viewKey.value = runCatching { w.viewKey }.getOrNull()
+            spendKey.value = runCatching { w.spendKey }.getOrNull()
 
             w.awaitRefresh()
             val ledger = w.ledger().first()

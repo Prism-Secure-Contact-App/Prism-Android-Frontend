@@ -27,6 +27,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedInject
 import io.prism.android.annotations.ContributesNode
+import io.prism.android.appconfig.AuthenticationConfig
 import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.features.login.api.LoginEntryPoint
 import io.prism.android.features.login.impl.accountprovider.AccountProviderDataSource
@@ -134,7 +135,7 @@ class LoginFlowNode(
             NavTarget.OnBoarding -> {
                 val callback = object : OnBoardingNode.Callback {
                     override fun navigateToSignUpFlow() {
-                        backstack.push(NavTarget.CreateAccount(url = "https://matrix.fathertkt.uk/_matrix/static/client/register/"))
+                        backstack.push(NavTarget.CreateAccount(url = "${AuthenticationConfig.PRISM_ORG_URL}/_matrix/static/client/register/"))
                     }
 
                     override fun navigateToSignInFlow(mustChooseAccountProvider: Boolean) {

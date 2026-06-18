@@ -20,5 +20,6 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.androidx.biometric)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.security)
     implementation(projects.libraries.di)
 }

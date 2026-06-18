@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_onboarding_sign_in">Sign In</string>
+    <string name="screen_onboarding_sign_in_with_classic">Sign in with PRISM Classic</string>
+    <string name="screen_onboarding_sign_in_with_classic_content">You are signing in as %1$s on PRISM Classic. Your existing session on PRISM Classic will not be signed out. Do you want to continue?</string>
+</resources>

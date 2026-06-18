@@ -156,7 +156,10 @@ class ConfigureRoomPresenter(
         val parentSpace = createRoomConfig.parentSpace
         val availableJoinRules = remember(parentSpace, isSpace, isKnockFeatureEnabled) {
             when {
-                isSpace && parentSpace != null -> TODO("Adding a space to a parent space is not supported yet! How did you get here?")
+                isSpace && parentSpace != null -> {
+                    // Creating a sub-space is not supported yet; fall back to a private space.
+                    listOf(JoinRuleItem.PrivateVisibility.Private).toImmutableList()
+                }
                 parentSpace == null || parentSpace.joinRule == JoinRule.Public -> listOfNotNull(
                     JoinRuleItem.PublicVisibility.Public,
                     JoinRuleItem.PublicVisibility.AskToJoin.takeIf { !isSpace && isKnockFeatureEnabled },
