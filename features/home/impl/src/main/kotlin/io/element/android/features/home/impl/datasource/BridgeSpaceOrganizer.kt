@@ -84,10 +84,8 @@ class BridgeSpaceOrganizer(
                     // 2. Regular bridge platform detection
                     val platform = detectBridgePlatform(room)
                     Timber.d(
-                        "BridgeSpaceOrganizer: new room=%s heroes=%s aliases=%s platform=%s",
+                        "BridgeSpaceOrganizer: new room=%s platform=%s",
                         room.roomId.value,
-                        room.info.heroes.map { it.userId.value },
-                        room.info.aliases.map { it.value },
                         platform,
                     )
                     if (platform != null && organizeRoom(room.roomId, platform)) {

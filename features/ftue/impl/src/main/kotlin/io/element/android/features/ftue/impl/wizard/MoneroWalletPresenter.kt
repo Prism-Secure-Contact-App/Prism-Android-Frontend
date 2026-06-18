@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import im.molly.monero.sdk.MoneroNetwork
@@ -34,10 +34,10 @@ class MoneroWalletPresenter(
     override fun present(): MoneroWalletState {
         val context = LocalContext.current
         val coroutineScope = rememberCoroutineScope()
-        var address by rememberSaveable { mutableStateOf("") }
-        var mnemonic by rememberSaveable { mutableStateOf("") }
-        var viewKey by rememberSaveable { mutableStateOf("") }
-        var spendKey by rememberSaveable { mutableStateOf("") }
+        var address by remember { mutableStateOf("") }
+        var mnemonic by remember { mutableStateOf("") }
+        var viewKey by remember { mutableStateOf("") }
+        var spendKey by remember { mutableStateOf("") }
         var createAction by remember { mutableStateOf<AsyncAction<Unit>>(AsyncAction.Uninitialized) }
         var walletProvider by remember { mutableStateOf<WalletProvider?>(null) }
         var wallet by remember { mutableStateOf<MoneroWallet?>(null) }

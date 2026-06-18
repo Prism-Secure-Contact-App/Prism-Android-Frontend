@@ -180,17 +180,8 @@ class RoomListDataSource(
         if (info.name?.let { metaAiPattern.matches(it) } == true) return false
         if (info.heroes.any { it.displayName?.let { dn -> metaAiPattern.matches(dn) } == true }) return false
 
-        val heroes = info.heroes.map { it.userId.value }
-        val aliases = info.aliases.map { it.value }
-        val creators = info.creators.map { it.value }
         val altAliases = info.alternativeAliases.map { it.value }
         val canonicalAlias = info.canonicalAlias?.value
-
-        // DEBUG: Log every room so we can see what the bridge creates
-        timber.log.Timber.d(
-            "RoomListDataSource: room=%s isDirect=%s isOneToOne=%s heroes=%s aliases=%s creators=%s",
-            summary.roomId.value, info.isDirect, summary.isOneToOne, heroes, aliases, creators
-        )
 
         // 1. Hide bot DMs (1-to-1 with bridge bot)
         if (summary.isOneToOne && info.heroes.any { it.userId.value in botUserIds }) {

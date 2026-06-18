@@ -15,7 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
+
 import dev.zacsweers.metro.Inject
 import io.prism.android.features.login.impl.accountprovider.AccountProviderDataSource
 import io.prism.android.libraries.architecture.AsyncData
@@ -37,7 +37,7 @@ class LoginPasswordPresenter(
             mutableStateOf(AsyncData.Uninitialized)
         }
 
-        val formState = rememberSaveable {
+        val formState = remember {
             mutableStateOf(LoginFormState.Default)
         }
         val accountProvider by accountProviderDataSource.flow.collectAsState()
