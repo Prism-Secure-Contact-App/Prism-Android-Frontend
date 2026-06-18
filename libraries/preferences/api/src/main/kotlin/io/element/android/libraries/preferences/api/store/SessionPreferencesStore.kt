@@ -38,6 +38,9 @@ interface SessionPreferencesStore {
     suspend fun setFtueBridgeSetupCompleted(bridge: String, completed: Boolean)
     fun isFtueBridgeSetupCompleted(bridge: String): Flow<Boolean>
 
+    suspend fun setFtueMoneroWalletSetupCompleted(completed: Boolean)
+    fun isFtueMoneroWalletSetupCompleted(): Flow<Boolean>
+
     suspend fun setSessionRoomConfig(roomId: String, config: String)
     fun getSessionRoomConfig(roomId: String): Flow<String>
 

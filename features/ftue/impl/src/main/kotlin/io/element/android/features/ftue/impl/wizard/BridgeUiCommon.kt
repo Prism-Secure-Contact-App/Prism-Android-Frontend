@@ -32,6 +32,7 @@ import androidx.compose.runtime.LaunchedEffect
 import io.prism.android.features.ftue.impl.BuildConfig
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.text.KeyboardOptions
@@ -39,14 +40,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.platform.ClipEntry
+import androidx.compose.ui.platform.LocalClipboard
+import android.content.ClipData
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -61,6 +65,7 @@ import io.prism.android.libraries.designsystem.theme.components.OutlinedButton
 import io.prism.android.libraries.designsystem.theme.components.Text
 import io.prism.android.libraries.designsystem.theme.components.TextField
 import io.prism.android.libraries.matrix.ui.media.MediaRequestData
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 /**
  * Renders the dynamic body of the WhatsApp / Meta wizard screens depending on
@@ -83,7 +88,9 @@ internal fun BridgePhaseContent(
         when (phase) {
             UiPhase.Idle -> Unit
 
-            UiPhase.Connecting -> CenteredProgress(label = "$bridgeName ile bağlantı kuruluyor...")
+            UiPhase.Connecting -> CenteredProgress(
+                label = TextResource.Res(CommonStrings.screen_ftue_bridge_connecting, listOf(bridgeName)),
+            )
 
             is UiPhase.Working -> CenteredProgress(label = phase.message, progress = phase.progress)
 
@@ -108,7 +115,7 @@ internal fun BridgePhaseContent(
                 }
                 Spacer(Modifier.height(12.dp))
                 Text(
-                    text = phase.caption,
+                    text = phase.caption.resolve(),
                     style = PRISMTheme.typography.fontBodyMdRegular,
                     color = PRISMTheme.colors.textSecondary,
                     textAlign = TextAlign.Center,
@@ -126,7 +133,7 @@ internal fun BridgePhaseContent(
             )
 
             is UiPhase.Error -> Text(
-                text = phase.message,
+                text = phase.message.resolve(),
                 style = PRISMTheme.typography.fontBodyMdRegular,
                 color = PRISMTheme.colors.textCriticalPrimary,
                 textAlign = TextAlign.Center,
@@ -136,7 +143,7 @@ internal fun BridgePhaseContent(
 }
 
 @Composable
-private fun CenteredProgress(label: String, progress: Float = -1f) {
+private fun CenteredProgress(label: TextResource, progress: Float = -1f) {
     if (progress in 0f..1f) {
         LinearProgressIndicator(
             progress = { progress },
@@ -148,7 +155,7 @@ private fun CenteredProgress(label: String, progress: Float = -1f) {
         Spacer(Modifier.height(12.dp))
     }
     Text(
-        text = label,
+        text = label.resolve(),
         style = PRISMTheme.typography.fontBodyMdRegular,
         color = PRISMTheme.colors.textSecondary,
         textAlign = TextAlign.Center,
@@ -162,15 +169,15 @@ private fun QrImage(source: io.prism.android.libraries.matrix.api.media.MediaSou
     val data = MediaRequestData(source = source, kind = MediaRequestData.Kind.Content)
     coil3.compose.AsyncImage(
         model = data,
-        contentDescription = "Connection QR Code",
+        contentDescription = stringResource(CommonStrings.screen_ftue_bridge_qr_code_content_description),
         modifier = Modifier.fillMaxWidth(),
     )
 }
 
 @Composable
-private fun InputPrompt(prompt: String) {
+private fun InputPrompt(prompt: TextResource) {
     Text(
-        text = prompt,
+        text = prompt.resolve(),
         style = PRISMTheme.typography.fontBodyMdRegular,
         color = PRISMTheme.colors.textSecondary,
         textAlign = TextAlign.Center,
@@ -241,7 +248,7 @@ private fun CookieWebView(
     }
 
     Text(
-        text = phase.caption,
+        text = phase.caption.resolve(),
         style = PRISMTheme.typography.fontBodyMdRegular,
         color = PRISMTheme.colors.textSecondary,
         textAlign = TextAlign.Center,
@@ -276,7 +283,6 @@ private fun CookieWebView(
                     settings.apply {
                         javaScriptEnabled = true
                         domStorageEnabled = true
-                        databaseEnabled = true
                         userAgentString = phase.userAgent
                         loadsImagesAutomatically = true
                         useWideViewPort = true
@@ -410,8 +416,9 @@ private fun String.escapeJson(): String = buildString(length + 2) {
 }
 
 @Composable
-private fun PairingCodeContent(code: String, caption: String, remainingSeconds: Int = -1) {
-    val clipboard = LocalClipboardManager.current
+private fun PairingCodeContent(code: String, caption: TextResource, remainingSeconds: Int = -1) {
+    val clipboard = LocalClipboard.current
+    val scope = rememberCoroutineScope()
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -439,15 +446,19 @@ private fun PairingCodeContent(code: String, caption: String, remainingSeconds: 
     }
     Spacer(Modifier.height(12.dp))
     OutlinedButton(
-        text = "Copy code",
-        onClick = { clipboard.setText(AnnotatedString(code)) },
+        text = stringResource(CommonStrings.screen_ftue_bridge_copy_code),
+        onClick = {
+            scope.launch {
+                clipboard.setClipEntry(ClipEntry(ClipData.newPlainText("PRISM bridge pairing code", code)))
+            }
+        },
         modifier = Modifier.fillMaxWidth(),
     )
     Spacer(Modifier.height(12.dp))
     if (remainingSeconds >= 0) {
         Spacer(Modifier.height(8.dp))
         Text(
-            text = "Time remaining: ${remainingSeconds}s",
+            text = stringResource(CommonStrings.screen_ftue_bridge_time_remaining, remainingSeconds),
             style = PRISMTheme.typography.fontBodySmMedium,
             color = PRISMTheme.colors.textSecondary,
             textAlign = TextAlign.Center,
@@ -455,7 +466,7 @@ private fun PairingCodeContent(code: String, caption: String, remainingSeconds: 
     }
     Spacer(Modifier.height(12.dp))
     Text(
-        text = caption,
+        text = caption.resolve(),
         style = PRISMTheme.typography.fontBodyMdRegular,
         color = PRISMTheme.colors.textSecondary,
         textAlign = TextAlign.Center,
@@ -470,7 +481,7 @@ private fun PairingCodeContent(code: String, caption: String, remainingSeconds: 
 @Composable
 internal fun BridgeActionRow(
     state: BridgeState,
-    primaryLabel: String,
+    primaryLabel: TextResource,
 ) {
     val isLoading = state.connectAction is AsyncAction.Loading &&
         state.phase !is UiPhase.AwaitingScan &&
@@ -487,15 +498,15 @@ internal fun BridgeActionRow(
                 TextField(
                     value = input,
                     onValueChange = { input = it },
-                    label = phase.inputLabel,
-                    placeholder = phase.inputPlaceholder,
+                    label = phase.inputLabel.resolve(),
+                    placeholder = phase.inputPlaceholder.resolve(),
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = phase.keyboardType != androidx.compose.ui.text.input.KeyboardType.Text,
                     keyboardOptions = KeyboardOptions(keyboardType = phase.keyboardType),
                 )
                 Spacer(Modifier.height(12.dp))
                 Button(
-                    text = "Send",
+                    text = stringResource(CommonStrings.screen_ftue_bridge_send),
                     onClick = { state.eventSink(BridgeEvents.SubmitPrompt(input)) },
                     enabled = input.isNotBlank(),
                     modifier = Modifier.fillMaxWidth(),
@@ -506,7 +517,7 @@ internal fun BridgeActionRow(
                 // Code is shown in BridgePhaseContent above; here we just give the user
                 // a way to bail if they entered the wrong number / WhatsApp rejected it.
                 OutlinedButton(
-                    text = "Cancel",
+                    text = stringResource(CommonStrings.screen_ftue_bridge_cancel),
                     onClick = { state.eventSink(BridgeEvents.Skip) },
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -516,16 +527,16 @@ internal fun BridgeActionRow(
                 // The cookie WebView submits automatically on success; the only manual control
                 // we expose is "abort" so the user can leave a stuck/checkpoint flow.
                 OutlinedButton(
-                    text = "İptal et",
+                    text = stringResource(CommonStrings.screen_ftue_bridge_cancel),
                     onClick = { state.eventSink(BridgeEvents.Skip) },
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
 
             is UiPhase.AwaitingScan -> {
-                // Scan UX is purely passive — show only an "İptal et" so the user can bail.
+                // Scan UX is purely passive — show only an "Cancel" so the user can bail.
                 OutlinedButton(
-                    text = "İptal et",
+                    text = stringResource(CommonStrings.screen_ftue_bridge_cancel),
                     onClick = { state.eventSink(BridgeEvents.Skip) },
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -533,7 +544,7 @@ internal fun BridgeActionRow(
 
             else -> {
                 Button(
-                    text = primaryLabel,
+                    text = primaryLabel.resolve(),
                     onClick = { state.eventSink(BridgeEvents.Connect) },
                     showProgress = isLoading,
                     enabled = !isLoading,
@@ -541,7 +552,7 @@ internal fun BridgeActionRow(
                 )
                 Spacer(Modifier.height(8.dp))
                 OutlinedButton(
-                    text = "Skip for now",
+                    text = stringResource(CommonStrings.screen_ftue_bridge_skip_for_now),
                     onClick = { state.eventSink(BridgeEvents.Skip) },
                     modifier = Modifier.fillMaxWidth(),
                 )

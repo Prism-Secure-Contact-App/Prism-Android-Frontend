@@ -12,6 +12,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bumble.appyx.core.modality.BuildContext
 import com.google.common.truth.Truth.assertThat
 import io.prism.android.features.signedout.api.SignedOutEntryPoint
+import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.libraries.matrix.test.A_SESSION_ID
 import io.prism.android.tests.testutils.node.TestParentNode
 import org.junit.Rule
@@ -24,11 +25,14 @@ class DefaultSignedOutEntryPointTest {
     @Test
     fun `test node builder`() {
         val entryPoint = DefaultSignedOutEntryPoint()
+        val callback = object : SignedOutEntryPoint.Callback {
+            override fun onSignInAgain(sessionId: SessionId) = Unit
+        }
         val parentNode = TestParentNode.create { buildContext, plugins ->
             SignedOutNode(
                 buildContext = buildContext,
                 plugins = plugins,
-                presenterFactory = { sessionId ->
+                presenterFactory = { sessionId, _ ->
                     assertThat(sessionId).isEqualTo(A_SESSION_ID)
                     createSignedOutPresenter()
                 }
@@ -39,6 +43,7 @@ class DefaultSignedOutEntryPointTest {
             parentNode = parentNode,
             buildContext = BuildContext.root(null),
             params = params,
+            callback = callback,
         )
         assertThat(result).isInstanceOf(SignedOutNode::class.java)
         assertThat(result.plugins).contains(SignedOutNode.Inputs(params.sessionId))

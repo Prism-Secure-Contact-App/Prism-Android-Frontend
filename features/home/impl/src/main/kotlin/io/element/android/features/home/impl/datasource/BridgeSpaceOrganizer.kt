@@ -18,6 +18,7 @@ import io.prism.android.libraries.matrix.api.createroom.CreateRoomParameters
 import io.prism.android.libraries.matrix.api.createroom.RoomPreset
 import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
 import io.prism.android.libraries.matrix.api.roomlist.RoomListService
+import io.prism.android.libraries.matrix.api.room.CurrentUserMembership
 import io.prism.android.libraries.matrix.api.roomlist.RoomSummary
 import io.prism.android.libraries.matrix.api.spaces.SpaceService
 import io.prism.android.libraries.preferences.api.store.SessionPreferencesStore
@@ -55,10 +56,19 @@ class BridgeSpaceOrganizer(
                 val previousIds = processedRoomIds.toSet()
                 val currentIds = summaries.map { it.roomId }.toSet()
 
-                // Auto-accept invites to any room (bridge creates rooms by inviting the user).
+                // Auto-accept invites only from configured bridge bots.
+                val bridgeBotIds = setOf(
+                    AuthenticationConfig.WHATSAPP_BRIDGE_BOT,
+                    AuthenticationConfig.META_BRIDGE_BOT,
+                )
                 for (room in summaries) {
-                    if (room.info.currentUserMembership == io.prism.android.libraries.matrix.api.room.CurrentUserMembership.INVITED) {
-                        Timber.d("BridgeSpaceOrganizer: auto-accepting invite to %s", room.roomId.value)
+                    if (room.info.currentUserMembership == CurrentUserMembership.INVITED) {
+                        val inviterId = room.info.inviter?.userId?.value
+                        if (inviterId !in bridgeBotIds) {
+                            Timber.d("BridgeSpaceOrganizer: skipping invite to %s from non-bridge inviter %s", room.roomId.value, inviterId)
+                            continue
+                        }
+                        Timber.d("BridgeSpaceOrganizer: auto-accepting invite to %s from %s", room.roomId.value, inviterId)
                         try {
                             matrixClient.joinRoom(room.roomId)
                         } catch (t: Throwable) {

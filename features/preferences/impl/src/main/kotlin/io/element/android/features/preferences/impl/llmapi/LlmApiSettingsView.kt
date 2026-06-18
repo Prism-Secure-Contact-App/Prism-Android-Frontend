@@ -16,7 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import io.prism.android.features.preferences.impl.R
 import androidx.compose.ui.unit.dp
 import io.prism.android.compound.tokens.generated.CompoundIcons
 import io.prism.android.libraries.designsystem.components.list.ListItemContent
@@ -46,19 +48,19 @@ fun LlmApiSettingsView(
     PreferencePage(
         modifier = modifier,
         onBackClick = onBackClick,
-        title = "LLM API",
+        title = stringResource(R.string.screen_llm_api_settings_title),
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) {
         if (state.apiKey == null) {
             ListItem(
-                headlineContent = { Text("Generate API Key") },
-                supportingContent = { Text("Generate an API key to use Meta AI on external platforms") },
+                headlineContent = { Text(stringResource(R.string.screen_llm_api_settings_generate_key)) },
+                supportingContent = { Text(stringResource(R.string.screen_llm_api_settings_generate_key_description)) },
                 leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Key())),
                 onClick = { state.eventSink(LlmApiSettingsEvents.GenerateApiKey) },
             )
         } else {
             ListItem(
-                headlineContent = { Text("API Key") },
+                headlineContent = { Text(stringResource(R.string.screen_llm_api_settings_key_label)) },
                 supportingContent = {
                     Text(
                         text = if (state.isRevealed) state.apiKey else "••••••••••••••••••••••••••",
@@ -72,15 +74,15 @@ fun LlmApiSettingsView(
             HorizontalDivider()
 
             ListItem(
-                headlineContent = { Text("Yenile (Rotate)") },
-                supportingContent = { Text("Invalidate the current API key and generate a new one") },
+                headlineContent = { Text(stringResource(R.string.screen_llm_api_settings_rotate)) },
+                supportingContent = { Text(stringResource(R.string.screen_llm_api_settings_rotate_description)) },
                 leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Compose())),
                 onClick = { state.eventSink(LlmApiSettingsEvents.RotateApiKey) },
             )
 
             ListItem(
-                headlineContent = { Text("Sil") },
-                supportingContent = { Text("Permanently delete the API key") },
+                headlineContent = { Text(stringResource(R.string.screen_llm_api_settings_delete)) },
+                supportingContent = { Text(stringResource(R.string.screen_llm_api_settings_delete_description)) },
                 leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Close())),
                 style = ListItemStyle.Destructive,
                 onClick = { state.eventSink(LlmApiSettingsEvents.DeleteApiKey) },
@@ -88,7 +90,7 @@ fun LlmApiSettingsView(
 
             Spacer(Modifier.height(16.dp))
             Text(
-                text = "You can use this API key to access Meta AI on external platforms (similar to a Gemini API key).",
+                text = stringResource(R.string.screen_llm_api_settings_footer),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 16.dp),

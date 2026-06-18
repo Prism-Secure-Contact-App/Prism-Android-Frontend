@@ -25,10 +25,10 @@ object BuildTimeConfig {
     val SERVICES_MAPTILER_APIKEY: String? = null
     val SERVICES_MAPTILER_LIGHT_MAPID: String? = null
     val SERVICES_MAPTILER_DARK_MAPID: String? = null
-    val SERVICES_POSTHOG_HOST: String? = null
-    val SERVICES_POSTHOG_APIKEY: String? = null
-    val SERVICES_SENTRY_DSN: String? = null
-    val SERVICES_SENTRY_DSN_RUST: String? = null
+    val SERVICES_POSTHOG_HOST: String? = System.getenv("PRISM_ANDROID_POSTHOG_HOST")
+    val SERVICES_POSTHOG_APIKEY: String? = System.getenv("PRISM_ANDROID_POSTHOG_APIKEY")
+    val SERVICES_SENTRY_DSN: String? = System.getenv("PRISM_ANDROID_SENTRY_DSN")
+    val SERVICES_SENTRY_DSN_RUST: String? = System.getenv("PRISM_ANDROID_SENTRY_DSN_RUST")
     val BUG_REPORT_URL: String? = null
     val BUG_REPORT_APP_NAME: String? = null
     val SERVICES_LLM_API_HOST: String? = null

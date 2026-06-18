@@ -53,4 +53,26 @@ You don’t have any unread messages!"</string>
   <string name="screen_roomlist_your_spaces">"Your spaces"</string>
   <string name="session_verification_banner_message">"Looks like you’re using a new device. Verify with another device to access your encrypted messages."</string>
   <string name="session_verification_banner_title">"Verify it’s you"</string>
+  <string name="screen_prism_ai_title">"PrismAI"</string>
+  <string name="screen_prism_ai_loading">"Loading PrismAI space..."</string>
+  <string name="screen_prism_ai_space_not_found">"PrismAI space not found. Connect WhatsApp and send a message to Meta AI first."</string>
+  <string name="screen_prism_ai_load_failed">"Failed to load PrismAI space"</string>
+  <string name="screen_prism_ai_chat_title">"PrismAI Chat"</string>
+  <string name="screen_prism_ai_chat_empty">"No messages yet. Start chatting with Meta AI below."</string>
+  <string name="screen_prism_ai_typing">"Meta AI is typing..."</string>
+  <string name="screen_prism_ai_rooms_title">"Rooms"</string>
+  <string name="screen_prism_ai_rooms_empty">"No rooms in PrismAI space yet."</string>
+  <string name="screen_prism_ai_rooms_hint">"Send a message to Meta AI on WhatsApp to get started."</string>
+  <string name="screen_prism_ai_api_key_dialog_title">"PrismAI API Key"</string>
+  <string name="screen_prism_ai_api_key_dialog_body">"Your new API key:"</string>
+  <string name="screen_prism_ai_api_key_dialog_tap_to_copy">"Tap the key to copy it to clipboard."</string>
+  <string name="screen_prism_ai_api_key_dialog_copy">"Copy"</string>
+  <string name="screen_prism_ai_api_key_dialog_close">"Close"</string>
+  <string name="screen_prism_ai_input_placeholder">"Ask Meta AI..."</string>
+  <string name="screen_prism_ai_a11y_generate_api_key">"Generate API Key"</string>
+  <string name="screen_prism_ai_a11y_send">"Send"</string>
+  <string name="screen_prism_ai_a11y_back">"Back"</string>
+  <string name="screen_prism_ai_no_response">"(no response)"</string>
+  <string name="screen_prism_ai_chat_error_no_response">"No response from Meta AI"</string>
+  <string name="screen_prism_ai_chat_error_send_failed">"Failed to send message"</string>
 </resources>

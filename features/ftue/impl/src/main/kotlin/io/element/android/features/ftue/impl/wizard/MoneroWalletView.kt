@@ -50,26 +50,23 @@ fun MoneroWalletView(
             if (state.createAction is AsyncAction.Success) {
                 IconTitleSubtitleMolecule(
                     iconStyle = BigIcon.Style.Default(CompoundIcons.Lock()),
-                    title = "Your Monero Wallet",
-                    subTitle = "Wallet created successfully. Please save these credentials in a safe place. If you lose them, you lose your coins."
+                    title = stringResource(CommonStrings.screen_ftue_monero_wallet_success_title),
+                    subTitle = stringResource(CommonStrings.screen_ftue_monero_wallet_success_subtitle)
                 )
-                
-                Spacer(Modifier.height(24.dp))
-                
-                CredentialBox(label = "Wallet Address", value = state.address)
-                CredentialBox(label = "Mnemonic Seed", value = state.mnemonic)
-                CredentialBox(label = "Secret View Key", value = state.viewKey)
-                CredentialBox(label = "Secret Spend Key", value = state.spendKey)
 
                 Spacer(Modifier.height(24.dp))
-                
+
+                CredentialBox(label = stringResource(CommonStrings.screen_ftue_monero_wallet_address_label), value = state.address)
+
+                Spacer(Modifier.height(24.dp))
+
                 Text(
-                    text = "Withdraw & Deposit:",
+                    text = stringResource(CommonStrings.screen_ftue_monero_wallet_instructions_title),
                     style = PRISMTheme.typography.fontBodyMdMedium,
                     color = PRISMTheme.colors.textPrimary
                 )
                 Text(
-                    text = "1. To deposit, share your address.\n2. To withdraw, use the Wallet tab (available after setup) to send XMR to another address.",
+                    text = stringResource(CommonStrings.screen_ftue_monero_wallet_instructions),
                     style = PRISMTheme.typography.fontBodySmRegular,
                     color = PRISMTheme.colors.textSecondary
                 )
@@ -83,8 +80,8 @@ fun MoneroWalletView(
             } else {
                 IconTitleSubtitleMolecule(
                     iconStyle = BigIcon.Style.Default(CompoundIcons.Lock()),
-                    title = "Monero (XMR) Wallet",
-                    subTitle = "Monero is a privacy-focused cryptocurrency. PRISM includes a built-in XMR wallet for anonymous transactions. Your keys, your coins."
+                    title = stringResource(CommonStrings.screen_ftue_monero_wallet_title),
+                    subTitle = stringResource(CommonStrings.screen_ftue_monero_wallet_subtitle)
                 )
                 
                 Spacer(Modifier.height(32.dp))
@@ -92,11 +89,11 @@ fun MoneroWalletView(
                 if (state.createAction is AsyncAction.Loading) {
                     CircularProgressIndicator()
                     Spacer(Modifier.height(16.dp))
-                    Text("Generating secure keys...")
+                    Text(stringResource(CommonStrings.screen_ftue_monero_wallet_generating))
                 } else {
                     Spacer(Modifier.weight(1f))
                     Button(
-                        text = "Create XMR Wallet",
+                        text = stringResource(CommonStrings.screen_ftue_monero_wallet_create_button),
                         onClick = { state.eventSink(MoneroWalletEvents.CreateWallet) },
                         modifier = Modifier.fillMaxWidth()
                     )

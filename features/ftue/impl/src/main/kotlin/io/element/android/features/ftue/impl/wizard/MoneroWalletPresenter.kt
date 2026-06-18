@@ -18,6 +18,7 @@ import im.molly.monero.sdk.singleNodeClient
 import io.prism.android.features.ftue.impl.BuildConfig
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
+import uk.fathertkt.prism.vault.MoneroWalletDataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -78,17 +79,11 @@ class MoneroWalletPresenter(
                                     wallet = createdWallet,
                                     provider = provider,
                                     address = createdWallet.publicAddress.address,
-                                    mnemonic = createdWallet.mnemonic,
-                                    viewKey = createdWallet.viewKey,
-                                    spendKey = createdWallet.spendKey,
                                 )
                             }
                             wallet = result.wallet
                             walletProvider = result.provider
                             address = result.address
-                            mnemonic = result.mnemonic
-                            viewKey = result.viewKey
-                            spendKey = result.spendKey
                             createAction = AsyncAction.Success(Unit)
                         } catch (e: Exception) {
                             createAction = AsyncAction.Failure(e)
@@ -103,9 +98,6 @@ class MoneroWalletPresenter(
 
         return MoneroWalletState(
             address = address,
-            mnemonic = mnemonic,
-            viewKey = viewKey,
-            spendKey = spendKey,
             createAction = createAction,
             eventSink = ::handleEvent,
         )
@@ -121,8 +113,5 @@ class MoneroWalletPresenter(
         val wallet: MoneroWallet,
         val provider: WalletProvider,
         val address: String,
-        val mnemonic: String,
-        val viewKey: String,
-        val spendKey: String,
     )
 }

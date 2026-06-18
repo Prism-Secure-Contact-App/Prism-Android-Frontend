@@ -70,6 +70,7 @@ dependencies {
     implementation(projects.features.leaveroom.api)
     implementation(projects.features.rageshake.api)
     implementation(projects.services.analytics.api)
+    implementation(projects.services.toolbox.api)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.haze)
     implementation(libs.haze.materials)

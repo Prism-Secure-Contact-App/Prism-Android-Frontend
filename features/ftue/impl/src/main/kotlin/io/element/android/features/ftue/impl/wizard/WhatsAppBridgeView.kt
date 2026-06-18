@@ -19,6 +19,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import io.prism.android.compound.tokens.generated.CompoundIcons
 import io.prism.android.libraries.designsystem.atomic.molecules.IconTitleSubtitleMolecule
@@ -26,6 +27,7 @@ import io.prism.android.libraries.designsystem.components.BigIcon
 import io.prism.android.libraries.designsystem.components.button.BackButton
 import io.prism.android.libraries.designsystem.theme.components.Scaffold
 import io.prism.android.libraries.designsystem.theme.components.TopAppBar
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,9 +61,8 @@ internal fun WhatsAppBridgeView(
         ) {
             IconTitleSubtitleMolecule(
                 iconStyle = BigIcon.Style.Default(CompoundIcons.ShareAndroid()),
-                title = "Connect WhatsApp",
-                subTitle = "View and reply to WhatsApp chats from within PRISM. " +
-                    "Messages are grouped in a separate 'WhatsApp' space; your main screen stays clean.",
+                title = stringResource(CommonStrings.screen_ftue_whatsapp_title),
+                subTitle = stringResource(CommonStrings.screen_ftue_whatsapp_subtitle),
             )
 
             Spacer(Modifier.height(24.dp))
@@ -76,7 +77,11 @@ internal fun WhatsAppBridgeView(
 
             BridgeActionRow(
                 state = state,
-                primaryLabel = if (state.phase is UiPhase.Error) "Try again" else "WhatsApp'ı bağla",
+                primaryLabel = if (state.phase is UiPhase.Error) {
+                    TextResource.Res(CommonStrings.screen_ftue_bridge_try_again)
+                } else {
+                    TextResource.Res(CommonStrings.screen_ftue_whatsapp_connect_button)
+                },
             )
 
             Spacer(Modifier.height(8.dp))

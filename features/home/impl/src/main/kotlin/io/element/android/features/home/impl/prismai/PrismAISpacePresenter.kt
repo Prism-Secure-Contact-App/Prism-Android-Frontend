@@ -14,7 +14,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Inject
+import io.prism.android.features.home.impl.R
 import io.prism.android.features.home.impl.prismai.data.PrismAIRepository
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.matrix.api.PRISMClient
 import io.prism.android.libraries.matrix.api.core.RoomId
@@ -31,6 +33,7 @@ class PrismAISpacePresenter(
     private val sessionPreferencesStore: SessionPreferencesStore,
     private val matrixClient: PRISMClient,
     private val prismAIRepository: PrismAIRepository,
+    private val stringProvider: StringProvider,
 ) : Presenter<PrismAISpaceState> {
 
     @Composable
@@ -40,7 +43,7 @@ class PrismAISpacePresenter(
         var apiKey by remember { mutableStateOf<String?>(null) }
         var showDialog by remember { mutableStateOf(false) }
         var errorMessage by remember { mutableStateOf<String?>(null) }
-        var spaceName by remember { mutableStateOf("PrismAI") }
+        var spaceName by remember { mutableStateOf(stringProvider.getString(R.string.screen_prism_ai_title)) }
         var spaceIdValue by remember { mutableStateOf<String?>(null) }
         var chatMessages by remember { mutableStateOf<List<PrismAIChatMessage>>(emptyList()) }
         var chatInput by remember { mutableStateOf("") }
@@ -52,13 +55,13 @@ class PrismAISpacePresenter(
             try {
                 val id = sessionPreferencesStore.getPrismAISpaceId().first()
                 if (id.isNullOrBlank()) {
-                    errorMessage = "PrismAI space not found. Connect WhatsApp and send a message to Meta AI first."
+                    errorMessage = stringProvider.getString(R.string.screen_prism_ai_space_not_found)
                     return@LaunchedEffect
                 }
                 spaceIdValue = id
                 val roomId = RoomId(id)
                 val spaceRoom = spaceService.getSpaceRoom(roomId)
-                spaceName = spaceRoom?.displayName ?: "PrismAI"
+                spaceName = spaceRoom?.displayName ?: stringProvider.getString(R.string.screen_prism_ai_title)
 
                 val spaceRoomList = spaceService.spaceRoomList(roomId)
                 spaceRoomList.spaceRoomsFlow.collect { spaceRooms ->
@@ -69,7 +72,7 @@ class PrismAISpacePresenter(
                 }
             } catch (t: Throwable) {
                 Timber.e(t, "PrismAISpacePresenter: failed to load space")
-                errorMessage = t.message ?: "Failed to load PrismAI space"
+                errorMessage = t.message ?: stringProvider.getString(R.string.screen_prism_ai_load_failed)
             }
         }
 
@@ -137,16 +140,16 @@ class PrismAISpacePresenter(
                                         val assistantMessage = PrismAIChatMessage(
                                             id = resp.eventId ?: UUID.randomUUID().toString(),
                                             role = "assistant",
-                                            content = resp.content?.body ?: "(no response)",
+                                            content = resp.content?.body ?: stringProvider.getString(R.string.screen_prism_ai_no_response),
                                             timestamp = resp.originServerTs,
                                         )
                                         chatMessages = chatMessages + assistantMessage
                                     } ?: run {
-                                        chatError = response.notice ?: "No response from Meta AI"
+                                        chatError = response.notice ?: stringProvider.getString(R.string.screen_prism_ai_chat_error_no_response)
                                     }
                                 },
                                 onFailure = { t ->
-                                    chatError = t.message ?: "Failed to send message"
+                                    chatError = t.message ?: stringProvider.getString(R.string.screen_prism_ai_chat_error_send_failed)
                                     Timber.e(t, "PrismAISpacePresenter: chat send failed")
                                 }
                             )

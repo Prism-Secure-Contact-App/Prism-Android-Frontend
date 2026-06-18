@@ -31,10 +31,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import io.prism.android.libraries.designsystem.theme.components.Button
 import io.prism.android.libraries.designsystem.components.list.ListItemContent
 import io.prism.android.libraries.designsystem.theme.components.ListItem
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,16 +50,16 @@ fun VaultView(
         modifier = modifier,
         topBar = {
             TopAppBar(
-                title = { Text("PRISM Vault") },
+                title = { Text(stringResource(CommonStrings.screen_vault_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.LockOpen, contentDescription = "Back")
+                        Icon(Icons.Default.LockOpen, contentDescription = stringResource(CommonStrings.action_back))
                     }
                 },
                 actions = {
                     if (!state.isLocked) {
                         IconButton(onClick = { state.eventSink(VaultEvent.LockVault) }) {
-                            Icon(Icons.Default.Lock, contentDescription = "Lock")
+                            Icon(Icons.Default.Lock, contentDescription = stringResource(CommonStrings.a11y_lock))
                         }
                     }
                 }
@@ -87,11 +89,11 @@ fun VaultView(
     state.biometricError?.let { error ->
         AlertDialog(
             onDismissRequest = { state.eventSink(VaultEvent.DismissBiometricError) },
-            title = { Text("Authentication Failed") },
+            title = { Text(stringResource(CommonStrings.screen_vault_authentication_failed)) },
             text = { Text(error) },
             confirmButton = {
                 TextButton(
-                    text = "OK",
+                    text = stringResource(CommonStrings.action_ok),
                     onClick = { state.eventSink(VaultEvent.DismissBiometricError) },
                 )
             }
@@ -114,15 +116,15 @@ private fun LockedContent(
             contentDescription = null,
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Your secret chats are locked")
+        Text(stringResource(CommonStrings.screen_vault_locked_title))
         Spacer(modifier = Modifier.height(24.dp))
         if (isBiometricAvailable) {
             Button(
-                text = "Unlock with Biometrics",
+                text = stringResource(CommonStrings.screen_vault_unlock_biometrics),
                 onClick = onUnlock,
             )
         } else {
-            Text("Biometric authentication is not available on this device.")
+            Text(stringResource(CommonStrings.screen_vault_biometric_unavailable))
         }
     }
 }
@@ -135,7 +137,7 @@ private fun UnlockedContent(
 ) {
     if (roomIds.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Your vault is empty.\nLong-press a chat to add it to the vault.")
+            Text(stringResource(CommonStrings.screen_vault_empty_state))
         }
         return
     }
@@ -145,7 +147,7 @@ private fun UnlockedContent(
                 headlineContent = { Text(roomId) },
                 trailingContent = ListItemContent.Custom { _ ->
                     TextButton(
-                        text = "Remove",
+                        text = stringResource(CommonStrings.screen_vault_remove),
                         onClick = { onRemove(roomId) },
                     )
                 },

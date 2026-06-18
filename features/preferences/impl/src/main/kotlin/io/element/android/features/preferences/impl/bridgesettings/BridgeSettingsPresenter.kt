@@ -16,7 +16,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Inject
+import io.prism.android.features.preferences.impl.BuildConfig
+import io.prism.android.features.preferences.impl.R
 import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import io.prism.android.libraries.matrix.api.PRISMClient
 import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.matrix.api.core.UserId
@@ -29,6 +32,7 @@ import timber.log.Timber
 @Inject
 class BridgeSettingsPresenter(
     private val matrixClient: PRISMClient,
+    private val stringProvider: StringProvider,
 ) : Presenter<BridgeSettingsState> {
 
     @Composable
@@ -57,7 +61,7 @@ class BridgeSettingsPresenter(
             listOf(
                 BridgeInfo(
                     platform = "whatsapp",
-                    displayName = "WhatsApp",
+                    displayName = stringProvider.getString(R.string.screen_bridge_settings_whatsapp_display_name),
                     botUserId = whatsappBot,
                     isActive = forcedStatuses["whatsapp"] ?: (whatsappDm != null),
                     roomId = whatsappDm?.roomId,
@@ -149,7 +153,7 @@ class BridgeSettingsPresenter(
                                             dialog = BridgeDialog.PairingCode(
                                                 platform = platform,
                                                 code = nsData.uppercase(),
-                                                caption = "Open WhatsApp: Settings → Linked Devices → Link a Device → Link with phone number. Enter the code above.",
+                                                caption = stringProvider.getString(R.string.screen_bridge_settings_pairing_code_caption),
                                             )
                                             shouldStop = false
                                         } else if ("code" in bodyLc) {
@@ -159,7 +163,7 @@ class BridgeSettingsPresenter(
                                                 dialog = BridgeDialog.PairingCode(
                                                     platform = platform,
                                                     code = code,
-                                                    caption = "WhatsApp uygulamanı aç: Ayarlar → Bağlı cihazlar → Cihaz bağla → Telefon numarası ile bağla. Yukarıdaki kodu gir.",
+                                                    caption = stringProvider.getString(R.string.screen_bridge_settings_pairing_code_caption),
                                                 )
                                                 shouldStop = false
                                             } else {
@@ -170,7 +174,7 @@ class BridgeSettingsPresenter(
                                                         bodyLc.contains("sync complete") ||
                                                         bodyLc.startsWith("logged in as") -> {
                                                         isLoading = false
-                                                        snackbarMessage = "WhatsApp connection established."
+                                                        snackbarMessage = stringProvider.getString(R.string.screen_bridge_settings_snackbar_connected)
                                                         extractIdentifier(body, platform)?.let { id ->
                                                             bridgeIdentifiers = bridgeIdentifiers.toMutableMap().apply { put(platform, id) }
                                                         }
@@ -179,13 +183,13 @@ class BridgeSettingsPresenter(
                                                     bodyLc.contains("invalid phone") ||
                                                         bodyLc.contains("not a valid phone number") ||
                                                         bodyLc.contains("phone number is not registered") -> {
-                                                        showError("Phone number is invalid. Please try again in international format.")
+                                                        showError(stringProvider.getString(R.string.screen_bridge_settings_error_invalid_phone))
                                                         shouldStop = true
                                                     }
                                                     bodyLc.contains("login timed out") ||
                                                         bodyLc.contains("pairing code expired") ||
                                                         bodyLc.contains("login cancelled") -> {
-                                                        showError("Pairing code expired. Please try again.")
+                                                        showError(stringProvider.getString(R.string.screen_bridge_settings_error_code_expired))
                                                         shouldStop = true
                                                     }
                                                     else -> { shouldStop = false }
@@ -199,7 +203,7 @@ class BridgeSettingsPresenter(
                                                     bodyLc.contains("sync complete") ||
                                                     bodyLc.startsWith("logged in as") -> {
                                                     isLoading = false
-                                                    snackbarMessage = "WhatsApp bağlantısı kuruldu."
+                                                    snackbarMessage = stringProvider.getString(R.string.screen_bridge_settings_snackbar_connected)
                                                     extractIdentifier(body, platform)?.let { id ->
                                                         bridgeIdentifiers = bridgeIdentifiers.toMutableMap().apply { put(platform, id) }
                                                     }
@@ -208,13 +212,13 @@ class BridgeSettingsPresenter(
                                                 bodyLc.contains("invalid phone") ||
                                                     bodyLc.contains("not a valid phone number") ||
                                                     bodyLc.contains("phone number is not registered") -> {
-                                                    showError("Telefon numarası geçerli değil. Uluslararası formatta tekrar dene.")
+                                                    showError(stringProvider.getString(R.string.screen_bridge_settings_error_invalid_phone))
                                                     shouldStop = true
                                                 }
                                                 bodyLc.contains("login timed out") ||
                                                     bodyLc.contains("pairing code expired") ||
                                                     bodyLc.contains("login cancelled") -> {
-                                                    showError("Pairing kodunun süresi doldu. Tekrar dene.")
+                                                    showError(stringProvider.getString(R.string.screen_bridge_settings_error_code_expired))
                                                     shouldStop = true
                                                 }
                                                 else -> { shouldStop = false }
@@ -231,12 +235,12 @@ class BridgeSettingsPresenter(
                         true
                     }
                     if (completed != true) {
-                        showError("Request timed out. Please try again.")
+                        showError(stringProvider.getString(R.string.screen_bridge_settings_error_request_timed_out))
                     }
                 } catch (t: Throwable) {
                     if (t is kotlinx.coroutines.CancellationException) throw t
                     Timber.w(t, "BridgeSettings: observation failed for $platform")
-                    showError("Error: ${t.localizedMessage ?: "Unknown error"}")
+                    showError(stringProvider.getString(R.string.screen_bridge_settings_error_unknown, t.localizedMessage ?: stringProvider.getString(R.string.screen_bridge_settings_error_unknown)))
                 }
             }
         }
@@ -259,7 +263,7 @@ class BridgeSettingsPresenter(
                             )
                             val roomId = withTimeoutOrNull(30_000L) {
                                 interactor.openBotRoom(botUserId).getOrThrow()
-                            } ?: throw IllegalStateException("Could not connect to server.")
+                            } ?: throw IllegalStateException(stringProvider.getString(R.string.screen_bridge_settings_error_server_connect))
 
                             activeRoomId = roomId
                             activeBotId = botUserId
@@ -306,13 +310,18 @@ class BridgeSettingsPresenter(
                             when (event.platform) {
                                 "whatsapp" -> {
                                     isLoading = false
-                                    dialog = BridgeDialog.PhoneInput(platform = "whatsapp")
+                                    dialog = BridgeDialog.PhoneInput(
+                                        platform = "whatsapp",
+                                        prompt = stringProvider.getString(R.string.screen_bridge_settings_phone_dialog_prompt),
+                                        inputLabel = stringProvider.getString(R.string.screen_bridge_settings_phone_dialog_label),
+                                        placeholder = stringProvider.getString(R.string.screen_bridge_settings_phone_dialog_placeholder),
+                                    )
                                 }
                             }
                         } catch (t: Throwable) {
                             if (t is kotlinx.coroutines.CancellationException) throw t
                             Timber.w(t, "BridgeSettings: connect failed for ${event.platform}")
-                            showError("Error: ${t.localizedMessage ?: "Unknown error"}")
+                            showError(stringProvider.getString(R.string.screen_bridge_settings_error_unknown, t.localizedMessage ?: stringProvider.getString(R.string.screen_bridge_settings_error_unknown)))
                         }
                     }
                 }
@@ -328,7 +337,7 @@ class BridgeSettingsPresenter(
                         try {
                             val normalized = normalizePhone(event.phone)
                             if (normalized.isBlank() || !normalized.startsWith("+")) {
-                                showError("Geçerli bir telefon numarası girin (örn. +905551112233).")
+                                showError(stringProvider.getString(R.string.screen_bridge_settings_error_phone_required))
                                 return@launch
                             }
                             lastPhoneNumber = normalized
@@ -338,7 +347,7 @@ class BridgeSettingsPresenter(
                         } catch (t: Throwable) {
                             if (t is kotlinx.coroutines.CancellationException) throw t
                             Timber.w(t, "BridgeSettings: phone submit failed")
-                            showError("Error: ${t.localizedMessage ?: "Unknown error"}")
+                            showError(stringProvider.getString(R.string.screen_bridge_settings_error_unknown, t.localizedMessage ?: stringProvider.getString(R.string.screen_bridge_settings_error_unknown)))
                         }
                     }
                 }
@@ -348,7 +357,7 @@ class BridgeSettingsPresenter(
                     val botUserId = activeBotId ?: return
                     val phone = lastPhoneNumber
                     if (phone.isNullOrBlank()) {
-                        showError("Phone number information not found. Please try reconnecting.")
+                        showError(stringProvider.getString(R.string.screen_bridge_settings_error_phone_info_missing))
                         return
                     }
                     activeJob?.cancel()
@@ -363,7 +372,7 @@ class BridgeSettingsPresenter(
                         } catch (t: Throwable) {
                             if (t is kotlinx.coroutines.CancellationException) throw t
                             Timber.w(t, "BridgeSettings: request new code failed")
-                            showError("Error: ${t.localizedMessage ?: "Unknown error"}")
+                            showError(stringProvider.getString(R.string.screen_bridge_settings_error_unknown, t.localizedMessage ?: stringProvider.getString(R.string.screen_bridge_settings_error_unknown)))
                         }
                     }
                 }
@@ -384,7 +393,7 @@ class BridgeSettingsPresenter(
                             )
                             val roomId = withTimeoutOrNull(30_000L) {
                                 interactor.openBotRoom(botUserId).getOrThrow()
-                            } ?: throw IllegalStateException("Room not found.")
+                            } ?: throw IllegalStateException(stringProvider.getString(R.string.screen_bridge_settings_error_room_not_found))
 
                             // bridgev2 logout requires a login ID: first list-logins, then logout <id>
                             var reallyLoggedOut = false
@@ -443,15 +452,15 @@ class BridgeSettingsPresenter(
                             forcedStatuses = forcedStatuses.toMutableMap().apply { put(event.platform, false) }
                             bridgeIdentifiers = bridgeIdentifiers.toMutableMap().apply { remove(event.platform) }
                             snackbarMessage = if (reallyLoggedOut) {
-                                "Disconnected."
+                                stringProvider.getString(R.string.screen_bridge_settings_snackbar_disconnected)
                             } else {
-                                "Disconnected. Server response could not be received; session may still be active."
+                                stringProvider.getString(R.string.screen_bridge_settings_snackbar_disconnect_uncertain)
                             }
                             isLoading = false
                         } catch (t: Throwable) {
                             if (t is kotlinx.coroutines.CancellationException) throw t
                             Timber.w(t, "BridgeSettings: disconnect failed for ${event.platform}")
-                            showError("Error: ${t.localizedMessage ?: "Unknown error"}")
+                            showError(stringProvider.getString(R.string.screen_bridge_settings_error_unknown, t.localizedMessage ?: stringProvider.getString(R.string.screen_bridge_settings_error_unknown)))
                         }
                     }
                 }

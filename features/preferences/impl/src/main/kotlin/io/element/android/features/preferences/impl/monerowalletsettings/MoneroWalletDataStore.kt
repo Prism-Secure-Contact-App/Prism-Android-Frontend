@@ -32,7 +32,7 @@ class MoneroWalletDataStore(
             context,
             file,
             masterKey,
-            EncryptedFile.FileEncryptionScheme.AES256_GCM,
+            EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB,
         ).build()
     }
 

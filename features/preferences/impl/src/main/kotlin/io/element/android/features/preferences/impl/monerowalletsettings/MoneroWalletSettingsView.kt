@@ -21,7 +21,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import io.prism.android.compound.tokens.generated.CompoundIcons
+import io.prism.android.features.preferences.impl.R
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.designsystem.components.list.ListItemContent
 import io.prism.android.libraries.designsystem.components.preferences.PreferencePage
@@ -54,15 +56,15 @@ fun MoneroWalletSettingsView(
         val error = (state.withdrawAction as? AsyncAction.Failure)?.error?.message
         AlertDialog(
             onDismissRequest = { state.eventSink(MoneroWalletSettingsEvents.DismissWithdrawDialog) },
-            title = { Text("Withdraw") },
+            title = { Text(stringResource(R.string.screen_monero_wallet_settings_withdraw_dialog_title)) },
             text = {
                 Column {
-                    Text("Send your XMR to an external address.")
+                    Text(stringResource(R.string.screen_monero_wallet_settings_withdraw_dialog_description))
                     Spacer(Modifier.height(8.dp))
                     TextField(
                         value = state.withdrawAddress,
                         onValueChange = { state.eventSink(MoneroWalletSettingsEvents.SetWithdrawAddress(it)) },
-                        label = "Recipient Address",
+                        label = stringResource(R.string.screen_monero_wallet_settings_withdraw_address_label),
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                     )
@@ -70,13 +72,13 @@ fun MoneroWalletSettingsView(
                     TextField(
                         value = state.withdrawAmount,
                         onValueChange = { state.eventSink(MoneroWalletSettingsEvents.SetWithdrawAmount(it)) },
-                        label = "Amount (XMR)",
+                        label = stringResource(R.string.screen_monero_wallet_settings_withdraw_amount_label),
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                     )
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        text = "Estimated network fee: ${state.feeRate}",
+                        text = stringResource(R.string.screen_monero_wallet_settings_withdraw_fee, state.feeRate),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -92,14 +94,14 @@ fun MoneroWalletSettingsView(
             },
             confirmButton = {
                 Button(
-                    text = if (isLoading) "Sending..." else "Send",
+                    text = if (isLoading) stringResource(R.string.screen_monero_wallet_settings_withdraw_sending) else stringResource(R.string.screen_monero_wallet_settings_withdraw_send),
                     onClick = { state.eventSink(MoneroWalletSettingsEvents.SubmitWithdraw) },
                     enabled = !isLoading && state.withdrawAddress.isNotBlank() && state.withdrawAmount.isNotBlank(),
                 )
             },
             dismissButton = {
                 TextButton(
-                    text = "Cancel",
+                    text = stringResource(R.string.screen_monero_wallet_settings_withdraw_cancel),
                     onClick = { state.eventSink(MoneroWalletSettingsEvents.DismissWithdrawDialog) },
                 )
             }
@@ -109,15 +111,15 @@ fun MoneroWalletSettingsView(
     PreferencePage(
         modifier = modifier,
         onBackClick = onBackClick,
-        title = "Wallet Security",
+        title = stringResource(R.string.screen_monero_wallet_settings_title),
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) {
         // Address
         ListItem(
-            headlineContent = { Text("Monero Adresi (XMR)") },
+            headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_address_label)) },
             supportingContent = {
                 Text(
-                    text = state.address ?: "Loading...",
+                    text = state.address ?: stringResource(R.string.screen_monero_wallet_settings_loading),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FontFamily.Monospace),
                 )
             },
@@ -129,10 +131,10 @@ fun MoneroWalletSettingsView(
 
         // View Key
         ListItem(
-            headlineContent = { Text("View Key") },
+            headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_view_key_label)) },
             supportingContent = {
                 Text(
-                    text = state.viewKey ?: "Yükleniyor...",
+                    text = state.viewKey ?: stringResource(R.string.screen_monero_wallet_settings_loading),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FontFamily.Monospace),
                 )
             },
@@ -144,10 +146,10 @@ fun MoneroWalletSettingsView(
 
         // Spend Key
         ListItem(
-            headlineContent = { Text("Spend Key") },
+            headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_spend_key_label)) },
             supportingContent = {
                 Text(
-                    text = state.spendKey ?: "Yükleniyor...",
+                    text = state.spendKey ?: stringResource(R.string.screen_monero_wallet_settings_loading),
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FontFamily.Monospace),
                 )
             },
@@ -159,7 +161,7 @@ fun MoneroWalletSettingsView(
 
         // Balance
         ListItem(
-            headlineContent = { Text("Balance") },
+            headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_balance_label)) },
             supportingContent = { Text(state.balance) },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Chart())),
         )
@@ -168,14 +170,14 @@ fun MoneroWalletSettingsView(
 
         // Deposit / Withdraw actions
         ListItem(
-            headlineContent = { Text("Deposit") },
-            supportingContent = { Text("Send XMR to your Monero address") },
+            headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_deposit_label)) },
+            supportingContent = { Text(stringResource(R.string.screen_monero_wallet_settings_deposit_description)) },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.ArrowDown())),
             onClick = { state.eventSink(MoneroWalletSettingsEvents.CopyAddress) },
         )
         ListItem(
-            headlineContent = { Text("Withdraw") },
-            supportingContent = { Text("Send your XMR to an external address") },
+            headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_withdraw_label)) },
+            supportingContent = { Text(stringResource(R.string.screen_monero_wallet_settings_withdraw_description)) },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.ArrowUp())),
             onClick = { state.eventSink(MoneroWalletSettingsEvents.ShowWithdrawDialog) },
         )
@@ -185,7 +187,7 @@ fun MoneroWalletSettingsView(
         // Seed Phrase
         if (state.isRevealed) {
             ListItem(
-                headlineContent = { Text("Recovery Phrase (Seed)") },
+                headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_recovery_phrase_label)) },
                 supportingContent = {
                     Text(
                         text = state.mnemonic ?: "",
@@ -197,16 +199,15 @@ fun MoneroWalletSettingsView(
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = "⚠️ Bu 12 kelimeyi güvenli bir yere yazın. Cüzdanınıza erişmek için tek yoldur. " +
-                    "Kimseyle paylaşmayın; PRISM sunucularında saklanmaz (non-custodial).",
+                text = stringResource(R.string.screen_monero_wallet_settings_recovery_phrase_warning),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.error,
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
         } else {
             ListItem(
-                headlineContent = { Text("Show Recovery Phrase") },
-                supportingContent = { Text("Hidden. Tap to reveal.") },
+                headlineContent = { Text(stringResource(R.string.screen_monero_wallet_settings_show_recovery_phrase)) },
+                supportingContent = { Text(stringResource(R.string.screen_monero_wallet_settings_recovery_phrase_hidden)) },
                 leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Lock())),
                 onClick = { state.eventSink(MoneroWalletSettingsEvents.RevealSeedPhrase) },
             )

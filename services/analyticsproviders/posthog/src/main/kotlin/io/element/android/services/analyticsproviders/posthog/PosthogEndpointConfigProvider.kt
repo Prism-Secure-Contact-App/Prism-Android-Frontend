@@ -12,7 +12,6 @@ import dev.zacsweers.metro.Inject
 import io.prism.android.features.enterprise.api.EnterpriseService
 import io.prism.android.libraries.core.extensions.isPRISM
 import io.prism.android.libraries.core.meta.BuildMeta
-import io.prism.android.libraries.core.meta.BuildType
 
 @Inject
 class PosthogEndpointConfigProvider(
@@ -30,16 +29,11 @@ class PosthogEndpointConfigProvider(
                 it.isValid
             }
         } else if (buildMeta.isPRISM()) {
-            when (buildMeta.buildType) {
-                BuildType.RELEASE -> PosthogEndpointConfig(
-                    host = "https://posthog.element.io",
-                    apiKey = "phc_Jzsm6DTm6V2705zeU5dcNvQDlonOR68XvX2sh1sEOHO",
-                )
-                BuildType.NIGHTLY,
-                BuildType.DEBUG -> PosthogEndpointConfig(
-                    host = "https://posthog.element.dev",
-                    apiKey = "phc_VtA1L35nw3aeAtHIx1ayrGdzGkss7k1xINeXcoIQzXN",
-                )
+            PosthogEndpointConfig(
+                host = BuildConfig.POSTHOG_HOST,
+                apiKey = BuildConfig.POSTHOG_APIKEY,
+            ).takeIf {
+                it.isValid
             }
         } else {
             null

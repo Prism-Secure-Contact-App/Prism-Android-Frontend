@@ -5,7 +5,7 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
-package io.prism.android.features.ftue.impl.wizard
+package uk.fathertkt.prism.vault
 
 import android.content.Context
 import androidx.security.crypto.EncryptedFile
@@ -32,7 +32,7 @@ class MoneroWalletDataStore(
             context,
             file,
             masterKey,
-            EncryptedFile.FileEncryptionScheme.AES256_GCM,
+            EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB,
         ).build()
     }
 

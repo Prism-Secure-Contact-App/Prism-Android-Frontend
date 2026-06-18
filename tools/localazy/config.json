@@ -86,6 +86,13 @@
       ]
     },
     {
+      "name" : ":features:vault:impl",
+      "includeRegex" : [
+        "screen_vault_.*",
+        "a11y_lock"
+      ]
+    },
+    {
       "name" : ":libraries:textcomposer:impl",
       "includeRegex" : [
         "rich_text_editor.*",
@@ -200,7 +207,8 @@
         "banner\\.new_sound\\..*",
         "full_screen_intent_banner_.*",
         "screen_migration_.*",
-        "screen_invites_.*"
+        "screen_invites_.*",
+        "screen_prism_ai_.*"
       ]
     },
     {
@@ -288,7 +296,9 @@
       "includeRegex" : [
         "screen_welcome_.*",
         "screen_notification_optin_.*",
-        "screen_identity_.*"
+        "screen_identity_.*",
+        "screen_ftue_.*",
+        "error_ftue_.*"
       ]
     },
     {
@@ -327,7 +337,11 @@
         "screen_blocked_users_.*",
         "full_screen_intent_banner_.*",
         "troubleshoot_notifications_entry_point_.*",
-        "screen\\.labs\\..*"
+        "screen\\.labs\\..*",
+        "screen_bridge_settings_.*",
+        "screen_monero_wallet_settings_.*",
+        "screen_llm_api_settings_.*",
+        "screen_preferences_.*"
       ]
     },
     {

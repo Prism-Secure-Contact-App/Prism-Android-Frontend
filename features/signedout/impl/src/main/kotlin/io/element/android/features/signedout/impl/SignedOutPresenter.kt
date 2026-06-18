@@ -16,6 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import dev.zacsweers.metro.Assisted
 import dev.zacsweers.metro.AssistedFactory
 import dev.zacsweers.metro.AssistedInject
+import io.prism.android.features.signedout.api.SignedOutEntryPoint
 import io.prism.android.libraries.architecture.Presenter
 import io.prism.android.libraries.core.meta.BuildMeta
 import io.prism.android.libraries.matrix.api.core.SessionId
@@ -26,12 +27,13 @@ import kotlinx.coroutines.launch
 @AssistedInject
 class SignedOutPresenter(
     @Assisted private val sessionId: SessionId,
+    @Assisted private val callback: SignedOutEntryPoint.Callback,
     private val sessionStore: SessionStore,
     private val buildMeta: BuildMeta,
 ) : Presenter<SignedOutState> {
     @AssistedFactory
     fun interface Factory {
-        fun create(sessionId: SessionId): SignedOutPresenter
+        fun create(sessionId: SessionId, callback: SignedOutEntryPoint.Callback): SignedOutPresenter
     }
 
     @Composable
@@ -46,7 +48,7 @@ class SignedOutPresenter(
         fun handleEvent(event: SignedOutEvents) {
             when (event) {
                 SignedOutEvents.SignInAgain -> coroutineScope.launch {
-                    sessionStore.removeSession(sessionId.value)
+                    callback.onSignInAgain(sessionId)
                 }
             }
         }

@@ -49,6 +49,7 @@ class DefaultSessionPreferencesStore(
     private val compressMediaPreset = stringPreferencesKey("compressMediaPreset")
 
     private fun ftueBridgeSetupKey(bridge: String) = booleanPreferencesKey("ftueBridgeSetup_$bridge")
+    private val ftueMoneroWalletSetupKey = booleanPreferencesKey("ftueMoneroWalletSetupCompleted")
 
     private val dataStoreFile = storeFile(context, sessionId)
     private val store = PreferenceDataStoreFactory.create(
@@ -98,6 +99,9 @@ class DefaultSessionPreferencesStore(
 
     override suspend fun setFtueBridgeSetupCompleted(bridge: String, completed: Boolean) = update(ftueBridgeSetupKey(bridge), completed)
     override fun isFtueBridgeSetupCompleted(bridge: String): Flow<Boolean> = get(ftueBridgeSetupKey(bridge)) { false }
+
+    override suspend fun setFtueMoneroWalletSetupCompleted(completed: Boolean) = update(ftueMoneroWalletSetupKey, completed)
+    override fun isFtueMoneroWalletSetupCompleted(): Flow<Boolean> = get(ftueMoneroWalletSetupKey) { false }
 
     private fun sessionRoomConfigKey(roomId: String) = stringPreferencesKey("sessionRoomConfig_$roomId")
 

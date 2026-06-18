@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import io.prism.android.libraries.architecture.AsyncAction
 import io.prism.android.libraries.architecture.Presenter
@@ -20,6 +21,7 @@ import io.prism.android.libraries.matrix.api.PRISMClient
 import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.matrix.api.core.UserId
 import io.prism.android.libraries.matrix.api.media.MediaSource
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -57,6 +59,7 @@ internal class BridgePresenter(
         val coroutineScope = rememberCoroutineScope()
         val connectAction = remember { mutableStateOf<AsyncAction<Unit>>(AsyncAction.Uninitialized) }
         var phase by remember { mutableStateOf<UiPhase>(UiPhase.Idle) }
+        val bridgeErrorMessage = stringResource(CommonStrings.error_ftue_bridge_unknown)
         var pendingPrompt by remember { mutableStateOf<String?>(null) }
         var loginJob by remember { mutableStateOf<Job?>(null) }
 
@@ -75,8 +78,8 @@ internal class BridgePresenter(
                         onConnected()
                     },
                     onFailure = { error ->
-                        connectAction.value = AsyncAction.Failure(error)
-                        phase = UiPhase.Error(error.message ?: "Unknown error")
+                        connectAction.value = AsyncAction.Failure(IllegalStateException(bridgeErrorMessage))
+                        phase = UiPhase.Error(error)
                     },
                 )
             }
@@ -86,7 +89,7 @@ internal class BridgePresenter(
             loginJob?.cancel()
             val error = IllegalStateException(message)
             connectAction.value = AsyncAction.Failure(error)
-            phase = UiPhase.Error(message)
+            phase = UiPhase.Error(message.asTextResource())
         }
 
         fun handleEvent(event: BridgeEvents) {
@@ -110,7 +113,6 @@ internal class BridgePresenter(
             bridgeName = flow.displayName,
             connectAction = connectAction.value,
             phase = phase,
-            promptDescription = flow.promptDescription,
             pendingPrompt = pendingPrompt,
             eventSink = ::handleEvent,
         )
@@ -121,16 +123,19 @@ internal class BridgePresenter(
         promptText: String?,
         onPhase: (UiPhase) -> Unit,
         onSuccess: () -> Unit,
-        onFailure: (Throwable) -> Unit,
+        onFailure: (TextResource) -> Unit,
     ) {
         try {
             val botUserId = UserId(flow.botUserId)
-            
+
             // 30 second timeout for the initial room lookup/creation. If this hangs,
             // the user stays on "Connecting" indefinitely.
             val roomId = withTimeoutOrNull(30_000L) {
                 interactor.openBotRoom(botUserId).getOrThrow()
-            } ?: throw IllegalStateException("Could not connect to the server. Please check your internet connection.")
+            } ?: run {
+                onFailure(TextResource.Res(CommonStrings.error_ftue_bridge_no_connection))
+                return
+            }
 
             // Some flows (e.g. WhatsApp pairing-code) need the user's input BEFORE
             // any bot interaction. We detect this by an empty initialCommand + a
@@ -198,7 +203,7 @@ internal class BridgePresenter(
                         val elapsed = System.currentTimeMillis() - startTime
                         if (elapsed >= totalMillis) {
                             observeJob.cancel()
-                            finalOutcome = Outcome.Failure("Request timed out. Please try again.")
+                            finalOutcome = Outcome.Failure(TextResource.Res(CommonStrings.error_ftue_bridge_timeout))
                             break
                         }
                         val remainingSec = ((totalMillis - elapsed) / 1_000).toInt()
@@ -206,7 +211,7 @@ internal class BridgePresenter(
                         val phase = currentPhaseRef.get()
                         when (phase) {
                             is UiPhase.Connecting, is UiPhase.Working -> {
-                                wrappedOnPhase(UiPhase.Working("Connecting... Time remaining: ${remainingSec}s", progress))
+                                wrappedOnPhase(UiPhase.Working(TextResource.Res(CommonStrings.screen_ftue_bridge_connecting_with_time, listOf(remainingSec)), progress))
                             }
                             is UiPhase.AwaitingPairingCode -> {
                                 wrappedOnPhase(phase.copy(remainingSeconds = remainingSec))
@@ -230,11 +235,11 @@ internal class BridgePresenter(
                     }
                     onSuccess()
                 }
-                is Outcome.Failure -> onFailure(IllegalStateException(terminalOutcome.reason))
+                is Outcome.Failure -> onFailure(terminalOutcome.reason)
                 Outcome.Pending -> {
                     // Cooperative timeout fell through without a terminal classification;
                     // treat as failure rather than leaving the user staring at a blank screen.
-                    onFailure(IllegalStateException("Bridge did not respond. You can try again."))
+                    onFailure(TextResource.Res(CommonStrings.error_ftue_bridge_no_response))
                 }
             }
         } catch (t: Throwable) {
@@ -242,14 +247,14 @@ internal class BridgePresenter(
             // the catch site below; everything else is reported to the UI layer.
             if (t is kotlinx.coroutines.CancellationException) throw t
             Timber.w(t, "BridgePresenter: connection failed for ${flow.displayName}")
-            onFailure(t)
+            onFailure(t.message?.asTextResource() ?: TextResource.Res(CommonStrings.error_ftue_bridge_unknown))
         }
     }
 
     private sealed interface Outcome {
         data object Pending : Outcome
         data object Success : Outcome
-        data class Failure(val reason: String) : Outcome
+        data class Failure(val reason: TextResource) : Outcome
     }
 }
 
@@ -262,8 +267,6 @@ internal interface BridgeFlow {
     val botUserId: String
     /** First command sent right after the DM is opened. Empty = collect user input first via [initialPrompt]. */
     val initialCommand: String
-    /** Optional human-readable hint shown when the wizard asks for cookie/text input. */
-    val promptDescription: String?
     /** If non-null and [initialCommand] is empty, the wizard asks the user for input
      *  before sending anything to the bot. Used by WhatsApp pairing-code flow. */
     val initialPrompt: FlowDecision.AskForInput? get() = null
@@ -282,15 +285,15 @@ internal interface BridgeFlow {
 }
 
 internal sealed interface FlowDecision {
-    data class ShowQr(val source: MediaSource, val caption: String) : FlowDecision
+    data class ShowQr(val source: MediaSource, val caption: TextResource) : FlowDecision
     data class AskForInput(
-        val prompt: String,
-        val inputLabel: String = "Response",
-        val inputPlaceholder: String = "",
+        val prompt: TextResource,
+        val inputLabel: TextResource = TextResource.Res(CommonStrings.screen_ftue_bridge_response_label),
+        val inputPlaceholder: TextResource = TextResource.Plain(""),
         val initialValue: String = "",
         val keyboardType: KeyboardType = KeyboardType.Text,
     ) : FlowDecision
-    data class ShowPairingCode(val code: String, val caption: String) : FlowDecision
+    data class ShowPairingCode(val code: String, val caption: TextResource) : FlowDecision
 
     /**
      * Open an embedded WebView so the user can sign in to a remote service in-app, after which
@@ -304,12 +307,12 @@ internal sealed interface FlowDecision {
         val cookieDomain: String,
         val cookieNames: List<String>,
         val successUrlPattern: String,
-        val caption: String,
+        val caption: TextResource,
     ) : FlowDecision
 
-    data class Progress(val message: String) : FlowDecision
+    data class Progress(val message: TextResource) : FlowDecision
     data object Success : FlowDecision
-    data class Failure(val message: String) : FlowDecision
+    data class Failure(val message: TextResource) : FlowDecision
     /** Ignore this bot reply (e.g. echoed prompt, command-not-found chatter). */
     data object Ignore : FlowDecision
 }
@@ -319,32 +322,31 @@ internal sealed interface FlowDecision {
 internal sealed interface UiPhase {
     data object Idle : UiPhase
     data object Connecting : UiPhase
-    data class Working(val message: String, val progress: Float = -1f) : UiPhase
-    data class AwaitingScan(val qrSource: MediaSource, val caption: String) : UiPhase
+    data class Working(val message: TextResource, val progress: Float = -1f) : UiPhase
+    data class AwaitingScan(val qrSource: MediaSource, val caption: TextResource) : UiPhase
     data class AwaitingInput(
-        val prompt: String,
-        val inputLabel: String = "Yanıt",
-        val inputPlaceholder: String = "",
+        val prompt: TextResource,
+        val inputLabel: TextResource = TextResource.Res(CommonStrings.screen_ftue_bridge_response_label),
+        val inputPlaceholder: TextResource = TextResource.Plain(""),
         val initialValue: String = "",
         val keyboardType: KeyboardType = KeyboardType.Text,
     ) : UiPhase
-    data class AwaitingPairingCode(val code: String, val caption: String, val remainingSeconds: Int = -1) : UiPhase
+    data class AwaitingPairingCode(val code: String, val caption: TextResource, val remainingSeconds: Int = -1) : UiPhase
     data class AwaitingWebView(
         val url: String,
         val userAgent: String,
         val cookieDomain: String,
         val cookieNames: List<String>,
         val successUrlPattern: String,
-        val caption: String,
+        val caption: TextResource,
     ) : UiPhase
-    data class Error(val message: String) : UiPhase
+    data class Error(val message: TextResource) : UiPhase
 }
 
 internal data class BridgeState(
     val bridgeName: String,
     val connectAction: AsyncAction<Unit>,
     val phase: UiPhase,
-    val promptDescription: String?,
     val pendingPrompt: String?,
     val eventSink: (BridgeEvents) -> Unit,
 )

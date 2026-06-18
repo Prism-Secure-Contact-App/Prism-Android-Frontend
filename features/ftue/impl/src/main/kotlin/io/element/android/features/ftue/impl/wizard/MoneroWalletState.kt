@@ -4,9 +4,6 @@ import io.prism.android.libraries.architecture.AsyncAction
 
 data class MoneroWalletState(
     val address: String = "",
-    val mnemonic: String = "",
-    val viewKey: String = "",
-    val spendKey: String = "",
     val createAction: AsyncAction<Unit> = AsyncAction.Uninitialized,
     val eventSink: (MoneroWalletEvents) -> Unit,
 )

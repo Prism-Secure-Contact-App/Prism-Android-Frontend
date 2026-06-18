@@ -60,9 +60,9 @@ class MoneroWalletSettingsPresenter(
         val mnemonic = remember { mutableStateOf<String?>(null) }
         val viewKey = remember { mutableStateOf<String?>(null) }
         val spendKey = remember { mutableStateOf<String?>(null) }
-        val balance = remember { mutableStateOf("Loading...") }
+        val balance = remember { mutableStateOf(context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_loading)) }
         var balanceAtomicUnits by remember { mutableStateOf(0L) }
-        val feeRate = remember { mutableStateOf("Loading...") }
+        val feeRate = remember { mutableStateOf(context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_loading)) }
         var showWithdrawDialog by remember { mutableStateOf(false) }
         var withdrawAddress by remember { mutableStateOf("") }
         var withdrawAmount by remember { mutableStateOf("") }
@@ -100,16 +100,16 @@ class MoneroWalletSettingsPresenter(
                     isRevealed = true
                 }
                 is MoneroWalletSettingsEvents.CopySeedPhrase -> {
-                    snackbarMessage = "Recovery phrase copied to clipboard"
+                    snackbarMessage = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_snackbar_seed_copied)
                 }
                 is MoneroWalletSettingsEvents.CopyAddress -> {
-                    snackbarMessage = "Wallet address copied to clipboard"
+                    snackbarMessage = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_snackbar_address_copied)
                 }
                 is MoneroWalletSettingsEvents.CopyViewKey -> {
-                    snackbarMessage = "View key copied to clipboard"
+                    snackbarMessage = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_snackbar_view_key_copied)
                 }
                 is MoneroWalletSettingsEvents.CopySpendKey -> {
-                    snackbarMessage = "Spend key copied to clipboard"
+                    snackbarMessage = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_snackbar_spend_key_copied)
                 }
                 is MoneroWalletSettingsEvents.DismissSnackbar -> {
                     snackbarMessage = null
@@ -131,6 +131,7 @@ class MoneroWalletSettingsPresenter(
                         withdrawAction = AsyncAction.Loading
                         try {
                             val error = validateWithdraw(
+                                context = context,
                                 address = withdrawAddress.trim(),
                                 amount = withdrawAmount.trim(),
                                 balanceAtomicUnits = balanceAtomicUnits,
@@ -142,7 +143,7 @@ class MoneroWalletSettingsPresenter(
                             }
 
                             withContext(Dispatchers.IO) {
-                                val w = wallet ?: throw IllegalStateException("Wallet not loaded")
+                                val w = wallet ?: throw IllegalStateException(context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_wallet_not_loaded))
                                 val recipient = PublicAddress.parse(withdrawAddress.trim())
                                 val atomicUnits = BigDecimal(withdrawAmount.trim())
                                     .times(BigDecimal.TEN.pow(MONERO_ATOMIC_UNIT_SCALE))
@@ -159,7 +160,7 @@ class MoneroWalletSettingsPresenter(
                                 transfer.close()
                             }
                             withdrawAction = AsyncAction.Success(Unit)
-                            snackbarMessage = "Transfer sent"
+                            snackbarMessage = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_snackbar_transfer_sent)
                             showWithdrawDialog = false
                             withdrawAddress = ""
                             withdrawAmount = ""
@@ -168,7 +169,7 @@ class MoneroWalletSettingsPresenter(
                         } catch (e: Exception) {
                             Timber.e(e, "Withdraw failed")
                             withdrawAction = AsyncAction.Failure(e)
-                            snackbarMessage = e.message ?: "Transfer failed"
+                            snackbarMessage = e.message ?: context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_snackbar_transfer_failed)
                         }
                     }
                 }
@@ -208,8 +209,8 @@ class MoneroWalletSettingsPresenter(
         try {
             val walletFile = File(context.filesDir, "prism_wallet/monero_wallet.bin")
             if (!walletFile.exists()) {
-                balance.value = "Wallet not found"
-                feeRate.value = "—"
+                balance.value = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_wallet_not_found)
+                feeRate.value = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_fee_error)
                 return@withContext
             }
             val dataStore = MoneroWalletDataStore(context, walletFile)
@@ -227,9 +228,10 @@ class MoneroWalletSettingsPresenter(
             )
             onWallet(w)
             address.value = w.publicAddress.address
-            mnemonic.value = runCatching { w.mnemonic }.getOrNull()
-            viewKey.value = runCatching { w.viewKey }.getOrNull()
-            spendKey.value = runCatching { w.spendKey }.getOrNull()
+            // TODO: MoneroWallet SDK 1.0.0 does not expose mnemonic/viewKey/spendKey; restore when available.
+            mnemonic.value = null
+            viewKey.value = null
+            spendKey.value = null
 
             w.awaitRefresh()
             val ledger = w.ledger().first()
@@ -242,9 +244,9 @@ class MoneroWalletSettingsPresenter(
             feeRate.value = formatXmr(mediumFeeAtomic) + "/byte"
         } catch (e: Exception) {
             Timber.e(e, "Monero wallet load failed")
-            balance.value = "Error"
-            feeRate.value = "Error"
-            onError(e.message ?: "Unknown error")
+            balance.value = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error)
+            feeRate.value = context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error)
+            onError(e.message ?: context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_unknown_error))
         }
     }
 
@@ -266,32 +268,33 @@ class MoneroWalletSettingsPresenter(
     }
 
     private fun validateWithdraw(
+        context: Context,
         address: String,
         amount: String,
         balanceAtomicUnits: Long,
     ): String? {
-        if (address.isBlank()) return "Withdraw address is required"
-        if (amount.isBlank()) return "Withdraw amount is required"
+        if (address.isBlank()) return context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_address_required)
+        if (amount.isBlank()) return context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_amount_required)
 
         val parsedAmount = try {
             BigDecimal(amount)
         } catch (e: NumberFormatException) {
-            return "Invalid amount"
+            return context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_invalid_amount)
         }
-        if (parsedAmount <= BigDecimal.ZERO) return "Amount must be positive"
+        if (parsedAmount <= BigDecimal.ZERO) return context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_amount_positive)
 
         val atomicUnits = try {
             parsedAmount.times(BigDecimal.TEN.pow(MONERO_ATOMIC_UNIT_SCALE)).toLong()
         } catch (e: ArithmeticException) {
-            return "Amount is too large"
+            return context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_amount_too_large)
         }
-        if (atomicUnits > balanceAtomicUnits) return "Insufficient balance"
+        if (atomicUnits > balanceAtomicUnits) return context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_insufficient_balance)
 
         return try {
             PublicAddress.parse(address)
             null
         } catch (e: Exception) {
-            "Invalid Monero address"
+            context.getString(io.prism.android.features.preferences.impl.R.string.screen_monero_wallet_settings_error_invalid_address)
         }
     }
 

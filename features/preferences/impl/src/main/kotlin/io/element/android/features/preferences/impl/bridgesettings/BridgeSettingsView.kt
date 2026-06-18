@@ -131,7 +131,7 @@ fun BridgeSettingsView(
         HorizontalDivider()
         ListItem(
             headlineContent = {
-                Text(if (isWhatsappConnected) "Change WhatsApp Number" else "Connect WhatsApp")
+                Text(if (isWhatsappConnected) stringResource(R.string.screen_bridge_settings_change_whatsapp_number) else stringResource(R.string.screen_bridge_settings_connect_whatsapp))
             },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Plus())),
             onClick = {
@@ -148,7 +148,7 @@ fun BridgeSettingsView(
             var phone by remember(d) { mutableStateOf(d.initialValue) }
             AlertDialog(
                 onDismissRequest = { state.eventSink(BridgeSettingsEvents.DismissDialog) },
-                title = { Text("Phone Number") },
+                title = { Text(stringResource(R.string.screen_bridge_settings_phone_dialog_title)) },
                 text = {
                     Column {
                         Text(d.prompt)
@@ -169,12 +169,12 @@ fun BridgeSettingsView(
                         onClick = { state.eventSink(BridgeSettingsEvents.SubmitPhone(phone)) },
                         enabled = phone.isNotBlank() && phone != "+"
                     ) {
-                        Text("Send")
+                        Text(stringResource(R.string.screen_bridge_settings_phone_dialog_send))
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { state.eventSink(BridgeSettingsEvents.DismissDialog) }) {
-                        Text("Cancel")
+                        Text(stringResource(R.string.screen_bridge_settings_phone_dialog_cancel))
                     }
                 }
             )
@@ -182,7 +182,7 @@ fun BridgeSettingsView(
         is BridgeDialog.PairingCode -> {
             AlertDialog(
                 onDismissRequest = { state.eventSink(BridgeSettingsEvents.DismissDialog) },
-                title = { Text("Pairing Code") },
+                title = { Text(stringResource(R.string.screen_bridge_settings_pairing_code_title)) },
                 text = {
                     Column {
                         Text(d.caption)
@@ -196,12 +196,12 @@ fun BridgeSettingsView(
                 },
                 confirmButton = {
                     TextButton(onClick = { state.eventSink(BridgeSettingsEvents.DismissDialog) }) {
-                        Text("Close")
+                        Text(stringResource(R.string.screen_bridge_settings_pairing_code_close))
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { state.eventSink(BridgeSettingsEvents.RequestNewCode) }) {
-                        Text("Get new code")
+                        Text(stringResource(R.string.screen_bridge_settings_pairing_code_new))
                     }
                 }
             )
@@ -209,11 +209,11 @@ fun BridgeSettingsView(
         is BridgeDialog.Error -> {
             AlertDialog(
                 onDismissRequest = { state.eventSink(BridgeSettingsEvents.DismissDialog) },
-                title = { Text("Error") },
+                title = { Text(stringResource(R.string.screen_bridge_settings_error_title)) },
                 text = { Text(d.message) },
                 confirmButton = {
                     TextButton(onClick = { state.eventSink(BridgeSettingsEvents.DismissDialog) }) {
-                        Text("OK")
+                        Text(stringResource(R.string.screen_bridge_settings_error_ok))
                     }
                 }
             )

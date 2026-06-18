@@ -21,10 +21,14 @@ class DefaultSignedOutEntryPoint : SignedOutEntryPoint {
         parentNode: Node,
         buildContext: BuildContext,
         params: SignedOutEntryPoint.Params,
+        callback: SignedOutEntryPoint.Callback,
     ): Node {
         return parentNode.createNode<SignedOutNode>(
             buildContext = buildContext,
-            plugins = listOf(SignedOutNode.Inputs(params.sessionId))
+            plugins = listOf(
+                SignedOutNode.Inputs(params.sessionId),
+                callback,
+            )
         )
     }
 }

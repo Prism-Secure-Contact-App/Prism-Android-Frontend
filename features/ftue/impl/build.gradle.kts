@@ -61,7 +61,7 @@ dependencies {
     implementation(projects.appconfig)
     implementation(projects.libraries.network)
     implementation(libs.monero.wallet.sdk)
-    implementation(libs.androidx.security)
+    implementation(projects.libraries.prismVault)
 
     testCommonDependencies(libs, true)
     testImplementation(projects.libraries.matrix.test)

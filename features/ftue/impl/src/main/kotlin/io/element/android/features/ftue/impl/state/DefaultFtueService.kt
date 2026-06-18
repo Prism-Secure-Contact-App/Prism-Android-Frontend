@@ -55,7 +55,9 @@ class DefaultFtueService(
             if (sessionPreferencesStore.isFtueBridgeSetupCompleted("whatsapp").first()) {
                 completedWizardSteps.add(FtueStep.WhatsAppBridgeSetup)
             }
-
+            if (sessionPreferencesStore.isFtueMoneroWalletSetupCompleted().first()) {
+                completedWizardSteps.add(FtueStep.MoneroWalletSetup)
+            }
         } catch (t: Throwable) {
             Timber.w(t, "DefaultFtueService: failed to load persisted completions")
         }
@@ -108,6 +110,8 @@ class DefaultFtueService(
                     when (step) {
                         is FtueStep.WhatsAppBridgeSetup ->
                             sessionPreferencesStore.setFtueBridgeSetupCompleted("whatsapp", true)
+                        is FtueStep.MoneroWalletSetup ->
+                            sessionPreferencesStore.setFtueMoneroWalletSetupCompleted(true)
                         else -> {}
                     }
                 } catch (t: Throwable) {

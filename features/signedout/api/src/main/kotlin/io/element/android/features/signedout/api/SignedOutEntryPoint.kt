@@ -10,6 +10,7 @@ package io.prism.android.features.signedout.api
 
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
+import com.bumble.appyx.core.plugin.Plugin
 import io.prism.android.libraries.architecture.FeatureEntryPoint
 import io.prism.android.libraries.matrix.api.core.SessionId
 
@@ -18,9 +19,14 @@ interface SignedOutEntryPoint : FeatureEntryPoint {
         val sessionId: SessionId,
     )
 
+    interface Callback : Plugin {
+        fun onSignInAgain(sessionId: SessionId)
+    }
+
     fun createNode(
         parentNode: Node,
         buildContext: BuildContext,
         params: Params,
+        callback: Callback,
     ): Node
 }

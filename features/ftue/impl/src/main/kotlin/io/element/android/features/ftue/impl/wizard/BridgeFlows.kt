@@ -13,6 +13,7 @@ import io.prism.android.libraries.matrix.api.core.RoomId
 import io.prism.android.libraries.matrix.api.createroom.CreateRoomParameters
 import io.prism.android.libraries.matrix.api.createroom.RoomPreset
 import io.prism.android.libraries.matrix.api.roomdirectory.RoomVisibility
+import io.prism.android.libraries.ui.strings.CommonStrings
 import kotlinx.coroutines.flow.first
 import timber.log.Timber
 
@@ -38,15 +39,10 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
     // the same device). The actual `login phone <number>` command is built in
     // followUpCommand() after the user submits the number.
     override val initialCommand = ""
-    override val promptDescription =
-        "Telefon numaranızı ülke koduyla birlikte uluslararası formatta girin " +
-            "(örneğin +90 555 111 22 33). WhatsApp uygulamasında " +
-            "Ayarlar → Bağlı Cihazlar → Cihaz Bağla → Telefon Numarası ile Bağla menüsünde " +
-            "gireceğiniz 8 haneli eşleştirme kodunu oluşturacağız."
     override val initialPrompt = FlowDecision.AskForInput(
-        prompt = promptDescription,
-        inputLabel = "Phone number",
-        inputPlaceholder = "+15551234567",
+        prompt = TextResource.Res(CommonStrings.screen_ftue_whatsapp_phone_input_prompt),
+        inputLabel = TextResource.Res(CommonStrings.screen_ftue_whatsapp_phone_input_label),
+        inputPlaceholder = TextResource.Res(CommonStrings.screen_ftue_whatsapp_phone_input_placeholder),
         // Pre-fill the leading "+" so the user can type only digits on a phone keypad
         // (most Android numeric keyboards don't expose "+" without long-press / symbol toggle).
         initialValue = "+",
@@ -134,8 +130,7 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
                     if (ns.stepId == "fi.mau.whatsapp.login.code" && !ns.data.isNullOrEmpty()) {
                         return FlowDecision.ShowPairingCode(
                             code = ns.data.uppercase(),
-                            caption = "Open WhatsApp: Settings → Linked Devices → " +
-                                "Link a Device → Link with phone number. Enter the code above.",
+                            caption = TextResource.Res(CommonStrings.screen_ftue_whatsapp_pairing_code_caption),
                         )
                     }
                 }
@@ -146,8 +141,7 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
                     extractPairingCode(body)?.let { code ->
                         return FlowDecision.ShowPairingCode(
                             code = code,
-                            caption = "Open WhatsApp: Settings → Linked Devices → " +
-                                "Link a Device → Link with phone number. Enter the code above.",
+                            caption = TextResource.Res(CommonStrings.screen_ftue_whatsapp_pairing_code_caption),
                         )
                     }
                 }
@@ -156,8 +150,7 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
                 extractPairingCode(body)?.let { code ->
                     return FlowDecision.ShowPairingCode(
                         code = code,
-                        caption = "Open WhatsApp: Settings → Linked Devices → " +
-                            "Link a Device → Link with phone number. Enter the code above.",
+                        caption = TextResource.Res(CommonStrings.screen_ftue_whatsapp_pairing_code_caption),
                     )
                 }
 
@@ -172,18 +165,18 @@ internal class WhatsAppBridgeFlow : BridgeFlow {
                     bodyLc.contains("invalid phone") ||
                         bodyLc.contains("not a valid phone number") ||
                         bodyLc.contains("phone number is not registered") -> FlowDecision.Failure(
-                        "Phone number is invalid. Please try again in international format (e.g. +15551234567).",
+                        TextResource.Res(CommonStrings.screen_ftue_whatsapp_error_invalid_phone),
                     )
 
                     bodyLc.contains("login timed out") ||
                         bodyLc.contains("pairing code expired") ||
                         bodyLc.contains("login cancelled") -> FlowDecision.Failure(
-                        "Pairing code expired. Please try again.",
+                        TextResource.Res(CommonStrings.screen_ftue_whatsapp_error_code_expired),
                     )
 
                     bodyLc.contains("connecting to whatsapp") ||
                         bodyLc.contains("syncing") -> FlowDecision.Progress(
-                        "Connecting to WhatsApp...",
+                        TextResource.Res(CommonStrings.screen_ftue_whatsapp_connecting),
                     )
 
                     else -> FlowDecision.Ignore
@@ -231,10 +224,6 @@ internal class MetaBridgeFlow : BridgeFlow {
     override val displayName = "Instagram (Meta)"
     override val botUserId = AuthenticationConfig.META_BRIDGE_BOT
     override val initialCommand = "login"
-    override val promptDescription =
-        "We will open an embedded browser in the next step to connect your Instagram account. " +
-            "After logging in, cookies will be captured automatically — no manual copying needed."
-
     // Cookie shape required by mautrix-meta's instagram login. Pulled from the bridge's
     // own login spec (see prism-meta logs at startup: step_id=fi.mau.meta.cookies).
     private val instagramCookieNames = listOf("sessionid", "csrftoken", "ds_user_id", "mid", "ig_did")
@@ -280,14 +269,13 @@ internal class MetaBridgeFlow : BridgeFlow {
                     body.contains("checkpoint required") ||
                         body.contains("two-factor") ||
                         body.contains("login challenge") -> FlowDecision.Failure(
-                        "Instagram requires additional verification (2FA / checkpoint). Please " +
-                            "verify your account in the browser first, then re-enter the cookies.",
+                        TextResource.Res(CommonStrings.screen_ftue_meta_error_checkpoint),
                     )
 
                     body.contains("invalid credentials") ||
                         body.contains("login failed") ||
                         body.contains("invalid cookie") -> FlowDecision.Failure(
-                        "Cookies were not accepted. Please copy the latest cookies and try again.",
+                        TextResource.Res(CommonStrings.screen_ftue_meta_error_invalid_cookies),
                     )
 
                     // Fallback: bridge asks for cookies in plain text
@@ -300,7 +288,7 @@ internal class MetaBridgeFlow : BridgeFlow {
                     body.contains("connecting") ||
                         body.contains("syncing") ||
                         body.contains("logging in") -> FlowDecision.Progress(
-                        "Connecting to Instagram...",
+                        TextResource.Res(CommonStrings.screen_ftue_meta_connecting),
                     )
 
                     else -> FlowDecision.Ignore
@@ -311,14 +299,9 @@ internal class MetaBridgeFlow : BridgeFlow {
 
     private fun manualCookiePrompt(): FlowDecision.AskForInput {
         return FlowDecision.AskForInput(
-            prompt = "You need to enter Instagram cookies manually.\n\n" +
-                "1. Log in to instagram.com in Chrome\n" +
-                "2. F12 → Application → Cookies → instagram.com\n" +
-                "3. Şu çerezleri kopyala: sessionid, csrftoken, ds_user_id, mid, ig_did\n" +
-                "4. Aşağıdaki JSON formatında yapıştır:\n" +
-                "{\"sessionid\":\"...\",\"csrftoken\":\"...\",\"ds_user_id\":\"...\",\"mid\":\"...\",\"ig_did\":\"...\"}",
-            inputLabel = "Cookies (JSON)",
-            inputPlaceholder = "{\"sessionid\":\"...\",\"csrftoken\":\"...\",\"ds_user_id\":\"...\",\"mid\":\"...\",\"ig_did\":\"...\"}",
+            prompt = TextResource.Res(CommonStrings.screen_ftue_meta_cookie_input_prompt),
+            inputLabel = TextResource.Res(CommonStrings.screen_ftue_meta_cookie_input_label),
+            inputPlaceholder = TextResource.Res(CommonStrings.screen_ftue_meta_cookie_input_placeholder),
         )
     }
 

@@ -21,5 +21,6 @@ dependencies {
     implementation(libs.androidx.biometric)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.security)
+    implementation(libs.monero.wallet.sdk)
     implementation(projects.libraries.di)
 }

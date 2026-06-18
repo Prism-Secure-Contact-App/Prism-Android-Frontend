@@ -281,20 +281,20 @@ private fun ColumnScope.GeneralSection(
     )
 
     ListItem(
-        headlineContent = { Text("Wallet Security") },
+        headlineContent = { Text(stringResource(id = R.string.screen_monero_wallet_settings_title)) },
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Key())),
         onClick = onOpenMoneroWalletSettings,
     )
 
     ListItem(
-        headlineContent = { Text("PrismAI API Keys") },
+        headlineContent = { Text(stringResource(id = R.string.screen_preferences_prism_ai_api_keys)) },
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Labs())),
         onClick = onOpenLlmApiSettings,
     )
 
     ListItem(
-        headlineContent = { Text("Deep Work Mode") },
-        supportingContent = { Text(if (state.isDeepWorkModeEnabled) "Active · Zen theme" else "Inactive") },
+        headlineContent = { Text(stringResource(id = R.string.screen_preferences_deep_work_mode)) },
+        supportingContent = { Text(if (state.isDeepWorkModeEnabled) stringResource(id = R.string.screen_preferences_deep_work_mode_active) else stringResource(id = R.string.screen_preferences_deep_work_mode_inactive)) },
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Computer())),
         trailingContent = ListItemContent.Custom {
             androidx.compose.material3.Switch(

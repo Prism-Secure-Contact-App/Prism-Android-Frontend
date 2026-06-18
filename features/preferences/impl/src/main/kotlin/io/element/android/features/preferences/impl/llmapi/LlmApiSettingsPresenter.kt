@@ -13,11 +13,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.zacsweers.metro.Inject
+import io.prism.android.features.preferences.impl.R
 import io.prism.android.libraries.architecture.Presenter
+import io.prism.android.services.toolbox.api.strings.StringProvider
 import java.security.SecureRandom
 
 @Inject
-class LlmApiSettingsPresenter : Presenter<LlmApiSettingsState> {
+class LlmApiSettingsPresenter(
+    private val stringProvider: StringProvider,
+) : Presenter<LlmApiSettingsState> {
 
     @Composable
     override fun present(): LlmApiSettingsState {
@@ -38,23 +42,23 @@ class LlmApiSettingsPresenter : Presenter<LlmApiSettingsState> {
                 is LlmApiSettingsEvents.GenerateApiKey -> {
                     apiKey = generateKey()
                     isRevealed = true
-                    snackbarMessage = "New API key generated"
+                    snackbarMessage = stringProvider.getString(R.string.screen_llm_api_settings_snackbar_generated)
                 }
                 is LlmApiSettingsEvents.RevealApiKey -> {
                     isRevealed = true
                 }
                 is LlmApiSettingsEvents.CopyApiKey -> {
-                    snackbarMessage = "API key copied to clipboard"
+                    snackbarMessage = stringProvider.getString(R.string.screen_llm_api_settings_snackbar_copied)
                 }
                 is LlmApiSettingsEvents.RotateApiKey -> {
                     apiKey = generateKey()
                     isRevealed = true
-                    snackbarMessage = "API key rotate edildi"
+                    snackbarMessage = stringProvider.getString(R.string.screen_llm_api_settings_snackbar_rotated)
                 }
                 is LlmApiSettingsEvents.DeleteApiKey -> {
                     apiKey = null
                     isRevealed = false
-                    snackbarMessage = "API key silindi"
+                    snackbarMessage = stringProvider.getString(R.string.screen_llm_api_settings_snackbar_deleted)
                 }
                 is LlmApiSettingsEvents.DismissSnackbar -> {
                     snackbarMessage = null

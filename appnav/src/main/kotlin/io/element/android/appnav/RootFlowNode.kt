@@ -327,12 +327,18 @@ class RootFlowNode(
                 createNode<NotLoggedInFlowNode>(buildContext, plugins = listOf(params, callback))
             }
             is NavTarget.SignedOutFlow -> {
+                val callback = object : SignedOutEntryPoint.Callback {
+                    override fun onSignInAgain(sessionId: SessionId) {
+                        switchToNotLoggedInFlow(null)
+                    }
+                }
                 signedOutEntryPoint.createNode(
                     parentNode = this,
                     buildContext = buildContext,
                     params = SignedOutEntryPoint.Params(
                         sessionId = navTarget.sessionId,
                     ),
+                    callback = callback,
                 )
             }
             NavTarget.SplashScreen -> emptyNode(buildContext)

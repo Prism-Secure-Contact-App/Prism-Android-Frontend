@@ -93,7 +93,6 @@ class RustClientSessionDelegate(
         Timber.tag(loggerTag.value).w("didReceiveAuthError(isSoftLogout=$isSoftLogout)")
         if (isLoggingOut.getAndSet(true).not()) {
             Timber.tag(loggerTag.value).v("didReceiveAuthError -> do the cleanup")
-            // TODO handle isSoftLogout parameter.
             appCoroutineScope.launch(updateTokensDispatcher) {
                 val currentClient = client.get()
                 if (currentClient == null) {
@@ -115,7 +114,13 @@ class RustClientSessionDelegate(
                 } else {
                     Timber.tag(loggerTag.value).d("No session data found.")
                 }
-                currentClient.logout(userInitiated = false, ignoreSdkError = true)
+                if (isSoftLogout) {
+                    // Soft logout: keep local data (encryption keys, caches) and just destroy the client.
+                    Timber.tag(loggerTag.value).d("Soft logout: destroying client without clearing local data.")
+                    currentClient.destroy()
+                } else {
+                    currentClient.logout(userInitiated = false, ignoreSdkError = true)
+                }
             }.invokeOnCompletion {
                 if (it != null) {
                     Timber.tag(loggerTag.value).e(it, "Failed to remove session data.")

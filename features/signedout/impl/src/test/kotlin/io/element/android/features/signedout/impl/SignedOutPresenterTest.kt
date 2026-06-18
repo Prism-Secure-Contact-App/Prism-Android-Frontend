@@ -12,6 +12,7 @@ import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
+import io.prism.android.features.signedout.api.SignedOutEntryPoint
 import io.prism.android.libraries.matrix.api.core.SessionId
 import io.prism.android.libraries.matrix.test.AN_APPLICATION_NAME
 import io.prism.android.libraries.matrix.test.A_SESSION_ID
@@ -46,12 +47,18 @@ class SignedOutPresenterTest {
     }
 
     @Test
-    fun `present - sign in again`() = runTest {
+    fun `present - sign in again invokes callback and keeps session`() = runTest {
         val aSessionData = aSessionData()
         val sessionStore = InMemorySessionStore(
             initialList = listOf(aSessionData)
         )
-        val presenter = createSignedOutPresenter(sessionStore = sessionStore)
+        var callbackSessionId: SessionId? = null
+        val callback = object : SignedOutEntryPoint.Callback {
+            override fun onSignInAgain(sessionId: SessionId) {
+                callbackSessionId = sessionId
+            }
+        }
+        val presenter = createSignedOutPresenter(sessionStore = sessionStore, callback = callback)
         moleculeFlow(RecompositionMode.Immediate) {
             presenter.present()
         }.test {
@@ -61,9 +68,9 @@ class SignedOutPresenterTest {
             assertThat(sessionStore.getAllSessions()).isNotEmpty()
             assertThat(sessionStore.numberOfSessions()).isEqualTo(1)
             initialState.eventSink(SignedOutEvents.SignInAgain)
-            assertThat(awaitItem().signedOutSession).isNull()
-            assertThat(sessionStore.getAllSessions()).isEmpty()
-            assertThat(sessionStore.numberOfSessions()).isEqualTo(0)
+            assertThat(callbackSessionId).isEqualTo(A_SESSION_ID)
+            assertThat(sessionStore.getAllSessions()).isNotEmpty()
+            assertThat(sessionStore.numberOfSessions()).isEqualTo(1)
         }
     }
 }
@@ -71,9 +78,13 @@ class SignedOutPresenterTest {
 internal fun createSignedOutPresenter(
     sessionId: SessionId = A_SESSION_ID,
     sessionStore: SessionStore = InMemorySessionStore(),
+    callback: SignedOutEntryPoint.Callback = object : SignedOutEntryPoint.Callback {
+        override fun onSignInAgain(sessionId: SessionId) = Unit
+    },
 ): SignedOutPresenter {
     return SignedOutPresenter(
         sessionId = sessionId,
+        callback = callback,
         sessionStore = sessionStore,
         buildMeta = aBuildMeta(applicationName = AN_APPLICATION_NAME),
     )

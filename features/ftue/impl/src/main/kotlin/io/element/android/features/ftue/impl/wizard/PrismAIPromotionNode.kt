@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
@@ -22,6 +23,7 @@ import io.prism.android.compound.theme.PRISMTheme
 import io.prism.android.features.ftue.impl.state.DefaultFtueService
 import io.prism.android.libraries.designsystem.theme.components.Button
 import io.prism.android.libraries.designsystem.theme.components.Text
+import io.prism.android.libraries.ui.strings.CommonStrings
 
 class PrismAIPromotionNode(
     buildContext: BuildContext,
@@ -37,20 +39,19 @@ class PrismAIPromotionNode(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = "Welcome to PrismAI",
+                text = stringResource(CommonStrings.screen_ftue_prism_ai_title),
                 style = PRISMTheme.typography.fontHeadingMdBold,
                 color = PRISMTheme.colors.textPrimary,
             )
             Spacer(Modifier.height(16.dp))
             Text(
-                text = "Send a message to Meta from your WhatsApp, then long-press that message and tap 'Mark as AI'. " +
-                    "After this, the chat will disappear from the main area and a special 'PrismAI' space will be created.",
+                text = stringResource(CommonStrings.screen_ftue_prism_ai_subtitle),
                 style = PRISMTheme.typography.fontBodyMdRegular,
                 color = PRISMTheme.colors.textSecondary,
             )
             Spacer(Modifier.height(32.dp))
             Button(
-                text = "Got it",
+                text = stringResource(CommonStrings.screen_ftue_prism_ai_button),
                 onClick = {
                     ftueService.completeCurrentStepAndAdvance()
                     onBack()

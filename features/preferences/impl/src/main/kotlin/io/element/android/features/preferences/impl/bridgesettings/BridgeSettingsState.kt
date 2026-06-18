@@ -30,9 +30,9 @@ data class BridgeSettingsState(
 sealed interface BridgeDialog {
     data class PhoneInput(
         val platform: String,
-        val prompt: String = "Enter your phone number in international format with country code (e.g. +1 555 123 4567).",
-        val inputLabel: String = "Phone number",
-        val placeholder: String = "+905551112233",
+        val prompt: String = "",
+        val inputLabel: String = "",
+        val placeholder: String = "",
         val initialValue: String = "+",
     ) : BridgeDialog
 
