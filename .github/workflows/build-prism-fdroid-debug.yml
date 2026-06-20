@@ -2,9 +2,6 @@ name: PRISM F-Droid Debug Build
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - fix/ai-wizard-navigation
 
 permissions: {}
 
